@@ -12,6 +12,21 @@
 		43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */; };
 		43372D0E1E7FB4BD002E2AE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */; };
 		43372D111E7FB4BD002E2AE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43372D0F1E7FB4BD002E2AE3 /* LaunchScreen.storyboard */; };
+		43372D1C1E7FC603002E2AE3 /* CacaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D1B1E7FC603002E2AE3 /* CacaViewController.swift */; };
+		43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */; };
+		43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D211E7FC69D002E2AE3 /* CalendarViewController.swift */; };
+		43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */; };
+		43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D251E7FC780002E2AE3 /* RecordRowView.swift */; };
+		43372D281E7FC799002E2AE3 /* RecordRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43372D271E7FC799002E2AE3 /* RecordRowView.xib */; };
+		43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */; };
+		43372D2C1E7FC7B6002E2AE3 /* SettingRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43372D2B1E7FC7B6002E2AE3 /* SettingRowView.xib */; };
+		43372D2E1E7FC821002E2AE3 /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D2D1E7FC821002E2AE3 /* OpeningViewController.swift */; };
+		43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D321E7FCA30002E2AE3 /* TabBarController.swift */; };
+		43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43372D351E7FCA89002E2AE3 /* TabBar.storyboard */; };
+		43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D381E7FCC84002E2AE3 /* CacaNavigationController.swift */; };
+		43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */; };
+		43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */; };
+		43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */; };
 		F95845CD50A464FB4F580BFD /* Pods_Caca.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98224253DC57BEF9622E41A3 /* Pods_Caca.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +38,21 @@
 		43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43372D101E7FB4BD002E2AE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43372D121E7FB4BD002E2AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43372D1B1E7FC603002E2AE3 /* CacaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacaViewController.swift; sourceTree = "<group>"; };
+		43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
+		43372D211E7FC69D002E2AE3 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		43372D251E7FC780002E2AE3 /* RecordRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordRowView.swift; sourceTree = "<group>"; };
+		43372D271E7FC799002E2AE3 /* RecordRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordRowView.xib; sourceTree = "<group>"; };
+		43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRowView.swift; sourceTree = "<group>"; };
+		43372D2B1E7FC7B6002E2AE3 /* SettingRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingRowView.xib; sourceTree = "<group>"; };
+		43372D2D1E7FC821002E2AE3 /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
+		43372D321E7FCA30002E2AE3 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		43372D351E7FCA89002E2AE3 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		43372D381E7FCC84002E2AE3 /* CacaNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacaNavigationController.swift; sourceTree = "<group>"; };
+		43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordNavigationController.swift; sourceTree = "<group>"; };
+		43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
+		43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
 		7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.debug.xcconfig"; sourceTree = "<group>"; };
 		7FD9A553529C5EDD2843816A /* Pods-Caca.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.release.xcconfig"; sourceTree = "<group>"; };
 		98224253DC57BEF9622E41A3 /* Pods_Caca.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Caca.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,14 +91,69 @@
 		43372D021E7FB4BD002E2AE3 /* Caca */ = {
 			isa = PBXGroup;
 			children = (
+				43372D2D1E7FC821002E2AE3 /* OpeningViewController.swift */,
+				43372D1B1E7FC603002E2AE3 /* CacaViewController.swift */,
+				43372D211E7FC69D002E2AE3 /* CalendarViewController.swift */,
+				43372D2F1E7FC84A002E2AE3 /* Setting */,
+				43372D301E7FC86C002E2AE3 /* Record */,
+				43372D371E7FCC3B002E2AE3 /* Navigation */,
+				43372D341E7FCA4E002E2AE3 /* TabBar */,
+				43372D311E7FC8C1002E2AE3 /* Storyboard */,
 				43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */,
-				43372D071E7FB4BD002E2AE3 /* Main.storyboard */,
 				43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */,
-				43372D0F1E7FB4BD002E2AE3 /* LaunchScreen.storyboard */,
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
 				43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */,
 			);
 			path = Caca;
+			sourceTree = "<group>";
+		};
+		43372D2F1E7FC84A002E2AE3 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
+				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
+				43372D2B1E7FC7B6002E2AE3 /* SettingRowView.xib */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		43372D301E7FC86C002E2AE3 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */,
+				43372D251E7FC780002E2AE3 /* RecordRowView.swift */,
+				43372D271E7FC799002E2AE3 /* RecordRowView.xib */,
+			);
+			name = Record;
+			sourceTree = "<group>";
+		};
+		43372D311E7FC8C1002E2AE3 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				43372D071E7FB4BD002E2AE3 /* Main.storyboard */,
+				43372D0F1E7FB4BD002E2AE3 /* LaunchScreen.storyboard */,
+				43372D351E7FCA89002E2AE3 /* TabBar.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		43372D341E7FCA4E002E2AE3 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				43372D321E7FCA30002E2AE3 /* TabBarController.swift */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		43372D371E7FCC3B002E2AE3 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				43372D381E7FCC84002E2AE3 /* CacaNavigationController.swift */,
+				43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */,
+				43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */,
+				43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */,
+			);
+			name = Navigation;
 			sourceTree = "<group>";
 		};
 		4D40147E3D80F0A118207D3C /* Pods */ = {
@@ -152,8 +237,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43372D281E7FC799002E2AE3 /* RecordRowView.xib in Resources */,
+				43372D2C1E7FC7B6002E2AE3 /* SettingRowView.xib in Resources */,
 				43372D111E7FB4BD002E2AE3 /* LaunchScreen.storyboard in Resources */,
 				43372D0E1E7FB4BD002E2AE3 /* Assets.xcassets in Resources */,
+				43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */,
 				43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,8 +314,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,
+				43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */,
+				43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */,
+				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
+				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
+				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
+				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
+				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,
+				43372D2E1E7FC821002E2AE3 /* OpeningViewController.swift in Sources */,
+				43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */,
+				43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */,
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
 				43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */,
+				43372D1C1E7FC603002E2AE3 /* CacaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
