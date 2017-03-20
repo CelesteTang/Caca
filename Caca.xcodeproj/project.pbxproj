@@ -101,6 +101,7 @@
 				43372CFE1E7FB4BD002E2AE3 /* Resources */,
 				1823AE7D3636F1CC228E5E6C /* [CP] Embed Pods Frameworks */,
 				1107703EA5C3EE6CB4C3A34D /* [CP] Copy Pods Resources */,
+				43372D181E7FBC9C002E2AE3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -189,6 +190,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Caca/Pods-Caca-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		43372D181E7FBC9C002E2AE3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		D56EA147E05B12629A1D5033 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -285,6 +299,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -327,6 +342,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -377,6 +393,7 @@
 				43372D171E7FB4BD002E2AE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
