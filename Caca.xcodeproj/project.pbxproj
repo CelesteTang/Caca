@@ -225,7 +225,7 @@
 				43372CFE1E7FB4BD002E2AE3 /* Resources */,
 				1823AE7D3636F1CC228E5E6C /* [CP] Embed Pods Frameworks */,
 				1107703EA5C3EE6CB4C3A34D /* [CP] Copy Pods Resources */,
-				43372D181E7FBC9C002E2AE3 /* ShellScript */,
+				43372D181E7FBC9C002E2AE3 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -322,13 +322,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Caca/Pods-Caca-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		43372D181E7FBC9C002E2AE3 /* ShellScript */ = {
+		43372D181E7FBC9C002E2AE3 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = SwiftLint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
