@@ -33,6 +33,7 @@
 		43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA31E7FF48E0052125B /* OpeningPageViewController.swift */; };
 		43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA61E8006E80052125B /* OpeningViewController.swift */; };
 		43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3FA81E80D64F0052125B /* Caca.storyboard */; };
+		43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */; };
 		F95845CD50A464FB4F580BFD /* Pods_Caca.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98224253DC57BEF9622E41A3 /* Pods_Caca.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		43BA3FA31E7FF48E0052125B /* OpeningPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningPageViewController.swift; sourceTree = "<group>"; };
 		43BA3FA61E8006E80052125B /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
 		43BA3FA81E80D64F0052125B /* Caca.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Caca.storyboard; sourceTree = "<group>"; };
+		43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.debug.xcconfig"; sourceTree = "<group>"; };
 		7FD9A553529C5EDD2843816A /* Pods-Caca.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.release.xcconfig"; sourceTree = "<group>"; };
 		98224253DC57BEF9622E41A3 /* Pods_Caca.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Caca.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 		43372D301E7FC86C002E2AE3 /* Record */ = {
 			isa = PBXGroup;
 			children = (
+				43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */,
 				43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */,
 				43372D251E7FC780002E2AE3 /* RecordRowView.swift */,
 				43372D271E7FC799002E2AE3 /* RecordRowView.xib */,
@@ -368,6 +371,7 @@
 				43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */,
 				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
 				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
+				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,
 				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
 				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,

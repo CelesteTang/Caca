@@ -21,13 +21,13 @@ class CacaViewController: UIViewController {
 }
 
 extension CacaViewController {
-    
+
     // swiftlint:disable force_cast
     class func create() -> CacaViewController {
-        
+
         return UIStoryboard(name: "Caca", bundle: nil).instantiateViewController(withIdentifier: "CacaViewController") as! CacaViewController
-        
+
     }
     // swiftlint:enable force_cast
-    
+
 }

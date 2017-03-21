@@ -9,40 +9,40 @@
 import UIKit
 
 class RecordNavigationController: UINavigationController {
-    
+
     // MARK: Init
-    
+
     init() {
         super.init(rootViewController: RecordTableViewController())
     }
-    
+
     private override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        
+
         setUp()
-        
+
     }
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
+
         setUp()
-        
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         setUp()
-        
+
     }
-    
+
     // MARK: Set Up
-    
+
     private func setUp() {
-        
+
         viewControllers = [ RecordTableViewController() ]
-        
+
     }
 
 }

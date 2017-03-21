@@ -9,11 +9,21 @@
 import UIKit
 
 class RecordRowView: UIView {
-    
+
     @IBOutlet weak var cacaPhotoImageView: UIImageView!
 
     @IBOutlet weak var dateLabel: UILabel!
-    
+
     @IBOutlet weak var passOrFailLabel: UILabel!
-    
+
 }
+
+extension RecordRowView {
+
+    // swiftlint:disable force_cast
+    class func create() -> RecordRowView {
+
+        return UINib(nibName: "RecordRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! RecordRowView
+    }
+}
+// swiftlint:enable force_cast
