@@ -10,25 +10,39 @@ import UIKit
 
 class CacaNavigationController: UINavigationController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: Init
 
-        // Do any additional setup after loading the view.
+    init() {
+        super.init(rootViewController: CacaViewController())
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+
+        setUp()
+
     }
 
-    /*
-    // MARK: - Navigation
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        setUp()
+
     }
-    */
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        setUp()
+
+    }
+
+    // MARK: Set Up
+
+    private func setUp() {
+
+        viewControllers = [ CacaViewController() ]
+
+    }
 
 }

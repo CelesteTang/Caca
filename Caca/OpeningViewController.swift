@@ -22,12 +22,14 @@ class OpeningViewController: UIViewController {
 
         switch index {
         case 0...1:
-            // swiftlint:disable force_cast
-            let pageViewController = parent as! OpeningPageViewController
-            // swiftlint:enable force_cast
+            guard let pageViewController = parent as? OpeningPageViewController else { return }
             pageViewController.forward(index: index)
         case 2:
-            dismiss(animated: true, completion: nil)
+//            dismiss(animated: true, completion: nil)
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+            }
+
         default: break
         }
 

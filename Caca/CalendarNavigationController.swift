@@ -10,25 +10,39 @@ import UIKit
 
 class CalendarNavigationController: UINavigationController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    // MARK: Init
+    
+    init() {
+        super.init(rootViewController: CalendarViewController())
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        
+        setUp()
+        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        setUp()
+        
     }
-    */
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        setUp()
+        
+    }
+    
+    // MARK: Set Up
+    
+    private func setUp() {
+        
+        viewControllers = [ CalendarViewController() ]
+        
+    }
+    
 }

@@ -32,6 +32,7 @@
 		43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F9D1E7FCFF30052125B /* Record.storyboard */; };
 		43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA31E7FF48E0052125B /* OpeningPageViewController.swift */; };
 		43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA61E8006E80052125B /* OpeningViewController.swift */; };
+		43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3FA81E80D64F0052125B /* Caca.storyboard */; };
 		F95845CD50A464FB4F580BFD /* Pods_Caca.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98224253DC57BEF9622E41A3 /* Pods_Caca.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		43BA3F9D1E7FCFF30052125B /* Record.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Record.storyboard; sourceTree = "<group>"; };
 		43BA3FA31E7FF48E0052125B /* OpeningPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningPageViewController.swift; sourceTree = "<group>"; };
 		43BA3FA61E8006E80052125B /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
+		43BA3FA81E80D64F0052125B /* Caca.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Caca.storyboard; sourceTree = "<group>"; };
 		7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.debug.xcconfig"; sourceTree = "<group>"; };
 		7FD9A553529C5EDD2843816A /* Pods-Caca.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.release.xcconfig"; sourceTree = "<group>"; };
 		98224253DC57BEF9622E41A3 /* Pods_Caca.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Caca.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,10 +145,11 @@
 				43BA3F961E7FCEED0052125B /* Landing.storyboard */,
 				43372D0F1E7FB4BD002E2AE3 /* LaunchScreen.storyboard */,
 				43BA3F981E7FCF9B0052125B /* Opening.storyboard */,
-				43372D071E7FB4BD002E2AE3 /* Main.storyboard */,
+				43BA3FA81E80D64F0052125B /* Caca.storyboard */,
 				43BA3F9D1E7FCFF30052125B /* Record.storyboard */,
 				43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */,
 				43372D351E7FCA89002E2AE3 /* TabBar.storyboard */,
+				43372D071E7FB4BD002E2AE3 /* Main.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */,
 				43372D0E1E7FB4BD002E2AE3 /* Assets.xcassets in Resources */,
 				43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */,
+				43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */,
 				43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */,
 				43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */,
 			);
