@@ -13,7 +13,7 @@ class CacaNavigationController: UINavigationController {
     // MARK: Init
 
     init() {
-        super.init(rootViewController: CacaViewController())
+        super.init(rootViewController: CacaViewController.create())
     }
 
     private override init(rootViewController: UIViewController) {
@@ -41,7 +41,7 @@ class CacaNavigationController: UINavigationController {
 
     private func setUp() {
 
-        viewControllers = [ CacaViewController() ]
+        viewControllers = [ CacaViewController.create() ]
 
     }
 

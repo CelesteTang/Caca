@@ -21,32 +21,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdO-hv-1zu">
-                                <rect key="frame" x="166" y="42" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWj-8c-Qgc">
-                                <rect key="frame" x="164" y="602" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWj-8c-Qgc">
+                                <rect key="frame" x="148" y="602" width="78" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9t-sW-KCt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9t-sW-KCt">
                                 <rect key="frame" x="166" y="518" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8vj-Jv-6lS">
-                                <rect key="frame" x="35" y="89" width="304" height="389"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8vj-Jv-6lS">
+                                <rect key="frame" x="19" y="90" width="336" height="388"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Q9t-sW-KCt" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="166" id="4NM-8S-ilR"/>
+                            <constraint firstItem="Q9t-sW-KCt" firstAttribute="centerX" secondItem="KB5-0U-6Qs" secondAttribute="centerX" id="K6M-fM-x5m"/>
+                            <constraint firstItem="8vj-Jv-6lS" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="19" id="SQg-KF-VWZ"/>
+                            <constraint firstItem="EX0-gB-3TR" firstAttribute="top" secondItem="pWj-8c-Qgc" secondAttribute="bottom" constant="35" id="TVK-Dx-9vT"/>
+                            <constraint firstItem="8vj-Jv-6lS" firstAttribute="centerX" secondItem="KB5-0U-6Qs" secondAttribute="centerX" id="VGc-Ao-ci0"/>
+                            <constraint firstItem="Q9t-sW-KCt" firstAttribute="top" secondItem="8vj-Jv-6lS" secondAttribute="bottom" constant="40" id="ZyM-0Q-Nfi"/>
+                            <constraint firstItem="pWj-8c-Qgc" firstAttribute="centerX" secondItem="KB5-0U-6Qs" secondAttribute="centerX" id="eCf-Sj-ETw"/>
+                            <constraint firstItem="pWj-8c-Qgc" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="148" id="gOY-HT-ms8"/>
+                            <constraint firstItem="8vj-Jv-6lS" firstAttribute="top" secondItem="NHF-b8-bIX" secondAttribute="bottom" constant="70" id="vnO-2W-cGu"/>
+                            <constraint firstItem="pWj-8c-Qgc" firstAttribute="top" secondItem="Q9t-sW-KCt" secondAttribute="bottom" constant="63" id="z07-Z5-Ecj"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vh-Du-Gop" userLabel="First Responder" sceneMemberID="firstResponder"/>
