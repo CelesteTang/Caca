@@ -30,6 +30,8 @@
 		43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F981E7FCF9B0052125B /* Opening.storyboard */; };
 		43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */; };
 		43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F9D1E7FCFF30052125B /* Record.storyboard */; };
+		43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA31E7FF48E0052125B /* OpeningPageViewController.swift */; };
+		43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA61E8006E80052125B /* OpeningViewController.swift */; };
 		F95845CD50A464FB4F580BFD /* Pods_Caca.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98224253DC57BEF9622E41A3 /* Pods_Caca.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,8 @@
 		43BA3F981E7FCF9B0052125B /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		43BA3F9D1E7FCFF30052125B /* Record.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Record.storyboard; sourceTree = "<group>"; };
+		43BA3FA31E7FF48E0052125B /* OpeningPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningPageViewController.swift; sourceTree = "<group>"; };
+		43BA3FA61E8006E80052125B /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
 		7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.debug.xcconfig"; sourceTree = "<group>"; };
 		7FD9A553529C5EDD2843816A /* Pods-Caca.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.release.xcconfig"; sourceTree = "<group>"; };
 		98224253DC57BEF9622E41A3 /* Pods_Caca.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Caca.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +101,7 @@
 		43372D021E7FB4BD002E2AE3 /* Caca */ = {
 			isa = PBXGroup;
 			children = (
+				43BA3FA51E8006CF0052125B /* Opening */,
 				43BA3F9F1E7FD13B0052125B /* Caca */,
 				43372D301E7FC86C002E2AE3 /* Record */,
 				43BA3FA01E7FD1440052125B /* Calendar */,
@@ -179,6 +184,15 @@
 				43372D211E7FC69D002E2AE3 /* CalendarViewController.swift */,
 			);
 			name = Calendar;
+			sourceTree = "<group>";
+		};
+		43BA3FA51E8006CF0052125B /* Opening */ = {
+			isa = PBXGroup;
+			children = (
+				43BA3FA31E7FF48E0052125B /* OpeningPageViewController.swift */,
+				43BA3FA61E8006E80052125B /* OpeningViewController.swift */,
+			);
+			name = Opening;
 			sourceTree = "<group>";
 		};
 		4D40147E3D80F0A118207D3C /* Pods */ = {
@@ -344,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,
+				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
 				43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */,
 				43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */,
 				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
@@ -351,6 +366,7 @@
 				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
 				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,
+				43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */,
 				43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */,
 				43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */,
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
