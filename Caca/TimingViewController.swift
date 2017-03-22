@@ -31,7 +31,7 @@ class TimingViewController: UIViewController {
         if isTimerRunning == false {
 
             runTimer()
-            
+
             self.startButton.isEnabled = false
 
         }
@@ -68,9 +68,9 @@ class TimingViewController: UIViewController {
         timerLabel.text = "00:00:00"
 
         isTimerRunning = false
-        
+
         self.pauseButton.isEnabled = false
-        
+
         self.startButton.isEnabled = true
 
     }
@@ -80,10 +80,13 @@ class TimingViewController: UIViewController {
 
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
         self.timerLabel.text = "00:00:00"
+        
         self.startButton.setTitle("Start", for: UIControlState.normal)
         self.pauseButton.setTitle("Pause", for: UIControlState.normal)
         self.resetButton.setTitle("Reset", for: UIControlState.normal)
+        
         self.pauseButton.isEnabled = false
+        self.resetButton.isEnabled = false
 
     }
 
@@ -92,7 +95,7 @@ class TimingViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimingViewController.updateTimer), userInfo: nil, repeats: true)
 
         isTimerRunning = true
-        
+
         self.pauseButton.isEnabled = true
 
     }

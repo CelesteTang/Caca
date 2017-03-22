@@ -9,6 +9,7 @@
 import UIKit
 
 class CacaViewController: UIViewController {
+
     @IBAction func switchToTiming(_ sender: UIButton) {
 
         let signUpStorybard = UIStoryboard(name: "Timing", bundle: nil)
@@ -20,11 +21,22 @@ class CacaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "2017/03/21"
+        navigationItem.title = dateString()
         view.backgroundColor = UIColor.brown
 
     }
 
+    func dateString() -> String {
+
+        let date = Date()
+        let calendar = Calendar.current
+
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+
+        return String(format: "%04i/%02i/%02i", year, month, day)
+    }
 }
 
 extension CacaViewController {
