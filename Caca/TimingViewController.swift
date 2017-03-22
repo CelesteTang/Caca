@@ -85,11 +85,11 @@ class TimingViewController: UIViewController {
 
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
         self.timerLabel.text = "00:00:00"
-        
+
         self.startButton.setTitle("Start", for: UIControlState.normal)
         self.pauseButton.setTitle("Pause", for: UIControlState.normal)
         self.resetButton.setTitle("Reset", for: UIControlState.normal)
-        
+
         self.pauseButton.isEnabled = false
         self.resetButton.isEnabled = false
 
