@@ -33,6 +33,7 @@ class TimingViewController: UIViewController {
             runTimer()
 
             self.startButton.isEnabled = false
+            self.resetButton.isEnabled = true
 
         }
 
@@ -69,9 +70,13 @@ class TimingViewController: UIViewController {
 
         isTimerRunning = false
 
+        resumeTapped = false
+
         self.pauseButton.isEnabled = false
 
         self.startButton.isEnabled = true
+
+        self.pauseButton.setTitle("Pause", for: UIControlState.normal)
 
     }
 
