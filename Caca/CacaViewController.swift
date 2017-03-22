@@ -9,6 +9,13 @@
 import UIKit
 
 class CacaViewController: UIViewController {
+    @IBAction func switchToTiming(_ sender: UIButton) {
+
+        let signUpStorybard = UIStoryboard(name: "Timing", bundle: nil)
+        let signUpViewController = signUpStorybard.instantiateViewController(withIdentifier: "TimingViewController")
+
+        present(signUpViewController, animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
