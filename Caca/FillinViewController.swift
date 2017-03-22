@@ -28,10 +28,15 @@ class FillinViewController: UIViewController {
 
     @IBAction func didFillin(_ sender: UIButton) {
 
-        let recordStorybard = UIStoryboard(name: "Record", bundle: nil)
-        let recordTableViewController = recordStorybard.instantiateViewController(withIdentifier: "RecordTableViewController")
+        let tabBarStorybard = UIStoryboard(name: "TabBar", bundle: nil)
+        var tabBarController: TabBarController!
+        if let mytabBarController = tabBarStorybard.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+            tabBarController = mytabBarController
+            tabBarController.selectedIndex = 1
+        }
 
-        present(recordTableViewController, animated: true)
+        present(tabBarController, animated: true)
+
     }
 
     override func viewDidLoad() {
@@ -39,7 +44,6 @@ class FillinViewController: UIViewController {
 
         dateLabel.text = dateString()
 
-//        consumingTimeLabel.text = 
     }
 
     func dateString() -> String {
