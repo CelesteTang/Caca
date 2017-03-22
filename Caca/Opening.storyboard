@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2eC-qc-YSW">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Opening Page View Controller-->
+        <scene sceneID="nzY-gL-yEJ">
+            <objects>
+                <pageViewController storyboardIdentifier="OpeningPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="2eC-qc-YSW" customClass="OpeningPageViewController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bhV-Pr-WQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="266" y="-201"/>
+        </scene>
+        <!--Opening View Controller-->
+        <scene sceneID="52L-S2-B5r">
+            <objects>
+                <viewController storyboardIdentifier="OpeningViewController" id="amJ-I7-a1x" customClass="OpeningViewController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eh6-8I-aAm"/>
+                        <viewControllerLayoutGuide type="bottom" id="MTL-Qn-PqA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zhS-ys-Oxk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lOf-B7-6iN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qp1-dO-63S">
+                                <rect key="frame" x="30" y="55" width="315" height="107.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRT-2V-u1G">
+                                <rect key="frame" x="299" y="611" width="60" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="openingButton:" destination="amJ-I7-a1x" eventType="touchUpInside" id="jhB-KQ-Xxg"/>
+                                </connections>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SeH-pP-0c1">
+                                <rect key="frame" x="168" y="610" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lOf-B7-6iN" firstAttribute="top" secondItem="zhS-ys-Oxk" secondAttribute="top" id="1Dx-bU-9IK"/>
+                            <constraint firstItem="lOf-B7-6iN" firstAttribute="leading" secondItem="zhS-ys-Oxk" secondAttribute="leading" id="2aI-eR-gFy"/>
+                            <constraint firstItem="qp1-dO-63S" firstAttribute="centerX" secondItem="zhS-ys-Oxk" secondAttribute="centerX" id="9GK-6t-H6E"/>
+                            <constraint firstItem="qp1-dO-63S" firstAttribute="leading" secondItem="zhS-ys-Oxk" secondAttribute="leading" constant="30" id="Cal-gU-rLt"/>
+                            <constraint firstItem="qp1-dO-63S" firstAttribute="top" secondItem="eh6-8I-aAm" secondAttribute="bottom" constant="35" id="RFF-WI-czP"/>
+                            <constraint firstItem="lOf-B7-6iN" firstAttribute="bottom" secondItem="MTL-Qn-PqA" secondAttribute="top" id="qgS-h7-eJq"/>
+                            <constraint firstAttribute="trailing" secondItem="lOf-B7-6iN" secondAttribute="trailing" id="s91-Ng-lOk"/>
+                            <constraint firstAttribute="trailing" secondItem="qp1-dO-63S" secondAttribute="trailing" constant="30" id="zw4-Jd-XOM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="forwardButton" destination="gRT-2V-u1G" id="TZu-B4-du9"/>
+                        <outlet property="openingImage" destination="lOf-B7-6iN" id="Bow-4P-e9Z"/>
+                        <outlet property="openingLabel" destination="qp1-dO-63S" id="45K-Gu-PSE"/>
+                        <outlet property="pageControl" destination="SeH-pP-0c1" id="YG3-W2-jbn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyJ-Oz-2Qk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="989.60000000000002" y="-201.04947526236884"/>
+        </scene>
+    </scenes>
+</document>

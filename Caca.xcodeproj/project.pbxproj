@@ -7,23 +7,77 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB3F1E8221E4006B0D5D /* Timing.storyboard */; };
+		4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB411E822232006B0D5D /* Fillin.storyboard */; };
+		4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB431E82240F006B0D5D /* TimingViewController.swift */; };
+		4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB451E82242A006B0D5D /* FillinViewController.swift */; };
 		43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */; };
-		43372D061E7FB4BD002E2AE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D051E7FB4BD002E2AE3 /* ViewController.swift */; };
 		43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43372D071E7FB4BD002E2AE3 /* Main.storyboard */; };
 		43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */; };
 		43372D0E1E7FB4BD002E2AE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */; };
 		43372D111E7FB4BD002E2AE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43372D0F1E7FB4BD002E2AE3 /* LaunchScreen.storyboard */; };
+		43372D1C1E7FC603002E2AE3 /* CacaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D1B1E7FC603002E2AE3 /* CacaViewController.swift */; };
+		43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */; };
+		43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D211E7FC69D002E2AE3 /* CalendarViewController.swift */; };
+		43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */; };
+		43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D251E7FC780002E2AE3 /* RecordRowView.swift */; };
+		43372D281E7FC799002E2AE3 /* RecordRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43372D271E7FC799002E2AE3 /* RecordRowView.xib */; };
+		43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */; };
+		43372D2C1E7FC7B6002E2AE3 /* SettingRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43372D2B1E7FC7B6002E2AE3 /* SettingRowView.xib */; };
+		43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D321E7FCA30002E2AE3 /* TabBarController.swift */; };
+		43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43372D351E7FCA89002E2AE3 /* TabBar.storyboard */; };
+		43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D381E7FCC84002E2AE3 /* CacaNavigationController.swift */; };
+		43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */; };
+		43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */; };
+		43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */; };
+		43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F961E7FCEED0052125B /* Landing.storyboard */; };
+		43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F981E7FCF9B0052125B /* Opening.storyboard */; };
+		43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */; };
+		43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F9D1E7FCFF30052125B /* Record.storyboard */; };
+		43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA31E7FF48E0052125B /* OpeningPageViewController.swift */; };
+		43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA61E8006E80052125B /* OpeningViewController.swift */; };
+		43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3FA81E80D64F0052125B /* Caca.storyboard */; };
+		43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */; };
+		F95845CD50A464FB4F580BFD /* Pods_Caca.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98224253DC57BEF9622E41A3 /* Pods_Caca.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4322EB3F1E8221E4006B0D5D /* Timing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timing.storyboard; sourceTree = "<group>"; };
+		4322EB411E822232006B0D5D /* Fillin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Fillin.storyboard; sourceTree = "<group>"; };
+		4322EB431E82240F006B0D5D /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
+		4322EB451E82242A006B0D5D /* FillinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillinViewController.swift; sourceTree = "<group>"; };
 		43372D001E7FB4BD002E2AE3 /* Caca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		43372D051E7FB4BD002E2AE3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		43372D081E7FB4BD002E2AE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43372D0B1E7FB4BD002E2AE3 /* Caca.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Caca.xcdatamodel; sourceTree = "<group>"; };
 		43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43372D101E7FB4BD002E2AE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43372D121E7FB4BD002E2AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43372D1B1E7FC603002E2AE3 /* CacaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacaViewController.swift; sourceTree = "<group>"; };
+		43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
+		43372D211E7FC69D002E2AE3 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		43372D251E7FC780002E2AE3 /* RecordRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordRowView.swift; sourceTree = "<group>"; };
+		43372D271E7FC799002E2AE3 /* RecordRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordRowView.xib; sourceTree = "<group>"; };
+		43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRowView.swift; sourceTree = "<group>"; };
+		43372D2B1E7FC7B6002E2AE3 /* SettingRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingRowView.xib; sourceTree = "<group>"; };
+		43372D321E7FCA30002E2AE3 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		43372D351E7FCA89002E2AE3 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		43372D381E7FCC84002E2AE3 /* CacaNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacaNavigationController.swift; sourceTree = "<group>"; };
+		43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordNavigationController.swift; sourceTree = "<group>"; };
+		43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
+		43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
+		43BA3F961E7FCEED0052125B /* Landing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
+		43BA3F981E7FCF9B0052125B /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
+		43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		43BA3F9D1E7FCFF30052125B /* Record.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Record.storyboard; sourceTree = "<group>"; };
+		43BA3FA31E7FF48E0052125B /* OpeningPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningPageViewController.swift; sourceTree = "<group>"; };
+		43BA3FA61E8006E80052125B /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
+		43BA3FA81E80D64F0052125B /* Caca.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Caca.storyboard; sourceTree = "<group>"; };
+		43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.debug.xcconfig"; sourceTree = "<group>"; };
+		7FD9A553529C5EDD2843816A /* Pods-Caca.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.release.xcconfig"; sourceTree = "<group>"; };
+		98224253DC57BEF9622E41A3 /* Pods_Caca.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Caca.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F95845CD50A464FB4F580BFD /* Pods_Caca.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +97,8 @@
 			children = (
 				43372D021E7FB4BD002E2AE3 /* Caca */,
 				43372D011E7FB4BD002E2AE3 /* Products */,
+				4D40147E3D80F0A118207D3C /* Pods */,
+				DD2EABAD361F6554F6117C26 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +113,121 @@
 		43372D021E7FB4BD002E2AE3 /* Caca */ = {
 			isa = PBXGroup;
 			children = (
+				43BA3FA51E8006CF0052125B /* Opening */,
+				43BA3F9F1E7FD13B0052125B /* Caca */,
+				43372D301E7FC86C002E2AE3 /* Record */,
+				43BA3FA01E7FD1440052125B /* Calendar */,
+				43372D2F1E7FC84A002E2AE3 /* Setting */,
+				43372D371E7FCC3B002E2AE3 /* Navigation */,
+				43372D341E7FCA4E002E2AE3 /* TabBar */,
+				43372D311E7FC8C1002E2AE3 /* Storyboard */,
 				43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */,
-				43372D051E7FB4BD002E2AE3 /* ViewController.swift */,
-				43372D071E7FB4BD002E2AE3 /* Main.storyboard */,
 				43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */,
-				43372D0F1E7FB4BD002E2AE3 /* LaunchScreen.storyboard */,
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
 				43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */,
 			);
 			path = Caca;
+			sourceTree = "<group>";
+		};
+		43372D2F1E7FC84A002E2AE3 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
+				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
+				43372D2B1E7FC7B6002E2AE3 /* SettingRowView.xib */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		43372D301E7FC86C002E2AE3 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */,
+				43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */,
+				43372D251E7FC780002E2AE3 /* RecordRowView.swift */,
+				43372D271E7FC799002E2AE3 /* RecordRowView.xib */,
+			);
+			name = Record;
+			sourceTree = "<group>";
+		};
+		43372D311E7FC8C1002E2AE3 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				43BA3F961E7FCEED0052125B /* Landing.storyboard */,
+				43372D0F1E7FB4BD002E2AE3 /* LaunchScreen.storyboard */,
+				43BA3F981E7FCF9B0052125B /* Opening.storyboard */,
+				43BA3FA81E80D64F0052125B /* Caca.storyboard */,
+				4322EB3F1E8221E4006B0D5D /* Timing.storyboard */,
+				4322EB411E822232006B0D5D /* Fillin.storyboard */,
+				43BA3F9D1E7FCFF30052125B /* Record.storyboard */,
+				43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */,
+				43372D351E7FCA89002E2AE3 /* TabBar.storyboard */,
+				43372D071E7FB4BD002E2AE3 /* Main.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		43372D341E7FCA4E002E2AE3 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				43372D321E7FCA30002E2AE3 /* TabBarController.swift */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		43372D371E7FCC3B002E2AE3 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				43372D381E7FCC84002E2AE3 /* CacaNavigationController.swift */,
+				43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */,
+				43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */,
+				43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+		43BA3F9F1E7FD13B0052125B /* Caca */ = {
+			isa = PBXGroup;
+			children = (
+				43372D1B1E7FC603002E2AE3 /* CacaViewController.swift */,
+				4322EB431E82240F006B0D5D /* TimingViewController.swift */,
+				4322EB451E82242A006B0D5D /* FillinViewController.swift */,
+			);
+			name = Caca;
+			sourceTree = "<group>";
+		};
+		43BA3FA01E7FD1440052125B /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				43372D211E7FC69D002E2AE3 /* CalendarViewController.swift */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
+		43BA3FA51E8006CF0052125B /* Opening */ = {
+			isa = PBXGroup;
+			children = (
+				43BA3FA31E7FF48E0052125B /* OpeningPageViewController.swift */,
+				43BA3FA61E8006E80052125B /* OpeningViewController.swift */,
+			);
+			name = Opening;
+			sourceTree = "<group>";
+		};
+		4D40147E3D80F0A118207D3C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */,
+				7FD9A553529C5EDD2843816A /* Pods-Caca.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DD2EABAD361F6554F6117C26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				98224253DC57BEF9622E41A3 /* Pods_Caca.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +237,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43372D151E7FB4BD002E2AE3 /* Build configuration list for PBXNativeTarget "Caca" */;
 			buildPhases = (
+				D56EA147E05B12629A1D5033 /* [CP] Check Pods Manifest.lock */,
 				43372CFC1E7FB4BD002E2AE3 /* Sources */,
 				43372CFD1E7FB4BD002E2AE3 /* Frameworks */,
 				43372CFE1E7FB4BD002E2AE3 /* Resources */,
+				1823AE7D3636F1CC228E5E6C /* [CP] Embed Pods Frameworks */,
+				1107703EA5C3EE6CB4C3A34D /* [CP] Copy Pods Resources */,
+				43372D181E7FBC9C002E2AE3 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -127,22 +294,109 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43372D281E7FC799002E2AE3 /* RecordRowView.xib in Resources */,
+				43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */,
+				43372D2C1E7FC7B6002E2AE3 /* SettingRowView.xib in Resources */,
 				43372D111E7FB4BD002E2AE3 /* LaunchScreen.storyboard in Resources */,
+				43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */,
+				43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */,
 				43372D0E1E7FB4BD002E2AE3 /* Assets.xcassets in Resources */,
+				43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */,
+				4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */,
+				4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */,
+				43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */,
 				43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */,
+				43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1107703EA5C3EE6CB4C3A34D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Caca/Pods-Caca-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1823AE7D3636F1CC228E5E6C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Caca/Pods-Caca-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43372D181E7FBC9C002E2AE3 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		D56EA147E05B12629A1D5033 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		43372CFC1E7FB4BD002E2AE3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43372D061E7FB4BD002E2AE3 /* ViewController.swift in Sources */,
+				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,
+				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
+				4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */,
+				43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */,
+				43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */,
+				4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */,
+				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
+				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
+				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,
+				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
+				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
+				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,
+				43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */,
+				43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */,
+				43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */,
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
 				43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */,
+				43372D1C1E7FC603002E2AE3 /* CacaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +468,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -256,11 +511,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
 		43372D161E7FB4BD002E2AE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ABW6V45P3T;
@@ -274,6 +531,7 @@
 		};
 		43372D171E7FB4BD002E2AE3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FD9A553529C5EDD2843816A /* Pods-Caca.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ABW6V45P3T;
@@ -304,6 +562,7 @@
 				43372D171E7FB4BD002E2AE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
