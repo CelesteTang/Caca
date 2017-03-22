@@ -12,8 +12,6 @@ class RecordTableViewCell: UITableViewCell {
 
     // MARK: Property
 
-    let height: CGFloat = 114.0
-
     let rowView = RecordRowView.create()
 
     // MARK: Init
@@ -46,7 +44,7 @@ class RecordTableViewCell: UITableViewCell {
         rowView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
         rowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
         rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
-        
+
     }
 
 }
