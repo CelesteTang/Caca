@@ -12,7 +12,7 @@ class RecordTableViewCell: UITableViewCell {
 
     // MARK: Property
 
-    static let height: CGFloat = 114.0
+    let height: CGFloat = 114.0
 
     let rowView = RecordRowView.create()
 
@@ -40,8 +40,13 @@ class RecordTableViewCell: UITableViewCell {
 
         contentView.addSubview(rowView)
 
-//        rowView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        rowView.translatesAutoresizingMaskIntoConstraints = false
 
+        rowView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
+        rowView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+        rowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
+        rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+        
     }
 
 }

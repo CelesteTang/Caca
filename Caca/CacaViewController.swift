@@ -14,7 +14,7 @@ class CacaViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = "2017/03/21"
-        view.backgroundColor = UIColor.red
+        view.backgroundColor = UIColor.brown
 
     }
 

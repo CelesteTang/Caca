@@ -54,7 +54,7 @@
                 <outlet property="dateLabel" destination="EmQ-dD-rHa" id="Elo-ok-6qS"/>
                 <outlet property="passOrFailLabel" destination="Vc3-YX-s2L" id="TOb-2n-cdy"/>
             </connections>
-            <point key="canvasLocation" x="-230" y="-450"/>
+            <point key="canvasLocation" x="-376" y="-530"/>
         </view>
     </objects>
 </document>

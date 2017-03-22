@@ -14,7 +14,7 @@ class RecordTableViewController: UITableViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Record"
-        view.backgroundColor = UIColor.green
+        view.backgroundColor = UIColor.brown
 
         tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: "RecordTableViewCell")
     }
@@ -30,7 +30,7 @@ class RecordTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return RecordTableViewCell.height
+        return 114.0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
