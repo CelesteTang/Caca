@@ -33,9 +33,12 @@ class CacaViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = dateString()
+        notificationLabel.textColor = Palette.textColor
+        startButton.tintColor = Palette.textColor
+
         notificationLabel.text = "You don't defecate for 3 days"
         startButton.setTitle("Start", for: UIControlState.normal)
-        view.backgroundColor = UIColor.brown
+        view.backgroundColor = Palette.backgoundColor
 
     }
 

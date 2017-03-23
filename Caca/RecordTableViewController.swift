@@ -14,7 +14,7 @@ class RecordTableViewController: UITableViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Record"
-        view.backgroundColor = UIColor.brown
+        view.backgroundColor = Palette.backgoundColor
 
         tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: "RecordTableViewCell")
     }

@@ -14,7 +14,7 @@ class SettingTableViewController: UITableViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Setting"
-        view.backgroundColor = UIColor.brown
+        view.backgroundColor = Palette.backgoundColor
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

@@ -42,6 +42,10 @@ class OpeningViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = Palette.backgoundColor
+        openingLabel.textColor = Palette.textColor
+        forwardButton.tintColor = Palette.textColor
+
         openingLabel.text = heading
         openingImage.image = UIImage(named: imageFile)
 

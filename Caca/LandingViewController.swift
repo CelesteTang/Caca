@@ -20,6 +20,7 @@ class LandingViewController: UIViewController {
         view.backgroundColor = Palette.backgoundColor
         logoImageView.image = #imageLiteral(resourceName: "poo-icon")
         appNameLabel.text = "Caca"
+        appNameLabel.textColor = Palette.textColor
     }
 
 }
