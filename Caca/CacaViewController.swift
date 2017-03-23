@@ -12,10 +12,15 @@ class CacaViewController: UIViewController {
 
     @IBAction func switchToTiming(_ sender: UIButton) {
 
-        let timingStorybard = UIStoryboard(name: "Timing", bundle: nil)
-        let timingViewController = timingStorybard.instantiateViewController(withIdentifier: "TimingViewController")
+//        let timingStorybard = UIStoryboard(name: "Timing", bundle: nil)
+//        let timingViewController = timingStorybard.instantiateViewController(withIdentifier: "TimingViewController")
+//
+//        present(timingViewController, animated: true)
 
-        present(timingViewController, animated: true)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window?.rootViewController = UIStoryboard(name: "Timing", bundle: nil).instantiateViewController(withIdentifier: "TimingViewController") as? TimingViewController
+        }
+
     }
 
     override func viewDidLoad() {

@@ -88,9 +88,13 @@ class TimingViewController: UIViewController {
 
         Time.consumingTime = timeString(time: TimeInterval(seconds))
 
-        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
-        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinViewController")
-        present(fillinViewController, animated: true)
+//        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
+//        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinViewController")
+//        present(fillinViewController, animated: true)
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window?.rootViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinViewController") as? FillinViewController
+        }
     }
 
     override func viewDidLoad() {

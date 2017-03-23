@@ -28,14 +28,11 @@ class FillinViewController: UIViewController {
 
     @IBAction func didFillin(_ sender: UIButton) {
 
-        let tabBarStorybard = UIStoryboard(name: "TabBar", bundle: nil)
-        var tabBarController: TabBarController!
-        if let mytabBarController = tabBarStorybard.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-            tabBarController = mytabBarController
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+            
             tabBarController.selectedIndex = 1
+            appDelegate.window?.rootViewController = tabBarController
         }
-
-        present(tabBarController, animated: true)
 
     }
 
