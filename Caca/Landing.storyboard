@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cd3-hM-ib9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Landing View Controller-->
         <scene sceneID="G3K-uY-1bP">
             <objects>
-                <viewController id="cd3-hM-ib9" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LandingViewController" id="cd3-hM-ib9" customClass="LandingViewController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dGE-f4-QNO"/>
                         <viewControllerLayoutGuide type="bottom" id="g1P-Bw-up1"/>
@@ -44,6 +44,10 @@
                             <constraint firstItem="kbG-Df-SAF" firstAttribute="top" secondItem="dGE-f4-QNO" secondAttribute="bottom" constant="100" id="sd6-rX-o68"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="appNameLabel" destination="0Zk-lf-fuz" id="nOe-mi-9Xh"/>
+                        <outlet property="logoImageView" destination="kbG-Df-SAF" id="FeS-uk-2by"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9f3-Ea-bpp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

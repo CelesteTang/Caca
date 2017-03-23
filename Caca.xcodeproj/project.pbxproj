@@ -12,6 +12,8 @@
 		4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB431E82240F006B0D5D /* TimingViewController.swift */; };
 		4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB451E82242A006B0D5D /* FillinViewController.swift */; };
 		4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB4D1E838EAF006B0D5D /* Time.swift */; };
+		4322EB501E839723006B0D5D /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB4F1E839723006B0D5D /* LandingViewController.swift */; };
+		4322EB521E8398FA006B0D5D /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB511E8398FA006B0D5D /* Palette.swift */; };
 		43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */; };
 		43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43372D071E7FB4BD002E2AE3 /* Main.storyboard */; };
 		43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */; };
@@ -48,6 +50,8 @@
 		4322EB431E82240F006B0D5D /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
 		4322EB451E82242A006B0D5D /* FillinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillinViewController.swift; sourceTree = "<group>"; };
 		4322EB4D1E838EAF006B0D5D /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		4322EB4F1E839723006B0D5D /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		4322EB511E8398FA006B0D5D /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		43372D001E7FB4BD002E2AE3 /* Caca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43372D081E7FB4BD002E2AE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 		43372D021E7FB4BD002E2AE3 /* Caca */ = {
 			isa = PBXGroup;
 			children = (
+				4322EB4F1E839723006B0D5D /* LandingViewController.swift */,
 				43BA3FA51E8006CF0052125B /* Opening */,
 				43BA3F9F1E7FD13B0052125B /* Caca */,
 				43372D301E7FC86C002E2AE3 /* Record */,
@@ -124,6 +129,7 @@
 				43372D341E7FCA4E002E2AE3 /* TabBar */,
 				43372D311E7FC8C1002E2AE3 /* Storyboard */,
 				43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */,
+				4322EB511E8398FA006B0D5D /* Palette.swift */,
 				43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */,
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
 				43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */,
@@ -388,6 +394,7 @@
 				4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */,
 				43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */,
 				43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */,
+				4322EB521E8398FA006B0D5D /* Palette.swift in Sources */,
 				4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */,
 				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
 				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
@@ -400,6 +407,7 @@
 				43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */,
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
 				43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */,
+				4322EB501E839723006B0D5D /* LandingViewController.swift in Sources */,
 				43372D1C1E7FC603002E2AE3 /* CacaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

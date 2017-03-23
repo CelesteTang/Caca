@@ -25,7 +25,7 @@ enum TabBarItemType: Int {
         switch self {
         case .caca:
 
-            return "Stations"
+            return "Caca"
 
         case .record:
 
@@ -47,7 +47,7 @@ enum TabBarItemType: Int {
         switch self {
         case .caca:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return UIImage(named: "toilet-paper")!.withRenderingMode(.alwaysTemplate)
 
         case .record:
 

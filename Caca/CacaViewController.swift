@@ -10,6 +10,12 @@ import UIKit
 
 class CacaViewController: UIViewController {
 
+    @IBOutlet weak var mainImageView: UIImageView!
+
+    @IBOutlet weak var notificationLabel: UILabel!
+
+    @IBOutlet weak var startButton: UIButton!
+
     @IBAction func switchToTiming(_ sender: UIButton) {
 
 //        let timingStorybard = UIStoryboard(name: "Timing", bundle: nil)
@@ -27,6 +33,8 @@ class CacaViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = dateString()
+        notificationLabel.text = "You don't defecate for 3 days"
+        startButton.setTitle("Start", for: UIControlState.normal)
         view.backgroundColor = UIColor.brown
 
     }
