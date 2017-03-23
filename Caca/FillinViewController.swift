@@ -104,11 +104,15 @@ class FillinViewController: UIViewController {
 
     @IBOutlet weak var finishButton: UIButton!
 
+    @IBAction func amountChanged(_ sender: UISlider) {
+        
+    }
+    
     @IBAction func didFillin(_ sender: UIButton) {
 
         if let shape = Shape(rawValue: shapeSegmentedControl.selectedSegmentIndex), let color = Color(rawValue: colorSegmentedControll.selectedSegmentIndex) {
 
-            let caca = Caca(date: dateString(), consumingTime: Time.consumingTime, shape: shape, color: color, amount: "0", otherInfo: "0")
+            let caca = Caca(date: dateString(), consumingTime: Time.consumingTime, shape: shape, color: color, amount: Double(amountSlider.value), otherInfo: "0")
 
             Caca.todayCaca = caca
         }
@@ -128,6 +132,10 @@ class FillinViewController: UIViewController {
         consumingTimeLabel.text = Time.consumingTime
         view.backgroundColor = Palette.backgoundColor
 
+        amountSlider.thumbTintColor = Palette.textColor
+        amountSlider.tintColor = UIColor.white
+        amountSlider.minimumValue = 1
+        amountSlider.maximumValue = 3
     }
 
     func dateString() -> String {

@@ -14,6 +14,9 @@ class RecordTableViewController: UITableViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Record"
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
         view.backgroundColor = Palette.backgoundColor
 
         tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: "RecordTableViewCell")
@@ -41,4 +44,25 @@ class RecordTableViewController: UITableViewController {
 
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard
+            let indexPath = tableView.indexPathForSelectedRow,
+            let currentCell = tableView.cellForRow(at: indexPath) as? RecordTableViewCell else {
+                return
+        }
+        print(currentCell.rowView.dateLabel.text ?? "")
+
+        let storyBoard = UIStoryboard(name: "RecordDetail", bundle: nil)
+        guard let recordDetailViewController = storyBoard.instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else { return }
+
+//        recordDetailViewController.receivedStations = [stations[indexPath.row]]
+
+        self.navigationController?.pushViewController(recordDetailViewController, animated: true)
+    }
+
+    func setUp() {
+
+    }
+
 }

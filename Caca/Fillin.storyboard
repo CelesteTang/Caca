@@ -96,6 +96,9 @@
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="p0e-fz-tbR">
                                 <rect key="frame" x="14" y="481" width="347" height="1"/>
+                                <connections>
+                                    <action selector="amountChanged:" destination="TpS-hk-Q0i" eventType="valueChanged" id="vuV-bR-JpI"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8i-GB-BDC">
                                 <rect key="frame" x="16" y="516" width="51" height="24"/>

@@ -20,11 +20,11 @@ class Caca {
 
     let color: Color
 
-    let amount: String
+    let amount: Double
 
     let otherInfo: String?
 
-    init(date: String, consumingTime: String, shape: Shape, color: Color, amount: String, otherInfo: String?) {
+    init(date: String, consumingTime: String, shape: Shape, color: Color, amount: Double, otherInfo: String?) {
 
         self.date = date
         self.consumingTime = consumingTime
@@ -34,6 +34,6 @@ class Caca {
         self.otherInfo = otherInfo
     }
 
-    static var todayCaca = Caca(date: "", consumingTime: "", shape: Shape.smoothSausage, color: Color.lightBrown, amount: "", otherInfo: "")
+    static var todayCaca = Caca(date: "", consumingTime: "", shape: Shape.smoothSausage, color: Color.lightBrown, amount: 0.0, otherInfo: "")
 
 }

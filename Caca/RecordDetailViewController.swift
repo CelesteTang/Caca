@@ -9,27 +9,21 @@
 import UIKit
 
 class RecordDetailViewController: UIViewController {
+    @IBOutlet weak var cacaPhoto: UIImageView!
+
+    @IBOutlet weak var dateLabel: UILabel!
+
+    @IBOutlet weak var timeLabel: UILabel!
+
+    @IBOutlet weak var otherInfoLabel: UILabel!
+
+    @IBOutlet weak var passOrFailLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        dateLabel.text = Caca.todayCaca.date
+        timeLabel.text = Caca.todayCaca.consumingTime
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
