@@ -44,9 +44,6 @@ class RecordTableViewCell: UITableViewCell {
         rowView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
         rowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
         rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
-
-        rowView.dateLabel.text = Caca.todayCaca.date
-
     }
 
 }

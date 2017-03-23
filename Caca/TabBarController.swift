@@ -47,7 +47,7 @@ enum TabBarItemType: Int {
         switch self {
         case .caca:
 
-            return UIImage(named: "toilet-paper")!.withRenderingMode(.alwaysTemplate)
+            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
 
         case .record:
 
@@ -70,9 +70,20 @@ enum TabBarItemType: Int {
 
 class TabBarController: UITabBarController {
 
+    let tabBarItemTypes: [TabBarItemType] = [ .caca, .record, .calendar, .setting ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        tabBar.items?.forEach { item in
+//            
+//            let itemType = TabBarItemType(rawValue: item.tag)!
+//            
+//            item.title = itemType.title
+//            item.image = itemType.image
+//            
+//        }
+        
     }
 
 }

@@ -34,6 +34,6 @@ class Caca {
         self.otherInfo = otherInfo
     }
 
-    static var todayCaca = Caca(date: "", consumingTime: "", shape: Shape.smoothSausage, color: Color.lightBrown, amount: 0.0, otherInfo: "")
+    static var cacas = [Caca]()
 
 }

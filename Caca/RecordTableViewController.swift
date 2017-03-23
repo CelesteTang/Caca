@@ -29,7 +29,7 @@ class RecordTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return Caca.cacas.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -41,6 +41,9 @@ class RecordTableViewController: UITableViewController {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
+
+        cell.rowView.dateLabel.text = Caca.cacas[indexPath.row].date
+        cell.rowView.passOrFailLabel.text = "Pass"
 
         return cell
     }
@@ -56,7 +59,7 @@ class RecordTableViewController: UITableViewController {
         let storyBoard = UIStoryboard(name: "RecordDetail", bundle: nil)
         guard let recordDetailViewController = storyBoard.instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else { return }
 
-//        recordDetailViewController.receivedStations = [stations[indexPath.row]]
+        recordDetailViewController.recievedCaca = [Caca.cacas[indexPath.row]]
 
         self.navigationController?.pushViewController(recordDetailViewController, animated: true)
     }

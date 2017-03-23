@@ -19,11 +19,13 @@ class RecordDetailViewController: UIViewController {
 
     @IBOutlet weak var passOrFailLabel: UILabel!
 
+    var recievedCaca = [Caca]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dateLabel.text = Caca.todayCaca.date
-        timeLabel.text = Caca.todayCaca.consumingTime
+        dateLabel.text = recievedCaca[0].date
+        timeLabel.text = recievedCaca[0].consumingTime
     }
 
 }

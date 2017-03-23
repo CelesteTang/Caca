@@ -105,16 +105,15 @@ class FillinViewController: UIViewController {
     @IBOutlet weak var finishButton: UIButton!
 
     @IBAction func amountChanged(_ sender: UISlider) {
-        
     }
-    
+
     @IBAction func didFillin(_ sender: UIButton) {
 
         if let shape = Shape(rawValue: shapeSegmentedControl.selectedSegmentIndex), let color = Color(rawValue: colorSegmentedControll.selectedSegmentIndex) {
 
             let caca = Caca(date: dateString(), consumingTime: Time.consumingTime, shape: shape, color: color, amount: Double(amountSlider.value), otherInfo: "0")
 
-            Caca.todayCaca = caca
+            Caca.cacas.append(caca)
         }
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
