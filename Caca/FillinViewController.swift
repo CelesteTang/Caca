@@ -43,7 +43,7 @@ class FillinViewController: UIViewController {
         super.viewDidLoad()
 
         dateLabel.text = dateString()
-
+        consumingTimeLabel.text = Time.consumingTime
     }
 
     func dateString() -> String {

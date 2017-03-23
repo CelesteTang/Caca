@@ -18,6 +18,8 @@ class TimingViewController: UIViewController {
 
     @IBOutlet weak var resetButton: UIButton!
 
+    @IBOutlet weak var finishButton: UIButton!
+
     var seconds: UInt = 0
 
     var timer = Timer()
@@ -80,6 +82,17 @@ class TimingViewController: UIViewController {
 
     }
 
+    @IBAction func finishButtonTapped(_ sender: UIButton) {
+
+        timer.invalidate()
+
+        Time.consumingTime = timeString(time: TimeInterval(seconds))
+
+        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
+        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinViewController")
+        present(fillinViewController, animated: true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,6 +102,7 @@ class TimingViewController: UIViewController {
         self.startButton.setTitle("Start", for: UIControlState.normal)
         self.pauseButton.setTitle("Pause", for: UIControlState.normal)
         self.resetButton.setTitle("Reset", for: UIControlState.normal)
+        self.finishButton.setTitle("Finish", for: UIControlState.normal)
 
         self.pauseButton.isEnabled = false
         self.resetButton.isEnabled = false
