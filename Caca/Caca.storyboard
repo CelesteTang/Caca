@@ -22,26 +22,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWj-8c-Qgc">
-                                <rect key="frame" x="148" y="602" width="78" height="30"/>
+                                <rect key="frame" x="148" y="596" width="78" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="switchToTiming:" destination="DVw-95-goh" eventType="touchUpInside" id="fvw-FG-eNv"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9t-sW-KCt">
-                                <rect key="frame" x="166" y="518" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="20" y="503" width="335" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8vj-Jv-6lS">
-                                <rect key="frame" x="19" y="90" width="336" height="388"/>
+                                <rect key="frame" x="19" y="90" width="336" height="373"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Q9t-sW-KCt" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="166" id="4NM-8S-ilR"/>
+                            <constraint firstItem="Q9t-sW-KCt" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="20" id="4NM-8S-ilR"/>
                             <constraint firstItem="Q9t-sW-KCt" firstAttribute="centerX" secondItem="KB5-0U-6Qs" secondAttribute="centerX" id="K6M-fM-x5m"/>
                             <constraint firstItem="8vj-Jv-6lS" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="19" id="SQg-KF-VWZ"/>
                             <constraint firstItem="EX0-gB-3TR" firstAttribute="top" secondItem="pWj-8c-Qgc" secondAttribute="bottom" constant="35" id="TVK-Dx-9vT"/>
@@ -53,6 +54,11 @@
                             <constraint firstItem="pWj-8c-Qgc" firstAttribute="top" secondItem="Q9t-sW-KCt" secondAttribute="bottom" constant="63" id="z07-Z5-Ecj"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainImageView" destination="8vj-Jv-6lS" id="RpY-jO-GKh"/>
+                        <outlet property="notificationLabel" destination="Q9t-sW-KCt" id="qFr-o9-bnc"/>
+                        <outlet property="startButton" destination="pWj-8c-Qgc" id="s4Z-Ei-c2S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vh-Du-Gop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

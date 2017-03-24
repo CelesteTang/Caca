@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>555225453696-eebt9221h288hdv0tq0r6s12e86avppg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.555225453696-eebt9221h288hdv0tq0r6s12e86avppg</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAbqefVLPOrYKFWImvcYpT08OTwO02rxrY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>555225453696</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hsinyutang.Caca</string>
+	<key>PROJECT_ID</key>
+	<string>caca-270ff</string>
+	<key>STORAGE_BUCKET</key>
+	<string>caca-270ff.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:555225453696:ios:a4befd7a6e82387c</string>
+	<key>DATABASE_URL</key>
+	<string>https://caca-270ff.firebaseio.com</string>
+</dict>
+</plist>

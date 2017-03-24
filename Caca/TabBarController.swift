@@ -25,7 +25,7 @@ enum TabBarItemType: Int {
         switch self {
         case .caca:
 
-            return "Stations"
+            return "Caca"
 
         case .record:
 
@@ -70,8 +70,19 @@ enum TabBarItemType: Int {
 
 class TabBarController: UITabBarController {
 
+    let tabBarItemTypes: [TabBarItemType] = [ .caca, .record, .calendar, .setting ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        tabBar.items?.forEach { item in
+//            
+//            let itemType = TabBarItemType(rawValue: item.tag)!
+//            
+//            item.title = itemType.title
+//            item.image = itemType.image
+//            
+//        }
 
     }
 

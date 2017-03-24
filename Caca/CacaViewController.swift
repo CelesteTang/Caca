@@ -10,19 +10,35 @@ import UIKit
 
 class CacaViewController: UIViewController {
 
+    @IBOutlet weak var mainImageView: UIImageView!
+
+    @IBOutlet weak var notificationLabel: UILabel!
+
+    @IBOutlet weak var startButton: UIButton!
+
     @IBAction func switchToTiming(_ sender: UIButton) {
 
-        let signUpStorybard = UIStoryboard(name: "Timing", bundle: nil)
-        let signUpViewController = signUpStorybard.instantiateViewController(withIdentifier: "TimingViewController")
+//        let timingStorybard = UIStoryboard(name: "Timing", bundle: nil)
+//        let timingViewController = timingStorybard.instantiateViewController(withIdentifier: "TimingViewController")
+//
+//        present(timingViewController, animated: true)
 
-        present(signUpViewController, animated: true)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window?.rootViewController = UIStoryboard(name: "Timing", bundle: nil).instantiateViewController(withIdentifier: "TimingViewController") as? TimingViewController
+        }
+
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = dateString()
-        view.backgroundColor = UIColor.brown
+        notificationLabel.textColor = Palette.textColor
+        startButton.tintColor = Palette.textColor
+
+        notificationLabel.text = "You don't defecate for 3 days"
+        startButton.setTitle("Start", for: UIControlState.normal)
+        view.backgroundColor = Palette.backgoundColor
 
     }
 

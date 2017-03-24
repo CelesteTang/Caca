@@ -18,6 +18,8 @@ class TimingViewController: UIViewController {
 
     @IBOutlet weak var resetButton: UIButton!
 
+    @IBOutlet weak var finishButton: UIButton!
+
     var seconds: UInt = 0
 
     var timer = Timer()
@@ -33,6 +35,7 @@ class TimingViewController: UIViewController {
             runTimer()
 
             self.startButton.isEnabled = false
+            self.resetButton.isEnabled = true
 
         }
 
@@ -69,10 +72,29 @@ class TimingViewController: UIViewController {
 
         isTimerRunning = false
 
+        resumeTapped = false
+
         self.pauseButton.isEnabled = false
 
         self.startButton.isEnabled = true
 
+        self.pauseButton.setTitle("Pause", for: UIControlState.normal)
+
+    }
+
+    @IBAction func finishButtonTapped(_ sender: UIButton) {
+
+        timer.invalidate()
+
+        Time.consumingTime = timeString(time: TimeInterval(seconds))
+
+//        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
+//        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinViewController")
+//        present(fillinViewController, animated: true)
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window?.rootViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinViewController") as? FillinViewController
+        }
     }
 
     override func viewDidLoad() {
@@ -80,13 +102,16 @@ class TimingViewController: UIViewController {
 
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
         self.timerLabel.text = "00:00:00"
-        
+
         self.startButton.setTitle("Start", for: UIControlState.normal)
         self.pauseButton.setTitle("Pause", for: UIControlState.normal)
         self.resetButton.setTitle("Reset", for: UIControlState.normal)
-        
+        self.finishButton.setTitle("Finish", for: UIControlState.normal)
+
         self.pauseButton.isEnabled = false
         self.resetButton.isEnabled = false
+
+        view.backgroundColor = Palette.backgoundColor
 
     }
 

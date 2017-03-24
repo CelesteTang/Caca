@@ -11,6 +11,12 @@
 		4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB411E822232006B0D5D /* Fillin.storyboard */; };
 		4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB431E82240F006B0D5D /* TimingViewController.swift */; };
 		4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB451E82242A006B0D5D /* FillinViewController.swift */; };
+		4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB4D1E838EAF006B0D5D /* Time.swift */; };
+		4322EB521E8398FA006B0D5D /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB511E8398FA006B0D5D /* Palette.swift */; };
+		4322EB541E83A8C6006B0D5D /* Caca.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB531E83A8C6006B0D5D /* Caca.swift */; };
+		4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */; };
+		4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */; };
+		4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */; };
 		43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */; };
 		43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43372D071E7FB4BD002E2AE3 /* Main.storyboard */; };
 		43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */; };
@@ -38,6 +44,8 @@
 		43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA61E8006E80052125B /* OpeningViewController.swift */; };
 		43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3FA81E80D64F0052125B /* Caca.storyboard */; };
 		43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */; };
+		43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA111E84BE2800E92290 /* SignInViewController.swift */; };
+		43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA131E84BE4300E92290 /* SignUpViewController.swift */; };
 		F95845CD50A464FB4F580BFD /* Pods_Caca.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98224253DC57BEF9622E41A3 /* Pods_Caca.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +54,12 @@
 		4322EB411E822232006B0D5D /* Fillin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Fillin.storyboard; sourceTree = "<group>"; };
 		4322EB431E82240F006B0D5D /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
 		4322EB451E82242A006B0D5D /* FillinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillinViewController.swift; sourceTree = "<group>"; };
+		4322EB4D1E838EAF006B0D5D /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		4322EB511E8398FA006B0D5D /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		4322EB531E83A8C6006B0D5D /* Caca.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caca.swift; sourceTree = "<group>"; };
+		4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RecordDetail.storyboard; sourceTree = "<group>"; };
+		4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDetailViewController.swift; sourceTree = "<group>"; };
+		4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43372D001E7FB4BD002E2AE3 /* Caca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43372D081E7FB4BD002E2AE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,6 +89,8 @@
 		43BA3FA61E8006E80052125B /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
 		43BA3FA81E80D64F0052125B /* Caca.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Caca.storyboard; sourceTree = "<group>"; };
 		43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		43F2FA111E84BE2800E92290 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		43F2FA131E84BE4300E92290 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.debug.xcconfig"; sourceTree = "<group>"; };
 		7FD9A553529C5EDD2843816A /* Pods-Caca.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.release.xcconfig"; sourceTree = "<group>"; };
 		98224253DC57BEF9622E41A3 /* Pods_Caca.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Caca.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +129,8 @@
 		43372D021E7FB4BD002E2AE3 /* Caca */ = {
 			isa = PBXGroup;
 			children = (
+				43F2FA111E84BE2800E92290 /* SignInViewController.swift */,
+				43F2FA131E84BE4300E92290 /* SignUpViewController.swift */,
 				43BA3FA51E8006CF0052125B /* Opening */,
 				43BA3F9F1E7FD13B0052125B /* Caca */,
 				43372D301E7FC86C002E2AE3 /* Record */,
@@ -122,8 +140,10 @@
 				43372D341E7FCA4E002E2AE3 /* TabBar */,
 				43372D311E7FC8C1002E2AE3 /* Storyboard */,
 				43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */,
+				4322EB511E8398FA006B0D5D /* Palette.swift */,
 				43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */,
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
+				4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */,
 				43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */,
 			);
 			path = Caca;
@@ -142,10 +162,11 @@
 		43372D301E7FC86C002E2AE3 /* Record */ = {
 			isa = PBXGroup;
 			children = (
+				43372D271E7FC799002E2AE3 /* RecordRowView.xib */,
+				43372D251E7FC780002E2AE3 /* RecordRowView.swift */,
 				43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */,
 				43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */,
-				43372D251E7FC780002E2AE3 /* RecordRowView.swift */,
-				43372D271E7FC799002E2AE3 /* RecordRowView.xib */,
+				4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */,
 			);
 			name = Record;
 			sourceTree = "<group>";
@@ -160,6 +181,7 @@
 				4322EB3F1E8221E4006B0D5D /* Timing.storyboard */,
 				4322EB411E822232006B0D5D /* Fillin.storyboard */,
 				43BA3F9D1E7FCFF30052125B /* Record.storyboard */,
+				4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */,
 				43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */,
 				43372D351E7FCA89002E2AE3 /* TabBar.storyboard */,
 				43372D071E7FB4BD002E2AE3 /* Main.storyboard */,
@@ -192,6 +214,8 @@
 				43372D1B1E7FC603002E2AE3 /* CacaViewController.swift */,
 				4322EB431E82240F006B0D5D /* TimingViewController.swift */,
 				4322EB451E82242A006B0D5D /* FillinViewController.swift */,
+				4322EB4D1E838EAF006B0D5D /* Time.swift */,
+				4322EB531E83A8C6006B0D5D /* Caca.swift */,
 			);
 			name = Caca;
 			sourceTree = "<group>";
@@ -299,6 +323,7 @@
 				43372D2C1E7FC7B6002E2AE3 /* SettingRowView.xib in Resources */,
 				43372D111E7FB4BD002E2AE3 /* LaunchScreen.storyboard in Resources */,
 				43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */,
+				4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */,
 				43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */,
 				43372D0E1E7FB4BD002E2AE3 /* Assets.xcassets in Resources */,
 				43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */,
@@ -306,6 +331,7 @@
 				4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */,
 				43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */,
 				43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */,
+				4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */,
 				43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,12 +406,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,
+				4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */,
 				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
 				4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */,
+				43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */,
 				43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */,
 				43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */,
+				4322EB521E8398FA006B0D5D /* Palette.swift in Sources */,
+				4322EB541E83A8C6006B0D5D /* Caca.swift in Sources */,
 				4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */,
 				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
+				4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */,
 				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
 				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,
 				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
@@ -395,6 +426,7 @@
 				43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */,
 				43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */,
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
+				43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */,
 				43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */,
 				43372D1C1E7FC603002E2AE3 /* CacaViewController.swift in Sources */,
 			);

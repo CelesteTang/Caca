@@ -8,5 +8,6 @@ target 'Caca' do
   # Pods for Caca
 
 pod 'SwiftLint'
+pod 'Firebase/Core'
 
 end

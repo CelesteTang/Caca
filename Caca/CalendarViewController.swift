@@ -14,7 +14,7 @@ class CalendarViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Calendar"
-        view.backgroundColor = UIColor.brown
+        view.backgroundColor = Palette.backgoundColor
     }
 
 }
