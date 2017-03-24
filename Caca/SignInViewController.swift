@@ -11,6 +11,10 @@ import Firebase
 
 class SignInViewController: UIViewController {
 
+    @IBOutlet weak var logoImageView: UIImageView!
+
+    @IBOutlet weak var appName: UILabel!
+
     @IBOutlet weak var emailField: UITextField!
 
     @IBOutlet weak var passwordField: UITextField!
@@ -18,19 +22,30 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
 
     @IBAction func signIn(_ sender: UIButton) {
+
         if let email = emailField.text, let password = passwordField.text {
-            
-            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
-                
+
+            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (_, error) in
+
                 if let error = error {
-                    
+
                     print("-SignIn---------\(error)")
-                    
+
+                    let alertController = UIAlertController(title: "Warning",
+                                                            message: "Incorrect email or password.",
+                                                            preferredStyle: .alert)
+
+                    alertController.addAction(UIAlertAction(title: "OK",
+                                                            style: .default,
+                                                            handler: nil))
+
+                    self.present(alertController, animated: true, completion: nil)
+
                     return
                 }
-                
+
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningViewController") as? ArticleViewController
+                    appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
                 }
             })
         }
@@ -46,7 +61,18 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.backgroundColor = Palette.backgoundColor
+        logoImageView.image = #imageLiteral(resourceName: "poo-icon")
+        logoImageView.backgroundColor = Palette.backgoundColor
+        signInButton.backgroundColor = Palette.textColor
+
+        appName.text = "Caca"
+        appName.textColor = Palette.textColor
+        appName.font = UIFont(name: "Courier-Bold", size: 60)
+
+        emailField.clearButtonMode = .whileEditing
+        passwordField.clearButtonMode = .whileEditing
+        passwordField.isSecureTextEntry = true
     }
 
 }
