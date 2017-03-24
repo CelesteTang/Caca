@@ -9,5 +9,7 @@ target 'Caca' do
 
 pod 'SwiftLint'
 pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
 
 end
