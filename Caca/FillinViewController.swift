@@ -18,30 +18,32 @@ enum Shape: Int {
         switch self {
         case .separateHard:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+//            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
 
         case .lumpySausage:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+
         case .crackSausage:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
 
         case .smoothSausage:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
 
         case .softBlob:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
 
         case .mushyStool:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
 
         case .wateryStool:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
         }
 
     }
@@ -57,30 +59,30 @@ enum Color: Int {
         switch self {
         case .red:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
 
         case .yellow:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
         case .green:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
 
         case .lightBrown:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
 
         case .darkBrown:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
 
         case .gray:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
 
         case .black:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
         }
 
     }

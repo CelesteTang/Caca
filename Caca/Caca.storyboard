@@ -43,6 +43,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Q9t-sW-KCt" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="20" id="4NM-8S-ilR"/>
+                            <constraint firstAttribute="trailing" secondItem="Q9t-sW-KCt" secondAttribute="trailing" constant="20" id="92M-fm-qVG"/>
                             <constraint firstItem="Q9t-sW-KCt" firstAttribute="centerX" secondItem="KB5-0U-6Qs" secondAttribute="centerX" id="K6M-fM-x5m"/>
                             <constraint firstItem="8vj-Jv-6lS" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="19" id="SQg-KF-VWZ"/>
                             <constraint firstItem="EX0-gB-3TR" firstAttribute="top" secondItem="pWj-8c-Qgc" secondAttribute="bottom" constant="35" id="TVK-Dx-9vT"/>
