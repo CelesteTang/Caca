@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cd3-hM-ib9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xI1-68-AVu">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -56,7 +56,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="d7y-6Q-0ZY">
             <objects>
-                <viewController storyboardIdentifier="SignInViewController" id="xI1-68-AVu" customClass="SignInViewController" customModule="Article" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" id="xI1-68-AVu" customClass="SignInViewController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Moe-cJ-1jg"/>
                         <viewControllerLayoutGuide type="bottom" id="AjH-xe-Enc"/>
@@ -82,7 +82,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="signIn:" destination="xI1-68-AVu" eventType="touchUpInside" id="HTh-Ow-f4p"/>
+                                    <action selector="signIn:" destination="xI1-68-AVu" eventType="touchUpInside" id="koH-Um-Rz9"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don’t have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1HM-o8-P13">
@@ -99,7 +99,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Get one here."/>
                                 <connections>
-                                    <action selector="switchToSignUp:" destination="xI1-68-AVu" eventType="touchUpInside" id="OAg-Ar-72d"/>
+                                    <action selector="switchToSignUp:" destination="xI1-68-AVu" eventType="touchUpInside" id="f2p-ia-cuc"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZf-vs-2v1">
@@ -143,9 +143,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailField" destination="uZf-vs-2v1" id="Pbi-c1-zrh"/>
-                        <outlet property="passwordField" destination="0Pc-1L-k5d" id="C9P-cz-BCM"/>
-                        <outlet property="signInButton" destination="5PM-n8-yVC" id="O4Z-6g-jUB"/>
+                        <outlet property="emailField" destination="uZf-vs-2v1" id="FLe-gY-QoF"/>
+                        <outlet property="passwordField" destination="0Pc-1L-k5d" id="OKt-lz-XkU"/>
+                        <outlet property="signInButton" destination="5PM-n8-yVC" id="2qQ-SA-XrP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8mO-O4-ne7" sceneMemberID="firstResponder"/>
@@ -155,7 +155,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="KvJ-Ha-GX6">
             <objects>
-                <viewController storyboardIdentifier="SignUpViewController" id="NcG-4j-OtU" customClass="SignUpViewController" customModule="Article" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="NcG-4j-OtU" customClass="SignUpViewController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QWt-YF-YiT"/>
                         <viewControllerLayoutGuide type="bottom" id="xJT-tJ-TBK"/>
@@ -217,7 +217,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="signUp:" destination="NcG-4j-OtU" eventType="touchUpInside" id="BXA-XX-OUZ"/>
+                                    <action selector="signUp:" destination="NcG-4j-OtU" eventType="touchUpInside" id="vBM-bH-h1s"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klL-lZ-cAV">
@@ -234,7 +234,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Sign In."/>
                                 <connections>
-                                    <action selector="switchToSignIn:" destination="NcG-4j-OtU" eventType="touchUpInside" id="pVW-B9-Wdu"/>
+                                    <action selector="switchToSignIn:" destination="NcG-4j-OtU" eventType="touchUpInside" id="bHD-yX-k8V"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -266,11 +266,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailField" destination="BwG-Ip-RRq" id="Fx4-UY-Tb7"/>
-                        <outlet property="firstnameField" destination="L0i-cS-cKl" id="bka-p5-kTV"/>
-                        <outlet property="lastnameField" destination="mZf-Hg-OYP" id="qFA-Kp-HQd"/>
-                        <outlet property="passwordField" destination="keq-Me-jsQ" id="clE-ZH-3b1"/>
-                        <outlet property="signUpButton" destination="2cf-Ud-ekb" id="vNr-j7-de3"/>
+                        <outlet property="emailField" destination="BwG-Ip-RRq" id="nc4-tt-vs9"/>
+                        <outlet property="firstNameField" destination="L0i-cS-cKl" id="VxH-la-Gzv"/>
+                        <outlet property="lastNameField" destination="mZf-Hg-OYP" id="cUD-la-YND"/>
+                        <outlet property="passwordField" destination="keq-Me-jsQ" id="fSa-W3-jGz"/>
+                        <outlet property="signUpButton" destination="2cf-Ud-ekb" id="dBK-xR-e54"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t6G-2w-9wM" userLabel="First Responder" sceneMemberID="firstResponder"/>
