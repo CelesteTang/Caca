@@ -45,6 +45,8 @@
 		43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA61E8006E80052125B /* OpeningViewController.swift */; };
 		43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3FA81E80D64F0052125B /* Caca.storyboard */; };
 		43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */; };
+		43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA111E84BE2800E92290 /* SignInViewController.swift */; };
+		43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA131E84BE4300E92290 /* SignUpViewController.swift */; };
 		F95845CD50A464FB4F580BFD /* Pods_Caca.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98224253DC57BEF9622E41A3 /* Pods_Caca.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +91,8 @@
 		43BA3FA61E8006E80052125B /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
 		43BA3FA81E80D64F0052125B /* Caca.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Caca.storyboard; sourceTree = "<group>"; };
 		43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		43F2FA111E84BE2800E92290 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		43F2FA131E84BE4300E92290 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.debug.xcconfig"; sourceTree = "<group>"; };
 		7FD9A553529C5EDD2843816A /* Pods-Caca.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.release.xcconfig"; sourceTree = "<group>"; };
 		98224253DC57BEF9622E41A3 /* Pods_Caca.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Caca.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +131,8 @@
 		43372D021E7FB4BD002E2AE3 /* Caca */ = {
 			isa = PBXGroup;
 			children = (
+				43F2FA111E84BE2800E92290 /* SignInViewController.swift */,
+				43F2FA131E84BE4300E92290 /* SignUpViewController.swift */,
 				4322EB4F1E839723006B0D5D /* LandingViewController.swift */,
 				43BA3FA51E8006CF0052125B /* Opening */,
 				43BA3F9F1E7FD13B0052125B /* Caca */,
@@ -406,6 +412,7 @@
 				4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */,
 				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
 				4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */,
+				43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */,
 				43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */,
 				43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */,
 				4322EB521E8398FA006B0D5D /* Palette.swift in Sources */,
@@ -422,6 +429,7 @@
 				43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */,
 				43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */,
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
+				43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */,
 				43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */,
 				4322EB501E839723006B0D5D /* LandingViewController.swift in Sources */,
 				43372D1C1E7FC603002E2AE3 /* CacaViewController.swift in Sources */,
