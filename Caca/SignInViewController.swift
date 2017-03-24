@@ -11,19 +11,17 @@ import UIKit
 class SignInViewController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
-    
+
     @IBOutlet weak var passwordField: UITextField!
-    
+
     @IBOutlet weak var signInButton: UIButton!
-    
+
     @IBAction func signIn(_ sender: UIButton) {
     }
-    
+
     @IBAction func switchToSignUp(_ sender: UIButton) {
     }
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

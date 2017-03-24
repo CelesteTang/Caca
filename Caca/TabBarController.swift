@@ -71,7 +71,7 @@ enum TabBarItemType: Int {
 class TabBarController: UITabBarController {
 
     let tabBarItemTypes: [TabBarItemType] = [ .caca, .record, .calendar, .setting ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -83,7 +83,7 @@ class TabBarController: UITabBarController {
 //            item.image = itemType.image
 //            
 //        }
-        
+
     }
 
 }

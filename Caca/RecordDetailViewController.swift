@@ -20,7 +20,7 @@ class RecordDetailViewController: UIViewController {
     @IBOutlet weak var passOrFailLabel: UILabel!
 
     var recievedCaca = [Caca]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

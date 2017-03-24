@@ -6,53 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Landing View Controller-->
-        <scene sceneID="G3K-uY-1bP">
-            <objects>
-                <viewController storyboardIdentifier="LandingViewController" id="cd3-hM-ib9" customClass="LandingViewController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dGE-f4-QNO"/>
-                        <viewControllerLayoutGuide type="bottom" id="g1P-Bw-up1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="RH4-4q-Cee">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kbG-Df-SAF">
-                                <rect key="frame" x="90" y="120" width="194" height="194"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="kbG-Df-SAF" secondAttribute="height" multiplier="1:1" id="R7u-QF-G3c"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zk-lf-fuz">
-                                <rect key="frame" x="116" y="339" width="143" height="72"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="0Zk-lf-fuz" firstAttribute="centerX" secondItem="RH4-4q-Cee" secondAttribute="centerX" id="AMz-6b-xKv"/>
-                            <constraint firstItem="0Zk-lf-fuz" firstAttribute="top" secondItem="kbG-Df-SAF" secondAttribute="bottom" constant="25" id="Ql1-I6-Uvu"/>
-                            <constraint firstItem="kbG-Df-SAF" firstAttribute="leading" secondItem="RH4-4q-Cee" secondAttribute="leading" constant="90" id="XVK-IC-LmC"/>
-                            <constraint firstItem="kbG-Df-SAF" firstAttribute="centerX" secondItem="RH4-4q-Cee" secondAttribute="centerX" id="eF2-Od-UcE"/>
-                            <constraint firstItem="kbG-Df-SAF" firstAttribute="top" secondItem="dGE-f4-QNO" secondAttribute="bottom" constant="100" id="sd6-rX-o68"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="appNameLabel" destination="0Zk-lf-fuz" id="nOe-mi-9Xh"/>
-                        <outlet property="logoImageView" destination="kbG-Df-SAF" id="FeS-uk-2by"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9f3-Ea-bpp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="144.80000000000001" y="65.217391304347828"/>
-        </scene>
         <!--Sign In View Controller-->
         <scene sceneID="d7y-6Q-0ZY">
             <objects>

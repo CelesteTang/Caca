@@ -12,7 +12,6 @@
 		4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB431E82240F006B0D5D /* TimingViewController.swift */; };
 		4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB451E82242A006B0D5D /* FillinViewController.swift */; };
 		4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB4D1E838EAF006B0D5D /* Time.swift */; };
-		4322EB501E839723006B0D5D /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB4F1E839723006B0D5D /* LandingViewController.swift */; };
 		4322EB521E8398FA006B0D5D /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB511E8398FA006B0D5D /* Palette.swift */; };
 		4322EB541E83A8C6006B0D5D /* Caca.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB531E83A8C6006B0D5D /* Caca.swift */; };
 		4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */; };
@@ -56,7 +55,6 @@
 		4322EB431E82240F006B0D5D /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
 		4322EB451E82242A006B0D5D /* FillinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillinViewController.swift; sourceTree = "<group>"; };
 		4322EB4D1E838EAF006B0D5D /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
-		4322EB4F1E839723006B0D5D /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		4322EB511E8398FA006B0D5D /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		4322EB531E83A8C6006B0D5D /* Caca.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caca.swift; sourceTree = "<group>"; };
 		4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RecordDetail.storyboard; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 			children = (
 				43F2FA111E84BE2800E92290 /* SignInViewController.swift */,
 				43F2FA131E84BE4300E92290 /* SignUpViewController.swift */,
-				4322EB4F1E839723006B0D5D /* LandingViewController.swift */,
 				43BA3FA51E8006CF0052125B /* Opening */,
 				43BA3F9F1E7FD13B0052125B /* Caca */,
 				43372D301E7FC86C002E2AE3 /* Record */,
@@ -431,7 +428,6 @@
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
 				43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */,
 				43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */,
-				4322EB501E839723006B0D5D /* LandingViewController.swift in Sources */,
 				43372D1C1E7FC603002E2AE3 /* CacaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
