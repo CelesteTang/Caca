@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 enum Shape: Int {
 
@@ -116,7 +117,29 @@ class FillinViewController: UIViewController {
             Caca.cacas.append(caca)
         }
 
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+        let rootRef = FIRDatabase.database().reference()
+
+        let cacaRef = rootRef.child("cacas").childByAutoId()
+
+        let value = ["host": "",
+                     "date": self.dateLabel.text ?? "",
+                     "consumingTime": self.consumingTimeLabel.text ?? "",
+                     "shape": shapeSegmentedControl.selectedSegmentIndex,
+                     "color": colorSegmentedControll.selectedSegmentIndex,
+                     "amount": Double(amountSlider.value),
+                     "other": self.otherTextView.text,
+                     "photo": ""] as [String : Any]
+
+        cacaRef.updateChildValues(value, withCompletionBlock: { (error, _) in
+                if error != nil {
+
+                    print(error?.localizedDescription ?? "")
+
+                    return
+                }
+            })
+
+    if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
             tabBarController.selectedIndex = 1
             appDelegate.window?.rootViewController = tabBarController

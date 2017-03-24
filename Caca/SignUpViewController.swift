@@ -14,7 +14,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var logoImageView: UIImageView!
 
     @IBOutlet weak var appName: UILabel!
-    
+
     @IBOutlet weak var emailField: UITextField!
 
     @IBOutlet weak var passwordField: UITextField!

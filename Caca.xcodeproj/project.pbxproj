@@ -129,8 +129,7 @@
 		43372D021E7FB4BD002E2AE3 /* Caca */ = {
 			isa = PBXGroup;
 			children = (
-				43F2FA111E84BE2800E92290 /* SignInViewController.swift */,
-				43F2FA131E84BE4300E92290 /* SignUpViewController.swift */,
+				43A8D8BC1E85079200B28A6F /* Landing */,
 				43BA3FA51E8006CF0052125B /* Opening */,
 				43BA3F9F1E7FD13B0052125B /* Caca */,
 				43372D301E7FC86C002E2AE3 /* Record */,
@@ -206,6 +205,15 @@
 				43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */,
 			);
 			name = Navigation;
+			sourceTree = "<group>";
+		};
+		43A8D8BC1E85079200B28A6F /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				43F2FA111E84BE2800E92290 /* SignInViewController.swift */,
+				43F2FA131E84BE4300E92290 /* SignUpViewController.swift */,
+			);
+			name = Landing;
 			sourceTree = "<group>";
 		};
 		43BA3F9F1E7FD13B0052125B /* Caca */ = {
