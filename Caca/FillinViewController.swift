@@ -123,7 +123,7 @@ class FillinViewController: UIViewController {
 
         let cacaRef = rootRef.child("cacas").childByAutoId()
 
-        let value = ["host": "",
+        let value = ["host": FIRAuth.auth()?.currentUser?.uid ?? "",
                      "date": self.dateLabel.text ?? "",
                      "consumingTime": self.consumingTimeLabel.text ?? "",
                      "shape": shapeSegmentedControl.selectedSegmentIndex,

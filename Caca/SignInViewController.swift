@@ -70,8 +70,13 @@ class SignInViewController: UIViewController {
         appName.textColor = Palette.textColor
         appName.font = UIFont(name: "Courier-Bold", size: 60)
 
-        emailField.clearButtonMode = .whileEditing
-        passwordField.clearButtonMode = .whileEditing
+        emailField.clearButtonMode = .never
+        emailField.placeholder = "Email"
+        emailField.clearsOnBeginEditing = true
+
+        passwordField.clearButtonMode = .never
+        passwordField.placeholder = "Password"
+        passwordField.clearsOnBeginEditing = true
         passwordField.isSecureTextEntry = true
     }
 

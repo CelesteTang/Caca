@@ -85,7 +85,7 @@ class SignUpViewController: UIViewController {
                     }
 
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningViewController") as? OpeningViewController
+                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
                     }
                 })
             }
@@ -111,11 +111,22 @@ class SignUpViewController: UIViewController {
         appName.textColor = Palette.textColor
         appName.font = UIFont(name: "Courier-Bold", size: 60)
 
-        emailField.clearButtonMode = .whileEditing
-        passwordField.clearButtonMode = .whileEditing
+        emailField.clearButtonMode = .never
+        emailField.placeholder = "Email"
+        emailField.clearsOnBeginEditing = true
+
+        passwordField.clearButtonMode = .never
+        passwordField.placeholder = "Password"
+        passwordField.clearsOnBeginEditing = true
         passwordField.isSecureTextEntry = true
+
         firstNameField.clearButtonMode = .whileEditing
+        firstNameField.placeholder = "First name"
+        firstNameField.clearsOnBeginEditing = true
+
         lastNameField.clearButtonMode = .whileEditing
+        lastNameField.placeholder = "Last name"
+        lastNameField.clearsOnBeginEditing = true
     }
 
 }
