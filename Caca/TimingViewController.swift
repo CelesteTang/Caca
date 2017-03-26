@@ -101,6 +101,7 @@ class TimingViewController: UIViewController {
         super.viewDidLoad()
 
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
+        self.timerLabel.textColor = Palette.textColor
         self.timerLabel.text = "00:00:00"
 
         self.startButton.setTitle("Start", for: UIControlState.normal)

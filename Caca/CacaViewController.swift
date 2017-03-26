@@ -37,9 +37,9 @@ class CacaViewController: UIViewController {
         startButton.tintColor = Palette.textColor
 
         notificationLabel.text = "You don't defecate for 3 days"
+        notificationLabel.numberOfLines = 0
         startButton.setTitle("Start", for: UIControlState.normal)
         view.backgroundColor = Palette.backgoundColor
-
     }
 
     func dateString() -> String {

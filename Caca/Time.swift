@@ -13,13 +13,3 @@ class Time {
     static var consumingTime: String = ""
 
 }
-
-//class Info {
-//    var name: String
-//    var time: String
-//
-//    init(name: String, time: String) {
-//        self.name = name
-//        self.time = time
-//    }
-//}
