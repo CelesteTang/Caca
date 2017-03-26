@@ -37,6 +37,12 @@ class RecordDetailViewController: UIViewController {
         colorImageView.image = recievedCaca[0].color.image
         amountLabel.text = String(recievedCaca[0].amount)
         otherInfoLabel.text = recievedCaca[0].otherInfo
+
+        tabBarController?.tabBar.isHidden = true
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        tabBarController?.tabBar.isHidden = false
+    }
 }
