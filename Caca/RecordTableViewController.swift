@@ -17,9 +17,11 @@ class RecordTableViewController: UITableViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Record"
+        
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
+        
         view.backgroundColor = Palette.backgoundColor
 
         tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: "RecordTableViewCell")
@@ -74,7 +76,7 @@ class RecordTableViewController: UITableViewController {
 
         let rootRef = FIRDatabase.database().reference()
 
-        rootRef.child("cacas").observeSingleEvent(of: .value, with: { (snapshot) in
+        rootRef.child("cacas").queryOrdered(byChild: "host").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
 
                 for snap in snaps {
