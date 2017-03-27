@@ -49,6 +49,26 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
 
+//        if let pictureURL = UserDefaults.standard.string(forKey: Constants.UserDefaultsKey.url),
+//            let url = URL(string: pictureURL) {
+//            
+//            do {
+//                let data = try Data(contentsOf: url)
+//                self.userPhoto.image = UIImage(data: data)
+//            } catch {
+//                print(error)
+//            }
+//        }
+        if let url = URL(string: cacas[indexPath.row].photo) {
+            
+            do {
+                let data = try Data(contentsOf: url)
+                cell.rowView.cacaPhotoImageView.image = UIImage(data: data)
+            } catch {
+                print(error)
+            }
+        }
+
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
         cell.rowView.passOrFailLabel.text = "Pass"
 
@@ -82,6 +102,7 @@ class RecordTableViewController: UITableViewController {
                 for snap in snaps {
 
                     if let cacaInfo = snap.value as? NSDictionary,
+                        let cacaPhoto = cacaInfo["photo"] as? String,
                         let cacaDate = cacaInfo["date"] as? String,
                         let cacaTime = cacaInfo["consumingTime"] as? String,
                         let cacaShape = cacaInfo["shape"] as? Int,
@@ -89,7 +110,7 @@ class RecordTableViewController: UITableViewController {
                         let cacaAmount = cacaInfo["amount"] as? Double,
                         let cacaOther = cacaInfo["other"] as? String {
 
-                        let caca = Caca(date: cacaDate, consumingTime: cacaTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
+                        let caca = Caca(photo: cacaPhoto, date: cacaDate, consumingTime: cacaTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
 
                         self.cacas.append(caca)
                     }

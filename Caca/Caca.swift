@@ -12,6 +12,8 @@ class Caca {
 
     // MARK: Property
 
+    let photo: String
+
     let date: String
 
     let consumingTime: String
@@ -24,8 +26,9 @@ class Caca {
 
     let otherInfo: String?
 
-    init(date: String, consumingTime: String, shape: Shape, color: Color, amount: Double, otherInfo: String?) {
+    init(photo: String, date: String, consumingTime: String, shape: Shape, color: Color, amount: Double, otherInfo: String?) {
 
+        self.photo = photo
         self.date = date
         self.consumingTime = consumingTime
         self.shape = shape

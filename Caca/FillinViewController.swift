@@ -125,11 +125,11 @@ class FillinViewController: UIViewController {
 
     @IBAction func didFillin(_ sender: UIButton) {
 
-        guard let hostUID = FIRAuth.auth()?.currentUser?.uid else {
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid, let date = dateLabel.text, let consumingTime = consumingTimeLabel.text else {
             return
         }
         
-        let storageRef = FIRStorage.storage().reference().child("\(hostUID)\(dateLabel.text)")
+        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(date).png")
 
         if let uploadData = UIImagePNGRepresentation(cacaPhoto.image!) {
 
@@ -145,8 +145,8 @@ class FillinViewController: UIViewController {
                 if let cacaPhotoUrl = metadata?.downloadURL()?.absoluteString {
                     
                     let value = ["host": hostUID,
-                                 "date": self.dateLabel.text ?? "",
-                                 "consumingTime": self.consumingTimeLabel.text ?? "",
+                                 "date": date,
+                                 "consumingTime": consumingTime,
                                  "shape": self.shapeSegmentedControl.selectedSegmentIndex,
                                  "color": self.colorSegmentedControll.selectedSegmentIndex,
                                  "amount": Double(self.amountSlider.value),
@@ -155,7 +155,6 @@ class FillinViewController: UIViewController {
                     
                     self.saveCacaIntoDatabase(uid: hostUID, value: value)
                 }
-              
                 
             })
         }
