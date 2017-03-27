@@ -115,6 +115,7 @@ class FillinViewController: UIViewController {
         picker.cameraCaptureMode = .photo
         picker.cameraDevice = .rear
         picker.cameraFlashMode = .on
+        picker.allowsEditing = true
         self.present(picker, animated: true, completion: nil)
 
     }
@@ -146,6 +147,8 @@ class FillinViewController: UIViewController {
                 }
         })
 
+        let storageRef = firstorage
+        
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
                 tabBarController.selectedIndex = 1
@@ -203,9 +206,13 @@ UINavigationControllerDelegate {
             print(mediaType)
         }
 
-        if let cacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage {
 
-            self.cacaPhoto.image = cacaImage
+            self.cacaPhoto.image = editedCacaImage
+
+        } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+
+            self.cacaPhoto.image = originalCacaImage
 
 //            UIImageWriteToSavedPhotosAlbum(cacaImage, self, Selector(("image:didFinishSavingWithError:contextInfo:")), nil)
 
