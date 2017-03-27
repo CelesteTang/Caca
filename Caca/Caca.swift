@@ -34,6 +34,4 @@ class Caca {
         self.otherInfo = otherInfo
     }
 
-    static var cacas = [Caca]()
-
 }

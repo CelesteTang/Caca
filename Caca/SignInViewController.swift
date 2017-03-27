@@ -70,14 +70,28 @@ class SignInViewController: UIViewController {
         appName.textColor = Palette.textColor
         appName.font = UIFont(name: "Courier-Bold", size: 60)
 
+        emailField.delegate = self
         emailField.clearButtonMode = .never
         emailField.placeholder = "Email"
         emailField.clearsOnBeginEditing = true
+        emailField.keyboardType = .emailAddress
+        emailField.returnKeyType = .done
 
+        passwordField.delegate = self
         passwordField.clearButtonMode = .never
         passwordField.placeholder = "Password"
         passwordField.clearsOnBeginEditing = true
         passwordField.isSecureTextEntry = true
+        passwordField.returnKeyType = .done
     }
 
+}
+
+extension SignInViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+
+        return true
+    }
 }
