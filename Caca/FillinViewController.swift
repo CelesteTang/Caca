@@ -125,30 +125,41 @@ class FillinViewController: UIViewController {
 
     @IBAction func didFillin(_ sender: UIButton) {
 
-        let rootRef = FIRDatabase.database().reference()
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid else {
+            return
+        }
+        
+        let storageRef = FIRStorage.storage().reference().child("\(hostUID)\(dateLabel.text)")
 
-        let cacaRef = rootRef.child("cacas").childByAutoId()
+        if let uploadData = UIImagePNGRepresentation(cacaPhoto.image!) {
 
-        let value = ["host": FIRAuth.auth()?.currentUser?.uid ?? "",
-                     "date": self.dateLabel.text ?? "",
-                     "consumingTime": self.consumingTimeLabel.text ?? "",
-                     "shape": shapeSegmentedControl.selectedSegmentIndex,
-                     "color": colorSegmentedControll.selectedSegmentIndex,
-                     "amount": Double(amountSlider.value),
-                     "other": self.otherTextView.text,
-                     "photo": ""] as [String : Any]
+            storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
 
-        cacaRef.updateChildValues(value, withCompletionBlock: { (error, _) in
                 if error != nil {
 
-                    print(error?.localizedDescription ?? "")
+                    print(error?.localizedDescription ?? "storageError")
 
                     return
                 }
-        })
 
-        let storageRef = firstorage
-        
+                if let cacaPhotoUrl = metadata?.downloadURL()?.absoluteString {
+                    
+                    let value = ["host": hostUID,
+                                 "date": self.dateLabel.text ?? "",
+                                 "consumingTime": self.consumingTimeLabel.text ?? "",
+                                 "shape": self.shapeSegmentedControl.selectedSegmentIndex,
+                                 "color": self.colorSegmentedControll.selectedSegmentIndex,
+                                 "amount": Double(self.amountSlider.value),
+                                 "other": self.otherTextView.text,
+                                 "photo": cacaPhotoUrl] as [String : Any]
+                    
+                    self.saveCacaIntoDatabase(uid: hostUID, value: value)
+                }
+              
+                
+            })
+        }
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
                 tabBarController.selectedIndex = 1
@@ -157,8 +168,35 @@ class FillinViewController: UIViewController {
 
     }
 
+    private func saveCacaIntoDatabase(uid: String, value: [String : Any]) {
+    
+        let databaseRef = FIRDatabase.database().reference().child("cacas").childByAutoId()
+        
+//        let value = ["host": FIRAuth.auth()?.currentUser?.uid ?? "",
+//                     "date": self.dateLabel.text ?? "",
+//                     "consumingTime": self.consumingTimeLabel.text ?? "",
+//                     "shape": shapeSegmentedControl.selectedSegmentIndex,
+//                     "color": colorSegmentedControll.selectedSegmentIndex,
+//                     "amount": Double(amountSlider.value),
+//                     "other": self.otherTextView.text,
+//                     "photo": ""] as [String : Any]
+        
+        databaseRef.updateChildValues(value, withCompletionBlock: { (error, _) in
+            if error != nil {
+                
+                print(error?.localizedDescription ?? "")
+                
+                return
+            }
+        })
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+        cacaPhoto.backgroundColor = Palette.backgoundColor
 
         dateLabel.text = dateString()
         consumingTimeLabel.text = Time.consumingTime
