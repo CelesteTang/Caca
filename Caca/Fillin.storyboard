@@ -132,6 +132,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qV-oI-cVR">
+                                <rect key="frame" x="262" y="124" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="addPhoto:" destination="TpS-hk-Q0i" eventType="touchUpInside" id="Pcs-20-vLv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -156,6 +163,8 @@
                             <constraint firstItem="LxH-I6-7Ix" firstAttribute="leading" secondItem="hW7-CY-D2a" secondAttribute="leading" id="WrM-0Y-Ldt"/>
                             <constraint firstItem="Aqk-QU-S0w" firstAttribute="leading" secondItem="B6N-cU-B9t" secondAttribute="leading" id="bPN-6b-FYq"/>
                             <constraint firstItem="UUP-Kb-sGU" firstAttribute="top" secondItem="i9o-xg-cet" secondAttribute="bottom" constant="8" id="dlt-MN-chm"/>
+                            <constraint firstItem="4qV-oI-cVR" firstAttribute="bottom" secondItem="5gF-Tj-Cyr" secondAttribute="bottom" id="dvb-gc-sLd"/>
+                            <constraint firstItem="4qV-oI-cVR" firstAttribute="leading" secondItem="5gF-Tj-Cyr" secondAttribute="trailing" constant="8" id="eCb-V6-UYI"/>
                             <constraint firstItem="Wxf-Ut-uIE" firstAttribute="leading" secondItem="hW7-CY-D2a" secondAttribute="trailing" constant="38" id="g1o-VD-UpW"/>
                             <constraint firstItem="LvY-mX-oz8" firstAttribute="top" secondItem="Aqk-QU-S0w" secondAttribute="bottom" constant="10" id="gzL-ub-4NY"/>
                             <constraint firstItem="UUP-Kb-sGU" firstAttribute="centerX" secondItem="jgg-hf-B3C" secondAttribute="centerX" id="hjH-O7-PJt"/>

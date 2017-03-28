@@ -31,6 +31,16 @@ class RecordDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if let url = URL(string: recievedCaca[0].photo) {
+
+            do {
+                let data = try Data(contentsOf: url)
+                cacaPhoto.image = UIImage(data: data)
+            } catch {
+                print(error)
+            }
+        }
+
         dateLabel.text = recievedCaca[0].date
         timeLabel.text = recievedCaca[0].consumingTime
         shapeImageView.image = recievedCaca[0].shape.image

@@ -107,50 +107,89 @@ class FillinViewController: UIViewController {
 
     @IBOutlet weak var finishButton: UIButton!
 
+    @IBAction func addPhoto(_ sender: UIButton) {
+
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .camera
+        picker.cameraCaptureMode = .photo
+        picker.cameraDevice = .rear
+        picker.cameraFlashMode = .on
+        picker.allowsEditing = true
+        picker.videoQuality = .typeLow
+        self.present(picker, animated: true, completion: nil)
+
+    }
     @IBAction func amountChanged(_ sender: UISlider) {
+
     }
 
     @IBAction func didFillin(_ sender: UIButton) {
 
-        if let shape = Shape(rawValue: shapeSegmentedControl.selectedSegmentIndex), let color = Color(rawValue: colorSegmentedControll.selectedSegmentIndex) {
-
-            let caca = Caca(date: dateString(), consumingTime: Time.consumingTime, shape: shape, color: color, amount: Double(amountSlider.value), otherInfo: "0")
-
-            Caca.cacas.append(caca)
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid, let date = dateLabel.text, let consumingTime = consumingTimeLabel.text else {
+            return
         }
 
-        let rootRef = FIRDatabase.database().reference()
+        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(date).png")
 
-        let cacaRef = rootRef.child("cacas").childByAutoId()
+        if let uploadData = UIImageJPEGRepresentation(cacaPhoto.image!, 0.1) {
 
-        let value = ["host": FIRAuth.auth()?.currentUser?.uid ?? "",
-                     "date": self.dateLabel.text ?? "",
-                     "consumingTime": self.consumingTimeLabel.text ?? "",
-                     "shape": shapeSegmentedControl.selectedSegmentIndex,
-                     "color": colorSegmentedControll.selectedSegmentIndex,
-                     "amount": Double(amountSlider.value),
-                     "other": self.otherTextView.text,
-                     "photo": ""] as [String : Any]
+            storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
 
-        cacaRef.updateChildValues(value, withCompletionBlock: { (error, _) in
                 if error != nil {
 
-                    print(error?.localizedDescription ?? "")
+                    print(error?.localizedDescription ?? "storageError")
 
                     return
                 }
-            })
 
-    if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                if let cacaPhotoUrl = metadata?.downloadURL()?.absoluteString {
+
+                    let value = ["host": hostUID,
+                                 "date": date,
+                                 "consumingTime": consumingTime,
+                                 "shape": self.shapeSegmentedControl.selectedSegmentIndex,
+                                 "color": self.colorSegmentedControll.selectedSegmentIndex,
+                                 "amount": Double(self.amountSlider.value),
+                                 "other": self.otherTextView.text,
+                                 "photo": cacaPhotoUrl] as [String : Any]
+
+                    self.saveCacaIntoDatabase(uid: hostUID, value: value)
+
+                }
+            })
+        }
+    }
+
+    private func saveCacaIntoDatabase(uid: String, value: [String : Any]) {
+
+        let databaseRef = FIRDatabase.database().reference().child("cacas").childByAutoId()
+
+        databaseRef.updateChildValues(value, withCompletionBlock: { (error, _) in
+
+            if error != nil {
+
+                print(error?.localizedDescription ?? "")
+
+                return
+            }
+            self.switchToRecord()
+        })
+    }
+
+    func switchToRecord() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
             tabBarController.selectedIndex = 1
             appDelegate.window?.rootViewController = tabBarController
         }
-
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+        cacaPhoto.backgroundColor = Palette.backgoundColor
 
         dateLabel.text = dateString()
         consumingTimeLabel.text = Time.consumingTime
@@ -160,6 +199,12 @@ class FillinViewController: UIViewController {
         amountSlider.tintColor = UIColor.white
         amountSlider.minimumValue = 1
         amountSlider.maximumValue = 3
+
+        otherTextView.delegate = self
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
     }
 
     func dateString() -> String {
@@ -177,4 +222,41 @@ class FillinViewController: UIViewController {
         return String(format: "%04i/%02i/%02i %02i:%02i", year, month, day, hour, minute)
     }
 
+    func hideKeyBoard() {
+        self.otherTextView.resignFirstResponder()
+    }
+
+}
+
+extension FillinViewController: UIImagePickerControllerDelegate,
+UINavigationControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+
+        if let mediaType = info[UIImagePickerControllerMediaType] as? String {
+            print(mediaType)
+        }
+
+        if let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+
+            self.cacaPhoto.image = editedCacaImage
+
+        } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+
+            self.cacaPhoto.image = originalCacaImage
+
+        }
+
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension FillinViewController: UITextViewDelegate {
+
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+
+        self.view.endEditing(true)
+
+        return true
+    }
 }

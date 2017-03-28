@@ -111,22 +111,40 @@ class SignUpViewController: UIViewController {
         appName.textColor = Palette.textColor
         appName.font = UIFont(name: "Courier-Bold", size: 60)
 
+        emailField.delegate = self
         emailField.clearButtonMode = .never
         emailField.placeholder = "Email"
         emailField.clearsOnBeginEditing = true
+        emailField.keyboardType = .emailAddress
+        emailField.returnKeyType = .done
 
+        passwordField.delegate = self
         passwordField.clearButtonMode = .never
         passwordField.placeholder = "Password"
         passwordField.clearsOnBeginEditing = true
         passwordField.isSecureTextEntry = true
+        passwordField.returnKeyType = .done
 
+        firstNameField.delegate = self
         firstNameField.clearButtonMode = .whileEditing
         firstNameField.placeholder = "First name"
         firstNameField.clearsOnBeginEditing = true
+        firstNameField.returnKeyType = .done
 
+        lastNameField.delegate = self
         lastNameField.clearButtonMode = .whileEditing
         lastNameField.placeholder = "Last name"
         lastNameField.clearsOnBeginEditing = true
+        lastNameField.returnKeyType = .done
     }
 
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+
+        return true
+    }
 }

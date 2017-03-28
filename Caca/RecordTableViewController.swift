@@ -17,9 +17,11 @@ class RecordTableViewController: UITableViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Record"
+
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
+
         view.backgroundColor = Palette.backgoundColor
 
         tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: "RecordTableViewCell")
@@ -46,6 +48,16 @@ class RecordTableViewController: UITableViewController {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
+
+        if let url = URL(string: cacas[indexPath.row].photo) {
+
+            do {
+                let data = try Data(contentsOf: url)
+                cell.rowView.cacaPhotoImageView.image = UIImage(data: data)
+            } catch {
+                print(error)
+            }
+        }
 
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
         cell.rowView.passOrFailLabel.text = "Pass"
@@ -74,12 +86,13 @@ class RecordTableViewController: UITableViewController {
 
         let rootRef = FIRDatabase.database().reference()
 
-        rootRef.child("cacas").observeSingleEvent(of: .value, with: { (snapshot) in
+        rootRef.child("cacas").queryOrdered(byChild: "host").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
 
                 for snap in snaps {
 
                     if let cacaInfo = snap.value as? NSDictionary,
+                        let cacaPhoto = cacaInfo["photo"] as? String,
                         let cacaDate = cacaInfo["date"] as? String,
                         let cacaTime = cacaInfo["consumingTime"] as? String,
                         let cacaShape = cacaInfo["shape"] as? Int,
@@ -87,7 +100,7 @@ class RecordTableViewController: UITableViewController {
                         let cacaAmount = cacaInfo["amount"] as? Double,
                         let cacaOther = cacaInfo["other"] as? String {
 
-                        let caca = Caca(date: cacaDate, consumingTime: cacaTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
+                        let caca = Caca(photo: cacaPhoto, date: cacaDate, consumingTime: cacaTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
 
                         self.cacas.append(caca)
                     }
