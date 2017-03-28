@@ -60,6 +60,7 @@ enum TabBarItemType: Int {
         case .setting:
 
             return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+
         }
 
     }
