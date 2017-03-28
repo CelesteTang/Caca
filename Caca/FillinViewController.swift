@@ -155,6 +155,7 @@ class FillinViewController: UIViewController {
                                  "photo": cacaPhotoUrl] as [String : Any]
 
                     self.saveCacaIntoDatabase(uid: hostUID, value: value)
+
                 }
             })
         }
@@ -172,13 +173,16 @@ class FillinViewController: UIViewController {
 
                 return
             }
-
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-
-                tabBarController.selectedIndex = 1
-                appDelegate.window?.rootViewController = tabBarController
-            }
+            self.switchToRecord()
         })
+    }
+
+    func switchToRecord() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+            tabBarController.selectedIndex = 1
+            appDelegate.window?.rootViewController = tabBarController
+        }
     }
 
     override func viewDidLoad() {
@@ -240,8 +244,6 @@ UINavigationControllerDelegate {
         } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
             self.cacaPhoto.image = originalCacaImage
-
-//            UIImageWriteToSavedPhotosAlbum(cacaImage, self, Selector(("image:didFinishSavingWithError:contextInfo:")), nil)
 
         }
 
