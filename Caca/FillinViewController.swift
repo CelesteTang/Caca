@@ -116,6 +116,7 @@ class FillinViewController: UIViewController {
         picker.cameraDevice = .rear
         picker.cameraFlashMode = .on
         picker.allowsEditing = true
+        picker.videoQuality = .typeLow
         self.present(picker, animated: true, completion: nil)
 
     }
@@ -128,10 +129,10 @@ class FillinViewController: UIViewController {
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid, let date = dateLabel.text, let consumingTime = consumingTimeLabel.text else {
             return
         }
-        
+
         let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(date).png")
 
-        if let uploadData = UIImagePNGRepresentation(cacaPhoto.image!) {
+        if let uploadData = UIImageJPEGRepresentation(cacaPhoto.image!, 0.1) {
 
             storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
 
@@ -143,7 +144,7 @@ class FillinViewController: UIViewController {
                 }
 
                 if let cacaPhotoUrl = metadata?.downloadURL()?.absoluteString {
-                    
+
                     let value = ["host": hostUID,
                                  "date": date,
                                  "consumingTime": consumingTime,
@@ -152,45 +153,34 @@ class FillinViewController: UIViewController {
                                  "amount": Double(self.amountSlider.value),
                                  "other": self.otherTextView.text,
                                  "photo": cacaPhotoUrl] as [String : Any]
-                    
+
                     self.saveCacaIntoDatabase(uid: hostUID, value: value)
                 }
-                
             })
         }
-
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-
-                tabBarController.selectedIndex = 1
-                appDelegate.window?.rootViewController = tabBarController
-        }
-
     }
 
     private func saveCacaIntoDatabase(uid: String, value: [String : Any]) {
-    
+
         let databaseRef = FIRDatabase.database().reference().child("cacas").childByAutoId()
-        
-//        let value = ["host": FIRAuth.auth()?.currentUser?.uid ?? "",
-//                     "date": self.dateLabel.text ?? "",
-//                     "consumingTime": self.consumingTimeLabel.text ?? "",
-//                     "shape": shapeSegmentedControl.selectedSegmentIndex,
-//                     "color": colorSegmentedControll.selectedSegmentIndex,
-//                     "amount": Double(amountSlider.value),
-//                     "other": self.otherTextView.text,
-//                     "photo": ""] as [String : Any]
-        
+
         databaseRef.updateChildValues(value, withCompletionBlock: { (error, _) in
+
             if error != nil {
-                
+
                 print(error?.localizedDescription ?? "")
-                
+
                 return
             }
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+                tabBarController.selectedIndex = 1
+                appDelegate.window?.rootViewController = tabBarController
+            }
         })
-        
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

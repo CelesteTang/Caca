@@ -49,18 +49,8 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
 
-//        if let pictureURL = UserDefaults.standard.string(forKey: Constants.UserDefaultsKey.url),
-//            let url = URL(string: pictureURL) {
-//            
-//            do {
-//                let data = try Data(contentsOf: url)
-//                self.userPhoto.image = UIImage(data: data)
-//            } catch {
-//                print(error)
-//            }
-//        }
         if let url = URL(string: cacas[indexPath.row].photo) {
-            
+
             do {
                 let data = try Data(contentsOf: url)
                 cell.rowView.cacaPhotoImageView.image = UIImage(data: data)
