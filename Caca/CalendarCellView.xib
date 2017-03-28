@@ -16,22 +16,33 @@
             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Yk-r4-s6i">
-                    <rect key="frame" x="8" y="8" width="49" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xL-ki-MaE">
+                    <rect key="frame" x="30" y="30" width="140" height="140"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="8xL-ki-MaE" secondAttribute="height" multiplier="1:1" id="mdS-ee-Ga8"/>
+                    </constraints>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kd1-JC-NMV">
                     <rect key="frame" x="40" y="40" width="120" height="120"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Kd1-JC-NMV" secondAttribute="height" multiplier="1:1" id="MIx-ZR-I1E"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Yk-r4-s6i">
+                    <rect key="frame" x="8" y="8" width="42" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="8xL-ki-MaE" secondAttribute="trailing" constant="30" id="5Zd-qD-AA8"/>
+                <constraint firstItem="8xL-ki-MaE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="ABN-hc-P5n"/>
+                <constraint firstItem="8xL-ki-MaE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="CaB-hj-o8B"/>
                 <constraint firstItem="Kd1-JC-NMV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="K7Q-Ek-kSQ"/>
+                <constraint firstAttribute="bottom" secondItem="8xL-ki-MaE" secondAttribute="bottom" constant="30" id="NWs-z6-ogj"/>
                 <constraint firstItem="Kd1-JC-NMV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="S74-Hd-AMr"/>
                 <constraint firstItem="Kd1-JC-NMV" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bSj-KN-Oij"/>
                 <constraint firstItem="1Yk-r4-s6i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="c1X-8W-eiC"/>
@@ -40,10 +51,11 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="cacaLabel" destination="Kd1-JC-NMV" id="9ME-kM-fMg"/>
+                <outlet property="cacaImage" destination="Kd1-JC-NMV" id="dfZ-od-gD7"/>
                 <outlet property="dayLabel" destination="1Yk-r4-s6i" id="aFs-eI-9Wb"/>
+                <outlet property="selectedView" destination="8xL-ki-MaE" id="Wlt-K8-GpZ"/>
             </connections>
-            <point key="canvasLocation" x="-446.5" y="-92"/>
+            <point key="canvasLocation" x="-447" y="-92"/>
         </view>
     </objects>
 </document>

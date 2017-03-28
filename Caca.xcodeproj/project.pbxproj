@@ -20,6 +20,8 @@
 		433681191E8A424900D51B5C /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433681181E8A424900D51B5C /* Calendar.storyboard */; };
 		4336811B1E8A427F00D51B5C /* CalendarCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4336811A1E8A427F00D51B5C /* CalendarCellView.xib */; };
 		4336811D1E8A441B00D51B5C /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4336811C1E8A441B00D51B5C /* CalendarCellView.swift */; };
+		4336811F1E8A637A00D51B5C /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4336811E1E8A637A00D51B5C /* HeaderView.xib */; };
+		433681211E8A63B700D51B5C /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433681201E8A63B700D51B5C /* HeaderView.swift */; };
 		43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */; };
 		43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43372D071E7FB4BD002E2AE3 /* Main.storyboard */; };
 		43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */; };
@@ -66,6 +68,8 @@
 		433681181E8A424900D51B5C /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		4336811A1E8A427F00D51B5C /* CalendarCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarCellView.xib; sourceTree = "<group>"; };
 		4336811C1E8A441B00D51B5C /* CalendarCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
+		4336811E1E8A637A00D51B5C /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		433681201E8A63B700D51B5C /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		43372D001E7FB4BD002E2AE3 /* Caca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43372D081E7FB4BD002E2AE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -238,6 +242,8 @@
 		43BA3FA01E7FD1440052125B /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				4336811E1E8A637A00D51B5C /* HeaderView.xib */,
+				433681201E8A63B700D51B5C /* HeaderView.swift */,
 				4336811A1E8A427F00D51B5C /* CalendarCellView.xib */,
 				4336811C1E8A441B00D51B5C /* CalendarCellView.swift */,
 				43372D211E7FC69D002E2AE3 /* CalendarViewController.swift */,
@@ -350,6 +356,7 @@
 				4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */,
 				43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */,
 				43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */,
+				4336811F1E8A637A00D51B5C /* HeaderView.xib in Resources */,
 				4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */,
 				43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */,
 			);
@@ -449,6 +456,7 @@
 				43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */,
 				43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */,
 				43372D1C1E7FC603002E2AE3 /* CacaViewController.swift in Sources */,
+				433681211E8A63B700D51B5C /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

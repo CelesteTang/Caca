@@ -13,5 +13,7 @@ class CalendarCellView: JTAppleDayCellView {
 
     @IBOutlet weak var dayLabel: UILabel!
 
-    @IBOutlet weak var cacaLabel: UIImageView!
+    @IBOutlet weak var cacaImage: UIImageView!
+
+    @IBOutlet weak var selectedView: UIView!
 }
