@@ -36,10 +36,12 @@ class CalendarViewController: UIViewController {
         calendarView.registerCellViewXib(file: "CalendarCellView")
         calendarView.cellInset = CGPoint(x: 0, y: 0)
 
-//        calendarView.scrollToDate(Date()) {
-//            let visibleDates = self.calendarView.visibleDates()
-//            self.setupViewsOfCalendar(from: visibleDates)
-//        }
+        calendarView.scrollToDate(Date()) {
+
+            let visibleDates = self.calendarView.visibleDates()
+            self.monthChanged(visibleDates)
+
+        }
 
         calendarView.scrollingMode = .stopAtEachCalendarFrameWidth
 
@@ -50,6 +52,20 @@ class CalendarViewController: UIViewController {
 
         adviceView.backgroundColor = Palette.backgoundColor
         adviceLabel.textColor = Palette.textColor
+
+    }
+
+    func monthChanged(_ visibleDates: DateSegmentInfo) {
+
+        guard let startDate = visibleDates.monthDates.first else {
+            return
+        }
+
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: startDate)
+        let year = calendar.component(.year, from: startDate)
+
+        self.headerTitleLabel.text = String(format: "%04i-%02i", year, month)
 
     }
 
@@ -164,15 +180,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
 
-        guard let startDate = visibleDates.monthDates.first else {
-            return
-        }
-
-        let calendar = Calendar.current
-
-        let month = calendar.component(.month, from: startDate)
-        let year = calendar.component(.year, from: startDate)
-        headerTitleLabel.text = String(format: "%04i-%02i", year, month)
+        self.monthChanged(visibleDates)
 
     }
 }
