@@ -10,6 +10,9 @@ import UIKit
 import JTAppleCalendar
 
 class CalendarViewController: UIViewController {
+    @IBOutlet weak var headerView: UIView!
+
+    @IBOutlet weak var headerTitleLabel: UILabel!
 
     @IBOutlet weak var calendarView: JTAppleCalendarView!
 
@@ -25,12 +28,20 @@ class CalendarViewController: UIViewController {
         navigationItem.title = "Calendar"
         view.backgroundColor = Palette.backgoundColor
 
+        headerView.backgroundColor = Palette.textColor
+        headerTitleLabel.textColor = Palette.backgoundColor
+
         calendarView.dataSource = self
         calendarView.delegate = self
         calendarView.registerCellViewXib(file: "CalendarCellView")
         calendarView.cellInset = CGPoint(x: 0, y: 0)
+
+//        calendarView.scrollToDate(Date()) {
+//            let visibleDates = self.calendarView.visibleDates()
+//            self.setupViewsOfCalendar(from: visibleDates)
+//        }
+
         calendarView.scrollingMode = .stopAtEachCalendarFrameWidth
-        calendarView.registerHeaderView(xibFileNames: ["HeaderView"])
 
         calendarView.allowsMultipleSelection  = true
         calendarView.rangeSelectionWillBeUsed = true
@@ -39,7 +50,7 @@ class CalendarViewController: UIViewController {
 
         adviceView.backgroundColor = Palette.backgoundColor
         adviceLabel.textColor = Palette.textColor
-        
+
     }
 
 }
@@ -114,7 +125,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     func handleCellTextColor(view: JTAppleDayCellView?, cellState: CellState) {
 
         guard let calendarCell = view as? CalendarCellView  else { return }
-        
+
         if cellState.isSelected {
 
             calendarCell.dayLabel.textColor = Palette.textColor
@@ -151,20 +162,18 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         }
     }
 
-    // This sets the height of your header
-    func calendar(_ calendar: JTAppleCalendarView, sectionHeaderSizeFor range: (start: Date, end: Date), belongingTo month: Int) -> CGSize {
+    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
 
-        return CGSize(width: 200, height: 80)
+        guard let startDate = visibleDates.monthDates.first else {
+            return
+        }
 
-    }
+        let calendar = Calendar.current
 
-    // This setups the display of your header
-    func calendar(_ calendar: JTAppleCalendarView, willDisplaySectionHeader header: JTAppleHeaderView, range: (start: Date, end: Date), identifier: String) {
+        let month = calendar.component(.month, from: startDate)
+        let year = calendar.component(.year, from: startDate)
+        headerTitleLabel.text = String(format: "%04i-%02i", year, month)
 
-        let headerCell = (header as? HeaderView)
-        headerCell?.titleLabel.text = "MAR 2017"
-        headerCell?.backgroundColor = Palette.textColor
-        headerCell?.titleLabel.textColor = Palette.backgoundColor
     }
 }
 
