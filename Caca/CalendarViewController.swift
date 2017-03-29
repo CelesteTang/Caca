@@ -29,7 +29,7 @@ class CalendarViewController: UIViewController {
         calendarView.cellInset = CGPoint(x: 0, y: 0)
         calendarView.scrollingMode = .stopAtEachCalendarFrameWidth
         calendarView.registerHeaderView(xibFileNames: ["HeaderView"])
-        
+
         calendarView.allowsMultipleSelection  = true
         calendarView.rangeSelectionWillBeUsed = true
 
@@ -87,7 +87,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
         handleCellTextColor(view: cell, cellState: cellState)
         handleCellSelection(view: cell, cellState: cellState)
-        
+
     }
 
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {

@@ -120,6 +120,7 @@ class FillinViewController: UIViewController {
         self.present(picker, animated: true, completion: nil)
 
     }
+    
     @IBAction func amountChanged(_ sender: UISlider) {
 
     }
@@ -219,7 +220,7 @@ class FillinViewController: UIViewController {
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
 
-        return String(format: "%04i/%02i/%02i %02i:%02i", year, month, day, hour, minute)
+        return String(format: "%04i-%02i-%02i %02i:%02i", year, month, day, hour, minute)
     }
 
     func hideKeyBoard() {
