@@ -110,10 +110,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5b-HI-Upi">
+                                <rect key="frame" x="153" y="190" width="49" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ljp-qj-78q" firstAttribute="top" secondItem="BYc-TW-mey" secondAttribute="bottom" constant="10" id="2M9-WU-UGM"/>
+                            <constraint firstItem="r5b-HI-Upi" firstAttribute="top" secondItem="CoV-zw-Sqw" secondAttribute="top" id="3AU-cR-zFu"/>
                             <constraint firstItem="Qd2-p9-U6t" firstAttribute="top" secondItem="IgX-L9-UBD" secondAttribute="bottom" constant="10" id="5qj-2q-wXU"/>
                             <constraint firstItem="Ycb-gM-WhC" firstAttribute="top" secondItem="Jdr-c9-H0C" secondAttribute="bottom" constant="8" id="Eb2-Eu-7gR"/>
                             <constraint firstItem="BYc-TW-mey" firstAttribute="leading" secondItem="Qd2-p9-U6t" secondAttribute="leading" id="IZ2-Lp-FC2"/>
@@ -129,6 +136,7 @@
                             <constraint firstItem="IgX-L9-UBD" firstAttribute="leading" secondItem="83D-3m-DcH" secondAttribute="leading" id="bPI-zz-qfi"/>
                             <constraint firstItem="Idc-On-eRa" firstAttribute="top" secondItem="BYc-TW-mey" secondAttribute="bottom" constant="70" id="bTO-mK-3Ir"/>
                             <constraint firstItem="Qd2-p9-U6t" firstAttribute="top" secondItem="J1Q-4V-IcW" secondAttribute="bottom" constant="70" id="cPK-xK-2fd"/>
+                            <constraint firstItem="r5b-HI-Upi" firstAttribute="leading" secondItem="CoV-zw-Sqw" secondAttribute="trailing" constant="8" id="ddQ-SL-Q4j"/>
                             <constraint firstItem="J1Q-4V-IcW" firstAttribute="top" secondItem="Ycb-gM-WhC" secondAttribute="bottom" constant="8" id="djk-6c-zmW"/>
                             <constraint firstItem="CoV-zw-Sqw" firstAttribute="bottom" secondItem="Jdr-c9-H0C" secondAttribute="bottom" id="gfx-7M-aBz"/>
                             <constraint firstItem="Jdr-c9-H0C" firstAttribute="top" secondItem="aoI-PF-sbb" secondAttribute="bottom" constant="16" id="goH-Qz-QsX"/>
@@ -153,11 +161,12 @@
                         <outlet property="amountLabel" destination="Ljp-qj-78q" id="Tss-k6-yUZ"/>
                         <outlet property="cacaPhoto" destination="aoI-PF-sbb" id="3iu-68-suV"/>
                         <outlet property="colorImageView" destination="SAh-q6-s3f" id="UaO-MA-HAw"/>
+                        <outlet property="consumingTimeLabel" destination="83D-3m-DcH" id="8Nj-re-tXz"/>
                         <outlet property="dateLabel" destination="CoV-zw-Sqw" id="obu-cF-XZT"/>
                         <outlet property="otherInfoLabel" destination="56W-nz-w15" id="Pfo-st-d6W"/>
                         <outlet property="passOrFailLabel" destination="r0b-n6-bV0" id="SGf-43-Urc"/>
                         <outlet property="shapeImageView" destination="IgX-L9-UBD" id="fiL-qE-s8z"/>
-                        <outlet property="timeLabel" destination="83D-3m-DcH" id="VRY-5e-FXP"/>
+                        <outlet property="timeLabel" destination="r5b-HI-Upi" id="PGN-co-T5h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iVf-gx-O8b" userLabel="First Responder" sceneMemberID="firstResponder"/>

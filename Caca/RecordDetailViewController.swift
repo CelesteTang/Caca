@@ -16,6 +16,8 @@ class RecordDetailViewController: UIViewController {
 
     @IBOutlet weak var timeLabel: UILabel!
 
+    @IBOutlet weak var consumingTimeLabel: UILabel!
+
     @IBOutlet weak var shapeImageView: UIImageView!
 
     @IBOutlet weak var colorImageView: UIImageView!
@@ -42,7 +44,8 @@ class RecordDetailViewController: UIViewController {
         }
 
         dateLabel.text = recievedCaca[0].date
-        timeLabel.text = recievedCaca[0].consumingTime
+        timeLabel.text = recievedCaca[0].time
+        consumingTimeLabel.text = recievedCaca[0].consumingTime
         shapeImageView.image = recievedCaca[0].shape.image
         colorImageView.image = recievedCaca[0].color.image
         amountLabel.text = String(recievedCaca[0].amount)

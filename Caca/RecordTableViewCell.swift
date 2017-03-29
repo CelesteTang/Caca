@@ -47,6 +47,8 @@ class RecordTableViewCell: UITableViewCell {
         rowView.backgroundColor = Palette.backgoundColor
 
         rowView.dateLabel.textColor = Palette.textColor
+        rowView.timeLabel.textColor = Palette.textColor
+
     }
 
 }

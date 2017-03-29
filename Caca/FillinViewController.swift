@@ -95,6 +95,8 @@ class FillinViewController: UIViewController {
 
     @IBOutlet weak var dateLabel: UILabel!
 
+    @IBOutlet weak var timeLabel: UILabel!
+    
     @IBOutlet weak var consumingTimeLabel: UILabel!
 
     @IBOutlet weak var shapeSegmentedControl: UISegmentedControl!
@@ -127,11 +129,11 @@ class FillinViewController: UIViewController {
 
     @IBAction func didFillin(_ sender: UIButton) {
 
-        guard let hostUID = FIRAuth.auth()?.currentUser?.uid, let date = dateLabel.text, let consumingTime = consumingTimeLabel.text else {
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid, let date = dateLabel.text, let time = timeLabel.text, let consumingTime = consumingTimeLabel.text else {
             return
         }
 
-        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(date).png")
+        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(date) \(time).png")
 
         if let uploadData = UIImageJPEGRepresentation(cacaPhoto.image!, 0.1) {
 
@@ -148,6 +150,7 @@ class FillinViewController: UIViewController {
 
                     let value = ["host": hostUID,
                                  "date": date,
+                                 "time": time,
                                  "consumingTime": consumingTime,
                                  "shape": self.shapeSegmentedControl.selectedSegmentIndex,
                                  "color": self.colorSegmentedControll.selectedSegmentIndex,
@@ -193,6 +196,7 @@ class FillinViewController: UIViewController {
         cacaPhoto.backgroundColor = Palette.backgoundColor
 
         dateLabel.text = dateString()
+        timeLabel.text = timeString()
         consumingTimeLabel.text = Time.consumingTime
         view.backgroundColor = Palette.backgoundColor
 
@@ -217,14 +221,22 @@ class FillinViewController: UIViewController {
         let month = calendar.component(.month, from: date)
         let day = calendar.component(.day, from: date)
 
-//        let hour = calendar.component(.hour, from: date)
-//        let minute = calendar.component(.minute, from: date)
-
-//        return String(format: "%04i-%02i-%02i %02i:%02i", year, month, day, hour, minute)
         return String(format: "%04i-%02i-%02i", year, month, day)
 
     }
 
+    func timeString() -> String {
+        
+        let date = Date()
+        let calendar = Calendar.current
+        
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        
+        return String(format: "%02i:%02i", hour, minute)
+        
+    }
+    
     func hideKeyBoard() {
         self.otherTextView.resignFirstResponder()
     }

@@ -33,13 +33,14 @@ class CacaProvider {
                     if let cacaInfo = snap.value as? NSDictionary,
                         let cacaPhoto = cacaInfo["photo"] as? String,
                         let cacaDate = cacaInfo["date"] as? String,
-                        let cacaTime = cacaInfo["consumingTime"] as? String,
+                        let cacaTime = cacaInfo["time"] as? String,
+                        let cacaConsumingTime = cacaInfo["consumingTime"] as? String,
                         let cacaShape = cacaInfo["shape"] as? Int,
                         let cacaColor = cacaInfo["color"] as? Int,
                         let cacaAmount = cacaInfo["amount"] as? Double,
                         let cacaOther = cacaInfo["other"] as? String {
 
-                        let caca = Caca(photo: cacaPhoto, date: cacaDate, consumingTime: cacaTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
+                        let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
 
                         cacas.append(caca)
                     }
@@ -47,9 +48,6 @@ class CacaProvider {
             }
 
             completion(cacas, nil)
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
 
         }) { (error) in
 

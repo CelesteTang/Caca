@@ -71,6 +71,7 @@ class RecordTableViewController: UITableViewController {
         }
 
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
+        cell.rowView.timeLabel.text = self.cacas[indexPath.row].time
         cell.rowView.passOrFailLabel.text = "Pass"
 
         return cell

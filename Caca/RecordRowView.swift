@@ -14,6 +14,8 @@ class RecordRowView: UIView {
 
     @IBOutlet weak var dateLabel: UILabel!
 
+    @IBOutlet weak var timeLabel: UILabel!
+    
     @IBOutlet weak var passOrFailLabel: UILabel!
 
 }
