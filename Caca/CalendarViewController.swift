@@ -17,6 +17,8 @@ class CalendarViewController: UIViewController {
 
     @IBOutlet weak var adviceLabel: UILabel!
 
+    let dateFormatter = DateFormatter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +39,7 @@ class CalendarViewController: UIViewController {
 
         adviceView.backgroundColor = Palette.backgoundColor
         adviceLabel.textColor = Palette.textColor
+        
     }
 
 }
@@ -45,11 +48,10 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
 
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy MM dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
 
-        let startDate = formatter.date(from: "2017 02 01")!
-        let endDate = Date()
+        let startDate = dateFormatter.date(from: "2015-01-01")!
+        let endDate = dateFormatter.date(from: "2067-12-31")!
         let parameters = ConfigurationParameters(startDate: startDate,
                                                  endDate: endDate,
                                                  numberOfRows: 6,
@@ -66,7 +68,6 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
         // Setup Cell text
         calendarCell.dayLabel.text = cellState.text
-        calendarCell.backgroundColor = Palette.backgoundColor
         calendarCell.bottomLine.backgroundColor = Palette.textColor
 
         if cellState.dateBelongsTo == .thisMonth {
@@ -76,6 +77,19 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         } else {
 
             calendarCell.isUserInteractionEnabled = false
+
+        }
+
+        let currentDateString = dateFormatter.string(from: Date())
+        let cellStateDateString = dateFormatter.string(from: cellState.date)
+
+        if  currentDateString ==  cellStateDateString {
+
+            calendarCell.backgroundColor = UIColor.lightGray
+
+        } else {
+
+            calendarCell.backgroundColor = Palette.backgoundColor
 
         }
 
@@ -100,10 +114,10 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     func handleCellTextColor(view: JTAppleDayCellView?, cellState: CellState) {
 
         guard let calendarCell = view as? CalendarCellView  else { return }
-
+        
         if cellState.isSelected {
 
-            calendarCell.dayLabel.textColor = Palette.backgoundColor
+            calendarCell.dayLabel.textColor = Palette.textColor
 
         } else {
 
@@ -126,8 +140,8 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
         if cellState.isSelected {
 
-            calendarCell.selectedView.layer.backgroundColor = UIColor.brown.cgColor
-            calendarCell.selectedView.layer.cornerRadius = 30
+            calendarCell.selectedView.layer.backgroundColor = Palette.textColor.cgColor
+            calendarCell.selectedView.layer.cornerRadius = calendarCell.selectedView.frame.width / 2
             calendarCell.selectedView.isHidden = false
 
         } else {

@@ -120,7 +120,7 @@ class FillinViewController: UIViewController {
         self.present(picker, animated: true, completion: nil)
 
     }
-    
+
     @IBAction func amountChanged(_ sender: UISlider) {
 
     }

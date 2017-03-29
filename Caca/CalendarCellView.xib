@@ -17,15 +17,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xL-ki-MaE">
-                    <rect key="frame" x="0.0" y="0.0" width="200" height="197"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kd1-JC-NMV">
-                    <rect key="frame" x="40" y="48" width="120" height="120"/>
+                    <rect key="frame" x="18.5" y="28.5" width="163.5" height="163.5"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="Kd1-JC-NMV" secondAttribute="height" multiplier="1:1" id="MIx-ZR-I1E"/>
+                        <constraint firstAttribute="width" secondItem="8xL-ki-MaE" secondAttribute="height" multiplier="1:1" id="uAw-el-gfF"/>
                     </constraints>
-                </imageView>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y7P-8M-2jZ">
                     <rect key="frame" x="0.0" y="197" width="200" height="2"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -42,17 +39,13 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="8xL-ki-MaE" secondAttribute="trailing" id="3uI-Tp-HiS"/>
+                <constraint firstItem="8xL-ki-MaE" firstAttribute="top" secondItem="1Yk-r4-s6i" secondAttribute="bottom" id="0BH-70-tFd"/>
+                <constraint firstItem="Y7P-8M-2jZ" firstAttribute="top" secondItem="8xL-ki-MaE" secondAttribute="bottom" constant="5" id="5Rd-0e-qAP"/>
                 <constraint firstItem="Y7P-8M-2jZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="71W-vH-CGk"/>
-                <constraint firstItem="Kd1-JC-NMV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="K7Q-Ek-kSQ"/>
                 <constraint firstItem="1Yk-r4-s6i" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NO0-06-GWD"/>
                 <constraint firstItem="Y7P-8M-2jZ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Omk-Rr-RPb"/>
-                <constraint firstItem="8xL-ki-MaE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QUn-oq-OvR"/>
-                <constraint firstItem="Kd1-JC-NMV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="S74-Hd-AMr"/>
+                <constraint firstItem="8xL-ki-MaE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UsU-hq-Rti"/>
                 <constraint firstItem="1Yk-r4-s6i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="c1X-8W-eiC"/>
-                <constraint firstItem="Y7P-8M-2jZ" firstAttribute="top" secondItem="8xL-ki-MaE" secondAttribute="bottom" id="fh3-1e-Ltd"/>
-                <constraint firstItem="8xL-ki-MaE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jTp-Ca-DFi"/>
-                <constraint firstItem="Kd1-JC-NMV" firstAttribute="top" secondItem="1Yk-r4-s6i" secondAttribute="bottom" constant="20" id="l4S-Tq-Hl4"/>
                 <constraint firstAttribute="bottom" secondItem="Y7P-8M-2jZ" secondAttribute="bottom" constant="1" id="oPT-Vz-1bc"/>
                 <constraint firstItem="1Yk-r4-s6i" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="uwG-Fe-8rA"/>
             </constraints>
@@ -60,7 +53,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bottomLine" destination="Y7P-8M-2jZ" id="3ak-ZU-fjS"/>
-                <outlet property="cacaImage" destination="Kd1-JC-NMV" id="dfZ-od-gD7"/>
                 <outlet property="dayLabel" destination="1Yk-r4-s6i" id="aFs-eI-9Wb"/>
                 <outlet property="selectedView" destination="8xL-ki-MaE" id="Wlt-K8-GpZ"/>
             </connections>
