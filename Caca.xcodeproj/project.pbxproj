@@ -17,6 +17,7 @@
 		4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */; };
 		4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */; };
 		4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */; };
+		4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4326E9801E8BD9610057363B /* CacaProvider.swift */; };
 		433681191E8A424900D51B5C /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433681181E8A424900D51B5C /* Calendar.storyboard */; };
 		4336811B1E8A427F00D51B5C /* CalendarCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4336811A1E8A427F00D51B5C /* CalendarCellView.xib */; };
 		4336811D1E8A441B00D51B5C /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4336811C1E8A441B00D51B5C /* CalendarCellView.swift */; };
@@ -63,6 +64,7 @@
 		4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RecordDetail.storyboard; sourceTree = "<group>"; };
 		4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDetailViewController.swift; sourceTree = "<group>"; };
 		4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4326E9801E8BD9610057363B /* CacaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacaProvider.swift; sourceTree = "<group>"; };
 		433681181E8A424900D51B5C /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		4336811A1E8A427F00D51B5C /* CalendarCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarCellView.xib; sourceTree = "<group>"; };
 		4336811C1E8A441B00D51B5C /* CalendarCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				4322EB451E82242A006B0D5D /* FillinViewController.swift */,
 				4322EB4D1E838EAF006B0D5D /* Time.swift */,
 				4322EB531E83A8C6006B0D5D /* Caca.swift */,
+				4326E9801E8BD9610057363B /* CacaProvider.swift */,
 			);
 			name = Caca;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 			files = (
 				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,
 				4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */,
+				4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */,
 				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
 				4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */,
 				43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */,

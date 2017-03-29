@@ -22,8 +22,13 @@ class CalendarViewController: UIViewController {
 
     let dateFormatter = DateFormatter()
 
+    var cacas = [Caca]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        calendarView.scrollingMode = .stopAtEachCalendarFrameWidth
+        self.automaticallyAdjustsScrollViewInsets = false
 
         navigationItem.title = "Calendar"
         view.backgroundColor = Palette.backgoundColor
@@ -43,15 +48,19 @@ class CalendarViewController: UIViewController {
 
         }
 
-        calendarView.scrollingMode = .stopAtEachCalendarFrameWidth
-
-        calendarView.allowsMultipleSelection  = true
-        calendarView.rangeSelectionWillBeUsed = true
-
-        self.automaticallyAdjustsScrollViewInsets = false
-
         adviceView.backgroundColor = Palette.backgoundColor
         adviceLabel.textColor = Palette.textColor
+
+        let provider = CacaProvider.shared
+
+        provider.getCaca { (cacas, _) in
+
+            if let cacas = cacas {
+                self.cacas = cacas
+            }
+
+            self.calendarView.reloadData()
+        }
 
     }
 
@@ -84,7 +93,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
                                                  numberOfRows: 6,
                                                  calendar: Calendar.current,
                                                  generateInDates: .forAllMonths,
-                                                 generateOutDates: .tillEndOfRow,
+                                                 generateOutDates: .tillEndOfGrid,
                                                  firstDayOfWeek: .sunday)
         return parameters
     }
@@ -93,17 +102,18 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
         guard let calendarCell = cell as? CalendarCellView else { return }
 
-        // Setup Cell text
         calendarCell.dayLabel.text = cellState.text
         calendarCell.bottomLine.backgroundColor = Palette.textColor
 
         if cellState.dateBelongsTo == .thisMonth {
 
             calendarCell.isUserInteractionEnabled = true
+            calendarCell.dayLabel.textColor = Palette.textColor
 
         } else {
 
             calendarCell.isUserInteractionEnabled = false
+            calendarCell.dayLabel.textColor = UIColor.lightGray
 
         }
 
@@ -112,7 +122,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
         if  currentDateString ==  cellStateDateString {
 
-            calendarCell.backgroundColor = UIColor.lightGray
+            calendarCell.backgroundColor = Palette.todayColor
 
         } else {
 
@@ -120,63 +130,77 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
         }
 
-        handleCellTextColor(view: cell, cellState: cellState)
-        handleCellSelection(view: cell, cellState: cellState)
-    }
+        calendarCell.selectedView.isHidden = true
 
-    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
+        for caca in cacas {
 
-        handleCellTextColor(view: cell, cellState: cellState)
-        handleCellSelection(view: cell, cellState: cellState)
+            if caca.date == cellStateDateString {
 
-    }
-
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
-
-        handleCellTextColor(view: cell, cellState: cellState)
-        handleCellSelection(view: cell, cellState: cellState)
-    }
-
-    // Function to handle the text color of the calendar
-    func handleCellTextColor(view: JTAppleDayCellView?, cellState: CellState) {
-
-        guard let calendarCell = view as? CalendarCellView  else { return }
-
-        if cellState.isSelected {
-
-            calendarCell.dayLabel.textColor = Palette.textColor
-
-        } else {
-
-            if cellState.dateBelongsTo == .thisMonth {
-
-                calendarCell.dayLabel.textColor = Palette.textColor
-
-            } else {
-
-                calendarCell.dayLabel.textColor = UIColor.lightGray
+                calendarCell.selectedView.layer.backgroundColor = Palette.textColor.cgColor
+                calendarCell.selectedView.layer.cornerRadius = calendarCell.selectedView.frame.width / 2
+                calendarCell.selectedView.isHidden = false
 
             }
-        }
-    }
-
-    // Function to handle the calendar selection
-    func handleCellSelection(view: JTAppleDayCellView?, cellState: CellState) {
-
-        guard let calendarCell = view as? CalendarCellView else { return }
-
-        if cellState.isSelected {
-
-            calendarCell.selectedView.layer.backgroundColor = Palette.textColor.cgColor
-            calendarCell.selectedView.layer.cornerRadius = calendarCell.selectedView.frame.width / 2
-            calendarCell.selectedView.isHidden = false
-
-        } else {
-
-            calendarCell.selectedView.isHidden = true
 
         }
+
+//        handleCellTextColor(view: cell, cellState: cellState)
+//        handleCellSelection(view: cell, cellState: cellState)
     }
+
+//    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
+//
+//        handleCellTextColor(view: cell, cellState: cellState)
+//        handleCellSelection(view: cell, cellState: cellState)
+//
+//    }
+//
+//    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
+//
+//        handleCellTextColor(view: cell, cellState: cellState)
+//        handleCellSelection(view: cell, cellState: cellState)
+//    }
+
+//    // Function to handle the text color of the calendar
+//    func handleCellTextColor(view: JTAppleDayCellView?, cellState: CellState) {
+//
+//        guard let calendarCell = view as? CalendarCellView  else { return }
+//
+//        if cellState.isSelected {
+//
+//            calendarCell.dayLabel.textColor = Palette.textColor
+//
+//        } else {
+//
+//            if cellState.dateBelongsTo == .thisMonth {
+//
+//                calendarCell.dayLabel.textColor = Palette.textColor
+//
+//            } else {
+//
+//                calendarCell.dayLabel.textColor = UIColor.lightGray
+//
+//            }
+//        }
+//    }
+//
+//    // Function to handle the calendar selection
+//    func handleCellSelection(view: JTAppleDayCellView?, cellState: CellState) {
+//
+//        guard let calendarCell = view as? CalendarCellView else { return }
+//
+//        if cellState.isSelected {
+//
+//            calendarCell.selectedView.layer.backgroundColor = Palette.textColor.cgColor
+//            calendarCell.selectedView.layer.cornerRadius = calendarCell.selectedView.frame.width / 2
+//            calendarCell.selectedView.isHidden = false
+//
+//        } else {
+//
+//            calendarCell.selectedView.isHidden = true
+//
+//        }
+//    }
 
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
 
