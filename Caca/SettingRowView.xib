@@ -14,9 +14,24 @@
         <view contentMode="scaleToFill" restorationIdentifier="SettingRowView" id="gxn-0v-klC" customClass="SettingRowView" customModule="Caca" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GS-zA-ySo">
+                    <rect key="frame" x="20" y="37.5" width="49" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="4GS-zA-ySo" firstAttribute="leading" secondItem="gxn-0v-klC" secondAttribute="leading" constant="20" id="EW7-ny-zRd"/>
+                <constraint firstItem="4GS-zA-ySo" firstAttribute="centerY" secondItem="gxn-0v-klC" secondAttribute="centerY" id="jax-cQ-Kpp"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="4GS-zA-ySo" id="I42-Tg-zba"/>
+            </connections>
             <point key="canvasLocation" x="-944.5" y="615"/>
         </view>
     </objects>
