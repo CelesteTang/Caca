@@ -96,7 +96,7 @@ class FillinViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
 
     @IBOutlet weak var timeLabel: UILabel!
-    
+
     @IBOutlet weak var consumingTimeLabel: UILabel!
 
     @IBOutlet weak var shapeSegmentedControl: UISegmentedControl!
@@ -133,7 +133,7 @@ class FillinViewController: UIViewController {
             return
         }
 
-        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(date) \(time).png")
+        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(UUID().uuidString).png")
 
         if let uploadData = UIImageJPEGRepresentation(cacaPhoto.image!, 0.1) {
 
