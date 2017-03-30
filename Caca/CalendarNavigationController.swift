@@ -13,7 +13,7 @@ class CalendarNavigationController: UINavigationController {
     // MARK: Init
 
     init() {
-        super.init(rootViewController: CalendarViewController())
+        super.init(rootViewController: CalendarViewController.create())
     }
 
     private override init(rootViewController: UIViewController) {
@@ -41,7 +41,7 @@ class CalendarNavigationController: UINavigationController {
 
     private func setUp() {
 
-        viewControllers = [ CalendarViewController() ]
+        viewControllers = [ CalendarViewController.create() ]
 
     }
 

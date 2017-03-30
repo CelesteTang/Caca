@@ -139,12 +139,19 @@
                                     <action selector="addPhoto:" destination="TpS-hk-Q0i" eventType="touchUpInside" id="Pcs-20-vLv"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWk-6A-LNv">
+                                <rect key="frame" x="153" y="170" width="49" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JOn-G7-BGV" firstAttribute="bottom" secondItem="LxH-I6-7Ix" secondAttribute="bottom" id="0QQ-jB-Xg1"/>
                             <constraint firstItem="5gF-Tj-Cyr" firstAttribute="centerX" secondItem="jgg-hf-B3C" secondAttribute="centerX" id="1HP-5f-SzU"/>
                             <constraint firstItem="B6N-cU-B9t" firstAttribute="top" secondItem="LxH-I6-7Ix" secondAttribute="bottom" constant="8" id="2NG-qb-Pw3"/>
+                            <constraint firstItem="TWk-6A-LNv" firstAttribute="bottom" secondItem="Wxf-Ut-uIE" secondAttribute="bottom" id="2TI-DS-gM2"/>
                             <constraint firstItem="i9o-xg-cet" firstAttribute="leading" secondItem="O8i-GB-BDC" secondAttribute="leading" id="2yk-hd-onM"/>
                             <constraint firstItem="s80-lp-rOv" firstAttribute="trailing" secondItem="LvY-mX-oz8" secondAttribute="trailing" id="36y-iW-0c7"/>
                             <constraint firstItem="p0e-fz-tbR" firstAttribute="top" secondItem="cZW-uV-VK1" secondAttribute="bottom" constant="35" id="5Me-Rv-tle"/>
@@ -175,6 +182,7 @@
                             <constraint firstItem="O8i-GB-BDC" firstAttribute="leading" secondItem="cZW-uV-VK1" secondAttribute="leading" id="kMm-5n-3mr"/>
                             <constraint firstItem="hW7-CY-D2a" firstAttribute="leading" secondItem="jgg-hf-B3C" secondAttribute="leadingMargin" id="kSS-IT-dqp"/>
                             <constraint firstItem="LvY-mX-oz8" firstAttribute="leading" secondItem="Aqk-QU-S0w" secondAttribute="leading" id="kqU-wR-Cv9"/>
+                            <constraint firstItem="TWk-6A-LNv" firstAttribute="leading" secondItem="Wxf-Ut-uIE" secondAttribute="trailing" constant="8" id="lPp-Fo-4Rd"/>
                             <constraint firstItem="5gF-Tj-Cyr" firstAttribute="top" secondItem="tDi-ZU-qth" secondAttribute="bottom" id="mwJ-wO-REu"/>
                             <constraint firstItem="Aqk-QU-S0w" firstAttribute="top" secondItem="s80-lp-rOv" secondAttribute="bottom" constant="10" id="ueM-FB-joT"/>
                             <constraint firstItem="s80-lp-rOv" firstAttribute="top" secondItem="B6N-cU-B9t" secondAttribute="bottom" constant="10" id="wKH-Nw-Xnh"/>
@@ -192,6 +200,7 @@
                         <outlet property="finishButton" destination="UUP-Kb-sGU" id="Rcj-Zn-nR0"/>
                         <outlet property="otherTextView" destination="i9o-xg-cet" id="W1m-UR-vaI"/>
                         <outlet property="shapeSegmentedControl" destination="s80-lp-rOv" id="Bh4-bk-B6v"/>
+                        <outlet property="timeLabel" destination="TWk-6A-LNv" id="GLx-bi-eNK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v9a-Ud-Lpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
