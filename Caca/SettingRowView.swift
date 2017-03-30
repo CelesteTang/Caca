@@ -6,4 +6,18 @@
 //  Copyright © 2017年 Hsin-Yu Tang. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class SettingRowView: UIView {
+    
+}
+
+extension SettingRowView {
+    
+    // swiftlint:disable force_cast
+    class func create() -> SettingRowView {
+        
+        return UINib(nibName: "SettingRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! SettingRowView
+    }
+}
+// swiftlint:enable force_cast

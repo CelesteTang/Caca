@@ -226,17 +226,17 @@ class FillinViewController: UIViewController {
     }
 
     func timeString() -> String {
-        
+
         let date = Date()
         let calendar = Calendar.current
-        
+
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
-        
+
         return String(format: "%02i:%02i", hour, minute)
-        
+
     }
-    
+
     func hideKeyBoard() {
         self.otherTextView.resignFirstResponder()
     }
