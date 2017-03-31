@@ -189,7 +189,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klL-lZ-cAV">
-                                <rect key="frame" x="85" y="597" width="137" height="44"/>
+                                <rect key="frame" x="85" y="587" width="137" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Wfu-TT-V2L"/>
                                 </constraints>
@@ -198,7 +198,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqb-6T-Kjy">
-                                <rect key="frame" x="232" y="597" width="57" height="44"/>
+                                <rect key="frame" x="232" y="587" width="57" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Sign In."/>
                                 <connections>
@@ -231,7 +231,7 @@
                             <constraint firstItem="Sek-ws-gfk" firstAttribute="centerX" secondItem="XbP-4j-lgY" secondAttribute="centerX" id="GRd-2x-fkl"/>
                             <constraint firstItem="BwG-Ip-RRq" firstAttribute="leading" secondItem="XbP-4j-lgY" secondAttribute="leading" constant="40" id="Hnn-AQ-0tD"/>
                             <constraint firstItem="2cf-Ud-ekb" firstAttribute="trailing" secondItem="mZf-Hg-OYP" secondAttribute="trailing" id="Io0-PI-DvH"/>
-                            <constraint firstItem="klL-lZ-cAV" firstAttribute="top" secondItem="2cf-Ud-ekb" secondAttribute="bottom" constant="10" id="VzF-xP-mWb"/>
+                            <constraint firstItem="klL-lZ-cAV" firstAttribute="top" secondItem="2cf-Ud-ekb" secondAttribute="bottom" id="VzF-xP-mWb"/>
                             <constraint firstItem="BwG-Ip-RRq" firstAttribute="top" secondItem="tJ4-EE-sRL" secondAttribute="bottom" id="XJb-qe-1MV"/>
                             <constraint firstItem="Lqb-6T-Kjy" firstAttribute="bottom" secondItem="klL-lZ-cAV" secondAttribute="bottom" id="XvQ-TH-AHC"/>
                             <constraint firstItem="L0i-cS-cKl" firstAttribute="trailing" secondItem="BwG-Ip-RRq" secondAttribute="trailing" id="ZWh-Wy-CBh"/>
