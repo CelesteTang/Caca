@@ -33,6 +33,12 @@ class RecordDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = Palette.backgoundColor
+
+        cacaPhoto.backgroundColor = Palette.backgoundColor
+        shapeImageView.backgroundColor = Palette.backgoundColor
+        colorImageView.backgroundColor = Palette.backgoundColor
+
         if recievedCaca[0].photo != "" {
 
             if let url = URL(string: recievedCaca[0].photo) {
@@ -40,11 +46,11 @@ class RecordDetailViewController: UIViewController {
                 do {
                     let data = try Data(contentsOf: url)
                     cacaPhoto.image = UIImage(data: data)
-                    
+
                 } catch {
-                    
+
                     print(error)
-                    
+
                 }
             }
         } else {

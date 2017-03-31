@@ -113,6 +113,8 @@ class FillinViewController: UIViewController {
 
     var isclicked = false
 
+    var cacas = [Caca]()
+
     @IBAction func addPhoto(_ sender: UIButton) {
 
         let picker = UIImagePickerController()
@@ -197,31 +199,57 @@ class FillinViewController: UIViewController {
 
         databaseRef.updateChildValues(value, withCompletionBlock: { (error, _) in
 
+//            snapshot.observeSingleEvent(of: .value, with: {snap in
+//                print(snap)
+//                self.switchToRecord(snap)
+//
+//            })
+
             if error != nil {
 
                 print(error?.localizedDescription ?? "")
 
                 return
             }
-            
+
             self.switchToRecord()
-            
+
         })
     }
 
     func switchToRecord() {
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
             tabBarController.selectedIndex = 1
+
+//            let recordTableViewController  = tabBarController.selectedViewController as? RecordTableViewController
+//
+//            if let cacaInfo = snap.value as? NSDictionary,
+//                let cacaPhoto = cacaInfo["photo"] as? String,
+//                let cacaDate = cacaInfo["date"] as? String,
+//                let cacaTime = cacaInfo["time"] as? String,
+//                let cacaConsumingTime = cacaInfo["consumingTime"] as? String,
+//                let cacaShape = cacaInfo["shape"] as? Int,
+//                let cacaColor = cacaInfo["color"] as? Int,
+//                let cacaAmount = cacaInfo["amount"] as? Double,
+//                let cacaOther = cacaInfo["other"] as? String {
+//
+//                let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
+//
+//                recordTableViewController?.cacas.append(caca)
+
             appDelegate.window?.rootViewController = tabBarController
+
         }
+
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         isclicked = false
-        
+
         cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
         cacaPhoto.backgroundColor = Palette.backgoundColor
 

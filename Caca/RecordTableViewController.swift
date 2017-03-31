@@ -33,6 +33,7 @@ class RecordTableViewController: UITableViewController {
             if let cacas = cacas {
                 self.cacas = cacas
             }
+
             self.tableView.reloadData()
 
         }
