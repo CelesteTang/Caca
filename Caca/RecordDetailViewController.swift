@@ -33,14 +33,24 @@ class RecordDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let url = URL(string: recievedCaca[0].photo) {
+        if recievedCaca[0].photo != "" {
 
-            do {
-                let data = try Data(contentsOf: url)
-                cacaPhoto.image = UIImage(data: data)
-            } catch {
-                print(error)
+            if let url = URL(string: recievedCaca[0].photo) {
+
+                do {
+                    let data = try Data(contentsOf: url)
+                    cacaPhoto.image = UIImage(data: data)
+                    
+                } catch {
+                    
+                    print(error)
+                    
+                }
             }
+        } else {
+
+            cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+
         }
 
         dateLabel.text = recievedCaca[0].date

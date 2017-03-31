@@ -59,14 +59,20 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
 
-        if let url = URL(string: cacas[indexPath.row].photo) {
+        if cacas[indexPath.row].photo != "" {
+            if let url = URL(string: cacas[indexPath.row].photo) {
 
-            do {
-                let data = try Data(contentsOf: url)
-                cell.rowView.cacaPhotoImageView.image = UIImage(data: data)
-            } catch {
-                print(error)
+                do {
+                    let data = try Data(contentsOf: url)
+                    cell.rowView.cacaPhotoImageView.image = UIImage(data: data)
+                } catch {
+                    print(error)
+                }
             }
+        } else {
+
+            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
+
         }
 
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date

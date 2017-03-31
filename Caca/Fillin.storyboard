@@ -199,6 +199,7 @@
                         <outlet property="dateLabel" destination="Wxf-Ut-uIE" id="reK-K4-2xb"/>
                         <outlet property="finishButton" destination="UUP-Kb-sGU" id="Rcj-Zn-nR0"/>
                         <outlet property="otherTextView" destination="i9o-xg-cet" id="W1m-UR-vaI"/>
+                        <outlet property="photoButton" destination="4qV-oI-cVR" id="0UZ-0o-gF5"/>
                         <outlet property="shapeSegmentedControl" destination="s80-lp-rOv" id="Bh4-bk-B6v"/>
                         <outlet property="timeLabel" destination="TWk-6A-LNv" id="GLx-bi-eNK"/>
                     </connections>

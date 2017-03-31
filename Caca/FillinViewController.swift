@@ -93,6 +93,8 @@ class FillinViewController: UIViewController {
 
     @IBOutlet weak var cacaPhoto: UIImageView!
 
+    @IBOutlet weak var photoButton: UIButton!
+
     @IBOutlet weak var dateLabel: UILabel!
 
     @IBOutlet weak var timeLabel: UILabel!
@@ -109,6 +111,8 @@ class FillinViewController: UIViewController {
 
     @IBOutlet weak var finishButton: UIButton!
 
+    var isclicked = false
+
     @IBAction func addPhoto(_ sender: UIButton) {
 
         let picker = UIImagePickerController()
@@ -121,6 +125,8 @@ class FillinViewController: UIViewController {
         picker.videoQuality = .typeLow
         self.present(picker, animated: true, completion: nil)
 
+        isclicked = true
+
     }
 
     @IBAction func amountChanged(_ sender: UISlider) {
@@ -129,43 +135,63 @@ class FillinViewController: UIViewController {
 
     @IBAction func didFillin(_ sender: UIButton) {
 
+        finishButton.isEnabled = false
+
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid, let date = dateLabel.text, let time = timeLabel.text, let consumingTime = consumingTimeLabel.text else {
             return
         }
 
         let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(UUID().uuidString).png")
 
-        if let uploadData = UIImageJPEGRepresentation(cacaPhoto.image!, 0.1) {
+        if isclicked == true {
 
-            storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+            if let uploadData = UIImageJPEGRepresentation(cacaPhoto.image!, 0.1) {
 
-                if error != nil {
+                storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
 
-                    print(error?.localizedDescription ?? "storageError")
+                    if error != nil {
 
-                    return
-                }
+                        print(error?.localizedDescription ?? "storageError")
 
-                if let cacaPhotoUrl = metadata?.downloadURL()?.absoluteString {
+                        return
+                    }
 
-                    let value = ["host": hostUID,
-                                 "date": date,
-                                 "time": time,
-                                 "consumingTime": consumingTime,
-                                 "shape": self.shapeSegmentedControl.selectedSegmentIndex,
-                                 "color": self.colorSegmentedControll.selectedSegmentIndex,
-                                 "amount": Double(self.amountSlider.value),
-                                 "other": self.otherTextView.text,
-                                 "photo": cacaPhotoUrl] as [String : Any]
+                    if let cacaPhotoUrl = metadata?.downloadURL()?.absoluteString {
 
-                    self.saveCacaIntoDatabase(uid: hostUID, value: value)
+                        let value = ["host": hostUID,
+                                     "date": date,
+                                     "time": time,
+                                     "consumingTime": consumingTime,
+                                     "shape": self.shapeSegmentedControl.selectedSegmentIndex,
+                                     "color": self.colorSegmentedControll.selectedSegmentIndex,
+                                     "amount": Double(self.amountSlider.value),
+                                     "other": self.otherTextView.text,
+                                     "photo": cacaPhotoUrl] as [String : Any]
 
-                }
-            })
+                        self.saveCacaIntoDatabase(value: value)
+
+                    }
+                })
+            }
+
+        } else {
+
+            let value = ["host": hostUID,
+                         "date": date,
+                         "time": time,
+                         "consumingTime": consumingTime,
+                         "shape": self.shapeSegmentedControl.selectedSegmentIndex,
+                         "color": self.colorSegmentedControll.selectedSegmentIndex,
+                         "amount": Double(self.amountSlider.value),
+                         "other": self.otherTextView.text,
+                         "photo": ""] as [String : Any]
+
+            self.saveCacaIntoDatabase(value: value)
+
         }
     }
 
-    private func saveCacaIntoDatabase(uid: String, value: [String : Any]) {
+    private func saveCacaIntoDatabase(value: [String : Any]) {
 
         let databaseRef = FIRDatabase.database().reference().child("cacas").childByAutoId()
 
@@ -177,7 +203,9 @@ class FillinViewController: UIViewController {
 
                 return
             }
+            
             self.switchToRecord()
+            
         })
     }
 
@@ -192,8 +220,12 @@ class FillinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        isclicked = false
+        
         cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
         cacaPhoto.backgroundColor = Palette.backgoundColor
+
+        photoButton.setTitle("Take photo", for: .normal)
 
         dateLabel.text = dateString()
         timeLabel.text = timeString()
@@ -210,6 +242,8 @@ class FillinViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
+
+        finishButton.isEnabled = true
     }
 
     func dateString() -> String {
