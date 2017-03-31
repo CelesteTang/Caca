@@ -262,8 +262,9 @@ class FillinViewController: UIViewController {
 
         amountSlider.thumbTintColor = Palette.textColor
         amountSlider.tintColor = UIColor.white
-        amountSlider.minimumValue = 1
-        amountSlider.maximumValue = 3
+        amountSlider.minimumValue = 1.0
+        amountSlider.maximumValue = 3.0
+        amountSlider.value = 2.0
 
         otherTextView.delegate = self
 
