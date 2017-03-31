@@ -29,11 +29,11 @@
             </objects>
             <point key="canvasLocation" x="-2479" y="-237"/>
         </scene>
-        <!--Item-->
+        <!--Caca-->
         <scene sceneID="D9Q-RK-2ZY">
             <objects>
                 <navigationController storyboardIdentifier="CacaNavigationController" id="R2m-v7-gIh" customClass="CacaNavigationController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="8SI-Gm-qQK"/>
+                    <tabBarItem key="tabBarItem" title="Caca" id="8SI-Gm-qQK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Zj-MW-QnP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -43,11 +43,11 @@
             </objects>
             <point key="canvasLocation" x="-4265" y="784"/>
         </scene>
-        <!--Item-->
+        <!--Record-->
         <scene sceneID="6xT-WU-3Gp">
             <objects>
                 <navigationController storyboardIdentifier="RecordNavigationController" id="4er-xB-PUj" customClass="RecordNavigationController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="n7u-fd-zda"/>
+                    <tabBarItem key="tabBarItem" title="Record" id="n7u-fd-zda"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eu5-bG-sDh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -57,11 +57,11 @@
             </objects>
             <point key="canvasLocation" x="-3092" y="784"/>
         </scene>
-        <!--Item-->
+        <!--Setting-->
         <scene sceneID="4hG-Mh-Tbc">
             <objects>
                 <navigationController storyboardIdentifier="SettingNavigationController" id="rbE-2s-gf1" customClass="SettingNavigationController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ERz-BT-KUZ"/>
+                    <tabBarItem key="tabBarItem" title="Setting" id="ERz-BT-KUZ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f0v-UO-i3R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -71,11 +71,11 @@
             </objects>
             <point key="canvasLocation" x="-553" y="784"/>
         </scene>
-        <!--Item-->
+        <!--Calendar-->
         <scene sceneID="K9f-2w-guE">
             <objects>
                 <navigationController storyboardIdentifier="CalendarNavigationController" id="nPr-dE-p2K" customClass="CalendarNavigationController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="zKH-8j-E5g"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" id="zKH-8j-E5g"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kuX-wb-7f9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
