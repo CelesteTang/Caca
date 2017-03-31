@@ -113,6 +113,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TpS-hk-Q0i" id="ea4-2I-B49"/>
+                                </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUP-Kb-sGU">
                                 <rect key="frame" x="161" y="615" width="53" height="36"/>
@@ -206,6 +209,7 @@
                         <outlet property="finishButton" destination="UUP-Kb-sGU" id="Rcj-Zn-nR0"/>
                         <outlet property="otherTextView" destination="i9o-xg-cet" id="W1m-UR-vaI"/>
                         <outlet property="photoButton" destination="4qV-oI-cVR" id="0UZ-0o-gF5"/>
+                        <outlet property="scrollView" destination="zwd-wF-6tA" id="M02-fh-C62"/>
                         <outlet property="shapeSegmentedControl" destination="s80-lp-rOv" id="Bh4-bk-B6v"/>
                         <outlet property="timeLabel" destination="TWk-6A-LNv" id="GLx-bi-eNK"/>
                     </connections>

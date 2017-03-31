@@ -91,6 +91,8 @@ enum Color: Int {
 
 class FillinViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+
     @IBOutlet weak var cacaPhoto: UIImageView!
 
     @IBOutlet weak var photoButton: UIButton!
@@ -248,6 +250,8 @@ class FillinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        otherTextView.delegate = self
+
         isclicked = false
 
         cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
@@ -336,5 +340,23 @@ extension FillinViewController: UITextViewDelegate {
         self.view.endEditing(true)
 
         return true
+    }
+
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+
+        if textView == otherTextView {
+            let move = CGPoint(x: 0, y: 250)
+            scrollView.setContentOffset(move, animated: true)
+        }
+
+        return true
+
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+
+        let move = CGPoint(x: 0, y: 0)
+        scrollView.setContentOffset(move, animated: true)
+
     }
 }
