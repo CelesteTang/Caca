@@ -345,8 +345,9 @@ extension FillinViewController: UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
 
         if textView == otherTextView {
-            let move = CGPoint(x: 0, y: 250)
-            scrollView.setContentOffset(move, animated: true)
+
+                self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
         }
 
         return true
@@ -355,8 +356,7 @@ extension FillinViewController: UITextViewDelegate {
 
     func textViewDidEndEditing(_ textView: UITextView) {
 
-        let move = CGPoint(x: 0, y: 0)
-        scrollView.setContentOffset(move, animated: true)
+        self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
 
     }
 }
