@@ -95,6 +95,7 @@ class RecordTableViewController: UITableViewController {
         guard let recordDetailViewController = storyBoard.instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else { return }
 
         recordDetailViewController.recievedCaca = [self.cacas[indexPath.row]]
+        recordDetailViewController.indexPath = indexPath
 
         self.navigationController?.pushViewController(recordDetailViewController, animated: true)
     }
