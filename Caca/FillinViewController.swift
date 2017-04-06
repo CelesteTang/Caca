@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import ColorThiefSwift
 
 enum Shape: Int {
 
@@ -341,19 +342,20 @@ UINavigationControllerDelegate {
             guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else {
                 return
             }
+            
+            self.colorView.backgroundColor = dominantColor.makeUIColor()
 
         } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
             self.cacaPhoto.image = originalCacaImage
             
-            guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else {
+            guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else {
                 return
             }
+            
+            self.colorView.backgroundColor = dominantColor.makeUIColor()
 
         }
-
-        self?.colorView.backgroundColor = dominantColor.makeUIColor()
-//        self?.colorLabel.text = "getColor R\(dominantColor.r) G\(dominantColor.g) B\(dominantColor.b)"
         
         dismiss(animated: true, completion: nil)
     }
