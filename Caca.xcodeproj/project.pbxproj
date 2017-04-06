@@ -41,8 +41,8 @@
 		43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */; };
 		43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */; };
 		43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */; };
-		4372BF171E9695F3005F5422 /* Password.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4372BF161E9695F3005F5422 /* Password.storyboard */; };
 		4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4372BF181E969646005F5422 /* PasswordViewController.swift */; };
+		4372BF1B1E969F1E005F5422 /* Password.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4372BF1A1E969F1E005F5422 /* Password.storyboard */; };
 		43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F961E7FCEED0052125B /* Landing.storyboard */; };
 		43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F981E7FCF9B0052125B /* Opening.storyboard */; };
 		43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */; };
@@ -93,8 +93,8 @@
 		43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordNavigationController.swift; sourceTree = "<group>"; };
 		43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
 		43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
-		4372BF161E9695F3005F5422 /* Password.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Password.storyboard; sourceTree = "<group>"; };
 		4372BF181E969646005F5422 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		4372BF1A1E969F1E005F5422 /* Password.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Password.storyboard; sourceTree = "<group>"; };
 		43BA3F961E7FCEED0052125B /* Landing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
 		43BA3F981E7FCF9B0052125B /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 				4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */,
 				433681181E8A424900D51B5C /* Calendar.storyboard */,
 				43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */,
-				4372BF161E9695F3005F5422 /* Password.storyboard */,
+				4372BF1A1E969F1E005F5422 /* Password.storyboard */,
 				43372D351E7FCA89002E2AE3 /* TabBar.storyboard */,
 				43372D071E7FB4BD002E2AE3 /* Main.storyboard */,
 			);
@@ -352,7 +352,7 @@
 				43372D2C1E7FC7B6002E2AE3 /* SettingRowView.xib in Resources */,
 				43372D111E7FB4BD002E2AE3 /* LaunchScreen.storyboard in Resources */,
 				433681191E8A424900D51B5C /* Calendar.storyboard in Resources */,
-				4372BF171E9695F3005F5422 /* Password.storyboard in Resources */,
+				4372BF1B1E969F1E005F5422 /* Password.storyboard in Resources */,
 				43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */,
 				4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */,
 				43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */,

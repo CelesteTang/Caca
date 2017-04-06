@@ -10,26 +10,48 @@ import UIKit
 
 class PasswordViewController: UIViewController {
 
+    @IBOutlet weak var passwordLabel: UILabel!
+
+    @IBOutlet weak var passwordField: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.backgroundColor = Palette.backgoundColor
+        passwordLabel.text = "Please enter your password"
+
+        passwordField.delegate = self
+        passwordField.clearButtonMode = .never
+        passwordField.placeholder = "Password"
+        passwordField.clearsOnBeginEditing = true
+        passwordField.isSecureTextEntry = true
+        passwordField.returnKeyType = .done
+
+        UserDefaults.standard.set("1234", forKey: "Password")
+
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//    func savePassword() {
+//        
+//        UserDefaults.standard.set(passwordField.text, forKey: "Password")
+//    
+//    }
     
+}
 
-    /*
-    // MARK: - Navigation
+extension PasswordViewController: UITextFieldDelegate {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+
+        if passwordField.text == UserDefaults.standard.value(forKey: "Password") as? String {
+            
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                
+            }
+        }
+        
+        return true
     }
-    */
-
 }
