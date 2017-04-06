@@ -1,18 +1,18 @@
 //
-//  RecordTableViewCell.swift
+//  SettingTableViewCell.swift
 //  Caca
 //
-//  Created by 湯芯瑜 on 2017/3/21.
+//  Created by 湯芯瑜 on 2017/3/30.
 //  Copyright © 2017年 Hsin-Yu Tang. All rights reserved.
 //
 
 import UIKit
 
-class RecordTableViewCell: UITableViewCell {
+class SettingTableViewCell: UITableViewCell {
 
     // MARK: Property
 
-    let rowView = RecordRowView.create()
+    let rowView = SettingRowView.create()
 
     // MARK: Init
 
@@ -46,10 +46,7 @@ class RecordTableViewCell: UITableViewCell {
         rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         rowView.backgroundColor = Palette.backgoundColor
 
-        rowView.cacaPhotoImageView.backgroundColor = Palette.backgoundColor
-
-        rowView.dateLabel.textColor = Palette.textColor
-        rowView.timeLabel.textColor = Palette.textColor
+        rowView.titleLabel.textColor = Palette.textColor
 
     }
 

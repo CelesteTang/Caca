@@ -18,6 +18,7 @@
 		4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */; };
 		4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */; };
 		4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4326E9801E8BD9610057363B /* CacaProvider.swift */; };
+		4330959B1E8CE68200E65E08 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */; };
 		433681191E8A424900D51B5C /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433681181E8A424900D51B5C /* Calendar.storyboard */; };
 		4336811B1E8A427F00D51B5C /* CalendarCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4336811A1E8A427F00D51B5C /* CalendarCellView.xib */; };
 		4336811D1E8A441B00D51B5C /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4336811C1E8A441B00D51B5C /* CalendarCellView.swift */; };
@@ -65,6 +66,7 @@
 		4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDetailViewController.swift; sourceTree = "<group>"; };
 		4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4326E9801E8BD9610057363B /* CacaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacaProvider.swift; sourceTree = "<group>"; };
+		4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		433681181E8A424900D51B5C /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		4336811A1E8A427F00D51B5C /* CalendarCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarCellView.xib; sourceTree = "<group>"; };
 		4336811C1E8A441B00D51B5C /* CalendarCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
@@ -159,9 +161,10 @@
 		43372D2F1E7FC84A002E2AE3 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
-				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
 				43372D2B1E7FC7B6002E2AE3 /* SettingRowView.xib */,
+				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
+				4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */,
+				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				4322EB541E83A8C6006B0D5D /* Caca.swift in Sources */,
 				4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */,
 				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
+				4330959B1E8CE68200E65E08 /* SettingTableViewCell.swift in Sources */,
 				4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */,
 				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
 				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,

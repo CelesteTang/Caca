@@ -15,7 +15,7 @@ class Caca {
     let photo: String
 
     let date: String
-    
+
     let time: String
 
     let consumingTime: String

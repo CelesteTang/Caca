@@ -33,11 +33,11 @@ class RecordTableViewController: UITableViewController {
             if let cacas = cacas {
                 self.cacas = cacas
             }
+
             self.tableView.reloadData()
 
         }
 
-//        getCaca()
     }
 
     // MARK: Table view data source
@@ -60,14 +60,20 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
 
-        if let url = URL(string: cacas[indexPath.row].photo) {
+        if cacas[indexPath.row].photo != "" {
+            if let url = URL(string: cacas[indexPath.row].photo) {
 
-            do {
-                let data = try Data(contentsOf: url)
-                cell.rowView.cacaPhotoImageView.image = UIImage(data: data)
-            } catch {
-                print(error)
+                do {
+                    let data = try Data(contentsOf: url)
+                    cell.rowView.cacaPhotoImageView.image = UIImage(data: data)
+                } catch {
+                    print(error)
+                }
             }
+        } else {
+
+            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
+
         }
 
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
@@ -89,43 +95,19 @@ class RecordTableViewController: UITableViewController {
         guard let recordDetailViewController = storyBoard.instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else { return }
 
         recordDetailViewController.recievedCaca = [self.cacas[indexPath.row]]
+        recordDetailViewController.indexPath = indexPath
 
         self.navigationController?.pushViewController(recordDetailViewController, animated: true)
     }
 
-//    // MARK: Get cacaInfo from Firebase
-//    func getCaca() {
-//
-//        let rootRef = FIRDatabase.database().reference()
-//
-//        rootRef.child("cacas").queryOrdered(byChild: "host").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
-//
-//                for snap in snaps {
-//
-//                    if let cacaInfo = snap.value as? NSDictionary,
-//                        let cacaPhoto = cacaInfo["photo"] as? String,
-//                        let cacaDate = cacaInfo["date"] as? String,
-//                        let cacaTime = cacaInfo["consumingTime"] as? String,
-//                        let cacaShape = cacaInfo["shape"] as? Int,
-//                        let cacaColor = cacaInfo["color"] as? Int,
-//                        let cacaAmount = cacaInfo["amount"] as? Double,
-//                        let cacaOther = cacaInfo["other"] as? String {
-//
-//                        let caca = Caca(photo: cacaPhoto, date: cacaDate, consumingTime: cacaTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
-//
-//                        self.cacas.append(caca)
-//                    }
-//                }
-//            }
-//
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//
-//        }) { (error) in
-//            print(error.localizedDescription)
-//        }
-//    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+
+            cacas.remove(at: indexPath.row)
+
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
 }
