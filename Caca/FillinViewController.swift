@@ -93,13 +93,13 @@ enum Color: Int {
 class FillinViewController: UIViewController {
 
     @IBOutlet weak var colorView: UIView!
-    
+
     @IBOutlet weak var cacaPhoto: UIImageView!
 
     @IBOutlet weak var photoButton: UIButton!
 
     @IBOutlet weak var photoLibraryButton: UIButton!
-    
+
     @IBOutlet weak var dateLabel: UILabel!
 
     @IBOutlet weak var timeLabel: UILabel!
@@ -121,18 +121,18 @@ class FillinViewController: UIViewController {
     var cacas = [Caca]()
 
     @IBAction func pickPhotoFromLibrary(_ sender: UIButton) {
-        
+
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
         picker.videoQuality = .typeLow
         self.present(picker, animated: true, completion: nil)
-        
+
         isclicked = true
-        
+
     }
-    
+
     @IBAction func addPhoto(_ sender: UIButton) {
 
         let picker = UIImagePickerController()
@@ -274,6 +274,7 @@ class FillinViewController: UIViewController {
         cacaPhoto.backgroundColor = Palette.backgoundColor
 
         photoButton.setTitle("Take photo", for: .normal)
+        photoLibraryButton.setTitle("Pick photo from library", for: .normal)
 
         dateLabel.text = dateString()
         timeLabel.text = timeString()
@@ -338,25 +339,25 @@ UINavigationControllerDelegate {
         if let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage {
 
             self.cacaPhoto.image = editedCacaImage
-            
+
             guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else {
                 return
             }
-            
+
             self.colorView.backgroundColor = dominantColor.makeUIColor()
 
         } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
             self.cacaPhoto.image = originalCacaImage
-            
+
             guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else {
                 return
             }
-            
+
             self.colorView.backgroundColor = dominantColor.makeUIColor()
 
         }
-        
+
         dismiss(animated: true, completion: nil)
     }
 }

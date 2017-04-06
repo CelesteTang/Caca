@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import LocalAuthentication
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+
+        let context = LAContext()
+
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "We need your TouchID to enter Caca", reply: { (wasSuccessful, _) in
+
+                if wasSuccessful {
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+                        appDelegate.window?.rootViewController = tabBarController
+
+                    }
+                } else {
+
+//                    let alertController = UIAlertController(title: "登入", message: "請輸入帳號與密碼", preferredStyle: .alert)
+//
+//                    alertController.addTextField {(textField: UITextField!) -> Void in
+//
+//                        textField.placeholder = "密碼"
+//                        textField.isSecureTextEntry = true
+//
+//                    }
+//
+//                    let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+//                    alertController.addAction(cancelAction)
+//
+//                    let okAction = UIAlertAction(title: "登入", style: UIAlertActionStyle.default) {(password) -> Void in
+//                        let password = (alertController.textFields?.first)! as UITextField
+//                    }
+//                    alertController.addAction(okAction)
+//
+//                    self.present(alertController, animated: true, completion: nil)
+                }
+
+            })
+
+        }
 
         return true
     }

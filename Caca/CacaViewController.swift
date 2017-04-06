@@ -40,6 +40,7 @@ class CacaViewController: UIViewController {
         notificationLabel.numberOfLines = 0
         startButton.setTitle("Start", for: UIControlState.normal)
         view.backgroundColor = Palette.backgoundColor
+
     }
 
     func dateString() -> String {
