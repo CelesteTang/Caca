@@ -346,7 +346,7 @@ extension FillinViewController: UITextViewDelegate {
 
         if textView == otherTextView {
 
-                self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
 
         }
 
