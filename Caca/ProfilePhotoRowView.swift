@@ -16,10 +16,10 @@ class ProfilePhotoRowView: UIView {
 }
 
 extension ProfilePhotoRowView {
-    
+
     // swiftlint:disable force_cast
     class func create() -> ProfilePhotoRowView {
-        
+
         return UINib(nibName: "ProfilePhotoRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! ProfilePhotoRowView
     }
 }

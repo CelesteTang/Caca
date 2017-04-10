@@ -10,16 +10,16 @@ import Foundation
 import UIKit
 
 class ProfileInfoRowView: UIView {
-    
+
     @IBOutlet weak var infoLabel: UILabel!
-    
+
 }
 
 extension ProfileInfoRowView {
-    
+
     // swiftlint:disable force_cast
     class func create() -> ProfileInfoRowView {
-        
+
         return UINib(nibName: "ProfileInfoRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! ProfileInfoRowView
     }
 }

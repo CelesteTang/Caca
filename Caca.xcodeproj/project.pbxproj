@@ -181,14 +181,14 @@
 		43372D2F1E7FC84A002E2AE3 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				43AA0A081E9BA9B200583FBA /* ProfileInfo */,
-				43AA0A011E9BA38300583FBA /* ProfilePhoto */,
 				43372D2B1E7FC7B6002E2AE3 /* SettingRowView.xib */,
 				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
 				4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */,
 				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
-				4372BF181E969646005F5422 /* PasswordViewController.swift */,
 				43308EB41E9B4E4D00BB4F0D /* ProfileTableViewController.swift */,
+				43AA0A011E9BA38300583FBA /* ProfilePhoto */,
+				43AA0A081E9BA9B200583FBA /* ProfileInfo */,
+				4372BF181E969646005F5422 /* PasswordViewController.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
