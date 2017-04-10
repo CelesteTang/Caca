@@ -48,6 +48,9 @@
 		43AA09FC1E9BA22C00583FBA /* ProfilePhotoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AA09FB1E9BA22C00583FBA /* ProfilePhotoRowView.swift */; };
 		43AA09FE1E9BA24200583FBA /* ProfilePhotoRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43AA09FD1E9BA24200583FBA /* ProfilePhotoRowView.xib */; };
 		43AA0A001E9BA37300583FBA /* ProfilePhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AA09FF1E9BA37300583FBA /* ProfilePhotoTableViewCell.swift */; };
+		43AA0A031E9BA97A00583FBA /* ProfileInfoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AA0A021E9BA97A00583FBA /* ProfileInfoRowView.swift */; };
+		43AA0A051E9BA98A00583FBA /* ProfileInfoRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43AA0A041E9BA98A00583FBA /* ProfileInfoRowView.xib */; };
+		43AA0A071E9BA9AC00583FBA /* ProfileInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AA0A061E9BA9AC00583FBA /* ProfileInfoTableViewCell.swift */; };
 		43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F961E7FCEED0052125B /* Landing.storyboard */; };
 		43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F981E7FCF9B0052125B /* Opening.storyboard */; };
 		43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */; };
@@ -105,6 +108,9 @@
 		43AA09FB1E9BA22C00583FBA /* ProfilePhotoRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoRowView.swift; sourceTree = "<group>"; };
 		43AA09FD1E9BA24200583FBA /* ProfilePhotoRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfilePhotoRowView.xib; sourceTree = "<group>"; };
 		43AA09FF1E9BA37300583FBA /* ProfilePhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoTableViewCell.swift; sourceTree = "<group>"; };
+		43AA0A021E9BA97A00583FBA /* ProfileInfoRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoRowView.swift; sourceTree = "<group>"; };
+		43AA0A041E9BA98A00583FBA /* ProfileInfoRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileInfoRowView.xib; sourceTree = "<group>"; };
+		43AA0A061E9BA9AC00583FBA /* ProfileInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoTableViewCell.swift; sourceTree = "<group>"; };
 		43BA3F961E7FCEED0052125B /* Landing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
 		43BA3F981E7FCF9B0052125B /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -175,6 +181,7 @@
 		43372D2F1E7FC84A002E2AE3 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				43AA0A081E9BA9B200583FBA /* ProfileInfo */,
 				43AA0A011E9BA38300583FBA /* ProfilePhoto */,
 				43372D2B1E7FC7B6002E2AE3 /* SettingRowView.xib */,
 				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
@@ -255,6 +262,16 @@
 				43AA09FF1E9BA37300583FBA /* ProfilePhotoTableViewCell.swift */,
 			);
 			name = ProfilePhoto;
+			sourceTree = "<group>";
+		};
+		43AA0A081E9BA9B200583FBA /* ProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				43AA0A041E9BA98A00583FBA /* ProfileInfoRowView.xib */,
+				43AA0A021E9BA97A00583FBA /* ProfileInfoRowView.swift */,
+				43AA0A061E9BA9AC00583FBA /* ProfileInfoTableViewCell.swift */,
+			);
+			name = ProfileInfo;
 			sourceTree = "<group>";
 		};
 		43BA3F9F1E7FD13B0052125B /* Caca */ = {
@@ -385,6 +402,7 @@
 				43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */,
 				4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */,
 				4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */,
+				43AA0A051E9BA98A00583FBA /* ProfileInfoRowView.xib in Resources */,
 				43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */,
 				43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */,
 				4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */,
@@ -465,6 +483,7 @@
 				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,
 				4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */,
 				4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */,
+				43AA0A031E9BA97A00583FBA /* ProfileInfoRowView.swift in Sources */,
 				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
 				4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */,
 				43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */,
@@ -488,6 +507,7 @@
 				43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */,
 				43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */,
 				43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */,
+				43AA0A071E9BA9AC00583FBA /* ProfileInfoTableViewCell.swift in Sources */,
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
 				4336811D1E8A441B00D51B5C /* CalendarCellView.swift in Sources */,
 				43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */,
