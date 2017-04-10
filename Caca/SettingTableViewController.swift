@@ -10,6 +10,8 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
 
+    var setting = ["Profile", "Privacy", "Notification", "Language"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,7 +28,7 @@ class SettingTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return setting.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -39,7 +41,7 @@ class SettingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
         // swiftlint:enable force_cast
 
-        cell.rowView.titleLabel.text = "Hello"
+        cell.rowView.titleLabel.text = setting[indexPath.row]
 
         return cell
     }

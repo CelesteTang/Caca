@@ -26,8 +26,8 @@ class PasswordViewController: UIViewController {
 
                 if success {
                     DispatchQueue.main.async {
-                    
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
                         appDelegate.window?.rootViewController = tabBarController
 
