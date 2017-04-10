@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import ColorThiefSwift
 
 enum Shape: Int {
 
@@ -91,11 +92,13 @@ enum Color: Int {
 
 class FillinViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var colorView: UIView!
 
     @IBOutlet weak var cacaPhoto: UIImageView!
 
     @IBOutlet weak var photoButton: UIButton!
+
+    @IBOutlet weak var photoLibraryButton: UIButton!
 
     @IBOutlet weak var dateLabel: UILabel!
 
@@ -116,6 +119,19 @@ class FillinViewController: UIViewController {
     var isclicked = false
 
     var cacas = [Caca]()
+
+    @IBAction func pickPhotoFromLibrary(_ sender: UIButton) {
+
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        picker.videoQuality = .typeLow
+        self.present(picker, animated: true, completion: nil)
+
+        isclicked = true
+
+    }
 
     @IBAction func addPhoto(_ sender: UIButton) {
 
@@ -223,7 +239,7 @@ class FillinViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
-            tabBarController.selectedIndex = 1
+            tabBarController.selectedIndex = TabBarItemType.record.rawValue
 
 //            let recordTableViewController  = tabBarController.selectedViewController as? RecordTableViewController
 //
@@ -258,6 +274,7 @@ class FillinViewController: UIViewController {
         cacaPhoto.backgroundColor = Palette.backgoundColor
 
         photoButton.setTitle("Take photo", for: .normal)
+        photoLibraryButton.setTitle("Pick photo from library", for: .normal)
 
         dateLabel.text = dateString()
         timeLabel.text = timeString()
@@ -323,9 +340,21 @@ UINavigationControllerDelegate {
 
             self.cacaPhoto.image = editedCacaImage
 
+            guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else {
+                return
+            }
+
+            self.colorView.backgroundColor = dominantColor.makeUIColor()
+
         } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
             self.cacaPhoto.image = originalCacaImage
+
+            guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else {
+                return
+            }
+
+            self.colorView.backgroundColor = dominantColor.makeUIColor()
 
         }
 

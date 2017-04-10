@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TpS-hk-Q0i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TpS-hk-Q0i">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -148,6 +148,20 @@
                                     <action selector="didFillin:" destination="TpS-hk-Q0i" eventType="touchUpInside" id="pjJ-Aj-vz5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gW-eb-wyO">
+                                <rect key="frame" x="262" y="94" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="pickPhotoFromLibrary:" destination="TpS-hk-Q0i" eventType="touchUpInside" id="n0f-R6-771"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgH-VY-isA">
+                                <rect key="frame" x="16" y="66" width="88" height="88"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QgH-VY-isA" secondAttribute="height" multiplier="1:1" id="ose-ce-VCd"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -162,16 +176,21 @@
                             <constraint firstItem="B6N-cU-B9t" firstAttribute="leading" secondItem="LxH-I6-7Ix" secondAttribute="leading" id="8Ae-gM-I42"/>
                             <constraint firstItem="p0e-fz-tbR" firstAttribute="trailing" secondItem="LvY-mX-oz8" secondAttribute="trailing" id="8bU-yI-H5P"/>
                             <constraint firstItem="O8i-GB-BDC" firstAttribute="top" secondItem="cZW-uV-VK1" secondAttribute="bottom" constant="70" id="BPS-KA-16n"/>
+                            <constraint firstItem="5gF-Tj-Cyr" firstAttribute="leading" secondItem="QgH-VY-isA" secondAttribute="trailing" constant="16" id="FIg-Vg-wYi"/>
                             <constraint firstItem="hW7-CY-D2a" firstAttribute="top" secondItem="5gF-Tj-Cyr" secondAttribute="bottom" constant="16" id="GPx-cu-XtR"/>
                             <constraint firstItem="i9o-xg-cet" firstAttribute="top" secondItem="O8i-GB-BDC" secondAttribute="bottom" constant="8" id="GQs-qW-7YM"/>
                             <constraint firstItem="cZW-uV-VK1" firstAttribute="leading" secondItem="Aqk-QU-S0w" secondAttribute="leading" id="IMK-8U-txx"/>
                             <constraint firstItem="Aqk-QU-S0w" firstAttribute="top" secondItem="B6N-cU-B9t" secondAttribute="bottom" constant="70" id="Iho-sF-1OM"/>
                             <constraint firstItem="cZW-uV-VK1" firstAttribute="top" secondItem="Aqk-QU-S0w" secondAttribute="bottom" constant="70" id="L98-5P-KyT"/>
+                            <constraint firstItem="QgH-VY-isA" firstAttribute="bottom" secondItem="5gF-Tj-Cyr" secondAttribute="bottom" id="Lwj-zG-EJS"/>
                             <constraint firstItem="UUP-Kb-sGU" firstAttribute="centerX" secondItem="jgg-hf-B3C" secondAttribute="centerX" id="QIv-cn-EqK"/>
                             <constraint firstItem="s80-lp-rOv" firstAttribute="leading" secondItem="B6N-cU-B9t" secondAttribute="leading" id="Sxy-MS-HQW"/>
+                            <constraint firstItem="4qV-oI-cVR" firstAttribute="top" secondItem="2gW-eb-wyO" secondAttribute="bottom" id="V99-qi-I7V"/>
                             <constraint firstItem="LxH-I6-7Ix" firstAttribute="leading" secondItem="hW7-CY-D2a" secondAttribute="leading" id="WrM-0Y-Ldt"/>
                             <constraint firstItem="5gF-Tj-Cyr" firstAttribute="centerX" secondItem="jgg-hf-B3C" secondAttribute="centerX" id="YbN-7A-vNR"/>
+                            <constraint firstItem="QgH-VY-isA" firstAttribute="leading" secondItem="hW7-CY-D2a" secondAttribute="leading" id="Z6a-hu-poW"/>
                             <constraint firstItem="Aqk-QU-S0w" firstAttribute="leading" secondItem="B6N-cU-B9t" secondAttribute="leading" id="bPN-6b-FYq"/>
+                            <constraint firstItem="4qV-oI-cVR" firstAttribute="leading" secondItem="2gW-eb-wyO" secondAttribute="leading" id="dff-mo-2oX"/>
                             <constraint firstItem="UUP-Kb-sGU" firstAttribute="top" secondItem="i9o-xg-cet" secondAttribute="bottom" constant="8" id="dlt-MN-chm"/>
                             <constraint firstItem="4qV-oI-cVR" firstAttribute="bottom" secondItem="5gF-Tj-Cyr" secondAttribute="bottom" id="dvb-gc-sLd"/>
                             <constraint firstItem="4qV-oI-cVR" firstAttribute="leading" secondItem="5gF-Tj-Cyr" secondAttribute="trailing" constant="8" id="eCb-V6-UYI"/>
@@ -198,11 +217,13 @@
                         <outlet property="amountSlider" destination="p0e-fz-tbR" id="3sh-Di-EEe"/>
                         <outlet property="cacaPhoto" destination="5gF-Tj-Cyr" id="Hwa-sc-bor"/>
                         <outlet property="colorSegmentedControll" destination="LvY-mX-oz8" id="FKz-TW-OMC"/>
+                        <outlet property="colorView" destination="QgH-VY-isA" id="LqZ-pE-gaL"/>
                         <outlet property="consumingTimeLabel" destination="JOn-G7-BGV" id="qkk-Lu-mOi"/>
                         <outlet property="dateLabel" destination="Wxf-Ut-uIE" id="reK-K4-2xb"/>
                         <outlet property="finishButton" destination="UUP-Kb-sGU" id="Rcj-Zn-nR0"/>
                         <outlet property="otherTextView" destination="i9o-xg-cet" id="W1m-UR-vaI"/>
                         <outlet property="photoButton" destination="4qV-oI-cVR" id="0UZ-0o-gF5"/>
+                        <outlet property="photoLibraryButton" destination="2gW-eb-wyO" id="1R8-zR-vdf"/>
                         <outlet property="shapeSegmentedControl" destination="s80-lp-rOv" id="Bh4-bk-B6v"/>
                         <outlet property="timeLabel" destination="TWk-6A-LNv" id="GLx-bi-eNK"/>
                     </connections>

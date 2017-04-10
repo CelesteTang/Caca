@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ColorThiefSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,12 +37,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>1FB24F98CB510F1D6F53DAD2F524828D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4D5B8B1BE64F80268007C79821DDDC20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>90F729A7583D07FE5F61CEBE3D04F20B</key>
+		<key>A777A06D7C70BBA7B9CAB78B4320D585</key>
 		<dict>
 			<key>primary</key>
 			<true/>
