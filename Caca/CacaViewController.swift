@@ -34,7 +34,9 @@ class CacaViewController: UIViewController {
 
         navigationItem.title = dateString()
         notificationLabel.textColor = Palette.textColor
-        startButton.tintColor = Palette.textColor
+        startButton.backgroundColor = Palette.textColor
+        startButton.tintColor = Palette.backgoundColor
+        startButton.layer.cornerRadius = 18
 
         notificationLabel.text = "You don't defecate for 3 days"
         notificationLabel.numberOfLines = 0
