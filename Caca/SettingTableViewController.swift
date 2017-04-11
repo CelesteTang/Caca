@@ -10,7 +10,25 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
 
-    var setting = ["Profile", "Privacy", "Notification", "Language"]
+    enum Setting: Int {
+
+        case profile, privacy, notification, language
+
+        var title: String {
+
+            switch self {
+
+            case .profile: return "Profile"
+            case .privacy: return "Privacy"
+            case .notification: return "Notification"
+            case .language: return "Language"
+
+            }
+        }
+
+    }
+
+    private let setting: [Setting] = [.profile, .privacy, .notification, .language]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +59,47 @@ class SettingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
         // swiftlint:enable force_cast
 
-        cell.rowView.titleLabel.text = setting[indexPath.row]
+        cell.rowView.titleLabel.text = setting[indexPath.row].title
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        switch indexPath.row {
+            
+        case Setting.profile.rawValue:
+
+            let storyBoard = UIStoryboard(name: "Profile", bundle: nil)
+            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+
+            self.navigationController?.pushViewController(viewController, animated: true)
+
+        case Setting.privacy.rawValue:
+
+            let storyBoard = UIStoryboard(name: "Privacy", bundle: nil)
+            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "PrivacyTableViewController") as? PrivacyTableViewController else { return }
+
+            self.navigationController?.pushViewController(viewController, animated: true)
+
+//        case Setting.notification.rawValue:
+//
+//            let storyBoard = UIStoryboard(name: "Notification", bundle: nil)
+//            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "NotificationViewController") as? NotificationViewController else { return }
+//
+//            self.navigationController?.pushViewController(viewController, animated: true)
+//
+//        case Setting.language.rawValue:
+//
+//            let storyBoard = UIStoryboard(name: "Language", bundle: nil)
+//            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "LanguageViewController") as? LanguageViewController else { return }
+//
+//            self.navigationController?.pushViewController(viewController, animated: true)
+
+        default: break
+
+        }
+
     }
 
 }

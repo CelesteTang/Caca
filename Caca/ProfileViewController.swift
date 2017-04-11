@@ -86,9 +86,13 @@ extension ProfileViewController: UITextFieldDelegate {
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 
-        if textField == ageTextField {
+        if textField == nicknameTextField {
 
-            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            self.view.bounds = CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
+        } else if textField == ageTextField {
+
+            self.view.bounds = CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: self.view.frame.size.height)
 
         }
 

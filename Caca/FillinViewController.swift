@@ -161,7 +161,7 @@ class FillinViewController: UIViewController {
             return
         }
 
-        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(UUID().uuidString).png")
+        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(UUID().uuidString).jpg")
 
         if isclicked == true {
 

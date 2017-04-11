@@ -19,6 +19,11 @@
 		4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */; };
 		4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4326E9801E8BD9610057363B /* CacaProvider.swift */; };
 		4328DCA11E9C7233006D3FB8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */; };
+		4328DCA41E9C8202006D3FB8 /* Privacy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4328DCA31E9C8202006D3FB8 /* Privacy.storyboard */; };
+		4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */; };
+		4328DCA81E9C8E6D006D3FB8 /* PrivacyRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4328DCA71E9C8E6D006D3FB8 /* PrivacyRowView.xib */; };
+		4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */; };
+		4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */; };
 		43308EB31E9B4D4D00BB4F0D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43308EB21E9B4D4D00BB4F0D /* Profile.storyboard */; };
 		4330959B1E8CE68200E65E08 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */; };
 		433681191E8A424900D51B5C /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433681181E8A424900D51B5C /* Calendar.storyboard */; };
@@ -71,6 +76,11 @@
 		4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4326E9801E8BD9610057363B /* CacaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacaProvider.swift; sourceTree = "<group>"; };
 		4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4328DCA31E9C8202006D3FB8 /* Privacy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Privacy.storyboard; sourceTree = "<group>"; };
+		4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewController.swift; sourceTree = "<group>"; };
+		4328DCA71E9C8E6D006D3FB8 /* PrivacyRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyRowView.xib; sourceTree = "<group>"; };
+		4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyRowView.swift; sourceTree = "<group>"; };
+		4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewCell.swift; sourceTree = "<group>"; };
 		43308EB21E9B4D4D00BB4F0D /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		433681181E8A424900D51B5C /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
@@ -175,6 +185,10 @@
 				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
 				4372BF181E969646005F5422 /* PasswordViewController.swift */,
 				4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */,
+				4328DCA71E9C8E6D006D3FB8 /* PrivacyRowView.xib */,
+				4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */,
+				4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */,
+				4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -205,6 +219,7 @@
 				433681181E8A424900D51B5C /* Calendar.storyboard */,
 				43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */,
 				43308EB21E9B4D4D00BB4F0D /* Profile.storyboard */,
+				4328DCA31E9C8202006D3FB8 /* Privacy.storyboard */,
 				4372BF1A1E969F1E005F5422 /* Password.storyboard */,
 				43372D351E7FCA89002E2AE3 /* TabBar.storyboard */,
 				43372D071E7FB4BD002E2AE3 /* Main.storyboard */,
@@ -353,6 +368,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4328DCA81E9C8E6D006D3FB8 /* PrivacyRowView.xib in Resources */,
 				43372D281E7FC799002E2AE3 /* RecordRowView.xib in Resources */,
 				43308EB31E9B4D4D00BB4F0D /* Profile.storyboard in Resources */,
 				43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */,
@@ -364,6 +380,7 @@
 				4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */,
 				43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */,
 				43372D0E1E7FB4BD002E2AE3 /* Assets.xcassets in Resources */,
+				4328DCA41E9C8202006D3FB8 /* Privacy.storyboard in Resources */,
 				4336811B1E8A427F00D51B5C /* CalendarCellView.xib in Resources */,
 				43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */,
 				4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */,
@@ -462,8 +479,11 @@
 				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
 				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,
 				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
+				4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */,
 				4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */,
 				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
+				4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */,
+				4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,
 				43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */,
 				43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */,
