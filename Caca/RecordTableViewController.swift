@@ -43,15 +43,21 @@ class RecordTableViewController: UITableViewController {
     // MARK: Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+
         return 1
+
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return self.cacas.count
+
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
         return 114.0
+
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,13 +67,26 @@ class RecordTableViewController: UITableViewController {
         // swiftlint:enable force_cast
 
         if cacas[indexPath.row].photo != "" {
-            if let url = URL(string: cacas[indexPath.row].photo) {
+            
+            DispatchQueue.global().async {
+                
+                if let url = URL(string: self.cacas[indexPath.row].photo) {
 
-                do {
-                    let data = try Data(contentsOf: url)
-                    cell.rowView.cacaPhotoImageView.image = UIImage(data: data)
-                } catch {
-                    print(error)
+                    do {
+                        let data = try Data(contentsOf: url)
+                        let image = UIImage(data: data)
+                        
+                        DispatchQueue.main.async {
+
+                            cell.rowView.cacaPhotoImageView.image = image
+
+                        }
+
+                    } catch {
+                        
+                        print(error)
+                        
+                    }
                 }
             }
         } else {
@@ -84,12 +103,6 @@ class RecordTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard
-//            let indexPath = tableView.indexPathForSelectedRow,
-//            let currentCell = tableView.cellForRow(at: indexPath) as? RecordTableViewCell else {
-//                return
-//        }
-//        print(currentCell.rowView.dateLabel.text ?? "")
 
         let storyBoard = UIStoryboard(name: "RecordDetail", bundle: nil)
         guard let recordDetailViewController = storyBoard.instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else { return }

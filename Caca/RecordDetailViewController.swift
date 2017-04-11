@@ -82,16 +82,22 @@ class RecordDetailViewController: UIViewController {
 
         if recievedCaca[0].photo != "" {
 
-            if let url = URL(string: recievedCaca[0].photo) {
+            DispatchQueue.global().async {
+                if let url = URL(string: self.recievedCaca[0].photo) {
 
-                do {
-                    let data = try Data(contentsOf: url)
-                    cacaPhoto.image = UIImage(data: data)
+                    do {
+                        let data = try Data(contentsOf: url)
+                        let image = UIImage(data: data)
+                        
+                        DispatchQueue.main.async {
+                            self.cacaPhoto.image = image
+                        }
 
-                } catch {
+                    } catch {
 
-                    print(error)
+                        print(error)
 
+                    }
                 }
             }
         } else {
@@ -114,6 +120,8 @@ class RecordDetailViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         tabBarController?.tabBar.isHidden = false
+        
     }
 }
