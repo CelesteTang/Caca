@@ -88,7 +88,7 @@ class RecordDetailViewController: UIViewController {
                     do {
                         let data = try Data(contentsOf: url)
                         let image = UIImage(data: data)
-                        
+
                         DispatchQueue.main.async {
                             self.cacaPhoto.image = image
                         }
@@ -120,8 +120,8 @@ class RecordDetailViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         tabBarController?.tabBar.isHidden = false
-        
+
     }
 }

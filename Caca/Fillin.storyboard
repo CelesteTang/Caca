@@ -162,6 +162,13 @@
                                     <constraint firstAttribute="width" secondItem="QgH-VY-isA" secondAttribute="height" multiplier="1:1" id="ose-ce-VCd"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gc-Fp-cpr">
+                                <rect key="frame" x="16" y="20" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="cancelFillin:" destination="TpS-hk-Q0i" eventType="touchUpInside" id="22b-YM-s6n"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -185,7 +192,9 @@
                             <constraint firstItem="QgH-VY-isA" firstAttribute="bottom" secondItem="5gF-Tj-Cyr" secondAttribute="bottom" id="Lwj-zG-EJS"/>
                             <constraint firstItem="UUP-Kb-sGU" firstAttribute="centerX" secondItem="jgg-hf-B3C" secondAttribute="centerX" id="QIv-cn-EqK"/>
                             <constraint firstItem="s80-lp-rOv" firstAttribute="leading" secondItem="B6N-cU-B9t" secondAttribute="leading" id="Sxy-MS-HQW"/>
+                            <constraint firstItem="5Gc-Fp-cpr" firstAttribute="top" secondItem="tDi-ZU-qth" secondAttribute="bottom" id="T8V-r7-YUO"/>
                             <constraint firstItem="4qV-oI-cVR" firstAttribute="top" secondItem="2gW-eb-wyO" secondAttribute="bottom" id="V99-qi-I7V"/>
+                            <constraint firstItem="5Gc-Fp-cpr" firstAttribute="leading" secondItem="jgg-hf-B3C" secondAttribute="leadingMargin" id="VeJ-96-VeW"/>
                             <constraint firstItem="LxH-I6-7Ix" firstAttribute="leading" secondItem="hW7-CY-D2a" secondAttribute="leading" id="WrM-0Y-Ldt"/>
                             <constraint firstItem="5gF-Tj-Cyr" firstAttribute="centerX" secondItem="jgg-hf-B3C" secondAttribute="centerX" id="YbN-7A-vNR"/>
                             <constraint firstItem="QgH-VY-isA" firstAttribute="leading" secondItem="hW7-CY-D2a" secondAttribute="leading" id="Z6a-hu-poW"/>
@@ -216,6 +225,7 @@
                     <connections>
                         <outlet property="amountSlider" destination="p0e-fz-tbR" id="3sh-Di-EEe"/>
                         <outlet property="cacaPhoto" destination="5gF-Tj-Cyr" id="Hwa-sc-bor"/>
+                        <outlet property="cancelButton" destination="5Gc-Fp-cpr" id="P1C-2y-xYJ"/>
                         <outlet property="colorSegmentedControll" destination="LvY-mX-oz8" id="FKz-TW-OMC"/>
                         <outlet property="colorView" destination="QgH-VY-isA" id="LqZ-pE-gaL"/>
                         <outlet property="consumingTimeLabel" destination="JOn-G7-BGV" id="qkk-Lu-mOi"/>

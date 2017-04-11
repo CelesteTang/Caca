@@ -8,13 +8,13 @@
 
 import UIKit
 
+enum Gender: Int {
+
+    case male, female
+
+}
+
 class ProfileViewController: UIViewController {
-
-    enum Gender: Int {
-
-        case male, female
-
-    }
 
     @IBOutlet weak var profileImageView: UIImageView!
 
@@ -73,7 +73,12 @@ class ProfileViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
         tabBarController?.tabBar.isHidden = false
+        UserDefaults.standard.set(nicknameTextField.text, forKey: "Nickname")
+        UserDefaults.standard.set(genderSegmentedControl.selectedSegmentIndex, forKey: "Gender")
+        UserDefaults.standard.set(ageTextField.text, forKey: "Age")
+
     }
 
     func hideKeyBoard() {
@@ -96,7 +101,7 @@ extension ProfileViewController: UITextFieldDelegate {
 
         if textField == nicknameTextField {
 
-            self.view.bounds = CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            self.view.bounds = CGRect(x: 0, y: 100, width: self.view.frame.size.width, height: self.view.frame.size.height)
 
         } else if textField == ageTextField {
 

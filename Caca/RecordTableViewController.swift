@@ -67,15 +67,15 @@ class RecordTableViewController: UITableViewController {
         // swiftlint:enable force_cast
 
         if cacas[indexPath.row].photo != "" {
-            
+
             DispatchQueue.global().async {
-                
+
                 if let url = URL(string: self.cacas[indexPath.row].photo) {
 
                     do {
                         let data = try Data(contentsOf: url)
                         let image = UIImage(data: data)
-                        
+
                         DispatchQueue.main.async {
 
                             cell.rowView.cacaPhotoImageView.image = image
@@ -83,9 +83,9 @@ class RecordTableViewController: UITableViewController {
                         }
 
                     } catch {
-                        
+
                         print(error)
-                        
+
                     }
                 }
             }

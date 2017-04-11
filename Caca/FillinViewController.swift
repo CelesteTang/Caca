@@ -92,6 +92,8 @@ enum Color: Int {
 
 class FillinViewController: UIViewController {
 
+    @IBOutlet weak var cancelButton: UIButton!
+    
     @IBOutlet weak var colorView: UIView!
 
     @IBOutlet weak var cacaPhoto: UIImageView!
@@ -120,6 +122,15 @@ class FillinViewController: UIViewController {
 
     var cacas = [Caca]()
 
+    @IBAction func cancelFillin(_ sender: UIButton) {
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+        
+            appDelegate.window?.rootViewController = tabBarController
+            
+        }
+    }
+    
     @IBAction func pickPhotoFromLibrary(_ sender: UIButton) {
 
         let picker = UIImagePickerController()
@@ -266,6 +277,8 @@ class FillinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        cancelButton.setTitle("Cancel", for: .normal)
+        
         otherTextView.delegate = self
 
         isclicked = false
