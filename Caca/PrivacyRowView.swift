@@ -9,21 +9,16 @@
 import UIKit
 
 class PrivacyRowView: UIView {
-    
+
     @IBOutlet weak var privacyLabel: UILabel!
-    
-    @IBOutlet weak var privacySwitch: UISwitch!
-    
-    @IBAction func privacySwitched(_ sender: UISwitch) {
-    }
-    
+
 }
 
 extension PrivacyRowView {
-    
+
     // swiftlint:disable force_cast
     class func create() -> PrivacyRowView {
-        
+
         return UINib(nibName: "PrivacyRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! PrivacyRowView
     }
 }

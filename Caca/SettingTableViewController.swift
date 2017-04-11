@@ -28,7 +28,7 @@ class SettingTableViewController: UITableViewController {
 
     }
 
-    private let setting: [Setting] = [.profile, .privacy, .notification, .language]
+    private let settings: [Setting] = [.profile, .privacy, .notification, .language]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class SettingTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return setting.count
+        return settings.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -59,7 +59,7 @@ class SettingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
         // swiftlint:enable force_cast
 
-        cell.rowView.titleLabel.text = setting[indexPath.row].title
+        cell.rowView.titleLabel.text = settings[indexPath.row].title
 
         return cell
     }
@@ -67,7 +67,7 @@ class SettingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         switch indexPath.row {
-            
+
         case Setting.profile.rawValue:
 
             let storyBoard = UIStoryboard(name: "Profile", bundle: nil)

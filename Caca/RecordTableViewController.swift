@@ -84,12 +84,12 @@ class RecordTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard
-            let indexPath = tableView.indexPathForSelectedRow,
-            let currentCell = tableView.cellForRow(at: indexPath) as? RecordTableViewCell else {
-                return
-        }
-        print(currentCell.rowView.dateLabel.text ?? "")
+//        guard
+//            let indexPath = tableView.indexPathForSelectedRow,
+//            let currentCell = tableView.cellForRow(at: indexPath) as? RecordTableViewCell else {
+//                return
+//        }
+//        print(currentCell.rowView.dateLabel.text ?? "")
 
         let storyBoard = UIStoryboard(name: "RecordDetail", bundle: nil)
         guard let recordDetailViewController = storyBoard.instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else { return }
