@@ -48,20 +48,33 @@ class ProfileViewController: UIViewController {
         nicknameTextField.delegate = self
         nicknameTextField.clearButtonMode = .whileEditing
         nicknameTextField.placeholder = "Nickname"
+        nicknameTextField.textAlignment = .center
         nicknameTextField.clearsOnBeginEditing = true
         nicknameTextField.keyboardType = .alphabet
         nicknameTextField.returnKeyType = .done
+        if let nickname = UserDefaults.standard.value(forKey: "Nickname") as? String {
 
-        genderSegmentedControl.selectedSegmentIndex = Gender.male.rawValue
+            nicknameTextField.text = nickname
+
+        }
+
+        guard let gender = UserDefaults.standard.value(forKey: "Gender") as? Int else { return }
+        genderSegmentedControl.selectedSegmentIndex = gender
         genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
 
         ageTextField.delegate = self
         ageTextField.clearButtonMode = .whileEditing
         ageTextField.placeholder = "Age"
+        ageTextField.textAlignment = .center
         ageTextField.clearsOnBeginEditing = true
         ageTextField.keyboardType = .numberPad
         ageTextField.returnKeyType = .done
+        if let age = UserDefaults.standard.value(forKey: "Age") as? String {
+
+            ageTextField.text = age
+
+        }
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false

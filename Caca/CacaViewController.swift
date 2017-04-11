@@ -38,22 +38,30 @@ class CacaViewController: UIViewController {
         startButton.tintColor = Palette.backgoundColor
         startButton.layer.cornerRadius = 15
 
-        notificationLabel.text = "You don't defecate for 3 days"
+        if let name = UserDefaults.standard.value(forKey: "Nickname") as? String {
+
+            notificationLabel.text = "\(name), you don't defecate for 3 days"
+
+        } else {
+
+            notificationLabel.text = "You don't defecate for 3 days"
+
+        }
         notificationLabel.numberOfLines = 0
         startButton.setTitle("Start", for: UIControlState.normal)
         view.backgroundColor = Palette.backgoundColor
 
-        if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int  {
+        if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
 
             if gender == Gender.male.rawValue {
-                
+
                 mainImageView.backgroundColor = Palette.backgoundColor
                 mainImageView.image = #imageLiteral(resourceName: "poo-icon")
-                
+
             } else {
-                
+
                 mainImageView.backgroundColor = Palette.backgoundColor
-                
+
             }
 
         }

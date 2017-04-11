@@ -125,13 +125,9 @@ class PrivacyTableViewController: UITableViewController {
         if sender.isOn == true {
 
             // to-do: launch with password
-            print("password")
-
             UserDefaults.standard.set(true, forKey: "PasswordAuthentication")
 
         } else {
-
-            print("close password")
 
             UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
 
@@ -144,13 +140,9 @@ class PrivacyTableViewController: UITableViewController {
         if sender.isOn == true {
 
             // to-do: launch with TouchID
-            print("TouchID")
-
             UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
 
         } else {
-
-            print("close TouchID")
 
             UserDefaults.standard.set(false, forKey: "TouchIDAuthentication")
 

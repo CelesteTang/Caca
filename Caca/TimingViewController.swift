@@ -11,7 +11,7 @@ import UIKit
 class TimingViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIButton!
-    
+
     @IBOutlet weak var timerLabel: UILabel!
 
     @IBOutlet weak var startButton: UIButton!
@@ -31,15 +31,15 @@ class TimingViewController: UIViewController {
     var resumeTapped = false
 
     @IBAction func cancelTiming(_ sender: UIButton) {
-        
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-            
+
             appDelegate.window?.rootViewController = tabBarController
-            
+
         }
-        
+
     }
-    
+
     @IBAction func startButtonTapped(_ sender: UIButton) {
 
         if isTimerRunning == false {
