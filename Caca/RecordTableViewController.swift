@@ -97,7 +97,16 @@ class RecordTableViewController: UITableViewController {
 
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
         cell.rowView.timeLabel.text = self.cacas[indexPath.row].time
-        cell.rowView.passOrFailLabel.text = "Pass"
+        
+        if self.cacas[indexPath.row].grading == true {
+            
+            cell.rowView.passOrFailLabel.text = "Passed"
+            
+        } else {
+            
+            cell.rowView.passOrFailLabel.text = "Failed"
+
+        }
 
         return cell
     }

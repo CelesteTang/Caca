@@ -26,6 +26,7 @@ class CacaProvider {
         let rootRef = FIRDatabase.database().reference()
 
         rootRef.child("cacas").queryOrdered(byChild: "host").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
             if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
 
                 for snap in snaps {
@@ -38,9 +39,10 @@ class CacaProvider {
                         let cacaShape = cacaInfo["shape"] as? Int,
                         let cacaColor = cacaInfo["color"] as? Int,
                         let cacaAmount = cacaInfo["amount"] as? Double,
-                        let cacaOther = cacaInfo["other"] as? String {
+                        let cacaOther = cacaInfo["other"] as? String,
+                        let cacaGrading = cacaInfo["grading"] as? Bool {
 
-                        let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
+                        let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading)
 
                         cacas.append(caca)
                     }

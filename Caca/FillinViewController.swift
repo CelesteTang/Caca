@@ -118,6 +118,8 @@ class FillinViewController: UIViewController {
 
     @IBOutlet weak var finishButton: UIButton!
 
+    var ispassed = false
+    
     var isclicked = false
 
     var cacas = [Caca]()
@@ -172,6 +174,12 @@ class FillinViewController: UIViewController {
             return
         }
 
+        if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
+            
+            ispassed = true
+            
+        }
+        
         let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(UUID().uuidString).jpg")
 
         if isclicked == true {
@@ -197,7 +205,8 @@ class FillinViewController: UIViewController {
                                      "color": self.colorSegmentedControll.selectedSegmentIndex,
                                      "amount": Double(self.amountSlider.value),
                                      "other": self.otherTextView.text,
-                                     "photo": cacaPhotoUrl] as [String : Any]
+                                     "photo": cacaPhotoUrl,
+                                     "grading": self.ispassed] as [String : Any]
 
                         self.saveCacaIntoDatabase(value: value)
 
@@ -215,7 +224,8 @@ class FillinViewController: UIViewController {
                          "color": self.colorSegmentedControll.selectedSegmentIndex,
                          "amount": Double(self.amountSlider.value),
                          "other": self.otherTextView.text,
-                         "photo": ""] as [String : Any]
+                         "photo": "",
+                         "grading": self.ispassed] as [String : Any]
 
             self.saveCacaIntoDatabase(value: value)
 
@@ -281,6 +291,8 @@ class FillinViewController: UIViewController {
 
         otherTextView.delegate = self
 
+        ispassed = false
+        
         isclicked = false
 
         cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
