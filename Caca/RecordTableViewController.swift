@@ -97,14 +97,16 @@ class RecordTableViewController: UITableViewController {
 
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
         cell.rowView.timeLabel.text = self.cacas[indexPath.row].time
-        
+
         if self.cacas[indexPath.row].grading == true {
-            
-            cell.rowView.passOrFailLabel.text = "Passed"
-            
+
+            cell.rowView.passOrFailLabel.text = "Pass"
+            cell.rowView.passOrFailLabel.textColor = Palette.passColor
+
         } else {
-            
-            cell.rowView.passOrFailLabel.text = "Failed"
+
+            cell.rowView.passOrFailLabel.text = "Fail"
+            cell.rowView.passOrFailLabel.textColor = Palette.failColor
 
         }
 
@@ -112,7 +114,7 @@ class RecordTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         let storyBoard = UIStoryboard(name: "RecordDetail", bundle: nil)
         guard let recordDetailViewController = storyBoard.instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else { return }
 

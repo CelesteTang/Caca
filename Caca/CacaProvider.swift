@@ -26,7 +26,7 @@ class CacaProvider {
         let rootRef = FIRDatabase.database().reference()
 
         rootRef.child("cacas").queryOrdered(byChild: "host").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            
+
             if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
 
                 for snap in snaps {

@@ -27,7 +27,7 @@ class Caca {
     let amount: Double
 
     let otherInfo: String?
-    
+
     let grading: Bool
 
     init(photo: String, date: String, time: String, consumingTime: String, shape: Shape, color: Color, amount: Double, otherInfo: String?, grading: Bool) {
@@ -41,7 +41,7 @@ class Caca {
         self.amount = amount
         self.otherInfo = otherInfo
         self.grading = grading
-        
+
     }
 
 }

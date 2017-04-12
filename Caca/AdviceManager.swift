@@ -29,14 +29,14 @@ class AdviceManager {
             if let cacas = cacas {
 
                 for caca in cacas {
-                
+
                     if caca.color == Color.lightBrown || caca.color == Color.darkBrown {
 
                         self.advice.append("Color passed")
 
                     }
                 }
-                
+
                 completion(self.advice)
             }
         }

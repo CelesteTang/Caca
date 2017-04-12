@@ -70,7 +70,7 @@ class CalendarViewController: UIViewController {
             if let advice = advice {
 
                 print(advice.count)
-                self.adviceLabel.text = advice[0]
+//                self.adviceLabel.text = advice[0]
 
             }
         }
@@ -149,7 +149,11 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
             if caca.date == cellStateDateString {
 
-                calendarCell.selectedView.layer.backgroundColor = Palette.textColor.cgColor
+                if caca.grading == true {
+                    calendarCell.selectedView.layer.backgroundColor = Palette.passColor.cgColor
+                } else {
+                    calendarCell.selectedView.layer.backgroundColor = Palette.failColor.cgColor
+                }
                 calendarCell.selectedView.layer.cornerRadius = calendarCell.selectedView.frame.width / 2
                 calendarCell.selectedView.isHidden = false
 

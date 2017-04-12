@@ -114,7 +114,21 @@ class RecordDetailViewController: UIViewController {
         colorImageView.image = recievedCaca[0].color.image
         amountLabel.text = String(recievedCaca[0].amount)
         otherInfoLabel.text = recievedCaca[0].otherInfo
-
+        passOrFailLabel.textColor = Palette.backgoundColor
+        passOrFailLabel.layer.cornerRadius = 15
+        
+        if recievedCaca[0].grading == true {
+            
+            passOrFailLabel.text = "Pass"
+            passOrFailLabel.backgroundColor = Palette.passColor
+            
+        } else {
+            
+            passOrFailLabel.text = "Fail"
+            passOrFailLabel.backgroundColor = Palette.failColor
+            
+        }
+        
         tabBarController?.tabBar.isHidden = true
     }
 
