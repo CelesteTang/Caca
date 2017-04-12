@@ -63,6 +63,18 @@ class CalendarViewController: UIViewController {
             self.calendarView.reloadData()
         }
 
+        let manager = AdviceManager.shared
+
+        manager.getAdvice { (advice) in
+
+            if let advice = advice {
+
+                print(advice.count)
+                self.adviceLabel.text = advice[0]
+
+            }
+        }
+
     }
 
     func monthChanged(_ visibleDates: DateSegmentInfo) {

@@ -75,6 +75,7 @@ class SignUpViewController: UIViewController {
                                      "lastName": self.lastNameField.text]
 
                         userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
+
                             if error != nil {
 
                                 print(error?.localizedDescription ?? "")

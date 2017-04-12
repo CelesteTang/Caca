@@ -50,6 +50,7 @@
 		43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */; };
 		4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4372BF181E969646005F5422 /* PasswordViewController.swift */; };
 		4372BF1B1E969F1E005F5422 /* Password.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4372BF1A1E969F1E005F5422 /* Password.storyboard */; };
+		43A037631E9DCAAC005C5B46 /* AdviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A037621E9DCAAC005C5B46 /* AdviceManager.swift */; };
 		43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F961E7FCEED0052125B /* Landing.storyboard */; };
 		43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F981E7FCF9B0052125B /* Opening.storyboard */; };
 		43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */; };
@@ -109,6 +110,7 @@
 		43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
 		4372BF181E969646005F5422 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		4372BF1A1E969F1E005F5422 /* Password.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Password.storyboard; sourceTree = "<group>"; };
+		43A037621E9DCAAC005C5B46 /* AdviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviceManager.swift; sourceTree = "<group>"; };
 		43BA3F961E7FCEED0052125B /* Landing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
 		43BA3F981E7FCF9B0052125B /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				4322EB4D1E838EAF006B0D5D /* Time.swift */,
 				4322EB531E83A8C6006B0D5D /* Caca.swift */,
 				4326E9801E8BD9610057363B /* CacaProvider.swift */,
+				43A037621E9DCAAC005C5B46 /* AdviceManager.swift */,
 			);
 			name = Caca;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
 				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,
 				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
+				43A037631E9DCAAC005C5B46 /* AdviceManager.swift in Sources */,
 				4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */,
 				4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */,
 				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,

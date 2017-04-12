@@ -24,6 +24,8 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var ageTextField: UITextField!
 
+    @IBOutlet weak var CIDLabel: UILabel!
+
     @IBAction func genderChanged(_ sender: UISegmentedControl) {
 
         if genderSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
