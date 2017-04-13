@@ -32,39 +32,15 @@ class RecordDetailViewController: UIViewController {
 
     @IBAction func deleteRecord(_ sender: UIButton) {
 
-//        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-//            
-//            tabBarController.selectedIndex = 1
-//            
-//            let recordTableViewController  = tabBarController.viewControllers?[1] as? RecordTableViewController
-//            
-//            recordTableViewController?.tableView.deleteRows(at: [indexPath], with: .fade)
-//
-//            
-//            appDelegate.window?.rootViewController = tabBarController
-//        }
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+           let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
-//        let storyBoard = UIStoryboard(name: "TabBar", bundle: nil)
-//
-//        guard let tabBarController = storyBoard.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController else {
-//
-//            return
-//        }
-//
-//        tabBarController.selectedIndex = 1
-//
-//        guard let recordNavigationController = tabBarController.viewControllers?[1] as? RecordNavigationController else {
-//
-//            return
-//
-//        }
-//        guard let recordTableViewController = recordNavigationController.viewControllers[0] as? RecordTableViewController else {
-//            return
-//        }
-//
-//        recordTableViewController.tableView.deleteRows(at: [indexPath], with: .fade)
-//
-//        self.navigationController?.pushViewController(recordTableViewController, animated: true)
+            tabBarController.selectedIndex = TabBarItemType.record.rawValue
+
+            CacaProvider.shared.deleteCaca(of: recievedCaca[0].cacaID)
+
+            appDelegate.window?.rootViewController = tabBarController
+        }
 
     }
 
