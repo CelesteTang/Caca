@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,6 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2o-yI-wQv">
+                    <rect key="frame" x="0.0" y="1" width="200" height="197"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xL-ki-MaE">
                     <rect key="frame" x="18.5" y="28.5" width="163.5" height="163.5"/>
                     <color key="backgroundColor" red="0.8862745098" green="0.87843137250000003" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -54,7 +59,8 @@
             <connections>
                 <outlet property="bottomLine" destination="Y7P-8M-2jZ" id="3ak-ZU-fjS"/>
                 <outlet property="dayLabel" destination="1Yk-r4-s6i" id="aFs-eI-9Wb"/>
-                <outlet property="selectedView" destination="8xL-ki-MaE" id="Wlt-K8-GpZ"/>
+                <outlet property="didCacaView" destination="8xL-ki-MaE" id="mY8-5n-2FD"/>
+                <outlet property="selectedView" destination="e2o-yI-wQv" id="AVj-an-fy9"/>
             </connections>
             <point key="canvasLocation" x="-447" y="-92"/>
         </view>
