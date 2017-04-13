@@ -66,6 +66,8 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
 
+        cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
+
         if cacas[indexPath.row].photo != "" {
 
             DispatchQueue.global().async {
@@ -89,10 +91,6 @@ class RecordTableViewController: UITableViewController {
                     }
                 }
             }
-        } else {
-
-            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
-
         }
 
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
