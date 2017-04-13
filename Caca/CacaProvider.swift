@@ -58,19 +58,17 @@ class CacaProvider {
         }
     }
 
-//    func deleteCaca(cacaID: String) {
-//        
-//        let databaseRef = FIRDatabase.database().reference()
-//        
-//        databaseRef.child("cacas").queryOrdered(byChild: "cacaID").queryEqual(toValue: cacaID).removeValue { (error, _) in
-//            
-//            if error != nil {
-//                
-//                print(error?.localizedDescription ?? "Error when delete")
-//                
-//            }
-//            
-//        }
-//        
-//    }
+    func deleteCaca(of cacaID: String) {
+
+        FIRDatabase.database().reference().child("cacas").child(cacaID).removeValue { (error, _) in
+
+            if error != nil {
+
+                print(error?.localizedDescription ?? "")
+
+            }
+        }
+
+    }
+
 }
