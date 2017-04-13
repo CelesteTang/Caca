@@ -30,9 +30,9 @@ class AdviceManager {
 
                 for caca in cacas {
 
-                    if caca.color == Color.lightBrown || caca.color == Color.darkBrown {
+                    if caca.grading == true {
 
-                        self.advice.append("Color passed")
+                        self.advice.append("Good caca! Please keep it up!")
 
                     }
                 }

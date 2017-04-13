@@ -25,6 +25,8 @@ class CalendarViewController: UIViewController {
 
     var cacas = [Caca]()
 
+//    var aFewAdvice = [String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -68,8 +70,8 @@ class CalendarViewController: UIViewController {
 //
 //            if let advice = advice {
 //
-//                print(advice.count)
-//                self.adviceLabel.text = advice[0]
+//                self.aFewAdvice = advice
+//                print(self.aFewAdvice.count)
 //
 //            }
 //        }
@@ -162,17 +164,17 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
             }
 
         }
-        
+
         handleCellSelection(view: cell, cellState: cellState)
 
     }
 
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
-        
+
         handleCellSelection(view: cell, cellState: cellState)
 
     }
-    
+
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
 
         handleCellSelection(view: cell, cellState: cellState)
@@ -187,6 +189,25 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
             calendarCell.selectedView.isHidden = false
             calendarCell.selectedView.backgroundColor = Palette.selectedColor
+//            adviceLabel.text = "\(cellState.text) selected"
+
+            if calendarCell.didCacaView.isHidden == false {
+
+                if calendarCell.didCacaView.backgroundColor == Palette.passColor {
+
+                    adviceLabel.text = "Good caca! Please keep it up!"
+
+                } else if calendarCell.didCacaView.backgroundColor == Palette.failColor {
+
+                    adviceLabel.text = "WARNING! Bad caca!"
+
+                }
+
+            } else {
+
+                adviceLabel.text = "no caca"
+
+            }
 
         } else {
 
