@@ -59,6 +59,7 @@ class CalendarViewController: UIViewController {
 
             if let cacas = cacas {
                 self.cacas = cacas
+                print(cacas.count)
             }
 
             self.calendarView.reloadData()

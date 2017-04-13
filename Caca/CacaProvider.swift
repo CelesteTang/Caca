@@ -23,9 +23,7 @@ class CacaProvider {
 
         var cacas = [Caca]()
 
-        let rootRef = FIRDatabase.database().reference()
-
-        rootRef.child("cacas").queryOrdered(byChild: "host").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child("cacas").queryOrdered(byChild: "host").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
 
             if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
 
@@ -42,7 +40,7 @@ class CacaProvider {
                         let cacaOther = cacaInfo["other"] as? String,
                         let cacaGrading = cacaInfo["grading"] as? Bool,
                         let cacaID = cacaInfo["cacaID"] as? String,
-                        let cacaPhotoID = cacaInfo["cacaPhotoID"] as? String {
+                        let cacaPhotoID = cacaInfo["photoID"] as? String {
 
                         let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, cacaID: cacaID, photoID: cacaPhotoID)
 
@@ -60,8 +58,8 @@ class CacaProvider {
         }
     }
 
-    func deleteCaca(cacaID: String) {
-        
+//    func deleteCaca(cacaID: String) {
+//        
 //        let databaseRef = FIRDatabase.database().reference()
 //        
 //        databaseRef.child("cacas").queryOrdered(byChild: "cacaID").queryEqual(toValue: cacaID).removeValue { (error, _) in
@@ -73,6 +71,6 @@ class CacaProvider {
 //            }
 //            
 //        }
-        
-    }
+//        
+//    }
 }

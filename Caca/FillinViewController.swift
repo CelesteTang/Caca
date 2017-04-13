@@ -174,7 +174,9 @@ class FillinViewController: UIViewController {
               let date = dateLabel.text,
               let time = timeLabel.text,
               let consumingTime = consumingTimeLabel.text else {
+                
             return
+                
         }
 
         if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
@@ -260,19 +262,6 @@ class FillinViewController: UIViewController {
             }
 
             self.switchToRecord()
-            
-//            let cacaID = databaseRef.child("cacas").childByAutoId().key
-//            
-//            databaseRef.child("cacas").child(cacaID).updateChildValues(["cacaID": cacaID], withCompletionBlock: { (error, _) in
-//                
-//                if error != nil {
-//                    
-//                    print(error?.localizedDescription ?? "")
-//                    
-//                    return
-//                }
-//
-//            })
 
         })
     }
