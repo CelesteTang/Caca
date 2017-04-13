@@ -21,7 +21,7 @@
                     <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xL-ki-MaE">
-                    <rect key="frame" x="18.5" y="28.5" width="163.5" height="163.5"/>
+                    <rect key="frame" x="17.5" y="28.5" width="165.5" height="165.5"/>
                     <color key="backgroundColor" red="0.8862745098" green="0.87843137250000003" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="8xL-ki-MaE" secondAttribute="height" multiplier="1:1" id="uAw-el-gfF"/>
@@ -35,7 +35,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Yk-r4-s6i">
-                    <rect key="frame" x="8" y="8" width="184" height="20.5"/>
+                    <rect key="frame" x="0.0" y="5" width="200" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -43,19 +43,19 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="8xL-ki-MaE" firstAttribute="top" secondItem="1Yk-r4-s6i" secondAttribute="bottom" id="0BH-70-tFd"/>
+                <constraint firstItem="8xL-ki-MaE" firstAttribute="top" secondItem="1Yk-r4-s6i" secondAttribute="bottom" constant="3" id="0BH-70-tFd"/>
                 <constraint firstItem="e2o-yI-wQv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4wM-pG-Tyw"/>
-                <constraint firstItem="Y7P-8M-2jZ" firstAttribute="top" secondItem="8xL-ki-MaE" secondAttribute="bottom" constant="5" id="5Rd-0e-qAP"/>
+                <constraint firstItem="Y7P-8M-2jZ" firstAttribute="top" secondItem="8xL-ki-MaE" secondAttribute="bottom" constant="3" id="5Rd-0e-qAP"/>
                 <constraint firstItem="Y7P-8M-2jZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="71W-vH-CGk"/>
                 <constraint firstAttribute="trailing" secondItem="e2o-yI-wQv" secondAttribute="trailing" id="Dls-69-dmx"/>
                 <constraint firstItem="e2o-yI-wQv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="GPp-gU-MUF"/>
                 <constraint firstItem="1Yk-r4-s6i" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NO0-06-GWD"/>
                 <constraint firstItem="Y7P-8M-2jZ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Omk-Rr-RPb"/>
                 <constraint firstItem="8xL-ki-MaE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UsU-hq-Rti"/>
-                <constraint firstItem="1Yk-r4-s6i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="c1X-8W-eiC"/>
+                <constraint firstItem="1Yk-r4-s6i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="c1X-8W-eiC"/>
                 <constraint firstItem="e2o-yI-wQv" firstAttribute="bottom" secondItem="Y7P-8M-2jZ" secondAttribute="top" id="dt2-ZL-upV"/>
                 <constraint firstAttribute="bottom" secondItem="Y7P-8M-2jZ" secondAttribute="bottom" constant="1" id="oPT-Vz-1bc"/>
-                <constraint firstItem="1Yk-r4-s6i" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="uwG-Fe-8rA"/>
+                <constraint firstItem="1Yk-r4-s6i" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="uwG-Fe-8rA"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
