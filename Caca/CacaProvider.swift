@@ -40,9 +40,11 @@ class CacaProvider {
                         let cacaColor = cacaInfo["color"] as? Int,
                         let cacaAmount = cacaInfo["amount"] as? Double,
                         let cacaOther = cacaInfo["other"] as? String,
-                        let cacaGrading = cacaInfo["grading"] as? Bool {
+                        let cacaGrading = cacaInfo["grading"] as? Bool,
+                        let cacaID = cacaInfo["cacaID"] as? String,
+                        let cacaPhotoID = cacaInfo["cacaPhotoID"] as? String {
 
-                        let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading)
+                        let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, cacaID: cacaID, photoID: cacaPhotoID)
 
                         cacas.append(caca)
                     }
@@ -58,4 +60,19 @@ class CacaProvider {
         }
     }
 
+    func deleteCaca() {
+        
+        let databaseRef = FIRDatabase.database().reference()
+        
+        databaseRef.child("cacas").removeValue { (error, ref) in
+            
+            if error != nil {
+                
+                print(error?.localizedDescription ?? "Error when delete")
+                
+            }
+            
+        }
+        
+    }
 }

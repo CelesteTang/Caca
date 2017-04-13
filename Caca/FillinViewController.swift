@@ -206,7 +206,9 @@ class FillinViewController: UIViewController {
                                      "amount": Double(self.amountSlider.value),
                                      "other": self.otherTextView.text,
                                      "photo": cacaPhotoUrl,
-                                     "grading": self.ispassed] as [String : Any]
+                                     "grading": self.ispassed,
+                                     "cacaID": "",
+                                     "photoID": ""] as [String : Any]
 
                         self.saveCacaIntoDatabase(value: value)
 
@@ -225,7 +227,9 @@ class FillinViewController: UIViewController {
                          "amount": Double(self.amountSlider.value),
                          "other": self.otherTextView.text,
                          "photo": "",
-                         "grading": self.ispassed] as [String : Any]
+                         "grading": self.ispassed,
+                         "cacaID": "",
+                         "photoID": ""] as [String : Any]
 
             self.saveCacaIntoDatabase(value: value)
 
@@ -234,9 +238,9 @@ class FillinViewController: UIViewController {
 
     private func saveCacaIntoDatabase(value: [String : Any]) {
 
-        let databaseRef = FIRDatabase.database().reference().child("cacas").childByAutoId()
+        let databaseRef = FIRDatabase.database().reference()
 
-        databaseRef.updateChildValues(value, withCompletionBlock: { (error, _) in
+        databaseRef.child("cacas").childByAutoId().updateChildValues(value, withCompletionBlock: { (error, _) in
 
 //            snapshot.observeSingleEvent(of: .value, with: {snap in
 //                print(snap)
@@ -320,31 +324,6 @@ class FillinViewController: UIViewController {
 
         finishButton.isEnabled = true
     }
-
-//    func dateString() -> String {
-//
-//        let date = Date()
-//        let calendar = Calendar.current
-//
-//        let year = calendar.component(.year, from: date)
-//        let month = calendar.component(.month, from: date)
-//        let day = calendar.component(.day, from: date)
-//
-//        return String(format: "%04i-%02i-%02i", year, month, day)
-//
-//    }
-//
-//    func timeString() -> String {
-//
-//        let date = Date()
-//        let calendar = Calendar.current
-//
-//        let hour = calendar.component(.hour, from: date)
-//        let minute = calendar.component(.minute, from: date)
-//
-//        return String(format: "%02i:%02i", hour, minute)
-//
-//    }
 
     func hideKeyBoard() {
         self.otherTextView.resignFirstResponder()
