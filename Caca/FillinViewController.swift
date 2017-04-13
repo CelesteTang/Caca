@@ -216,7 +216,8 @@ class FillinViewController: UIViewController {
                                      "cacaID": cacaID,
                                      "photoID": ""] as [String : Any]
 
-                        self.saveCacaIntoDatabase(cacaID: cacaID, value: value)
+                        CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+                        self.switchToRecord()
 
                     }
                 })
@@ -237,33 +238,9 @@ class FillinViewController: UIViewController {
                          "cacaID": cacaID,
                          "photoID": ""] as [String : Any]
 
-            self.saveCacaIntoDatabase(cacaID: cacaID, value: value)
-
-        }
-    }
-
-    private func saveCacaIntoDatabase(cacaID: String, value: [String : Any]) {
-
-        let databaseRef = FIRDatabase.database().reference()
-
-        databaseRef.child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
-
-//            snapshot.observeSingleEvent(of: .value, with: {snap in
-//                print(snap)
-//                self.switchToRecord(snap)
-//
-//            })
-
-            if error != nil {
-
-                print(error?.localizedDescription ?? "")
-
-                return
-            }
-
+            CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
             self.switchToRecord()
-
-        })
+        }
     }
 
     func switchToRecord() {
@@ -271,22 +248,6 @@ class FillinViewController: UIViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
             tabBarController.selectedIndex = TabBarItemType.record.rawValue
-
-//            let recordTableViewController  = tabBarController.selectedViewController as? RecordTableViewController
-//
-//            if let cacaInfo = snap.value as? NSDictionary,
-//                let cacaPhoto = cacaInfo["photo"] as? String,
-//                let cacaDate = cacaInfo["date"] as? String,
-//                let cacaTime = cacaInfo["time"] as? String,
-//                let cacaConsumingTime = cacaInfo["consumingTime"] as? String,
-//                let cacaShape = cacaInfo["shape"] as? Int,
-//                let cacaColor = cacaInfo["color"] as? Int,
-//                let cacaAmount = cacaInfo["amount"] as? Double,
-//                let cacaOther = cacaInfo["other"] as? String {
-//
-//                let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
-//
-//                recordTableViewController?.cacas.append(caca)
 
             appDelegate.window?.rootViewController = tabBarController
 
