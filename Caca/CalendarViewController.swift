@@ -131,7 +131,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         } else if currentDateString != cellStateDateString {
 
             calendarCell.isUserInteractionEnabled = true
-            calendarCell.dayLabel.backgroundColor = Palette.backgoundColor
+            calendarCell.dayLabel.backgroundColor = UIColor.clear
             calendarCell.dayLabel.textColor = Palette.textColor
 
         } else {
@@ -162,9 +162,17 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
             }
 
         }
+        
+        handleCellSelection(view: cell, cellState: cellState)
 
     }
 
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
+        
+        handleCellSelection(view: cell, cellState: cellState)
+
+    }
+    
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
 
         handleCellSelection(view: cell, cellState: cellState)
@@ -178,8 +186,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         if cellState.isSelected {
 
             calendarCell.selectedView.isHidden = false
-            calendarCell.selectedView.backgroundColor = Palette.passColor
-            calendarCell.selectedView.layer.cornerRadius = calendarCell.selectedView.frame.width / 2
+            calendarCell.selectedView.backgroundColor = Palette.selectedColor
 
         } else {
 
