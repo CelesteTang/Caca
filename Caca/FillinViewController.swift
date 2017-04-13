@@ -170,7 +170,10 @@ class FillinViewController: UIViewController {
 
         finishButton.isEnabled = false
 
-        guard let hostUID = FIRAuth.auth()?.currentUser?.uid, let date = dateLabel.text, let time = timeLabel.text, let consumingTime = consumingTimeLabel.text else {
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
+              let date = dateLabel.text,
+              let time = timeLabel.text,
+              let consumingTime = consumingTimeLabel.text else {
             return
         }
 
@@ -181,6 +184,7 @@ class FillinViewController: UIViewController {
         }
 
         let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(UUID().uuidString).jpg")
+        let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
 
         if isclicked == true {
 
@@ -207,10 +211,10 @@ class FillinViewController: UIViewController {
                                      "other": self.otherTextView.text,
                                      "photo": cacaPhotoUrl,
                                      "grading": self.ispassed,
-                                     "cacaID": "",
+                                     "cacaID": cacaID,
                                      "photoID": ""] as [String : Any]
 
-                        self.saveCacaIntoDatabase(value: value)
+                        self.saveCacaIntoDatabase(cacaID: cacaID, value: value)
 
                     }
                 })
@@ -228,19 +232,19 @@ class FillinViewController: UIViewController {
                          "other": self.otherTextView.text,
                          "photo": "",
                          "grading": self.ispassed,
-                         "cacaID": "",
+                         "cacaID": cacaID,
                          "photoID": ""] as [String : Any]
 
-            self.saveCacaIntoDatabase(value: value)
+            self.saveCacaIntoDatabase(cacaID: cacaID, value: value)
 
         }
     }
 
-    private func saveCacaIntoDatabase(value: [String : Any]) {
+    private func saveCacaIntoDatabase(cacaID: String, value: [String : Any]) {
 
         let databaseRef = FIRDatabase.database().reference()
 
-        databaseRef.child("cacas").childByAutoId().updateChildValues(value, withCompletionBlock: { (error, _) in
+        databaseRef.child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
 
 //            snapshot.observeSingleEvent(of: .value, with: {snap in
 //                print(snap)
@@ -256,6 +260,19 @@ class FillinViewController: UIViewController {
             }
 
             self.switchToRecord()
+            
+//            let cacaID = databaseRef.child("cacas").childByAutoId().key
+//            
+//            databaseRef.child("cacas").child(cacaID).updateChildValues(["cacaID": cacaID], withCompletionBlock: { (error, _) in
+//                
+//                if error != nil {
+//                    
+//                    print(error?.localizedDescription ?? "")
+//                    
+//                    return
+//                }
+//
+//            })
 
         })
     }

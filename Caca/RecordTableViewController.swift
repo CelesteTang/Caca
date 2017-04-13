@@ -129,7 +129,7 @@ class RecordTableViewController: UITableViewController {
         if editingStyle == .delete {
 
             cacas.remove(at: indexPath.row)
-            CacaProvider.shared.deleteCaca()
+            CacaProvider.shared.deleteCaca(cacaID: cacas[indexPath.row].cacaID)
 
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
