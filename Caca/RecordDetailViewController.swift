@@ -102,7 +102,7 @@ class RecordDetailViewController: UIViewController {
         self.cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
 
         self.deleteRecordButton.setTitle("Delete", for: .normal)
-        
+
         self.dateLabel.text = self.recievedCaca[0].date
         self.timeLabel.text = self.recievedCaca[0].time
         self.consumingTimeLabel.text = self.recievedCaca[0].consumingTime
@@ -110,7 +110,7 @@ class RecordDetailViewController: UIViewController {
         self.colorImageView.image = self.recievedCaca[0].color.image
         self.amountLabel.text = String(self.recievedCaca[0].amount)
         self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
-        
+
         self.passOrFailLabel.textColor = Palette.backgoundColor
         self.passOrFailLabel.layer.cornerRadius = 15
 

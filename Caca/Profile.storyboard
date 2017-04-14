@@ -94,7 +94,7 @@
                     <connections>
                         <outlet property="ageTextField" destination="Dnn-jj-xLm" id="Jzg-v2-Idh"/>
                         <outlet property="genderSegmentedControl" destination="PF6-sH-6hk" id="iJX-r8-dME"/>
-                        <outlet property="nicknameTextField" destination="SPd-gH-53c" id="fnW-jZ-9Yd"/>
+                        <outlet property="nameTextField" destination="SPd-gH-53c" id="g4E-bH-bgG"/>
                         <outlet property="profileImageView" destination="0go-Lf-FvQ" id="HGW-3c-KeV"/>
                     </connections>
                 </viewController>

@@ -61,7 +61,7 @@ class CacaViewController: UIViewController {
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     dateFormatter.timeZone = TimeZone(secondsFromGMT: 8)
                     var dayToNow = Int()
-                    
+
                     if let lastCacaDate = cacas.last?.date,
                        let date = dateFormatter.date(from: lastCacaDate) {
 
@@ -71,16 +71,16 @@ class CacaViewController: UIViewController {
 
                         case 0:
                             self.notificationLabel.text = "\(userName), you caca today."
-                            
+
                         case 1:
                             self.notificationLabel.text = "\(userName), you don't caca today."
-                            
+
                         case 2...6:
                             self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days."
-                            
+
                         case 7:
                             self.notificationLabel.text = "\(userName), you don't caca for a week."
-                            
+
                         default:
                             self.notificationLabel.text = "\(userName), you don't caca for a long time."
 
@@ -101,7 +101,7 @@ class CacaViewController: UIViewController {
     private func setUp() {
 
         self.navigationItem.title = Time().dateString()
-        
+
         self.view.backgroundColor = Palette.backgoundColor
 
         self.notificationLabel.textColor = Palette.textColor

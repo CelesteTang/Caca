@@ -185,43 +185,36 @@ class FillinViewController: UIViewController {
 
         }
 
-        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(UUID().uuidString).jpg")
         let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
 
         if isclicked == true {
 
-            if let uploadData = UIImageJPEGRepresentation(cacaPhoto.image!, 0.1) {
+            CacaProvider.shared.saveCacaPhoto(of: cacaPhoto.image!, completion: { (cacaPhotoUrl, error) in
+                
+                if error != nil {
+                    
+                    print(error?.localizedDescription ?? "storageError")
+                    
+                    return
+                }
+                
+                let value = ["host": hostUID,
+                             "date": date,
+                             "time": time,
+                             "consumingTime": consumingTime,
+                             "shape": self.shapeSegmentedControl.selectedSegmentIndex,
+                             "color": self.colorSegmentedControll.selectedSegmentIndex,
+                             "amount": Double(self.amountSlider.value),
+                             "other": self.otherTextView.text,
+                             "photo": cacaPhotoUrl,
+                             "grading": self.ispassed,
+                             "cacaID": cacaID,
+                             "photoID": ""] as [String : Any]
+                
+                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+                self.switchToRecord()
 
-                storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-
-                    if error != nil {
-
-                        print(error?.localizedDescription ?? "storageError")
-
-                        return
-                    }
-
-                    if let cacaPhotoUrl = metadata?.downloadURL()?.absoluteString {
-
-                        let value = ["host": hostUID,
-                                     "date": date,
-                                     "time": time,
-                                     "consumingTime": consumingTime,
-                                     "shape": self.shapeSegmentedControl.selectedSegmentIndex,
-                                     "color": self.colorSegmentedControll.selectedSegmentIndex,
-                                     "amount": Double(self.amountSlider.value),
-                                     "other": self.otherTextView.text,
-                                     "photo": cacaPhotoUrl,
-                                     "grading": self.ispassed,
-                                     "cacaID": cacaID,
-                                     "photoID": ""] as [String : Any]
-
-                        CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
-                        self.switchToRecord()
-
-                    }
-                })
-            }
+            })
 
         } else {
 
@@ -301,9 +294,9 @@ class FillinViewController: UIViewController {
     }
 
     func hideKeyBoard() {
-        
+
         self.otherTextView.resignFirstResponder()
-        
+
     }
 
 }

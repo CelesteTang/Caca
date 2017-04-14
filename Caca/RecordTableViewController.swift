@@ -43,7 +43,6 @@ class RecordTableViewController: UITableViewController {
         backItem.title = "Back"
         self.navigationItem.backBarButtonItem = backItem
 
-
     }
 
     // MARK: Table view data source

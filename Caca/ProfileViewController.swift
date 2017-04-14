@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
 
-    @IBOutlet weak var nicknameTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
 
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
 
@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController {
 
         if let name = UserDefaults.standard.value(forKey: "Name") as? String {
 
-            self.nicknameTextField.text = name
+            self.nameTextField.text = name
 
         }
 
@@ -67,13 +67,13 @@ class ProfileViewController: UIViewController {
         self.profileImageView.backgroundColor = Palette.backgoundColor
         self.profileImageView.image = #imageLiteral(resourceName: "poo-icon")
 
-        self.nicknameTextField.delegate = self
-        self.nicknameTextField.clearButtonMode = .whileEditing
-        self.nicknameTextField.placeholder = "Name"
-        self.nicknameTextField.textAlignment = .center
-        self.nicknameTextField.clearsOnBeginEditing = true
-        self.nicknameTextField.keyboardType = .alphabet
-        self.nicknameTextField.returnKeyType = .done
+        self.nameTextField.delegate = self
+        self.nameTextField.clearButtonMode = .whileEditing
+        self.nameTextField.placeholder = "Name"
+        self.nameTextField.textAlignment = .center
+        self.nameTextField.clearsOnBeginEditing = true
+        self.nameTextField.keyboardType = .alphabet
+        self.nameTextField.returnKeyType = .done
 
     }
 
@@ -81,7 +81,7 @@ class ProfileViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         tabBarController?.tabBar.isHidden = false
-        UserDefaults.standard.set(nicknameTextField.text, forKey: "Name")
+        UserDefaults.standard.set(nameTextField.text, forKey: "Name")
         UserDefaults.standard.set(genderSegmentedControl.selectedSegmentIndex, forKey: "Gender")
         UserDefaults.standard.set(ageTextField.text, forKey: "Age")
 
@@ -89,7 +89,7 @@ class ProfileViewController: UIViewController {
 
     func hideKeyBoard() {
 
-        self.nicknameTextField.resignFirstResponder()
+        self.nameTextField.resignFirstResponder()
         self.ageTextField.resignFirstResponder()
     }
 
@@ -105,7 +105,7 @@ extension ProfileViewController: UITextFieldDelegate {
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 
-        if textField == nicknameTextField {
+        if textField == nameTextField {
 
             self.view.bounds = CGRect(x: 0, y: 100, width: self.view.frame.size.width, height: self.view.frame.size.height)
 

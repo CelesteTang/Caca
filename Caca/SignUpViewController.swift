@@ -137,7 +137,7 @@ class SignUpViewController: UIViewController {
 
         self.nameField.delegate = self
         self.nameField.clearButtonMode = .whileEditing
-        self.nameField.placeholder = "First name"
+        self.nameField.placeholder = "Name"
         self.nameField.clearsOnBeginEditing = true
         self.nameField.returnKeyType = .done
 

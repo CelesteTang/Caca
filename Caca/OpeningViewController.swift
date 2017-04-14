@@ -21,18 +21,18 @@ class OpeningViewController: UIViewController {
     @IBAction func openingButton(_ sender: UIButton) {
 
         switch index {
-            
+
         case 0...1:
             guard let pageViewController = parent as? OpeningPageViewController else { return }
             pageViewController.forward(index: index)
-            
+
         case 2:
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
             }
 
         default: break
-            
+
         }
     }
 
@@ -53,13 +53,13 @@ class OpeningViewController: UIViewController {
         self.pageControl.currentPage = index
 
         switch index {
-            
+
         case 0...1: self.forwardButton.setTitle("Next", for: .normal)
-            
+
         case 2: self.forwardButton.setTitle("Done", for: .normal)
-            
+
         default: break
-            
+
         }
     }
 

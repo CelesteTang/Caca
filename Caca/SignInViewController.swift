@@ -53,11 +53,11 @@ class SignInViewController: UIViewController {
     }
 
     @IBAction func switchToSignUp(_ sender: UIButton) {
-        
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
         }
-        
+
     }
 
     override func viewDidLoad() {
