@@ -52,7 +52,7 @@ class RecordDetailViewController: UIViewController {
 
         setUp()
 
-        if recievedCaca[0].photo != "" {
+        if self.recievedCaca[0].photo != "" {
 
             DispatchQueue.global().async {
                 if let url = URL(string: self.recievedCaca[0].photo) {
@@ -74,15 +74,15 @@ class RecordDetailViewController: UIViewController {
             }
         }
 
-        if recievedCaca[0].grading == true {
+        if self.recievedCaca[0].grading == true {
 
-            passOrFailLabel.text = "Pass"
-            passOrFailLabel.backgroundColor = Palette.passColor
+            self.passOrFailLabel.text = "Pass"
+            self.passOrFailLabel.backgroundColor = Palette.passColor
 
         } else {
 
-            passOrFailLabel.text = "Fail"
-            passOrFailLabel.backgroundColor = Palette.failColor
+            self.passOrFailLabel.text = "Fail"
+            self.passOrFailLabel.backgroundColor = Palette.failColor
 
         }
 
@@ -93,24 +93,26 @@ class RecordDetailViewController: UIViewController {
 
     private func setUp() {
 
-        view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.backgoundColor
 
-        cacaPhoto.backgroundColor = Palette.backgoundColor
-        shapeImageView.backgroundColor = Palette.backgoundColor
-        colorImageView.backgroundColor = Palette.backgoundColor
+        self.cacaPhoto.backgroundColor = Palette.backgoundColor
+        self.shapeImageView.backgroundColor = Palette.backgoundColor
+        self.colorImageView.backgroundColor = Palette.backgoundColor
 
-        cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+        self.cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
 
-        deleteRecordButton.setTitle("Delete", for: .normal)
-        dateLabel.text = recievedCaca[0].date
-        timeLabel.text = recievedCaca[0].time
-        consumingTimeLabel.text = recievedCaca[0].consumingTime
-        shapeImageView.image = recievedCaca[0].shape.image
-        colorImageView.image = recievedCaca[0].color.image
-        amountLabel.text = String(recievedCaca[0].amount)
-        otherInfoLabel.text = recievedCaca[0].otherInfo
-        passOrFailLabel.textColor = Palette.backgoundColor
-        passOrFailLabel.layer.cornerRadius = 15
+        self.deleteRecordButton.setTitle("Delete", for: .normal)
+        
+        self.dateLabel.text = self.recievedCaca[0].date
+        self.timeLabel.text = self.recievedCaca[0].time
+        self.consumingTimeLabel.text = self.recievedCaca[0].consumingTime
+        self.shapeImageView.image = self.recievedCaca[0].shape.image
+        self.colorImageView.image = self.recievedCaca[0].color.image
+        self.amountLabel.text = String(self.recievedCaca[0].amount)
+        self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
+        
+        self.passOrFailLabel.textColor = Palette.backgoundColor
+        self.passOrFailLabel.layer.cornerRadius = 15
 
     }
 

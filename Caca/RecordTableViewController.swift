@@ -36,13 +36,13 @@ class RecordTableViewController: UITableViewController {
 
     private func setUp() {
 
-        navigationItem.title = "Record"
+        self.navigationItem.title = "Record"
+        self.view.backgroundColor = Palette.backgoundColor
 
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
-        navigationItem.backBarButtonItem = backItem
+        self.navigationItem.backBarButtonItem = backItem
 
-        view.backgroundColor = Palette.backgoundColor
 
     }
 
@@ -134,10 +134,10 @@ class RecordTableViewController: UITableViewController {
 
         if editingStyle == .delete {
 
-            CacaProvider.shared.deleteCaca(of: cacas[indexPath.row].cacaID)
-            cacas.remove(at: indexPath.row)
+            CacaProvider.shared.deleteCaca(of: self.cacas[indexPath.row].cacaID)
+            self.cacas.remove(at: indexPath.row)
 
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
 
         }
     }
