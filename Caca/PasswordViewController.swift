@@ -18,9 +18,7 @@ class PasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(UserDefaults.standard.string(forKey: "Password"))
-
-        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true {
+        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
 
             let context = LAContext()
 
@@ -82,7 +80,7 @@ extension PasswordViewController: UITextFieldDelegate {
             } else {
 
                 let alertController = UIAlertController(
-                    title: "Alert",
+                    title: "Warning",
                     message: "The password is incorrect. Try again.",
                     preferredStyle: .alert)
 

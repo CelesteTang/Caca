@@ -10,13 +10,14 @@ import UIKit
 
 enum Authentication: Int {
 
-    case password, touchID
+    case password, passwordChanging, touchID
 
     var title: String {
 
         switch self {
 
         case .password: return "Password"
+        case .passwordChanging: return "New password"
         case .touchID: return "TouchID"
 
         }
@@ -34,6 +35,14 @@ enum Authentication: Int {
 
             return passwordSwitch
 
+        case .passwordChanging:
+
+            let passwordChangingSwitch = UISwitch()
+
+            passwordChangingSwitch.isHidden = true
+
+            return passwordChangingSwitch
+
         case .touchID:
 
             let touchIDSwitch = UISwitch()
@@ -47,15 +56,34 @@ enum Authentication: Int {
 
 class PrivacyTableViewController: UITableViewController {
 
-    private let authentications: [Authentication] = [.password, .touchID]
+    private var authentications: [Authentication] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
+
+            authentications = [.password, .passwordChanging, .touchID]
+
+        } else {
+
+            authentications = [.password]
+
+        }
+
+        navigationItem.title = "Privacy"
+
         tableView.register(PrivacyTableViewCell.self, forCellReuseIdentifier: "PrivacyTableViewCell")
 
-        tableView.allowsSelection = false
+        tableView.allowsSelection = true
         tableView.backgroundColor = Palette.backgoundColor
+
+        tabBarController?.tabBar.isHidden = true
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         tabBarController?.tabBar.isHidden = true
 
@@ -64,6 +92,7 @@ class PrivacyTableViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
+
     }
 
     // MARK: - Table view data source
@@ -99,11 +128,16 @@ class PrivacyTableViewController: UITableViewController {
 
         case Authentication.password.rawValue:
 
+            cell.selectionStyle = .none
             switchButton.isOn = UserDefaults.standard.bool(forKey: "PasswordAuthentication")
             switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
 
+        case Authentication.passwordChanging.rawValue:
+            break
+
         case Authentication.touchID.rawValue:
 
+            cell.selectionStyle = .none
             switchButton.isOn = UserDefaults.standard.bool(forKey: "TouchIDAuthentication")
             switchButton.addTarget(self, action: #selector(openTouchIDAuthentication), for: .valueChanged)
 
@@ -116,16 +150,28 @@ class PrivacyTableViewController: UITableViewController {
 
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        switch indexPath.row {
+        case Authentication.passwordChanging.rawValue:
+
+            UserDefaults.standard.removeObject(forKey: "Password")
+
+            let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
+            let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController")
+
+            present(passwordViewController, animated: true)
+
+        default: break
+
+        }
+    }
+
     func openPasswordAuthentication(sender: UISwitch) {
-//
-//        guard let cell = sender.superview?.superview?.superview as? PrivacyTableViewCell, let indexPath = tableView.indexPath(for: cell) else {
-//
-//            return
-//
-//        }
 
         if sender.isOn == true {
 
+            UserDefaults.standard.removeObject(forKey: "Password")
             UserDefaults.standard.set(true, forKey: "PasswordAuthentication")
 
             let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
@@ -133,10 +179,20 @@ class PrivacyTableViewController: UITableViewController {
 
             present(passwordViewController, animated: true)
 
+            authentications.append(contentsOf: [.passwordChanging, .touchID])
+
+            UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
+
+            tableView.reloadData()
+
         } else {
 
             UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
+            UserDefaults.standard.set(false, forKey: "TouchIDAuthentication")
             UserDefaults.standard.removeObject(forKey: "Password")
+
+            authentications = [.password]
+            self.tableView.reloadData()
 
         }
 
