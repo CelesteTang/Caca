@@ -53,45 +53,47 @@ class SignInViewController: UIViewController {
     }
 
     @IBAction func switchToSignUp(_ sender: UIButton) {
+        
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
         }
+        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUp()
-        
+
     }
-    
+
     // MARK: Set Up
 
     private func setUp() {
-        
+
         view.backgroundColor = Palette.backgoundColor
         logoImageView.image = #imageLiteral(resourceName: "poo-icon")
         logoImageView.backgroundColor = Palette.backgoundColor
         signInButton.backgroundColor = Palette.textColor
-        
+
         appName.text = "Caca"
         appName.textColor = Palette.textColor
         appName.font = UIFont(name: "Courier-Bold", size: 60)
-        
+
         emailField.delegate = self
         emailField.clearButtonMode = .never
         emailField.placeholder = "Email"
         emailField.clearsOnBeginEditing = true
         emailField.keyboardType = .emailAddress
         emailField.returnKeyType = .done
-        
+
         passwordField.delegate = self
         passwordField.clearButtonMode = .never
         passwordField.placeholder = "Password"
         passwordField.clearsOnBeginEditing = true
         passwordField.isSecureTextEntry = true
         passwordField.returnKeyType = .done
-        
+
     }
 }
 

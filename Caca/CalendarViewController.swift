@@ -29,7 +29,7 @@ class CalendarViewController: UIViewController {
         super.viewDidLoad()
 
         setUp()
-        
+
         calendarView.scrollingMode = .stopAtEachCalendarFrameWidth
         self.automaticallyAdjustsScrollViewInsets = false
 
@@ -59,10 +59,10 @@ class CalendarViewController: UIViewController {
     // MARK: Set Up
 
     private func setUp() {
-    
+
         navigationItem.title = "Calendar"
         view.backgroundColor = Palette.backgoundColor
-        
+
         headerView.backgroundColor = Palette.textColor
         headerTitleLabel.textColor = Palette.backgoundColor
         adviceView.backgroundColor = Palette.backgoundColor
@@ -70,7 +70,7 @@ class CalendarViewController: UIViewController {
         adviceLabel.text = "How's today?"
 
     }
-    
+
     func monthChanged(_ visibleDates: DateSegmentInfo) {
 
         guard let startDate = visibleDates.monthDates.first else {

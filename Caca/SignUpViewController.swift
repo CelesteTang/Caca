@@ -31,15 +31,6 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var signUpButton: UIButton!
 
-    @IBAction func genderChanged(_ sender: UISegmentedControl) {
-
-        if genderSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
-
-        } else {
-
-        }
-    }
-
     @IBAction func signUp(_ sender: UIButton) {
 
         if self.nameField.text == "" {
@@ -82,12 +73,13 @@ class SignUpViewController: UIViewController {
                                      "gender": gender] as [String: Any]
 
                         UserDefaults.standard.set(name, forKey: "Name")
+                        UserDefaults.standard.set(gender, forKey: "Gender")
 
                         userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
 
                             if error != nil {
 
-                                print(error?.localizedDescription ?? "")
+                                print(error?.localizedDescription ?? "-SignUp---------Update error")
 
                                 return
                             }
@@ -113,48 +105,48 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
 
         setUp()
-        
+
     }
 
     // MARK: Set Up
 
     private func setUp() {
-    
+
         view.backgroundColor = Palette.backgoundColor
         logoImageView.image = #imageLiteral(resourceName: "poo-icon")
         logoImageView.backgroundColor = Palette.backgoundColor
         signUpButton.backgroundColor = Palette.textColor
-        
+
         appName.text = "Caca"
         appName.textColor = Palette.textColor
         appName.font = UIFont(name: "Courier-Bold", size: 60)
-        
+
         emailField.delegate = self
         emailField.clearButtonMode = .never
         emailField.placeholder = "Email"
         emailField.clearsOnBeginEditing = true
         emailField.keyboardType = .emailAddress
         emailField.returnKeyType = .done
-        
+
         passwordField.delegate = self
         passwordField.clearButtonMode = .never
         passwordField.placeholder = "Password"
         passwordField.clearsOnBeginEditing = true
         passwordField.isSecureTextEntry = true
         passwordField.returnKeyType = .done
-        
+
         nameField.delegate = self
         nameField.clearButtonMode = .whileEditing
         nameField.placeholder = "First name"
         nameField.clearsOnBeginEditing = true
         nameField.returnKeyType = .done
-        
+
         genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
         genderSegmentedControl.tintColor = Palette.textColor
-    
+
     }
-    
+
 }
 
 extension SignUpViewController: UITextFieldDelegate {

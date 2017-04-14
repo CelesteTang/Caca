@@ -36,7 +36,7 @@ class CacaViewController: UIViewController {
 
         setUp()
 
-        guard let userName = UserDefaults.standard.value(forKey: "Nickname") as? String else { return }
+        guard let userName = UserDefaults.standard.value(forKey: "Name") as? String else { return }
         notificationLabel.text = "\(userName), how's today?"
 
         if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
@@ -113,7 +113,6 @@ class CacaViewController: UIViewController {
         startButton.layer.cornerRadius = 15
         notificationLabel.numberOfLines = 0
 
-        notificationLabel.numberOfLines = 0
         startButton.setTitle("Start", for: UIControlState.normal)
         view.backgroundColor = Palette.backgoundColor
 

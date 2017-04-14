@@ -62,7 +62,7 @@ class PrivacyTableViewController: UITableViewController {
         super.viewDidLoad()
 
         setUp()
-        
+
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
 
             authentications = [.password, .passwordChanging, .touchID]
@@ -84,13 +84,13 @@ class PrivacyTableViewController: UITableViewController {
     // MARK: Set Up
 
     private func setUp() {
-        
+
         navigationItem.title = "Privacy"
 
         tableView.backgroundColor = Palette.backgoundColor
 
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 

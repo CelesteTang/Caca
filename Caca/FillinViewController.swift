@@ -263,7 +263,7 @@ class FillinViewController: UIViewController {
         ispassed = false
 
         isclicked = false
-        
+
         otherTextView.delegate = self
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
@@ -276,20 +276,20 @@ class FillinViewController: UIViewController {
     // MARK: Set Up
 
     private func setUp() {
-    
+
         cancelButton.setTitle("Cancel", for: .normal)
 
         cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
         cacaPhoto.backgroundColor = Palette.backgoundColor
-        
+
         photoButton.setTitle("Take photo", for: .normal)
         photoLibraryButton.setTitle("Pick photo from library", for: .normal)
-        
+
         dateLabel.text = Time().dateString()
         timeLabel.text = Time().timeString()
         consumingTimeLabel.text = Time.consumingTime
         view.backgroundColor = Palette.backgoundColor
-        
+
         amountSlider.thumbTintColor = Palette.textColor
         amountSlider.tintColor = UIColor.white
         amountSlider.minimumValue = 1.0
@@ -297,7 +297,7 @@ class FillinViewController: UIViewController {
         amountSlider.value = 2.0
 
     }
-    
+
     func hideKeyBoard() {
         self.otherTextView.resignFirstResponder()
     }

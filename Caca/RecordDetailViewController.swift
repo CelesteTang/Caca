@@ -51,7 +51,7 @@ class RecordDetailViewController: UIViewController {
         super.viewDidLoad()
 
         setUp()
-        
+
         if recievedCaca[0].photo != "" {
 
             DispatchQueue.global().async {
@@ -92,15 +92,15 @@ class RecordDetailViewController: UIViewController {
     // MARK: Set Up
 
     private func setUp() {
-    
+
         view.backgroundColor = Palette.backgoundColor
-        
+
         cacaPhoto.backgroundColor = Palette.backgoundColor
         shapeImageView.backgroundColor = Palette.backgoundColor
         colorImageView.backgroundColor = Palette.backgoundColor
-        
+
         cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
-        
+
         deleteRecordButton.setTitle("Delete", for: .normal)
         dateLabel.text = recievedCaca[0].date
         timeLabel.text = recievedCaca[0].time
@@ -111,9 +111,9 @@ class RecordDetailViewController: UIViewController {
         otherInfoLabel.text = recievedCaca[0].otherInfo
         passOrFailLabel.textColor = Palette.backgoundColor
         passOrFailLabel.layer.cornerRadius = 15
-    
+
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 

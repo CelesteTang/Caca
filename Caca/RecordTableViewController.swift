@@ -17,7 +17,7 @@ class RecordTableViewController: UITableViewController {
         super.viewDidLoad()
 
         setUp()
-        
+
         tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: "RecordTableViewCell")
 
         CacaProvider.shared.getCaca { (cacas, _) in
@@ -33,19 +33,19 @@ class RecordTableViewController: UITableViewController {
     }
 
     // MARK: Set Up
-    
+
     private func setUp() {
-        
+
         navigationItem.title = "Record"
-        
+
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
-        
+
         view.backgroundColor = Palette.backgoundColor
-        
+
     }
-    
+
     // MARK: Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
