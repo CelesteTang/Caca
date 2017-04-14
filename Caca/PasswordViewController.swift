@@ -50,16 +50,16 @@ class PasswordViewController: UIViewController {
 
     private func setUp() {
 
-        view.backgroundColor = Palette.backgoundColor
-        passwordLabel.text = "Please enter your password"
+        self.view.backgroundColor = Palette.backgoundColor
+        self.passwordLabel.text = "Please enter your password"
 
-        passwordField.delegate = self
-        passwordField.clearButtonMode = .never
-        passwordField.placeholder = "Password"
-        passwordField.textAlignment = .center
-        passwordField.clearsOnBeginEditing = true
-        passwordField.isSecureTextEntry = true
-        passwordField.returnKeyType = .done
+        self.passwordField.delegate = self
+        self.passwordField.clearButtonMode = .never
+        self.passwordField.placeholder = "Password"
+        self.passwordField.textAlignment = .center
+        self.passwordField.clearsOnBeginEditing = true
+        self.passwordField.isSecureTextEntry = true
+        self.passwordField.returnKeyType = .done
 
     }
 }

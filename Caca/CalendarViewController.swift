@@ -30,15 +30,15 @@ class CalendarViewController: UIViewController {
 
         setUp()
 
-        calendarView.scrollingMode = .stopAtEachCalendarFrameWidth
+        self.calendarView.scrollingMode = .stopAtEachCalendarFrameWidth
         self.automaticallyAdjustsScrollViewInsets = false
 
-        calendarView.dataSource = self
-        calendarView.delegate = self
-        calendarView.registerCellViewXib(file: "CalendarCellView")
-        calendarView.cellInset = CGPoint(x: 0, y: 0)
+        self.calendarView.dataSource = self
+        self.calendarView.delegate = self
+        self.calendarView.registerCellViewXib(file: "CalendarCellView")
+        self.calendarView.cellInset = CGPoint(x: 0, y: 0)
 
-        calendarView.scrollToDate(Date()) {
+        self.calendarView.scrollToDate(Date()) {
 
             let visibleDates = self.calendarView.visibleDates()
             self.monthChanged(visibleDates)
@@ -60,14 +60,14 @@ class CalendarViewController: UIViewController {
 
     private func setUp() {
 
-        navigationItem.title = "Calendar"
-        view.backgroundColor = Palette.backgoundColor
+        self.navigationItem.title = "Calendar"
+        self.view.backgroundColor = Palette.backgoundColor
 
-        headerView.backgroundColor = Palette.textColor
-        headerTitleLabel.textColor = Palette.backgoundColor
-        adviceView.backgroundColor = Palette.backgoundColor
-        adviceLabel.textColor = Palette.textColor
-        adviceLabel.text = "How's today?"
+        self.headerView.backgroundColor = Palette.textColor
+        self.headerTitleLabel.textColor = Palette.backgoundColor
+        self.adviceView.backgroundColor = Palette.backgoundColor
+        self.adviceLabel.textColor = Palette.textColor
+        self.adviceLabel.text = "How's today?"
 
     }
 

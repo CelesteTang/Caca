@@ -25,23 +25,23 @@ class ProfileViewController: UIViewController {
 
         if let name = UserDefaults.standard.value(forKey: "Name") as? String {
 
-            nicknameTextField.text = name
+            self.nicknameTextField.text = name
 
         }
 
         guard let gender = UserDefaults.standard.value(forKey: "Gender") as? Int else { return }
-        genderSegmentedControl.selectedSegmentIndex = gender
-        genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
-        genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
-        genderSegmentedControl.tintColor = Palette.textColor
+        self.genderSegmentedControl.selectedSegmentIndex = gender
+        self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
+        self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
+        self.genderSegmentedControl.tintColor = Palette.textColor
 
-        ageTextField.delegate = self
-        ageTextField.clearButtonMode = .whileEditing
-        ageTextField.placeholder = "Age"
-        ageTextField.textAlignment = .center
-        ageTextField.clearsOnBeginEditing = true
-        ageTextField.keyboardType = .numberPad
-        ageTextField.returnKeyType = .done
+        self.ageTextField.delegate = self
+        self.ageTextField.clearButtonMode = .whileEditing
+        self.ageTextField.placeholder = "Age"
+        self.ageTextField.textAlignment = .center
+        self.ageTextField.clearsOnBeginEditing = true
+        self.ageTextField.keyboardType = .numberPad
+        self.ageTextField.returnKeyType = .done
         if let age = UserDefaults.standard.value(forKey: "Age") as? String {
 
             ageTextField.text = age
@@ -64,16 +64,16 @@ class ProfileViewController: UIViewController {
 
         view.backgroundColor = Palette.backgoundColor
 
-        profileImageView.backgroundColor = Palette.backgoundColor
-        profileImageView.image = #imageLiteral(resourceName: "poo-icon")
+        self.profileImageView.backgroundColor = Palette.backgoundColor
+        self.profileImageView.image = #imageLiteral(resourceName: "poo-icon")
 
-        nicknameTextField.delegate = self
-        nicknameTextField.clearButtonMode = .whileEditing
-        nicknameTextField.placeholder = "Name"
-        nicknameTextField.textAlignment = .center
-        nicknameTextField.clearsOnBeginEditing = true
-        nicknameTextField.keyboardType = .alphabet
-        nicknameTextField.returnKeyType = .done
+        self.nicknameTextField.delegate = self
+        self.nicknameTextField.clearButtonMode = .whileEditing
+        self.nicknameTextField.placeholder = "Name"
+        self.nicknameTextField.textAlignment = .center
+        self.nicknameTextField.clearsOnBeginEditing = true
+        self.nicknameTextField.keyboardType = .alphabet
+        self.nicknameTextField.returnKeyType = .done
 
     }
 

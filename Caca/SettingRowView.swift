@@ -21,5 +21,6 @@ extension SettingRowView {
 
         return UINib(nibName: "SettingRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! SettingRowView
     }
+    // swiftlint:enable force_cast
+
 }
-// swiftlint:enable force_cast

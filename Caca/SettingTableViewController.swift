@@ -33,10 +33,10 @@ class SettingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Setting"
-        view.backgroundColor = Palette.backgoundColor
+        self.navigationItem.title = "Setting"
+        self.view.backgroundColor = Palette.backgoundColor
 
-        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "SettingTableViewCell")
+        self.tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "SettingTableViewCell")
     }
 
     // MARK: - Table view data source
@@ -82,24 +82,8 @@ class SettingTableViewController: UITableViewController {
 
             self.navigationController?.pushViewController(viewController, animated: true)
 
-//        case Setting.notification.rawValue:
-//
-//            let storyBoard = UIStoryboard(name: "Notification", bundle: nil)
-//            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "NotificationViewController") as? NotificationViewController else { return }
-//
-//            self.navigationController?.pushViewController(viewController, animated: true)
-//
-//        case Setting.language.rawValue:
-//
-//            let storyBoard = UIStoryboard(name: "Language", bundle: nil)
-//            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "LanguageViewController") as? LanguageViewController else { return }
-//
-//            self.navigationController?.pushViewController(viewController, animated: true)
-
         default: break
 
         }
-
     }
-
 }

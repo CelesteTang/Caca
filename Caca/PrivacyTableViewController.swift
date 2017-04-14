@@ -73,9 +73,9 @@ class PrivacyTableViewController: UITableViewController {
 
         }
 
-        tableView.register(PrivacyTableViewCell.self, forCellReuseIdentifier: "PrivacyTableViewCell")
+        self.tableView.register(PrivacyTableViewCell.self, forCellReuseIdentifier: "PrivacyTableViewCell")
 
-        tableView.allowsSelection = true
+        self.tableView.allowsSelection = true
 
         tabBarController?.tabBar.isHidden = true
 
@@ -85,9 +85,9 @@ class PrivacyTableViewController: UITableViewController {
 
     private func setUp() {
 
-        navigationItem.title = "Privacy"
+        self.navigationItem.title = "Privacy"
 
-        tableView.backgroundColor = Palette.backgoundColor
+        self.tableView.backgroundColor = Palette.backgoundColor
 
     }
 

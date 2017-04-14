@@ -21,5 +21,6 @@ extension PrivacyRowView {
 
         return UINib(nibName: "PrivacyRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! PrivacyRowView
     }
+    // swiftlint:enable force_cast
+
 }
-// swiftlint:enable force_cast
