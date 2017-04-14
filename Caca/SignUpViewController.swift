@@ -9,6 +9,12 @@
 import UIKit
 import Firebase
 
+enum Gender: Int {
+
+    case male, female
+
+}
+
 class SignUpViewController: UIViewController {
 
     @IBOutlet weak var logoImageView: UIImageView!
@@ -21,9 +27,18 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var nameField: UITextField!
 
-    @IBOutlet weak var lastNameField: UITextField!
+    @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
 
     @IBOutlet weak var signUpButton: UIButton!
+
+    @IBAction func genderChanged(_ sender: UISegmentedControl) {
+
+        if genderSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
+
+        } else {
+
+        }
+    }
 
     @IBAction func signUp(_ sender: UIButton) {
 
@@ -31,18 +46,6 @@ class SignUpViewController: UIViewController {
 
             let alertController = UIAlertController(title: "Warning",
                                                     message: "Please enter your name",
-                                                    preferredStyle: UIAlertControllerStyle.alert)
-
-            alertController.addAction(UIAlertAction(title: "OK",
-                                                    style: UIAlertActionStyle.default,
-                                                    handler: nil))
-
-            self.present(alertController, animated: true, completion: nil)
-
-        } else if self.lastNameField.text == "" {
-
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter your last name",
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -71,21 +74,14 @@ class SignUpViewController: UIViewController {
 
                         let userRef = rootRef.child("users").child(uid)
 
-                        guard let name = self.nameField.text,
-                              let lastName = self.lastNameField.text else {
+                        guard let name = self.nameField.text else { return }
 
-                                return
-
-                        }
-
-                        let CID = UUID().uuidString
+                        let gender = self.genderSegmentedControl.selectedSegmentIndex
 
                         let value = ["name": name,
-                                     "lastName": lastName,
-                                     "CID": CID] as [String : String]
+                                     "gender": gender] as [String: Any]
 
                         UserDefaults.standard.set(name, forKey: "Name")
-                        UserDefaults.standard.set(CID, forKey: "CID")
 
                         userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
 
@@ -116,42 +112,47 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUp()
+        
+    }
+
+    private func setUp() {
+    
         view.backgroundColor = Palette.backgoundColor
         logoImageView.image = #imageLiteral(resourceName: "poo-icon")
         logoImageView.backgroundColor = Palette.backgoundColor
         signUpButton.backgroundColor = Palette.textColor
-
+        
         appName.text = "Caca"
         appName.textColor = Palette.textColor
         appName.font = UIFont(name: "Courier-Bold", size: 60)
-
+        
         emailField.delegate = self
         emailField.clearButtonMode = .never
         emailField.placeholder = "Email"
         emailField.clearsOnBeginEditing = true
         emailField.keyboardType = .emailAddress
         emailField.returnKeyType = .done
-
+        
         passwordField.delegate = self
         passwordField.clearButtonMode = .never
         passwordField.placeholder = "Password"
         passwordField.clearsOnBeginEditing = true
         passwordField.isSecureTextEntry = true
         passwordField.returnKeyType = .done
-
+        
         nameField.delegate = self
         nameField.clearButtonMode = .whileEditing
         nameField.placeholder = "First name"
         nameField.clearsOnBeginEditing = true
         nameField.returnKeyType = .done
-
-        lastNameField.delegate = self
-        lastNameField.clearButtonMode = .whileEditing
-        lastNameField.placeholder = "Last name"
-        lastNameField.clearsOnBeginEditing = true
-        lastNameField.returnKeyType = .done
+        
+        genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
+        genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
+        genderSegmentedControl.tintColor = Palette.textColor
+    
     }
-
+    
 }
 
 extension SignUpViewController: UITextFieldDelegate {

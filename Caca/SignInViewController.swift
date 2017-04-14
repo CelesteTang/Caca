@@ -61,30 +61,36 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUp()
+        
+    }
+
+    private func setUp() {
+        
         view.backgroundColor = Palette.backgoundColor
         logoImageView.image = #imageLiteral(resourceName: "poo-icon")
         logoImageView.backgroundColor = Palette.backgoundColor
         signInButton.backgroundColor = Palette.textColor
-
+        
         appName.text = "Caca"
         appName.textColor = Palette.textColor
         appName.font = UIFont(name: "Courier-Bold", size: 60)
-
+        
         emailField.delegate = self
         emailField.clearButtonMode = .never
         emailField.placeholder = "Email"
         emailField.clearsOnBeginEditing = true
         emailField.keyboardType = .emailAddress
         emailField.returnKeyType = .done
-
+        
         passwordField.delegate = self
         passwordField.clearButtonMode = .never
         passwordField.placeholder = "Password"
         passwordField.clearsOnBeginEditing = true
         passwordField.isSecureTextEntry = true
         passwordField.returnKeyType = .done
+        
     }
-
 }
 
 extension SignInViewController: UITextFieldDelegate {

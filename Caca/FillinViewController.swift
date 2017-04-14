@@ -258,31 +258,12 @@ class FillinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        cancelButton.setTitle("Cancel", for: .normal)
-
-        otherTextView.delegate = self
+        setUp()
 
         ispassed = false
 
         isclicked = false
-
-        cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
-        cacaPhoto.backgroundColor = Palette.backgoundColor
-
-        photoButton.setTitle("Take photo", for: .normal)
-        photoLibraryButton.setTitle("Pick photo from library", for: .normal)
-
-        dateLabel.text = Time().dateString()
-        timeLabel.text = Time().timeString()
-        consumingTimeLabel.text = Time.consumingTime
-        view.backgroundColor = Palette.backgoundColor
-
-        amountSlider.thumbTintColor = Palette.textColor
-        amountSlider.tintColor = UIColor.white
-        amountSlider.minimumValue = 1.0
-        amountSlider.maximumValue = 3.0
-        amountSlider.value = 2.0
-
+        
         otherTextView.delegate = self
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
@@ -292,6 +273,29 @@ class FillinViewController: UIViewController {
         finishButton.isEnabled = true
     }
 
+    private func setUp() {
+    
+        cancelButton.setTitle("Cancel", for: .normal)
+
+        cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+        cacaPhoto.backgroundColor = Palette.backgoundColor
+        
+        photoButton.setTitle("Take photo", for: .normal)
+        photoLibraryButton.setTitle("Pick photo from library", for: .normal)
+        
+        dateLabel.text = Time().dateString()
+        timeLabel.text = Time().timeString()
+        consumingTimeLabel.text = Time.consumingTime
+        view.backgroundColor = Palette.backgoundColor
+        
+        amountSlider.thumbTintColor = Palette.textColor
+        amountSlider.tintColor = UIColor.white
+        amountSlider.minimumValue = 1.0
+        amountSlider.maximumValue = 3.0
+        amountSlider.value = 2.0
+
+    }
+    
     func hideKeyBoard() {
         self.otherTextView.resignFirstResponder()
     }

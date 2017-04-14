@@ -34,21 +34,10 @@ class CacaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var dayToNow = Int()
+        setUp()
 
         guard let userName = UserDefaults.standard.value(forKey: "Nickname") as? String else { return }
-
-        navigationItem.title = Time().dateString()
-        notificationLabel.textColor = Palette.textColor
-        startButton.backgroundColor = Palette.textColor
-        startButton.tintColor = Palette.backgoundColor
-        startButton.layer.cornerRadius = 15
-        notificationLabel.numberOfLines = 0
         notificationLabel.text = "\(userName), how's today?"
-
-        notificationLabel.numberOfLines = 0
-        startButton.setTitle("Start", for: UIControlState.normal)
-        view.backgroundColor = Palette.backgoundColor
 
         if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
 
@@ -64,6 +53,8 @@ class CacaViewController: UIViewController {
             }
 
         }
+
+        var dayToNow = Int()
 
         CacaProvider.shared.getCaca { (cacas, _) in
 
@@ -108,6 +99,21 @@ class CacaViewController: UIViewController {
             }
 
         }
+
+    }
+
+    func setUp() {
+
+        navigationItem.title = Time().dateString()
+        notificationLabel.textColor = Palette.textColor
+        startButton.backgroundColor = Palette.textColor
+        startButton.tintColor = Palette.backgoundColor
+        startButton.layer.cornerRadius = 15
+        notificationLabel.numberOfLines = 0
+
+        notificationLabel.numberOfLines = 0
+        startButton.setTitle("Start", for: UIControlState.normal)
+        view.backgroundColor = Palette.backgoundColor
 
     }
 

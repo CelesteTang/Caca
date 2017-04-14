@@ -165,15 +165,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mZf-Hg-OYP">
-                                <rect key="frame" x="40" y="486" width="294" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="GET-lj-d3A"/>
-                                </constraints>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cf-Ud-ekb">
                                 <rect key="frame" x="40" y="543" width="294" height="44"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -188,6 +179,16 @@
                                     <action selector="signUp:" destination="NcG-4j-OtU" eventType="touchUpInside" id="vBM-bH-h1s"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-CQ-WXH">
+                                <rect key="frame" x="40" y="486" width="294" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="SWL-rM-noT"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klL-lZ-cAV">
                                 <rect key="frame" x="85" y="587" width="137" height="44"/>
                                 <constraints>
@@ -220,17 +221,17 @@
                             <constraint firstItem="xJT-tJ-TBK" firstAttribute="top" secondItem="2cf-Ud-ekb" secondAttribute="bottom" constant="80" id="12D-8V-3sh"/>
                             <constraint firstItem="Lqb-6T-Kjy" firstAttribute="trailing" secondItem="2cf-Ud-ekb" secondAttribute="trailing" constant="-45" id="2Bb-qZ-IN1"/>
                             <constraint firstItem="klL-lZ-cAV" firstAttribute="leading" secondItem="2cf-Ud-ekb" secondAttribute="leading" constant="45" id="34c-Gd-3Gc"/>
-                            <constraint firstItem="mZf-Hg-OYP" firstAttribute="trailing" secondItem="BwG-Ip-RRq" secondAttribute="trailing" id="49x-U9-P9h"/>
                             <constraint firstItem="keq-Me-jsQ" firstAttribute="trailing" secondItem="BwG-Ip-RRq" secondAttribute="trailing" id="4lM-iz-LnW"/>
                             <constraint firstItem="tJ4-EE-sRL" firstAttribute="top" secondItem="QWt-YF-YiT" secondAttribute="bottom" constant="250" id="4sX-3H-LEn"/>
                             <constraint firstItem="Lqb-6T-Kjy" firstAttribute="top" secondItem="klL-lZ-cAV" secondAttribute="top" id="6QA-VW-7JD"/>
-                            <constraint firstItem="mZf-Hg-OYP" firstAttribute="top" secondItem="L0i-cS-cKl" secondAttribute="bottom" constant="8" id="8ih-sc-0Kn"/>
+                            <constraint firstItem="2cf-Ud-ekb" firstAttribute="leading" secondItem="t7m-CQ-WXH" secondAttribute="leading" id="7Wc-Qt-59M"/>
                             <constraint firstItem="tJ4-EE-sRL" firstAttribute="centerX" secondItem="XbP-4j-lgY" secondAttribute="centerX" id="9XZ-eY-is9"/>
-                            <constraint firstItem="2cf-Ud-ekb" firstAttribute="leading" secondItem="mZf-Hg-OYP" secondAttribute="leading" id="9l5-u5-gsx"/>
+                            <constraint firstItem="t7m-CQ-WXH" firstAttribute="top" secondItem="L0i-cS-cKl" secondAttribute="bottom" constant="8" id="Bhd-BJ-SWR"/>
                             <constraint firstItem="L0i-cS-cKl" firstAttribute="leading" secondItem="BwG-Ip-RRq" secondAttribute="leading" id="FRf-La-0gP"/>
                             <constraint firstItem="Sek-ws-gfk" firstAttribute="centerX" secondItem="XbP-4j-lgY" secondAttribute="centerX" id="GRd-2x-fkl"/>
                             <constraint firstItem="BwG-Ip-RRq" firstAttribute="leading" secondItem="XbP-4j-lgY" secondAttribute="leading" constant="40" id="Hnn-AQ-0tD"/>
-                            <constraint firstItem="2cf-Ud-ekb" firstAttribute="trailing" secondItem="mZf-Hg-OYP" secondAttribute="trailing" id="Io0-PI-DvH"/>
+                            <constraint firstItem="t7m-CQ-WXH" firstAttribute="trailing" secondItem="L0i-cS-cKl" secondAttribute="trailing" id="PKN-iZ-f1R"/>
+                            <constraint firstItem="2cf-Ud-ekb" firstAttribute="trailing" secondItem="t7m-CQ-WXH" secondAttribute="trailing" id="Uif-8N-hVQ"/>
                             <constraint firstItem="klL-lZ-cAV" firstAttribute="top" secondItem="2cf-Ud-ekb" secondAttribute="bottom" id="VzF-xP-mWb"/>
                             <constraint firstItem="BwG-Ip-RRq" firstAttribute="top" secondItem="tJ4-EE-sRL" secondAttribute="bottom" id="XJb-qe-1MV"/>
                             <constraint firstItem="Lqb-6T-Kjy" firstAttribute="bottom" secondItem="klL-lZ-cAV" secondAttribute="bottom" id="XvQ-TH-AHC"/>
@@ -239,13 +240,13 @@
                             <constraint firstItem="BwG-Ip-RRq" firstAttribute="centerX" secondItem="XbP-4j-lgY" secondAttribute="centerX" id="eQ1-UP-NkL"/>
                             <constraint firstItem="keq-Me-jsQ" firstAttribute="top" secondItem="BwG-Ip-RRq" secondAttribute="bottom" constant="8" id="gmn-8J-1CA"/>
                             <constraint firstItem="2cf-Ud-ekb" firstAttribute="centerX" secondItem="XbP-4j-lgY" secondAttribute="centerX" id="tq0-Zg-4vN"/>
-                            <constraint firstItem="mZf-Hg-OYP" firstAttribute="leading" secondItem="BwG-Ip-RRq" secondAttribute="leading" id="z2S-GR-eiO"/>
+                            <constraint firstItem="t7m-CQ-WXH" firstAttribute="leading" secondItem="L0i-cS-cKl" secondAttribute="leading" id="zoY-fD-tg3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="appName" destination="tJ4-EE-sRL" id="1sx-6y-047"/>
                         <outlet property="emailField" destination="BwG-Ip-RRq" id="nc4-tt-vs9"/>
-                        <outlet property="lastNameField" destination="mZf-Hg-OYP" id="cUD-la-YND"/>
+                        <outlet property="genderSegmentedControl" destination="t7m-CQ-WXH" id="s4l-tv-UY5"/>
                         <outlet property="logoImageView" destination="Sek-ws-gfk" id="ke3-EV-IGg"/>
                         <outlet property="nameField" destination="L0i-cS-cKl" id="0fv-Hc-8UU"/>
                         <outlet property="passwordField" destination="keq-Me-jsQ" id="fSa-W3-jGz"/>
@@ -254,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t6G-2w-9wM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1532" y="63"/>
+            <point key="canvasLocation" x="1532" y="62.518740629685162"/>
         </scene>
     </scenes>
 </document>

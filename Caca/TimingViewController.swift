@@ -108,23 +108,29 @@ class TimingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUp()
+
+    }
+
+    private func setUp() {
+    
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
         self.timerLabel.textColor = Palette.textColor
         self.timerLabel.text = "00:00:00"
-
+        
         self.startButton.setTitle("Start", for: UIControlState.normal)
         self.pauseButton.setTitle("Pause", for: UIControlState.normal)
         self.resetButton.setTitle("Reset", for: UIControlState.normal)
         self.finishButton.setTitle("Finish", for: UIControlState.normal)
         self.cancelButton.setTitle("Cancel", for: .normal)
-
+        
         self.pauseButton.isEnabled = false
         self.resetButton.isEnabled = false
-
+        
         view.backgroundColor = Palette.backgoundColor
-
+        
     }
-
+    
     func runTimer() {
 
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimingViewController.updateTimer), userInfo: nil, repeats: true)

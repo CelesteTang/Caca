@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum Gender: Int {
-
-    case male, female
-
-}
-
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -23,19 +17,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
 
     @IBOutlet weak var ageTextField: UITextField!
-
-    @IBAction func genderChanged(_ sender: UISegmentedControl) {
-
-        if genderSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
-
-            profileImageView.image = #imageLiteral(resourceName: "poo-icon")
-
-        } else {
-
-            profileImageView.image = UIImage(named: "")
-
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
