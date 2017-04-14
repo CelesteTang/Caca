@@ -112,6 +112,8 @@ class TimingViewController: UIViewController {
 
     }
 
+    // MARK: Set Up
+
     private func setUp() {
     
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)

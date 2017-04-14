@@ -116,6 +116,8 @@ class SignUpViewController: UIViewController {
         
     }
 
+    // MARK: Set Up
+
     private func setUp() {
     
         view.backgroundColor = Palette.backgoundColor

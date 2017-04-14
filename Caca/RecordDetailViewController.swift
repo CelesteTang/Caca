@@ -50,14 +50,8 @@ class RecordDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Palette.backgoundColor
-
-        cacaPhoto.backgroundColor = Palette.backgoundColor
-        shapeImageView.backgroundColor = Palette.backgoundColor
-        colorImageView.backgroundColor = Palette.backgoundColor
-
-        cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
-
+        setUp()
+        
         if recievedCaca[0].photo != "" {
 
             DispatchQueue.global().async {
@@ -80,17 +74,6 @@ class RecordDetailViewController: UIViewController {
             }
         }
 
-        deleteRecordButton.setTitle("Delete", for: .normal)
-        dateLabel.text = recievedCaca[0].date
-        timeLabel.text = recievedCaca[0].time
-        consumingTimeLabel.text = recievedCaca[0].consumingTime
-        shapeImageView.image = recievedCaca[0].shape.image
-        colorImageView.image = recievedCaca[0].color.image
-        amountLabel.text = String(recievedCaca[0].amount)
-        otherInfoLabel.text = recievedCaca[0].otherInfo
-        passOrFailLabel.textColor = Palette.backgoundColor
-        passOrFailLabel.layer.cornerRadius = 15
-
         if recievedCaca[0].grading == true {
 
             passOrFailLabel.text = "Pass"
@@ -106,6 +89,31 @@ class RecordDetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
 
+    // MARK: Set Up
+
+    private func setUp() {
+    
+        view.backgroundColor = Palette.backgoundColor
+        
+        cacaPhoto.backgroundColor = Palette.backgoundColor
+        shapeImageView.backgroundColor = Palette.backgoundColor
+        colorImageView.backgroundColor = Palette.backgoundColor
+        
+        cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+        
+        deleteRecordButton.setTitle("Delete", for: .normal)
+        dateLabel.text = recievedCaca[0].date
+        timeLabel.text = recievedCaca[0].time
+        consumingTimeLabel.text = recievedCaca[0].consumingTime
+        shapeImageView.image = recievedCaca[0].shape.image
+        colorImageView.image = recievedCaca[0].color.image
+        amountLabel.text = String(recievedCaca[0].amount)
+        otherInfoLabel.text = recievedCaca[0].otherInfo
+        passOrFailLabel.textColor = Palette.backgoundColor
+        passOrFailLabel.layer.cornerRadius = 15
+    
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 

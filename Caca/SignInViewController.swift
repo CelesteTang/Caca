@@ -64,6 +64,8 @@ class SignInViewController: UIViewController {
         setUp()
         
     }
+    
+    // MARK: Set Up
 
     private func setUp() {
         

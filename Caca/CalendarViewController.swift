@@ -25,22 +25,13 @@ class CalendarViewController: UIViewController {
 
     var cacas = [Caca]()
 
-//    var aFewAdvice = [String]()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUp()
+        
         calendarView.scrollingMode = .stopAtEachCalendarFrameWidth
         self.automaticallyAdjustsScrollViewInsets = false
-
-        navigationItem.title = "Calendar"
-        view.backgroundColor = Palette.backgoundColor
-
-        headerView.backgroundColor = Palette.textColor
-        headerTitleLabel.textColor = Palette.backgoundColor
-        adviceView.backgroundColor = Palette.backgoundColor
-        adviceLabel.textColor = Palette.textColor
-        adviceLabel.text = "How's today?"
 
         calendarView.dataSource = self
         calendarView.delegate = self
@@ -63,20 +54,23 @@ class CalendarViewController: UIViewController {
             self.calendarView.reloadData()
         }
 
-//        let manager = AdviceManager.shared
-//
-//        manager.getAdvice { (advice) in
-//
-//            if let advice = advice {
-//
-//                self.aFewAdvice = advice
-//                print(self.aFewAdvice.count)
-//
-//            }
-//        }
-
     }
 
+    // MARK: Set Up
+
+    private func setUp() {
+    
+        navigationItem.title = "Calendar"
+        view.backgroundColor = Palette.backgoundColor
+        
+        headerView.backgroundColor = Palette.textColor
+        headerTitleLabel.textColor = Palette.backgoundColor
+        adviceView.backgroundColor = Palette.backgoundColor
+        adviceLabel.textColor = Palette.textColor
+        adviceLabel.text = "How's today?"
+
+    }
+    
     func monthChanged(_ visibleDates: DateSegmentInfo) {
 
         guard let startDate = visibleDates.monthDates.first else {

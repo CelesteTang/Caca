@@ -102,7 +102,9 @@ class CacaViewController: UIViewController {
 
     }
 
-    func setUp() {
+    // MARK: Set Up
+
+    private func setUp() {
 
         navigationItem.title = Time().dateString()
         notificationLabel.textColor = Palette.textColor

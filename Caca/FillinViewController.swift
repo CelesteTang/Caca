@@ -273,6 +273,8 @@ class FillinViewController: UIViewController {
         finishButton.isEnabled = true
     }
 
+    // MARK: Set Up
+
     private func setUp() {
     
         cancelButton.setTitle("Cancel", for: .normal)
