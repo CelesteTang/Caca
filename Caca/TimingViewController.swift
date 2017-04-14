@@ -116,6 +116,8 @@ class TimingViewController: UIViewController {
 
     private func setUp() {
 
+        self.view.backgroundColor = Palette.backgoundColor
+
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
         self.timerLabel.textColor = Palette.textColor
         self.timerLabel.text = "00:00:00"
@@ -128,8 +130,6 @@ class TimingViewController: UIViewController {
 
         self.pauseButton.isEnabled = false
         self.resetButton.isEnabled = false
-
-        self.view.backgroundColor = Palette.backgoundColor
 
     }
 

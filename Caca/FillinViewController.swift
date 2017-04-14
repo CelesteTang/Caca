@@ -277,6 +277,8 @@ class FillinViewController: UIViewController {
 
     private func setUp() {
 
+        self.view.backgroundColor = Palette.backgoundColor
+
         self.cancelButton.setTitle("Cancel", for: .normal)
 
         self.cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
@@ -285,10 +287,10 @@ class FillinViewController: UIViewController {
         self.photoButton.setTitle("Take photo", for: .normal)
         self.photoLibraryButton.setTitle("Pick photo from library", for: .normal)
 
-        self.dateLabel.text = Time().dateString()
-        self.timeLabel.text = Time().timeString()
+        let time = Time()
+        self.dateLabel.text = time.dateString()
+        self.timeLabel.text = time.timeString()
         self.consumingTimeLabel.text = Time.consumingTime
-        self.view.backgroundColor = Palette.backgoundColor
 
         self.amountSlider.thumbTintColor = Palette.textColor
         self.amountSlider.tintColor = UIColor.white
@@ -299,7 +301,9 @@ class FillinViewController: UIViewController {
     }
 
     func hideKeyBoard() {
+        
         self.otherTextView.resignFirstResponder()
+        
     }
 
 }
@@ -350,7 +354,7 @@ extension FillinViewController: UITextViewDelegate {
 
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
 
-        if textView == otherTextView {
+        if textView == self.otherTextView {
 
             self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
 

@@ -27,5 +27,6 @@ extension RecordRowView {
 
         return UINib(nibName: "RecordRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! RecordRowView
     }
+    // swiftlint:enable force_cast
+
 }
-// swiftlint:enable force_cast
