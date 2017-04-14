@@ -61,6 +61,8 @@ class PrivacyTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUp()
+        
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
 
             authentications = [.password, .passwordChanging, .touchID]
@@ -71,17 +73,24 @@ class PrivacyTableViewController: UITableViewController {
 
         }
 
-        navigationItem.title = "Privacy"
-
         tableView.register(PrivacyTableViewCell.self, forCellReuseIdentifier: "PrivacyTableViewCell")
 
         tableView.allowsSelection = true
-        tableView.backgroundColor = Palette.backgoundColor
 
         tabBarController?.tabBar.isHidden = true
 
     }
 
+    // MARK: Set Up
+
+    private func setUp() {
+        
+        navigationItem.title = "Privacy"
+
+        tableView.backgroundColor = Palette.backgoundColor
+
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 

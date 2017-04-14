@@ -18,6 +18,8 @@ class PasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUp()
+        
         if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
 
             let context = LAContext()
@@ -42,9 +44,15 @@ class PasswordViewController: UIViewController {
             }
         }
 
+    }
+
+    // MARK: Set Up
+
+    private func setUp() {
+    
         view.backgroundColor = Palette.backgoundColor
         passwordLabel.text = "Please enter your password"
-
+        
         passwordField.delegate = self
         passwordField.clearButtonMode = .never
         passwordField.placeholder = "Password"
@@ -52,9 +60,8 @@ class PasswordViewController: UIViewController {
         passwordField.clearsOnBeginEditing = true
         passwordField.isSecureTextEntry = true
         passwordField.returnKeyType = .done
-
+        
     }
-
 }
 
 extension PasswordViewController: UITextFieldDelegate {

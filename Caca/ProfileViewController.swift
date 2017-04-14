@@ -21,20 +21,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Profile"
-
-        view.backgroundColor = Palette.backgoundColor
-
-        profileImageView.backgroundColor = Palette.backgoundColor
-        profileImageView.image = #imageLiteral(resourceName: "poo-icon")
-
-        nicknameTextField.delegate = self
-        nicknameTextField.clearButtonMode = .whileEditing
-        nicknameTextField.placeholder = "Name"
-        nicknameTextField.textAlignment = .center
-        nicknameTextField.clearsOnBeginEditing = true
-        nicknameTextField.keyboardType = .alphabet
-        nicknameTextField.returnKeyType = .done
+        setUp()
+        
         if let name = UserDefaults.standard.value(forKey: "Name") as? String {
 
             nicknameTextField.text = name
@@ -68,6 +56,27 @@ class ProfileViewController: UIViewController {
 
     }
 
+    // MARK: Set Up
+
+    private func setUp() {
+    
+        navigationItem.title = "Profile"
+        
+        view.backgroundColor = Palette.backgoundColor
+        
+        profileImageView.backgroundColor = Palette.backgoundColor
+        profileImageView.image = #imageLiteral(resourceName: "poo-icon")
+        
+        nicknameTextField.delegate = self
+        nicknameTextField.clearButtonMode = .whileEditing
+        nicknameTextField.placeholder = "Name"
+        nicknameTextField.textAlignment = .center
+        nicknameTextField.clearsOnBeginEditing = true
+        nicknameTextField.keyboardType = .alphabet
+        nicknameTextField.returnKeyType = .done
+    
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
