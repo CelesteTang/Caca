@@ -16,14 +16,7 @@ class CacaViewController: UIViewController {
 
     @IBOutlet weak var startButton: UIButton!
 
-    var cacas = [Caca]()
-
     @IBAction func switchToTiming(_ sender: UIButton) {
-
-//        let timingStorybard = UIStoryboard(name: "Timing", bundle: nil)
-//        let timingViewController = timingStorybard.instantiateViewController(withIdentifier: "TimingViewController")
-//
-//        present(timingViewController, animated: true)
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Timing", bundle: nil).instantiateViewController(withIdentifier: "TimingViewController") as? TimingViewController
@@ -54,13 +47,9 @@ class CacaViewController: UIViewController {
 
         }
 
-        var dayToNow = Int()
-
         CacaProvider.shared.getCaca { (cacas, _) in
 
             if let cacas = cacas {
-
-                self.cacas = cacas
 
                 if cacas.last?.date == nil {
 
@@ -71,7 +60,8 @@ class CacaViewController: UIViewController {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     dateFormatter.timeZone = TimeZone(secondsFromGMT: 8)
-
+                    var dayToNow = Int()
+                    
                     if let lastCacaDate = cacas.last?.date,
                        let date = dateFormatter.date(from: lastCacaDate) {
 
@@ -81,12 +71,16 @@ class CacaViewController: UIViewController {
 
                         case 0:
                             self.notificationLabel.text = "\(userName), you caca today."
+                            
                         case 1:
                             self.notificationLabel.text = "\(userName), you don't caca today."
+                            
                         case 2...6:
                             self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days."
+                            
                         case 7:
                             self.notificationLabel.text = "\(userName), you don't caca for a week."
+                            
                         default:
                             self.notificationLabel.text = "\(userName), you don't caca for a long time."
 
@@ -107,14 +101,16 @@ class CacaViewController: UIViewController {
     private func setUp() {
 
         navigationItem.title = Time().dateString()
+        
+        view.backgroundColor = Palette.backgoundColor
+
         notificationLabel.textColor = Palette.textColor
+        notificationLabel.numberOfLines = 0
+
         startButton.backgroundColor = Palette.textColor
         startButton.tintColor = Palette.backgoundColor
         startButton.layer.cornerRadius = 15
-        notificationLabel.numberOfLines = 0
-
         startButton.setTitle("Start", for: UIControlState.normal)
-        view.backgroundColor = Palette.backgoundColor
 
     }
 
