@@ -81,7 +81,8 @@ class ProfileViewController: UIViewController {
 
         if let CID = UserDefaults.standard.value(forKey: "CID") as? String {
 
-            CIDLabel.text = CID
+            let index = CID.index(CID.startIndex, offsetBy: 8)
+            CIDLabel.text = CID.substring(to: index)
 
         }
 
