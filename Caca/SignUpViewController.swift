@@ -78,10 +78,15 @@ class SignUpViewController: UIViewController {
                                 
                         }
                         
+                        let CID = UUID().uuidString
+                        
                         let value = ["firstName": firstName,
                                      "lastName": lastName,
-                                     "CID": UUID().uuidString] as [String : String]
-
+                                     "CID": CID] as [String : String]
+                        
+                        UserDefaults.standard.set(firstName, forKey: "Nickname")
+                        UserDefaults.standard.set(CID, forKey: "CID")
+                        
                         userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
 
                             if error != nil {

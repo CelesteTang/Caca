@@ -79,8 +79,12 @@ class ProfileViewController: UIViewController {
 
         }
 
-        CIDLabel.text = "kdnlknihuifnkldnkdby"
-
+        if let CID = UserDefaults.standard.value(forKey: "CID") as? String {
+        
+            CIDLabel.text = CID
+        
+        }
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
