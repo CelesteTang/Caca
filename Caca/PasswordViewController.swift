@@ -18,25 +18,30 @@ class PasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let context = LAContext()
+        print(UserDefaults.standard.string(forKey: "Password"))
 
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true {
 
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use TouchID to enter Caca", reply: { (success, _) in
+            let context = LAContext()
 
-                if success {
-                    DispatchQueue.main.async {
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
 
-                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use TouchID to enter Caca", reply: { (success, _) in
 
-                        appDelegate.window?.rootViewController = tabBarController
+                    if success {
+                        DispatchQueue.main.async {
 
+                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+                                appDelegate.window?.rootViewController = tabBarController
+
+                            }
+                        }
                     }
-                    }
-                }
 
-            })
+                })
 
+            }
         }
 
         view.backgroundColor = Palette.backgoundColor
@@ -50,8 +55,6 @@ class PasswordViewController: UIViewController {
         passwordField.isSecureTextEntry = true
         passwordField.returnKeyType = .done
 
-        UserDefaults.standard.set("1234", forKey: "Password")
-
     }
 
 }
@@ -61,11 +64,39 @@ extension PasswordViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
 
-        if passwordField.text == UserDefaults.standard.value(forKey: "Password") as? String {
+        if UserDefaults.standard.string(forKey: "Password") == nil {
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+            UserDefaults.standard.set(passwordField.text, forKey: "Password")
 
+            dismiss(animated: true, completion: nil)
+
+        } else {
+
+            if passwordField.text == UserDefaults.standard.value(forKey: "Password") as? String {
+
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+                }
+
+            } else {
+
+                let alertController = UIAlertController(
+                    title: "Alert",
+                    message: "The password is incorrect. Try again.",
+                    preferredStyle: .alert)
+
+                let okAction = UIAlertAction(
+                    title: "OK",
+                    style: .default,
+                    handler: nil)
+
+                alertController.addAction(okAction)
+
+                self.present(
+                    alertController,
+                    animated: true,
+                    completion: nil)
             }
         }
 

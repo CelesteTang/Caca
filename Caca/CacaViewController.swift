@@ -37,7 +37,7 @@ class CacaViewController: UIViewController {
         var dayToNow = Int()
 
         guard let userName = UserDefaults.standard.value(forKey: "Nickname") as? String else { return }
-        
+
         navigationItem.title = Time().dateString()
         notificationLabel.textColor = Palette.textColor
         startButton.backgroundColor = Palette.textColor
@@ -49,7 +49,7 @@ class CacaViewController: UIViewController {
         notificationLabel.numberOfLines = 0
         startButton.setTitle("Start", for: UIControlState.normal)
         view.backgroundColor = Palette.backgoundColor
-        
+
         if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
 
             if gender == Gender.male.rawValue {
@@ -87,7 +87,7 @@ class CacaViewController: UIViewController {
                         dayToNow = date.daysBetweenDate(toDate: Date())
 
                         switch dayToNow {
-                        
+
                         case 0:
                             self.notificationLabel.text = "\(userName), you caca today."
                         case 1:
@@ -98,7 +98,7 @@ class CacaViewController: UIViewController {
                             self.notificationLabel.text = "\(userName), you don't caca for a week."
                         default:
                             self.notificationLabel.text = "\(userName), you don't caca for a long time."
-                        
+
                         }
 
                     }

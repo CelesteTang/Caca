@@ -99,10 +99,12 @@ class PrivacyTableViewController: UITableViewController {
 
         case Authentication.password.rawValue:
 
+            switchButton.isOn = UserDefaults.standard.bool(forKey: "PasswordAuthentication")
             switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
 
         case Authentication.touchID.rawValue:
 
+            switchButton.isOn = UserDefaults.standard.bool(forKey: "TouchIDAuthentication")
             switchButton.addTarget(self, action: #selector(openTouchIDAuthentication), for: .valueChanged)
 
         default: break
@@ -124,12 +126,17 @@ class PrivacyTableViewController: UITableViewController {
 
         if sender.isOn == true {
 
-            // to-do: launch with password
             UserDefaults.standard.set(true, forKey: "PasswordAuthentication")
+
+            let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
+            let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController")
+
+            present(passwordViewController, animated: true)
 
         } else {
 
             UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
+            UserDefaults.standard.removeObject(forKey: "Password")
 
         }
 
@@ -139,7 +146,6 @@ class PrivacyTableViewController: UITableViewController {
 
         if sender.isOn == true {
 
-            // to-do: launch with TouchID
             UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
 
         } else {
