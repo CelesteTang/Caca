@@ -55,9 +55,9 @@ class RecordDetailViewController: UIViewController {
         cacaPhoto.backgroundColor = Palette.backgoundColor
         shapeImageView.backgroundColor = Palette.backgoundColor
         colorImageView.backgroundColor = Palette.backgoundColor
-        
+
         cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
-        
+
         if recievedCaca[0].photo != "" {
 
             DispatchQueue.global().async {

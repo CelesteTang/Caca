@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController {
 
         view.backgroundColor = Palette.backgoundColor
 
-        profileImageView.backgroundColor = UIColor.lightGray
+        profileImageView.backgroundColor = Palette.backgoundColor
         profileImageView.image = #imageLiteral(resourceName: "poo-icon")
 
         nicknameTextField.delegate = self
@@ -64,6 +64,7 @@ class ProfileViewController: UIViewController {
         genderSegmentedControl.selectedSegmentIndex = gender
         genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
+        genderSegmentedControl.tintColor = Palette.textColor
 
         ageTextField.delegate = self
         ageTextField.clearButtonMode = .whileEditing
@@ -77,6 +78,8 @@ class ProfileViewController: UIViewController {
             ageTextField.text = age
 
         }
+
+        CIDLabel.text = "kdnlknihuifnkldnkdby"
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false

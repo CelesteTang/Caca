@@ -16,6 +16,8 @@ class CacaViewController: UIViewController {
 
     @IBOutlet weak var startButton: UIButton!
 
+    var cacas = [Caca]()
+
     @IBAction func switchToTiming(_ sender: UIButton) {
 
 //        let timingStorybard = UIStoryboard(name: "Timing", bundle: nil)
@@ -32,7 +34,9 @@ class CacaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = dateString()
+        var dayToNow = Int()
+        
+        navigationItem.title = Time().dateString()
         notificationLabel.textColor = Palette.textColor
         startButton.backgroundColor = Palette.textColor
         startButton.tintColor = Palette.backgoundColor
@@ -40,11 +44,11 @@ class CacaViewController: UIViewController {
 
         if let name = UserDefaults.standard.value(forKey: "Nickname") as? String {
 
-            notificationLabel.text = "\(name), you don't defecate for 3 days"
+            notificationLabel.text = "\(name), you don't defecate for \(dayToNow) days"
 
         } else {
 
-            notificationLabel.text = "You don't defecate for 3 days"
+            notificationLabel.text = "You don't defecate for \(dayToNow) days"
 
         }
         notificationLabel.numberOfLines = 0
@@ -66,19 +70,27 @@ class CacaViewController: UIViewController {
 
         }
 
+        CacaProvider.shared.getCaca { (cacas, _) in
+
+            if let cacas = cacas {
+
+                self.cacas = cacas
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.timeZone = TimeZone(secondsFromGMT: 8)
+                guard let lastCacaDate = cacas.last?.date else { return }
+                guard let date = dateFormatter.date(from: lastCacaDate) else { return }
+
+                dayToNow = Date().daysBetweenDate(toDate: date)
+                
+                print(dayToNow)
+            }
+
+        }
+
     }
 
-    func dateString() -> String {
-
-        let date = Date()
-        let calendar = Calendar.current
-
-        let year = calendar.component(.year, from: date)
-        let month = calendar.component(.month, from: date)
-        let day = calendar.component(.day, from: date)
-
-        return String(format: "%04i/%02i/%02i", year, month, day)
-    }
 }
 
 extension CacaViewController {
@@ -91,4 +103,13 @@ extension CacaViewController {
     }
     // swiftlint:enable force_cast
 
+}
+
+extension Date {
+    
+    func daysBetweenDate(toDate: Date) -> Int {
+        let components = Calendar.current.dateComponents([.day], from: self, to: toDate)
+        return components.day ?? 0
+    }
+    
 }

@@ -16,21 +16,21 @@ class CacaProvider {
     static let shared = CacaProvider()
 
     func saveCaca(cacaID: String, value: [String : Any]) {
-        
+
         let databaseRef = FIRDatabase.database().reference()
-        
+
         databaseRef.child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
-            
+
             if error != nil {
-                
+
                 print(error?.localizedDescription ?? "")
-                
+
                 return
             }
-            
+
         })
     }
-    
+
     typealias CacaHadler = ([Caca]?, Error?) -> Void
 
     func getCaca(completion: @escaping CacaHadler) {

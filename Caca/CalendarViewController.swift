@@ -40,6 +40,7 @@ class CalendarViewController: UIViewController {
         headerTitleLabel.textColor = Palette.backgoundColor
         adviceView.backgroundColor = Palette.backgoundColor
         adviceLabel.textColor = Palette.textColor
+        adviceLabel.text = "How's today?"
 
         calendarView.dataSource = self
         calendarView.delegate = self
@@ -53,9 +54,7 @@ class CalendarViewController: UIViewController {
 
         }
 
-        let provider = CacaProvider.shared
-
-        provider.getCaca { (cacas, _) in
+        CacaProvider.shared.getCaca { (cacas, _) in
 
             if let cacas = cacas {
                 self.cacas = cacas
@@ -189,7 +188,6 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
             calendarCell.selectedView.isHidden = false
             calendarCell.selectedView.backgroundColor = Palette.selectedColor
-//            adviceLabel.text = "\(cellState.text) selected"
 
             if calendarCell.didCacaView.isHidden == false {
 

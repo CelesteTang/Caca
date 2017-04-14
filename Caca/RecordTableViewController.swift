@@ -26,9 +26,7 @@ class RecordTableViewController: UITableViewController {
 
         tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: "RecordTableViewCell")
 
-        let provider = CacaProvider.shared
-
-        provider.getCaca { (cacas, _) in
+        CacaProvider.shared.getCaca { (cacas, _) in
 
             if let cacas = cacas {
                 self.cacas = cacas
