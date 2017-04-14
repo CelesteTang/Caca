@@ -71,8 +71,16 @@ class SignUpViewController: UIViewController {
 
                         let userRef = rootRef.child("users").child(uid)
 
-                        let value = ["firstName": self.firstNameField.text,
-                                     "lastName": self.lastNameField.text]
+                        guard let firstName = self.firstNameField.text,
+                              let lastName = self.lastNameField.text else {
+                                
+                                return
+                                
+                        }
+                        
+                        let value = ["firstName": firstName,
+                                     "lastName": lastName,
+                                     "CID": UUID().uuidString] as [String : String]
 
                         userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
 
