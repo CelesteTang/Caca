@@ -100,17 +100,17 @@ class CacaViewController: UIViewController {
 
     private func setUp() {
 
-        navigationItem.title = Time().dateString()
+        self.navigationItem.title = Time().dateString()
         
-        view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.backgoundColor
 
-        notificationLabel.textColor = Palette.textColor
-        notificationLabel.numberOfLines = 0
+        self.notificationLabel.textColor = Palette.textColor
+        self.notificationLabel.numberOfLines = 0
 
-        startButton.backgroundColor = Palette.textColor
-        startButton.tintColor = Palette.backgoundColor
-        startButton.layer.cornerRadius = 15
-        startButton.setTitle("Start", for: UIControlState.normal)
+        self.startButton.backgroundColor = Palette.textColor
+        self.startButton.tintColor = Palette.backgoundColor
+        self.startButton.layer.cornerRadius = 15
+        self.startButton.setTitle("Start", for: UIControlState.normal)
 
     }
 

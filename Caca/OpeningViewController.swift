@@ -43,20 +43,20 @@ class OpeningViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Palette.backgoundColor
-        openingLabel.textColor = Palette.textColor
-        forwardButton.tintColor = Palette.textColor
+        self.view.backgroundColor = Palette.backgoundColor
+        self.openingLabel.textColor = Palette.textColor
+        self.forwardButton.tintColor = Palette.textColor
 
-        openingLabel.text = heading
-        openingImage.image = UIImage(named: imageFile)
+        self.openingLabel.text = heading
+        self.openingImage.image = UIImage(named: imageFile)
 
-        pageControl.currentPage = index
+        self.pageControl.currentPage = index
 
         switch index {
             
-        case 0...1: forwardButton.setTitle("Next", for: .normal)
+        case 0...1: self.forwardButton.setTitle("Next", for: .normal)
             
-        case 2: forwardButton.setTitle("Done", for: .normal)
+        case 2: self.forwardButton.setTitle("Done", for: .normal)
             
         default: break
             

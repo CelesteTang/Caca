@@ -277,24 +277,24 @@ class FillinViewController: UIViewController {
 
     private func setUp() {
 
-        cancelButton.setTitle("Cancel", for: .normal)
+        self.cancelButton.setTitle("Cancel", for: .normal)
 
-        cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
-        cacaPhoto.backgroundColor = Palette.backgoundColor
+        self.cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+        self.cacaPhoto.backgroundColor = Palette.backgoundColor
 
-        photoButton.setTitle("Take photo", for: .normal)
-        photoLibraryButton.setTitle("Pick photo from library", for: .normal)
+        self.photoButton.setTitle("Take photo", for: .normal)
+        self.photoLibraryButton.setTitle("Pick photo from library", for: .normal)
 
-        dateLabel.text = Time().dateString()
-        timeLabel.text = Time().timeString()
-        consumingTimeLabel.text = Time.consumingTime
-        view.backgroundColor = Palette.backgoundColor
+        self.dateLabel.text = Time().dateString()
+        self.timeLabel.text = Time().timeString()
+        self.consumingTimeLabel.text = Time.consumingTime
+        self.view.backgroundColor = Palette.backgoundColor
 
-        amountSlider.thumbTintColor = Palette.textColor
-        amountSlider.tintColor = UIColor.white
-        amountSlider.minimumValue = 1.0
-        amountSlider.maximumValue = 3.0
-        amountSlider.value = 2.0
+        self.amountSlider.thumbTintColor = Palette.textColor
+        self.amountSlider.tintColor = UIColor.white
+        self.amountSlider.minimumValue = 1.0
+        self.amountSlider.maximumValue = 3.0
+        self.amountSlider.value = 2.0
 
     }
 

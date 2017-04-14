@@ -71,28 +71,28 @@ class SignInViewController: UIViewController {
 
     private func setUp() {
 
-        view.backgroundColor = Palette.backgoundColor
-        logoImageView.image = #imageLiteral(resourceName: "poo-icon")
-        logoImageView.backgroundColor = Palette.backgoundColor
-        signInButton.backgroundColor = Palette.textColor
+        self.view.backgroundColor = Palette.backgoundColor
+        self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
+        self.logoImageView.backgroundColor = Palette.backgoundColor
+        self.signInButton.backgroundColor = Palette.textColor
 
-        appName.text = "Caca"
-        appName.textColor = Palette.textColor
-        appName.font = UIFont(name: "Courier-Bold", size: 60)
+        self.appName.text = "Caca"
+        self.appName.textColor = Palette.textColor
+        self.appName.font = UIFont(name: "Courier-Bold", size: 60)
 
-        emailField.delegate = self
-        emailField.clearButtonMode = .never
-        emailField.placeholder = "Email"
-        emailField.clearsOnBeginEditing = true
-        emailField.keyboardType = .emailAddress
-        emailField.returnKeyType = .done
+        self.emailField.delegate = self
+        self.emailField.clearButtonMode = .never
+        self.emailField.placeholder = "Email"
+        self.emailField.clearsOnBeginEditing = true
+        self.emailField.keyboardType = .emailAddress
+        self.emailField.returnKeyType = .done
 
-        passwordField.delegate = self
-        passwordField.clearButtonMode = .never
-        passwordField.placeholder = "Password"
-        passwordField.clearsOnBeginEditing = true
-        passwordField.isSecureTextEntry = true
-        passwordField.returnKeyType = .done
+        self.passwordField.delegate = self
+        self.passwordField.clearButtonMode = .never
+        self.passwordField.placeholder = "Password"
+        self.passwordField.clearsOnBeginEditing = true
+        self.passwordField.isSecureTextEntry = true
+        self.passwordField.returnKeyType = .done
 
     }
 }

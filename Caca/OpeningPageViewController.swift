@@ -16,7 +16,7 @@ class OpeningPageViewController: UIPageViewController, UIPageViewControllerDataS
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.backgoundColor
 
         self.dataSource = self
 

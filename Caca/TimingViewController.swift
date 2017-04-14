@@ -129,7 +129,7 @@ class TimingViewController: UIViewController {
         self.pauseButton.isEnabled = false
         self.resetButton.isEnabled = false
 
-        view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.backgoundColor
 
     }
 
