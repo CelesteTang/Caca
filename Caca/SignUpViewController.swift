@@ -73,20 +73,20 @@ class SignUpViewController: UIViewController {
 
                         guard let firstName = self.firstNameField.text,
                               let lastName = self.lastNameField.text else {
-                                
+
                                 return
-                                
+
                         }
-                        
+
                         let CID = UUID().uuidString
-                        
+
                         let value = ["firstName": firstName,
                                      "lastName": lastName,
                                      "CID": CID] as [String : String]
-                        
+
                         UserDefaults.standard.set(firstName, forKey: "Nickname")
                         UserDefaults.standard.set(CID, forKey: "CID")
-                        
+
                         userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
 
                             if error != nil {
