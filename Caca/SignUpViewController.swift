@@ -19,7 +19,7 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var passwordField: UITextField!
 
-    @IBOutlet weak var firstNameField: UITextField!
+    @IBOutlet weak var nameField: UITextField!
 
     @IBOutlet weak var lastNameField: UITextField!
 
@@ -27,10 +27,10 @@ class SignUpViewController: UIViewController {
 
     @IBAction func signUp(_ sender: UIButton) {
 
-        if self.firstNameField.text == "" {
+        if self.nameField.text == "" {
 
             let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter your first name",
+                                                    message: "Please enter your name",
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -71,7 +71,7 @@ class SignUpViewController: UIViewController {
 
                         let userRef = rootRef.child("users").child(uid)
 
-                        guard let firstName = self.firstNameField.text,
+                        guard let name = self.nameField.text,
                               let lastName = self.lastNameField.text else {
 
                                 return
@@ -80,11 +80,11 @@ class SignUpViewController: UIViewController {
 
                         let CID = UUID().uuidString
 
-                        let value = ["firstName": firstName,
+                        let value = ["name": name,
                                      "lastName": lastName,
                                      "CID": CID] as [String : String]
 
-                        UserDefaults.standard.set(firstName, forKey: "Nickname")
+                        UserDefaults.standard.set(name, forKey: "Name")
                         UserDefaults.standard.set(CID, forKey: "CID")
 
                         userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
@@ -139,11 +139,11 @@ class SignUpViewController: UIViewController {
         passwordField.isSecureTextEntry = true
         passwordField.returnKeyType = .done
 
-        firstNameField.delegate = self
-        firstNameField.clearButtonMode = .whileEditing
-        firstNameField.placeholder = "First name"
-        firstNameField.clearsOnBeginEditing = true
-        firstNameField.returnKeyType = .done
+        nameField.delegate = self
+        nameField.clearButtonMode = .whileEditing
+        nameField.placeholder = "First name"
+        nameField.clearsOnBeginEditing = true
+        nameField.returnKeyType = .done
 
         lastNameField.delegate = self
         lastNameField.clearButtonMode = .whileEditing

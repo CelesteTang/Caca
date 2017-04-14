@@ -24,8 +24,6 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var ageTextField: UITextField!
 
-    @IBOutlet weak var CIDLabel: UILabel!
-
     @IBAction func genderChanged(_ sender: UISegmentedControl) {
 
         if genderSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
@@ -51,14 +49,14 @@ class ProfileViewController: UIViewController {
 
         nicknameTextField.delegate = self
         nicknameTextField.clearButtonMode = .whileEditing
-        nicknameTextField.placeholder = "Nickname"
+        nicknameTextField.placeholder = "Name"
         nicknameTextField.textAlignment = .center
         nicknameTextField.clearsOnBeginEditing = true
         nicknameTextField.keyboardType = .alphabet
         nicknameTextField.returnKeyType = .done
-        if let nickname = UserDefaults.standard.value(forKey: "Nickname") as? String {
+        if let name = UserDefaults.standard.value(forKey: "Name") as? String {
 
-            nicknameTextField.text = nickname
+            nicknameTextField.text = name
 
         }
 
@@ -81,13 +79,6 @@ class ProfileViewController: UIViewController {
 
         }
 
-        if let CID = UserDefaults.standard.value(forKey: "CID") as? String {
-
-            let index = CID.index(CID.startIndex, offsetBy: 8)
-            CIDLabel.text = CID.substring(to: index)
-
-        }
-
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
@@ -100,7 +91,7 @@ class ProfileViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         tabBarController?.tabBar.isHidden = false
-        UserDefaults.standard.set(nicknameTextField.text, forKey: "Nickname")
+        UserDefaults.standard.set(nicknameTextField.text, forKey: "Name")
         UserDefaults.standard.set(genderSegmentedControl.selectedSegmentIndex, forKey: "Gender")
         UserDefaults.standard.set(ageTextField.text, forKey: "Age")
 
