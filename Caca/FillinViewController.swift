@@ -320,13 +320,14 @@ class FillinViewController: UIViewController {
 
         let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
 
-        // This is the rect that we've calculated out and this is what is actually used below
         let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
 
-        // Actually do the resizing to the rect using the ImageContext stuff
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        
         image.draw(in: rect)
+        
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
         UIGraphicsEndImageContext()
 
         return newImage!

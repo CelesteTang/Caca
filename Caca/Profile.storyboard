@@ -58,9 +58,6 @@
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
-                                <connections>
-                                    <action selector="genderChanged:" destination="IZz-L3-UDN" eventType="valueChanged" id="Sks-dx-zWK"/>
-                                </connections>
                             </segmentedControl>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dnn-jj-xLm">
                                 <rect key="frame" x="105" y="531.5" width="239" height="30"/>
