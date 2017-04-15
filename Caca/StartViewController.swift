@@ -23,17 +23,17 @@ class StartViewController: UIViewController {
     @IBAction func startDirectly(_ sender: UIButton) {
 
         let alertController = UIAlertController(title: "Just a reminder",
-                                                message: "You can sign up later if you want to backup your info",
+                                                message: "You could sign up later if you want to backup your info",
                                                 preferredStyle: .alert)
 
-        let cancelAction = UIAlertAction(title: "Go back", style: .cancel) { (cancel) in
+        let cancelAction = UIAlertAction(title: "Go back", style: .cancel) { _ in
 
             alertController.dismiss(animated: true, completion: nil)
 
         }
         alertController.addAction(cancelAction)
 
-        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
@@ -45,14 +45,14 @@ class StartViewController: UIViewController {
 
     }
 
-    @IBAction func signIn(_ sender: UIButton) {
+    @IBAction func goToSignIn(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
         }
     }
 
-    @IBAction func signUp(_ sender: UIButton) {
+    @IBAction func goTiSignUp(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
@@ -79,12 +79,15 @@ class StartViewController: UIViewController {
 
         self.startButton.backgroundColor = Palette.textColor
         self.startButton.setTitle("Start Now", for: .normal)
+        self.startButton.layer.cornerRadius = 15
 
         self.signInButton.backgroundColor = Palette.textColor
         self.signInButton.setTitle("Sign In", for: .normal)
+        self.signInButton.layer.cornerRadius = 15
 
         self.signUpButton.backgroundColor = Palette.textColor
         self.signUpButton.setTitle("Sign Up", for: .normal)
+        self.signUpButton.layer.cornerRadius = 15
     }
 
 }

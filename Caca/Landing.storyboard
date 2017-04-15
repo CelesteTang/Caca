@@ -329,7 +329,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="signIn:" destination="SKG-pd-Eke" eventType="touchUpInside" id="2tI-Wx-53Q"/>
+                                            <action selector="goToSignIn:" destination="SKG-pd-Eke" eventType="touchUpInside" id="QGB-y1-dtW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsa-to-k0S">
@@ -343,7 +343,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="signUp:" destination="SKG-pd-Eke" eventType="touchUpInside" id="JRG-Nr-Wge"/>
+                                            <action selector="goTiSignUp:" destination="SKG-pd-Eke" eventType="touchUpInside" id="Z1W-Xg-ftT"/>
                                         </connections>
                                     </button>
                                 </subviews>

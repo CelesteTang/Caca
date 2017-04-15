@@ -32,17 +32,41 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
 
     @IBOutlet weak var goBackButton: UIButton!
-    
+
     @IBAction func goBack(_ sender: UIButton) {
-        
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
         }
     }
-    
+
     @IBAction func signUp(_ sender: UIButton) {
 
-        if self.nameField.text == "" {
+        if self.emailField.text == "" {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Please enter your email",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if self.passwordField.text == "" {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Please enter your password",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if self.nameField.text == "" {
 
             let alertController = UIAlertController(title: "Warning",
                                                     message: "Please enter your name",
@@ -61,8 +85,16 @@ class SignUpViewController: UIViewController {
                 FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
 
                     if let error = error {
-
-                        print("-SignUp----------\(error)")
+                        
+                        let alertController = UIAlertController(title: "Warning",
+                                                                message: error.localizedDescription,
+                                                                preferredStyle: .alert)
+                        
+                        alertController.addAction(UIAlertAction(title: "OK",
+                                                                style: .default,
+                                                                handler: nil))
+                        
+                        self.present(alertController, animated: true, completion: nil)
 
                         return
 
@@ -70,9 +102,7 @@ class SignUpViewController: UIViewController {
 
                         guard let uid = user?.uid else { return }
 
-                        let rootRef = FIRDatabase.database().reference()
-
-                        let userRef = rootRef.child("users").child(uid)
+                        let userRef = FIRDatabase.database().reference().child("users").child(uid)
 
                         guard let name = self.nameField.text else { return }
 
@@ -80,9 +110,6 @@ class SignUpViewController: UIViewController {
 
                         let value = ["name": name,
                                      "gender": gender] as [String: Any]
-
-                        UserDefaults.standard.set(name, forKey: "Name")
-                        UserDefaults.standard.set(gender, forKey: "Gender")
 
                         userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
 
@@ -123,7 +150,7 @@ class SignUpViewController: UIViewController {
     private func setUp() {
 
         self.view.backgroundColor = Palette.backgoundColor
-        
+
         self.goBackButton.setTitle("", for: .normal)
         let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
         self.goBackButton.setImage(buttonimage, for: .normal)
@@ -145,7 +172,7 @@ class SignUpViewController: UIViewController {
 
         self.passwordField.delegate = self
         self.passwordField.clearButtonMode = .never
-        self.passwordField.placeholder = "Password"
+        self.passwordField.placeholder = "Password (at least 6 characters)"
         self.passwordField.clearsOnBeginEditing = true
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
@@ -162,6 +189,7 @@ class SignUpViewController: UIViewController {
 
         self.signUpButton.backgroundColor = Palette.textColor
         self.signUpButton.setTitle("Sign Up", for: .normal)
+        self.signUpButton.layer.cornerRadius = 15
     }
 
 }

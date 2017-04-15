@@ -22,17 +22,41 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
 
     @IBOutlet weak var goBackButton: UIButton!
-    
+
     @IBAction func goBack(_ sender: UIButton) {
-        
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
         }
     }
-    
+
     @IBAction func signIn(_ sender: UIButton) {
 
-        if let email = emailField.text, let password = passwordField.text {
+        if self.emailField.text == "" {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Please enter your email",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if self.passwordField.text == "" {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Please enter your password",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if let email = self.emailField.text, let password = self.passwordField.text {
 
             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (_, error) in
 
@@ -81,12 +105,12 @@ class SignInViewController: UIViewController {
     private func setUp() {
 
         self.view.backgroundColor = Palette.backgoundColor
-        
+
         self.goBackButton.setTitle("", for: .normal)
         let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
         self.goBackButton.setImage(buttonimage, for: .normal)
         self.goBackButton.tintColor = Palette.textColor
-        
+
         self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
         self.logoImageView.backgroundColor = Palette.backgoundColor
 
@@ -110,6 +134,7 @@ class SignInViewController: UIViewController {
 
         self.signInButton.backgroundColor = Palette.textColor
         self.signInButton.setTitle("Sign In", for: .normal)
+        self.signInButton.layer.cornerRadius = 15
     }
 }
 
