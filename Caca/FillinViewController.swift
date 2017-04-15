@@ -284,11 +284,13 @@ class FillinViewController: UIViewController {
         self.consumingTimeLabel.text = Time.consumingTime
 
         self.amountSlider.isContinuous = true
-        self.amountSlider.thumbTintColor = Palette.textColor
+        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "poo-icon"), targetRatio: 0.75)
+        self.amountSlider.setThumbImage(thumbIamge, for: .normal)
         self.amountSlider.tintColor = UIColor.white
-        self.amountSlider.minimumValue = 1.0
-        self.amountSlider.maximumValue = 3.0
-        self.amountSlider.value = 2.0
+        self.amountSlider.minimumValue = 0.5
+        self.amountSlider.maximumValue = 1.0
+        self.amountSlider.value = 0.75
+        self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
     }
 
@@ -298,6 +300,37 @@ class FillinViewController: UIViewController {
 
     }
 
+    func changeThumbImageSize() {
+
+        let ratio: CGFloat = CGFloat(self.amountSlider.value)
+        let thumbImage: UIImage = #imageLiteral(resourceName: "poo-icon")
+
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: thumbImage.size.width * ratio, height: thumbImage.size.height * ratio))
+//        imageView.image = thumbImage
+//        self.amountSlider.addSubview(imageView)
+
+        let newImage = self.resizeImage(image: thumbImage, targetRatio: ratio)
+
+        self.amountSlider.setThumbImage(newImage, for: .normal)
+    }
+
+    func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
+
+        let size = image.size
+
+        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
+
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage!
+    }
 }
 
 extension FillinViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
