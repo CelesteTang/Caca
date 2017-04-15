@@ -31,6 +31,15 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var signUpButton: UIButton!
 
+    @IBOutlet weak var goBackButton: UIButton!
+    
+    @IBAction func goBack(_ sender: UIButton) {
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+        }
+    }
+    
     @IBAction func signUp(_ sender: UIButton) {
 
         if self.nameField.text == "" {
@@ -96,6 +105,7 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func switchToSignIn(_ sender: UIButton) {
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
         }
@@ -113,6 +123,12 @@ class SignUpViewController: UIViewController {
     private func setUp() {
 
         self.view.backgroundColor = Palette.backgoundColor
+        
+        self.goBackButton.setTitle("", for: .normal)
+        let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
+        self.goBackButton.setImage(buttonimage, for: .normal)
+        self.goBackButton.tintColor = Palette.textColor
+
         self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
         self.logoImageView.backgroundColor = Palette.backgoundColor
 

@@ -253,9 +253,9 @@
 		43A8D8BC1E85079200B28A6F /* Landing */ = {
 			isa = PBXGroup;
 			children = (
+				4396B5891EA1F63A00A69C4E /* StartViewController.swift */,
 				43F2FA111E84BE2800E92290 /* SignInViewController.swift */,
 				43F2FA131E84BE4300E92290 /* SignUpViewController.swift */,
-				4396B5891EA1F63A00A69C4E /* StartViewController.swift */,
 			);
 			name = Landing;
 			sourceTree = "<group>";
