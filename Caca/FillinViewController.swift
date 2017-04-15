@@ -120,8 +120,6 @@ class FillinViewController: UIViewController {
 
     var ispassed = false
 
-    var isclicked = false
-
     var cacas = [Caca]()
 
     @IBAction func cancelFillin(_ sender: UIButton) {
@@ -142,8 +140,6 @@ class FillinViewController: UIViewController {
         picker.videoQuality = .typeLow
         self.present(picker, animated: true, completion: nil)
 
-        isclicked = true
-
     }
 
     @IBAction func addPhoto(_ sender: UIButton) {
@@ -157,8 +153,6 @@ class FillinViewController: UIViewController {
         picker.allowsEditing = true
         picker.videoQuality = .typeLow
         self.present(picker, animated: true, completion: nil)
-
-        isclicked = true
 
     }
 
@@ -184,7 +178,7 @@ class FillinViewController: UIViewController {
         let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
         let photoID = UUID().uuidString
 
-        if isclicked == true {
+        if cacaPhoto.image != #imageLiteral(resourceName: "poo-icon") {
 
             CacaProvider.shared.saveCacaPhoto(of: cacaPhoto.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
 
@@ -252,8 +246,6 @@ class FillinViewController: UIViewController {
         setUp()
 
         ispassed = false
-
-        isclicked = false
 
         otherTextView.delegate = self
 
@@ -323,11 +315,11 @@ class FillinViewController: UIViewController {
         let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
 
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        
+
         image.draw(in: rect)
-        
+
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        
+
         UIGraphicsEndImageContext()
 
         return newImage!
