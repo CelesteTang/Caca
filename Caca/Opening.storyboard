@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2eC-qc-YSW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2eC-qc-YSW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,26 +39,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRT-2V-u1G">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRT-2V-u1G">
                                 <rect key="frame" x="299" y="611" width="60" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="openingButton:" destination="amJ-I7-a1x" eventType="touchUpInside" id="jhB-KQ-Xxg"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SeH-pP-0c1">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SeH-pP-0c1">
                                 <rect key="frame" x="168" y="610" width="39" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pageControl>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="SeH-pP-0c1" firstAttribute="centerX" secondItem="zhS-ys-Oxk" secondAttribute="centerX" id="10c-X5-UoI"/>
                             <constraint firstItem="lOf-B7-6iN" firstAttribute="top" secondItem="zhS-ys-Oxk" secondAttribute="top" id="1Dx-bU-9IK"/>
+                            <constraint firstItem="MTL-Qn-PqA" firstAttribute="top" secondItem="SeH-pP-0c1" secondAttribute="bottom" constant="20" id="1PS-ab-o0D"/>
                             <constraint firstItem="lOf-B7-6iN" firstAttribute="leading" secondItem="zhS-ys-Oxk" secondAttribute="leading" id="2aI-eR-gFy"/>
+                            <constraint firstItem="MTL-Qn-PqA" firstAttribute="top" secondItem="gRT-2V-u1G" secondAttribute="bottom" constant="20" id="5XG-25-PVC"/>
                             <constraint firstItem="qp1-dO-63S" firstAttribute="centerX" secondItem="zhS-ys-Oxk" secondAttribute="centerX" id="9GK-6t-H6E"/>
                             <constraint firstItem="qp1-dO-63S" firstAttribute="leading" secondItem="zhS-ys-Oxk" secondAttribute="leading" constant="30" id="Cal-gU-rLt"/>
                             <constraint firstItem="qp1-dO-63S" firstAttribute="top" secondItem="eh6-8I-aAm" secondAttribute="bottom" constant="35" id="RFF-WI-czP"/>
+                            <constraint firstItem="SeH-pP-0c1" firstAttribute="centerY" secondItem="gRT-2V-u1G" secondAttribute="centerY" id="YnA-Di-mYt"/>
+                            <constraint firstItem="gRT-2V-u1G" firstAttribute="trailing" secondItem="zhS-ys-Oxk" secondAttribute="trailingMargin" id="mEb-hD-Fn3"/>
                             <constraint firstItem="lOf-B7-6iN" firstAttribute="bottom" secondItem="MTL-Qn-PqA" secondAttribute="top" id="qgS-h7-eJq"/>
                             <constraint firstAttribute="trailing" secondItem="lOf-B7-6iN" secondAttribute="trailing" id="s91-Ng-lOk"/>
                             <constraint firstAttribute="trailing" secondItem="qp1-dO-63S" secondAttribute="trailing" constant="30" id="zw4-Jd-XOM"/>

@@ -134,13 +134,6 @@ class SignUpViewController: UIViewController {
 
     }
 
-    @IBAction func switchToSignIn(_ sender: UIButton) {
-
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
