@@ -32,28 +32,27 @@ class CacaProvider {
     }
 
     typealias CacaPhotoHadler = (String?, Error?) -> Void
-    
-    func saveCacaPhoto(of image: UIImage,completion: @escaping CacaPhotoHadler) {
-    
+
+    func saveCacaPhoto(of image: UIImage, with photoID: String, completion: @escaping CacaPhotoHadler) {
+
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
-        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(UUID().uuidString).jpg")
+        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(photoID).jpg")
 
         if let uploadData = UIImageJPEGRepresentation(image, 0.1) {
-            
+
             storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                
+
                 completion(nil, error)
-                
+
                 if let cacaPhotoUrl = metadata?.downloadURL()?.absoluteString {
-                    
+
                     completion(cacaPhotoUrl, nil)
                 }
             })
         }
 
-        
     }
-    
+
     typealias CacaHadler = ([Caca]?, Error?) -> Void
 
     func getCaca(completion: @escaping CacaHadler) {

@@ -115,7 +115,6 @@ class SignUpViewController: UIViewController {
         self.view.backgroundColor = Palette.backgoundColor
         self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
         self.logoImageView.backgroundColor = Palette.backgoundColor
-        self.signUpButton.backgroundColor = Palette.textColor
 
         self.appName.text = "Caca"
         self.appName.textColor = Palette.textColor
@@ -145,6 +144,8 @@ class SignUpViewController: UIViewController {
         self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.textColor
 
+        self.signUpButton.backgroundColor = Palette.textColor
+        self.signUpButton.setTitle("Sign Up", for: .normal)
     }
 
 }

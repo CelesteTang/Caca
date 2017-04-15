@@ -43,6 +43,11 @@ class RecordTableViewController: UITableViewController {
         backItem.title = "Back"
         self.navigationItem.backBarButtonItem = backItem
 
+//        let image = UIImage()
+//        navigationController?.navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
+//        navigationController?.navigationBar.shadowImage = image
+//        navigationController?.navigationBar.isTranslucent = true
+//        navigationController?.view.backgroundColor = UIColor.clear
     }
 
     // MARK: Table view data source

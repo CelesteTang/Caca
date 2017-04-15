@@ -186,18 +186,20 @@ class FillinViewController: UIViewController {
         }
 
         let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
+        let photoID = UUID().uuidString
 
         if isclicked == true {
 
-            CacaProvider.shared.saveCacaPhoto(of: cacaPhoto.image!, completion: { (cacaPhotoUrl, error) in
-                
+            CacaProvider.shared.saveCacaPhoto(of: cacaPhoto.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
+
                 if error != nil {
-                    
+
                     print(error?.localizedDescription ?? "storageError")
-                    
+
                     return
                 }
-                
+
+                guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "date": date,
                              "time": time,
@@ -209,8 +211,8 @@ class FillinViewController: UIViewController {
                              "photo": cacaPhotoUrl,
                              "grading": self.ispassed,
                              "cacaID": cacaID,
-                             "photoID": ""] as [String : Any]
-                
+                             "photoID": photoID] as [String : Any]
+
                 CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
                 self.switchToRecord()
 

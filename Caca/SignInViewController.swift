@@ -74,7 +74,6 @@ class SignInViewController: UIViewController {
         self.view.backgroundColor = Palette.backgoundColor
         self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
         self.logoImageView.backgroundColor = Palette.backgoundColor
-        self.signInButton.backgroundColor = Palette.textColor
 
         self.appName.text = "Caca"
         self.appName.textColor = Palette.textColor
@@ -94,6 +93,8 @@ class SignInViewController: UIViewController {
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
 
+        self.signInButton.backgroundColor = Palette.textColor
+        self.signInButton.setTitle("Sign In", for: .normal)
     }
 }
 
