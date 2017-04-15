@@ -30,7 +30,6 @@
 		4336811B1E8A427F00D51B5C /* CalendarCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4336811A1E8A427F00D51B5C /* CalendarCellView.xib */; };
 		4336811D1E8A441B00D51B5C /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4336811C1E8A441B00D51B5C /* CalendarCellView.swift */; };
 		43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */; };
-		43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43372D071E7FB4BD002E2AE3 /* Main.storyboard */; };
 		43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */; };
 		43372D0E1E7FB4BD002E2AE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */; };
 		43372D111E7FB4BD002E2AE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43372D0F1E7FB4BD002E2AE3 /* LaunchScreen.storyboard */; };
@@ -90,7 +89,6 @@
 		4336811C1E8A441B00D51B5C /* CalendarCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
 		43372D001E7FB4BD002E2AE3 /* Caca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		43372D081E7FB4BD002E2AE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43372D0B1E7FB4BD002E2AE3 /* Caca.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Caca.xcdatamodel; sourceTree = "<group>"; };
 		43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43372D101E7FB4BD002E2AE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 				4328DCA31E9C8202006D3FB8 /* Privacy.storyboard */,
 				4372BF1A1E969F1E005F5422 /* Password.storyboard */,
 				43372D351E7FCA89002E2AE3 /* TabBar.storyboard */,
-				43372D071E7FB4BD002E2AE3 /* Main.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -400,7 +397,6 @@
 				4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */,
 				4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */,
 				43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */,
-				43372D091E7FB4BD002E2AE3 /* Main.storyboard in Resources */,
 				4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */,
 				43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */,
 			);
@@ -515,14 +511,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		43372D071E7FB4BD002E2AE3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				43372D081E7FB4BD002E2AE3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		43372D0F1E7FB4BD002E2AE3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
