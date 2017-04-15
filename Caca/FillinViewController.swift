@@ -19,32 +19,32 @@ enum Shape: Int {
         switch self {
         case .separateHard:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 //            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
 
         case .lumpySausage:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .crackSausage:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .smoothSausage:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .softBlob:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .mushyStool:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .wateryStool:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
         }
 
     }
@@ -60,30 +60,30 @@ enum Color: Int {
         switch self {
         case .red:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .yellow:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
         case .green:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .lightBrown:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .darkBrown:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .gray:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .black:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
         }
 
     }
@@ -303,22 +303,15 @@ class FillinViewController: UIViewController {
 
 }
 
-extension FillinViewController: UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
+extension FillinViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-
-        if let mediaType = info[UIImagePickerControllerMediaType] as? String {
-            print(mediaType)
-        }
 
         if let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage {
 
             self.cacaPhoto.image = editedCacaImage
 
-            guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else {
-                return
-            }
+            guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else { return }
 
             self.colorView.backgroundColor = dominantColor.makeUIColor()
 
@@ -326,9 +319,7 @@ UINavigationControllerDelegate {
 
             self.cacaPhoto.image = originalCacaImage
 
-            guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else {
-                return
-            }
+            guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else { return }
 
             self.colorView.backgroundColor = dominantColor.makeUIColor()
 

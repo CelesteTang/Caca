@@ -15,6 +15,8 @@ class CacaProvider {
 
     static let shared = CacaProvider()
 
+    // MARK: Save caca
+
     func saveCaca(cacaID: String, value: [String : Any]) {
 
         let databaseRef = FIRDatabase.database().reference()
@@ -30,6 +32,8 @@ class CacaProvider {
 
         })
     }
+
+    // MARK: Save caca photo
 
     typealias CacaPhotoHadler = (String?, Error?) -> Void
 
@@ -52,6 +56,8 @@ class CacaProvider {
         }
 
     }
+
+    // MARK: Get caca
 
     typealias CacaHadler = ([Caca]?, Error?) -> Void
 
@@ -93,6 +99,8 @@ class CacaProvider {
 
         }
     }
+
+    // MARK: Delete caca
 
     func deleteCaca(of cacaID: String) {
 

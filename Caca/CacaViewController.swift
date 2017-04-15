@@ -36,15 +36,9 @@ class CacaViewController: UIViewController {
 
             if gender == Gender.male.rawValue {
 
-                mainImageView.backgroundColor = Palette.backgoundColor
                 mainImageView.image = #imageLiteral(resourceName: "poo-icon")
 
-            } else {
-
-                mainImageView.backgroundColor = Palette.backgoundColor
-
             }
-
         }
 
         CacaProvider.shared.getCaca { (cacas, _) in
@@ -103,6 +97,8 @@ class CacaViewController: UIViewController {
         self.navigationItem.title = Time().dateString()
 
         self.view.backgroundColor = Palette.backgoundColor
+
+        self.mainImageView.backgroundColor = Palette.backgoundColor
 
         self.notificationLabel.textColor = Palette.textColor
         self.notificationLabel.numberOfLines = 0

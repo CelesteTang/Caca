@@ -108,6 +108,9 @@ class SignUpViewController: UIViewController {
 
                         let gender = self.genderSegmentedControl.selectedSegmentIndex
 
+                        UserDefaults.standard.set(name, forKey: "Name")
+                        UserDefaults.standard.set(gender, forKey: "Gender")
+                        
                         let value = ["name": name,
                                      "gender": gender] as [String: Any]
 
