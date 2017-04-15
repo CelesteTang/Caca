@@ -35,26 +35,26 @@ class RecordDetailViewController: UIViewController {
         let alertController = UIAlertController(title: "Warning",
                                                 message: "Do you want to delete this record?",
                                                 preferredStyle: .alert)
-        
+
         let cancelAction = UIAlertAction(title: "No",
                                          style: .cancel,
                                          handler: nil)
         alertController.addAction(cancelAction)
-        
+
         let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
-            
+
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
                 let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-                
+
                 tabBarController.selectedIndex = TabBarItemType.record.rawValue
-                
+
                 CacaProvider.shared.deleteCaca(of: self.recievedCaca[0].cacaID)
-                
+
                 appDelegate.window?.rootViewController = tabBarController
             }
         }
         alertController.addAction(okAction)
-        
+
         self.present(alertController, animated: true, completion: nil)
 
     }
@@ -77,14 +77,14 @@ class RecordDetailViewController: UIViewController {
                         let image = UIImage(data: data)
 
                         DispatchQueue.main.async {
-                            
+
                             self.cacaPhoto.image = image
-                            
+
                         }
 
                     } catch {
 
-                        print(error)
+                        print(error.localizedDescription)
 
                     }
                 }

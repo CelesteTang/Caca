@@ -10,6 +10,8 @@ import UIKit
 
 class SettingRowView: UIView {
 
+    @IBOutlet weak var iconImageView: UIImageView!
+    
     @IBOutlet weak var titleLabel: UILabel!
 
 }

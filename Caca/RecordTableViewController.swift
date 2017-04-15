@@ -87,9 +87,9 @@ class RecordTableViewController: UITableViewController {
                     do {
                         let data = try Data(contentsOf: url)
                         let image = UIImage(data: data)
-                        
+
                         DispatchQueue.main.async {
-                            
+
                             cell.rowView.cacaPhotoImageView.image = image
 
                         }

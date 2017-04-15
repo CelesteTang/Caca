@@ -73,9 +73,7 @@ class CalendarViewController: UIViewController {
 
     func monthChanged(_ visibleDates: DateSegmentInfo) {
 
-        guard let startDate = visibleDates.monthDates.first else {
-            return
-        }
+        guard let startDate = visibleDates.monthDates.first else { return }
 
         let calendar = Calendar.current
         let month = calendar.component(.month, from: startDate)

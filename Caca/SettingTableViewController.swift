@@ -59,6 +59,7 @@ class SettingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
         // swiftlint:enable force_cast
 
+        cell.rowView.iconImageView.image = #imageLiteral(resourceName: "poo-icon")
         cell.rowView.titleLabel.text = settings[indexPath.row].title
 
         return cell

@@ -162,10 +162,6 @@ class FillinViewController: UIViewController {
 
     }
 
-    @IBAction func amountChanged(_ sender: UISlider) {
-
-    }
-
     @IBAction func didFillin(_ sender: UIButton) {
 
         finishButton.isEnabled = false
@@ -287,6 +283,7 @@ class FillinViewController: UIViewController {
         self.timeLabel.text = time.timeString()
         self.consumingTimeLabel.text = Time.consumingTime
 
+        self.amountSlider.isContinuous = true
         self.amountSlider.thumbTintColor = Palette.textColor
         self.amountSlider.tintColor = UIColor.white
         self.amountSlider.minimumValue = 1.0

@@ -85,15 +85,15 @@ class SignUpViewController: UIViewController {
                 FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
 
                     if let error = error {
-                        
+
                         let alertController = UIAlertController(title: "Warning",
                                                                 message: error.localizedDescription,
                                                                 preferredStyle: .alert)
-                        
+
                         alertController.addAction(UIAlertAction(title: "OK",
                                                                 style: .default,
                                                                 handler: nil))
-                        
+
                         self.present(alertController, animated: true, completion: nil)
 
                         return
@@ -110,7 +110,7 @@ class SignUpViewController: UIViewController {
 
                         UserDefaults.standard.set(name, forKey: "Name")
                         UserDefaults.standard.set(gender, forKey: "Gender")
-                        
+
                         let value = ["name": name,
                                      "gender": gender] as [String: Any]
 
