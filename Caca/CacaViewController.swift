@@ -85,16 +85,16 @@ class CacaViewController: UIViewController {
                         let month = Calendar.current.component(.month, from: Date())
                         let year = Calendar.current.component(.year, from: Date())
                         let day = Calendar.current.component(.day, from: Date())
-                        
+
                         let currentDate = String(format: "%04i-%02i-%02i", year, month, day)
-                        
+
                         if caca.date == currentDate {
 
                             todayCacaTimes += 1
 
                         }
                     }
-                    
+
                     if todayCacaTimes > 3 {
 
                         self.notificationLabel.text = "\(userName), you caca too much today. You should not caca over 3 times per day."
@@ -105,11 +105,8 @@ class CacaViewController: UIViewController {
 
                     }
                 }
-
             }
-
         }
-
     }
 
     // MARK: Set Up
@@ -149,10 +146,10 @@ extension CacaViewController {
 extension Date {
 
     func daysBetweenDate(to date: Date) -> Int {
-        
+
         let components = Calendar.current.dateComponents([.day], from: self, to: date)
         return components.day ?? 0
-        
+
     }
 
 }

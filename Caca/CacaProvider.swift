@@ -19,9 +19,7 @@ class CacaProvider {
 
     func saveCaca(cacaID: String, value: [String : Any]) {
 
-        let databaseRef = FIRDatabase.database().reference()
-
-        databaseRef.child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
+        FIRDatabase.database().reference().child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
 
             if error != nil {
 
@@ -101,12 +99,46 @@ class CacaProvider {
         }
     }
 
+    // MARK: Edit caca
+    
+    func editCaca(of cacaID: String, value: [String : Any]) {
+        
+        FIRDatabase.database().reference().child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
+            
+            if error != nil {
+                
+                print(error?.localizedDescription ?? "")
+                
+                return
+            }
+            
+        })
+        
+    }
+    
     // MARK: Delete caca
 
     func deleteCaca(of cacaID: String) {
 
         FIRDatabase.database().reference().child("cacas").child(cacaID).removeValue { (error, _) in
 
+            if error != nil {
+
+                print(error?.localizedDescription ?? "")
+
+            }
+        }
+
+    }
+
+    // MARK: Delete caca photo
+
+    func deleteCacaPhoto(of photoID: String) {
+
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
+        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(photoID).jpg")
+
+        storageRef.delete { (error) in
             if error != nil {
 
                 print(error?.localizedDescription ?? "")
