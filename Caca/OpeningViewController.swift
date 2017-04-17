@@ -21,18 +21,19 @@ class OpeningViewController: UIViewController {
     @IBAction func openingButton(_ sender: UIButton) {
 
         switch index {
+
         case 0...1:
             guard let pageViewController = parent as? OpeningPageViewController else { return }
             pageViewController.forward(index: index)
+
         case 2:
-//            dismiss(animated: true, completion: nil)
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
             }
 
         default: break
-        }
 
+        }
     }
 
     var index = 0
@@ -42,19 +43,23 @@ class OpeningViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Palette.backgoundColor
-        openingLabel.textColor = Palette.textColor
-        forwardButton.tintColor = Palette.textColor
+        self.view.backgroundColor = Palette.backgoundColor
+        self.openingLabel.textColor = Palette.textColor
+        self.forwardButton.tintColor = Palette.textColor
 
-        openingLabel.text = heading
-        openingImage.image = UIImage(named: imageFile)
+        self.openingLabel.text = heading
+        self.openingImage.image = UIImage(named: imageFile)
 
-        pageControl.currentPage = index
+        self.pageControl.currentPage = index
 
         switch index {
-        case 0...1: forwardButton.setTitle("Next", for: .normal)
-        case 2: forwardButton.setTitle("Done", for: .normal)
+
+        case 0...1: self.forwardButton.setTitle("Next", for: .normal)
+
+        case 2: self.forwardButton.setTitle("Done", for: .normal)
+
         default: break
+
         }
     }
 

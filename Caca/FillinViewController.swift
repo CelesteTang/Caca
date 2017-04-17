@@ -19,32 +19,32 @@ enum Shape: Int {
         switch self {
         case .separateHard:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 //            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
 
         case .lumpySausage:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .crackSausage:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .smoothSausage:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .softBlob:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .mushyStool:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .wateryStool:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
         }
 
     }
@@ -60,30 +60,30 @@ enum Color: Int {
         switch self {
         case .red:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .yellow:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
         case .green:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .lightBrown:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .darkBrown:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .gray:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
 
         case .black:
 
-            return #imageLiteral(resourceName: "poo-icon").withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "poo-icon")
         }
 
     }
@@ -91,6 +91,8 @@ enum Color: Int {
 }
 
 class FillinViewController: UIViewController {
+
+    @IBOutlet weak var cancelButton: UIButton!
 
     @IBOutlet weak var colorView: UIView!
 
@@ -116,9 +118,18 @@ class FillinViewController: UIViewController {
 
     @IBOutlet weak var finishButton: UIButton!
 
-    var isclicked = false
+    var ispassed = false
 
     var cacas = [Caca]()
+
+    @IBAction func cancelFillin(_ sender: UIButton) {
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+            appDelegate.window?.rootViewController = tabBarController
+
+        }
+    }
 
     @IBAction func pickPhotoFromLibrary(_ sender: UIButton) {
 
@@ -128,8 +139,6 @@ class FillinViewController: UIViewController {
         picker.allowsEditing = true
         picker.videoQuality = .typeLow
         self.present(picker, animated: true, completion: nil)
-
-        isclicked = true
 
     }
 
@@ -145,54 +154,59 @@ class FillinViewController: UIViewController {
         picker.videoQuality = .typeLow
         self.present(picker, animated: true, completion: nil)
 
-        isclicked = true
-
-    }
-
-    @IBAction func amountChanged(_ sender: UISlider) {
-
     }
 
     @IBAction func didFillin(_ sender: UIButton) {
 
         finishButton.isEnabled = false
 
-        guard let hostUID = FIRAuth.auth()?.currentUser?.uid, let date = dateLabel.text, let time = timeLabel.text, let consumingTime = consumingTimeLabel.text else {
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
+              let date = dateLabel.text,
+              let time = timeLabel.text,
+              let consumingTime = consumingTimeLabel.text else {
+
             return
+
         }
 
-        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(UUID().uuidString).png")
+        if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
 
-        if isclicked == true {
+            ispassed = true
 
-            if let uploadData = UIImageJPEGRepresentation(cacaPhoto.image!, 0.1) {
+        }
 
-                storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+        let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
+        let photoID = UUID().uuidString
 
-                    if error != nil {
+        if cacaPhoto.image != #imageLiteral(resourceName: "poo-icon") {
 
-                        print(error?.localizedDescription ?? "storageError")
+            CacaProvider.shared.saveCacaPhoto(of: cacaPhoto.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
 
-                        return
-                    }
+                if error != nil {
 
-                    if let cacaPhotoUrl = metadata?.downloadURL()?.absoluteString {
+                    print(error?.localizedDescription ?? "storageError")
 
-                        let value = ["host": hostUID,
-                                     "date": date,
-                                     "time": time,
-                                     "consumingTime": consumingTime,
-                                     "shape": self.shapeSegmentedControl.selectedSegmentIndex,
-                                     "color": self.colorSegmentedControll.selectedSegmentIndex,
-                                     "amount": Double(self.amountSlider.value),
-                                     "other": self.otherTextView.text,
-                                     "photo": cacaPhotoUrl] as [String : Any]
+                    return
+                }
 
-                        self.saveCacaIntoDatabase(value: value)
+                guard let cacaPhotoUrl = cacaPhotoUrl else { return }
+                let value = ["host": hostUID,
+                             "date": date,
+                             "time": time,
+                             "consumingTime": consumingTime,
+                             "shape": self.shapeSegmentedControl.selectedSegmentIndex,
+                             "color": self.colorSegmentedControll.selectedSegmentIndex,
+                             "amount": Double(self.amountSlider.value),
+                             "other": self.otherTextView.text,
+                             "photo": cacaPhotoUrl,
+                             "grading": self.ispassed,
+                             "cacaID": cacaID,
+                             "photoID": photoID] as [String : Any]
 
-                    }
-                })
-            }
+                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+                self.switchToRecord()
+
+            })
 
         } else {
 
@@ -204,35 +218,14 @@ class FillinViewController: UIViewController {
                          "color": self.colorSegmentedControll.selectedSegmentIndex,
                          "amount": Double(self.amountSlider.value),
                          "other": self.otherTextView.text,
-                         "photo": ""] as [String : Any]
+                         "photo": "",
+                         "grading": self.ispassed,
+                         "cacaID": cacaID,
+                         "photoID": ""] as [String : Any]
 
-            self.saveCacaIntoDatabase(value: value)
-
-        }
-    }
-
-    private func saveCacaIntoDatabase(value: [String : Any]) {
-
-        let databaseRef = FIRDatabase.database().reference().child("cacas").childByAutoId()
-
-        databaseRef.updateChildValues(value, withCompletionBlock: { (error, _) in
-
-//            snapshot.observeSingleEvent(of: .value, with: {snap in
-//                print(snap)
-//                self.switchToRecord(snap)
-//
-//            })
-
-            if error != nil {
-
-                print(error?.localizedDescription ?? "")
-
-                return
-            }
-
+            CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
             self.switchToRecord()
-
-        })
+        }
     }
 
     func switchToRecord() {
@@ -240,22 +233,6 @@ class FillinViewController: UIViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
             tabBarController.selectedIndex = TabBarItemType.record.rawValue
-
-//            let recordTableViewController  = tabBarController.selectedViewController as? RecordTableViewController
-//
-//            if let cacaInfo = snap.value as? NSDictionary,
-//                let cacaPhoto = cacaInfo["photo"] as? String,
-//                let cacaDate = cacaInfo["date"] as? String,
-//                let cacaTime = cacaInfo["time"] as? String,
-//                let cacaConsumingTime = cacaInfo["consumingTime"] as? String,
-//                let cacaShape = cacaInfo["shape"] as? Int,
-//                let cacaColor = cacaInfo["color"] as? Int,
-//                let cacaAmount = cacaInfo["amount"] as? Double,
-//                let cacaOther = cacaInfo["other"] as? String {
-//
-//                let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
-//
-//                recordTableViewController?.cacas.append(caca)
 
             appDelegate.window?.rootViewController = tabBarController
 
@@ -266,26 +243,9 @@ class FillinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        otherTextView.delegate = self
+        setUp()
 
-        isclicked = false
-
-        cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
-        cacaPhoto.backgroundColor = Palette.backgoundColor
-
-        photoButton.setTitle("Take photo", for: .normal)
-        photoLibraryButton.setTitle("Pick photo from library", for: .normal)
-
-        dateLabel.text = dateString()
-        timeLabel.text = timeString()
-        consumingTimeLabel.text = Time.consumingTime
-        view.backgroundColor = Palette.backgoundColor
-
-        amountSlider.thumbTintColor = Palette.textColor
-        amountSlider.tintColor = UIColor.white
-        amountSlider.minimumValue = 1.0
-        amountSlider.maximumValue = 3.0
-        amountSlider.value = 2.0
+        ispassed = false
 
         otherTextView.delegate = self
 
@@ -296,53 +256,85 @@ class FillinViewController: UIViewController {
         finishButton.isEnabled = true
     }
 
-    func dateString() -> String {
+    // MARK: Set Up
 
-        let date = Date()
-        let calendar = Calendar.current
+    private func setUp() {
 
-        let year = calendar.component(.year, from: date)
-        let month = calendar.component(.month, from: date)
-        let day = calendar.component(.day, from: date)
+        self.view.backgroundColor = Palette.backgoundColor
 
-        return String(format: "%04i-%02i-%02i", year, month, day)
+        self.cancelButton.setTitle("Cancel", for: .normal)
 
-    }
+        self.cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+        self.cacaPhoto.backgroundColor = Palette.backgoundColor
 
-    func timeString() -> String {
+        self.photoButton.setTitle("Take photo", for: .normal)
+        self.photoLibraryButton.setTitle("Pick photo from library", for: .normal)
 
-        let date = Date()
-        let calendar = Calendar.current
+        let time = Time()
+        self.dateLabel.text = time.dateString()
+        self.timeLabel.text = time.timeString()
+        self.consumingTimeLabel.text = Time.consumingTime
 
-        let hour = calendar.component(.hour, from: date)
-        let minute = calendar.component(.minute, from: date)
-
-        return String(format: "%02i:%02i", hour, minute)
+        self.amountSlider.isContinuous = true
+        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "poo-icon"), targetRatio: 0.75)
+        self.amountSlider.setThumbImage(thumbIamge, for: .normal)
+        self.amountSlider.tintColor = UIColor.white
+        self.amountSlider.minimumValue = 0.5
+        self.amountSlider.maximumValue = 1.0
+        self.amountSlider.value = 0.75
+        self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
     }
 
     func hideKeyBoard() {
+
         self.otherTextView.resignFirstResponder()
+
     }
 
+    func changeThumbImageSize() {
+
+        let ratio: CGFloat = CGFloat(self.amountSlider.value)
+        let thumbImage: UIImage = #imageLiteral(resourceName: "poo-icon")
+
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: thumbImage.size.width * ratio, height: thumbImage.size.height * ratio))
+//        imageView.image = thumbImage
+//        self.amountSlider.addSubview(imageView)
+
+        let newImage = self.resizeImage(image: thumbImage, targetRatio: ratio)
+
+        self.amountSlider.setThumbImage(newImage, for: .normal)
+    }
+
+    func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
+
+        let size = image.size
+
+        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
+
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+
+        image.draw(in: rect)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        UIGraphicsEndImageContext()
+
+        return newImage!
+    }
 }
 
-extension FillinViewController: UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
+extension FillinViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-
-        if let mediaType = info[UIImagePickerControllerMediaType] as? String {
-            print(mediaType)
-        }
 
         if let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage {
 
             self.cacaPhoto.image = editedCacaImage
 
-            guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else {
-                return
-            }
+            guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else { return }
 
             self.colorView.backgroundColor = dominantColor.makeUIColor()
 
@@ -350,9 +342,7 @@ UINavigationControllerDelegate {
 
             self.cacaPhoto.image = originalCacaImage
 
-            guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else {
-                return
-            }
+            guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else { return }
 
             self.colorView.backgroundColor = dominantColor.makeUIColor()
 
@@ -373,7 +363,7 @@ extension FillinViewController: UITextViewDelegate {
 
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
 
-        if textView == otherTextView {
+        if textView == self.otherTextView {
 
             self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
 

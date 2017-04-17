@@ -1,18 +1,18 @@
 //
-//  RecordTableViewCell.swift
+//  PrivacyTableViewCell.swift
 //  Caca
 //
-//  Created by 湯芯瑜 on 2017/3/21.
+//  Created by 湯芯瑜 on 2017/4/11.
 //  Copyright © 2017年 Hsin-Yu Tang. All rights reserved.
 //
 
 import UIKit
 
-class RecordTableViewCell: UITableViewCell {
+class PrivacyTableViewCell: UITableViewCell {
 
     // MARK: Property
 
-    let rowView = RecordRowView.create()
+    let rowView = PrivacyRowView.create()
 
     // MARK: Init
 
@@ -46,10 +46,8 @@ class RecordTableViewCell: UITableViewCell {
         self.rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         self.rowView.backgroundColor = Palette.backgoundColor
 
-        self.rowView.cacaPhotoImageView.backgroundColor = Palette.backgoundColor
-
-        self.rowView.dateLabel.textColor = Palette.textColor
-        self.rowView.timeLabel.textColor = Palette.textColor
+        self.rowView.backgroundColor = Palette.backgoundColor
+        self.rowView.privacyLabel.textColor = Palette.textColor
 
     }
 

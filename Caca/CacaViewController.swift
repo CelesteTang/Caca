@@ -18,11 +18,6 @@ class CacaViewController: UIViewController {
 
     @IBAction func switchToTiming(_ sender: UIButton) {
 
-//        let timingStorybard = UIStoryboard(name: "Timing", bundle: nil)
-//        let timingViewController = timingStorybard.instantiateViewController(withIdentifier: "TimingViewController")
-//
-//        present(timingViewController, animated: true)
-
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Timing", bundle: nil).instantiateViewController(withIdentifier: "TimingViewController") as? TimingViewController
         }
@@ -32,28 +27,89 @@ class CacaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = dateString()
-        notificationLabel.textColor = Palette.textColor
-        startButton.tintColor = Palette.textColor
+        setUp()
 
-        notificationLabel.text = "You don't defecate for 3 days"
-        notificationLabel.numberOfLines = 0
-        startButton.setTitle("Start", for: UIControlState.normal)
-        view.backgroundColor = Palette.backgoundColor
+        guard let userName = UserDefaults.standard.value(forKey: "Name") as? String else { return }
+        notificationLabel.text = "\(userName), how's today?"
+
+        if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
+
+            if gender == Gender.male.rawValue {
+
+                mainImageView.image = #imageLiteral(resourceName: "poo-icon")
+
+            }
+        }
+
+        CacaProvider.shared.getCaca { (cacas, _) in
+
+            if let cacas = cacas {
+
+                if cacas.last?.date == nil {
+
+                    self.notificationLabel.text = "\(userName), start caca now!"
+
+                } else {
+
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    dateFormatter.timeZone = TimeZone(secondsFromGMT: 8)
+                    var dayToNow = Int()
+
+                    if let lastCacaDate = cacas.last?.date,
+                       let date = dateFormatter.date(from: lastCacaDate) {
+
+                        dayToNow = date.daysBetweenDate(toDate: Date())
+
+                        switch dayToNow {
+
+                        case 0:
+                            self.notificationLabel.text = "\(userName), you caca today."
+
+                        case 1:
+                            self.notificationLabel.text = "\(userName), you don't caca today."
+
+                        case 2...6:
+                            self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days."
+
+                        case 7:
+                            self.notificationLabel.text = "\(userName), you don't caca for a week."
+
+                        default:
+                            self.notificationLabel.text = "\(userName), you don't caca for a long time."
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
 
     }
 
-    func dateString() -> String {
+    // MARK: Set Up
 
-        let date = Date()
-        let calendar = Calendar.current
+    private func setUp() {
 
-        let year = calendar.component(.year, from: date)
-        let month = calendar.component(.month, from: date)
-        let day = calendar.component(.day, from: date)
+        self.navigationItem.title = Time().dateString()
 
-        return String(format: "%04i/%02i/%02i", year, month, day)
+        self.view.backgroundColor = Palette.backgoundColor
+
+        self.mainImageView.backgroundColor = Palette.backgoundColor
+
+        self.notificationLabel.textColor = Palette.textColor
+        self.notificationLabel.numberOfLines = 0
+
+        self.startButton.backgroundColor = Palette.textColor
+        self.startButton.tintColor = Palette.backgoundColor
+        self.startButton.layer.cornerRadius = 15
+        self.startButton.setTitle("Start", for: UIControlState.normal)
+
     }
+
 }
 
 extension CacaViewController {
@@ -65,5 +121,14 @@ extension CacaViewController {
 
     }
     // swiftlint:enable force_cast
+
+}
+
+extension Date {
+
+    func daysBetweenDate(toDate: Date) -> Int {
+        let components = Calendar.current.dateComponents([.day], from: self, to: toDate)
+        return components.day ?? 0
+    }
 
 }

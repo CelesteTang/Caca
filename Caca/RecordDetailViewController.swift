@@ -32,39 +32,30 @@ class RecordDetailViewController: UIViewController {
 
     @IBAction func deleteRecord(_ sender: UIButton) {
 
-//        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-//            
-//            tabBarController.selectedIndex = 1
-//            
-//            let recordTableViewController  = tabBarController.viewControllers?[1] as? RecordTableViewController
-//            
-//            recordTableViewController?.tableView.deleteRows(at: [indexPath], with: .fade)
-//
-//            
-//            appDelegate.window?.rootViewController = tabBarController
-//        }
+        let alertController = UIAlertController(title: "Warning",
+                                                message: "Do you want to delete this record?",
+                                                preferredStyle: .alert)
 
-//        let storyBoard = UIStoryboard(name: "TabBar", bundle: nil)
-//
-//        guard let tabBarController = storyBoard.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController else {
-//
-//            return
-//        }
-//
-//        tabBarController.selectedIndex = 1
-//
-//        guard let recordNavigationController = tabBarController.viewControllers?[1] as? RecordNavigationController else {
-//
-//            return
-//
-//        }
-//        guard let recordTableViewController = recordNavigationController.viewControllers[0] as? RecordTableViewController else {
-//            return
-//        }
-//
-//        recordTableViewController.tableView.deleteRows(at: [indexPath], with: .fade)
-//
-//        self.navigationController?.pushViewController(recordTableViewController, animated: true)
+        let cancelAction = UIAlertAction(title: "No",
+                                         style: .cancel,
+                                         handler: nil)
+        alertController.addAction(cancelAction)
+
+        let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+                tabBarController.selectedIndex = TabBarItemType.record.rawValue
+
+                CacaProvider.shared.deleteCaca(of: self.recievedCaca[0].cacaID)
+
+                appDelegate.window?.rootViewController = tabBarController
+            }
+        }
+        alertController.addAction(okAction)
+
+        self.present(alertController, animated: true, completion: nil)
 
     }
 
@@ -74,46 +65,77 @@ class RecordDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Palette.backgoundColor
+        setUp()
 
-        cacaPhoto.backgroundColor = Palette.backgoundColor
-        shapeImageView.backgroundColor = Palette.backgoundColor
-        colorImageView.backgroundColor = Palette.backgoundColor
+        if self.recievedCaca[0].photo != "" {
 
-        if recievedCaca[0].photo != "" {
+            DispatchQueue.global().async {
+                if let url = URL(string: self.recievedCaca[0].photo) {
 
-            if let url = URL(string: recievedCaca[0].photo) {
+                    do {
+                        let data = try Data(contentsOf: url)
+                        let image = UIImage(data: data)
 
-                do {
-                    let data = try Data(contentsOf: url)
-                    cacaPhoto.image = UIImage(data: data)
+                        DispatchQueue.main.async {
 
-                } catch {
+                            self.cacaPhoto.image = image
 
-                    print(error)
+                        }
 
+                    } catch {
+
+                        print(error.localizedDescription)
+
+                    }
                 }
             }
-        } else {
-
-            cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
-
         }
 
-        deleteRecordButton.setTitle("Delete", for: .normal)
-        dateLabel.text = recievedCaca[0].date
-        timeLabel.text = recievedCaca[0].time
-        consumingTimeLabel.text = recievedCaca[0].consumingTime
-        shapeImageView.image = recievedCaca[0].shape.image
-        colorImageView.image = recievedCaca[0].color.image
-        amountLabel.text = String(recievedCaca[0].amount)
-        otherInfoLabel.text = recievedCaca[0].otherInfo
+        if self.recievedCaca[0].grading == true {
+
+            self.passOrFailLabel.text = "Pass"
+            self.passOrFailLabel.backgroundColor = Palette.passColor
+
+        } else {
+
+            self.passOrFailLabel.text = "Fail"
+            self.passOrFailLabel.backgroundColor = Palette.failColor
+
+        }
 
         tabBarController?.tabBar.isHidden = true
     }
 
+    // MARK: Set Up
+
+    private func setUp() {
+
+        self.view.backgroundColor = Palette.backgoundColor
+
+        self.cacaPhoto.backgroundColor = Palette.backgoundColor
+        self.shapeImageView.backgroundColor = Palette.backgoundColor
+        self.colorImageView.backgroundColor = Palette.backgoundColor
+
+        self.cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+
+        self.deleteRecordButton.setTitle("Delete", for: .normal)
+
+        self.dateLabel.text = self.recievedCaca[0].date
+        self.timeLabel.text = self.recievedCaca[0].time
+        self.consumingTimeLabel.text = self.recievedCaca[0].consumingTime
+        self.shapeImageView.image = self.recievedCaca[0].shape.image
+        self.colorImageView.image = self.recievedCaca[0].color.image
+        self.amountLabel.text = String(self.recievedCaca[0].amount)
+        self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
+
+        self.passOrFailLabel.textColor = Palette.backgoundColor
+
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
         tabBarController?.tabBar.isHidden = false
+
     }
 }

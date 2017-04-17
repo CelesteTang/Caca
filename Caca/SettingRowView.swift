@@ -10,6 +10,8 @@ import UIKit
 
 class SettingRowView: UIView {
 
+    @IBOutlet weak var iconImageView: UIImageView!
+
     @IBOutlet weak var titleLabel: UILabel!
 
 }
@@ -21,5 +23,6 @@ extension SettingRowView {
 
         return UINib(nibName: "SettingRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! SettingRowView
     }
+    // swiftlint:enable force_cast
+
 }
-// swiftlint:enable force_cast

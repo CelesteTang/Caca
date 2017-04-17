@@ -15,7 +15,49 @@ class CacaProvider {
 
     static let shared = CacaProvider()
 
-//    private var cacas = [Caca]()
+    // MARK: Save caca
+
+    func saveCaca(cacaID: String, value: [String : Any]) {
+
+        let databaseRef = FIRDatabase.database().reference()
+
+        databaseRef.child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
+
+            if error != nil {
+
+                print(error?.localizedDescription ?? "")
+
+                return
+            }
+
+        })
+    }
+
+    // MARK: Save caca photo
+
+    typealias CacaPhotoHadler = (String?, Error?) -> Void
+
+    func saveCacaPhoto(of image: UIImage, with photoID: String, completion: @escaping CacaPhotoHadler) {
+
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
+        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(photoID).jpg")
+
+        if let uploadData = UIImageJPEGRepresentation(image, 0.1) {
+
+            storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+
+                completion(nil, error)
+
+                if let cacaPhotoUrl = metadata?.downloadURL()?.absoluteString {
+
+                    completion(cacaPhotoUrl, nil)
+                }
+            })
+        }
+
+    }
+
+    // MARK: Get caca
 
     typealias CacaHadler = ([Caca]?, Error?) -> Void
 
@@ -23,9 +65,8 @@ class CacaProvider {
 
         var cacas = [Caca]()
 
-        let rootRef = FIRDatabase.database().reference()
+        FIRDatabase.database().reference().child("cacas").queryOrdered(byChild: "host").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
 
-        rootRef.child("cacas").queryOrdered(byChild: "host").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
 
                 for snap in snaps {
@@ -38,9 +79,12 @@ class CacaProvider {
                         let cacaShape = cacaInfo["shape"] as? Int,
                         let cacaColor = cacaInfo["color"] as? Int,
                         let cacaAmount = cacaInfo["amount"] as? Double,
-                        let cacaOther = cacaInfo["other"] as? String {
+                        let cacaOther = cacaInfo["other"] as? String,
+                        let cacaGrading = cacaInfo["grading"] as? Bool,
+                        let cacaID = cacaInfo["cacaID"] as? String,
+                        let cacaPhotoID = cacaInfo["photoID"] as? String {
 
-                        let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther)
+                        let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, cacaID: cacaID, photoID: cacaPhotoID)
 
                         cacas.append(caca)
                     }
@@ -54,6 +98,21 @@ class CacaProvider {
             completion(nil, error)
 
         }
+    }
+
+    // MARK: Delete caca
+
+    func deleteCaca(of cacaID: String) {
+
+        FIRDatabase.database().reference().child("cacas").child(cacaID).removeValue { (error, _) in
+
+            if error != nil {
+
+                print(error?.localizedDescription ?? "")
+
+            }
+        }
+
     }
 
 }

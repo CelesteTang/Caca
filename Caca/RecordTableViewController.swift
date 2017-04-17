@@ -16,19 +16,11 @@ class RecordTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Record"
-
-        let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        navigationItem.backBarButtonItem = backItem
-
-        view.backgroundColor = Palette.backgoundColor
+        setUp()
 
         tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: "RecordTableViewCell")
 
-        let provider = CacaProvider.shared
-
-        provider.getCaca { (cacas, _) in
+        CacaProvider.shared.getCaca { (cacas, _) in
 
             if let cacas = cacas {
                 self.cacas = cacas
@@ -40,18 +32,42 @@ class RecordTableViewController: UITableViewController {
 
     }
 
+    // MARK: Set Up
+
+    private func setUp() {
+
+        self.navigationItem.title = "Record"
+        self.view.backgroundColor = Palette.backgoundColor
+
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        self.navigationItem.backBarButtonItem = backItem
+
+//        let image = UIImage()
+//        navigationController?.navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
+//        navigationController?.navigationBar.shadowImage = image
+//        navigationController?.navigationBar.isTranslucent = true
+//        navigationController?.view.backgroundColor = UIColor.clear
+    }
+
     // MARK: Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+
         return 1
+
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return self.cacas.count
+
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
         return 114.0
+
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,39 +76,57 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
 
-        if cacas[indexPath.row].photo != "" {
-            if let url = URL(string: cacas[indexPath.row].photo) {
+        cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
 
-                do {
-                    let data = try Data(contentsOf: url)
-                    cell.rowView.cacaPhotoImageView.image = UIImage(data: data)
-                } catch {
-                    print(error)
+        if cacas[indexPath.row].photo != "" {
+
+            DispatchQueue.global().async {
+
+                if let url = URL(string: self.cacas[indexPath.row].photo) {
+
+                    do {
+                        let data = try Data(contentsOf: url)
+                        let image = UIImage(data: data)
+
+                        DispatchQueue.main.async {
+
+                            cell.rowView.cacaPhotoImageView.image = image
+
+                        }
+
+                    } catch {
+
+                        print(error)
+
+                    }
                 }
             }
-        } else {
-
-            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
-
         }
 
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
         cell.rowView.timeLabel.text = self.cacas[indexPath.row].time
-        cell.rowView.passOrFailLabel.text = "Pass"
+
+        if self.cacas[indexPath.row].grading == true {
+
+            cell.rowView.passOrFailLabel.text = "Pass"
+            cell.rowView.passOrFailLabel.textColor = Palette.passColor
+
+        } else {
+
+            cell.rowView.passOrFailLabel.text = "Fail"
+            cell.rowView.passOrFailLabel.textColor = Palette.failColor
+
+        }
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard
-            let indexPath = tableView.indexPathForSelectedRow,
-            let currentCell = tableView.cellForRow(at: indexPath) as? RecordTableViewCell else {
-                return
-        }
-        print(currentCell.rowView.dateLabel.text ?? "")
 
         let storyBoard = UIStoryboard(name: "RecordDetail", bundle: nil)
-        guard let recordDetailViewController = storyBoard.instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else { return }
+        guard let recordDetailViewController = storyBoard.instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else {
+            return
+        }
 
         recordDetailViewController.recievedCaca = [self.cacas[indexPath.row]]
         recordDetailViewController.indexPath = indexPath
@@ -104,9 +138,11 @@ class RecordTableViewController: UITableViewController {
 
         if editingStyle == .delete {
 
-            cacas.remove(at: indexPath.row)
+            CacaProvider.shared.deleteCaca(of: self.cacas[indexPath.row].cacaID)
+            self.cacas.remove(at: indexPath.row)
 
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+
         }
     }
 

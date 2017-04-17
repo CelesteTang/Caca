@@ -18,42 +18,50 @@ class PasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let context = LAContext()
+        setUp()
 
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
 
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use TouchID to enter Caca", reply: { (success, _) in
+            let context = LAContext()
 
-                if success {
-                    DispatchQueue.main.async {
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
 
-                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use TouchID to enter Caca", reply: { (success, _) in
 
-                        appDelegate.window?.rootViewController = tabBarController
+                    if success {
+                        DispatchQueue.main.async {
 
+                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+                                appDelegate.window?.rootViewController = tabBarController
+
+                            }
+                        }
                     }
-                    }
-                }
 
-            })
+                })
 
+            }
         }
-
-        view.backgroundColor = Palette.backgoundColor
-        passwordLabel.text = "Please enter your password"
-
-        passwordField.delegate = self
-        passwordField.clearButtonMode = .never
-        passwordField.placeholder = "Password"
-        passwordField.textAlignment = .center
-        passwordField.clearsOnBeginEditing = true
-        passwordField.isSecureTextEntry = true
-        passwordField.returnKeyType = .done
-
-        UserDefaults.standard.set("1234", forKey: "Password")
 
     }
 
+    // MARK: Set Up
+
+    private func setUp() {
+
+        self.view.backgroundColor = Palette.backgoundColor
+        self.passwordLabel.text = "Please enter your password"
+
+        self.passwordField.delegate = self
+        self.passwordField.clearButtonMode = .never
+        self.passwordField.placeholder = "Password"
+        self.passwordField.textAlignment = .center
+        self.passwordField.clearsOnBeginEditing = true
+        self.passwordField.isSecureTextEntry = true
+        self.passwordField.returnKeyType = .done
+
+    }
 }
 
 extension PasswordViewController: UITextFieldDelegate {
@@ -61,11 +69,39 @@ extension PasswordViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
 
-        if passwordField.text == UserDefaults.standard.value(forKey: "Password") as? String {
+        if UserDefaults.standard.string(forKey: "Password") == nil {
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+            UserDefaults.standard.set(passwordField.text, forKey: "Password")
 
+            dismiss(animated: true, completion: nil)
+
+        } else {
+
+            if passwordField.text == UserDefaults.standard.value(forKey: "Password") as? String {
+
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+                }
+
+            } else {
+
+                let alertController = UIAlertController(
+                    title: "Warning",
+                    message: "The password is incorrect. Try again.",
+                    preferredStyle: .alert)
+
+                let okAction = UIAlertAction(
+                    title: "OK",
+                    style: .default,
+                    handler: nil)
+
+                alertController.addAction(okAction)
+
+                self.present(
+                    alertController,
+                    animated: true,
+                    completion: nil)
             }
         }
 

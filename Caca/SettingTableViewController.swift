@@ -10,15 +10,33 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
 
-    var setting = ["Profile", "Privacy", "Notification", "Language"]
+    enum Setting: Int {
+
+        case profile, privacy, notification, language
+
+        var title: String {
+
+            switch self {
+
+            case .profile: return "Profile"
+            case .privacy: return "Privacy"
+            case .notification: return "Notification"
+            case .language: return "Language"
+
+            }
+        }
+
+    }
+
+    private let settings: [Setting] = [.profile, .privacy, .notification, .language]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Setting"
-        view.backgroundColor = Palette.backgoundColor
+        self.navigationItem.title = "Setting"
+        self.view.backgroundColor = Palette.backgoundColor
 
-        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "SettingTableViewCell")
+        self.tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "SettingTableViewCell")
     }
 
     // MARK: - Table view data source
@@ -28,7 +46,7 @@ class SettingTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return setting.count
+        return settings.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -41,9 +59,32 @@ class SettingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
         // swiftlint:enable force_cast
 
-        cell.rowView.titleLabel.text = setting[indexPath.row]
+        cell.rowView.iconImageView.image = #imageLiteral(resourceName: "poo-icon")
+        cell.rowView.titleLabel.text = settings[indexPath.row].title
 
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        switch indexPath.row {
+
+        case Setting.profile.rawValue:
+
+            let storyBoard = UIStoryboard(name: "Profile", bundle: nil)
+            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+
+            self.navigationController?.pushViewController(viewController, animated: true)
+
+        case Setting.privacy.rawValue:
+
+            let storyBoard = UIStoryboard(name: "Privacy", bundle: nil)
+            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "PrivacyTableViewController") as? PrivacyTableViewController else { return }
+
+            self.navigationController?.pushViewController(viewController, animated: true)
+
+        default: break
+
+        }
+    }
 }

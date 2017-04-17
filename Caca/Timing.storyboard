@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -41,7 +42,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0u-ed-Hov">
-                                <rect key="frame" x="157" y="202" width="60" height="36"/>
+                                <rect key="frame" x="157.5" y="202" width="60" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -55,12 +56,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEF-D6-cNg">
-                                <rect key="frame" x="157" y="278" width="60" height="36"/>
+                                <rect key="frame" x="157.5" y="278" width="60" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="finishButtonTapped:" destination="qqv-ed-qAr" eventType="touchUpInside" id="P4j-uH-VkN"/>
                                     <action selector="pauseButtonTapped:" destination="qqv-ed-qAr" eventType="touchUpInside" id="IeO-pN-vRa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9E-OP-jMv">
+                                <rect key="frame" x="16" y="20" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="cancelTiming:" destination="qqv-ed-qAr" eventType="touchUpInside" id="Cug-aw-O3Q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -74,17 +82,20 @@
                             <constraint firstItem="Z79-WV-rtL" firstAttribute="top" secondItem="poB-9D-kOS" secondAttribute="bottom" id="6ay-KW-65H"/>
                             <constraint firstItem="hEF-D6-cNg" firstAttribute="centerX" secondItem="T2D-mk-Xhj" secondAttribute="centerX" id="HaY-Dy-DBT"/>
                             <constraint firstAttribute="trailing" secondItem="Xbg-pD-UFm" secondAttribute="trailing" constant="50" id="Hl1-dt-W15"/>
+                            <constraint firstItem="F9E-OP-jMv" firstAttribute="leading" secondItem="T2D-mk-Xhj" secondAttribute="leadingMargin" id="KBo-3t-ump"/>
                             <constraint firstItem="qoH-0k-AVo" firstAttribute="top" secondItem="HhC-e2-Azx" secondAttribute="bottom" constant="100" id="OVA-cn-9Yi"/>
                             <constraint firstAttribute="trailing" secondItem="poB-9D-kOS" secondAttribute="trailing" id="Oe1-Gr-3vY"/>
                             <constraint firstAttribute="trailing" secondItem="qoH-0k-AVo" secondAttribute="trailing" constant="50" id="STx-CF-Zc5"/>
                             <constraint firstItem="qoH-0k-AVo" firstAttribute="leading" secondItem="T2D-mk-Xhj" secondAttribute="leading" constant="50" id="ZoL-jT-Tij"/>
                             <constraint firstItem="poB-9D-kOS" firstAttribute="leading" secondItem="T2D-mk-Xhj" secondAttribute="leading" id="a4Y-7t-A44"/>
                             <constraint firstItem="C0u-ed-Hov" firstAttribute="centerX" secondItem="T2D-mk-Xhj" secondAttribute="centerX" id="eD2-QY-xr0"/>
+                            <constraint firstItem="F9E-OP-jMv" firstAttribute="top" secondItem="HhC-e2-Azx" secondAttribute="bottom" id="noU-Lz-6U3"/>
                             <constraint firstItem="C0u-ed-Hov" firstAttribute="top" secondItem="qoH-0k-AVo" secondAttribute="bottom" constant="40" id="nqx-Js-Pv1"/>
                             <constraint firstItem="hEF-D6-cNg" firstAttribute="top" secondItem="C0u-ed-Hov" secondAttribute="bottom" constant="40" id="udA-Kl-8Hw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="F9E-OP-jMv" id="KS5-4W-zxJ"/>
                         <outlet property="finishButton" destination="hEF-D6-cNg" id="XsQ-yV-MCN"/>
                         <outlet property="pauseButton" destination="C0u-ed-Hov" id="MDX-PC-j5G"/>
                         <outlet property="resetButton" destination="Xbg-pD-UFm" id="Dkw-vJ-jkH"/>

@@ -10,6 +10,8 @@ import UIKit
 
 class TimingViewController: UIViewController {
 
+    @IBOutlet weak var cancelButton: UIButton!
+
     @IBOutlet weak var timerLabel: UILabel!
 
     @IBOutlet weak var startButton: UIButton!
@@ -27,6 +29,16 @@ class TimingViewController: UIViewController {
     var isTimerRunning = false
 
     var resumeTapped = false
+
+    @IBAction func cancelTiming(_ sender: UIButton) {
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+            appDelegate.window?.rootViewController = tabBarController
+
+        }
+
+    }
 
     @IBAction func startButtonTapped(_ sender: UIButton) {
 
@@ -96,6 +108,16 @@ class TimingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUp()
+
+    }
+
+    // MARK: Set Up
+
+    private func setUp() {
+
+        self.view.backgroundColor = Palette.backgoundColor
+
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
         self.timerLabel.textColor = Palette.textColor
         self.timerLabel.text = "00:00:00"
@@ -104,11 +126,10 @@ class TimingViewController: UIViewController {
         self.pauseButton.setTitle("Pause", for: UIControlState.normal)
         self.resetButton.setTitle("Reset", for: UIControlState.normal)
         self.finishButton.setTitle("Finish", for: UIControlState.normal)
+        self.cancelButton.setTitle("Cancel", for: .normal)
 
         self.pauseButton.isEnabled = false
         self.resetButton.isEnabled = false
-
-        view.backgroundColor = Palette.backgoundColor
 
     }
 

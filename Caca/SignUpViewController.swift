@@ -9,6 +9,12 @@
 import UIKit
 import Firebase
 
+enum Gender: Int {
+
+    case male, female
+
+}
+
 class SignUpViewController: UIViewController {
 
     @IBOutlet weak var logoImageView: UIImageView!
@@ -19,18 +25,27 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var passwordField: UITextField!
 
-    @IBOutlet weak var firstNameField: UITextField!
+    @IBOutlet weak var nameField: UITextField!
 
-    @IBOutlet weak var lastNameField: UITextField!
+    @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
 
     @IBOutlet weak var signUpButton: UIButton!
 
+    @IBOutlet weak var goBackButton: UIButton!
+
+    @IBAction func goBack(_ sender: UIButton) {
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+        }
+    }
+
     @IBAction func signUp(_ sender: UIButton) {
 
-        if self.firstNameField.text == "" {
+        if self.emailField.text == "" {
 
             let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter your first name",
+                                                    message: "Please enter your email",
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -39,10 +54,22 @@ class SignUpViewController: UIViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if self.lastNameField.text == "" {
+        } else if self.passwordField.text == "" {
 
             let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter your last name",
+                                                    message: "Please enter your password",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if self.nameField.text == "" {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Please enter your name",
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -59,7 +86,15 @@ class SignUpViewController: UIViewController {
 
                     if let error = error {
 
-                        print("-SignUp----------\(error)")
+                        let alertController = UIAlertController(title: "Warning",
+                                                                message: error.localizedDescription,
+                                                                preferredStyle: .alert)
+
+                        alertController.addAction(UIAlertAction(title: "OK",
+                                                                style: .default,
+                                                                handler: nil))
+
+                        self.present(alertController, animated: true, completion: nil)
 
                         return
 
@@ -67,17 +102,23 @@ class SignUpViewController: UIViewController {
 
                         guard let uid = user?.uid else { return }
 
-                        let rootRef = FIRDatabase.database().reference()
+                        let userRef = FIRDatabase.database().reference().child("users").child(uid)
 
-                        let userRef = rootRef.child("users").child(uid)
+                        guard let name = self.nameField.text else { return }
 
-                        let value = ["firstName": self.firstNameField.text,
-                                     "lastName": self.lastNameField.text]
+                        let gender = self.genderSegmentedControl.selectedSegmentIndex
+
+                        UserDefaults.standard.set(name, forKey: "Name")
+                        UserDefaults.standard.set(gender, forKey: "Gender")
+
+                        let value = ["name": name,
+                                     "gender": gender] as [String: Any]
 
                         userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
+
                             if error != nil {
 
-                                print(error?.localizedDescription ?? "")
+                                print(error?.localizedDescription ?? "-SignUp---------Update error")
 
                                 return
                             }
@@ -93,49 +134,58 @@ class SignUpViewController: UIViewController {
 
     }
 
-    @IBAction func switchToSignIn(_ sender: UIButton) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Palette.backgoundColor
-        logoImageView.image = #imageLiteral(resourceName: "poo-icon")
-        logoImageView.backgroundColor = Palette.backgoundColor
-        signUpButton.backgroundColor = Palette.textColor
+        setUp()
 
-        appName.text = "Caca"
-        appName.textColor = Palette.textColor
-        appName.font = UIFont(name: "Courier-Bold", size: 60)
+    }
 
-        emailField.delegate = self
-        emailField.clearButtonMode = .never
-        emailField.placeholder = "Email"
-        emailField.clearsOnBeginEditing = true
-        emailField.keyboardType = .emailAddress
-        emailField.returnKeyType = .done
+    // MARK: Set Up
 
-        passwordField.delegate = self
-        passwordField.clearButtonMode = .never
-        passwordField.placeholder = "Password"
-        passwordField.clearsOnBeginEditing = true
-        passwordField.isSecureTextEntry = true
-        passwordField.returnKeyType = .done
+    private func setUp() {
 
-        firstNameField.delegate = self
-        firstNameField.clearButtonMode = .whileEditing
-        firstNameField.placeholder = "First name"
-        firstNameField.clearsOnBeginEditing = true
-        firstNameField.returnKeyType = .done
+        self.view.backgroundColor = Palette.backgoundColor
 
-        lastNameField.delegate = self
-        lastNameField.clearButtonMode = .whileEditing
-        lastNameField.placeholder = "Last name"
-        lastNameField.clearsOnBeginEditing = true
-        lastNameField.returnKeyType = .done
+        self.goBackButton.setTitle("", for: .normal)
+        let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
+        self.goBackButton.setImage(buttonimage, for: .normal)
+        self.goBackButton.tintColor = Palette.textColor
+
+        self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
+        self.logoImageView.backgroundColor = Palette.backgoundColor
+
+        self.appName.text = "Caca"
+        self.appName.textColor = Palette.textColor
+        self.appName.font = UIFont(name: "Courier-Bold", size: 60)
+
+        self.emailField.delegate = self
+        self.emailField.clearButtonMode = .never
+        self.emailField.placeholder = "Email"
+        self.emailField.clearsOnBeginEditing = true
+        self.emailField.keyboardType = .emailAddress
+        self.emailField.returnKeyType = .done
+
+        self.passwordField.delegate = self
+        self.passwordField.clearButtonMode = .never
+        self.passwordField.placeholder = "Password (at least 6 characters)"
+        self.passwordField.clearsOnBeginEditing = true
+        self.passwordField.isSecureTextEntry = true
+        self.passwordField.returnKeyType = .done
+
+        self.nameField.delegate = self
+        self.nameField.clearButtonMode = .whileEditing
+        self.nameField.placeholder = "Name"
+        self.nameField.clearsOnBeginEditing = true
+        self.nameField.returnKeyType = .done
+
+        self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
+        self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
+        self.genderSegmentedControl.tintColor = Palette.textColor
+
+        self.signUpButton.backgroundColor = Palette.textColor
+        self.signUpButton.setTitle("Sign Up", for: .normal)
+        self.signUpButton.layer.cornerRadius = 15
     }
 
 }

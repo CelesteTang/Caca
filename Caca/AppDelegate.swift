@@ -19,6 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FIRApp.configure()
 
+        if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let PasswordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController {
+
+                appDelegate.window?.rootViewController = PasswordViewController
+                appDelegate.window?.makeKeyAndVisible()
+
+            }
+
+        }
+
         return true
     }
 
