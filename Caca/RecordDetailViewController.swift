@@ -129,21 +129,21 @@ class RecordDetailViewController: UIViewController {
         self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
 
         self.passOrFailLabel.textColor = Palette.backgoundColor
-        
+
         if self.recievedCaca[0].amount > 0.91 {
-        
+
             self.amountLabel.text = "L"
-            
+
         } else if self.recievedCaca[0].amount < 0.66 {
-        
+
             self.amountLabel.text = "S"
 
         } else {
-        
+
             self.amountLabel.text = "M"
 
         }
-        
+
     }
 
     override func viewWillDisappear(_ animated: Bool) {

@@ -204,7 +204,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
             } else {
 
-                self.adviceLabel.text = "no caca"
+                self.adviceLabel.text = "You don't have any caca record."
 
             }
 

@@ -41,6 +41,8 @@ class CacaViewController: UIViewController {
             }
         }
 
+        // MARK: Frequency
+
         CacaProvider.shared.getCaca { (cacas, _) in
 
             if let cacas = cacas {
@@ -69,14 +71,11 @@ class CacaViewController: UIViewController {
                         case 1:
                             self.notificationLabel.text = "\(userName), you don't caca today."
 
-                        case 2...6:
-                            self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days."
-
-                        case 7:
-                            self.notificationLabel.text = "\(userName), you don't caca for a week."
+                        case 2...3:
+                            self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days. Remember to caca at least every 3 days."
 
                         default:
-                            self.notificationLabel.text = "\(userName), you don't caca for a long time."
+                            self.notificationLabel.text = "\(userName), you don't caca for a long time. Remember to caca at least every 3 days."
 
                         }
 

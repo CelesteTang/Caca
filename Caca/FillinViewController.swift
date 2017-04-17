@@ -235,6 +235,8 @@ class FillinViewController: UIViewController {
 
     func getAdvice() -> String {
 
+        // MARK: Pass or Fail
+
         if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
 
             ispassed = true
@@ -243,7 +245,9 @@ class FillinViewController: UIViewController {
 
         } else {
 
-            self.advice = "Warning! There might be some problems in your caca... "
+            // MARK: Shape
+
+            self.advice = "Warning! Your caca is not healthy! "
 
             switch Shape(rawValue: self.shapeSegmentedControl.selectedSegmentIndex)! {
 
@@ -260,6 +264,8 @@ class FillinViewController: UIViewController {
                 self.shapeAdvice = "You have diarrhea, and "
 
             }
+
+            // MARK: Color
 
             switch Color(rawValue: self.colorSegmentedControll.selectedSegmentIndex)! {
 
@@ -310,11 +316,6 @@ class FillinViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print(advice)
-        print(frequencyAdvice)
-        print(colorAdvice)
-        print(shapeAdvice)
 
         setUp()
 
