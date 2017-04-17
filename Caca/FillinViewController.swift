@@ -180,23 +180,26 @@ class FillinViewController: UIViewController {
         if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
 
             ispassed = true
+            
             self.advice = "Good caca! Please keep it up!"
 
         } else {
 
+            self.advice = "Warning! There might be some problems in your caca... "
+            
             switch Shape(rawValue: self.shapeSegmentedControl.selectedSegmentIndex)! {
 
             case .separateHard, .lumpySausage:
 
-                self.shapeAdvice = "You are constipated."
+                self.shapeAdvice = "You are constipated, and "
 
             case .crackSausage, .smoothSausage:
                 
-                self.shapeAdvice = "????????????"
+                self.shapeAdvice = "The shape of your caca is good, but "
 
             case .softBlob, .mushyStool, .wateryStool:
 
-                self.shapeAdvice = "You have diarrhea."
+                self.shapeAdvice = "You have diarrhea, and "
 
             }
 
@@ -204,27 +207,27 @@ class FillinViewController: UIViewController {
 
             case .red:
 
-                self.colorAdvice = "red"
+                self.colorAdvice = "the color of your caca is red."
 
             case .yellow:
 
-                self.colorAdvice = "yellow"
+                self.colorAdvice = "the color of your caca is yellow."
 
             case .green:
 
-                self.colorAdvice = "green"
+                self.colorAdvice = "the color of your caca is green."
 
             case .lightBrown, .darkBrown:
                 
-                self.colorAdvice = "!!!!!!!!"
+                self.colorAdvice = "the color of your caca is good!"
 
             case .gray:
 
-                self.colorAdvice = "gray"
+                self.colorAdvice = "the color of your caca is gray."
 
             case .black:
 
-                self.colorAdvice = "black"
+                self.colorAdvice = "the color of your caca is black."
 
             }
 

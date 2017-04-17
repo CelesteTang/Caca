@@ -62,17 +62,6 @@ class CalendarViewController: UIViewController {
             self.calendarView.reloadData()
         }
 
-//        AdviceManager.shared.getAdvice { (advice, frequencyAdvice, shapeAdvice, colorAdvice) in
-//            
-//            if let advice = advice, let frequencyAdvice = frequencyAdvice, let shapeAdvice = shapeAdvice, let colorAdvice = colorAdvice {
-//            
-//                self.advice = advice
-//                self.frequencyAdvice = frequencyAdvice
-//                self.shapeAdvice = shapeAdvice
-//                self.colorAdvice = colorAdvice
-//            
-//            }
-//        }
     }
 
     // MARK: Set Up
@@ -87,6 +76,7 @@ class CalendarViewController: UIViewController {
         self.adviceView.backgroundColor = Palette.backgoundColor
         self.adviceLabel.textColor = Palette.textColor
         self.adviceLabel.text = "How's today?"
+        self.adviceLabel.numberOfLines = 0
 
     }
 
@@ -194,6 +184,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     func handleCellSelection(view: JTAppleDayCellView?, cellState: CellState) {
 
         guard let calendarCell = view as? CalendarCellView else { return }
+        let cellStateDateString = dateFormatter.string(from: cellState.date)
 
         if cellState.isSelected {
 
@@ -202,15 +193,19 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
             if calendarCell.didCacaView.isHidden == false {
 
+                
                 for caca in cacas {
 
-                    adviceLabel.text = caca.advice
+                    if caca.date == cellStateDateString {
 
+                        adviceLabel.text = caca.advice
+                        
+                    }
                 }
 
             } else {
 
-                adviceLabel.text = "no caca"
+                self.adviceLabel.text = "no caca"
 
             }
 
