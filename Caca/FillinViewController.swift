@@ -128,6 +128,8 @@ class FillinViewController: UIViewController {
 
     var colorAdvice = String()
 
+    var frequencyAdvice = String()
+
     @IBAction func cancelFillin(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
@@ -243,9 +245,9 @@ class FillinViewController: UIViewController {
 
         } else {
 
-            // MARK: Shape
+            self.advice = "Warning! Your caca may not healthy! "
 
-            self.advice = "Warning! Your caca is not healthy! "
+            // MARK: Shape
 
             switch Shape(rawValue: self.shapeSegmentedControl.selectedSegmentIndex)! {
 
@@ -269,33 +271,56 @@ class FillinViewController: UIViewController {
 
             case .red:
 
-                self.colorAdvice = "the color of your caca is red."
+                self.colorAdvice = "the color of your caca is red. "
 
             case .yellow:
 
-                self.colorAdvice = "the color of your caca is yellow."
+                self.colorAdvice = "the color of your caca is yellow. "
 
             case .green:
 
-                self.colorAdvice = "the color of your caca is green."
+                self.colorAdvice = "the color of your caca is green. "
 
             case .lightBrown, .darkBrown:
 
-                self.colorAdvice = "the color of your caca is good!"
+                self.colorAdvice = "the color of your caca is good! "
 
             case .gray:
 
-                self.colorAdvice = "the color of your caca is gray."
+                self.colorAdvice = "the color of your caca is gray. "
 
             case .black:
 
-                self.colorAdvice = "the color of your caca is black."
+                self.colorAdvice = "the color of your caca is black. "
 
             }
 
+            // MARK: Continuous Fail
+
+            if cacas.count == 1 {
+
+                if cacas[cacas.count - 1].grading == false && ispassed == false {
+
+                    self.frequencyAdvice = "If you have the same symptom tomorrow, you should go to see a doctor."
+
+                }
+
+            } else if cacas.count > 1 {
+
+                if cacas[cacas.count - 2].grading == false && cacas[cacas.count - 1].grading == false && ispassed == false {
+
+                    self.frequencyAdvice = "You should go to see a doctor NOW!"
+
+                } else if cacas[cacas.count - 1].grading == false && ispassed == false {
+
+                    self.frequencyAdvice = "If you have the same symptom tomorrow, you should go to see a doctor."
+
+                }
+
+            }
         }
 
-        let overallAdvice = self.advice + self.shapeAdvice + self.colorAdvice
+        let overallAdvice = self.advice + self.shapeAdvice + self.colorAdvice + self.frequencyAdvice
 
         return overallAdvice
     }
@@ -326,6 +351,19 @@ class FillinViewController: UIViewController {
         self.view.addGestureRecognizer(tap)
 
         finishButton.isEnabled = true
+
+        DispatchQueue.global().async {
+
+            CacaProvider.shared.getCaca { (cacas, _) in
+
+                if let cacas = cacas {
+
+                    self.cacas = cacas
+
+                }
+            }
+        }
+
     }
 
     // MARK: Set Up

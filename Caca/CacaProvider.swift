@@ -100,22 +100,22 @@ class CacaProvider {
     }
 
     // MARK: Edit caca
-    
+
     func editCaca(of cacaID: String, value: [String : Any]) {
-        
+
         FIRDatabase.database().reference().child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
-            
+
             if error != nil {
-                
+
                 print(error?.localizedDescription ?? "")
-                
+
                 return
             }
-            
+
         })
-        
+
     }
-    
+
     // MARK: Delete caca
 
     func deleteCaca(of cacaID: String) {

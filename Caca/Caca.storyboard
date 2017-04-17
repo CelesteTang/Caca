@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWj-8c-Qgc">
-                                <rect key="frame" x="130" y="503" width="60" height="30"/>
+                                <rect key="frame" x="100" y="503" width="120" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="xjm-Kz-azw"/>
                                 </constraints>
@@ -51,6 +51,7 @@
                         <constraints>
                             <constraint firstItem="Q9t-sW-KCt" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="20" id="4NM-8S-ilR"/>
                             <constraint firstAttribute="trailing" secondItem="Q9t-sW-KCt" secondAttribute="trailing" constant="20" id="92M-fm-qVG"/>
+                            <constraint firstItem="pWj-8c-Qgc" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="100" id="DTI-QH-tdR"/>
                             <constraint firstItem="Q9t-sW-KCt" firstAttribute="centerX" secondItem="KB5-0U-6Qs" secondAttribute="centerX" id="K6M-fM-x5m"/>
                             <constraint firstItem="8vj-Jv-6lS" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="30" id="SQg-KF-VWZ"/>
                             <constraint firstItem="EX0-gB-3TR" firstAttribute="top" secondItem="pWj-8c-Qgc" secondAttribute="bottom" constant="35" id="TVK-Dx-9vT"/>
