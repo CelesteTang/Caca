@@ -177,65 +177,9 @@ class FillinViewController: UIViewController {
 
         }
 
-        if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
-
-            ispassed = true
-            
-            self.advice = "Good caca! Please keep it up!"
-
-        } else {
-
-            self.advice = "Warning! There might be some problems in your caca... "
-            
-            switch Shape(rawValue: self.shapeSegmentedControl.selectedSegmentIndex)! {
-
-            case .separateHard, .lumpySausage:
-
-                self.shapeAdvice = "You are constipated, and "
-
-            case .crackSausage, .smoothSausage:
-                
-                self.shapeAdvice = "The shape of your caca is good, but "
-
-            case .softBlob, .mushyStool, .wateryStool:
-
-                self.shapeAdvice = "You have diarrhea, and "
-
-            }
-
-            switch Color(rawValue: self.colorSegmentedControll.selectedSegmentIndex)! {
-
-            case .red:
-
-                self.colorAdvice = "the color of your caca is red."
-
-            case .yellow:
-
-                self.colorAdvice = "the color of your caca is yellow."
-
-            case .green:
-
-                self.colorAdvice = "the color of your caca is green."
-
-            case .lightBrown, .darkBrown:
-                
-                self.colorAdvice = "the color of your caca is good!"
-
-            case .gray:
-
-                self.colorAdvice = "the color of your caca is gray."
-
-            case .black:
-
-                self.colorAdvice = "the color of your caca is black."
-
-            }
-
-        }
-
         let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
         let photoID = UUID().uuidString
-        let overallAdvice = self.advice + self.frequencyAdvice + self.shapeAdvice + self.colorAdvice
+        let overallAdvice = getAdvice()
 
         if cacaPhoto.image != #imageLiteral(resourceName: "poo-icon") {
 
@@ -289,6 +233,69 @@ class FillinViewController: UIViewController {
         }
     }
 
+    func getAdvice() -> String {
+
+        if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
+
+            ispassed = true
+
+            self.advice = "Good caca! Please keep it up!"
+
+        } else {
+
+            self.advice = "Warning! There might be some problems in your caca... "
+
+            switch Shape(rawValue: self.shapeSegmentedControl.selectedSegmentIndex)! {
+
+            case .separateHard, .lumpySausage:
+
+                self.shapeAdvice = "You are constipated, and "
+
+            case .crackSausage, .smoothSausage:
+
+                self.shapeAdvice = "The shape of your caca is good, but "
+
+            case .softBlob, .mushyStool, .wateryStool:
+
+                self.shapeAdvice = "You have diarrhea, and "
+
+            }
+
+            switch Color(rawValue: self.colorSegmentedControll.selectedSegmentIndex)! {
+
+            case .red:
+
+                self.colorAdvice = "the color of your caca is red."
+
+            case .yellow:
+
+                self.colorAdvice = "the color of your caca is yellow."
+
+            case .green:
+
+                self.colorAdvice = "the color of your caca is green."
+
+            case .lightBrown, .darkBrown:
+
+                self.colorAdvice = "the color of your caca is good!"
+
+            case .gray:
+
+                self.colorAdvice = "the color of your caca is gray."
+
+            case .black:
+
+                self.colorAdvice = "the color of your caca is black."
+
+            }
+
+        }
+
+        let overallAdvice = self.advice + self.frequencyAdvice + self.shapeAdvice + self.colorAdvice
+
+        return overallAdvice
+    }
+
     func switchToRecord() {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
@@ -308,7 +315,7 @@ class FillinViewController: UIViewController {
         print(frequencyAdvice)
         print(colorAdvice)
         print(shapeAdvice)
-        
+
         setUp()
 
         ispassed = false

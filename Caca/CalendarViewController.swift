@@ -193,13 +193,12 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
             if calendarCell.didCacaView.isHidden == false {
 
-                
                 for caca in cacas {
 
                     if caca.date == cellStateDateString {
 
                         adviceLabel.text = caca.advice
-                        
+
                     }
                 }
 
