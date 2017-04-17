@@ -124,8 +124,6 @@ class FillinViewController: UIViewController {
 
     var advice = String()
 
-    var frequencyAdvice = String()
-
     var shapeAdvice = String()
 
     var colorAdvice = String()
@@ -297,7 +295,7 @@ class FillinViewController: UIViewController {
 
         }
 
-        let overallAdvice = self.advice + self.frequencyAdvice + self.shapeAdvice + self.colorAdvice
+        let overallAdvice = self.advice + self.shapeAdvice + self.colorAdvice
 
         return overallAdvice
     }

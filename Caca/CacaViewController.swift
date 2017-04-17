@@ -47,40 +47,63 @@ class CacaViewController: UIViewController {
 
             if let cacas = cacas {
 
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.timeZone = TimeZone(secondsFromGMT: 8)
+                var dayToNow = Int()
+
+                guard let lastCacaDate = cacas.last?.date,
+                    let date = dateFormatter.date(from: lastCacaDate) else { return }
+
+                dayToNow = date.daysBetweenDate(to: Date())
+
                 if cacas.last?.date == nil {
 
                     self.notificationLabel.text = "\(userName), start caca now!"
 
-                } else {
+                } else if dayToNow > 0 {
 
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd"
-                    dateFormatter.timeZone = TimeZone(secondsFromGMT: 8)
-                    var dayToNow = Int()
+                    switch dayToNow {
 
-                    if let lastCacaDate = cacas.last?.date,
-                       let date = dateFormatter.date(from: lastCacaDate) {
+                    case 1:
+                        self.notificationLabel.text = "\(userName), you don't caca today."
 
-                        dayToNow = date.daysBetweenDate(toDate: Date())
+                    case 2...3:
+                        self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days. Remember to caca at least every 3 days."
 
-                        switch dayToNow {
-
-                        case 0:
-                            self.notificationLabel.text = "\(userName), you caca today."
-
-                        case 1:
-                            self.notificationLabel.text = "\(userName), you don't caca today."
-
-                        case 2...3:
-                            self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days. Remember to caca at least every 3 days."
-
-                        default:
-                            self.notificationLabel.text = "\(userName), you don't caca for a long time. Remember to caca at least every 3 days."
-
-                        }
+                    default:
+                        self.notificationLabel.text = "\(userName), you don't caca for a long time. Remember to caca at least every 3 days."
 
                     }
 
+                } else if dayToNow == 0 {
+
+                    var todayCacaTimes = 0
+
+                    for caca in cacas {
+
+                        let month = Calendar.current.component(.month, from: Date())
+                        let year = Calendar.current.component(.year, from: Date())
+                        let day = Calendar.current.component(.day, from: Date())
+                        
+                        let currentDate = String(format: "%04i-%02i-%02i", year, month, day)
+                        
+                        if caca.date == currentDate {
+
+                            todayCacaTimes += 1
+
+                        }
+                    }
+                    
+                    if todayCacaTimes > 3 {
+
+                        self.notificationLabel.text = "\(userName), you caca too much today. You should not caca over 3 times per day."
+
+                    } else {
+
+                        self.notificationLabel.text = "\(userName), you caca today."
+
+                    }
                 }
 
             }
@@ -125,9 +148,11 @@ extension CacaViewController {
 
 extension Date {
 
-    func daysBetweenDate(toDate: Date) -> Int {
-        let components = Calendar.current.dateComponents([.day], from: self, to: toDate)
+    func daysBetweenDate(to date: Date) -> Int {
+        
+        let components = Calendar.current.dateComponents([.day], from: self, to: date)
         return components.day ?? 0
+        
     }
 
 }

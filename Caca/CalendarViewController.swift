@@ -84,9 +84,8 @@ class CalendarViewController: UIViewController {
 
         guard let startDate = visibleDates.monthDates.first else { return }
 
-        let calendar = Calendar.current
-        let month = calendar.component(.month, from: startDate)
-        let year = calendar.component(.year, from: startDate)
+        let month = Calendar.current.component(.month, from: startDate)
+        let year = Calendar.current.component(.year, from: startDate)
 
         self.headerTitleLabel.text = String(format: "%04i-%02i", year, month)
 
