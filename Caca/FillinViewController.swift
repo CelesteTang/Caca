@@ -121,13 +121,13 @@ class FillinViewController: UIViewController {
     var ispassed = false
 
     var cacas = [Caca]()
-    
+
     var advice = String()
-    
+
     var frequencyAdvice = String()
-    
+
     var shapeAdvice = String()
-    
+
     var colorAdvice = String()
 
     @IBAction func cancelFillin(_ sender: UIButton) {
@@ -183,52 +183,56 @@ class FillinViewController: UIViewController {
             self.advice = "Good caca! Please keep it up!"
 
         } else {
-        
+
             switch Shape(rawValue: self.shapeSegmentedControl.selectedSegmentIndex)! {
-                
+
             case .separateHard, .lumpySausage:
-                
+
                 self.shapeAdvice = "You are constipated."
+
+            case .crackSausage, .smoothSausage:
                 
-            case .crackSausage, .smoothSausage: break
-                
+                self.shapeAdvice = "????????????"
+
             case .softBlob, .mushyStool, .wateryStool:
-                
+
                 self.shapeAdvice = "You have diarrhea."
-                
-            }
-            
-            switch Color(rawValue: self.colorSegmentedControll.selectedSegmentIndex)! {
-                
-            case .red:
-                
-                self.colorAdvice = "red"
-                
-            case .yellow:
-                
-                self.colorAdvice = "yellow"
-                
-            case .green:
-                
-                self.colorAdvice = "green"
-                
-            case .lightBrown, .darkBrown: break
-                
-            case .gray:
-                
-                self.colorAdvice = "gray"
-                
-            case .black:
-                
-                self.colorAdvice = "black"
-                
+
             }
 
-        
+            switch Color(rawValue: self.colorSegmentedControll.selectedSegmentIndex)! {
+
+            case .red:
+
+                self.colorAdvice = "red"
+
+            case .yellow:
+
+                self.colorAdvice = "yellow"
+
+            case .green:
+
+                self.colorAdvice = "green"
+
+            case .lightBrown, .darkBrown:
+                
+                self.colorAdvice = "!!!!!!!!"
+
+            case .gray:
+
+                self.colorAdvice = "gray"
+
+            case .black:
+
+                self.colorAdvice = "black"
+
+            }
+
         }
 
         let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
         let photoID = UUID().uuidString
+        let overallAdvice = self.advice + self.frequencyAdvice + self.shapeAdvice + self.colorAdvice
 
         if cacaPhoto.image != #imageLiteral(resourceName: "poo-icon") {
 
@@ -243,6 +247,9 @@ class FillinViewController: UIViewController {
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
+                             "cacaID": cacaID,
+                             "photo": cacaPhotoUrl,
+                             "photoID": photoID,
                              "date": date,
                              "time": time,
                              "consumingTime": consumingTime,
@@ -250,10 +257,8 @@ class FillinViewController: UIViewController {
                              "color": self.colorSegmentedControll.selectedSegmentIndex,
                              "amount": Double(self.amountSlider.value),
                              "other": self.otherTextView.text,
-                             "photo": cacaPhotoUrl,
                              "grading": self.ispassed,
-                             "cacaID": cacaID,
-                             "photoID": photoID] as [String : Any]
+                             "advice": overallAdvice] as [String : Any]
 
                 CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
                 self.switchToRecord()
@@ -263,6 +268,9 @@ class FillinViewController: UIViewController {
         } else {
 
             let value = ["host": hostUID,
+                         "cacaID": cacaID,
+                         "photo": "",
+                         "photoID": "",
                          "date": date,
                          "time": time,
                          "consumingTime": consumingTime,
@@ -270,10 +278,8 @@ class FillinViewController: UIViewController {
                          "color": self.colorSegmentedControll.selectedSegmentIndex,
                          "amount": Double(self.amountSlider.value),
                          "other": self.otherTextView.text,
-                         "photo": "",
                          "grading": self.ispassed,
-                         "cacaID": cacaID,
-                         "photoID": ""] as [String : Any]
+                         "advice": overallAdvice] as [String : Any]
 
             CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
             self.switchToRecord()
@@ -295,6 +301,11 @@ class FillinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(advice)
+        print(frequencyAdvice)
+        print(colorAdvice)
+        print(shapeAdvice)
+        
         setUp()
 
         ispassed = false

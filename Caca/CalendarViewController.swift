@@ -24,13 +24,13 @@ class CalendarViewController: UIViewController {
     let dateFormatter = DateFormatter()
 
     var cacas = [Caca]()
-    
+
     var advice = String()
-    
+
     var frequencyAdvice = String()
-    
+
     var shapeAdvice = String()
-    
+
     var colorAdvice = String()
 
     override func viewDidLoad() {
@@ -203,28 +203,10 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
             if calendarCell.didCacaView.isHidden == false {
 
                 for caca in cacas {
-                
-                    if caca.grading == true {
-                    
-                        adviceLabel.text = ""
-                    
-                    } else {
-                    
-                        adviceLabel.text = ""
 
-                    }
-                
+                    adviceLabel.text = caca.advice
+
                 }
-                
-//                if calendarCell.didCacaView.backgroundColor == Palette.passColor {
-//
-//                    adviceLabel.text = "Good caca! Please keep it up!"
-//
-//                } else if calendarCell.didCacaView.backgroundColor == Palette.failColor {
-//
-//                    adviceLabel.text = "WARNING! Bad caca!"
-//
-//                }
 
             } else {
 
