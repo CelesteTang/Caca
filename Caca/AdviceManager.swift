@@ -16,9 +16,15 @@ class AdviceManager {
 
 //    var cacas = [Caca]()
 
-    var advice: [String] = []
+    var advice = String()
+    
+    var frequencyAdvice = String()
 
-    typealias AdviceHadler = ([String]?) -> Void
+    var shapeAdvice = String()
+    
+    var colorAdvice = String()
+
+    typealias AdviceHadler = (String?, String?, String?, String?) -> Void
 
     func getAdvice(completion: @escaping AdviceHadler) {
 
@@ -32,12 +38,61 @@ class AdviceManager {
 
                     if caca.grading == true {
 
-                        self.advice.append("Good caca! Please keep it up!")
+                        self.advice = "Good caca! Please keep it up!"
 
+                    } else {
+                    
+                        switch caca.shape {
+                            
+                        case .separateHard, .lumpySausage:
+                            
+                            self.shapeAdvice = "You are constipated."
+                            
+                        case .crackSausage, .smoothSausage: break
+                            
+                        case .softBlob, .mushyStool, .wateryStool:
+                            
+                            self.shapeAdvice = "You have diarrhea."
+                            
+                        }
+                        
+                        switch caca.color {
+                            
+                        case .red:
+                            
+                            self.colorAdvice = "red"
+                            
+                        case .yellow:
+                            
+                            self.colorAdvice = "yellow"
+                            
+                        case .green:
+                            
+                            self.colorAdvice = "green"
+                            
+                        case .lightBrown, .darkBrown: break
+                            
+                        case .gray:
+                            
+                            self.colorAdvice = "gray"
+                            
+                        case .black:
+                            
+                            self.colorAdvice = "black"
+                            
+                        }
+                    
                     }
+                    
+//                    if (caca.color == Color.lightBrown || caca.color == Color.darkBrown) && (caca.shape == Shape.crackSausage || caca.shape == Shape.smoothSausage) {
+//                        
+//                        self.advice = "Good caca! Please keep it up!"
+//
+//                    }
+
                 }
 
-                completion(self.advice)
+                completion(self.advice, self.frequencyAdvice, self.shapeAdvice, self.colorAdvice)
             }
         }
 

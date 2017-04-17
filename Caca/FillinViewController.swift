@@ -121,6 +121,14 @@ class FillinViewController: UIViewController {
     var ispassed = false
 
     var cacas = [Caca]()
+    
+    var advice = String()
+    
+    var frequencyAdvice = String()
+    
+    var shapeAdvice = String()
+    
+    var colorAdvice = String()
 
     @IBAction func cancelFillin(_ sender: UIButton) {
 
@@ -172,7 +180,51 @@ class FillinViewController: UIViewController {
         if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
 
             ispassed = true
+            self.advice = "Good caca! Please keep it up!"
 
+        } else {
+        
+            switch Shape(rawValue: self.shapeSegmentedControl.selectedSegmentIndex)! {
+                
+            case .separateHard, .lumpySausage:
+                
+                self.shapeAdvice = "You are constipated."
+                
+            case .crackSausage, .smoothSausage: break
+                
+            case .softBlob, .mushyStool, .wateryStool:
+                
+                self.shapeAdvice = "You have diarrhea."
+                
+            }
+            
+            switch Color(rawValue: self.colorSegmentedControll.selectedSegmentIndex)! {
+                
+            case .red:
+                
+                self.colorAdvice = "red"
+                
+            case .yellow:
+                
+                self.colorAdvice = "yellow"
+                
+            case .green:
+                
+                self.colorAdvice = "green"
+                
+            case .lightBrown, .darkBrown: break
+                
+            case .gray:
+                
+                self.colorAdvice = "gray"
+                
+            case .black:
+                
+                self.colorAdvice = "black"
+                
+            }
+
+        
         }
 
         let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key

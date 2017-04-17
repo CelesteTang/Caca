@@ -24,6 +24,14 @@ class CalendarViewController: UIViewController {
     let dateFormatter = DateFormatter()
 
     var cacas = [Caca]()
+    
+    var advice = String()
+    
+    var frequencyAdvice = String()
+    
+    var shapeAdvice = String()
+    
+    var colorAdvice = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +62,17 @@ class CalendarViewController: UIViewController {
             self.calendarView.reloadData()
         }
 
+//        AdviceManager.shared.getAdvice { (advice, frequencyAdvice, shapeAdvice, colorAdvice) in
+//            
+//            if let advice = advice, let frequencyAdvice = frequencyAdvice, let shapeAdvice = shapeAdvice, let colorAdvice = colorAdvice {
+//            
+//                self.advice = advice
+//                self.frequencyAdvice = frequencyAdvice
+//                self.shapeAdvice = shapeAdvice
+//                self.colorAdvice = colorAdvice
+//            
+//            }
+//        }
     }
 
     // MARK: Set Up
@@ -183,15 +202,29 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
             if calendarCell.didCacaView.isHidden == false {
 
-                if calendarCell.didCacaView.backgroundColor == Palette.passColor {
+                for caca in cacas {
+                
+                    if caca.grading == true {
+                    
+                        adviceLabel.text = ""
+                    
+                    } else {
+                    
+                        adviceLabel.text = ""
 
-                    adviceLabel.text = "Good caca! Please keep it up!"
-
-                } else if calendarCell.didCacaView.backgroundColor == Palette.failColor {
-
-                    adviceLabel.text = "WARNING! Bad caca!"
-
+                    }
+                
                 }
+                
+//                if calendarCell.didCacaView.backgroundColor == Palette.passColor {
+//
+//                    adviceLabel.text = "Good caca! Please keep it up!"
+//
+//                } else if calendarCell.didCacaView.backgroundColor == Palette.failColor {
+//
+//                    adviceLabel.text = "WARNING! Bad caca!"
+//
+//                }
 
             } else {
 
