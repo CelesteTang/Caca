@@ -213,6 +213,7 @@ class RecordTableViewController: UITableViewController {
             self.tableView.deleteRows(at: [indexPath], with: .fade)
 
         }
+
     }
 
 }

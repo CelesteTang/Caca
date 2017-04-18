@@ -145,13 +145,6 @@
                                     <action selector="didFillin:" destination="TpS-hk-Q0i" eventType="touchUpInside" id="pjJ-Aj-vz5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gW-eb-wyO">
-                                <rect key="frame" x="262.5" y="94" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="pickPhotoFromLibrary:" destination="TpS-hk-Q0i" eventType="touchUpInside" id="n0f-R6-771"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgH-VY-isA">
                                 <rect key="frame" x="16" y="65.5" width="88.5" height="88.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -190,13 +183,11 @@
                             <constraint firstItem="UUP-Kb-sGU" firstAttribute="centerX" secondItem="jgg-hf-B3C" secondAttribute="centerX" id="QIv-cn-EqK"/>
                             <constraint firstItem="s80-lp-rOv" firstAttribute="leading" secondItem="B6N-cU-B9t" secondAttribute="leading" id="Sxy-MS-HQW"/>
                             <constraint firstItem="5Gc-Fp-cpr" firstAttribute="top" secondItem="tDi-ZU-qth" secondAttribute="bottom" id="T8V-r7-YUO"/>
-                            <constraint firstItem="4qV-oI-cVR" firstAttribute="top" secondItem="2gW-eb-wyO" secondAttribute="bottom" id="V99-qi-I7V"/>
                             <constraint firstItem="5Gc-Fp-cpr" firstAttribute="leading" secondItem="jgg-hf-B3C" secondAttribute="leadingMargin" id="VeJ-96-VeW"/>
                             <constraint firstItem="LxH-I6-7Ix" firstAttribute="leading" secondItem="hW7-CY-D2a" secondAttribute="leading" id="WrM-0Y-Ldt"/>
                             <constraint firstItem="5gF-Tj-Cyr" firstAttribute="centerX" secondItem="jgg-hf-B3C" secondAttribute="centerX" id="YbN-7A-vNR"/>
                             <constraint firstItem="QgH-VY-isA" firstAttribute="leading" secondItem="hW7-CY-D2a" secondAttribute="leading" id="Z6a-hu-poW"/>
                             <constraint firstItem="Aqk-QU-S0w" firstAttribute="leading" secondItem="B6N-cU-B9t" secondAttribute="leading" id="bPN-6b-FYq"/>
-                            <constraint firstItem="4qV-oI-cVR" firstAttribute="leading" secondItem="2gW-eb-wyO" secondAttribute="leading" id="dff-mo-2oX"/>
                             <constraint firstItem="UUP-Kb-sGU" firstAttribute="top" secondItem="i9o-xg-cet" secondAttribute="bottom" constant="8" id="dlt-MN-chm"/>
                             <constraint firstItem="4qV-oI-cVR" firstAttribute="bottom" secondItem="5gF-Tj-Cyr" secondAttribute="bottom" id="dvb-gc-sLd"/>
                             <constraint firstItem="4qV-oI-cVR" firstAttribute="leading" secondItem="5gF-Tj-Cyr" secondAttribute="trailing" constant="8" id="eCb-V6-UYI"/>
@@ -230,7 +221,6 @@
                         <outlet property="finishButton" destination="UUP-Kb-sGU" id="Rcj-Zn-nR0"/>
                         <outlet property="otherTextView" destination="i9o-xg-cet" id="W1m-UR-vaI"/>
                         <outlet property="photoButton" destination="4qV-oI-cVR" id="0UZ-0o-gF5"/>
-                        <outlet property="photoLibraryButton" destination="2gW-eb-wyO" id="1R8-zR-vdf"/>
                         <outlet property="shapeSegmentedControl" destination="s80-lp-rOv" id="Bh4-bk-B6v"/>
                         <outlet property="timeLabel" destination="TWk-6A-LNv" id="GLx-bi-eNK"/>
                     </connections>

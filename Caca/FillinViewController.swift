@@ -155,28 +155,45 @@ class FillinViewController: UIViewController {
         }
     }
 
-    @IBAction func pickPhotoFromLibrary(_ sender: UIButton) {
-
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
-        picker.videoQuality = .typeLow
-        self.present(picker, animated: true, completion: nil)
-
-    }
-
     @IBAction func addPhoto(_ sender: UIButton) {
 
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .camera
-        picker.cameraCaptureMode = .photo
-        picker.cameraDevice = .rear
-        picker.cameraFlashMode = .on
-        picker.allowsEditing = true
-        picker.videoQuality = .typeLow
-        self.present(picker, animated: true, completion: nil)
+        let alertController = UIAlertController(title: "Add a caca photo",
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
+
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel,
+                                         handler: nil)
+        alertController.addAction(cancelAction)
+
+        let photoAction = UIAlertAction(title: "Choose from library", style: .default) { _ in
+
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .photoLibrary
+            picker.allowsEditing = true
+            picker.videoQuality = .typeLow
+            self.present(picker, animated: true, completion: nil)
+
+        }
+        alertController.addAction(photoAction)
+
+        let cameraAction = UIAlertAction(title: "Take photo", style: .default) { _ in
+
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .camera
+            picker.cameraCaptureMode = .photo
+            picker.cameraDevice = .rear
+            picker.cameraFlashMode = .on
+            picker.allowsEditing = true
+            picker.videoQuality = .typeLow
+            self.present(picker, animated: true, completion: nil)
+
+        }
+        alertController.addAction(cameraAction)
+
+        self.present(alertController, animated: true, completion: nil)
 
     }
 
