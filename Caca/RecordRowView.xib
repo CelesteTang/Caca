@@ -63,7 +63,7 @@
                 <outlet property="passOrFailLabel" destination="Vc3-YX-s2L" id="TOb-2n-cdy"/>
                 <outlet property="timeLabel" destination="3I8-si-hGB" id="yi7-yj-03S"/>
             </connections>
-            <point key="canvasLocation" x="-376" y="-530"/>
+            <point key="canvasLocation" x="-376.5" y="-530"/>
         </view>
     </objects>
 </document>

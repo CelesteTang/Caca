@@ -13,6 +13,8 @@ class RecordTableViewController: UITableViewController {
 
     var cacas = [Caca]()
 
+    var isCovered = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +45,9 @@ class RecordTableViewController: UITableViewController {
         backItem.title = "Back"
         self.navigationItem.backBarButtonItem = backItem
 
+        let coverButton = UIBarButtonItem(title: "Hide", style: .plain, target: self, action: #selector(coverCaca))
+        self.navigationItem.leftBarButtonItem = coverButton
+
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCaca))
         self.navigationItem.rightBarButtonItem = addButton
 
@@ -51,6 +56,24 @@ class RecordTableViewController: UITableViewController {
 //        navigationController?.navigationBar.shadowImage = image
 //        navigationController?.navigationBar.isTranslucent = true
 //        navigationController?.view.backgroundColor = UIColor.clear
+    }
+
+    func coverCaca() {
+
+        if isCovered == false {
+
+            isCovered = true
+            UserDefaults.standard.set(isCovered, forKey: "Hide")
+            self.tableView.reloadData()
+
+        } else {
+
+            isCovered = false
+            UserDefaults.standard.set(isCovered, forKey: "Hide")
+            self.tableView.reloadData()
+
+        }
+
     }
 
     func addCaca() {
@@ -92,6 +115,8 @@ class RecordTableViewController: UITableViewController {
 
         cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
 
+        if UserDefaults.standard.bool(forKey: "Hide") == false {
+
         if cacas[indexPath.row].photo != "" {
 
             DispatchQueue.global().async {
@@ -115,6 +140,7 @@ class RecordTableViewController: UITableViewController {
                     }
                 }
             }
+        }
         }
 
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
