@@ -100,9 +100,12 @@ class TimingViewController: UIViewController {
 
         Time.consumingTime = timeString(time: TimeInterval(seconds))
 
+        isFromCaca = true
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinViewController") as? FillinViewController
         }
+
     }
 
     override func viewDidLoad() {

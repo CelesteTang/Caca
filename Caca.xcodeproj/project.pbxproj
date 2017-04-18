@@ -185,7 +185,6 @@
 				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
 				4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */,
 				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
-				4372BF181E969646005F5422 /* PasswordViewController.swift */,
 				4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */,
 				4396B58B1EA2241E00A69C4E /* Privacy */,
 			);
@@ -251,6 +250,7 @@
 				4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */,
 				4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */,
 				4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */,
+				4372BF181E969646005F5422 /* PasswordViewController.swift */,
 			);
 			name = Privacy;
 			sourceTree = "<group>";

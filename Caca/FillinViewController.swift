@@ -90,6 +90,10 @@ enum Color: Int {
 
 }
 
+var isFromCaca = false
+
+var isFromRecord = false
+
 class FillinViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIButton!
@@ -132,9 +136,21 @@ class FillinViewController: UIViewController {
 
     @IBAction func cancelFillin(_ sender: UIButton) {
 
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+        if isFromCaca == true {
 
-            appDelegate.window?.rootViewController = tabBarController
+            isFromCaca = false
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+                appDelegate.window?.rootViewController = tabBarController
+
+            }
+
+        } else if isFromRecord == true {
+
+            isFromRecord = false
+
+            dismiss(animated: true, completion: nil)
 
         }
     }

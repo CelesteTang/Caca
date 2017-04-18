@@ -43,11 +43,25 @@ class RecordTableViewController: UITableViewController {
         backItem.title = "Back"
         self.navigationItem.backBarButtonItem = backItem
 
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCaca))
+        self.navigationItem.rightBarButtonItem = addButton
+
 //        let image = UIImage()
 //        navigationController?.navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
 //        navigationController?.navigationBar.shadowImage = image
 //        navigationController?.navigationBar.isTranslucent = true
 //        navigationController?.view.backgroundColor = UIColor.clear
+    }
+
+    func addCaca() {
+
+        isFromRecord = true
+
+        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
+        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinViewController")
+
+        present(fillinViewController, animated: true)
+
     }
 
     // MARK: Table view data source
