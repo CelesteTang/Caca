@@ -104,8 +104,6 @@ class FillinViewController: UIViewController {
 
     @IBOutlet weak var photoButton: UIButton!
 
-    @IBOutlet weak var photoLibraryButton: UIButton!
-
     @IBOutlet weak var dateLabel: UILabel!
 
     @IBOutlet weak var timeLabel: UILabel!
@@ -411,7 +409,6 @@ class FillinViewController: UIViewController {
         self.cacaPhoto.backgroundColor = Palette.backgoundColor
 
         self.photoButton.setTitle("Take photo", for: .normal)
-        self.photoLibraryButton.setTitle("Pick photo from library", for: .normal)
 
         let time = Time()
         self.dateLabel.text = time.dateString()

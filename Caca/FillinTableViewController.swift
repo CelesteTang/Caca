@@ -12,15 +12,19 @@ import ColorThiefSwift
 
 class FillinTableViewController: UITableViewController {
 
-    enum Component {
+    enum Component: Int {
 
-        case photo, info, finish
+        case photo, date, time, shape, color, amount, other, finish
 
     }
 
     // MARK: Property
 
-    var components: [Component] = [.photo, .info, .info, .info, .info, .info, .finish]
+    let components: [Component] = [.photo, .date, .time, .shape, .color, .amount, .other, .finish]
+
+    let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
+
+    let colors: [Color] = [.red, .yellow, .green, .lightBrown, .darkBrown, .gray, .black]
 
     var ispassed = false
 
@@ -59,7 +63,7 @@ class FillinTableViewController: UITableViewController {
 
         switch component {
 
-        case .photo, .info, .finish:
+        case .photo, .date, .time, .shape, .color, .amount, .other, .finish:
 
             return 1
 
@@ -72,9 +76,9 @@ class FillinTableViewController: UITableViewController {
         switch component {
 
         case .photo:
-            return 150.0
+            return 200.0
 
-        case .info, .finish:
+        case .date, .time, .shape, .color, .amount, .other, .finish:
             return 100.0
 
         }
@@ -83,37 +87,107 @@ class FillinTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let component = components[indexPath.section]
-
+        
         switch component {
 
         case .photo:
-            
+
             // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoTableViewCell", for: indexPath) as! PhotoTableViewCell
             // swiftlint:enable force_cast
-            
+
             cell.rowView.cacaPhotoImageView.backgroundColor = .gray
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
             return cell
-            
-        case .info:
-            
+
+        case .date:
+
             // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
             // swiftlint:enable force_cast
+
+            let pickerView = UIPickerView()
+            pickerView.delegate = self
+            pickerView.dataSource = self
+            
+            cell.rowView.infoLabel.text = "Date"
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+            
+            
+            cell.rowView.infoTextField.inputView = pickerView
+            cell.rowView.infoTextField.tag = 100
+            
+            
             
             return cell
-            
+
+        case .time:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+            // swiftlint:enable force_cast
+
+            cell.rowView.infoLabel.text = "Time"
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+            return cell
+
+        case .shape:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+            // swiftlint:enable force_cast
+
+            cell.rowView.infoLabel.text = "Shape"
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+            return cell
+
+        case .color:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+            // swiftlint:enable force_cast
+
+            cell.rowView.infoLabel.text = "Color"
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+            return cell
+
+        case .amount:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+            // swiftlint:enable force_cast
+
+            cell.rowView.infoLabel.text = "Amount"
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+            return cell
+
+        case .other:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+            // swiftlint:enable force_cast
+
+            cell.rowView.infoLabel.text = "Other"
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+            return cell
+
         case .finish:
-            
+
             // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "FinishTableViewCell", for: indexPath) as! FinishTableViewCell
             // swiftlint:enable force_cast
-            
+
             return cell
         }
+        
     }
 
     func cancelFillin() {
@@ -181,7 +255,7 @@ class FillinTableViewController: UITableViewController {
     }
 
     func didFillin() {
-    
+
         guard let photoCell = tableView.visibleCells[0] as? PhotoTableViewCell,
               let dateCell = tableView.visibleCells[1] as? InfoTableViewCell,
               let timeCell = tableView.visibleCells[2] as? InfoTableViewCell,
@@ -193,9 +267,9 @@ class FillinTableViewController: UITableViewController {
         else {
             return
         }
-        
+
         finishCell.rowView.finishButton.isEnabled = false
-    
+
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
             let date = dateCell.rowView.infoLabel.text,
             let time = timeCell.rowView.infoLabel.text,
@@ -204,27 +278,27 @@ class FillinTableViewController: UITableViewController {
             let color = colorCell.rowView.infoLabel.text,
             let amount = amountCell.rowView.infoLabel.text,
             let other = otherCell.rowView.infoLabel.text else {
-    
+
                 return
-                
+
         }
-        
+
         let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
         let photoID = UUID().uuidString
 //        let overallAdvice = getAdvice()
         let overallAdvice = "Advice"
-        
+
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") {
-            
+
             CacaProvider.shared.saveCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
-                
+
                 if error != nil {
-                    
+
                     print(error?.localizedDescription ?? "storageError")
-                    
+
                     return
                 }
-                
+
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
@@ -239,14 +313,14 @@ class FillinTableViewController: UITableViewController {
                              "other": other,
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
-                
+
                 CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
                 self.switchToRecord()
-                
+
             })
-            
+
         } else {
-            
+
             let value = ["host": hostUID,
                          "cacaID": cacaID,
                          "photo": "",
@@ -260,13 +334,13 @@ class FillinTableViewController: UITableViewController {
                          "other": other,
                          "grading": self.ispassed,
                          "advice": overallAdvice] as [String : Any]
-            
+
             CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
             self.switchToRecord()
         }
-        
+
     }
-    
+
 //    func getAdvice() -> String {
 //        
 //        // MARK: Pass or Fail
@@ -358,17 +432,17 @@ class FillinTableViewController: UITableViewController {
 //        
 //        return overallAdvice
 //    }
-    
+
     func switchToRecord() {
-        
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-            
+
             tabBarController.selectedIndex = TabBarItemType.record.rawValue
-            
+
             appDelegate.window?.rootViewController = tabBarController
-            
+
         }
-        
+
     }
 
 }
@@ -405,30 +479,66 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
     }
 }
 
-//extension FillinTableViewController: UITextViewDelegate {
-//    
-//    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-//        
+extension FillinTableViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        self.view.endEditing(true)
+        
+        return true
+    }
+    
+//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+//
 //        self.view.endEditing(true)
-//        
+//
 //        return true
 //    }
-//    
-//    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-//        
-//        if textView == self.otherTextView {
-//            
-//            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//            
+
+}
+
+extension FillinTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+
+        return 1
+
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+
+        return colors.count
+//        switch component {
+//        case 0:
+//            return 0
+//        case 1:
+//            return 0
+//        case 2:
+//            return 0
+//        case 3:
+//            return 0
+//        case 4:
+//            return 0
+//        case 5:
+//            return 0
+//        case 6:
+//            return 0
+//        default:
+//            return 0
 //        }
-//        
-//        return true
-//        
-//    }
-//    
-//    func textViewDidEndEditing(_ textView: UITextView) {
-//        
-//        self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//        
-//    }
-//}
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return String(colors[row].rawValue)
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // 依據元件的 tag 取得 UITextField
+        let myTextField =
+            self.view?.viewWithTag(100) as? UITextField
+        
+        // 將 UITextField 的值更新為陣列 meals 的第 row 項資料
+        myTextField?.text = String(colors[row].rawValue)    }
+
+}
