@@ -15,6 +15,8 @@ class RecordTableViewController: UITableViewController {
 
     var isCovered = false
 
+    var coverButtonTitle = String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,7 +47,19 @@ class RecordTableViewController: UITableViewController {
         backItem.title = "Back"
         self.navigationItem.backBarButtonItem = backItem
 
-        let coverButton = UIBarButtonItem(title: "Hide", style: .plain, target: self, action: #selector(coverCaca))
+        self.tableView.separatorStyle = .none
+
+        if UserDefaults.standard.bool(forKey: "Hide") == true {
+
+            coverButtonTitle = "Show"
+
+        } else {
+
+            coverButtonTitle = "Hide"
+
+        }
+
+        let coverButton = UIBarButtonItem(title: coverButtonTitle, style: .plain, target: self, action: #selector(coverCaca))
         self.navigationItem.leftBarButtonItem = coverButton
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCaca))
@@ -64,12 +78,14 @@ class RecordTableViewController: UITableViewController {
 
             isCovered = true
             UserDefaults.standard.set(isCovered, forKey: "Hide")
+            coverButtonTitle = "Show"
             self.tableView.reloadData()
 
         } else {
 
             isCovered = false
             UserDefaults.standard.set(isCovered, forKey: "Hide")
+            coverButtonTitle = "Hide"
             self.tableView.reloadData()
 
         }
@@ -114,49 +130,61 @@ class RecordTableViewController: UITableViewController {
         // swiftlint:enable force_cast
 
         cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
+        cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
+        cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
+
+        cell.rowView.separateLineView.backgroundColor = Palette.textColor
 
         if UserDefaults.standard.bool(forKey: "Hide") == false {
 
-        if cacas[indexPath.row].photo != "" {
+            if cacas[indexPath.row].photo != "" {
 
-            DispatchQueue.global().async {
+                DispatchQueue.global().async {
 
-                if let url = URL(string: self.cacas[indexPath.row].photo) {
+                    if let url = URL(string: self.cacas[indexPath.row].photo) {
 
-                    do {
-                        let data = try Data(contentsOf: url)
-                        let image = UIImage(data: data)
+                        do {
+                            let data = try Data(contentsOf: url)
+                            let image = UIImage(data: data)
 
-                        DispatchQueue.main.async {
+                            DispatchQueue.main.async {
 
-                            cell.rowView.cacaPhotoImageView.image = image
+                                cell.rowView.cacaPhotoImageView.image = image
+
+                            }
+
+                        } catch {
+
+                            print(error.localizedDescription)
 
                         }
-
-                    } catch {
-
-                        print(error)
-
                     }
                 }
             }
-        }
         }
 
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
         cell.rowView.timeLabel.text = self.cacas[indexPath.row].time
 
+        let backgroundView = UIView()
+
         if self.cacas[indexPath.row].grading == true {
 
             cell.rowView.passOrFailLabel.text = "Pass"
             cell.rowView.passOrFailLabel.textColor = Palette.passColor
+            backgroundView.backgroundColor = Palette.selectedPassColor
+            cell.selectionStyle = .none
 
         } else {
 
             cell.rowView.passOrFailLabel.text = "Fail"
             cell.rowView.passOrFailLabel.textColor = Palette.failColor
+            backgroundView.backgroundColor = Palette.selectedFailColor
+            cell.selectionStyle = .default
 
         }
+
+        cell.selectedBackgroundView = backgroundView
 
         return cell
     }

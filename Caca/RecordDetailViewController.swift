@@ -112,11 +112,15 @@ class RecordDetailViewController: UIViewController {
 
         self.view.backgroundColor = Palette.backgoundColor
 
+        self.navigationItem.title = "My caca"
+
         self.cacaPhoto.backgroundColor = Palette.backgoundColor
         self.shapeImageView.backgroundColor = Palette.backgoundColor
         self.colorImageView.backgroundColor = Palette.backgoundColor
 
         self.cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+        self.cacaPhoto.layer.cornerRadius = self.cacaPhoto.frame.width / 2
+        self.cacaPhoto.layer.masksToBounds = true
 
         self.deleteRecordButton.setTitle("Delete", for: .normal)
 
@@ -143,6 +147,13 @@ class RecordDetailViewController: UIViewController {
             self.amountLabel.text = "M"
 
         }
+
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editCaca))
+        self.navigationItem.rightBarButtonItem = editButton
+
+    }
+
+    func editCaca() {
 
     }
 

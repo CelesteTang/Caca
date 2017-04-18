@@ -18,6 +18,10 @@ struct Palette {
 
     static let passColor = UIColor(red: 54/255, green: 166/255, blue: 54/255, alpha: 1)
 
+    static let selectedPassColor = UIColor(red: 54/255, green: 166/255, blue: 54/255, alpha: 0.5)
+
     static let failColor = UIColor(red: 166/255, green: 54/255, blue: 54/255, alpha: 1)
+
+    static let selectedFailColor = UIColor(red: 166/255, green: 54/255, blue: 54/255, alpha: 0.5)
 
 }
