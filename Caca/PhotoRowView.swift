@@ -9,22 +9,26 @@
 import UIKit
 
 class PhotoRowView: UIView {
-    
+
+    @IBOutlet weak var cancelButton: UIButton!
+
+    @IBOutlet weak var addPhotoButton: UIButton!
+
     @IBOutlet weak var cacaPhotoImageView: UIImageView!
-    
+
     @IBOutlet weak var cacaPictureImageView: UIImageView!
-    
+
     @IBOutlet weak var borderView: UIView!
-    
+
 }
 
 extension PhotoRowView {
-    
+
     // swiftlint:disable force_cast
     class func create() -> PhotoRowView {
-        
+
         return UINib(nibName: "PhotoRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! PhotoRowView
     }
     // swiftlint:enable force_cast
-    
+
 }

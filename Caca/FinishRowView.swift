@@ -9,23 +9,23 @@
 import UIKit
 
 class FinishRowView: UIView {
-    
+
     @IBOutlet weak var borderView: UIView!
-    
+
     @IBOutlet weak var finishButton: UIButton!
-    
+
     @IBAction func didSend(_ sender: UIButton) {
     }
-    
+
 }
 
 extension FinishRowView {
-    
+
     // swiftlint:disable force_cast
     class func create() -> FinishRowView {
-        
+
         return UINib(nibName: "FinishRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! FinishRowView
     }
     // swiftlint:enable force_cast
-    
+
 }

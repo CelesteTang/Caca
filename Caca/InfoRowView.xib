@@ -27,11 +27,20 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FI2-uT-iBF">
+                                    <rect key="frame" x="78" y="35" width="221" height="30"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="FI2-uT-iBF" secondAttribute="trailing" constant="20" id="9QQ-wY-4Pj"/>
+                                <constraint firstItem="FI2-uT-iBF" firstAttribute="leading" secondItem="FHY-Eu-KPi" secondAttribute="trailing" constant="20" id="Beq-1U-jHm"/>
                                 <constraint firstItem="FHY-Eu-KPi" firstAttribute="centerY" secondItem="W6N-Bu-9ja" secondAttribute="centerY" id="ZjU-Ts-50b"/>
                                 <constraint firstItem="FHY-Eu-KPi" firstAttribute="leading" secondItem="W6N-Bu-9ja" secondAttribute="leading" constant="16" id="jIg-PZ-SsQ"/>
+                                <constraint firstItem="FI2-uT-iBF" firstAttribute="centerY" secondItem="W6N-Bu-9ja" secondAttribute="centerY" id="kLA-fF-OBV"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -56,6 +65,7 @@
             <connections>
                 <outlet property="borderView" destination="3KJ-cW-hJU" id="1Cg-mf-OK4"/>
                 <outlet property="infoLabel" destination="FHY-Eu-KPi" id="UFR-0y-TmQ"/>
+                <outlet property="infoTextField" destination="FI2-uT-iBF" id="eKK-j8-TbO"/>
             </connections>
             <point key="canvasLocation" x="-119" y="-41"/>
         </view>

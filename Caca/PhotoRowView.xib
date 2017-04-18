@@ -45,9 +45,18 @@
                         <constraint firstAttribute="width" secondItem="jg0-A9-rRv" secondAttribute="height" multiplier="1:1" id="zDE-8M-Mri"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpc-lK-PTc">
+                    <rect key="frame" x="8" y="8" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQ6-XI-dyW">
+                    <rect key="frame" x="321" y="8" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Rpc-lK-PTc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="1pY-wT-7Cd"/>
                 <constraint firstItem="3kv-OJ-Iad" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="2hZ-jh-b5f"/>
                 <constraint firstItem="3SM-tO-eKi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="9S0-p0-vIK"/>
                 <constraint firstItem="3SM-tO-eKi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="NlB-dv-1fT"/>
@@ -56,15 +65,20 @@
                 <constraint firstItem="jg0-A9-rRv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="125" id="c5E-ib-nMH"/>
                 <constraint firstAttribute="trailing" secondItem="3SM-tO-eKi" secondAttribute="trailing" constant="20" id="ecu-qL-UOq"/>
                 <constraint firstItem="3kv-OJ-Iad" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="guA-nc-F4o"/>
+                <constraint firstItem="aQ6-XI-dyW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="h8z-JH-6hX"/>
+                <constraint firstItem="Rpc-lK-PTc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="qdz-Lh-gWp"/>
                 <constraint firstAttribute="bottom" secondItem="3SM-tO-eKi" secondAttribute="bottom" id="tlk-QK-HYd"/>
+                <constraint firstAttribute="trailing" secondItem="aQ6-XI-dyW" secondAttribute="trailing" constant="8" id="yRI-gI-jEe"/>
                 <constraint firstItem="jg0-A9-rRv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ylL-OA-OxO"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="addPhotoButton" destination="aQ6-XI-dyW" id="3QD-dv-TKi"/>
                 <outlet property="borderView" destination="3SM-tO-eKi" id="kaz-d3-SD7"/>
                 <outlet property="cacaPhotoImageView" destination="jg0-A9-rRv" id="Q4j-9g-C9Z"/>
                 <outlet property="cacaPictureImageView" destination="3kv-OJ-Iad" id="nu0-nB-cTL"/>
+                <outlet property="cancelButton" destination="Rpc-lK-PTc" id="rp4-cs-Kbq"/>
             </connections>
             <point key="canvasLocation" x="39" y="-332"/>
         </view>

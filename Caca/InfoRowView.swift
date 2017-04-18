@@ -9,20 +9,21 @@
 import UIKit
 
 class InfoRowView: UIView {
-    
+
     @IBOutlet weak var borderView: UIView!
-    
+
     @IBOutlet weak var infoLabel: UILabel!
-    
+
+    @IBOutlet weak var infoTextField: UITextField!
 }
 
 extension InfoRowView {
-    
+
     // swiftlint:disable force_cast
     class func create() -> InfoRowView {
-        
+
         return UINib(nibName: "InfoRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! InfoRowView
     }
     // swiftlint:enable force_cast
-    
+
 }
