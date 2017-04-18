@@ -103,7 +103,7 @@ class TimingViewController: UIViewController {
         isFromCaca = true
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinViewController") as? FillinViewController
+            appDelegate.window?.rootViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController
         }
 
     }

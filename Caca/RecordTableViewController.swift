@@ -97,7 +97,7 @@ class RecordTableViewController: UITableViewController {
         isFromRecord = true
 
         let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
-        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinViewController")
+        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController")
 
         present(fillinViewController, animated: true)
 
