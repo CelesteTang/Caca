@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PhotoRowView" customModule="Caca" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="151"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -61,6 +61,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="borderView" destination="3SM-tO-eKi" id="kaz-d3-SD7"/>
+                <outlet property="cacaPhotoImageView" destination="jg0-A9-rRv" id="Q4j-9g-C9Z"/>
+                <outlet property="cacaPictureImageView" destination="3kv-OJ-Iad" id="nu0-nB-cTL"/>
+            </connections>
             <point key="canvasLocation" x="39" y="-332"/>
         </view>
     </objects>

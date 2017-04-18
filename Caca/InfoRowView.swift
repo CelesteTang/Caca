@@ -10,6 +10,10 @@ import UIKit
 
 class InfoRowView: UIView {
     
+    @IBOutlet weak var borderView: UIView!
+    
+    @IBOutlet weak var infoLabel: UILabel!
+    
 }
 
 extension InfoRowView {

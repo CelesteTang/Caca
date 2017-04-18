@@ -10,6 +10,13 @@ import UIKit
 
 class FinishRowView: UIView {
     
+    @IBOutlet weak var borderView: UIView!
+    
+    @IBOutlet weak var finishButton: UIButton!
+    
+    @IBAction func didSend(_ sender: UIButton) {
+    }
+    
 }
 
 extension FinishRowView {

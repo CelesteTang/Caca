@@ -10,6 +10,12 @@ import UIKit
 
 class PhotoRowView: UIView {
     
+    @IBOutlet weak var cacaPhotoImageView: UIImageView!
+    
+    @IBOutlet weak var cacaPictureImageView: UIImageView!
+    
+    @IBOutlet weak var borderView: UIView!
+    
 }
 
 extension PhotoRowView {
