@@ -49,11 +49,12 @@ class FillinTableViewController: UITableViewController {
     let timePicker = UIPickerView()
     let shapePicker = UIPickerView()
     let colorPicker = UIPickerView()
+    let amountSlider = UISlider()
 
     var hour = [Int]()
     var min = [Int]()
     var sec = [Int]()
-    
+
     var finalHour = "00"
     var finalMin = "00"
     var finalSec = "00"
@@ -89,29 +90,39 @@ class FillinTableViewController: UITableViewController {
 
     private func setUp() {
 
-        datePicker.datePickerMode = .dateAndTime
-        datePicker.minuteInterval = 1
-        datePicker.date = Date()
+        self.datePicker.datePickerMode = .dateAndTime
+        self.datePicker.minuteInterval = 1
+        self.datePicker.date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let fromDateTime = dateFormatter.date(from: "2015-01-01 18:08")
-        datePicker.minimumDate = fromDateTime
+        self.datePicker.minimumDate = fromDateTime
         let endDateTime = dateFormatter.date(from: "2067-12-31 10:45")
-        datePicker.maximumDate = endDateTime
-        datePicker.locale = Locale(identifier: "zh_TW")
-        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
+        self.datePicker.maximumDate = endDateTime
+        self.datePicker.locale = Locale(identifier: "zh_TW")
+        self.datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
 
-        timePicker.dataSource = self
-        timePicker.delegate = self
+        self.timePicker.dataSource = self
+        self.timePicker.delegate = self
         for i in 0...23 { hour.append(i) }
         for i in 0...59 { min.append(i) }
         for i in 0...59 { sec.append(i) }
 
-        shapePicker.dataSource = self
-        shapePicker.delegate = self
+        self.shapePicker.dataSource = self
+        self.shapePicker.delegate = self
 
-        colorPicker.dataSource = self
-        colorPicker.delegate = self
+        self.colorPicker.dataSource = self
+        self.colorPicker.delegate = self
+
+        self.amountSlider.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
+        self.amountSlider.isContinuous = true
+        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "poo-icon"), targetRatio: 0.75)
+        self.amountSlider.setThumbImage(thumbIamge, for: .normal)
+        self.amountSlider.tintColor = UIColor.white
+        self.amountSlider.minimumValue = 0.5
+        self.amountSlider.maximumValue = 1.0
+        self.amountSlider.value = 0.75
+        self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
     }
 
@@ -125,6 +136,53 @@ class FillinTableViewController: UITableViewController {
             dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
 
         }
+    }
+
+    func changeThumbImageSize() {
+
+        let ratio: CGFloat = CGFloat(self.amountSlider.value)
+        let thumbImage: UIImage = #imageLiteral(resourceName: "poo-icon")
+
+        let newImage = self.resizeImage(image: thumbImage, targetRatio: ratio)
+
+        self.amountSlider.setThumbImage(newImage, for: .normal)
+
+        if let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell {
+
+            if self.amountSlider.value > 0.91 {
+
+                amountCell.rowView.infoTextField.text = "L"
+
+            } else if self.amountSlider.value < 0.66 {
+
+                amountCell.rowView.infoTextField.text = "S"
+
+            } else {
+
+                amountCell.rowView.infoTextField.text = "M"
+
+            }
+        }
+
+    }
+
+    func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
+
+        let size = image.size
+
+        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
+
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+
+        image.draw(in: rect)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        UIGraphicsEndImageContext()
+
+        return newImage!
     }
 
     // MARK: - Table view data source
@@ -164,6 +222,19 @@ class FillinTableViewController: UITableViewController {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell else { return }
+
+        photoCell.rowView.cacaPhotoImageView.backgroundColor = .gray
+        photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
+        photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
+
+        photoCell.rowView.cacaPictureImageView.layer.cornerRadius = photoCell.rowView.cacaPictureImageView.frame.width / 2
+        photoCell.rowView.cacaPictureImageView.layer.masksToBounds = true
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let component = components[indexPath.section]
@@ -176,15 +247,15 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoTableViewCell", for: indexPath) as! PhotoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.cacaPhotoImageView.backgroundColor = .gray
-            cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
-            cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
-
-            cell.rowView.cacaPictureImageView.layer.cornerRadius = cell.rowView.cacaPictureImageView.frame.width / 2
-            cell.rowView.cacaPictureImageView.layer.masksToBounds = true
-
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
+
+//            cell.rowView.cacaPhotoImageView.backgroundColor = .gray
+//            cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
+//            cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
+//            
+//            cell.rowView.cacaPictureImageView.layer.cornerRadius = cell.rowView.cacaPictureImageView.frame.width / 2
+//            cell.rowView.cacaPictureImageView.layer.masksToBounds = true
 
             return cell
 
@@ -254,6 +325,8 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
+            cell.rowView.infoTextField.inputView = amountSlider
+
             return cell
 
         case .other:
@@ -274,7 +347,7 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FinishTableViewCell", for: indexPath) as! FinishTableViewCell
             // swiftlint:enable force_cast
 
-//            cell.rowView.finishButton.addTarget(self, action: #selector(didFillin), for: .touchUpInside)
+            cell.rowView.finishButton.addTarget(self, action: #selector(didFillin), for: .touchUpInside)
 
             return cell
         }
@@ -637,29 +710,8 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
     }
 
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//
-//        if pickerView == timePicker {
-//
-//            switch component {
-//            case 0:
-//                return "\(hour[row])"
-//            case 1:
-//                return "\(min[row])"
-//            case 2:
-//                return "\(sec[row])"
-//            default:
-//                return ""
-//            }
-//
-//        }
-//        
-//        return ""
-//
-//    }
-
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+
         if let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
             let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
             let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell {
@@ -677,9 +729,9 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
                     finalSec = String(format: "%02i", sec[row])
                 default: break
                 }
-                
+
             timeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
-                
+
             case shapePicker:
                 shapeCell.rowView.infoTextField.text = String(shapes[row].title)
             case colorPicker:
@@ -696,9 +748,9 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
         switch pickerView {
 
         case timePicker:
-            
+
             let pickerLabel = UILabel()
-            
+
             switch component {
             case 0:
                 pickerLabel.text = String(format: "%02i", hour[row])
@@ -708,10 +760,10 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
                 pickerLabel.text = String(format: "%02i", sec[row])
             default: break
             }
-            
+
 //            pickerLabel.font = UIFont(name: "Arial-BoldMT", size: 80)
             pickerLabel.textAlignment = NSTextAlignment.center
-            
+
             return pickerLabel
 
         case shapePicker:
@@ -727,11 +779,11 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
 
         default:
-            
+
             let view = UIView()
-            
+
             view.isHidden = true
-            
+
             return view
 
         }

@@ -47,7 +47,10 @@ class FinishTableViewCell: UITableViewCell {
 
         self.rowView.backgroundColor = Palette.backgoundColor
         self.rowView.borderView.backgroundColor = Palette.textColor
-
+        self.rowView.finishButton.setTitle("Finish", for: .normal)
+        self.rowView.finishButton.backgroundColor = Palette.textColor
+        self.rowView.finishButton.tintColor = Palette.backgoundColor
+        self.rowView.finishButton.layer.cornerRadius = 15
     }
 
 }

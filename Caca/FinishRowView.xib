@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,10 +17,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaG-4W-Snk">
-                    <rect key="frame" x="20" y="0.0" width="335" height="80"/>
+                    <rect key="frame" x="20" y="0.0" width="335" height="69"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8T-Wr-LzK">
-                            <rect key="frame" x="8" y="0.0" width="319" height="72"/>
+                            <rect key="frame" x="8" y="0.0" width="319" height="61"/>
                             <color key="backgroundColor" red="0.84710109229999997" green="0.85703617330000004" blue="0.7277730107" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                     </subviews>
@@ -32,7 +33,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYB-Co-3c8">
-                    <rect key="frame" x="164" y="56" width="46" height="30"/>
+                    <rect key="frame" x="100" y="50" width="174" height="30"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Button"/>
                     <connections>
@@ -42,12 +43,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="kaG-4W-Snk" firstAttribute="bottom" secondItem="dYB-Co-3c8" secondAttribute="centerY" constant="4" id="1dz-j7-Hrf"/>
                 <constraint firstAttribute="trailing" secondItem="kaG-4W-Snk" secondAttribute="trailing" constant="20" id="A5z-Js-Cne"/>
                 <constraint firstItem="dYB-Co-3c8" firstAttribute="centerX" secondItem="Yyy-vC-jMy" secondAttribute="centerX" id="IKS-nJ-8ql"/>
                 <constraint firstItem="kaG-4W-Snk" firstAttribute="leading" secondItem="Yyy-vC-jMy" secondAttribute="leading" constant="20" id="KSF-nz-hCG"/>
                 <constraint firstItem="kaG-4W-Snk" firstAttribute="top" secondItem="Yyy-vC-jMy" secondAttribute="top" id="VUb-C6-I1p"/>
-                <constraint firstAttribute="bottom" secondItem="dYB-Co-3c8" secondAttribute="bottom" constant="14" id="aGZ-Uk-cGY"/>
-                <constraint firstAttribute="bottom" secondItem="kaG-4W-Snk" secondAttribute="bottom" constant="20" id="oaB-zS-vOt"/>
+                <constraint firstItem="dYB-Co-3c8" firstAttribute="leading" secondItem="Yyy-vC-jMy" secondAttribute="leading" constant="100" id="Ylm-8j-nBW"/>
+                <constraint firstAttribute="bottom" secondItem="dYB-Co-3c8" secondAttribute="bottom" constant="20" id="aGZ-Uk-cGY"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
