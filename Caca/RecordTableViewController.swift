@@ -71,7 +71,7 @@ class RecordTableViewController: UITableViewController {
 //        navigationController?.navigationBar.isTranslucent = true
 //        navigationController?.view.backgroundColor = UIColor.clear
     }
-
+    
     func coverCaca() {
 
         if isCovered == false {

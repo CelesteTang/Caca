@@ -16,6 +16,58 @@ class FillinTableViewController: UITableViewController {
 
         case photo, date, time, shape, color, amount, other, finish
 
+        var title: String {
+        
+            switch self {
+            case .date:
+                return "Date"
+            case .time:
+                return "Time"
+            case .shape:
+                return "Shape"
+            case .color:
+                return "Color"
+            case .amount:
+                return "Amount"
+            case .other:
+                return "Other"
+            default:
+                return ""
+            }
+        }
+        
+        var pickerView: UIPickerView {
+            
+            switch self {
+            case .date:
+                
+                let datePicker = UIPickerView()
+                return datePicker
+                
+            case .time:
+                
+                let timePicker = UIPickerView()
+                return timePicker
+                
+            case .shape:
+                
+                let shapePicker = UIPickerView()
+                return shapePicker
+            
+            case .color:
+
+                let colorPicker = UIPickerView()
+                return colorPicker
+                
+            default:
+                
+                let picker = UIPickerView()
+                picker.isHidden = true
+                return picker
+            }
+            
+        }
+            
     }
 
     // MARK: Property
@@ -25,6 +77,8 @@ class FillinTableViewController: UITableViewController {
     let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
 
     let colors: [Color] = [.red, .yellow, .green, .lightBrown, .darkBrown, .gray, .black]
+    
+//    let pickerView = UIPickerView()
 
     var ispassed = false
 
@@ -47,6 +101,13 @@ class FillinTableViewController: UITableViewController {
 
         self.tableView.allowsSelection = false
         self.tableView.separatorStyle = .none
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        
+//        self.pickerView.delegate = self
+//        self.pickerView.dataSource = self
 
     }
 
@@ -87,7 +148,7 @@ class FillinTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let component = components[indexPath.section]
-        
+
         switch component {
 
         case .photo:
@@ -102,60 +163,66 @@ class FillinTableViewController: UITableViewController {
 
             return cell
 
-        case .date:
+        case .date, .time, .shape, .color:
 
             // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
             // swiftlint:enable force_cast
 
-            let pickerView = UIPickerView()
-            pickerView.delegate = self
-            pickerView.dataSource = self
-            
-            cell.rowView.infoLabel.text = "Date"
+            cell.rowView.infoLabel.text = components[indexPath.section].title
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
-            
-            
-            cell.rowView.infoTextField.inputView = pickerView
-            cell.rowView.infoTextField.tag = 100
-            
-            
-            
+
+            components[indexPath.section].pickerView.delegate = self
+            components[indexPath.section].pickerView.dataSource = self
+            cell.rowView.infoTextField.inputView = components[indexPath.section].pickerView
+
             return cell
 
-        case .time:
-
-            // swiftlint:disable force_cast
-            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
-            // swiftlint:enable force_cast
-
-            cell.rowView.infoLabel.text = "Time"
-            cell.rowView.infoTextField.delegate = self
-            cell.rowView.infoTextField.returnKeyType = .done
-            return cell
-
-        case .shape:
-
-            // swiftlint:disable force_cast
-            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
-            // swiftlint:enable force_cast
-
-            cell.rowView.infoLabel.text = "Shape"
-            cell.rowView.infoTextField.delegate = self
-            cell.rowView.infoTextField.returnKeyType = .done
-            return cell
-
-        case .color:
-
-            // swiftlint:disable force_cast
-            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
-            // swiftlint:enable force_cast
-
-            cell.rowView.infoLabel.text = "Color"
-            cell.rowView.infoTextField.delegate = self
-            cell.rowView.infoTextField.returnKeyType = .done
-            return cell
+//        case .time:
+//
+//            // swiftlint:disable force_cast
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+//            // swiftlint:enable force_cast
+//
+//            cell.rowView.infoLabel.text = "Time"
+//            cell.rowView.infoTextField.delegate = self
+//            cell.rowView.infoTextField.returnKeyType = .done
+//
+//            cell.rowView.infoTextField.inputView = pickerView
+//            cell.rowView.infoTextField.tag = 101
+//
+//            return cell
+//
+//        case .shape:
+//
+//            // swiftlint:disable force_cast
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+//            // swiftlint:enable force_cast
+//
+//            cell.rowView.infoLabel.text = "Shape"
+//            cell.rowView.infoTextField.delegate = self
+//            cell.rowView.infoTextField.returnKeyType = .done
+//
+//            cell.rowView.infoTextField.inputView = pickerView
+//            cell.rowView.infoTextField.tag = 102
+//
+//            return cell
+//
+//        case .color:
+//
+//            // swiftlint:disable force_cast
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+//            // swiftlint:enable force_cast
+//
+//            cell.rowView.infoLabel.text = "Color"
+//            cell.rowView.infoTextField.delegate = self
+//            cell.rowView.infoTextField.returnKeyType = .done
+//
+//            cell.rowView.infoTextField.inputView = pickerView
+//            cell.rowView.infoTextField.tag = 103
+//
+//            return cell
 
         case .amount:
 
@@ -187,7 +254,7 @@ class FillinTableViewController: UITableViewController {
 
             return cell
         }
-        
+
     }
 
     func cancelFillin() {
@@ -254,6 +321,12 @@ class FillinTableViewController: UITableViewController {
 
     }
 
+    func hideKeyBoard() {
+        
+        self.view.endEditing(true)
+        
+    }
+    
     func didFillin() {
 
         guard let photoCell = tableView.visibleCells[0] as? PhotoTableViewCell,
@@ -482,22 +555,22 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 extension FillinTableViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+
         self.view.endEditing(true)
-        
+
         return true
     }
-    
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//
-//        self.view.endEditing(true)
-//
-//        return true
-//    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+
+        self.view.endEditing(true)
+
+        return true
+    }
 
 }
 
-extension FillinTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
 
@@ -507,38 +580,81 @@ extension FillinTableViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 
-        return colors.count
-//        switch component {
-//        case 0:
-//            return 0
-//        case 1:
-//            return 0
-//        case 2:
-//            return 0
-//        case 3:
-//            return 0
-//        case 4:
-//            return 0
-//        case 5:
-//            return 0
-//        case 6:
-//            return 0
-//        default:
-//            return 0
-//        }
+        if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+           let indexPathOfDateCell = tableView.indexPath(for: dateCell),
+            let timeCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+            let indexPathOfTimeCell = tableView.indexPath(for: timeCell),
+            let shapeCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+            let indexPathOfShapeCell = tableView.indexPath(for: shapeCell),
+            let colorCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+            let indexPathOfColorCell = tableView.indexPath(for: colorCell) {
+         
+            let datePicker = components[indexPathOfDateCell.section].pickerView
+            let timePicker = components[indexPathOfTimeCell.section].pickerView
+            let shapePicker = components[indexPathOfShapeCell.section].pickerView
+            let colorPicker = components[indexPathOfColorCell.section].pickerView
+
+            switch pickerView {
+                
+            case datePicker:
+                return 1
+            case timePicker:
+                return 1
+            case shapePicker:
+                return shapes.count
+            case colorPicker:
+                return colors.count
+            default:
+                return 0
+                
+            }
+        }
+        
+        print("== Error in FillinTableViewController - pickerView")
+        return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        return String(colors[row].rawValue)
+
+        switch component {
+            
+        case Component.date.rawValue:
+            return ""
+        case Component.time.rawValue:
+            return ""
+        case Component.shape.rawValue:
+            return String(shapes[row].rawValue)
+        case Component.color.rawValue:
+            return String(colors[row].rawValue)
+        default:
+            return ""
+            
+        }
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // 依據元件的 tag 取得 UITextField
-        let myTextField =
-            self.view?.viewWithTag(100) as? UITextField
-        
-        // 將 UITextField 的值更新為陣列 meals 的第 row 項資料
-        myTextField?.text = String(colors[row].rawValue)    }
+
+//        switch component {
+//            
+//        case Component.date.rawValue:
+//            let myTextField =
+//                self.view?.viewWithTag(100) as? UITextField
+//            myTextField?.text =  ""
+//        case Component.time.rawValue:
+//            let myTextField =
+//                self.view?.viewWithTag(101) as? UITextField
+//            myTextField?.text =  ""
+//        case Component.shape.rawValue:
+//            let myTextField =
+//                self.view?.viewWithTag(102) as? UITextField
+//            myTextField?.text =  String(shapes[row].rawValue)
+//        case Component.color.rawValue:
+//            let myTextField =
+//                self.view?.viewWithTag(103) as? UITextField
+//            myTextField?.text =  String(colors[row].rawValue)
+//        default: break
+//            
+//        }
+    }
 
 }
