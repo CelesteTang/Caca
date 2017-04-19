@@ -10,86 +10,6 @@ import UIKit
 import Firebase
 import ColorThiefSwift
 
-enum Shape: Int {
-
-    case separateHard, lumpySausage, crackSausage, smoothSausage, softBlob, mushyStool, wateryStool
-
-    var image: UIImage {
-
-        switch self {
-        case .separateHard:
-
-            return #imageLiteral(resourceName: "poo-icon")
-//            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
-
-        case .lumpySausage:
-
-            return #imageLiteral(resourceName: "poo-icon")
-
-        case .crackSausage:
-
-            return #imageLiteral(resourceName: "poo-icon")
-
-        case .smoothSausage:
-
-            return #imageLiteral(resourceName: "poo-icon")
-
-        case .softBlob:
-
-            return #imageLiteral(resourceName: "poo-icon")
-
-        case .mushyStool:
-
-            return #imageLiteral(resourceName: "poo-icon")
-
-        case .wateryStool:
-
-            return #imageLiteral(resourceName: "poo-icon")
-        }
-
-    }
-
-}
-
-enum Color: Int {
-
-    case red, yellow, green, lightBrown, darkBrown, gray, black
-
-    var image: UIImage {
-
-        switch self {
-        case .red:
-
-            return #imageLiteral(resourceName: "poo-icon")
-
-        case .yellow:
-
-            return #imageLiteral(resourceName: "poo-icon")
-        case .green:
-
-            return #imageLiteral(resourceName: "poo-icon")
-
-        case .lightBrown:
-
-            return #imageLiteral(resourceName: "poo-icon")
-
-        case .darkBrown:
-
-            return #imageLiteral(resourceName: "poo-icon")
-
-        case .gray:
-
-            return #imageLiteral(resourceName: "poo-icon")
-
-        case .black:
-
-            return #imageLiteral(resourceName: "poo-icon")
-        }
-
-    }
-
-}
-
 class FillinViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIButton!
@@ -99,8 +19,6 @@ class FillinViewController: UIViewController {
     @IBOutlet weak var cacaPhoto: UIImageView!
 
     @IBOutlet weak var photoButton: UIButton!
-
-    @IBOutlet weak var photoLibraryButton: UIButton!
 
     @IBOutlet weak var dateLabel: UILabel!
 
@@ -122,37 +40,74 @@ class FillinViewController: UIViewController {
 
     var cacas = [Caca]()
 
+    var advice = String()
+
+    var shapeAdvice = String()
+
+    var colorAdvice = String()
+
+    var frequencyAdvice = String()
+
     @IBAction func cancelFillin(_ sender: UIButton) {
 
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+        if isFromCaca == true {
 
-            appDelegate.window?.rootViewController = tabBarController
+            isFromCaca = false
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+                appDelegate.window?.rootViewController = tabBarController
+
+            }
+
+        } else if isFromRecord == true {
+
+            isFromRecord = false
+
+            dismiss(animated: true, completion: nil)
 
         }
     }
 
-    @IBAction func pickPhotoFromLibrary(_ sender: UIButton) {
-
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
-        picker.videoQuality = .typeLow
-        self.present(picker, animated: true, completion: nil)
-
-    }
-
     @IBAction func addPhoto(_ sender: UIButton) {
 
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .camera
-        picker.cameraCaptureMode = .photo
-        picker.cameraDevice = .rear
-        picker.cameraFlashMode = .on
-        picker.allowsEditing = true
-        picker.videoQuality = .typeLow
-        self.present(picker, animated: true, completion: nil)
+        let alertController = UIAlertController(title: "Add a caca photo",
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
+
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel,
+                                         handler: nil)
+        alertController.addAction(cancelAction)
+
+        let photoAction = UIAlertAction(title: "Choose from library", style: .default) { _ in
+
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .photoLibrary
+            picker.allowsEditing = true
+            picker.videoQuality = .typeLow
+            self.present(picker, animated: true, completion: nil)
+
+        }
+        alertController.addAction(photoAction)
+
+        let cameraAction = UIAlertAction(title: "Take photo", style: .default) { _ in
+
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .camera
+            picker.cameraCaptureMode = .photo
+            picker.cameraDevice = .rear
+            picker.cameraFlashMode = .on
+            picker.allowsEditing = true
+            picker.videoQuality = .typeLow
+            self.present(picker, animated: true, completion: nil)
+
+        }
+        alertController.addAction(cameraAction)
+
+        self.present(alertController, animated: true, completion: nil)
 
     }
 
@@ -169,14 +124,9 @@ class FillinViewController: UIViewController {
 
         }
 
-        if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
-
-            ispassed = true
-
-        }
-
         let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
         let photoID = UUID().uuidString
+        let overallAdvice = getAdvice()
 
         if cacaPhoto.image != #imageLiteral(resourceName: "poo-icon") {
 
@@ -191,6 +141,9 @@ class FillinViewController: UIViewController {
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
+                             "cacaID": cacaID,
+                             "photo": cacaPhotoUrl,
+                             "photoID": photoID,
                              "date": date,
                              "time": time,
                              "consumingTime": consumingTime,
@@ -198,10 +151,8 @@ class FillinViewController: UIViewController {
                              "color": self.colorSegmentedControll.selectedSegmentIndex,
                              "amount": Double(self.amountSlider.value),
                              "other": self.otherTextView.text,
-                             "photo": cacaPhotoUrl,
                              "grading": self.ispassed,
-                             "cacaID": cacaID,
-                             "photoID": photoID] as [String : Any]
+                             "advice": overallAdvice] as [String : Any]
 
                 CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
                 self.switchToRecord()
@@ -211,6 +162,9 @@ class FillinViewController: UIViewController {
         } else {
 
             let value = ["host": hostUID,
+                         "cacaID": cacaID,
+                         "photo": "",
+                         "photoID": "",
                          "date": date,
                          "time": time,
                          "consumingTime": consumingTime,
@@ -218,14 +172,104 @@ class FillinViewController: UIViewController {
                          "color": self.colorSegmentedControll.selectedSegmentIndex,
                          "amount": Double(self.amountSlider.value),
                          "other": self.otherTextView.text,
-                         "photo": "",
                          "grading": self.ispassed,
-                         "cacaID": cacaID,
-                         "photoID": ""] as [String : Any]
+                         "advice": overallAdvice] as [String : Any]
 
             CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
             self.switchToRecord()
         }
+    }
+
+    func getAdvice() -> String {
+
+        // MARK: Pass or Fail
+
+        if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
+
+            ispassed = true
+
+            self.advice = "Good caca! Please keep it up!"
+
+        } else {
+
+            self.advice = "Warning! Your caca may not healthy! "
+
+            // MARK: Shape
+
+            switch Shape(rawValue: self.shapeSegmentedControl.selectedSegmentIndex)! {
+
+            case .separateHard, .lumpySausage:
+
+                self.shapeAdvice = "You are constipated, and "
+
+            case .crackSausage, .smoothSausage:
+
+                self.shapeAdvice = "The shape of your caca is good, but "
+
+            case .softBlob, .mushyStool, .wateryStool:
+
+                self.shapeAdvice = "You have diarrhea, and "
+
+            }
+
+            // MARK: Color
+
+            switch Color(rawValue: self.colorSegmentedControll.selectedSegmentIndex)! {
+
+            case .red:
+
+                self.colorAdvice = "the color of your caca is red. "
+
+            case .yellow:
+
+                self.colorAdvice = "the color of your caca is yellow. "
+
+            case .green:
+
+                self.colorAdvice = "the color of your caca is green. "
+
+            case .lightBrown, .darkBrown:
+
+                self.colorAdvice = "the color of your caca is good! "
+
+            case .gray:
+
+                self.colorAdvice = "the color of your caca is gray. "
+
+            case .black:
+
+                self.colorAdvice = "the color of your caca is black. "
+
+            }
+
+            // MARK: Continuous Fail
+
+            if cacas.count == 1 {
+
+                if cacas[cacas.count - 1].grading == false && ispassed == false {
+
+                    self.frequencyAdvice = "If you have the same symptom tomorrow, you should go to see a doctor."
+
+                }
+
+            } else if cacas.count > 1 {
+
+                if cacas[cacas.count - 2].grading == false && cacas[cacas.count - 1].grading == false && ispassed == false {
+
+                    self.frequencyAdvice = "You should go to see a doctor NOW!"
+
+                } else if cacas[cacas.count - 1].grading == false && ispassed == false {
+
+                    self.frequencyAdvice = "If you have the same symptom tomorrow, you should go to see a doctor."
+
+                }
+
+            }
+        }
+
+        let overallAdvice = self.advice + self.shapeAdvice + self.colorAdvice + self.frequencyAdvice
+
+        return overallAdvice
     }
 
     func switchToRecord() {
@@ -254,6 +298,19 @@ class FillinViewController: UIViewController {
         self.view.addGestureRecognizer(tap)
 
         finishButton.isEnabled = true
+
+        DispatchQueue.global().async {
+
+            CacaProvider.shared.getCaca { (cacas, _) in
+
+                if let cacas = cacas {
+
+                    self.cacas = cacas
+
+                }
+            }
+        }
+
     }
 
     // MARK: Set Up
@@ -268,11 +325,9 @@ class FillinViewController: UIViewController {
         self.cacaPhoto.backgroundColor = Palette.backgoundColor
 
         self.photoButton.setTitle("Take photo", for: .normal)
-        self.photoLibraryButton.setTitle("Pick photo from library", for: .normal)
 
-        let time = Time()
-        self.dateLabel.text = time.dateString()
-        self.timeLabel.text = time.timeString()
+        self.dateLabel.text = Time.dateString()
+        self.timeLabel.text = Time.timeString()
         self.consumingTimeLabel.text = Time.consumingTime
 
         self.amountSlider.isContinuous = true

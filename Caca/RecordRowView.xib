@@ -41,18 +41,29 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0F1-HD-A2n">
+                    <rect key="frame" x="5" y="112" width="365" height="2"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="7iD-T9-mUK"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="6yb-J3-5JT" firstAttribute="top" secondItem="f9j-ZY-OQT" secondAttribute="top" constant="20" id="3h2-3V-lpI"/>
+                <constraint firstItem="0F1-HD-A2n" firstAttribute="leading" secondItem="f9j-ZY-OQT" secondAttribute="leading" constant="5" id="9Nc-9O-HT2"/>
+                <constraint firstAttribute="trailing" secondItem="0F1-HD-A2n" secondAttribute="trailing" constant="5" id="Ca4-e7-I6C"/>
                 <constraint firstItem="6yb-J3-5JT" firstAttribute="leading" secondItem="f9j-ZY-OQT" secondAttribute="leading" constant="20" id="IaH-gu-JcC"/>
                 <constraint firstItem="EmQ-dD-rHa" firstAttribute="leading" secondItem="6yb-J3-5JT" secondAttribute="trailing" constant="22" id="IfJ-hk-CGo"/>
                 <constraint firstItem="3I8-si-hGB" firstAttribute="top" secondItem="EmQ-dD-rHa" secondAttribute="top" id="JFz-mh-dFF"/>
                 <constraint firstItem="3I8-si-hGB" firstAttribute="leading" secondItem="EmQ-dD-rHa" secondAttribute="trailing" constant="8" id="Kyk-rO-I64"/>
                 <constraint firstItem="Vc3-YX-s2L" firstAttribute="bottom" secondItem="6yb-J3-5JT" secondAttribute="bottom" id="Zof-3V-ic9"/>
+                <constraint firstAttribute="bottom" secondItem="0F1-HD-A2n" secondAttribute="bottom" id="bgI-83-rlo"/>
                 <constraint firstItem="Vc3-YX-s2L" firstAttribute="leading" secondItem="6yb-J3-5JT" secondAttribute="trailing" constant="22" id="hyG-W6-NmH"/>
                 <constraint firstItem="6yb-J3-5JT" firstAttribute="centerY" secondItem="f9j-ZY-OQT" secondAttribute="centerY" id="kTb-Sm-43k"/>
                 <constraint firstAttribute="bottom" secondItem="6yb-J3-5JT" secondAttribute="bottom" constant="20" id="rKc-H7-zwv"/>
+                <constraint firstItem="0F1-HD-A2n" firstAttribute="centerX" secondItem="f9j-ZY-OQT" secondAttribute="centerX" id="wkC-7Z-uv5"/>
                 <constraint firstItem="EmQ-dD-rHa" firstAttribute="top" secondItem="6yb-J3-5JT" secondAttribute="top" id="xdY-i2-ZbU"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -61,9 +72,10 @@
                 <outlet property="cacaPhotoImageView" destination="6yb-J3-5JT" id="YhS-H0-Wz6"/>
                 <outlet property="dateLabel" destination="EmQ-dD-rHa" id="Elo-ok-6qS"/>
                 <outlet property="passOrFailLabel" destination="Vc3-YX-s2L" id="TOb-2n-cdy"/>
+                <outlet property="separateLineView" destination="0F1-HD-A2n" id="wxN-7C-US4"/>
                 <outlet property="timeLabel" destination="3I8-si-hGB" id="yi7-yj-03S"/>
             </connections>
-            <point key="canvasLocation" x="-376" y="-530"/>
+            <point key="canvasLocation" x="-376.5" y="-530"/>
         </view>
     </objects>
 </document>

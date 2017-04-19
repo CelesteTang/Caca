@@ -47,10 +47,22 @@
 		43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */; };
 		43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */; };
 		43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */; };
+		435B71E21EA603F300FBABBF /* PhotoRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435B71E11EA603F300FBABBF /* PhotoRowView.xib */; };
+		435B71E41EA6040F00FBABBF /* InfoRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435B71E31EA6040F00FBABBF /* InfoRowView.xib */; };
+		435B71E61EA6042000FBABBF /* FinishRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435B71E51EA6042000FBABBF /* FinishRowView.xib */; };
+		435B71E81EA607F300FBABBF /* PhotoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B71E71EA607F300FBABBF /* PhotoRowView.swift */; };
+		435B71EA1EA6080000FBABBF /* InfoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B71E91EA6080000FBABBF /* InfoRowView.swift */; };
+		435B71EC1EA6080E00FBABBF /* FinishRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B71EB1EA6080E00FBABBF /* FinishRowView.swift */; };
+		435B71EE1EA60AB500FBABBF /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B71ED1EA60AB500FBABBF /* PhotoTableViewCell.swift */; };
+		435B71F01EA60AC100FBABBF /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B71EF1EA60AC100FBABBF /* InfoTableViewCell.swift */; };
+		435B71F21EA60ACE00FBABBF /* FinishTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B71F11EA60ACE00FBABBF /* FinishTableViewCell.swift */; };
+		435B71F41EA60B9100FBABBF /* FillinTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B71F31EA60B9100FBABBF /* FillinTableViewController.swift */; };
 		4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4372BF181E969646005F5422 /* PasswordViewController.swift */; };
 		4372BF1B1E969F1E005F5422 /* Password.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4372BF1A1E969F1E005F5422 /* Password.storyboard */; };
+		438B90AB1EA72960001E0A5E /* SpinnerItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AA1EA72960001E0A5E /* SpinnerItemRenderer.swift */; };
+		438B90AD1EA7360A001E0A5E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AC1EA7360A001E0A5E /* Color.swift */; };
+		438B90AF1EA73617001E0A5E /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AE1EA73617001E0A5E /* Shape.swift */; };
 		4396B58A1EA1F63A00A69C4E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396B5891EA1F63A00A69C4E /* StartViewController.swift */; };
-		43A037631E9DCAAC005C5B46 /* AdviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A037621E9DCAAC005C5B46 /* AdviceManager.swift */; };
 		43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F961E7FCEED0052125B /* Landing.storyboard */; };
 		43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F981E7FCF9B0052125B /* Opening.storyboard */; };
 		43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */; };
@@ -107,10 +119,22 @@
 		43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordNavigationController.swift; sourceTree = "<group>"; };
 		43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
 		43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
+		435B71E11EA603F300FBABBF /* PhotoRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoRowView.xib; sourceTree = "<group>"; };
+		435B71E31EA6040F00FBABBF /* InfoRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoRowView.xib; sourceTree = "<group>"; };
+		435B71E51EA6042000FBABBF /* FinishRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FinishRowView.xib; sourceTree = "<group>"; };
+		435B71E71EA607F300FBABBF /* PhotoRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoRowView.swift; sourceTree = "<group>"; };
+		435B71E91EA6080000FBABBF /* InfoRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoRowView.swift; sourceTree = "<group>"; };
+		435B71EB1EA6080E00FBABBF /* FinishRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishRowView.swift; sourceTree = "<group>"; };
+		435B71ED1EA60AB500FBABBF /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		435B71EF1EA60AC100FBABBF /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		435B71F11EA60ACE00FBABBF /* FinishTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishTableViewCell.swift; sourceTree = "<group>"; };
+		435B71F31EA60B9100FBABBF /* FillinTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillinTableViewController.swift; sourceTree = "<group>"; };
 		4372BF181E969646005F5422 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		4372BF1A1E969F1E005F5422 /* Password.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Password.storyboard; sourceTree = "<group>"; };
+		438B90AA1EA72960001E0A5E /* SpinnerItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerItemRenderer.swift; sourceTree = "<group>"; };
+		438B90AC1EA7360A001E0A5E /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		438B90AE1EA73617001E0A5E /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 		4396B5891EA1F63A00A69C4E /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		43A037621E9DCAAC005C5B46 /* AdviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviceManager.swift; sourceTree = "<group>"; };
 		43BA3F961E7FCEED0052125B /* Landing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
 		43BA3F981E7FCF9B0052125B /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -185,7 +209,6 @@
 				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
 				4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */,
 				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
-				4372BF181E969646005F5422 /* PasswordViewController.swift */,
 				4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */,
 				4396B58B1EA2241E00A69C4E /* Privacy */,
 			);
@@ -244,6 +267,24 @@
 			name = Navigation;
 			sourceTree = "<group>";
 		};
+		435B71E01EA603BD00FBABBF /* Fillin */ = {
+			isa = PBXGroup;
+			children = (
+				435B71E11EA603F300FBABBF /* PhotoRowView.xib */,
+				435B71E71EA607F300FBABBF /* PhotoRowView.swift */,
+				435B71ED1EA60AB500FBABBF /* PhotoTableViewCell.swift */,
+				435B71E31EA6040F00FBABBF /* InfoRowView.xib */,
+				435B71E91EA6080000FBABBF /* InfoRowView.swift */,
+				435B71EF1EA60AC100FBABBF /* InfoTableViewCell.swift */,
+				435B71E51EA6042000FBABBF /* FinishRowView.xib */,
+				435B71EB1EA6080E00FBABBF /* FinishRowView.swift */,
+				435B71F11EA60ACE00FBABBF /* FinishTableViewCell.swift */,
+				435B71F31EA60B9100FBABBF /* FillinTableViewController.swift */,
+				438B90AA1EA72960001E0A5E /* SpinnerItemRenderer.swift */,
+			);
+			name = Fillin;
+			sourceTree = "<group>";
+		};
 		4396B58B1EA2241E00A69C4E /* Privacy */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +292,7 @@
 				4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */,
 				4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */,
 				4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */,
+				4372BF181E969646005F5422 /* PasswordViewController.swift */,
 			);
 			name = Privacy;
 			sourceTree = "<group>";
@@ -270,11 +312,13 @@
 			children = (
 				43372D1B1E7FC603002E2AE3 /* CacaViewController.swift */,
 				4322EB431E82240F006B0D5D /* TimingViewController.swift */,
+				435B71E01EA603BD00FBABBF /* Fillin */,
 				4322EB451E82242A006B0D5D /* FillinViewController.swift */,
 				4322EB4D1E838EAF006B0D5D /* Time.swift */,
 				4322EB531E83A8C6006B0D5D /* Caca.swift */,
+				438B90AE1EA73617001E0A5E /* Shape.swift */,
+				438B90AC1EA7360A001E0A5E /* Color.swift */,
 				4326E9801E8BD9610057363B /* CacaProvider.swift */,
-				43A037621E9DCAAC005C5B46 /* AdviceManager.swift */,
 			);
 			name = Caca;
 			sourceTree = "<group>";
@@ -387,6 +431,7 @@
 				43372D111E7FB4BD002E2AE3 /* LaunchScreen.storyboard in Resources */,
 				433681191E8A424900D51B5C /* Calendar.storyboard in Resources */,
 				4372BF1B1E969F1E005F5422 /* Password.storyboard in Resources */,
+				435B71E61EA6042000FBABBF /* FinishRowView.xib in Resources */,
 				43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */,
 				4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */,
 				43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */,
@@ -394,9 +439,11 @@
 				4328DCA41E9C8202006D3FB8 /* Privacy.storyboard in Resources */,
 				4336811B1E8A427F00D51B5C /* CalendarCellView.xib in Resources */,
 				43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */,
+				435B71E41EA6040F00FBABBF /* InfoRowView.xib in Resources */,
 				4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */,
 				4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */,
 				43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */,
+				435B71E21EA603F300FBABBF /* PhotoRowView.xib in Resources */,
 				4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */,
 				43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */,
 			);
@@ -471,15 +518,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				435B71F21EA60ACE00FBABBF /* FinishTableViewCell.swift in Sources */,
+				435B71F01EA60AC100FBABBF /* InfoTableViewCell.swift in Sources */,
 				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,
 				4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */,
 				4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */,
 				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
+				435B71F41EA60B9100FBABBF /* FillinTableViewController.swift in Sources */,
 				4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */,
+				435B71EC1EA6080E00FBABBF /* FinishRowView.swift in Sources */,
 				43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */,
 				43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */,
 				43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */,
 				4322EB521E8398FA006B0D5D /* Palette.swift in Sources */,
+				438B90AB1EA72960001E0A5E /* SpinnerItemRenderer.swift in Sources */,
 				4322EB541E83A8C6006B0D5D /* Caca.swift in Sources */,
 				4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */,
 				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
@@ -488,19 +540,23 @@
 				4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */,
 				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
 				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,
+				435B71E81EA607F300FBABBF /* PhotoRowView.swift in Sources */,
 				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
-				43A037631E9DCAAC005C5B46 /* AdviceManager.swift in Sources */,
 				4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */,
 				4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */,
+				438B90AD1EA7360A001E0A5E /* Color.swift in Sources */,
 				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
 				4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */,
 				4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */,
+				435B71EE1EA60AB500FBABBF /* PhotoTableViewCell.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,
 				43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */,
+				435B71EA1EA6080000FBABBF /* InfoRowView.swift in Sources */,
 				43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */,
 				4396B58A1EA1F63A00A69C4E /* StartViewController.swift in Sources */,
 				43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */,
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
+				438B90AF1EA73617001E0A5E /* Shape.swift in Sources */,
 				4336811D1E8A441B00D51B5C /* CalendarCellView.swift in Sources */,
 				43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */,
 				43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */,

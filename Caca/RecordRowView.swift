@@ -18,6 +18,7 @@ class RecordRowView: UIView {
 
     @IBOutlet weak var passOrFailLabel: UILabel!
 
+    @IBOutlet weak var separateLineView: UIView!
 }
 
 extension RecordRowView {

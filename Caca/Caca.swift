@@ -12,7 +12,11 @@ class Caca {
 
     // MARK: Property
 
+    let cacaID: String
+
     let photo: String
+
+    let photoID: String
 
     let date: String
 
@@ -30,13 +34,13 @@ class Caca {
 
     let grading: Bool
 
-    let cacaID: String
+    let advice: String
 
-    let photoID: String
+    init(cacaID: String, photo: String, photoID: String, date: String, time: String, consumingTime: String, shape: Shape, color: Color, amount: Double, otherInfo: String?, grading: Bool, advice: String) {
 
-    init(photo: String, date: String, time: String, consumingTime: String, shape: Shape, color: Color, amount: Double, otherInfo: String?, grading: Bool, cacaID: String, photoID: String) {
-
+        self.cacaID = cacaID
         self.photo = photo
+        self.photoID = photoID
         self.date = date
         self.time = time
         self.consumingTime = consumingTime
@@ -45,8 +49,7 @@ class Caca {
         self.amount = amount
         self.otherInfo = otherInfo
         self.grading = grading
-        self.cacaID = cacaID
-        self.photoID = photoID
+        self.advice = advice
 
     }
 

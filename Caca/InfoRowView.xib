@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Z3W-7G-7Fn" customClass="InfoRowView" customModule="Caca" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3KJ-cW-hJU">
+                    <rect key="frame" x="20" y="0.0" width="335" height="100"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6N-Bu-9ja">
+                            <rect key="frame" x="8" y="0.0" width="319" height="100"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHY-Eu-KPi">
+                                    <rect key="frame" x="16" y="40" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ehA-xv-S0k">
+                                    <rect key="frame" x="100" y="35" width="199" height="30"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" red="0.84710109229999997" green="0.85703617330000004" blue="0.7277730107" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ehA-xv-S0k" secondAttribute="trailing" constant="20" id="Gzv-cS-Gi0"/>
+                                <constraint firstItem="ehA-xv-S0k" firstAttribute="centerY" secondItem="W6N-Bu-9ja" secondAttribute="centerY" id="OCu-L6-AbE"/>
+                                <constraint firstItem="FHY-Eu-KPi" firstAttribute="centerY" secondItem="W6N-Bu-9ja" secondAttribute="centerY" id="ZjU-Ts-50b"/>
+                                <constraint firstItem="ehA-xv-S0k" firstAttribute="leading" secondItem="W6N-Bu-9ja" secondAttribute="leading" constant="100" id="adZ-Db-53q"/>
+                                <constraint firstItem="FHY-Eu-KPi" firstAttribute="leading" secondItem="W6N-Bu-9ja" secondAttribute="leading" constant="16" id="jIg-PZ-SsQ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="W6N-Bu-9ja" secondAttribute="trailing" constant="8" id="A18-ar-oeT"/>
+                        <constraint firstAttribute="bottom" secondItem="W6N-Bu-9ja" secondAttribute="bottom" id="AmX-7t-ORr"/>
+                        <constraint firstItem="W6N-Bu-9ja" firstAttribute="top" secondItem="3KJ-cW-hJU" secondAttribute="top" id="Zv2-vL-bVA"/>
+                        <constraint firstItem="W6N-Bu-9ja" firstAttribute="leading" secondItem="3KJ-cW-hJU" secondAttribute="leading" constant="8" id="btR-wX-yWU"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="3KJ-cW-hJU" firstAttribute="leading" secondItem="Z3W-7G-7Fn" secondAttribute="leading" constant="20" id="9Nc-co-IpD"/>
+                <constraint firstAttribute="bottom" secondItem="3KJ-cW-hJU" secondAttribute="bottom" id="B52-5V-d3J"/>
+                <constraint firstItem="3KJ-cW-hJU" firstAttribute="top" secondItem="Z3W-7G-7Fn" secondAttribute="top" id="ZcM-uc-w5p"/>
+                <constraint firstAttribute="trailing" secondItem="3KJ-cW-hJU" secondAttribute="trailing" constant="20" id="fee-k5-M4G"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="borderView" destination="3KJ-cW-hJU" id="1Cg-mf-OK4"/>
+                <outlet property="infoLabel" destination="FHY-Eu-KPi" id="UFR-0y-TmQ"/>
+                <outlet property="infoTextField" destination="ehA-xv-S0k" id="lO3-Vq-cae"/>
+            </connections>
+            <point key="canvasLocation" x="-119.5" y="-41"/>
+        </view>
+    </objects>
+</document>

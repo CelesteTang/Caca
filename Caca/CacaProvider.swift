@@ -19,9 +19,7 @@ class CacaProvider {
 
     func saveCaca(cacaID: String, value: [String : Any]) {
 
-        let databaseRef = FIRDatabase.database().reference()
-
-        databaseRef.child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
+        FIRDatabase.database().reference().child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
 
             if error != nil {
 
@@ -72,7 +70,9 @@ class CacaProvider {
                 for snap in snaps {
 
                     if let cacaInfo = snap.value as? NSDictionary,
+                        let cacaID = cacaInfo["cacaID"] as? String,
                         let cacaPhoto = cacaInfo["photo"] as? String,
+                        let cacaPhotoID = cacaInfo["photoID"] as? String,
                         let cacaDate = cacaInfo["date"] as? String,
                         let cacaTime = cacaInfo["time"] as? String,
                         let cacaConsumingTime = cacaInfo["consumingTime"] as? String,
@@ -81,10 +81,9 @@ class CacaProvider {
                         let cacaAmount = cacaInfo["amount"] as? Double,
                         let cacaOther = cacaInfo["other"] as? String,
                         let cacaGrading = cacaInfo["grading"] as? Bool,
-                        let cacaID = cacaInfo["cacaID"] as? String,
-                        let cacaPhotoID = cacaInfo["photoID"] as? String {
+                        let cacaAdvice = cacaInfo["advice"] as? String {
 
-                        let caca = Caca(photo: cacaPhoto, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, cacaID: cacaID, photoID: cacaPhotoID)
+                        let caca = Caca(cacaID: cacaID, photo: cacaPhoto, photoID: cacaPhotoID, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, advice: cacaAdvice)
 
                         cacas.append(caca)
                     }
@@ -100,12 +99,46 @@ class CacaProvider {
         }
     }
 
+    // MARK: Edit caca
+
+    func editCaca(of cacaID: String, value: [String : Any]) {
+
+        FIRDatabase.database().reference().child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
+
+            if error != nil {
+
+                print(error?.localizedDescription ?? "")
+
+                return
+            }
+
+        })
+
+    }
+
     // MARK: Delete caca
 
     func deleteCaca(of cacaID: String) {
 
         FIRDatabase.database().reference().child("cacas").child(cacaID).removeValue { (error, _) in
 
+            if error != nil {
+
+                print(error?.localizedDescription ?? "")
+
+            }
+        }
+
+    }
+
+    // MARK: Delete caca photo
+
+    func deleteCacaPhoto(of photoID: String) {
+
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
+        let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(photoID).jpg")
+
+        storageRef.delete { (error) in
             if error != nil {
 
                 print(error?.localizedDescription ?? "")

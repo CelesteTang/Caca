@@ -25,6 +25,14 @@ class CalendarViewController: UIViewController {
 
     var cacas = [Caca]()
 
+    var advice = String()
+
+    var frequencyAdvice = String()
+
+    var shapeAdvice = String()
+
+    var colorAdvice = String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -68,6 +76,7 @@ class CalendarViewController: UIViewController {
         self.adviceView.backgroundColor = Palette.backgoundColor
         self.adviceLabel.textColor = Palette.textColor
         self.adviceLabel.text = "How's today?"
+        self.adviceLabel.numberOfLines = 0
 
     }
 
@@ -75,9 +84,8 @@ class CalendarViewController: UIViewController {
 
         guard let startDate = visibleDates.monthDates.first else { return }
 
-        let calendar = Calendar.current
-        let month = calendar.component(.month, from: startDate)
-        let year = calendar.component(.year, from: startDate)
+        let month = Calendar.current.component(.month, from: startDate)
+        let year = Calendar.current.component(.year, from: startDate)
 
         self.headerTitleLabel.text = String(format: "%04i-%02i", year, month)
 
@@ -175,6 +183,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     func handleCellSelection(view: JTAppleDayCellView?, cellState: CellState) {
 
         guard let calendarCell = view as? CalendarCellView else { return }
+        let cellStateDateString = dateFormatter.string(from: cellState.date)
 
         if cellState.isSelected {
 
@@ -183,19 +192,18 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
             if calendarCell.didCacaView.isHidden == false {
 
-                if calendarCell.didCacaView.backgroundColor == Palette.passColor {
+                for caca in cacas {
 
-                    adviceLabel.text = "Good caca! Please keep it up!"
+                    if caca.date == cellStateDateString {
 
-                } else if calendarCell.didCacaView.backgroundColor == Palette.failColor {
+                        adviceLabel.text = caca.advice
 
-                    adviceLabel.text = "WARNING! Bad caca!"
-
+                    }
                 }
 
             } else {
 
-                adviceLabel.text = "no caca"
+                self.adviceLabel.text = "You don't have any caca record."
 
             }
 

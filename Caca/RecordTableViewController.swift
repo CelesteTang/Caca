@@ -13,6 +13,10 @@ class RecordTableViewController: UITableViewController {
 
     var cacas = [Caca]()
 
+    var isCovered = false
+
+    var coverButtonTitle = String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,11 +47,60 @@ class RecordTableViewController: UITableViewController {
         backItem.title = "Back"
         self.navigationItem.backBarButtonItem = backItem
 
+        self.tableView.separatorStyle = .none
+
+        if UserDefaults.standard.bool(forKey: "Hide") == true {
+
+            coverButtonTitle = "Show"
+
+        } else {
+
+            coverButtonTitle = "Hide"
+
+        }
+
+        let coverButton = UIBarButtonItem(title: coverButtonTitle, style: .plain, target: self, action: #selector(coverCaca))
+        self.navigationItem.leftBarButtonItem = coverButton
+
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCaca))
+        self.navigationItem.rightBarButtonItem = addButton
+
 //        let image = UIImage()
 //        navigationController?.navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
 //        navigationController?.navigationBar.shadowImage = image
 //        navigationController?.navigationBar.isTranslucent = true
 //        navigationController?.view.backgroundColor = UIColor.clear
+    }
+
+    func coverCaca() {
+
+        if isCovered == false {
+
+            isCovered = true
+            UserDefaults.standard.set(isCovered, forKey: "Hide")
+            coverButtonTitle = "Show"
+            self.tableView.reloadData()
+
+        } else {
+
+            isCovered = false
+            UserDefaults.standard.set(isCovered, forKey: "Hide")
+            coverButtonTitle = "Hide"
+            self.tableView.reloadData()
+
+        }
+
+    }
+
+    func addCaca() {
+
+        isFromRecord = true
+
+        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
+        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController")
+
+        present(fillinViewController, animated: true)
+
     }
 
     // MARK: Table view data source
@@ -77,27 +130,34 @@ class RecordTableViewController: UITableViewController {
         // swiftlint:enable force_cast
 
         cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
+        cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
+        cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
 
-        if cacas[indexPath.row].photo != "" {
+        cell.rowView.separateLineView.backgroundColor = Palette.textColor
 
-            DispatchQueue.global().async {
+        if UserDefaults.standard.bool(forKey: "Hide") == false {
 
-                if let url = URL(string: self.cacas[indexPath.row].photo) {
+            if cacas[indexPath.row].photo != "" {
 
-                    do {
-                        let data = try Data(contentsOf: url)
-                        let image = UIImage(data: data)
+                DispatchQueue.global().async {
 
-                        DispatchQueue.main.async {
+                    if let url = URL(string: self.cacas[indexPath.row].photo) {
 
-                            cell.rowView.cacaPhotoImageView.image = image
+                        do {
+                            let data = try Data(contentsOf: url)
+                            let image = UIImage(data: data)
+
+                            DispatchQueue.main.async {
+
+                                cell.rowView.cacaPhotoImageView.image = image
+
+                            }
+
+                        } catch {
+
+                            print(error.localizedDescription)
 
                         }
-
-                    } catch {
-
-                        print(error)
-
                     }
                 }
             }
@@ -106,17 +166,25 @@ class RecordTableViewController: UITableViewController {
         cell.rowView.dateLabel.text = self.cacas[indexPath.row].date
         cell.rowView.timeLabel.text = self.cacas[indexPath.row].time
 
+        let backgroundView = UIView()
+
         if self.cacas[indexPath.row].grading == true {
 
             cell.rowView.passOrFailLabel.text = "Pass"
             cell.rowView.passOrFailLabel.textColor = Palette.passColor
+            backgroundView.backgroundColor = Palette.selectedPassColor
+            cell.selectionStyle = .default
 
         } else {
 
             cell.rowView.passOrFailLabel.text = "Fail"
             cell.rowView.passOrFailLabel.textColor = Palette.failColor
+            backgroundView.backgroundColor = Palette.selectedFailColor
+            cell.selectionStyle = .default
 
         }
+
+        cell.selectedBackgroundView = backgroundView
 
         return cell
     }
@@ -139,11 +207,13 @@ class RecordTableViewController: UITableViewController {
         if editingStyle == .delete {
 
             CacaProvider.shared.deleteCaca(of: self.cacas[indexPath.row].cacaID)
+            CacaProvider.shared.deleteCacaPhoto(of: self.cacas[indexPath.row].photoID)
             self.cacas.remove(at: indexPath.row)
 
             self.tableView.deleteRows(at: [indexPath], with: .fade)
 
         }
+
     }
 
 }

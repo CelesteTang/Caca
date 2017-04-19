@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DVw-95-goh">
-    <device id="retina3_5" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="EX0-gB-3TR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KB5-0U-6Qs">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWj-8c-Qgc">
-                                <rect key="frame" x="148" y="415" width="24" height="30"/>
+                                <rect key="frame" x="100" y="503" width="120" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="xjm-Kz-azw"/>
                                 </constraints>
@@ -33,8 +33,8 @@
                                     <action selector="switchToTiming:" destination="DVw-95-goh" eventType="touchUpInside" id="fvw-FG-eNv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9t-sW-KCt">
-                                <rect key="frame" x="20" y="390" width="280" height="5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Q9t-sW-KCt">
+                                <rect key="frame" x="20" y="390" width="280" height="93"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -51,13 +51,13 @@
                         <constraints>
                             <constraint firstItem="Q9t-sW-KCt" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="20" id="4NM-8S-ilR"/>
                             <constraint firstAttribute="trailing" secondItem="Q9t-sW-KCt" secondAttribute="trailing" constant="20" id="92M-fm-qVG"/>
+                            <constraint firstItem="pWj-8c-Qgc" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="100" id="DTI-QH-tdR"/>
                             <constraint firstItem="Q9t-sW-KCt" firstAttribute="centerX" secondItem="KB5-0U-6Qs" secondAttribute="centerX" id="K6M-fM-x5m"/>
                             <constraint firstItem="8vj-Jv-6lS" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="30" id="SQg-KF-VWZ"/>
                             <constraint firstItem="EX0-gB-3TR" firstAttribute="top" secondItem="pWj-8c-Qgc" secondAttribute="bottom" constant="35" id="TVK-Dx-9vT"/>
                             <constraint firstItem="8vj-Jv-6lS" firstAttribute="centerX" secondItem="KB5-0U-6Qs" secondAttribute="centerX" id="VGc-Ao-ci0"/>
                             <constraint firstItem="Q9t-sW-KCt" firstAttribute="top" secondItem="8vj-Jv-6lS" secondAttribute="bottom" constant="40" id="ZyM-0Q-Nfi"/>
                             <constraint firstItem="pWj-8c-Qgc" firstAttribute="centerX" secondItem="KB5-0U-6Qs" secondAttribute="centerX" id="eCf-Sj-ETw"/>
-                            <constraint firstItem="pWj-8c-Qgc" firstAttribute="leading" secondItem="KB5-0U-6Qs" secondAttribute="leading" constant="148" id="gOY-HT-ms8"/>
                             <constraint firstItem="8vj-Jv-6lS" firstAttribute="top" secondItem="NHF-b8-bIX" secondAttribute="bottom" constant="70" id="vnO-2W-cGu"/>
                             <constraint firstItem="pWj-8c-Qgc" firstAttribute="top" secondItem="Q9t-sW-KCt" secondAttribute="bottom" constant="20" id="z07-Z5-Ecj"/>
                         </constraints>

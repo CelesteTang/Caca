@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QY3-Jj-cFa">
-                                <rect key="frame" x="50" y="439" width="275" height="148"/>
+                                <rect key="frame" x="50" y="479" width="275" height="148"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZf-vs-2v1">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="44"/>
@@ -88,7 +88,7 @@
                             <constraint firstItem="QY3-Jj-cFa" firstAttribute="centerX" secondItem="bmI-Ij-63N" secondAttribute="centerX" id="Tmj-9G-nIo"/>
                             <constraint firstItem="aPk-MC-jdc" firstAttribute="leading" secondItem="bmI-Ij-63N" secondAttribute="leading" constant="90" id="UJI-zK-yUM"/>
                             <constraint firstItem="qO9-fS-Q3R" firstAttribute="centerX" secondItem="bmI-Ij-63N" secondAttribute="centerX" id="apQ-KL-zzj"/>
-                            <constraint firstItem="AjH-xe-Enc" firstAttribute="top" secondItem="QY3-Jj-cFa" secondAttribute="bottom" constant="80" id="kGE-cm-vSm"/>
+                            <constraint firstItem="AjH-xe-Enc" firstAttribute="top" secondItem="QY3-Jj-cFa" secondAttribute="bottom" constant="40" id="kGE-cm-vSm"/>
                             <constraint firstItem="2dw-UN-8dT" firstAttribute="top" secondItem="Moe-cJ-1jg" secondAttribute="bottom" id="p7K-7h-rIR"/>
                             <constraint firstItem="aPk-MC-jdc" firstAttribute="top" secondItem="Moe-cJ-1jg" secondAttribute="bottom" constant="55" id="wZh-50-8wV"/>
                             <constraint firstItem="qO9-fS-Q3R" firstAttribute="top" secondItem="aPk-MC-jdc" secondAttribute="bottom" id="wgo-uo-p3o"/>
@@ -126,7 +126,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mgr-ZW-eQA">
-                                <rect key="frame" x="50" y="335" width="275" height="252"/>
+                                <rect key="frame" x="50" y="375" width="275" height="252"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BwG-Ip-RRq">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="44"/>
@@ -203,7 +203,7 @@
                             <constraint firstItem="XgO-EC-Y7V" firstAttribute="leading" secondItem="XbP-4j-lgY" secondAttribute="leadingMargin" id="AGb-re-wDB"/>
                             <constraint firstItem="mgr-ZW-eQA" firstAttribute="leading" secondItem="XbP-4j-lgY" secondAttribute="leading" constant="50" id="GF5-rA-0Ft"/>
                             <constraint firstItem="Sek-ws-gfk" firstAttribute="centerX" secondItem="XbP-4j-lgY" secondAttribute="centerX" id="GRd-2x-fkl"/>
-                            <constraint firstItem="xJT-tJ-TBK" firstAttribute="top" secondItem="mgr-ZW-eQA" secondAttribute="bottom" constant="80" id="VCY-Sc-rRX"/>
+                            <constraint firstItem="xJT-tJ-TBK" firstAttribute="top" secondItem="mgr-ZW-eQA" secondAttribute="bottom" constant="40" id="VCY-Sc-rRX"/>
                             <constraint firstItem="Sek-ws-gfk" firstAttribute="leading" secondItem="XbP-4j-lgY" secondAttribute="leading" constant="90" id="aOu-8C-n3S"/>
                             <constraint firstItem="mgr-ZW-eQA" firstAttribute="centerX" secondItem="XbP-4j-lgY" secondAttribute="centerX" id="d4i-zq-VAr"/>
                             <constraint firstItem="Sek-ws-gfk" firstAttribute="top" secondItem="QWt-YF-YiT" secondAttribute="bottom" constant="55" id="hoZ-uP-gHT"/>
@@ -249,7 +249,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rf6-HZ-pe7">
-                                <rect key="frame" x="50" y="439" width="275" height="148"/>
+                                <rect key="frame" x="50" y="479" width="275" height="148"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhc-d5-k91">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="44"/>
@@ -304,7 +304,7 @@
                             <constraint firstItem="9AX-cr-LgY" firstAttribute="top" secondItem="4Be-az-wbh" secondAttribute="bottom" id="ST4-j8-h3K"/>
                             <constraint firstItem="4Be-az-wbh" firstAttribute="top" secondItem="eBB-7F-gkF" secondAttribute="bottom" constant="55" id="XIU-Xa-yCy"/>
                             <constraint firstItem="4Be-az-wbh" firstAttribute="leading" secondItem="yKu-s1-o4O" secondAttribute="leading" constant="90" id="bUL-Zc-nhD"/>
-                            <constraint firstItem="gPB-I5-TNc" firstAttribute="top" secondItem="rf6-HZ-pe7" secondAttribute="bottom" constant="80" id="oXb-LJ-N8J"/>
+                            <constraint firstItem="gPB-I5-TNc" firstAttribute="top" secondItem="rf6-HZ-pe7" secondAttribute="bottom" constant="40" id="oXb-LJ-N8J"/>
                             <constraint firstItem="rf6-HZ-pe7" firstAttribute="centerX" secondItem="yKu-s1-o4O" secondAttribute="centerX" id="ym2-IX-d4O"/>
                         </constraints>
                     </view>
