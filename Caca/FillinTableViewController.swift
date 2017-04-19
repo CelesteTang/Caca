@@ -268,6 +268,13 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
+            if isFromCaca == true {
+
+                cell.rowView.infoTextField.text = "\(Time.dateString()) \(Time.timeString())"
+                cell.rowView.infoTextField.isEnabled = false
+
+            }
+
             cell.rowView.infoTextField.inputView = datePicker
 
             return cell
@@ -281,6 +288,13 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoLabel.text = component.title
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
+
+            if isFromCaca == true {
+
+                cell.rowView.infoTextField.text = Time.consumingTime
+                cell.rowView.infoTextField.isEnabled = false
+
+            }
 
             cell.rowView.infoTextField.inputView = timePicker
 
@@ -880,16 +894,16 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 }
 
 extension String {
-    
+
     func index(from: Int) -> Index {
         return self.index(startIndex, offsetBy: from)
     }
-    
+
     func substring(from: Int) -> String {
         let fromIndex = index(from: from)
         return substring(from: fromIndex)
     }
-    
+
     func substring(to: Int) -> String {
         let toIndex = index(from: to)
         return substring(to: toIndex)
