@@ -63,7 +63,6 @@
 		438B90AD1EA7360A001E0A5E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AC1EA7360A001E0A5E /* Color.swift */; };
 		438B90AF1EA73617001E0A5E /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AE1EA73617001E0A5E /* Shape.swift */; };
 		4396B58A1EA1F63A00A69C4E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396B5891EA1F63A00A69C4E /* StartViewController.swift */; };
-		43A037631E9DCAAC005C5B46 /* AdviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A037621E9DCAAC005C5B46 /* AdviceManager.swift */; };
 		43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F961E7FCEED0052125B /* Landing.storyboard */; };
 		43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F981E7FCF9B0052125B /* Opening.storyboard */; };
 		43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */; };
@@ -136,7 +135,6 @@
 		438B90AC1EA7360A001E0A5E /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		438B90AE1EA73617001E0A5E /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 		4396B5891EA1F63A00A69C4E /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		43A037621E9DCAAC005C5B46 /* AdviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviceManager.swift; sourceTree = "<group>"; };
 		43BA3F961E7FCEED0052125B /* Landing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
 		43BA3F981E7FCF9B0052125B /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -319,7 +317,6 @@
 				4322EB4D1E838EAF006B0D5D /* Time.swift */,
 				4322EB531E83A8C6006B0D5D /* Caca.swift */,
 				4326E9801E8BD9610057363B /* CacaProvider.swift */,
-				43A037621E9DCAAC005C5B46 /* AdviceManager.swift */,
 				438B90AC1EA7360A001E0A5E /* Color.swift */,
 				438B90AE1EA73617001E0A5E /* Shape.swift */,
 			);
@@ -545,7 +542,6 @@
 				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,
 				435B71E81EA607F300FBABBF /* PhotoRowView.swift in Sources */,
 				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
-				43A037631E9DCAAC005C5B46 /* AdviceManager.swift in Sources */,
 				4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */,
 				4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */,
 				438B90AD1EA7360A001E0A5E /* Color.swift in Sources */,
