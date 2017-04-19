@@ -67,7 +67,7 @@
                 <outlet property="infoLabel" destination="FHY-Eu-KPi" id="UFR-0y-TmQ"/>
                 <outlet property="infoTextField" destination="ehA-xv-S0k" id="lO3-Vq-cae"/>
             </connections>
-            <point key="canvasLocation" x="-119" y="-41"/>
+            <point key="canvasLocation" x="-119.5" y="-41"/>
         </view>
     </objects>
 </document>

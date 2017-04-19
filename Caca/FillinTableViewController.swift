@@ -59,7 +59,12 @@ class FillinTableViewController: UITableViewController {
     var finalMin = "00"
     var finalSec = "00"
 
+    var didSelectShape = Int()
+    var didSelectColor = Int()
+
     var ispassed = false
+
+    var isCorrect = false
 
     var cacas = [Caca]()
 
@@ -227,7 +232,6 @@ class FillinTableViewController: UITableViewController {
 
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell else { return }
 
-        photoCell.rowView.cacaPhotoImageView.backgroundColor = .gray
         photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
         photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
 
@@ -250,12 +254,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
-//            cell.rowView.cacaPhotoImageView.backgroundColor = .gray
-//            cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
-//            cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
-//            
-//            cell.rowView.cacaPictureImageView.layer.cornerRadius = cell.rowView.cacaPictureImageView.frame.width / 2
-//            cell.rowView.cacaPictureImageView.layer.masksToBounds = true
+            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
 
             return cell
 
@@ -424,16 +423,99 @@ class FillinTableViewController: UITableViewController {
 
     }
 
+    func checkNil() {
+
+        guard let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
+            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
+            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
+            let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell else {
+
+                return
+        }
+
+        if dateCell.rowView.infoTextField.text == "" {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Please enter the date",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if timeCell.rowView.infoTextField.text == "" {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Please enter the time",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if shapeCell.rowView.infoTextField.text == "" {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Please enter the shape",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if colorCell.rowView.infoTextField.text == "" {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Please enter the color",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if amountCell.rowView.infoTextField.text == "" {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "Please enter the amount",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else {
+
+            isCorrect = true
+
+        }
+
+    }
+
     func didFillin() {
 
-        guard let photoCell = tableView.visibleCells[0] as? PhotoTableViewCell,
-              let dateCell = tableView.visibleCells[1] as? InfoTableViewCell,
-              let timeCell = tableView.visibleCells[2] as? InfoTableViewCell,
-              let shapeCell = tableView.visibleCells[3] as? InfoTableViewCell,
-              let colorCell = tableView.visibleCells[4] as? InfoTableViewCell,
-              let amountCell = tableView.visibleCells[5] as? InfoTableViewCell,
-              let otherCell = tableView.visibleCells[6] as? InfoTableViewCell,
-              let finishCell = tableView.visibleCells[7] as? FinishTableViewCell
+        checkNil()
+
+        if isCorrect == true {
+
+        guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell,
+              let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+              let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
+              let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
+              let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
+              let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell,
+              let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell,
+              let finishCell = tableView.visibleCells[Component.finish.rawValue] as? FinishTableViewCell
         else {
             return
         }
@@ -441,13 +523,13 @@ class FillinTableViewController: UITableViewController {
         finishCell.rowView.finishButton.isEnabled = false
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
-            let date = dateCell.rowView.infoLabel.text,
-            let time = timeCell.rowView.infoLabel.text,
-            let consumingTime = timeCell.rowView.infoLabel.text,
-            let shape = shapeCell.rowView.infoLabel.text,
-            let color = colorCell.rowView.infoLabel.text,
-            let amount = amountCell.rowView.infoLabel.text,
-            let other = otherCell.rowView.infoLabel.text else {
+            let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
+            let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
+            let consumingTime = timeCell.rowView.infoTextField.text,
+            let shape = shapeCell.rowView.infoTextField.text,
+            let color = colorCell.rowView.infoTextField.text,
+            let amount = amountCell.rowView.infoTextField.text,
+            let other = otherCell.rowView.infoTextField.text else {
 
                 return
 
@@ -455,8 +537,7 @@ class FillinTableViewController: UITableViewController {
 
         let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
         let photoID = UUID().uuidString
-//        let overallAdvice = getAdvice()
-        let overallAdvice = "Advice"
+        let overallAdvice = getAdvice()
 
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") {
 
@@ -508,100 +589,100 @@ class FillinTableViewController: UITableViewController {
             CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
             self.switchToRecord()
         }
-
+        }
     }
 
-//    func getAdvice() -> String {
-//        
-//        // MARK: Pass or Fail
-//        
-//        if (self.colorSegmentedControll.selectedSegmentIndex == Color.lightBrown.rawValue || self.colorSegmentedControll.selectedSegmentIndex == Color.darkBrown.rawValue) && (self.shapeSegmentedControl.selectedSegmentIndex == Shape.crackSausage.rawValue || self.shapeSegmentedControl.selectedSegmentIndex == Shape.smoothSausage.rawValue) {
-//            
-//            ispassed = true
-//            
-//            self.advice = "Good caca! Please keep it up!"
-//            
-//        } else {
-//            
-//            self.advice = "Warning! Your caca may not healthy! "
-//            
-//            // MARK: Shape
-//            
-//            switch Shape(rawValue: self.shapeSegmentedControl.selectedSegmentIndex)! {
-//                
-//            case .separateHard, .lumpySausage:
-//                
-//                self.shapeAdvice = "You are constipated, and "
-//                
-//            case .crackSausage, .smoothSausage:
-//                
-//                self.shapeAdvice = "The shape of your caca is good, but "
-//                
-//            case .softBlob, .mushyStool, .wateryStool:
-//                
-//                self.shapeAdvice = "You have diarrhea, and "
-//                
-//            }
-//            
-//            // MARK: Color
-//            
-//            switch Color(rawValue: self.colorSegmentedControll.selectedSegmentIndex)! {
-//                
-//            case .red:
-//                
-//                self.colorAdvice = "the color of your caca is red. "
-//                
-//            case .yellow:
-//                
-//                self.colorAdvice = "the color of your caca is yellow. "
-//                
-//            case .green:
-//                
-//                self.colorAdvice = "the color of your caca is green. "
-//                
-//            case .lightBrown, .darkBrown:
-//                
-//                self.colorAdvice = "the color of your caca is good! "
-//                
-//            case .gray:
-//                
-//                self.colorAdvice = "the color of your caca is gray. "
-//                
-//            case .black:
-//                
-//                self.colorAdvice = "the color of your caca is black. "
-//                
-//            }
-//            
-//            // MARK: Continuous Fail
-//            
-//            if cacas.count == 1 {
-//                
-//                if cacas[cacas.count - 1].grading == false && ispassed == false {
-//                    
-//                    self.frequencyAdvice = "If you have the same symptom tomorrow, you should go to see a doctor."
-//                    
-//                }
-//                
-//            } else if cacas.count > 1 {
-//                
-//                if cacas[cacas.count - 2].grading == false && cacas[cacas.count - 1].grading == false && ispassed == false {
-//                    
-//                    self.frequencyAdvice = "You should go to see a doctor NOW!"
-//                    
-//                } else if cacas[cacas.count - 1].grading == false && ispassed == false {
-//                    
-//                    self.frequencyAdvice = "If you have the same symptom tomorrow, you should go to see a doctor."
-//                    
-//                }
-//                
-//            }
-//        }
-//        
-//        let overallAdvice = self.advice + self.shapeAdvice + self.colorAdvice + self.frequencyAdvice
-//        
-//        return overallAdvice
-//    }
+    func getAdvice() -> String {
+
+        // MARK: Pass or Fail
+
+        if (self.didSelectColor == Color.lightBrown.rawValue || self.didSelectColor == Color.darkBrown.rawValue) && (self.didSelectShape == Shape.crackSausage.rawValue || self.didSelectShape == Shape.smoothSausage.rawValue) {
+
+            ispassed = true
+
+            self.advice = "Good caca! Please keep it up!"
+
+        } else {
+
+            self.advice = "Warning! Your caca may not healthy! "
+
+            // MARK: Shape
+
+            switch Shape(rawValue: self.didSelectShape)! {
+
+            case .separateHard, .lumpySausage:
+
+                self.shapeAdvice = "You are constipated, and "
+
+            case .crackSausage, .smoothSausage:
+
+                self.shapeAdvice = "The shape of your caca is good, but "
+
+            case .softBlob, .mushyStool, .wateryStool:
+
+                self.shapeAdvice = "You have diarrhea, and "
+
+            }
+
+            // MARK: Color
+
+            switch Color(rawValue: self.didSelectColor)! {
+
+            case .red:
+
+                self.colorAdvice = "the color of your caca is red. "
+
+            case .yellow:
+
+                self.colorAdvice = "the color of your caca is yellow. "
+
+            case .green:
+
+                self.colorAdvice = "the color of your caca is green. "
+
+            case .lightBrown, .darkBrown:
+
+                self.colorAdvice = "the color of your caca is good! "
+
+            case .gray:
+
+                self.colorAdvice = "the color of your caca is gray. "
+
+            case .black:
+
+                self.colorAdvice = "the color of your caca is black. "
+
+            }
+
+            // MARK: Continuous Fail
+
+            if cacas.count == 1 {
+
+                if cacas[cacas.count - 1].grading == false && ispassed == false {
+
+                    self.frequencyAdvice = "If you have the same symptom tomorrow, you should go to see a doctor."
+
+                }
+
+            } else if cacas.count > 1 {
+
+                if cacas[cacas.count - 2].grading == false && cacas[cacas.count - 1].grading == false && ispassed == false {
+
+                    self.frequencyAdvice = "You should go to see a doctor NOW!"
+
+                } else if cacas[cacas.count - 1].grading == false && ispassed == false {
+
+                    self.frequencyAdvice = "If you have the same symptom tomorrow, you should go to see a doctor."
+
+                }
+
+            }
+        }
+
+        let overallAdvice = self.advice + self.shapeAdvice + self.colorAdvice + self.frequencyAdvice
+
+        return overallAdvice
+    }
 
     func switchToRecord() {
 
@@ -733,8 +814,10 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             timeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
 
             case shapePicker:
+                didSelectShape = row
                 shapeCell.rowView.infoTextField.text = String(shapes[row].title)
             case colorPicker:
+                didSelectColor = row
                 colorCell.rowView.infoTextField.text = String(colors[row].title)
             default: break
 
@@ -794,4 +877,22 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
         return 50.0
     }
+}
+
+extension String {
+    
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
+    
+    func substring(from: Int) -> String {
+        let fromIndex = index(from: from)
+        return substring(from: fromIndex)
+    }
+    
+    func substring(to: Int) -> String {
+        let toIndex = index(from: to)
+        return substring(to: toIndex)
+    }
+
 }
