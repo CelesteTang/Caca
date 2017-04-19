@@ -17,7 +17,7 @@ class FillinTableViewController: UITableViewController {
         case photo, date, time, shape, color, amount, other, finish
 
         var title: String {
-        
+
             switch self {
             case .date:
                 return "Date"
@@ -35,39 +35,39 @@ class FillinTableViewController: UITableViewController {
                 return ""
             }
         }
-        
+
         var pickerView: UIPickerView {
-            
+
             switch self {
             case .date:
-                
+
                 let datePicker = UIPickerView()
                 return datePicker
-                
+
             case .time:
-                
+
                 let timePicker = UIPickerView()
                 return timePicker
-                
+
             case .shape:
-                
+
                 let shapePicker = UIPickerView()
                 return shapePicker
-            
+
             case .color:
 
                 let colorPicker = UIPickerView()
                 return colorPicker
-                
+
             default:
-                
+
                 let picker = UIPickerView()
                 picker.isHidden = true
                 return picker
             }
-            
+
         }
-            
+
     }
 
     // MARK: Property
@@ -77,7 +77,7 @@ class FillinTableViewController: UITableViewController {
     let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
 
     let colors: [Color] = [.red, .yellow, .green, .lightBrown, .darkBrown, .gray, .black]
-    
+
 //    let pickerView = UIPickerView()
 
     var ispassed = false
@@ -101,11 +101,11 @@ class FillinTableViewController: UITableViewController {
 
         self.tableView.allowsSelection = false
         self.tableView.separatorStyle = .none
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-        
+
 //        self.pickerView.delegate = self
 //        self.pickerView.dataSource = self
 
@@ -322,11 +322,11 @@ class FillinTableViewController: UITableViewController {
     }
 
     func hideKeyBoard() {
-        
+
         self.view.endEditing(true)
-        
+
     }
-    
+
     func didFillin() {
 
         guard let photoCell = tableView.visibleCells[0] as? PhotoTableViewCell,
@@ -582,79 +582,105 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
         if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
            let indexPathOfDateCell = tableView.indexPath(for: dateCell),
-            let timeCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
             let indexPathOfTimeCell = tableView.indexPath(for: timeCell),
-            let shapeCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
             let indexPathOfShapeCell = tableView.indexPath(for: shapeCell),
-            let colorCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
             let indexPathOfColorCell = tableView.indexPath(for: colorCell) {
-         
+
             let datePicker = components[indexPathOfDateCell.section].pickerView
             let timePicker = components[indexPathOfTimeCell.section].pickerView
             let shapePicker = components[indexPathOfShapeCell.section].pickerView
             let colorPicker = components[indexPathOfColorCell.section].pickerView
 
             switch pickerView {
-                
+
             case datePicker:
-                return 1
+                return colors.count
             case timePicker:
-                return 1
+                return colors.count
             case shapePicker:
                 return shapes.count
             case colorPicker:
                 return colors.count
-            default:
-                return 0
-                
+            default: break
+
             }
         }
-        
+
         print("== Error in FillinTableViewController - pickerView")
         return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 
-        switch component {
-            
-        case Component.date.rawValue:
-            return ""
-        case Component.time.rawValue:
-            return ""
-        case Component.shape.rawValue:
-            return String(shapes[row].rawValue)
-        case Component.color.rawValue:
-            return String(colors[row].rawValue)
-        default:
-            return ""
-            
+        if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+            let indexPathOfDateCell = tableView.indexPath(for: dateCell),
+            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
+            let indexPathOfTimeCell = tableView.indexPath(for: timeCell),
+            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
+            let indexPathOfShapeCell = tableView.indexPath(for: shapeCell),
+            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
+            let indexPathOfColorCell = tableView.indexPath(for: colorCell) {
+
+            let datePicker = components[indexPathOfDateCell.section].pickerView
+            let timePicker = components[indexPathOfTimeCell.section].pickerView
+            let shapePicker = components[indexPathOfShapeCell.section].pickerView
+            let colorPicker = components[indexPathOfColorCell.section].pickerView
+
+            switch pickerView {
+
+            case datePicker:
+                return String(colors[row].rawValue)
+            case timePicker:
+                return String(colors[row].rawValue)
+            case shapePicker:
+                return String(shapes[row].rawValue)
+            case colorPicker:
+                return String(colors[row].rawValue)
+            default: break
+
+            }
         }
+
+        print("== Error in FillinTableViewController - pickerView")
+        return "4"
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
-//        switch component {
-//            
-//        case Component.date.rawValue:
-//            let myTextField =
-//                self.view?.viewWithTag(100) as? UITextField
-//            myTextField?.text =  ""
-//        case Component.time.rawValue:
-//            let myTextField =
-//                self.view?.viewWithTag(101) as? UITextField
-//            myTextField?.text =  ""
-//        case Component.shape.rawValue:
-//            let myTextField =
-//                self.view?.viewWithTag(102) as? UITextField
-//            myTextField?.text =  String(shapes[row].rawValue)
-//        case Component.color.rawValue:
-//            let myTextField =
-//                self.view?.viewWithTag(103) as? UITextField
-//            myTextField?.text =  String(colors[row].rawValue)
-//        default: break
-//            
-//        }
+        if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+            let indexPathOfDateCell = tableView.indexPath(for: dateCell),
+            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
+            let indexPathOfTimeCell = tableView.indexPath(for: timeCell),
+            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
+            let indexPathOfShapeCell = tableView.indexPath(for: shapeCell),
+            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
+            let indexPathOfColorCell = tableView.indexPath(for: colorCell) {
+
+            let datePicker = components[indexPathOfDateCell.section].pickerView
+            let timePicker = components[indexPathOfTimeCell.section].pickerView
+            let shapePicker = components[indexPathOfShapeCell.section].pickerView
+            let colorPicker = components[indexPathOfColorCell.section].pickerView
+
+            switch pickerView {
+
+            case datePicker:
+                dateCell.rowView.infoTextField.text = String(colors[row].rawValue)
+            case timePicker:
+                timeCell.rowView.infoTextField.text = String(colors[row].rawValue)
+            case shapePicker:
+                shapeCell.rowView.infoTextField.text = String(shapes[row].rawValue)
+            case colorPicker:
+                colorCell.rowView.infoTextField.text = String(colors[row].rawValue)
+            default: break
+
+            }
+        }
+
+        print("== Error in FillinTableViewController - pickerView")
+
     }
 
 }

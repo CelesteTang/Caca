@@ -45,6 +45,7 @@ class InfoTableViewCell: UITableViewCell {
         self.rowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
         self.rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         self.rowView.backgroundColor = Palette.backgoundColor
+        self.rowView.borderView.backgroundColor = Palette.textColor
 
     }
 
