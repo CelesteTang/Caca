@@ -35,39 +35,6 @@ class FillinTableViewController: UITableViewController {
                 return ""
             }
         }
-
-        var pickerView: UIPickerView {
-
-            switch self {
-            case .date:
-
-                let datePicker = UIPickerView()
-                return datePicker
-
-            case .time:
-
-                let timePicker = UIPickerView()
-                return timePicker
-
-            case .shape:
-
-                let shapePicker = UIPickerView()
-                return shapePicker
-
-            case .color:
-
-                let colorPicker = UIPickerView()
-                return colorPicker
-
-            default:
-
-                let picker = UIPickerView()
-                picker.isHidden = true
-                return picker
-            }
-
-        }
-
     }
 
     // MARK: Property
@@ -78,8 +45,11 @@ class FillinTableViewController: UITableViewController {
 
     let colors: [Color] = [.red, .yellow, .green, .lightBrown, .darkBrown, .gray, .black]
 
-//    let pickerView = UIPickerView()
-
+    let datePicker = UIPickerView()
+    let timePicker = UIPickerView()
+    let shapePicker = UIPickerView()
+    let colorPicker = UIPickerView()
+    
     var ispassed = false
 
     var cacas = [Caca]()
@@ -105,9 +75,6 @@ class FillinTableViewController: UITableViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-
-//        self.pickerView.delegate = self
-//        self.pickerView.dataSource = self
 
     }
 
@@ -158,71 +125,80 @@ class FillinTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.cacaPhotoImageView.backgroundColor = .gray
+            cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
+            cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
+
+            cell.rowView.cacaPictureImageView.layer.cornerRadius = cell.rowView.cacaPictureImageView.frame.width / 2
+            cell.rowView.cacaPictureImageView.layer.masksToBounds = true
+
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
-
+            
             return cell
 
-        case .date, .time, .shape, .color:
+        case .date:
 
             // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.infoLabel.text = components[indexPath.section].title
+            cell.rowView.infoLabel.text = component.title
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
+            
+            datePicker.dataSource = self
+            datePicker.delegate = self
+            cell.rowView.infoTextField.inputView = datePicker
+            
+            return cell
 
-            components[indexPath.section].pickerView.delegate = self
-            components[indexPath.section].pickerView.dataSource = self
-            cell.rowView.infoTextField.inputView = components[indexPath.section].pickerView
+        case .time:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+            // swiftlint:enable force_cast
+
+            cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+            
+            timePicker.dataSource = self
+            timePicker.delegate = self
+            cell.rowView.infoTextField.inputView = timePicker
 
             return cell
 
-//        case .time:
-//
-//            // swiftlint:disable force_cast
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
-//            // swiftlint:enable force_cast
-//
-//            cell.rowView.infoLabel.text = "Time"
-//            cell.rowView.infoTextField.delegate = self
-//            cell.rowView.infoTextField.returnKeyType = .done
-//
-//            cell.rowView.infoTextField.inputView = pickerView
-//            cell.rowView.infoTextField.tag = 101
-//
-//            return cell
-//
-//        case .shape:
-//
-//            // swiftlint:disable force_cast
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
-//            // swiftlint:enable force_cast
-//
-//            cell.rowView.infoLabel.text = "Shape"
-//            cell.rowView.infoTextField.delegate = self
-//            cell.rowView.infoTextField.returnKeyType = .done
-//
-//            cell.rowView.infoTextField.inputView = pickerView
-//            cell.rowView.infoTextField.tag = 102
-//
-//            return cell
-//
-//        case .color:
-//
-//            // swiftlint:disable force_cast
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
-//            // swiftlint:enable force_cast
-//
-//            cell.rowView.infoLabel.text = "Color"
-//            cell.rowView.infoTextField.delegate = self
-//            cell.rowView.infoTextField.returnKeyType = .done
-//
-//            cell.rowView.infoTextField.inputView = pickerView
-//            cell.rowView.infoTextField.tag = 103
-//
-//            return cell
+        case .shape:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+            // swiftlint:enable force_cast
+
+            cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+
+            shapePicker.dataSource = self
+            shapePicker.delegate = self
+            cell.rowView.infoTextField.inputView = shapePicker
+
+            return cell
+
+        case .color:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+            // swiftlint:enable force_cast
+
+            cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+
+            colorPicker.dataSource = self
+            colorPicker.delegate = self
+            cell.rowView.infoTextField.inputView = colorPicker
+
+            return cell
 
         case .amount:
 
@@ -233,6 +209,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoLabel.text = "Amount"
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
+
             return cell
 
         case .other:
@@ -244,6 +221,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoLabel.text = "Other"
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
+
             return cell
 
         case .finish:
@@ -580,89 +558,47 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 
-        if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
-           let indexPathOfDateCell = tableView.indexPath(for: dateCell),
-            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
-            let indexPathOfTimeCell = tableView.indexPath(for: timeCell),
-            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
-            let indexPathOfShapeCell = tableView.indexPath(for: shapeCell),
-            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
-            let indexPathOfColorCell = tableView.indexPath(for: colorCell) {
-
-            let datePicker = components[indexPathOfDateCell.section].pickerView
-            let timePicker = components[indexPathOfTimeCell.section].pickerView
-            let shapePicker = components[indexPathOfShapeCell.section].pickerView
-            let colorPicker = components[indexPathOfColorCell.section].pickerView
-
-            switch pickerView {
-
-            case datePicker:
-                return colors.count
-            case timePicker:
-                return colors.count
-            case shapePicker:
-                return shapes.count
-            case colorPicker:
-                return colors.count
-            default: break
-
-            }
+        switch pickerView {
+            
+        case datePicker:
+            return colors.count
+        case timePicker:
+            return colors.count
+        case shapePicker:
+            return shapes.count
+        case colorPicker:
+            return colors.count
+        default:
+            return 0
+            
         }
 
-        print("== Error in FillinTableViewController - pickerView")
-        return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 
-        if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
-            let indexPathOfDateCell = tableView.indexPath(for: dateCell),
-            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
-            let indexPathOfTimeCell = tableView.indexPath(for: timeCell),
-            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
-            let indexPathOfShapeCell = tableView.indexPath(for: shapeCell),
-            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
-            let indexPathOfColorCell = tableView.indexPath(for: colorCell) {
-
-            let datePicker = components[indexPathOfDateCell.section].pickerView
-            let timePicker = components[indexPathOfTimeCell.section].pickerView
-            let shapePicker = components[indexPathOfShapeCell.section].pickerView
-            let colorPicker = components[indexPathOfColorCell.section].pickerView
-
-            switch pickerView {
-
-            case datePicker:
-                return String(colors[row].rawValue)
-            case timePicker:
-                return String(colors[row].rawValue)
-            case shapePicker:
-                return String(shapes[row].rawValue)
-            case colorPicker:
-                return String(colors[row].rawValue)
-            default: break
-
-            }
+        switch pickerView {
+            
+        case datePicker:
+            return String(colors[row].rawValue)
+        case timePicker:
+            return String(colors[row].rawValue)
+        case shapePicker:
+            return String(shapes[row].rawValue)
+        case colorPicker:
+            return String(colors[row].rawValue)
+        default: return "no"
+            
         }
 
-        print("== Error in FillinTableViewController - pickerView")
-        return "4"
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
         if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
-            let indexPathOfDateCell = tableView.indexPath(for: dateCell),
             let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
-            let indexPathOfTimeCell = tableView.indexPath(for: timeCell),
             let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
-            let indexPathOfShapeCell = tableView.indexPath(for: shapeCell),
-            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
-            let indexPathOfColorCell = tableView.indexPath(for: colorCell) {
-
-            let datePicker = components[indexPathOfDateCell.section].pickerView
-            let timePicker = components[indexPathOfTimeCell.section].pickerView
-            let shapePicker = components[indexPathOfShapeCell.section].pickerView
-            let colorPicker = components[indexPathOfColorCell.section].pickerView
+            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell {
 
             switch pickerView {
 
@@ -678,8 +614,6 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
             }
         }
-
-        print("== Error in FillinTableViewController - pickerView")
 
     }
 
