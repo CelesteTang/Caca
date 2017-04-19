@@ -49,7 +49,7 @@ class FillinTableViewController: UITableViewController {
     let timePicker = UIPickerView()
     let shapePicker = UIPickerView()
     let colorPicker = UIPickerView()
-    
+
     var ispassed = false
 
     var cacas = [Caca]()
@@ -133,7 +133,7 @@ class FillinTableViewController: UITableViewController {
 
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
-            
+
             return cell
 
         case .date:
@@ -145,11 +145,11 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoLabel.text = component.title
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
-            
+
             datePicker.dataSource = self
             datePicker.delegate = self
             cell.rowView.infoTextField.inputView = datePicker
-            
+
             return cell
 
         case .time:
@@ -161,7 +161,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoLabel.text = component.title
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
-            
+
             timePicker.dataSource = self
             timePicker.delegate = self
             cell.rowView.infoTextField.inputView = timePicker
@@ -559,7 +559,7 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 
         switch pickerView {
-            
+
         case datePicker:
             return colors.count
         case timePicker:
@@ -570,15 +570,21 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             return colors.count
         default:
             return 0
-            
+
         }
 
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 
+//        if row == 0 {
+//            
+//            return "-- Please choose --"
+//            
+//        }
+
         switch pickerView {
-            
+
         case datePicker:
             return String(colors[row].rawValue)
         case timePicker:
@@ -587,8 +593,8 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             return String(shapes[row].rawValue)
         case colorPicker:
             return String(colors[row].rawValue)
-        default: return "no"
-            
+        default: return ""
+
         }
 
     }
@@ -615,6 +621,40 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             }
         }
 
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        switch pickerView {
+            
+        case datePicker:
+            
+            let rendererColor = (row == 0) ? Color.red : colors[row]
+            
+            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
+
+        case timePicker:
+            
+            let rendererColor = (row == 0) ? Color.red : colors[row]
+            
+            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
+        
+        case shapePicker:
+            
+            let rendererShape = (row == 0) ? Shape.separateHard : shapes[row]
+            
+            return ShapeSpinnerItemRenderer(frame: CGRect(), shape : rendererShape)
+        
+        case colorPicker:
+
+            let rendererColor = (row == 0) ? Color.red : colors[row]
+            
+            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
+            
+        default: return UIView()
+            
+        }
+        
     }
 
 }

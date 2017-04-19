@@ -14,6 +14,40 @@ enum Shape: Int {
 
     case separateHard, lumpySausage, crackSausage, smoothSausage, softBlob, mushyStool, wateryStool
 
+    var title: String {
+
+        switch self {
+        case .separateHard:
+
+            return "Separate Hard"
+
+        case .lumpySausage:
+
+            return "Lumpy Sausage"
+
+        case .crackSausage:
+
+            return "Crack Sausage"
+
+        case .smoothSausage:
+
+            return "Smooth Sausage"
+
+        case .softBlob:
+
+            return "Soft Blob"
+
+        case .mushyStool:
+
+            return "Mushy Stool"
+
+        case .wateryStool:
+
+            return "Watery Stool"
+        }
+
+    }
+
     var image: UIImage {
 
         switch self {
@@ -54,6 +88,39 @@ enum Shape: Int {
 enum Color: Int {
 
     case red, yellow, green, lightBrown, darkBrown, gray, black
+
+    var title: String {
+
+        switch self {
+        case .red:
+
+            return "Red"
+
+        case .yellow:
+
+            return "Yellow"
+        case .green:
+
+            return "Green"
+
+        case .lightBrown:
+
+            return "Light Brown"
+
+        case .darkBrown:
+
+            return "Dark Brown"
+
+        case .gray:
+
+            return "Gray"
+
+        case .black:
+
+            return "Black"
+        }
+
+    }
 
     var image: UIImage {
 
