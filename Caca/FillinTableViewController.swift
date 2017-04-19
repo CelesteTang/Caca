@@ -637,28 +637,26 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-
-        switch pickerView {
-
-        case timePicker:
-
-            switch component {
-            case 0:
-                return "\(hour[row])"
-            case 1:
-                return "\(min[row])"
-            case 2:
-                return "\(sec[row])"
-            default:
-                return ""
-            }
-
-        default: return ""
-
-        }
-
-    }
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//
+//        if pickerView == timePicker {
+//
+//            switch component {
+//            case 0:
+//                return "\(hour[row])"
+//            case 1:
+//                return "\(min[row])"
+//            case 2:
+//                return "\(sec[row])"
+//            default:
+//                return ""
+//            }
+//
+//        }
+//        
+//        return ""
+//
+//    }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
@@ -693,38 +691,55 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
     }
 
-//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-//
-//        switch pickerView {
-//
-//        case timePicker:
-//
-//            let rendererColor = (row == 0) ? Color.red : colors[row]
-//
-//            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
-//
-//        case shapePicker:
-//
-//            let rendererShape = (row == 0) ? Shape.separateHard : shapes[row]
-//
-//            return ShapeSpinnerItemRenderer(frame: CGRect(), shape : rendererShape)
-//
-//        case colorPicker:
-//
-//            let rendererColor = (row == 0) ? Color.red : colors[row]
-//
-//            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
-//
-//        default:
-//            
-//            return UIView()
-//
-//        }
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
 
-//    }
+        switch pickerView {
 
-//    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-//
-//        return 50.0
-//    }
+        case timePicker:
+            
+            let pickerLabel = UILabel()
+            
+            switch component {
+            case 0:
+                pickerLabel.text = String(format: "%02i", hour[row])
+            case 1:
+                pickerLabel.text = String(format: "%02i", min[row])
+            case 2:
+                pickerLabel.text = String(format: "%02i", sec[row])
+            default: break
+            }
+            
+//            pickerLabel.font = UIFont(name: "Arial-BoldMT", size: 80)
+            pickerLabel.textAlignment = NSTextAlignment.center
+            
+            return pickerLabel
+
+        case shapePicker:
+
+            let rendererShape = (row == 0) ? Shape.separateHard : shapes[row]
+
+            return ShapeSpinnerItemRenderer(frame: CGRect(), shape : rendererShape)
+
+        case colorPicker:
+
+            let rendererColor = (row == 0) ? Color.red : colors[row]
+
+            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
+
+        default:
+            
+            let view = UIView()
+            
+            view.isHidden = true
+            
+            return view
+
+        }
+
+    }
+
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+
+        return 50.0
+    }
 }
