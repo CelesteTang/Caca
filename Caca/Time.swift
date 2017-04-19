@@ -12,7 +12,7 @@ class Time {
 
     static var consumingTime: String = ""
 
-    func dateString() -> String {
+    class func dateString() -> String {
 
         let date = Date()
         let calendar = Calendar.current
@@ -25,7 +25,7 @@ class Time {
 
     }
 
-    func timeString() -> String {
+    class func timeString() -> String {
 
         let date = Date()
         let calendar = Calendar.current

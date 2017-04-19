@@ -45,10 +45,18 @@ class FillinTableViewController: UITableViewController {
 
     let colors: [Color] = [.red, .yellow, .green, .lightBrown, .darkBrown, .gray, .black]
 
-    let datePicker = UIPickerView()
+    let datePicker = UIDatePicker()
     let timePicker = UIPickerView()
     let shapePicker = UIPickerView()
     let colorPicker = UIPickerView()
+
+    var hour = [Int]()
+    var min = [Int]()
+    var sec = [Int]()
+    
+    var finalHour = "00"
+    var finalMin = "00"
+    var finalSec = "00"
 
     var ispassed = false
 
@@ -76,6 +84,47 @@ class FillinTableViewController: UITableViewController {
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
 
+        setUp()
+    }
+
+    private func setUp() {
+
+        datePicker.datePickerMode = .dateAndTime
+        datePicker.minuteInterval = 1
+        datePicker.date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let fromDateTime = dateFormatter.date(from: "2015-01-01 18:08")
+        datePicker.minimumDate = fromDateTime
+        let endDateTime = dateFormatter.date(from: "2067-12-31 10:45")
+        datePicker.maximumDate = endDateTime
+        datePicker.locale = Locale(identifier: "zh_TW")
+        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
+
+        timePicker.dataSource = self
+        timePicker.delegate = self
+        for i in 0...23 { hour.append(i) }
+        for i in 0...59 { min.append(i) }
+        for i in 0...59 { sec.append(i) }
+
+        shapePicker.dataSource = self
+        shapePicker.delegate = self
+
+        colorPicker.dataSource = self
+        colorPicker.delegate = self
+
+    }
+
+    func datePickerChanged() {
+
+        if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell {
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+            dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
+
+        }
     }
 
     // MARK: - Table view data source
@@ -99,14 +148,17 @@ class FillinTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
         let component = components[indexPath.section]
 
         switch component {
 
         case .photo:
+
             return 200.0
 
         case .date, .time, .shape, .color, .amount, .other, .finish:
+
             return 100.0
 
         }
@@ -146,8 +198,6 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
-            datePicker.dataSource = self
-            datePicker.delegate = self
             cell.rowView.infoTextField.inputView = datePicker
 
             return cell
@@ -162,8 +212,6 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
-            timePicker.dataSource = self
-            timePicker.delegate = self
             cell.rowView.infoTextField.inputView = timePicker
 
             return cell
@@ -178,8 +226,6 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
-            shapePicker.dataSource = self
-            shapePicker.delegate = self
             cell.rowView.infoTextField.inputView = shapePicker
 
             return cell
@@ -194,8 +240,6 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
-            colorPicker.dataSource = self
-            colorPicker.delegate = self
             cell.rowView.infoTextField.inputView = colorPicker
 
             return cell
@@ -229,6 +273,8 @@ class FillinTableViewController: UITableViewController {
             // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "FinishTableViewCell", for: indexPath) as! FinishTableViewCell
             // swiftlint:enable force_cast
+
+//            cell.rowView.finishButton.addTarget(self, action: #selector(didFillin), for: .touchUpInside)
 
             return cell
         }
@@ -552,7 +598,14 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
 
-        return 1
+        switch pickerView {
+
+        case timePicker:
+            return 3
+
+        default: return 1
+
+        }
 
     }
 
@@ -560,10 +613,19 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
         switch pickerView {
 
-        case datePicker:
-            return colors.count
         case timePicker:
-            return colors.count
+
+            switch component {
+            case 0:
+                return hour.count
+            case 1:
+                return min.count
+            case 2:
+                return sec.count
+            default:
+                return 0
+            }
+
         case shapePicker:
             return shapes.count
         case colorPicker:
@@ -575,37 +637,51 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
     }
 
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//
-//        switch pickerView {
-//
-//        case datePicker:
-//            return String(colors[row].title)
-//        case timePicker:
-//            return String(colors[row].title)
-//        case shapePicker:
-//            return String(shapes[row].title)
-//        case colorPicker:
-//            return String(colors[row].title)
-//        default: return ""
-//
-//        }
-//
-//    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+
+        switch pickerView {
+
+        case timePicker:
+
+            switch component {
+            case 0:
+                return "\(hour[row])"
+            case 1:
+                return "\(min[row])"
+            case 2:
+                return "\(sec[row])"
+            default:
+                return ""
+            }
+
+        default: return ""
+
+        }
+
+    }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
-        if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
-            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
+        
+        if let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
             let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
             let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell {
 
             switch pickerView {
 
-            case datePicker:
-                dateCell.rowView.infoTextField.text = String(colors[row].title)
             case timePicker:
-                timeCell.rowView.infoTextField.text = String(colors[row].title)
+
+                switch component {
+                case 0:
+                    finalHour = String(format: "%02i", hour[row])
+                case 1:
+                    finalMin = String(format: "%02i", min[row])
+                case 2:
+                    finalSec = String(format: "%02i", sec[row])
+                default: break
+                }
+                
+            timeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
+                
             case shapePicker:
                 shapeCell.rowView.infoTextField.text = String(shapes[row].title)
             case colorPicker:
@@ -617,42 +693,38 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
     }
 
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//
+//        switch pickerView {
+//
+//        case timePicker:
+//
+//            let rendererColor = (row == 0) ? Color.red : colors[row]
+//
+//            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
+//
+//        case shapePicker:
+//
+//            let rendererShape = (row == 0) ? Shape.separateHard : shapes[row]
+//
+//            return ShapeSpinnerItemRenderer(frame: CGRect(), shape : rendererShape)
+//
+//        case colorPicker:
+//
+//            let rendererColor = (row == 0) ? Color.red : colors[row]
+//
+//            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
+//
+//        default:
+//            
+//            return UIView()
+//
+//        }
 
-        switch pickerView {
+//    }
 
-        case datePicker:
-
-            let rendererColor = (row == 0) ? Color.red : colors[row]
-
-            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
-
-        case timePicker:
-
-            let rendererColor = (row == 0) ? Color.red : colors[row]
-
-            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
-
-        case shapePicker:
-
-            let rendererShape = (row == 0) ? Shape.separateHard : shapes[row]
-
-            return ShapeSpinnerItemRenderer(frame: CGRect(), shape : rendererShape)
-
-        case colorPicker:
-
-            let rendererColor = (row == 0) ? Color.red : colors[row]
-
-            return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
-
-        default: return UIView()
-
-        }
-
-    }
-
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-
-        return 50.0
-    }
+//    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+//
+//        return 50.0
+//    }
 }

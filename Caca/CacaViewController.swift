@@ -112,7 +112,7 @@ class CacaViewController: UIViewController {
 
     private func setUp() {
 
-        self.navigationItem.title = Time().dateString()
+        self.navigationItem.title = Time.dateString()
 
         self.view.backgroundColor = Palette.backgoundColor
 

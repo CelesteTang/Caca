@@ -330,9 +330,8 @@ class FillinViewController: UIViewController {
 
         self.photoButton.setTitle("Take photo", for: .normal)
 
-        let time = Time()
-        self.dateLabel.text = time.dateString()
-        self.timeLabel.text = time.timeString()
+        self.dateLabel.text = Time.dateString()
+        self.timeLabel.text = Time.timeString()
         self.consumingTimeLabel.text = Time.consumingTime
 
         self.amountSlider.isContinuous = true
