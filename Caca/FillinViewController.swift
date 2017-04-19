@@ -10,10 +10,6 @@ import UIKit
 import Firebase
 import ColorThiefSwift
 
-var isFromCaca = false
-
-var isFromRecord = false
-
 class FillinViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIButton!

@@ -10,6 +10,10 @@ import UIKit
 import Firebase
 import ColorThiefSwift
 
+var isFromCaca = false
+
+var isFromRecord = false
+
 class FillinTableViewController: UITableViewController {
 
     enum Component: Int {
@@ -91,10 +95,25 @@ class FillinTableViewController: UITableViewController {
         self.view.addGestureRecognizer(tap)
 
         setUp()
+        
+        DispatchQueue.global().async {
+            
+            CacaProvider.shared.getCaca { (cacas, _) in
+                
+                if let cacas = cacas {
+                    
+                    self.cacas = cacas
+                    
+                }
+            }
+        }
+
     }
 
     private func setUp() {
 
+        ispassed = false
+        
         self.datePicker.datePickerMode = .dateAndTime
         self.datePicker.minuteInterval = 1
         self.datePicker.date = Date()
@@ -360,6 +379,8 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FinishTableViewCell", for: indexPath) as! FinishTableViewCell
             // swiftlint:enable force_cast
 
+            cell.rowView.finishButton.isEnabled = true
+
             cell.rowView.finishButton.addTarget(self, action: #selector(didFillin), for: .touchUpInside)
 
             return cell
@@ -540,9 +561,9 @@ class FillinTableViewController: UITableViewController {
             let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
             let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
             let consumingTime = timeCell.rowView.infoTextField.text,
-            let shape = shapeCell.rowView.infoTextField.text,
-            let color = colorCell.rowView.infoTextField.text,
-            let amount = amountCell.rowView.infoTextField.text,
+//            let shape = shapeCell.rowView.infoTextField.text,
+//            let color = colorCell.rowView.infoTextField.text,
+//            let amount = amountCell.rowView.infoTextField.text,
             let other = otherCell.rowView.infoTextField.text else {
 
                 return
@@ -572,9 +593,9 @@ class FillinTableViewController: UITableViewController {
                              "date": date,
                              "time": time,
                              "consumingTime": consumingTime,
-                             "shape": shape,
-                             "color": color,
-                             "amount": amount,
+                             "shape": self.didSelectShape,
+                             "color": self.didSelectColor,
+                             "amount": Double(self.amountSlider.value),
                              "other": other,
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
@@ -593,9 +614,9 @@ class FillinTableViewController: UITableViewController {
                          "date": date,
                          "time": time,
                          "consumingTime": consumingTime,
-                         "shape": shape,
-                         "color": color,
-                         "amount": amount,
+                         "shape": self.didSelectShape,
+                         "color": self.didSelectColor,
+                         "amount": Double(self.amountSlider.value),
                          "other": other,
                          "grading": self.ispassed,
                          "advice": overallAdvice] as [String : Any]

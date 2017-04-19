@@ -173,7 +173,7 @@ class RecordTableViewController: UITableViewController {
             cell.rowView.passOrFailLabel.text = "Pass"
             cell.rowView.passOrFailLabel.textColor = Palette.passColor
             backgroundView.backgroundColor = Palette.selectedPassColor
-            cell.selectionStyle = .none
+            cell.selectionStyle = .default
 
         } else {
 
