@@ -59,7 +59,9 @@
 		435B71F41EA60B9100FBABBF /* FillinTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B71F31EA60B9100FBABBF /* FillinTableViewController.swift */; };
 		4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4372BF181E969646005F5422 /* PasswordViewController.swift */; };
 		4372BF1B1E969F1E005F5422 /* Password.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4372BF1A1E969F1E005F5422 /* Password.storyboard */; };
-		438B90AB1EA72960001E0A5E /* ColorSpinnerItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AA1EA72960001E0A5E /* ColorSpinnerItemRenderer.swift */; };
+		438B90AB1EA72960001E0A5E /* SpinnerItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AA1EA72960001E0A5E /* SpinnerItemRenderer.swift */; };
+		438B90AD1EA7360A001E0A5E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AC1EA7360A001E0A5E /* Color.swift */; };
+		438B90AF1EA73617001E0A5E /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AE1EA73617001E0A5E /* Shape.swift */; };
 		4396B58A1EA1F63A00A69C4E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396B5891EA1F63A00A69C4E /* StartViewController.swift */; };
 		43A037631E9DCAAC005C5B46 /* AdviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A037621E9DCAAC005C5B46 /* AdviceManager.swift */; };
 		43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F961E7FCEED0052125B /* Landing.storyboard */; };
@@ -130,7 +132,9 @@
 		435B71F31EA60B9100FBABBF /* FillinTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillinTableViewController.swift; sourceTree = "<group>"; };
 		4372BF181E969646005F5422 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		4372BF1A1E969F1E005F5422 /* Password.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Password.storyboard; sourceTree = "<group>"; };
-		438B90AA1EA72960001E0A5E /* ColorSpinnerItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpinnerItemRenderer.swift; sourceTree = "<group>"; };
+		438B90AA1EA72960001E0A5E /* SpinnerItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerItemRenderer.swift; sourceTree = "<group>"; };
+		438B90AC1EA7360A001E0A5E /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		438B90AE1EA73617001E0A5E /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 		4396B5891EA1F63A00A69C4E /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		43A037621E9DCAAC005C5B46 /* AdviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviceManager.swift; sourceTree = "<group>"; };
 		43BA3F961E7FCEED0052125B /* Landing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
@@ -278,7 +282,7 @@
 				435B71EB1EA6080E00FBABBF /* FinishRowView.swift */,
 				435B71F11EA60ACE00FBABBF /* FinishTableViewCell.swift */,
 				435B71F31EA60B9100FBABBF /* FillinTableViewController.swift */,
-				438B90AA1EA72960001E0A5E /* ColorSpinnerItemRenderer.swift */,
+				438B90AA1EA72960001E0A5E /* SpinnerItemRenderer.swift */,
 			);
 			name = Fillin;
 			sourceTree = "<group>";
@@ -316,6 +320,8 @@
 				4322EB531E83A8C6006B0D5D /* Caca.swift */,
 				4326E9801E8BD9610057363B /* CacaProvider.swift */,
 				43A037621E9DCAAC005C5B46 /* AdviceManager.swift */,
+				438B90AC1EA7360A001E0A5E /* Color.swift */,
+				438B90AE1EA73617001E0A5E /* Shape.swift */,
 			);
 			name = Caca;
 			sourceTree = "<group>";
@@ -528,7 +534,7 @@
 				43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */,
 				43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */,
 				4322EB521E8398FA006B0D5D /* Palette.swift in Sources */,
-				438B90AB1EA72960001E0A5E /* ColorSpinnerItemRenderer.swift in Sources */,
+				438B90AB1EA72960001E0A5E /* SpinnerItemRenderer.swift in Sources */,
 				4322EB541E83A8C6006B0D5D /* Caca.swift in Sources */,
 				4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */,
 				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
@@ -542,6 +548,7 @@
 				43A037631E9DCAAC005C5B46 /* AdviceManager.swift in Sources */,
 				4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */,
 				4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */,
+				438B90AD1EA7360A001E0A5E /* Color.swift in Sources */,
 				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
 				4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */,
 				4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */,
@@ -553,6 +560,7 @@
 				4396B58A1EA1F63A00A69C4E /* StartViewController.swift in Sources */,
 				43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */,
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
+				438B90AF1EA73617001E0A5E /* Shape.swift in Sources */,
 				4336811D1E8A441B00D51B5C /* CalendarCellView.swift in Sources */,
 				43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */,
 				43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */,

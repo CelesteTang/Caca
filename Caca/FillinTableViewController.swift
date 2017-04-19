@@ -575,29 +575,23 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-
-//        if row == 0 {
-//            
-//            return "-- Please choose --"
-//            
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//
+//        switch pickerView {
+//
+//        case datePicker:
+//            return String(colors[row].title)
+//        case timePicker:
+//            return String(colors[row].title)
+//        case shapePicker:
+//            return String(shapes[row].title)
+//        case colorPicker:
+//            return String(colors[row].title)
+//        default: return ""
+//
 //        }
-
-        switch pickerView {
-
-        case datePicker:
-            return String(colors[row].rawValue)
-        case timePicker:
-            return String(colors[row].rawValue)
-        case shapePicker:
-            return String(shapes[row].rawValue)
-        case colorPicker:
-            return String(colors[row].rawValue)
-        default: return ""
-
-        }
-
-    }
+//
+//    }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
@@ -609,52 +603,56 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             switch pickerView {
 
             case datePicker:
-                dateCell.rowView.infoTextField.text = String(colors[row].rawValue)
+                dateCell.rowView.infoTextField.text = String(colors[row].title)
             case timePicker:
-                timeCell.rowView.infoTextField.text = String(colors[row].rawValue)
+                timeCell.rowView.infoTextField.text = String(colors[row].title)
             case shapePicker:
-                shapeCell.rowView.infoTextField.text = String(shapes[row].rawValue)
+                shapeCell.rowView.infoTextField.text = String(shapes[row].title)
             case colorPicker:
-                colorCell.rowView.infoTextField.text = String(colors[row].rawValue)
+                colorCell.rowView.infoTextField.text = String(colors[row].title)
             default: break
 
             }
         }
 
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
+
         switch pickerView {
-            
+
         case datePicker:
-            
+
             let rendererColor = (row == 0) ? Color.red : colors[row]
-            
+
             return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
 
         case timePicker:
-            
+
             let rendererColor = (row == 0) ? Color.red : colors[row]
-            
+
             return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
-        
+
         case shapePicker:
-            
+
             let rendererShape = (row == 0) ? Shape.separateHard : shapes[row]
-            
+
             return ShapeSpinnerItemRenderer(frame: CGRect(), shape : rendererShape)
-        
+
         case colorPicker:
 
             let rendererColor = (row == 0) ? Color.red : colors[row]
-            
+
             return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
-            
+
         default: return UIView()
-            
+
         }
-        
+
     }
 
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+
+        return 50.0
+    }
 }

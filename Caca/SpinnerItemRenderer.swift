@@ -1,5 +1,5 @@
 //
-//  ColorSpinnerItemRenderer.swift
+//  SpinnerItemRenderer.swift
 //  Caca
 //
 //  Created by 湯芯瑜 on 2017/4/19.
@@ -10,9 +10,9 @@ import UIKit
 
 class ColorSpinnerItemRenderer: UIControl {
 
-    let label = UILabel(frame: CGRect())
+    let label = UILabel()
 
-    let swatch = UIImageView(frame: CGRect())
+    let swatch = UIImageView()
 
     init(frame: CGRect, color: Color) {
         super.init(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
@@ -37,29 +37,29 @@ class ColorSpinnerItemRenderer: UIControl {
 }
 
 class ShapeSpinnerItemRenderer: UIControl {
-    
-    let label = UILabel(frame: CGRect())
-    
-    let swatch = UIImageView(frame: CGRect())
-    
+
+    let label = UILabel()
+
+    let swatch = UIImageView()
+
     init(frame: CGRect, shape: Shape) {
         super.init(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
-        
+
         label.text = shape.title
         swatch.image = shape.image
-        
+
         addSubview(label)
-        
+
         addSubview(swatch)
     }
-    
+
     required init(coder: NSCoder) {
         super.init(coder: coder)!
     }
-    
+
     override func didMoveToWindow() {
         label.frame = CGRect(x: 20, y: 0, width: 300, height: 100)
         swatch.frame = CGRect(x: 240, y: 80 / 2 - 5, width: 30, height: 30)
     }
-    
+
 }
