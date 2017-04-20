@@ -62,6 +62,7 @@
 		43811DC01EA8D5270035B672 /* NumberItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43811DBF1EA8D5270035B672 /* NumberItemView.swift */; };
 		43811DC21EA8D53D0035B672 /* NumberItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43811DC11EA8D53D0035B672 /* NumberItemView.xib */; };
 		43811DC41EA8D64C0035B672 /* NumberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43811DC31EA8D64C0035B672 /* NumberCollectionViewCell.swift */; };
+		43811DC61EA8D7E20035B672 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43811DC51EA8D7E20035B672 /* Authentication.swift */; };
 		438B90AB1EA72960001E0A5E /* SpinnerItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AA1EA72960001E0A5E /* SpinnerItemRenderer.swift */; };
 		438B90AD1EA7360A001E0A5E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AC1EA7360A001E0A5E /* Color.swift */; };
 		438B90AF1EA73617001E0A5E /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AE1EA73617001E0A5E /* Shape.swift */; };
@@ -137,6 +138,7 @@
 		43811DBF1EA8D5270035B672 /* NumberItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberItemView.swift; sourceTree = "<group>"; };
 		43811DC11EA8D53D0035B672 /* NumberItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumberItemView.xib; sourceTree = "<group>"; };
 		43811DC31EA8D64C0035B672 /* NumberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberCollectionViewCell.swift; sourceTree = "<group>"; };
+		43811DC51EA8D7E20035B672 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		438B90AA1EA72960001E0A5E /* SpinnerItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerItemRenderer.swift; sourceTree = "<group>"; };
 		438B90AC1EA7360A001E0A5E /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		438B90AE1EA73617001E0A5E /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
@@ -298,10 +300,11 @@
 				4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */,
 				4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */,
 				4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */,
-				4372BF181E969646005F5422 /* PasswordViewController.swift */,
 				43811DC11EA8D53D0035B672 /* NumberItemView.xib */,
 				43811DBF1EA8D5270035B672 /* NumberItemView.swift */,
 				43811DC31EA8D64C0035B672 /* NumberCollectionViewCell.swift */,
+				4372BF181E969646005F5422 /* PasswordViewController.swift */,
+				43811DC51EA8D7E20035B672 /* Authentication.swift */,
 			);
 			name = Privacy;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				438B90AD1EA7360A001E0A5E /* Color.swift in Sources */,
 				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
 				4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */,
+				43811DC61EA8D7E20035B672 /* Authentication.swift in Sources */,
 				4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */,
 				435B71EE1EA60AB500FBABBF /* PhotoTableViewCell.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,

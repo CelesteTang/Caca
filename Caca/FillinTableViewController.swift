@@ -46,7 +46,7 @@ class FillinTableViewController: UITableViewController {
     // MARK: Property
 
     let components: [Component] = [.photo, .date, .time, .shape, .color, .amount, .other, .finish]
-
+    
     let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
 
     let colors: [Color] = [.red, .yellow, .green, .lightBrown, .darkBrown, .gray, .black]
@@ -751,62 +751,6 @@ class FillinTableViewController: UITableViewController {
 
     }
 
-    func prepareCacaWithPhoto(of image: UIImage, with photoID: String, by host: String, with cacaID: String, at date: String, at time: String, for consumingTime: String, about other: String, given overallAdvice: String) {
-
-        CacaProvider.shared.saveCacaPhoto(of: image, with: photoID, completion: { (cacaPhotoUrl, error) in
-
-            if error != nil {
-
-                print(error?.localizedDescription ?? "storageError")
-
-                return
-            }
-
-            guard let cacaPhotoUrl = cacaPhotoUrl else { return }
-            let value = ["host": host,
-                         "cacaID": cacaID,
-                         "photo": cacaPhotoUrl,
-                         "photoID": photoID,
-                         "date": date,
-                         "time": time,
-                         "consumingTime": consumingTime,
-                         "shape": self.didSelectShape,
-                         "color": self.didSelectColor,
-                         "amount": Double(self.amountSlider.value),
-                         "other": other,
-                         "grading": self.ispassed,
-                         "advice": overallAdvice] as [String : Any]
-
-            CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
-
-            self.switchToRecord()
-
-        })
-
-    }
-
-    func prepareCacaWithoutPhoto(by host: String, with cacaID: String, at date: String, at time: String, for consumingTime: String, about other: String, given overallAdvice: String) {
-
-        let value = ["host": host,
-                     "cacaID": cacaID,
-                     "photo": "",
-                     "photoID": "",
-                     "date": date,
-                     "time": time,
-                     "consumingTime": consumingTime,
-                     "shape": self.didSelectShape,
-                     "color": self.didSelectColor,
-                     "amount": Double(self.amountSlider.value),
-                     "other": other,
-                     "grading": self.ispassed,
-                     "advice": overallAdvice] as [String : Any]
-
-        CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
-
-        self.switchToRecord()
-
-    }
-
     func createCaca() {
 
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell,
@@ -836,11 +780,55 @@ class FillinTableViewController: UITableViewController {
 
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") {
 
-            prepareCacaWithPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, by: hostUID, with: cacaID, at: date, at: time, for: consumingTime, about: other, given: overallAdvice)
+            CacaProvider.shared.saveCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
+
+                if error != nil {
+
+                    print(error?.localizedDescription ?? "storageError")
+
+                    return
+                }
+
+                guard let cacaPhotoUrl = cacaPhotoUrl else { return }
+                let value = ["host": hostUID,
+                             "cacaID": cacaID,
+                             "photo": cacaPhotoUrl,
+                             "photoID": photoID,
+                             "date": date,
+                             "time": time,
+                             "consumingTime": consumingTime,
+                             "shape": self.didSelectShape,
+                             "color": self.didSelectColor,
+                             "amount": Double(self.amountSlider.value),
+                             "other": other,
+                             "grading": self.ispassed,
+                             "advice": overallAdvice] as [String : Any]
+
+                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+
+                self.switchToRecord()
+
+            })
 
         } else {
 
-            prepareCacaWithoutPhoto(by: hostUID, with: cacaID, at: date, at: time, for: consumingTime, about: other, given: overallAdvice)
+            let value = ["host": hostUID,
+                         "cacaID": cacaID,
+                         "photo": "",
+                         "photoID": "",
+                         "date": date,
+                         "time": time,
+                         "consumingTime": consumingTime,
+                         "shape": self.didSelectShape,
+                         "color": self.didSelectColor,
+                         "amount": Double(self.amountSlider.value),
+                         "other": other,
+                         "grading": self.ispassed,
+                         "advice": overallAdvice] as [String : Any]
+
+            CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+
+            self.switchToRecord()
 
         }
 
@@ -873,15 +861,65 @@ class FillinTableViewController: UITableViewController {
         let photoID = recievedCacaFromRecordDetail[0].photoID
         let overallAdvice = getAdvice()
 
-        CacaProvider.shared.deleteCacaPhoto(of: photoID)
-
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") {
 
-            prepareCacaWithPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, by: hostUID, with: cacaID, at: date, at: time, for: consumingTime, about: other, given: overallAdvice)
+            CacaProvider.shared.deleteCacaPhoto(of: photoID, completion: { (error) in
+
+                if error != nil {
+
+                    print(error?.localizedDescription ?? "--Delete error--")
+
+                }
+
+                CacaProvider.shared.saveCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
+
+                    if error != nil {
+
+                        print(error?.localizedDescription ?? "storageError")
+
+                        return
+                    }
+
+                    guard let cacaPhotoUrl = cacaPhotoUrl else { return }
+                    let value = ["host": hostUID,
+                                 "cacaID": cacaID,
+                                 "photo": cacaPhotoUrl,
+                                 "photoID": photoID,
+                                 "date": date,
+                                 "time": time,
+                                 "consumingTime": consumingTime,
+                                 "shape": self.didSelectShape,
+                                 "color": self.didSelectColor,
+                                 "amount": Double(self.amountSlider.value),
+                                 "other": other,
+                                 "grading": self.ispassed,
+                                 "advice": overallAdvice] as [String : Any]
+
+                    CacaProvider.shared.editCaca(of: cacaID, value: value)
+                    self.switchToRecord()
+
+                })
+
+            })
 
         } else {
 
-            prepareCacaWithoutPhoto(by: hostUID, with: cacaID, at: date, at: time, for: consumingTime, about: other, given: overallAdvice)
+            let value = ["host": hostUID,
+                         "cacaID": cacaID,
+                         "photo": "",
+                         "photoID": "",
+                         "date": date,
+                         "time": time,
+                         "consumingTime": consumingTime,
+                         "shape": self.didSelectShape,
+                         "color": self.didSelectColor,
+                         "amount": Double(self.amountSlider.value),
+                         "other": other,
+                         "grading": self.ispassed,
+                         "advice": overallAdvice] as [String : Any]
+
+            CacaProvider.shared.editCaca(of: cacaID, value: value)
+            self.switchToRecord()
 
         }
 

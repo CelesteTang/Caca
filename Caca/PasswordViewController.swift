@@ -17,6 +17,8 @@ class PasswordViewController: UIViewController {
 
     @IBOutlet weak var numberCollectionView: UICollectionView!
 
+    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Cancel", "0", "Delete"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,8 +30,13 @@ class PasswordViewController: UIViewController {
         guard let layout = numberCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
 
         layout.itemSize = CGSize(width: numberCollectionView.frame.width / 3, height: numberCollectionView.frame.height / 4)
+//        let columnGap = (numberCollectionView.bounds.width - layout.itemSize.width * 3) / 4
+//        let rowGap = (numberCollectionView.bounds.height - layout.itemSize.height * 4) / 5
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
+//        layout.sectionInset = UIEdgeInsets(top: rowGap, left: columnGap, bottom: rowGap, right: columnGap)
+
+        numberCollectionView.register(NumberCollectionViewCell.self, forCellWithReuseIdentifier: "NumberCollectionViewCell")
 
     }
 
@@ -80,7 +87,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return 12
+        return numbers.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,6 +95,8 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
         // swiftlint:disable force_cast
         let cell = numberCollectionView.dequeueReusableCell(withReuseIdentifier: "NumberCollectionViewCell", for: indexPath) as! NumberCollectionViewCell
         // swiftlint:enable force_cast
+
+        cell.itemView.numberLabel.text = numbers[indexPath.item]
 
         return cell
     }

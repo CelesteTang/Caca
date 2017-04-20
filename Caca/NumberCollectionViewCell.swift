@@ -12,7 +12,7 @@ class NumberCollectionViewCell: UICollectionViewCell {
 
     // MARK: Property
 
-    let itemView = NumberGridView.create()
+    let itemView = NumberItemView.create()
 
     // MARK: Init
 
@@ -35,6 +35,15 @@ class NumberCollectionViewCell: UICollectionViewCell {
     private func setUp() {
 
         contentView.addSubview(itemView)
+
+        self.itemView.translatesAutoresizingMaskIntoConstraints = false
+
+        self.itemView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
+        self.itemView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+        self.itemView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
+        self.itemView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+
+        self.itemView.backgroundColor = Palette.backgoundColor
 
     }
 
