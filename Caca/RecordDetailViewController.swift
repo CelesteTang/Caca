@@ -155,21 +155,23 @@ class RecordDetailViewController: UIViewController {
     func editCaca() {
 
         isFromRecordDetail = true
-        
+
         let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
-        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController")
-        
+        guard let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
+
+        fillinViewController.recievedCacaFromRecordDetail = self.recievedCaca
+
         present(fillinViewController, animated: true)
-        
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         tabBarController?.tabBar.isHidden = true
 
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
