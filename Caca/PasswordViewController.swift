@@ -15,34 +15,21 @@ class PasswordViewController: UIViewController {
 
     @IBOutlet weak var passwordField: UITextField!
 
+    @IBOutlet weak var numberCollectionView: UICollectionView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUp()
+        touchIDAuthentication()
 
-        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
+        numberCollectionView.dataSource = self
+        numberCollectionView.delegate = self
+        guard let layout = numberCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
 
-            let context = LAContext()
-
-            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-
-                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use TouchID to enter Caca", reply: { (success, _) in
-
-                    if success {
-                        DispatchQueue.main.async {
-
-                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-
-                                appDelegate.window?.rootViewController = tabBarController
-
-                            }
-                        }
-                    }
-
-                })
-
-            }
-        }
+        layout.itemSize = CGSize(width: numberCollectionView.frame.width / 3, height: numberCollectionView.frame.height / 4)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
 
     }
 
@@ -62,6 +49,49 @@ class PasswordViewController: UIViewController {
         self.passwordField.returnKeyType = .done
 
     }
+
+    func touchIDAuthentication() {
+
+        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
+
+            let context = LAContext()
+
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use TouchID to enter Caca", reply: { (success, _) in
+
+                    if success {
+                        DispatchQueue.main.async {
+
+                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+
+                                appDelegate.window?.rootViewController = tabBarController
+
+                            }
+                        }
+                    }
+                })
+            }
+        }
+    }
+}
+
+extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        return 12
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        // swiftlint:disable force_cast
+        let cell = numberCollectionView.dequeueReusableCell(withReuseIdentifier: "NumberCollectionViewCell", for: indexPath) as! NumberCollectionViewCell
+        // swiftlint:enable force_cast
+
+        return cell
+    }
+
 }
 
 extension PasswordViewController: UITextFieldDelegate {

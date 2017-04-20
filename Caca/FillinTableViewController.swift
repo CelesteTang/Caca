@@ -751,12 +751,6 @@ class FillinTableViewController: UITableViewController {
 
     }
 
-//    func switchToRecordDetail() {
-//
-//        dismiss(animated: true, completion: nil)
-//
-//    }
-
     func prepareCacaWithPhoto(of image: UIImage, with photoID: String, by host: String, with cacaID: String, at date: String, at time: String, for consumingTime: String, about other: String, given overallAdvice: String) {
 
         CacaProvider.shared.saveCacaPhoto(of: image, with: photoID, completion: { (cacaPhotoUrl, error) in
