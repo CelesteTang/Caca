@@ -133,9 +133,7 @@ class CacaProvider {
 
     // MARK: Delete caca photo
 
-    typealias DeleteCacaHadler = (Bool, Error?) -> Void
-
-    func deleteCacaPhoto(of photoID: String, completion: @escaping DeleteCacaHadler) {
+    func deleteCacaPhoto(of photoID: String) {
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
         let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(photoID).jpg")
@@ -146,11 +144,8 @@ class CacaProvider {
 
                 print(error?.localizedDescription ?? "")
 
-                completion(false, error)
-
             }
 
-            completion(true, nil)
         }
 
     }

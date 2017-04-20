@@ -207,18 +207,8 @@ class RecordTableViewController: UITableViewController {
         if editingStyle == .delete {
 
             CacaProvider.shared.deleteCaca(of: self.cacas[indexPath.row].cacaID)
-            CacaProvider.shared.deleteCacaPhoto(of: self.cacas[indexPath.row].photoID, completion: { (success, error) in
-
-                if success == true {
-
-                    self.cacas.remove(at: indexPath.row)
-
-                } else {
-
-                    print(error?.localizedDescription ?? "--Error--Delete record--")
-
-                }
-            })
+            CacaProvider.shared.deleteCacaPhoto(of: self.cacas[indexPath.row].photoID)
+            self.cacas.remove(at: indexPath.row)
 
             self.tableView.deleteRows(at: [indexPath], with: .fade)
 

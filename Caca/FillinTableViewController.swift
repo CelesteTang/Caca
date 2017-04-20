@@ -632,6 +632,8 @@ class FillinTableViewController: UITableViewController {
 
         if isFromRecordDetail == true {
 
+            editCaca()
+
         } else {
 
             checkNil()
@@ -749,11 +751,11 @@ class FillinTableViewController: UITableViewController {
 
     }
 
-    func switchToRecordDetail() {
-
-        dismiss(animated: true, completion: nil)
-
-    }
+//    func switchToRecordDetail() {
+//
+//        dismiss(animated: true, completion: nil)
+//
+//    }
 
     func prepareCacaWithPhoto(of image: UIImage, with photoID: String, by host: String, with cacaID: String, at date: String, at time: String, for consumingTime: String, about other: String, given overallAdvice: String) {
 
@@ -783,6 +785,8 @@ class FillinTableViewController: UITableViewController {
 
             CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
+            self.switchToRecord()
+
         })
 
     }
@@ -804,6 +808,9 @@ class FillinTableViewController: UITableViewController {
                      "advice": overallAdvice] as [String : Any]
 
         CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+
+        self.switchToRecord()
+
     }
 
     func createCaca() {
@@ -837,13 +844,10 @@ class FillinTableViewController: UITableViewController {
 
             prepareCacaWithPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, by: hostUID, with: cacaID, at: date, at: time, for: consumingTime, about: other, given: overallAdvice)
 
-            self.switchToRecord()
-
         } else {
 
             prepareCacaWithoutPhoto(by: hostUID, with: cacaID, at: date, at: time, for: consumingTime, about: other, given: overallAdvice)
 
-            self.switchToRecord()
         }
 
     }
@@ -875,17 +879,16 @@ class FillinTableViewController: UITableViewController {
         let photoID = recievedCacaFromRecordDetail[0].photoID
         let overallAdvice = getAdvice()
 
+        CacaProvider.shared.deleteCacaPhoto(of: photoID)
+
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") {
 
             prepareCacaWithPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, by: hostUID, with: cacaID, at: date, at: time, for: consumingTime, about: other, given: overallAdvice)
-
-            self.switchToRecordDetail()
 
         } else {
 
             prepareCacaWithoutPhoto(by: hostUID, with: cacaID, at: date, at: time, for: consumingTime, about: other, given: overallAdvice)
 
-            self.switchToRecordDetail()
         }
 
     }
