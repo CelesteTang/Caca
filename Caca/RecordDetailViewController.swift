@@ -103,7 +103,6 @@ class RecordDetailViewController: UIViewController {
 
         }
 
-        tabBarController?.tabBar.isHidden = true
     }
 
     // MARK: Set Up
@@ -148,7 +147,7 @@ class RecordDetailViewController: UIViewController {
 
         }
 
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editCaca))
+        let editButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(editCaca))
         self.navigationItem.rightBarButtonItem = editButton
 
     }
@@ -164,6 +163,13 @@ class RecordDetailViewController: UIViewController {
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = true
+
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
