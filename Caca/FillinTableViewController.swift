@@ -14,6 +14,8 @@ var isFromCaca = false
 
 var isFromRecord = false
 
+var isFromRecordDetail = false
+
 class FillinTableViewController: UITableViewController {
 
     enum Component: Int {
@@ -150,6 +152,17 @@ class FillinTableViewController: UITableViewController {
 
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        isFromCaca = false
+        
+        isFromRecord = false
+
+        isFromRecordDetail = false
+
+    }
+    
     func datePickerChanged() {
 
         if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell {
@@ -288,7 +301,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoTextField.returnKeyType = .done
 
             if isFromCaca == true {
-
+                
                 cell.rowView.infoTextField.text = "\(Time.dateString()) \(Time.timeString())"
                 cell.rowView.infoTextField.isEnabled = false
 
@@ -392,8 +405,6 @@ class FillinTableViewController: UITableViewController {
 
         if isFromCaca == true {
 
-            isFromCaca = false
-
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
 
                 appDelegate.window?.rootViewController = tabBarController
@@ -402,8 +413,10 @@ class FillinTableViewController: UITableViewController {
 
         } else if isFromRecord == true {
 
-            isFromRecord = false
+            dismiss(animated: true, completion: nil)
 
+        } else if isFromRecordDetail == true {
+            
             dismiss(animated: true, completion: nil)
 
         }
@@ -546,9 +559,9 @@ class FillinTableViewController: UITableViewController {
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell,
               let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
               let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
-              let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
-              let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
-              let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell,
+//              let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
+//              let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
+//              let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell,
               let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell,
               let finishCell = tableView.visibleCells[Component.finish.rawValue] as? FinishTableViewCell
         else {

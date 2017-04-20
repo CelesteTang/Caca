@@ -155,6 +155,13 @@ class RecordDetailViewController: UIViewController {
 
     func editCaca() {
 
+        isFromRecordDetail = true
+        
+        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
+        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController")
+        
+        present(fillinViewController, animated: true)
+        
     }
 
     override func viewWillDisappear(_ animated: Bool) {
