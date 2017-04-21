@@ -50,23 +50,23 @@ class FillinViewController: UIViewController {
 
     @IBAction func cancelFillin(_ sender: UIButton) {
 
-        if isFromCaca == true {
-
-            isFromCaca = false
-
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-
-                appDelegate.window?.rootViewController = tabBarController
-
-            }
-
-        } else if isFromRecord == true {
-
-            isFromRecord = false
-
-            dismiss(animated: true, completion: nil)
-
-        }
+//        if isFromCaca == true {
+//
+//            isFromCaca = false
+//
+//            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+//
+//                appDelegate.window?.rootViewController = tabBarController
+//
+//            }
+//
+//        } else if isFromRecord == true {
+//
+//            isFromRecord = false
+//
+//            dismiss(animated: true, completion: nil)
+//
+//        }
     }
 
     @IBAction func addPhoto(_ sender: UIButton) {

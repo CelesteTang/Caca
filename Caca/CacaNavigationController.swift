@@ -42,6 +42,7 @@ class CacaNavigationController: UINavigationController {
     private func setUp() {
 
         viewControllers = [ CacaViewController.create() ]
+        self.tabBarItem = TabBarItemType.caca.item
 
     }
 

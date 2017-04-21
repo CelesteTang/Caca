@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class StartViewController: UIViewController {
 
@@ -22,27 +23,46 @@ class StartViewController: UIViewController {
 
     @IBAction func startDirectly(_ sender: UIButton) {
 
-        let alertController = UIAlertController(title: "Just a reminder",
-                                                message: "You could sign up later if you want to backup your info",
-                                                preferredStyle: .alert)
+//        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
+//            
+//            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+//                appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+//                }
+//
+//        })
 
-        let cancelAction = UIAlertAction(title: "Go back", style: .cancel) { _ in
+        UserManager.shared.createAnonymousUser { (createError, storageError) in
 
-            alertController.dismiss(animated: true, completion: nil)
+            if let error = createError {
 
-        }
-        alertController.addAction(cancelAction)
+                let alertController = UIAlertController(title: "Warning",
+                                                        message: error.localizedDescription,
+                                                        preferredStyle: .alert)
 
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                alertController.addAction(UIAlertAction(title: "OK",
+                                                        style: .default,
+                                                        handler: nil))
+
+                self.present(alertController, animated: true, completion: nil)
+
+            } else if let error = storageError {
+
+                let alertController = UIAlertController(title: "Warning",
+                                                        message: error.localizedDescription,
+                                                        preferredStyle: .alert)
+
+                alertController.addAction(UIAlertAction(title: "OK",
+                                                        style: .default,
+                                                        handler: nil))
+
+                self.present(alertController, animated: true, completion: nil)
+
+            }
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
             }
         }
-        alertController.addAction(okAction)
-
-        self.present(alertController, animated: true, completion: nil)
-
     }
 
     @IBAction func goToSignIn(_ sender: UIButton) {
@@ -54,8 +74,15 @@ class StartViewController: UIViewController {
 
     @IBAction func goTiSignUp(_ sender: UIButton) {
 
+        let signUpStoryboard = UIStoryboard(name: "Landing", bundle: nil)
+
+        guard let signUpViewController = signUpStoryboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
+
+            appDelegate.window?.rootViewController = signUpViewController
+
+            signUpViewController.isFromStart = true
         }
     }
 
@@ -69,23 +96,23 @@ class StartViewController: UIViewController {
 
     private func setUp() {
 
-        self.view.backgroundColor = Palette.backgoundColor
-        self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
-        self.logoImageView.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
+        self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
+        self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
-        self.appName.textColor = Palette.textColor
+        self.appName.textColor = Palette.darkblue
         self.appName.font = UIFont(name: "Courier-Bold", size: 60)
 
-        self.startButton.backgroundColor = Palette.textColor
+        self.startButton.backgroundColor = Palette.darkblue
         self.startButton.setTitle("Start Now", for: .normal)
         self.startButton.layer.cornerRadius = 15
 
-        self.signInButton.backgroundColor = Palette.textColor
+        self.signInButton.backgroundColor = Palette.darkblue
         self.signInButton.setTitle("Sign In", for: .normal)
         self.signInButton.layer.cornerRadius = 15
 
-        self.signUpButton.backgroundColor = Palette.textColor
+        self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
     }

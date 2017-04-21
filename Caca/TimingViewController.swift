@@ -10,6 +10,8 @@ import UIKit
 
 class TimingViewController: UIViewController {
 
+    @IBOutlet weak var backgroundImageView: UIImageView!
+
     @IBOutlet weak var cancelButton: UIButton!
 
     @IBOutlet weak var timerLabel: UILabel!
@@ -100,10 +102,16 @@ class TimingViewController: UIViewController {
 
         Time.consumingTime = timeString(time: TimeInterval(seconds))
 
-        isFromCaca = true
+        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
+
+        guard let fillinTableViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController
+
+            appDelegate.window?.rootViewController = fillinTableViewController
+
+            fillinTableViewController.isFromCaca = true
+
         }
 
     }
@@ -119,10 +127,12 @@ class TimingViewController: UIViewController {
 
     private func setUp() {
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
+
+        self.backgroundImageView.image = #imageLiteral(resourceName: "toilet2")
 
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
-        self.timerLabel.textColor = Palette.textColor
+        self.timerLabel.textColor = Palette.darkblue
         self.timerLabel.text = "00:00:00"
 
         self.startButton.setTitle("Start", for: UIControlState.normal)

@@ -8,52 +8,6 @@
 
 import UIKit
 
-enum Authentication: Int {
-
-    case password, passwordChanging, touchID
-
-    var title: String {
-
-        switch self {
-
-        case .password: return "Password"
-        case .passwordChanging: return "New password"
-        case .touchID: return "TouchID"
-
-        }
-    }
-
-    var switchButton: UISwitch {
-
-        switch self {
-
-        case .password:
-
-            let passwordSwitch = UISwitch()
-
-            passwordSwitch.center = CGPoint(x: PrivacyRowView.create().bounds.width * 0.9, y: PrivacyRowView.create().bounds.height * 0.5)
-
-            return passwordSwitch
-
-        case .passwordChanging:
-
-            let passwordChangingSwitch = UISwitch()
-
-            passwordChangingSwitch.isHidden = true
-
-            return passwordChangingSwitch
-
-        case .touchID:
-
-            let touchIDSwitch = UISwitch()
-
-            touchIDSwitch.center = CGPoint(x: PrivacyRowView.create().bounds.width * 0.9, y: PrivacyRowView.create().bounds.height * 0.5)
-
-            return touchIDSwitch
-        }
-    }
-}
-
 class PrivacyTableViewController: UITableViewController {
 
     private var authentications: [Authentication] = []
@@ -87,7 +41,7 @@ class PrivacyTableViewController: UITableViewController {
 
         self.navigationItem.title = "Privacy"
 
-        self.tableView.backgroundColor = Palette.backgoundColor
+        self.tableView.backgroundColor = Palette.lightblue2
 
     }
 
@@ -100,6 +54,7 @@ class PrivacyTableViewController: UITableViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
         tabBarController?.tabBar.isHidden = false
 
     }
@@ -131,7 +86,7 @@ class PrivacyTableViewController: UITableViewController {
         cell.rowView.privacyLabel.text = authentications[indexPath.row].title
 
         let switchButton = authentications[indexPath.row].switchButton
-        switchButton.onTintColor = Palette.textColor
+        switchButton.onTintColor = Palette.darkblue
 
         switch indexPath.row {
 

@@ -96,18 +96,18 @@ class SignInViewController: UIViewController {
 
     private func setUp() {
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
         self.goBackButton.setTitle("", for: .normal)
         let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
         self.goBackButton.setImage(buttonimage, for: .normal)
-        self.goBackButton.tintColor = Palette.textColor
+        self.goBackButton.tintColor = Palette.darkblue
 
-        self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
-        self.logoImageView.backgroundColor = Palette.backgoundColor
+        self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
+        self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
-        self.appName.textColor = Palette.textColor
+        self.appName.textColor = Palette.darkblue
         self.appName.font = UIFont(name: "Courier-Bold", size: 60)
 
         self.emailField.delegate = self
@@ -124,7 +124,7 @@ class SignInViewController: UIViewController {
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
 
-        self.signInButton.backgroundColor = Palette.textColor
+        self.signInButton.backgroundColor = Palette.darkblue
         self.signInButton.setTitle("Sign In", for: .normal)
         self.signInButton.layer.cornerRadius = 15
     }

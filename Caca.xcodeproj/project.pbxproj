@@ -47,6 +47,7 @@
 		43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */; };
 		43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */; };
 		43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */; };
+		434398171EAA66F900A8F220 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434398161EAA66F900A8F220 /* UserManager.swift */; };
 		435B71E21EA603F300FBABBF /* PhotoRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435B71E11EA603F300FBABBF /* PhotoRowView.xib */; };
 		435B71E41EA6040F00FBABBF /* InfoRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435B71E31EA6040F00FBABBF /* InfoRowView.xib */; };
 		435B71E61EA6042000FBABBF /* FinishRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435B71E51EA6042000FBABBF /* FinishRowView.xib */; };
@@ -59,6 +60,10 @@
 		435B71F41EA60B9100FBABBF /* FillinTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B71F31EA60B9100FBABBF /* FillinTableViewController.swift */; };
 		4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4372BF181E969646005F5422 /* PasswordViewController.swift */; };
 		4372BF1B1E969F1E005F5422 /* Password.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4372BF1A1E969F1E005F5422 /* Password.storyboard */; };
+		43811DC01EA8D5270035B672 /* NumberItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43811DBF1EA8D5270035B672 /* NumberItemView.swift */; };
+		43811DC21EA8D53D0035B672 /* NumberItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43811DC11EA8D53D0035B672 /* NumberItemView.xib */; };
+		43811DC41EA8D64C0035B672 /* NumberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43811DC31EA8D64C0035B672 /* NumberCollectionViewCell.swift */; };
+		43811DC61EA8D7E20035B672 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43811DC51EA8D7E20035B672 /* Authentication.swift */; };
 		438B90AB1EA72960001E0A5E /* SpinnerItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AA1EA72960001E0A5E /* SpinnerItemRenderer.swift */; };
 		438B90AD1EA7360A001E0A5E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AC1EA7360A001E0A5E /* Color.swift */; };
 		438B90AF1EA73617001E0A5E /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AE1EA73617001E0A5E /* Shape.swift */; };
@@ -119,6 +124,7 @@
 		43372D3A1E7FCC9D002E2AE3 /* RecordNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordNavigationController.swift; sourceTree = "<group>"; };
 		43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
 		43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
+		434398161EAA66F900A8F220 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		435B71E11EA603F300FBABBF /* PhotoRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoRowView.xib; sourceTree = "<group>"; };
 		435B71E31EA6040F00FBABBF /* InfoRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoRowView.xib; sourceTree = "<group>"; };
 		435B71E51EA6042000FBABBF /* FinishRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FinishRowView.xib; sourceTree = "<group>"; };
@@ -131,6 +137,10 @@
 		435B71F31EA60B9100FBABBF /* FillinTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillinTableViewController.swift; sourceTree = "<group>"; };
 		4372BF181E969646005F5422 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		4372BF1A1E969F1E005F5422 /* Password.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Password.storyboard; sourceTree = "<group>"; };
+		43811DBF1EA8D5270035B672 /* NumberItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberItemView.swift; sourceTree = "<group>"; };
+		43811DC11EA8D53D0035B672 /* NumberItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumberItemView.xib; sourceTree = "<group>"; };
+		43811DC31EA8D64C0035B672 /* NumberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberCollectionViewCell.swift; sourceTree = "<group>"; };
+		43811DC51EA8D7E20035B672 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		438B90AA1EA72960001E0A5E /* SpinnerItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerItemRenderer.swift; sourceTree = "<group>"; };
 		438B90AC1EA7360A001E0A5E /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		438B90AE1EA73617001E0A5E /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
@@ -292,7 +302,11 @@
 				4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */,
 				4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */,
 				4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */,
+				43811DC11EA8D53D0035B672 /* NumberItemView.xib */,
+				43811DBF1EA8D5270035B672 /* NumberItemView.swift */,
+				43811DC31EA8D64C0035B672 /* NumberCollectionViewCell.swift */,
 				4372BF181E969646005F5422 /* PasswordViewController.swift */,
+				43811DC51EA8D7E20035B672 /* Authentication.swift */,
 			);
 			name = Privacy;
 			sourceTree = "<group>";
@@ -303,6 +317,7 @@
 				4396B5891EA1F63A00A69C4E /* StartViewController.swift */,
 				43F2FA111E84BE2800E92290 /* SignInViewController.swift */,
 				43F2FA131E84BE4300E92290 /* SignUpViewController.swift */,
+				434398161EAA66F900A8F220 /* UserManager.swift */,
 			);
 			name = Landing;
 			sourceTree = "<group>";
@@ -428,6 +443,7 @@
 				43308EB31E9B4D4D00BB4F0D /* Profile.storyboard in Resources */,
 				43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */,
 				43372D2C1E7FC7B6002E2AE3 /* SettingRowView.xib in Resources */,
+				43811DC21EA8D53D0035B672 /* NumberItemView.xib in Resources */,
 				43372D111E7FB4BD002E2AE3 /* LaunchScreen.storyboard in Resources */,
 				433681191E8A424900D51B5C /* Calendar.storyboard in Resources */,
 				4372BF1B1E969F1E005F5422 /* Password.storyboard in Resources */,
@@ -520,6 +536,7 @@
 			files = (
 				435B71F21EA60ACE00FBABBF /* FinishTableViewCell.swift in Sources */,
 				435B71F01EA60AC100FBABBF /* InfoTableViewCell.swift in Sources */,
+				434398171EAA66F900A8F220 /* UserManager.swift in Sources */,
 				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,
 				4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */,
 				4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */,
@@ -528,9 +545,11 @@
 				4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */,
 				435B71EC1EA6080E00FBABBF /* FinishRowView.swift in Sources */,
 				43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */,
+				43811DC41EA8D64C0035B672 /* NumberCollectionViewCell.swift in Sources */,
 				43372D241E7FC6B5002E2AE3 /* SettingTableViewController.swift in Sources */,
 				43372D261E7FC780002E2AE3 /* RecordRowView.swift in Sources */,
 				4322EB521E8398FA006B0D5D /* Palette.swift in Sources */,
+				43811DC01EA8D5270035B672 /* NumberItemView.swift in Sources */,
 				438B90AB1EA72960001E0A5E /* SpinnerItemRenderer.swift in Sources */,
 				4322EB541E83A8C6006B0D5D /* Caca.swift in Sources */,
 				4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */,
@@ -547,6 +566,7 @@
 				438B90AD1EA7360A001E0A5E /* Color.swift in Sources */,
 				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
 				4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */,
+				43811DC61EA8D7E20035B672 /* Authentication.swift in Sources */,
 				4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */,
 				435B71EE1EA60AB500FBABBF /* PhotoTableViewCell.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController {
 
@@ -17,6 +18,19 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
 
     @IBOutlet weak var ageTextField: UITextField!
+
+    @IBOutlet weak var signUpButton: UIButton!
+
+    @IBAction func signUp(_ sender: UIButton) {
+
+        let signUpStorybard = UIStoryboard(name: "Landing", bundle: nil)
+        guard let signUpViewController = signUpStorybard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
+
+        signUpViewController.isFromProfile = true
+
+        present(signUpViewController, animated: true)
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +47,17 @@ class ProfileViewController: UIViewController {
         self.genderSegmentedControl.selectedSegmentIndex = gender
         self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
-        self.genderSegmentedControl.tintColor = Palette.textColor
+        self.genderSegmentedControl.tintColor = Palette.darkblue
+        self.genderSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
+        if gender == Gender.male.rawValue {
+
+            self.profileImageView.image = #imageLiteral(resourceName: "boy")
+
+        } else if gender == Gender.female.rawValue {
+
+            self.profileImageView.image = #imageLiteral(resourceName: "girl")
+
+        }
 
         self.ageTextField.delegate = self
         self.ageTextField.clearButtonMode = .whileEditing
@@ -48,11 +72,24 @@ class ProfileViewController: UIViewController {
 
         }
 
+        self.signUpButton.backgroundColor = Palette.darkblue
+        self.signUpButton.setTitle("Sign Up", for: .normal)
+        self.signUpButton.layer.cornerRadius = 15
+        let user = FIRAuth.auth()?.currentUser
+        if user?.isAnonymous == true {
+
+            signUpButton.isHidden = false
+
+        } else {
+
+            signUpButton.isHidden = true
+            signUpButton.isEnabled = false
+
+        }
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-
-        tabBarController?.tabBar.isHidden = true
 
     }
 
@@ -62,10 +99,9 @@ class ProfileViewController: UIViewController {
 
         navigationItem.title = "Profile"
 
-        view.backgroundColor = Palette.backgoundColor
+        view.backgroundColor = Palette.lightblue2
 
-        self.profileImageView.backgroundColor = Palette.backgoundColor
-        self.profileImageView.image = #imageLiteral(resourceName: "poo-icon")
+        self.profileImageView.backgroundColor = Palette.lightblue2
 
         self.nameTextField.delegate = self
         self.nameTextField.clearButtonMode = .whileEditing
@@ -74,6 +110,13 @@ class ProfileViewController: UIViewController {
         self.nameTextField.clearsOnBeginEditing = true
         self.nameTextField.keyboardType = .alphabet
         self.nameTextField.returnKeyType = .done
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tabBarController?.tabBar.isHidden = true
 
     }
 
@@ -91,6 +134,20 @@ class ProfileViewController: UIViewController {
 
         self.nameTextField.resignFirstResponder()
         self.ageTextField.resignFirstResponder()
+    }
+
+    func changeGender() {
+
+        if self.genderSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
+
+            self.profileImageView.image = #imageLiteral(resourceName: "boy")
+
+        } else if self.genderSegmentedControl.selectedSegmentIndex == Gender.female.rawValue {
+
+            self.profileImageView.image = #imageLiteral(resourceName: "girl")
+
+        }
+
     }
 
 }

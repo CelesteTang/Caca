@@ -41,7 +41,7 @@ class RecordTableViewController: UITableViewController {
     private func setUp() {
 
         self.navigationItem.title = "Record"
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
@@ -94,10 +94,10 @@ class RecordTableViewController: UITableViewController {
 
     func addCaca() {
 
-        isFromRecord = true
-
         let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
-        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController")
+        guard let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
+
+        fillinViewController.isFromRecord = true
 
         present(fillinViewController, animated: true)
 
@@ -129,11 +129,11 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
 
-        cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
+        cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-icon")
         cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
         cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
 
-        cell.rowView.separateLineView.backgroundColor = Palette.textColor
+        cell.rowView.separateLineView.backgroundColor = Palette.darkblue
 
         if UserDefaults.standard.bool(forKey: "Hide") == false {
 

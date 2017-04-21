@@ -35,7 +35,11 @@ class CacaViewController: UIViewController {
 
             if gender == Gender.male.rawValue {
 
-                mainImageView.image = #imageLiteral(resourceName: "poo-icon")
+                mainImageView.image = #imageLiteral(resourceName: "boy")
+
+            } else if gender == Gender.female.rawValue {
+
+                mainImageView.image = #imageLiteral(resourceName: "girl")
 
             }
         }
@@ -114,15 +118,15 @@ class CacaViewController: UIViewController {
 
         self.navigationItem.title = Time.dateString()
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
-        self.mainImageView.backgroundColor = Palette.backgoundColor
+        self.mainImageView.backgroundColor = Palette.lightblue2
 
-        self.notificationLabel.textColor = Palette.textColor
+        self.notificationLabel.textColor = Palette.darkblue
         self.notificationLabel.numberOfLines = 0
         self.notificationLabel.text = "How's today?"
 
-        self.startButton.backgroundColor = Palette.textColor
+        self.startButton.backgroundColor = Palette.darkblue
         self.startButton.tintColor = Palette.backgoundColor
         self.startButton.layer.cornerRadius = 15
         self.startButton.setTitle("Start", for: UIControlState.normal)

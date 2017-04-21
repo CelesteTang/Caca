@@ -34,7 +34,7 @@ class SettingTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationItem.title = "Setting"
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
         self.tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "SettingTableViewCell")
     }
@@ -59,7 +59,7 @@ class SettingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
         // swiftlint:enable force_cast
 
-        cell.rowView.iconImageView.image = #imageLiteral(resourceName: "poo-icon")
+        cell.rowView.iconImageView.image = #imageLiteral(resourceName: "caca-icon")
         cell.rowView.titleLabel.text = settings[indexPath.row].title
 
         return cell

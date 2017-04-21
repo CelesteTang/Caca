@@ -17,6 +17,10 @@ enum Gender: Int {
 
 class SignUpViewController: UIViewController {
 
+    var isFromProfile = false
+
+    var isFromStart = false
+
     @IBOutlet weak var logoImageView: UIImageView!
 
     @IBOutlet weak var appName: UILabel!
@@ -31,13 +35,26 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var signUpButton: UIButton!
 
-    @IBOutlet weak var goBackButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
 
-    @IBAction func goBack(_ sender: UIButton) {
+    @IBAction func cancelSignUp(_ sender: UIButton) {
 
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+        if isFromStart == true {
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+            }
+
+            isFromStart = false
+
+        } else if isFromProfile == true {
+
+            dismiss(animated: true, completion: nil)
+
+            isFromProfile = false
+
         }
+
     }
 
     @IBAction func signUp(_ sender: UIButton) {
@@ -80,11 +97,15 @@ class SignUpViewController: UIViewController {
 
         } else {
 
-            if let email = emailField.text, let password = passwordField.text {
+            guard let email = emailField.text, let password = passwordField.text, let name = self.nameField.text else { return }
 
-                FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+            let gender = self.genderSegmentedControl.selectedSegmentIndex
 
-                    if let error = error {
+            if isFromStart == true {
+
+                UserManager.shared.createUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
+
+                    if let error = createError {
 
                         let alertController = UIAlertController(title: "Warning",
                                                                 message: error.localizedDescription,
@@ -96,42 +117,69 @@ class SignUpViewController: UIViewController {
 
                         self.present(alertController, animated: true, completion: nil)
 
-                        return
+                    } else if let error = storageError {
 
-                    } else {
+                        let alertController = UIAlertController(title: "Warning",
+                                                                message: error.localizedDescription,
+                                                                preferredStyle: .alert)
 
-                        guard let uid = user?.uid else { return }
+                        alertController.addAction(UIAlertAction(title: "OK",
+                                                                style: .default,
+                                                                handler: nil))
 
-                        let userRef = FIRDatabase.database().reference().child("users").child(uid)
+                        self.present(alertController, animated: true, completion: nil)
 
-                        guard let name = self.nameField.text else { return }
-
-                        let gender = self.genderSegmentedControl.selectedSegmentIndex
+                    } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
 
                         UserDefaults.standard.set(name, forKey: "Name")
                         UserDefaults.standard.set(gender, forKey: "Gender")
 
-                        let value = ["name": name,
-                                     "gender": gender] as [String: Any]
-
-                        userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
-
-                            if error != nil {
-
-                                print(error?.localizedDescription ?? "-SignUp---------Update error")
-
-                                return
-                            }
-                        })
+                        self.isFromStart = false
                     }
 
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                })
+
+            } else if isFromProfile == true {
+
+                UserManager.shared.linkUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
+
+                    if let error = createError {
+
+                        let alertController = UIAlertController(title: "Warning",
+                                                                message: error.localizedDescription,
+                                                                preferredStyle: .alert)
+
+                        alertController.addAction(UIAlertAction(title: "OK",
+                                                                style: .default,
+                                                                handler: nil))
+
+                        self.present(alertController, animated: true, completion: nil)
+
+                    } else if let error = storageError {
+
+                        let alertController = UIAlertController(title: "Warning",
+                                                                message: error.localizedDescription,
+                                                                preferredStyle: .alert)
+
+                        alertController.addAction(UIAlertAction(title: "OK",
+                                                                style: .default,
+                                                                handler: nil))
+
+                        self.present(alertController, animated: true, completion: nil)
+
+                    } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                         appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+
+                        UserDefaults.standard.set(name, forKey: "Name")
+                        UserDefaults.standard.set(gender, forKey: "Gender")
+
+                        self.isFromProfile = false
                     }
+
                 })
             }
         }
-
     }
 
     override func viewDidLoad() {
@@ -145,18 +193,18 @@ class SignUpViewController: UIViewController {
 
     private func setUp() {
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
-        self.goBackButton.setTitle("", for: .normal)
+        self.cancelButton.setTitle("", for: .normal)
         let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
-        self.goBackButton.setImage(buttonimage, for: .normal)
-        self.goBackButton.tintColor = Palette.textColor
+        self.cancelButton.setImage(buttonimage, for: .normal)
+        self.cancelButton.tintColor = Palette.darkblue
 
-        self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
-        self.logoImageView.backgroundColor = Palette.backgoundColor
+        self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
+        self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
-        self.appName.textColor = Palette.textColor
+        self.appName.textColor = Palette.darkblue
         self.appName.font = UIFont(name: "Courier-Bold", size: 60)
 
         self.emailField.delegate = self
@@ -181,11 +229,12 @@ class SignUpViewController: UIViewController {
 
         self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
-        self.genderSegmentedControl.tintColor = Palette.textColor
+        self.genderSegmentedControl.tintColor = Palette.darkblue
 
-        self.signUpButton.backgroundColor = Palette.textColor
+        self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
+
     }
 
 }

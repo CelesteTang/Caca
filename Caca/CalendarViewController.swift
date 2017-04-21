@@ -69,12 +69,12 @@ class CalendarViewController: UIViewController {
     private func setUp() {
 
         self.navigationItem.title = "Calendar"
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
-        self.headerView.backgroundColor = Palette.textColor
-        self.headerTitleLabel.textColor = Palette.backgoundColor
-        self.adviceView.backgroundColor = Palette.backgoundColor
-        self.adviceLabel.textColor = Palette.textColor
+        self.headerView.backgroundColor = Palette.darkblue
+        self.headerTitleLabel.textColor = Palette.lightblue2
+        self.adviceView.backgroundColor = Palette.lightblue2
+        self.adviceLabel.textColor = Palette.darkblue
         self.adviceLabel.text = "How's today?"
         self.adviceLabel.numberOfLines = 0
 
@@ -115,9 +115,9 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
         guard let calendarCell = cell as? CalendarCellView else { return }
 
-        calendarCell.backgroundColor = Palette.backgoundColor
+        calendarCell.backgroundColor = Palette.lightblue2
         calendarCell.dayLabel.text = cellState.text
-        calendarCell.bottomLine.backgroundColor = Palette.textColor
+        calendarCell.bottomLine.backgroundColor = Palette.darkblue
         calendarCell.didCacaView.isHidden = true
         calendarCell.selectedView.isHidden = true
 
@@ -133,13 +133,13 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
             calendarCell.isUserInteractionEnabled = true
             calendarCell.dayLabel.backgroundColor = UIColor.clear
-            calendarCell.dayLabel.textColor = Palette.textColor
+            calendarCell.dayLabel.textColor = Palette.darkblue
 
         } else {
 
             calendarCell.isUserInteractionEnabled = true
-            calendarCell.dayLabel.backgroundColor = Palette.textColor
-            calendarCell.dayLabel.textColor = Palette.backgoundColor
+            calendarCell.dayLabel.backgroundColor = Palette.darkblue
+            calendarCell.dayLabel.textColor = Palette.lightblue2
 
         }
 

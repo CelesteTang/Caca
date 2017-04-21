@@ -103,14 +103,13 @@ class RecordDetailViewController: UIViewController {
 
         }
 
-        tabBarController?.tabBar.isHidden = true
     }
 
     // MARK: Set Up
 
     private func setUp() {
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "My caca"
 
@@ -118,7 +117,7 @@ class RecordDetailViewController: UIViewController {
         self.shapeImageView.backgroundColor = Palette.backgoundColor
         self.colorImageView.backgroundColor = Palette.backgoundColor
 
-        self.cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+        self.cacaPhoto.image = #imageLiteral(resourceName: "caca-icon")
         self.cacaPhoto.layer.cornerRadius = self.cacaPhoto.frame.width / 2
         self.cacaPhoto.layer.masksToBounds = true
 
@@ -127,33 +126,37 @@ class RecordDetailViewController: UIViewController {
         self.dateLabel.text = self.recievedCaca[0].date
         self.timeLabel.text = self.recievedCaca[0].time
         self.consumingTimeLabel.text = self.recievedCaca[0].consumingTime
-        self.shapeImageView.image = self.recievedCaca[0].shape.image
-        self.colorImageView.image = self.recievedCaca[0].color.image
+//        self.shapeImageView.image = self.recievedCaca[0].shape
+//        self.colorImageView.image = self.recievedCaca[0].color
+        self.shapeImageView.image = #imageLiteral(resourceName: "caca-icon")
+        self.colorImageView.image = #imageLiteral(resourceName: "caca-icon")
         self.amountLabel.text = String(self.recievedCaca[0].amount)
         self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
+        self.amountLabel.text = self.recievedCaca[0].amount
 
-        self.passOrFailLabel.textColor = Palette.backgoundColor
+        self.passOrFailLabel.textColor = Palette.lightblue2
 
-        if self.recievedCaca[0].amount > 0.91 {
-
-            self.amountLabel.text = "L"
-
-        } else if self.recievedCaca[0].amount < 0.66 {
-
-            self.amountLabel.text = "S"
-
-        } else {
-
-            self.amountLabel.text = "M"
-
-        }
-
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editCaca))
+        let editButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(editCaca))
         self.navigationItem.rightBarButtonItem = editButton
 
     }
 
     func editCaca() {
+
+        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
+        guard let fillinTableViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
+
+        fillinTableViewController.recievedCacaFromRecordDetail = self.recievedCaca
+        fillinTableViewController.isFromRecordDetail = true
+
+        present(fillinTableViewController, animated: true)
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tabBarController?.tabBar.isHidden = true
 
     }
 

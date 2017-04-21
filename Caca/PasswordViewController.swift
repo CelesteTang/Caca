@@ -15,10 +15,49 @@ class PasswordViewController: UIViewController {
 
     @IBOutlet weak var passwordField: UITextField!
 
+    @IBOutlet weak var numberCollectionView: UICollectionView!
+
+    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Cancel", "0", "Delete"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUp()
+        touchIDAuthentication()
+
+        numberCollectionView.dataSource = self
+        numberCollectionView.delegate = self
+        guard let layout = numberCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+
+        layout.itemSize = CGSize(width: numberCollectionView.frame.width / 3, height: numberCollectionView.frame.height / 4)
+//        let columnGap = (numberCollectionView.bounds.width - layout.itemSize.width * 3) / 4
+//        let rowGap = (numberCollectionView.bounds.height - layout.itemSize.height * 4) / 5
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+//        layout.sectionInset = UIEdgeInsets(top: rowGap, left: columnGap, bottom: rowGap, right: columnGap)
+
+        numberCollectionView.register(NumberCollectionViewCell.self, forCellWithReuseIdentifier: "NumberCollectionViewCell")
+
+    }
+
+    // MARK: Set Up
+
+    private func setUp() {
+
+        self.view.backgroundColor = Palette.lightblue2
+        self.passwordLabel.text = "Please enter your password"
+
+        self.passwordField.delegate = self
+        self.passwordField.clearButtonMode = .never
+        self.passwordField.placeholder = "Password"
+        self.passwordField.textAlignment = .center
+        self.passwordField.clearsOnBeginEditing = true
+        self.passwordField.isSecureTextEntry = true
+        self.passwordField.returnKeyType = .done
+
+    }
+
+    func touchIDAuthentication() {
 
         if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
 
@@ -38,30 +77,30 @@ class PasswordViewController: UIViewController {
                             }
                         }
                     }
-
                 })
-
             }
         }
+    }
+}
 
+extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        return numbers.count
     }
 
-    // MARK: Set Up
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-    private func setUp() {
+        // swiftlint:disable force_cast
+        let cell = numberCollectionView.dequeueReusableCell(withReuseIdentifier: "NumberCollectionViewCell", for: indexPath) as! NumberCollectionViewCell
+        // swiftlint:enable force_cast
 
-        self.view.backgroundColor = Palette.backgoundColor
-        self.passwordLabel.text = "Please enter your password"
+        cell.itemView.numberLabel.text = numbers[indexPath.item]
 
-        self.passwordField.delegate = self
-        self.passwordField.clearButtonMode = .never
-        self.passwordField.placeholder = "Password"
-        self.passwordField.textAlignment = .center
-        self.passwordField.clearsOnBeginEditing = true
-        self.passwordField.isSecureTextEntry = true
-        self.passwordField.returnKeyType = .done
-
+        return cell
     }
+
 }
 
 extension PasswordViewController: UITextFieldDelegate {

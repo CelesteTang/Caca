@@ -45,10 +45,10 @@ class FinishTableViewCell: UITableViewCell {
         self.rowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
         self.rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
 
-        self.rowView.backgroundColor = Palette.backgoundColor
-        self.rowView.borderView.backgroundColor = Palette.textColor
+        self.rowView.backgroundColor = Palette.lightblue2
+        self.rowView.borderView.backgroundColor = Palette.darkblue
         self.rowView.finishButton.setTitle("Finish", for: .normal)
-        self.rowView.finishButton.backgroundColor = Palette.textColor
+        self.rowView.finishButton.backgroundColor = Palette.darkblue
         self.rowView.finishButton.tintColor = Palette.backgoundColor
         self.rowView.finishButton.layer.cornerRadius = 15
     }

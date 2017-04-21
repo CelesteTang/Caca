@@ -10,6 +10,8 @@ import UIKit
 
 class OpeningViewController: UIViewController {
 
+    @IBOutlet weak var goBackButton: UIButton!
+
     @IBOutlet weak var openingLabel: UILabel!
 
     @IBOutlet weak var openingImage: UIImageView!
@@ -17,6 +19,14 @@ class OpeningViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
 
     @IBOutlet weak var forwardButton: UIButton!
+
+    @IBAction func goBack(_ sender: UIButton) {
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+        }
+
+    }
 
     @IBAction func openingButton(_ sender: UIButton) {
 
@@ -43,24 +53,39 @@ class OpeningViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = Palette.backgoundColor
-        self.openingLabel.textColor = Palette.textColor
-        self.forwardButton.tintColor = Palette.textColor
+        self.view.backgroundColor = Palette.lightblue2
+        self.openingLabel.textColor = Palette.darkblue
+        self.forwardButton.tintColor = Palette.darkblue
 
         self.openingLabel.text = heading
         self.openingImage.image = UIImage(named: imageFile)
+
+        self.goBackButton.setImage(#imageLiteral(resourceName: "GoBack"), for: .normal)
+        self.goBackButton.setTitle("", for: .normal)
 
         self.pageControl.currentPage = index
 
         switch index {
 
-        case 0...1: self.forwardButton.setTitle("Next", for: .normal)
+        case 0:
 
-        case 2: self.forwardButton.setTitle("Done", for: .normal)
+            self.forwardButton.setTitle("Next", for: .normal)
+            self.goBackButton.isHidden = false
+
+        case 1:
+
+            self.forwardButton.setTitle("Next", for: .normal)
+            self.goBackButton.isHidden = true
+
+        case 2:
+
+            self.forwardButton.setTitle("Done", for: .normal)
+            self.goBackButton.isHidden = true
 
         default: break
 
         }
+
     }
 
 }
