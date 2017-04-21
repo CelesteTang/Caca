@@ -17,58 +17,70 @@ class UserManager {
     
     // MARK: Create user
 
-    func createUser(with email: String, password: String) {
+    typealias CreateHadler = (Error?, Error?) -> Void
+    
+    func createUser(with email: String, password: String, name: String, gender: Int, completion: @escaping CreateHadler) {
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             
             if let error = error {
                 
-                let alertController = UIAlertController(title: "Warning",
-                                                        message: error.localizedDescription,
-                                                        preferredStyle: .alert)
-                
-                alertController.addAction(UIAlertAction(title: "OK",
-                                                        style: .default,
-                                                        handler: nil))
-                
-                present(alertController, animated: true, completion: nil)
-                
-                return
+                completion(error, nil)
                 
             } else {
-                
-                guard let uid = user?.uid else { return }
-                
-                let userRef = FIRDatabase.database().reference().child("users").child(uid)
-                
-                guard let name = self.nameField.text else { return }
-                
-                let gender = self.genderSegmentedControl.selectedSegmentIndex
-                
-                UserDefaults.standard.set(name, forKey: "Name")
-                UserDefaults.standard.set(gender, forKey: "Gender")
                 
                 let value = ["name": name,
                              "gender": gender] as [String: Any]
                 
-                userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
+                if let user = user {
                     
-                    if error != nil {
+                    let uid = user.uid
+                    
+                    FIRDatabase.database().reference().child("users").child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
+                    
+                        if let error = error {
                         
-                        print(error?.localizedDescription ?? "-SignUp---------Update error")
-                        
-                        return
-                    }
-                })
-            }
-            
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
-                
-                self.isFromProfile = false
+                            completion(nil, error)
+
+                        }
+                    })
+                }
             }
         })
-        
     }
 
+    typealias LinkHadler = (Error?, Error?) -> Void
+
+    func linkUser(with email: String, password: String, name: String, gender: Int, completion: @escaping LinkHadler) {
+    
+        let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: password)
+
+        FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
+            
+            if let error = error {
+                
+                completion(error, nil)
+                
+            } else {
+                
+                let value = ["name": name,
+                             "gender": gender] as [String: Any]
+                
+                if let user = user {
+                    
+                    let uid = user.uid
+                    
+                    FIRDatabase.database().reference().child("users").child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
+                        
+                        if let error = error {
+                            
+                            completion(nil, error)
+                            
+                        }
+                    })
+                }
+            }
+            
+        })
+    }
 }

@@ -97,61 +97,95 @@ class SignUpViewController: UIViewController {
 
         } else {
 
-            guard let email = emailField.text, let password = passwordField.text else { return }
-
-            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+            guard let email = emailField.text, let password = passwordField.text, let name = self.nameField.text else { return }
+            
+            let gender = self.genderSegmentedControl.selectedSegmentIndex
+            
+            if isFromStart == true {
                 
-                if let error = error {
+                UserManager.shared.createUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
                     
-                    let alertController = UIAlertController(title: "Warning",
-                                                            message: error.localizedDescription,
-                                                            preferredStyle: .alert)
+                    if let error = createError {
+                        
+                        let alertController = UIAlertController(title: "Warning",
+                                                                message: error.localizedDescription,
+                                                                preferredStyle: .alert)
+                        
+                        alertController.addAction(UIAlertAction(title: "OK",
+                                                                style: .default,
+                                                                handler: nil))
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                    }
                     
-                    alertController.addAction(UIAlertAction(title: "OK",
-                                                            style: .default,
-                                                            handler: nil))
+                    if let error = storageError {
+                        
+                        let alertController = UIAlertController(title: "Warning",
+                                                                message: error.localizedDescription,
+                                                                preferredStyle: .alert)
+                        
+                        alertController.addAction(UIAlertAction(title: "OK",
+                                                                style: .default,
+                                                                handler: nil))
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                    }
                     
-                    self.present(alertController, animated: true, completion: nil)
-                    
-                    return
-                    
-                } else {
-                    
-                    guard let uid = user?.uid else { return }
-                    
-                    let userRef = FIRDatabase.database().reference().child("users").child(uid)
-                    
-                    guard let name = self.nameField.text else { return }
-                    
-                    let gender = self.genderSegmentedControl.selectedSegmentIndex
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                        
+                        self.isFromStart = false
+                    }
                     
                     UserDefaults.standard.set(name, forKey: "Name")
                     UserDefaults.standard.set(gender, forKey: "Gender")
-                    
-                    let value = ["name": name,
-                                 "gender": gender] as [String: Any]
-                    
-                    userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
-                        
-                        if error != nil {
-                            
-                            print(error?.localizedDescription ?? "-SignUp---------Update error")
-                            
-                            return
-                        }
-                    })
-                }
-                
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
-                    
-                    self.isFromProfile = false
-                }
-            })
-
+                })
             
+            } else if isFromProfile == true {
+            
+                UserManager.shared.linkUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
+                    
+                    if let error = createError {
+                        
+                        let alertController = UIAlertController(title: "Warning",
+                                                                message: error.localizedDescription,
+                                                                preferredStyle: .alert)
+                        
+                        alertController.addAction(UIAlertAction(title: "OK",
+                                                                style: .default,
+                                                                handler: nil))
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                    }
+                    
+                    if let error = storageError {
+                        
+                        let alertController = UIAlertController(title: "Warning",
+                                                                message: error.localizedDescription,
+                                                                preferredStyle: .alert)
+                        
+                        alertController.addAction(UIAlertAction(title: "OK",
+                                                                style: .default,
+                                                                handler: nil))
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                    }
+                    
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                        
+                        self.isFromProfile = false
+                    }
+                    
+                    UserDefaults.standard.set(name, forKey: "Name")
+                    UserDefaults.standard.set(gender, forKey: "Gender")
+                })
+            }
         }
-
     }
 
     override func viewDidLoad() {
