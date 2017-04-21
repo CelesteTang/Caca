@@ -277,7 +277,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
-            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
+            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-icon")
 
             if isFromRecordDetail == true {
 

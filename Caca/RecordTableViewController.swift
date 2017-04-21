@@ -129,7 +129,7 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
 
-        cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "poo-icon")
+        cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-icon")
         cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
         cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
 

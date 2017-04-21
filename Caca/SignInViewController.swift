@@ -104,7 +104,7 @@ class SignInViewController: UIViewController {
         self.goBackButton.tintColor = Palette.darkblue
 
         self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
-        self.logoImageView.backgroundColor = Palette.backgoundColor
+        self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
         self.appName.textColor = Palette.darkblue

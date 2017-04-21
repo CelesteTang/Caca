@@ -92,7 +92,7 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = Palette.lightblue2
 
         self.profileImageView.backgroundColor = Palette.lightblue2
-        self.profileImageView.image = #imageLiteral(resourceName: "poo-icon")
+        self.profileImageView.image = #imageLiteral(resourceName: "boy")
 
         self.nameTextField.delegate = self
         self.nameTextField.clearButtonMode = .whileEditing

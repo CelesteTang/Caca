@@ -117,7 +117,7 @@ class RecordDetailViewController: UIViewController {
         self.shapeImageView.backgroundColor = Palette.backgoundColor
         self.colorImageView.backgroundColor = Palette.backgoundColor
 
-        self.cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
+        self.cacaPhoto.image = #imageLiteral(resourceName: "caca-icon")
         self.cacaPhoto.layer.cornerRadius = self.cacaPhoto.frame.width / 2
         self.cacaPhoto.layer.masksToBounds = true
 
@@ -128,8 +128,8 @@ class RecordDetailViewController: UIViewController {
         self.consumingTimeLabel.text = self.recievedCaca[0].consumingTime
 //        self.shapeImageView.image = self.recievedCaca[0].shape
 //        self.colorImageView.image = self.recievedCaca[0].color
-        self.shapeImageView.image = #imageLiteral(resourceName: "poo-icon")
-        self.colorImageView.image = #imageLiteral(resourceName: "poo-icon")
+        self.shapeImageView.image = #imageLiteral(resourceName: "caca-icon")
+        self.colorImageView.image = #imageLiteral(resourceName: "caca-icon")
         self.amountLabel.text = String(self.recievedCaca[0].amount)
         self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
         self.amountLabel.text = self.recievedCaca[0].amount
