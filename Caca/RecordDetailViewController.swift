@@ -134,7 +134,7 @@ class RecordDetailViewController: UIViewController {
         self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
         self.amountLabel.text = self.recievedCaca[0].amount
 
-        self.passOrFailLabel.textColor = Palette.backgoundColor
+        self.passOrFailLabel.textColor = Palette.lightblue2
 
         let editButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(editCaca))
         self.navigationItem.rightBarButtonItem = editButton

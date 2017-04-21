@@ -118,11 +118,11 @@ class CacaViewController: UIViewController {
 
         self.mainImageView.backgroundColor = Palette.lightblue2
 
-        self.notificationLabel.textColor = Palette.textColor
+        self.notificationLabel.textColor = Palette.darkblue
         self.notificationLabel.numberOfLines = 0
         self.notificationLabel.text = "How's today?"
 
-        self.startButton.backgroundColor = Palette.textColor
+        self.startButton.backgroundColor = Palette.darkblue
         self.startButton.tintColor = Palette.backgoundColor
         self.startButton.layer.cornerRadius = 15
         self.startButton.setTitle("Start", for: UIControlState.normal)

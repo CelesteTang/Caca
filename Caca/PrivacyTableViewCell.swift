@@ -47,7 +47,7 @@ class PrivacyTableViewCell: UITableViewCell {
         self.rowView.backgroundColor = Palette.backgoundColor
 
         self.rowView.backgroundColor = Palette.backgoundColor
-        self.rowView.privacyLabel.textColor = Palette.textColor
+        self.rowView.privacyLabel.textColor = Palette.darkblue
 
     }
 

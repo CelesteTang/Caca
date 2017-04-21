@@ -47,7 +47,7 @@ class SettingTableViewCell: UITableViewCell {
         
         rowView.backgroundColor = Palette.lightblue2
 
-        rowView.titleLabel.textColor = Palette.textColor
+        rowView.titleLabel.textColor = Palette.darkblue
 
     }
 

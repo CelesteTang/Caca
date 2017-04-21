@@ -44,8 +44,8 @@ class OpeningViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = Palette.lightblue2
-        self.openingLabel.textColor = Palette.textColor
-        self.forwardButton.tintColor = Palette.textColor
+        self.openingLabel.textColor = Palette.darkblue
+        self.forwardButton.tintColor = Palette.darkblue
 
         self.openingLabel.text = heading
         self.openingImage.image = UIImage(named: imageFile)

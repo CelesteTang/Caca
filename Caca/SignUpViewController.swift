@@ -169,13 +169,13 @@ class SignUpViewController: UIViewController {
         self.cancelButton.setTitle("", for: .normal)
         let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
         self.cancelButton.setImage(buttonimage, for: .normal)
-        self.cancelButton.tintColor = Palette.textColor
+        self.cancelButton.tintColor = Palette.darkblue
 
         self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
         self.logoImageView.backgroundColor = Palette.backgoundColor
 
         self.appName.text = "Caca"
-        self.appName.textColor = Palette.textColor
+        self.appName.textColor = Palette.darkblue
         self.appName.font = UIFont(name: "Courier-Bold", size: 60)
 
         self.emailField.delegate = self
@@ -200,9 +200,9 @@ class SignUpViewController: UIViewController {
 
         self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
-        self.genderSegmentedControl.tintColor = Palette.textColor
+        self.genderSegmentedControl.tintColor = Palette.darkblue
 
-        self.signUpButton.backgroundColor = Palette.textColor
+        self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
 

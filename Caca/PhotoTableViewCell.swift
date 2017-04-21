@@ -47,7 +47,7 @@ class PhotoTableViewCell: UITableViewCell {
         self.rowView.backgroundColor = Palette.backgoundColor
 
         self.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue2
-        self.rowView.borderView.backgroundColor = Palette.textColor
+        self.rowView.borderView.backgroundColor = Palette.darkblue
 
     }
 

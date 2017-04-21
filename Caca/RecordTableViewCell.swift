@@ -48,8 +48,8 @@ class RecordTableViewCell: UITableViewCell {
 
         self.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue2
 
-        self.rowView.dateLabel.textColor = Palette.textColor
-        self.rowView.timeLabel.textColor = Palette.textColor
+        self.rowView.dateLabel.textColor = Palette.darkblue
+        self.rowView.timeLabel.textColor = Palette.darkblue
 
     }
 

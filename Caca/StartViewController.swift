@@ -123,18 +123,18 @@ class StartViewController: UIViewController {
         self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
-        self.appName.textColor = Palette.textColor
+        self.appName.textColor = Palette.darkblue
         self.appName.font = UIFont(name: "Courier-Bold", size: 60)
 
-        self.startButton.backgroundColor = Palette.textColor
+        self.startButton.backgroundColor = Palette.darkblue
         self.startButton.setTitle("Start Now", for: .normal)
         self.startButton.layer.cornerRadius = 15
 
-        self.signInButton.backgroundColor = Palette.textColor
+        self.signInButton.backgroundColor = Palette.darkblue
         self.signInButton.setTitle("Sign In", for: .normal)
         self.signInButton.layer.cornerRadius = 15
 
-        self.signUpButton.backgroundColor = Palette.textColor
+        self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
     }

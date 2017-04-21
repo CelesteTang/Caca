@@ -133,7 +133,7 @@ class RecordTableViewController: UITableViewController {
         cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
         cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
 
-        cell.rowView.separateLineView.backgroundColor = Palette.textColor
+        cell.rowView.separateLineView.backgroundColor = Palette.darkblue
 
         if UserDefaults.standard.bool(forKey: "Hide") == false {
 

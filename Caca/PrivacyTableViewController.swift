@@ -86,7 +86,7 @@ class PrivacyTableViewController: UITableViewController {
         cell.rowView.privacyLabel.text = authentications[indexPath.row].title
 
         let switchButton = authentications[indexPath.row].switchButton
-        switchButton.onTintColor = Palette.textColor
+        switchButton.onTintColor = Palette.darkblue
 
         switch indexPath.row {
 

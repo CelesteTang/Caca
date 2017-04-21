@@ -47,7 +47,7 @@ class ProfileViewController: UIViewController {
         self.genderSegmentedControl.selectedSegmentIndex = gender
         self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
-        self.genderSegmentedControl.tintColor = Palette.textColor
+        self.genderSegmentedControl.tintColor = Palette.darkblue
 
         self.ageTextField.delegate = self
         self.ageTextField.clearButtonMode = .whileEditing
@@ -62,7 +62,7 @@ class ProfileViewController: UIViewController {
 
         }
 
-        self.signUpButton.backgroundColor = Palette.textColor
+        self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
         let user = FIRAuth.auth()?.currentUser
