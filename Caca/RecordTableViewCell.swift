@@ -46,7 +46,7 @@ class RecordTableViewCell: UITableViewCell {
         self.rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         self.rowView.backgroundColor = Palette.backgoundColor
 
-        self.rowView.cacaPhotoImageView.backgroundColor = Palette.backgoundColor
+        self.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue2
 
         self.rowView.dateLabel.textColor = Palette.textColor
         self.rowView.timeLabel.textColor = Palette.textColor

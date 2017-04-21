@@ -118,7 +118,7 @@ class StartViewController: UIViewController {
 
     private func setUp() {
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
         self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
         self.logoImageView.backgroundColor = Palette.backgoundColor
 

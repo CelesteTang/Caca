@@ -34,7 +34,7 @@ class SettingTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationItem.title = "Setting"
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
         self.tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "SettingTableViewCell")
     }

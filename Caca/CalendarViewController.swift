@@ -69,11 +69,11 @@ class CalendarViewController: UIViewController {
     private func setUp() {
 
         self.navigationItem.title = "Calendar"
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
         self.headerView.backgroundColor = Palette.textColor
         self.headerTitleLabel.textColor = Palette.backgoundColor
-        self.adviceView.backgroundColor = Palette.backgoundColor
+        self.adviceView.backgroundColor = Palette.lightblue2
         self.adviceLabel.textColor = Palette.textColor
         self.adviceLabel.text = "How's today?"
         self.adviceLabel.numberOfLines = 0
@@ -115,7 +115,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
         guard let calendarCell = cell as? CalendarCellView else { return }
 
-        calendarCell.backgroundColor = Palette.backgoundColor
+        calendarCell.backgroundColor = Palette.lightblue2
         calendarCell.dayLabel.text = cellState.text
         calendarCell.bottomLine.backgroundColor = Palette.textColor
         calendarCell.didCacaView.isHidden = true

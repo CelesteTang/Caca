@@ -46,7 +46,7 @@ class PhotoTableViewCell: UITableViewCell {
         self.rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         self.rowView.backgroundColor = Palette.backgoundColor
 
-        self.rowView.cacaPhotoImageView.backgroundColor = Palette.backgoundColor
+        self.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue2
         self.rowView.borderView.backgroundColor = Palette.textColor
 
     }

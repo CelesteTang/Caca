@@ -43,7 +43,7 @@ class OpeningViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
         self.openingLabel.textColor = Palette.textColor
         self.forwardButton.tintColor = Palette.textColor
 

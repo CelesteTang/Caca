@@ -43,7 +43,7 @@ class NumberCollectionViewCell: UICollectionViewCell {
         self.itemView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
         self.itemView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
 
-        self.itemView.backgroundColor = Palette.backgoundColor
+        self.itemView.backgroundColor = Palette.lightblue2
 
     }
 

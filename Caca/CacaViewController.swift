@@ -114,7 +114,7 @@ class CacaViewController: UIViewController {
 
         self.navigationItem.title = Time.dateString()
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
         self.mainImageView.backgroundColor = Palette.backgoundColor
 

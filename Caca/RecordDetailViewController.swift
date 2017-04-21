@@ -109,7 +109,7 @@ class RecordDetailViewController: UIViewController {
 
     private func setUp() {
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "My caca"
 

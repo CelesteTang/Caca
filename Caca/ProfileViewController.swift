@@ -89,9 +89,9 @@ class ProfileViewController: UIViewController {
 
         navigationItem.title = "Profile"
 
-        view.backgroundColor = Palette.backgoundColor
+        view.backgroundColor = Palette.lightblue2
 
-        self.profileImageView.backgroundColor = Palette.backgoundColor
+        self.profileImageView.backgroundColor = Palette.lightblue2
         self.profileImageView.image = #imageLiteral(resourceName: "poo-icon")
 
         self.nameTextField.delegate = self

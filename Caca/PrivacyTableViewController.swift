@@ -41,7 +41,7 @@ class PrivacyTableViewController: UITableViewController {
 
         self.navigationItem.title = "Privacy"
 
-        self.tableView.backgroundColor = Palette.backgoundColor
+        self.tableView.backgroundColor = Palette.lightblue2
 
     }
 

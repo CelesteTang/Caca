@@ -44,7 +44,7 @@ class PasswordViewController: UIViewController {
 
     private func setUp() {
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
         self.passwordLabel.text = "Please enter your password"
 
         self.passwordField.delegate = self
