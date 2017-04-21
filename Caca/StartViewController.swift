@@ -37,8 +37,6 @@ class StartViewController: UIViewController {
 
                 self.present(alertController, animated: true, completion: nil)
 
-                return
-
             } else {
 
                 let isAnonymous = user!.isAnonymous
