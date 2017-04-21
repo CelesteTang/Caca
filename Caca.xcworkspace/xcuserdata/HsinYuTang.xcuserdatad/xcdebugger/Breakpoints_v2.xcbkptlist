@@ -26,7 +26,7 @@
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/CacaProvider.swift"
-                  timestampString = "514486133.186011"
+                  timestampString = "514487746.454425"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "110"
@@ -41,7 +41,7 @@
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/CacaProvider.swift"
-                  timestampString = "514486133.18741"
+                  timestampString = "514487746.456501"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "110"
@@ -106,7 +106,7 @@
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/CacaProvider.swift"
-                  timestampString = "514486133.196013"
+                  timestampString = "514487746.466185"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "182"
@@ -121,7 +121,7 @@
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/CacaProvider.swift"
-                  timestampString = "514486133.197279"
+                  timestampString = "514487746.467404"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "182"
@@ -154,7 +154,7 @@
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/FillinTableViewController.swift"
-                  timestampString = "514486133.200752"
+                  timestampString = "514487746.470328"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "891"
@@ -169,7 +169,7 @@
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/FillinTableViewController.swift"
-                  timestampString = "514486133.202198"
+                  timestampString = "514487746.471681"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "891"
@@ -177,6 +177,166 @@
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/UserManager.swift"
+            timestampString = "514487413.968855"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "createAnonymousUser(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Caca.UserManager.createAnonymousUser (completion : (Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Caca"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/UserManager.swift"
+                  timestampString = "514487746.483936"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Caca.UserManager.(createAnonymousUser (completion : (Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "Caca"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/UserManager.swift"
+                  timestampString = "514487746.485171"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/UserManager.swift"
+            timestampString = "514487415.622026"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "createAnonymousUser(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/UserManager.swift"
+            timestampString = "514487418.147673"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "createAnonymousUser(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/UserManager.swift"
+            timestampString = "514487419.848598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "createAnonymousUser(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/UserManager.swift"
+            timestampString = "514487420.991417"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "createAnonymousUser(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Caca.UserManager.(createAnonymousUser (completion : (Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "Caca"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/UserManager.swift"
+                  timestampString = "514487746.495778"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "524">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Caca.UserManager.(createAnonymousUser (completion : (Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Caca"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/UserManager.swift"
+                  timestampString = "514487746.497038"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/UserManager.swift"
+            timestampString = "514487422.56081"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "createAnonymousUser(completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

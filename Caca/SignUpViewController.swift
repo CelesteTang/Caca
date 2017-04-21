@@ -117,9 +117,7 @@ class SignUpViewController: UIViewController {
 
                         self.present(alertController, animated: true, completion: nil)
 
-                    }
-
-                    if let error = storageError {
+                    } else if let error = storageError {
 
                         let alertController = UIAlertController(title: "Warning",
                                                                 message: error.localizedDescription,
@@ -131,16 +129,15 @@ class SignUpViewController: UIViewController {
 
                         self.present(alertController, animated: true, completion: nil)
 
-                    }
-
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                         appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+
+                        UserDefaults.standard.set(name, forKey: "Name")
+                        UserDefaults.standard.set(gender, forKey: "Gender")
 
                         self.isFromStart = false
                     }
 
-                    UserDefaults.standard.set(name, forKey: "Name")
-                    UserDefaults.standard.set(gender, forKey: "Gender")
                 })
 
             } else if isFromProfile == true {
@@ -159,9 +156,7 @@ class SignUpViewController: UIViewController {
 
                         self.present(alertController, animated: true, completion: nil)
 
-                    }
-
-                    if let error = storageError {
+                    } else if let error = storageError {
 
                         let alertController = UIAlertController(title: "Warning",
                                                                 message: error.localizedDescription,
@@ -173,16 +168,15 @@ class SignUpViewController: UIViewController {
 
                         self.present(alertController, animated: true, completion: nil)
 
-                    }
-
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                         appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+
+                        UserDefaults.standard.set(name, forKey: "Name")
+                        UserDefaults.standard.set(gender, forKey: "Gender")
 
                         self.isFromProfile = false
                     }
 
-                    UserDefaults.standard.set(name, forKey: "Name")
-                    UserDefaults.standard.set(gender, forKey: "Gender")
                 })
             }
         }

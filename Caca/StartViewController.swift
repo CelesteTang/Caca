@@ -23,6 +23,14 @@ class StartViewController: UIViewController {
 
     @IBAction func startDirectly(_ sender: UIButton) {
 
+//        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
+//            
+//            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+//                appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+//                }
+//
+//        })
+
         UserManager.shared.createAnonymousUser { (createError, storageError) in
 
             if let error = createError {
@@ -37,9 +45,7 @@ class StartViewController: UIViewController {
 
                 self.present(alertController, animated: true, completion: nil)
 
-            }
-
-            if let error = storageError {
+            } else if let error = storageError {
 
                 let alertController = UIAlertController(title: "Warning",
                                                         message: error.localizedDescription,
