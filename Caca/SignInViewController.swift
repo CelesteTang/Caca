@@ -103,7 +103,7 @@ class SignInViewController: UIViewController {
         self.goBackButton.setImage(buttonimage, for: .normal)
         self.goBackButton.tintColor = Palette.textColor
 
-        self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
+        self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
         self.logoImageView.backgroundColor = Palette.backgoundColor
 
         self.appName.text = "Caca"

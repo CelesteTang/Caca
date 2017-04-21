@@ -35,7 +35,7 @@ class CacaViewController: UIViewController {
 
             if gender == Gender.male.rawValue {
 
-                mainImageView.image = #imageLiteral(resourceName: "poo-icon")
+                mainImageView.image = #imageLiteral(resourceName: "caca-icon")
 
             }
         }

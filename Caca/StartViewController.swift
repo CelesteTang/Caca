@@ -119,7 +119,7 @@ class StartViewController: UIViewController {
     private func setUp() {
 
         self.view.backgroundColor = Palette.backgoundColor
-        self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
+        self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
         self.logoImageView.backgroundColor = Palette.backgoundColor
 
         self.appName.text = "Caca"

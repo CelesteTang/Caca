@@ -47,19 +47,19 @@ enum TabBarItemType: Int {
         switch self {
         case .caca:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "caca").withRenderingMode(.alwaysTemplate)
 
         case .record:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "record").withRenderingMode(.alwaysTemplate)
 
         case .calendar:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "calendar").withRenderingMode(.alwaysTemplate)
 
         case .setting:
 
-            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "setting").withRenderingMode(.alwaysTemplate)
 
         }
 
@@ -71,11 +71,13 @@ enum TabBarItemType: Int {
 
 class TabBarController: UITabBarController {
 
-    private let tabBarItemTypes: [TabBarItemType] = [ .caca, .record, .calendar, .setting ]
+//    private let tabBarItemTypes: [TabBarItemType] = [.caca, .record, .calendar, .setting]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        self.tabBar.items = [TabBarItemType.caca.item, TabBarItemType.record.item, TabBarItemType.calendar.item, TabBarItemType.setting.item]
+        
 //        tabBar.items?.forEach { item in
 //            
 //            let itemType = TabBarItemType(rawValue: item.tag)!
