@@ -58,26 +58,9 @@ class StartViewController: UIViewController {
                         return
                     }
 
-                    let alertController = UIAlertController(title: "Just a reminder",
-                                                            message: "You could sign up later if you want to backup your info",
-                                                            preferredStyle: .alert)
-
-                    let cancelAction = UIAlertAction(title: "Go back", style: .cancel) { _ in
-
-                        alertController.dismiss(animated: true, completion: nil)
-
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
                     }
-                    alertController.addAction(cancelAction)
-
-                    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-
-                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                            appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
-                        }
-                    }
-                    alertController.addAction(okAction)
-
-                    self.present(alertController, animated: true, completion: nil)
 
                 })
 
