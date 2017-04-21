@@ -77,7 +77,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
 //        self.tabBar.items = [TabBarItemType.caca.item, TabBarItemType.record.item, TabBarItemType.calendar.item, TabBarItemType.setting.item]
-        
+
 //        tabBar.items?.forEach { item in
 //            
 //            let itemType = TabBarItemType(rawValue: item.tag)!

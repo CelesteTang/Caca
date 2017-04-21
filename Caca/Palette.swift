@@ -25,10 +25,10 @@ struct Palette {
     static let selectedFailColor = UIColor(red: 166/255, green: 54/255, blue: 54/255, alpha: 0.5)
 
     static let darkblue = UIColor(red: 54/255, green: 80/255, blue: 108/255, alpha: 1)
-    
+
     static let darkblue2 = UIColor(red: 35/255, green: 49/255, blue: 66/255, alpha: 1)
-    
+
     static let lightblue = UIColor(red: 165/255, green: 222/255, blue: 241/255, alpha: 1)
-    
+
     static let lightblue2 = UIColor(red: 204/255, green: 228/255, blue: 233/255, alpha: 1)
 }

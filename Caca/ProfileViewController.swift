@@ -48,6 +48,16 @@ class ProfileViewController: UIViewController {
         self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue
+        self.genderSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
+        if gender == Gender.male.rawValue {
+
+            self.profileImageView.image = #imageLiteral(resourceName: "boy")
+
+        } else if gender == Gender.female.rawValue {
+
+            self.profileImageView.image = #imageLiteral(resourceName: "girl")
+
+        }
 
         self.ageTextField.delegate = self
         self.ageTextField.clearButtonMode = .whileEditing
@@ -92,7 +102,6 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = Palette.lightblue2
 
         self.profileImageView.backgroundColor = Palette.lightblue2
-        self.profileImageView.image = #imageLiteral(resourceName: "boy")
 
         self.nameTextField.delegate = self
         self.nameTextField.clearButtonMode = .whileEditing
@@ -125,6 +134,20 @@ class ProfileViewController: UIViewController {
 
         self.nameTextField.resignFirstResponder()
         self.ageTextField.resignFirstResponder()
+    }
+
+    func changeGender() {
+
+        if self.genderSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
+
+            self.profileImageView.image = #imageLiteral(resourceName: "boy")
+
+        } else if self.genderSegmentedControl.selectedSegmentIndex == Gender.female.rawValue {
+
+            self.profileImageView.image = #imageLiteral(resourceName: "girl")
+
+        }
+
     }
 
 }

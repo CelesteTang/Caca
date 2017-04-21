@@ -44,7 +44,7 @@ class RecordTableViewCell: UITableViewCell {
         self.rowView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
         self.rowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
         self.rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
-        
+
         self.rowView.backgroundColor = Palette.lightblue2
 
         self.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue2

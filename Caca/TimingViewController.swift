@@ -10,6 +10,8 @@ import UIKit
 
 class TimingViewController: UIViewController {
 
+    @IBOutlet weak var backgroundImageView: UIImageView!
+
     @IBOutlet weak var cancelButton: UIButton!
 
     @IBOutlet weak var timerLabel: UILabel!
@@ -126,6 +128,8 @@ class TimingViewController: UIViewController {
     private func setUp() {
 
         self.view.backgroundColor = Palette.lightblue2
+
+        self.backgroundImageView.image = #imageLiteral(resourceName: "toilet2")
 
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
         self.timerLabel.textColor = Palette.darkblue
