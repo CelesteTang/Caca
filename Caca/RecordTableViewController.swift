@@ -94,10 +94,10 @@ class RecordTableViewController: UITableViewController {
 
     func addCaca() {
 
-        isFromRecord = true
-
         let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
-        let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController")
+        guard let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
+
+        fillinViewController.isFromRecord = true
 
         present(fillinViewController, animated: true)
 
@@ -207,7 +207,7 @@ class RecordTableViewController: UITableViewController {
         if editingStyle == .delete {
 
             CacaProvider.shared.deleteCaca(of: self.cacas[indexPath.row].cacaID)
-            CacaProvider.shared.deleteCacaPhoto(of: self.cacas[indexPath.row].photoID, completion: nil)
+            CacaProvider.shared.deleteCacaPhoto(of: self.cacas[indexPath.row].photoID)
             self.cacas.remove(at: indexPath.row)
 
             self.tableView.deleteRows(at: [indexPath], with: .fade)

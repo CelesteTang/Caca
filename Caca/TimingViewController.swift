@@ -100,10 +100,16 @@ class TimingViewController: UIViewController {
 
         Time.consumingTime = timeString(time: TimeInterval(seconds))
 
-        isFromCaca = true
+        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
+
+        guard let fillinTableViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController
+
+            appDelegate.window?.rootViewController = fillinTableViewController
+
+            fillinTableViewController.isFromCaca = true
+
         }
 
     }

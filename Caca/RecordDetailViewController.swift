@@ -132,22 +132,9 @@ class RecordDetailViewController: UIViewController {
         self.colorImageView.image = #imageLiteral(resourceName: "poo-icon")
         self.amountLabel.text = String(self.recievedCaca[0].amount)
         self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
+        self.amountLabel.text = self.recievedCaca[0].amount
 
         self.passOrFailLabel.textColor = Palette.backgoundColor
-
-        if self.recievedCaca[0].amount > 0.91 {
-
-            self.amountLabel.text = "L"
-
-        } else if self.recievedCaca[0].amount < 0.66 {
-
-            self.amountLabel.text = "S"
-
-        } else {
-
-            self.amountLabel.text = "M"
-
-        }
 
         let editButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(editCaca))
         self.navigationItem.rightBarButtonItem = editButton
@@ -156,14 +143,13 @@ class RecordDetailViewController: UIViewController {
 
     func editCaca() {
 
-        isFromRecordDetail = true
-
         let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
-        guard let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
+        guard let fillinTableViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
 
-        fillinViewController.recievedCacaFromRecordDetail = self.recievedCaca
+        fillinTableViewController.recievedCacaFromRecordDetail = self.recievedCaca
+        fillinTableViewController.isFromRecordDetail = true
 
-        present(fillinViewController, animated: true)
+        present(fillinTableViewController, animated: true)
 
     }
 

@@ -28,7 +28,7 @@ class Caca {
 
     let color: String
 
-    let amount: Double
+    let amount: String
 
     let otherInfo: String?
 
@@ -36,7 +36,7 @@ class Caca {
 
     let advice: String
 
-    init(cacaID: String, photo: String, photoID: String, date: String, time: String, consumingTime: String, shape: String, color: String, amount: Double, otherInfo: String?, grading: Bool, advice: String) {
+    init(cacaID: String, photo: String, photoID: String, date: String, time: String, consumingTime: String, shape: String, color: String, amount: String, otherInfo: String?, grading: Bool, advice: String) {
 
         self.cacaID = cacaID
         self.photo = photo
