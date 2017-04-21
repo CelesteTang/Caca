@@ -76,14 +76,14 @@ class CacaProvider {
                         let cacaDate = cacaInfo["date"] as? String,
                         let cacaTime = cacaInfo["time"] as? String,
                         let cacaConsumingTime = cacaInfo["consumingTime"] as? String,
-                        let cacaShape = cacaInfo["shape"] as? Int,
-                        let cacaColor = cacaInfo["color"] as? Int,
+                        let cacaShape = cacaInfo["shape"] as? String,
+                        let cacaColor = cacaInfo["color"] as? String,
                         let cacaAmount = cacaInfo["amount"] as? Double,
                         let cacaOther = cacaInfo["other"] as? String,
                         let cacaGrading = cacaInfo["grading"] as? Bool,
                         let cacaAdvice = cacaInfo["advice"] as? String {
 
-                        let caca = Caca(cacaID: cacaID, photo: cacaPhoto, photoID: cacaPhotoID, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: Shape(rawValue: cacaShape)!, color: Color(rawValue: cacaColor)!, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, advice: cacaAdvice)
+                        let caca = Caca(cacaID: cacaID, photo: cacaPhoto, photoID: cacaPhotoID, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: cacaShape, color: cacaColor, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, advice: cacaAdvice)
 
                         cacas.append(caca)
                     }

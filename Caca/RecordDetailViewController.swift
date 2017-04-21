@@ -126,8 +126,10 @@ class RecordDetailViewController: UIViewController {
         self.dateLabel.text = self.recievedCaca[0].date
         self.timeLabel.text = self.recievedCaca[0].time
         self.consumingTimeLabel.text = self.recievedCaca[0].consumingTime
-        self.shapeImageView.image = self.recievedCaca[0].shape.image
-        self.colorImageView.image = self.recievedCaca[0].color.image
+//        self.shapeImageView.image = self.recievedCaca[0].shape
+//        self.colorImageView.image = self.recievedCaca[0].color
+        self.shapeImageView.image = #imageLiteral(resourceName: "poo-icon")
+        self.colorImageView.image = #imageLiteral(resourceName: "poo-icon")
         self.amountLabel.text = String(self.recievedCaca[0].amount)
         self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
 

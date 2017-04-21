@@ -46,7 +46,7 @@ class FillinTableViewController: UITableViewController {
     // MARK: Property
 
     let components: [Component] = [.photo, .date, .time, .shape, .color, .amount, .other, .finish]
-    
+
     let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
 
     let colors: [Color] = [.red, .yellow, .green, .lightBrown, .darkBrown, .gray, .black]
@@ -65,8 +65,8 @@ class FillinTableViewController: UITableViewController {
     var finalMin = "00"
     var finalSec = "00"
 
-    var didSelectShape = Int()
-    var didSelectColor = Int()
+//    var didSelectShape = Int()
+//    var didSelectColor = Int()
 
     var ispassed = false
 
@@ -388,7 +388,7 @@ class FillinTableViewController: UITableViewController {
 
             if isFromRecordDetail == true {
 
-                cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].shape.title
+                cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].shape
 
             }
 
@@ -408,7 +408,7 @@ class FillinTableViewController: UITableViewController {
 
             if isFromRecordDetail == true {
 
-                cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].color.title
+                cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].color
 
             }
 
@@ -649,9 +649,14 @@ class FillinTableViewController: UITableViewController {
 
     func getAdvice() -> String {
 
+        guard let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
+              let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
+              let shape = shapeCell.rowView.infoTextField.text,
+              let color = colorCell.rowView.infoTextField.text else { return "" }
+
         // MARK: Pass or Fail
 
-        if (self.didSelectColor == Color.lightBrown.rawValue || self.didSelectColor == Color.darkBrown.rawValue) && (self.didSelectShape == Shape.crackSausage.rawValue || self.didSelectShape == Shape.smoothSausage.rawValue) {
+        if (color == Color.lightBrown.title || color == Color.darkBrown.title) && (shape == Shape.crackSausage.title || shape == Shape.smoothSausage.title) {
 
             ispassed = true
 
@@ -663,49 +668,53 @@ class FillinTableViewController: UITableViewController {
 
             // MARK: Shape
 
-            switch Shape(rawValue: self.didSelectShape)! {
+            switch shape {
 
-            case .separateHard, .lumpySausage:
+            case Shape.separateHard.title, Shape.lumpySausage.title:
 
                 self.shapeAdvice = "You are constipated, and "
 
-            case .crackSausage, .smoothSausage:
+            case Shape.crackSausage.title, Shape.smoothSausage.title:
 
                 self.shapeAdvice = "The shape of your caca is good, but "
 
-            case .softBlob, .mushyStool, .wateryStool:
+            case Shape.softBlob.title, Shape.mushyStool.title, Shape.wateryStool.title:
 
                 self.shapeAdvice = "You have diarrhea, and "
+
+            default: break
 
             }
 
             // MARK: Color
 
-            switch Color(rawValue: self.didSelectColor)! {
+            switch color {
 
-            case .red:
+            case Color.red.title:
 
                 self.colorAdvice = "the color of your caca is red. "
 
-            case .yellow:
+            case Color.yellow.title:
 
                 self.colorAdvice = "the color of your caca is yellow. "
 
-            case .green:
+            case Color.green.title:
 
                 self.colorAdvice = "the color of your caca is green. "
 
-            case .lightBrown, .darkBrown:
+            case Color.lightBrown.title, Color.darkBrown.title:
 
                 self.colorAdvice = "the color of your caca is good! "
 
-            case .gray:
+            case Color.gray.title:
 
                 self.colorAdvice = "the color of your caca is gray. "
 
-            case .black:
+            case Color.black.title:
 
                 self.colorAdvice = "the color of your caca is black. "
+
+            default: break
 
             }
 
@@ -756,10 +765,14 @@ class FillinTableViewController: UITableViewController {
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell,
             let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
             let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
+            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
+            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
             let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell,
             let finishCell = tableView.visibleCells[Component.finish.rawValue] as? FinishTableViewCell
             else {
+
                 return
+
         }
 
         finishCell.rowView.finishButton.isEnabled = false
@@ -767,6 +780,8 @@ class FillinTableViewController: UITableViewController {
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
             let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
             let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
+            let shape = shapeCell.rowView.infoTextField.text,
+            let color = colorCell.rowView.infoTextField.text,
             let consumingTime = timeCell.rowView.infoTextField.text,
             let other = otherCell.rowView.infoTextField.text else {
 
@@ -797,8 +812,8 @@ class FillinTableViewController: UITableViewController {
                              "date": date,
                              "time": time,
                              "consumingTime": consumingTime,
-                             "shape": self.didSelectShape,
-                             "color": self.didSelectColor,
+                             "shape": shape,
+                             "color": color,
                              "amount": Double(self.amountSlider.value),
                              "other": other,
                              "grading": self.ispassed,
@@ -819,8 +834,8 @@ class FillinTableViewController: UITableViewController {
                          "date": date,
                          "time": time,
                          "consumingTime": consumingTime,
-                         "shape": self.didSelectShape,
-                         "color": self.didSelectColor,
+                         "shape": shape,
+                         "color": color,
                          "amount": Double(self.amountSlider.value),
                          "other": other,
                          "grading": self.ispassed,
@@ -839,6 +854,8 @@ class FillinTableViewController: UITableViewController {
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell,
             let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
             let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
+            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
+            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
             let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell,
             let finishCell = tableView.visibleCells[Component.finish.rawValue] as? FinishTableViewCell
             else {
@@ -850,6 +867,8 @@ class FillinTableViewController: UITableViewController {
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
             let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
             let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
+            let shape = shapeCell.rowView.infoTextField.text,
+            let color = colorCell.rowView.infoTextField.text,
             let consumingTime = timeCell.rowView.infoTextField.text,
             let other = otherCell.rowView.infoTextField.text else {
 
@@ -888,8 +907,8 @@ class FillinTableViewController: UITableViewController {
                                  "date": date,
                                  "time": time,
                                  "consumingTime": consumingTime,
-                                 "shape": self.didSelectShape,
-                                 "color": self.didSelectColor,
+                                 "shape": shape,
+                                 "color": color,
                                  "amount": Double(self.amountSlider.value),
                                  "other": other,
                                  "grading": self.ispassed,
@@ -911,8 +930,8 @@ class FillinTableViewController: UITableViewController {
                          "date": date,
                          "time": time,
                          "consumingTime": consumingTime,
-                         "shape": self.didSelectShape,
-                         "color": self.didSelectColor,
+                         "shape": shape,
+                         "color": color,
                          "amount": Double(self.amountSlider.value),
                          "other": other,
                          "grading": self.ispassed,
@@ -1009,10 +1028,15 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             }
 
         case shapePicker:
+
             return shapes.count
+
         case colorPicker:
+
             return colors.count
+
         default:
+
             return 0
 
         }
@@ -1042,11 +1066,13 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             timeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
 
             case shapePicker:
-                didSelectShape = row
+
                 shapeCell.rowView.infoTextField.text = String(shapes[row].title)
+
             case colorPicker:
-                didSelectColor = row
+
                 colorCell.rowView.infoTextField.text = String(colors[row].title)
+
             default: break
 
             }
