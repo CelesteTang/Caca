@@ -23,9 +23,9 @@ class StartViewController: UIViewController {
 
     @IBAction func startDirectly(_ sender: UIButton) {
 
-        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
+        UserManager.shared.createAnonymousUser { (createError, storageError) in
 
-            if let error = error {
+            if let error = createError {
 
                 let alertController = UIAlertController(title: "Warning",
                                                         message: error.localizedDescription,
@@ -37,35 +37,26 @@ class StartViewController: UIViewController {
 
                 self.present(alertController, animated: true, completion: nil)
 
-            } else {
+            }
 
-                let isAnonymous = user!.isAnonymous
-                let uid = user!.uid
+            if let error = storageError {
 
-                let userRef = FIRDatabase.database().reference().child("users").child(uid)
+                let alertController = UIAlertController(title: "Warning",
+                                                        message: error.localizedDescription,
+                                                        preferredStyle: .alert)
 
-                let value = ["name": "",
-                             "gender": ""] as [String: Any]
+                alertController.addAction(UIAlertAction(title: "OK",
+                                                        style: .default,
+                                                        handler: nil))
 
-                userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
-
-                    if error != nil {
-
-                        print(error?.localizedDescription ?? "-SignUp---------Update error")
-
-                        return
-                    }
-
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
-                    }
-
-                })
+                self.present(alertController, animated: true, completion: nil)
 
             }
 
-        })
-
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+            }
+        }
     }
 
     @IBAction func goToSignIn(_ sender: UIButton) {

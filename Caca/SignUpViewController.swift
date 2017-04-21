@@ -98,89 +98,89 @@ class SignUpViewController: UIViewController {
         } else {
 
             guard let email = emailField.text, let password = passwordField.text, let name = self.nameField.text else { return }
-            
+
             let gender = self.genderSegmentedControl.selectedSegmentIndex
-            
+
             if isFromStart == true {
-                
+
                 UserManager.shared.createUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
-                    
+
                     if let error = createError {
-                        
+
                         let alertController = UIAlertController(title: "Warning",
                                                                 message: error.localizedDescription,
                                                                 preferredStyle: .alert)
-                        
+
                         alertController.addAction(UIAlertAction(title: "OK",
                                                                 style: .default,
                                                                 handler: nil))
-                        
+
                         self.present(alertController, animated: true, completion: nil)
-                        
+
                     }
-                    
+
                     if let error = storageError {
-                        
+
                         let alertController = UIAlertController(title: "Warning",
                                                                 message: error.localizedDescription,
                                                                 preferredStyle: .alert)
-                        
+
                         alertController.addAction(UIAlertAction(title: "OK",
                                                                 style: .default,
                                                                 handler: nil))
-                        
+
                         self.present(alertController, animated: true, completion: nil)
-                        
+
                     }
-                    
+
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                         appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
-                        
+
                         self.isFromStart = false
                     }
-                    
+
                     UserDefaults.standard.set(name, forKey: "Name")
                     UserDefaults.standard.set(gender, forKey: "Gender")
                 })
-            
+
             } else if isFromProfile == true {
-            
+
                 UserManager.shared.linkUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
-                    
+
                     if let error = createError {
-                        
+
                         let alertController = UIAlertController(title: "Warning",
                                                                 message: error.localizedDescription,
                                                                 preferredStyle: .alert)
-                        
+
                         alertController.addAction(UIAlertAction(title: "OK",
                                                                 style: .default,
                                                                 handler: nil))
-                        
+
                         self.present(alertController, animated: true, completion: nil)
-                        
+
                     }
-                    
+
                     if let error = storageError {
-                        
+
                         let alertController = UIAlertController(title: "Warning",
                                                                 message: error.localizedDescription,
                                                                 preferredStyle: .alert)
-                        
+
                         alertController.addAction(UIAlertAction(title: "OK",
                                                                 style: .default,
                                                                 handler: nil))
-                        
+
                         self.present(alertController, animated: true, completion: nil)
-                        
+
                     }
-                    
+
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                         appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
-                        
+
                         self.isFromProfile = false
                     }
-                    
+
                     UserDefaults.standard.set(name, forKey: "Name")
                     UserDefaults.standard.set(gender, forKey: "Gender")
                 })
