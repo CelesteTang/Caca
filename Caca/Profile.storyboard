@@ -23,51 +23,62 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0go-Lf-FvQ">
-                                <rect key="frame" x="30" y="50" width="314" height="314"/>
+                                <rect key="frame" x="30" y="50" width="315" height="315"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0go-Lf-FvQ" secondAttribute="height" multiplier="1:1" id="9V1-B9-Mh8"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAF-9i-Mh8">
-                                <rect key="frame" x="30" y="394" width="45" height="21"/>
+                                <rect key="frame" x="30" y="395" width="45" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d18-6v-IEe">
-                                <rect key="frame" x="30" y="465" width="57" height="21"/>
+                                <rect key="frame" x="30" y="466" width="57" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kt-q3-fH3">
-                                <rect key="frame" x="30" y="536" width="30" height="21"/>
+                                <rect key="frame" x="30" y="537" width="30" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SPd-gH-53c">
-                                <rect key="frame" x="105" y="390" width="239" height="30"/>
+                                <rect key="frame" x="105" y="391" width="240" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PF6-sH-6hk">
-                                <rect key="frame" x="105" y="461" width="239" height="29"/>
+                                <rect key="frame" x="105" y="462" width="240" height="29"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
                             </segmentedControl>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dnn-jj-xLm">
-                                <rect key="frame" x="105" y="531.5" width="239" height="30"/>
+                                <rect key="frame" x="105" y="532.5" width="240" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7u-2c-tRx">
+                                <rect key="frame" x="100" y="588" width="175" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUp:" destination="IZz-L3-UDN" eventType="touchUpInside" id="dVv-lZ-vqP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="b7u-2c-tRx" firstAttribute="top" secondItem="1kt-q3-fH3" secondAttribute="bottom" constant="30" id="14i-pp-3GK"/>
                             <constraint firstItem="1kt-q3-fH3" firstAttribute="top" secondItem="d18-6v-IEe" secondAttribute="bottom" constant="50" id="4mz-1i-8AQ"/>
                             <constraint firstItem="Dnn-jj-xLm" firstAttribute="leading" secondItem="PF6-sH-6hk" secondAttribute="leading" id="7gX-S6-WZh"/>
                             <constraint firstItem="LAF-9i-Mh8" firstAttribute="leading" secondItem="0go-Lf-FvQ" secondAttribute="leading" id="9Vc-Nt-UGh"/>
@@ -81,6 +92,8 @@
                             <constraint firstItem="Dnn-jj-xLm" firstAttribute="centerY" secondItem="1kt-q3-fH3" secondAttribute="centerY" id="SHy-Da-bdv"/>
                             <constraint firstItem="0go-Lf-FvQ" firstAttribute="top" secondItem="scl-Ga-aLN" secondAttribute="bottom" constant="30" id="ZE9-d2-Q4T"/>
                             <constraint firstItem="0go-Lf-FvQ" firstAttribute="leading" secondItem="Sqc-yO-JwL" secondAttribute="leading" constant="30" id="dW1-VU-CUs"/>
+                            <constraint firstItem="b7u-2c-tRx" firstAttribute="leading" secondItem="Sqc-yO-JwL" secondAttribute="leading" constant="100" id="fLg-fe-QZc"/>
+                            <constraint firstItem="b7u-2c-tRx" firstAttribute="centerX" secondItem="Sqc-yO-JwL" secondAttribute="centerX" id="i47-U7-ADA"/>
                             <constraint firstItem="Dnn-jj-xLm" firstAttribute="trailing" secondItem="PF6-sH-6hk" secondAttribute="trailing" id="jHA-qf-F0U"/>
                             <constraint firstItem="d18-6v-IEe" firstAttribute="top" secondItem="LAF-9i-Mh8" secondAttribute="bottom" constant="50" id="jcN-r7-c5R"/>
                             <constraint firstItem="PF6-sH-6hk" firstAttribute="leading" secondItem="SPd-gH-53c" secondAttribute="leading" id="sCU-BP-Ygr"/>
@@ -93,6 +106,7 @@
                         <outlet property="genderSegmentedControl" destination="PF6-sH-6hk" id="iJX-r8-dME"/>
                         <outlet property="nameTextField" destination="SPd-gH-53c" id="g4E-bH-bgG"/>
                         <outlet property="profileImageView" destination="0go-Lf-FvQ" id="HGW-3c-KeV"/>
+                        <outlet property="signUpButton" destination="b7u-2c-tRx" id="K6d-gR-CT8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ETI-OS-fqj" userLabel="First Responder" sceneMemberID="firstResponder"/>

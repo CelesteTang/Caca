@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class StartViewController: UIViewController {
 
@@ -22,26 +23,67 @@ class StartViewController: UIViewController {
 
     @IBAction func startDirectly(_ sender: UIButton) {
 
-        let alertController = UIAlertController(title: "Just a reminder",
-                                                message: "You could sign up later if you want to backup your info",
-                                                preferredStyle: .alert)
+        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
 
-        let cancelAction = UIAlertAction(title: "Go back", style: .cancel) { _ in
+            if let error = error {
 
-            alertController.dismiss(animated: true, completion: nil)
+                let alertController = UIAlertController(title: "Warning",
+                                                        message: error.localizedDescription,
+                                                        preferredStyle: .alert)
 
-        }
-        alertController.addAction(cancelAction)
+                alertController.addAction(UIAlertAction(title: "OK",
+                                                        style: .default,
+                                                        handler: nil))
 
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                self.present(alertController, animated: true, completion: nil)
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                return
+
+            } else {
+
+                let isAnonymous = user!.isAnonymous
+                let uid = user!.uid
+
+                let userRef = FIRDatabase.database().reference().child("users").child(uid)
+
+                let value = ["name": "",
+                             "gender": ""] as [String: Any]
+
+                userRef.updateChildValues(value, withCompletionBlock: { (error, _) in
+
+                    if error != nil {
+
+                        print(error?.localizedDescription ?? "-SignUp---------Update error")
+
+                        return
+                    }
+
+                    let alertController = UIAlertController(title: "Just a reminder",
+                                                            message: "You could sign up later if you want to backup your info",
+                                                            preferredStyle: .alert)
+
+                    let cancelAction = UIAlertAction(title: "Go back", style: .cancel) { _ in
+
+                        alertController.dismiss(animated: true, completion: nil)
+
+                    }
+                    alertController.addAction(cancelAction)
+
+                    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+
+                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                            appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                        }
+                    }
+                    alertController.addAction(okAction)
+
+                    self.present(alertController, animated: true, completion: nil)
+
+                })
+
             }
-        }
-        alertController.addAction(okAction)
 
-        self.present(alertController, animated: true, completion: nil)
+        })
 
     }
 
@@ -54,8 +96,15 @@ class StartViewController: UIViewController {
 
     @IBAction func goTiSignUp(_ sender: UIButton) {
 
+        let signUpStoryboard = UIStoryboard(name: "Landing", bundle: nil)
+
+        guard let signUpViewController = signUpStoryboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
+
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
+
+            appDelegate.window?.rootViewController = signUpViewController
+
+            signUpViewController.isFromStart = true
         }
     }
 

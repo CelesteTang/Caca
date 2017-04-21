@@ -191,7 +191,7 @@
                                 <rect key="frame" x="16" y="20" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="goBack:" destination="NcG-4j-OtU" eventType="touchUpInside" id="PHJ-Vf-CN6"/>
+                                    <action selector="cancelSignUp:" destination="NcG-4j-OtU" eventType="touchUpInside" id="lhA-9c-M8i"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -211,9 +211,9 @@
                     </view>
                     <connections>
                         <outlet property="appName" destination="tJ4-EE-sRL" id="1sx-6y-047"/>
+                        <outlet property="cancelButton" destination="XgO-EC-Y7V" id="hva-dW-hub"/>
                         <outlet property="emailField" destination="BwG-Ip-RRq" id="nc4-tt-vs9"/>
                         <outlet property="genderSegmentedControl" destination="t7m-CQ-WXH" id="s4l-tv-UY5"/>
-                        <outlet property="goBackButton" destination="XgO-EC-Y7V" id="lP4-Of-2jO"/>
                         <outlet property="logoImageView" destination="Sek-ws-gfk" id="ke3-EV-IGg"/>
                         <outlet property="nameField" destination="L0i-cS-cKl" id="0fv-Hc-8UU"/>
                         <outlet property="passwordField" destination="keq-Me-jsQ" id="fSa-W3-jGz"/>

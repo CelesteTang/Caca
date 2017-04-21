@@ -17,6 +17,10 @@ enum Gender: Int {
 
 class SignUpViewController: UIViewController {
 
+    var isFromProfile = false
+
+    var isFromStart = false
+
     @IBOutlet weak var logoImageView: UIImageView!
 
     @IBOutlet weak var appName: UILabel!
@@ -31,13 +35,26 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var signUpButton: UIButton!
 
-    @IBOutlet weak var goBackButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
 
-    @IBAction func goBack(_ sender: UIButton) {
+    @IBAction func cancelSignUp(_ sender: UIButton) {
 
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+        if isFromStart == true {
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+            }
+
+            isFromStart = false
+
+        } else if isFromProfile == true {
+
+            dismiss(animated: true, completion: nil)
+
+            isFromProfile = false
+
         }
+
     }
 
     @IBAction func signUp(_ sender: UIButton) {
@@ -127,6 +144,8 @@ class SignUpViewController: UIViewController {
 
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                         appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+
+                        self.isFromProfile = false
                     }
                 })
             }
@@ -147,10 +166,10 @@ class SignUpViewController: UIViewController {
 
         self.view.backgroundColor = Palette.backgoundColor
 
-        self.goBackButton.setTitle("", for: .normal)
+        self.cancelButton.setTitle("", for: .normal)
         let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
-        self.goBackButton.setImage(buttonimage, for: .normal)
-        self.goBackButton.tintColor = Palette.textColor
+        self.cancelButton.setImage(buttonimage, for: .normal)
+        self.cancelButton.tintColor = Palette.textColor
 
         self.logoImageView.image = #imageLiteral(resourceName: "poo-icon")
         self.logoImageView.backgroundColor = Palette.backgoundColor
@@ -186,6 +205,7 @@ class SignUpViewController: UIViewController {
         self.signUpButton.backgroundColor = Palette.textColor
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
+
     }
 
 }

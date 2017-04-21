@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController {
 
@@ -17,6 +18,19 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
 
     @IBOutlet weak var ageTextField: UITextField!
+
+    @IBOutlet weak var signUpButton: UIButton!
+
+    @IBAction func signUp(_ sender: UIButton) {
+
+        let signUpStorybard = UIStoryboard(name: "Landing", bundle: nil)
+        guard let signUpViewController = signUpStorybard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
+
+        signUpViewController.isFromProfile = true
+
+        present(signUpViewController, animated: true)
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +62,24 @@ class ProfileViewController: UIViewController {
 
         }
 
+        self.signUpButton.backgroundColor = Palette.textColor
+        self.signUpButton.setTitle("Sign Up", for: .normal)
+        self.signUpButton.layer.cornerRadius = 15
+        let user = FIRAuth.auth()?.currentUser
+        if user?.isAnonymous == true {
+
+            signUpButton.isHidden = false
+
+        } else {
+
+            signUpButton.isHidden = true
+            signUpButton.isEnabled = false
+
+        }
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-
-        tabBarController?.tabBar.isHidden = true
 
     }
 
@@ -74,6 +101,13 @@ class ProfileViewController: UIViewController {
         self.nameTextField.clearsOnBeginEditing = true
         self.nameTextField.keyboardType = .alphabet
         self.nameTextField.returnKeyType = .done
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tabBarController?.tabBar.isHidden = true
 
     }
 
