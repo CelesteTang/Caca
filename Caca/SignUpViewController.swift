@@ -96,7 +96,7 @@ class SignUpViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
 
         } else {
-
+            
             if let email = emailField.text, let password = passwordField.text {
 
                 FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in

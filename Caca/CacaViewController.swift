@@ -116,7 +116,7 @@ class CacaViewController: UIViewController {
 
         self.view.backgroundColor = Palette.lightblue2
 
-        self.mainImageView.backgroundColor = Palette.backgoundColor
+        self.mainImageView.backgroundColor = Palette.lightblue2
 
         self.notificationLabel.textColor = Palette.textColor
         self.notificationLabel.numberOfLines = 0

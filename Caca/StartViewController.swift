@@ -120,7 +120,7 @@ class StartViewController: UIViewController {
 
         self.view.backgroundColor = Palette.lightblue2
         self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
-        self.logoImageView.backgroundColor = Palette.backgoundColor
+        self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
         self.appName.textColor = Palette.textColor
