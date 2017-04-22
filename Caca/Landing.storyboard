@@ -57,9 +57,7 @@
                                             <constraint firstAttribute="height" constant="44" id="pco-xy-ndl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Label">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="signIn:" destination="xI1-68-AVu" eventType="touchUpInside" id="koH-Um-Rz9"/>
                                         </connections>
@@ -172,9 +170,7 @@
                                             <constraint firstAttribute="height" constant="44" id="8Ky-Ys-tum"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Label">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="signUp:" destination="NcG-4j-OtU" eventType="touchUpInside" id="vBM-bH-h1s"/>
                                         </connections>
@@ -258,9 +254,7 @@
                                             <constraint firstAttribute="height" constant="44" id="RG9-6U-mim"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Label">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="startDirectly:" destination="SKG-pd-Eke" eventType="touchUpInside" id="J8t-JV-GbO"/>
                                         </connections>
@@ -272,9 +266,7 @@
                                             <constraint firstAttribute="height" constant="44" id="BQZ-Wk-zWw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Label">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="goToSignIn:" destination="SKG-pd-Eke" eventType="touchUpInside" id="QGB-y1-dtW"/>
                                         </connections>
@@ -286,9 +278,7 @@
                                             <constraint firstAttribute="height" constant="44" id="ozS-jA-oNR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Label">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="goTiSignUp:" destination="SKG-pd-Eke" eventType="touchUpInside" id="Z1W-Xg-ftT"/>
                                         </connections>

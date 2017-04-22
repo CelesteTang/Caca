@@ -119,4 +119,22 @@ class UserManager {
 
         })
     }
+
+    // MARK: Edit user
+
+    func editUser(with uid: String, value: [String: Any]) {
+
+        FIRDatabase.database().reference().child("users").child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
+
+            if error != nil {
+
+                print(error?.localizedDescription ?? "")
+
+                return
+            }
+
+        })
+
+    }
+
 }
