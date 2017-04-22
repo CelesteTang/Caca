@@ -50,30 +50,31 @@ enum Color: Int {
         switch self {
         case .red:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "red")
 
         case .yellow:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "yellow")
+
         case .green:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "green")
 
         case .lightBrown:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "lightBrown")
 
         case .darkBrown:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "darkBrown")
 
         case .gray:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "gray")
 
         case .black:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "black")
         }
 
     }

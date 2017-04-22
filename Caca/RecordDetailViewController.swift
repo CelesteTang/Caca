@@ -22,7 +22,11 @@ class RecordDetailViewController: UIViewController {
 
     @IBOutlet weak var shapeImageView: UIImageView!
 
+    @IBOutlet weak var shapeLabel: UILabel!
+
     @IBOutlet weak var colorImageView: UIImageView!
+
+    @IBOutlet weak var colorLabel: UILabel!
 
     @IBOutlet weak var amountLabel: UILabel!
 
@@ -125,6 +129,8 @@ class RecordDetailViewController: UIViewController {
         self.dateLabel.text = self.recievedCaca[0].date
         self.timeLabel.text = self.recievedCaca[0].time
         self.consumingTimeLabel.text = self.recievedCaca[0].consumingTime
+        self.shapeLabel.text = self.recievedCaca[0].shape
+        self.colorLabel.text = self.recievedCaca[0].color
 //        self.shapeImageView.image = self.recievedCaca[0].shape
 //        self.colorImageView.image = self.recievedCaca[0].color
         self.shapeImageView.image = #imageLiteral(resourceName: "caca-big")

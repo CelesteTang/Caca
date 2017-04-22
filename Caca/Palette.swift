@@ -31,4 +31,19 @@ struct Palette {
     static let lightblue = UIColor(red: 165/255, green: 222/255, blue: 241/255, alpha: 1)
 
     static let lightblue2 = UIColor(red: 204/255, green: 228/255, blue: 233/255, alpha: 1)
+
+    static let red = UIColor(red: 146/255, green: 18/255, blue: 36/255, alpha: 1)
+
+    static let yellow = UIColor(red: 255/255, green: 205/255, blue: 56/255, alpha: 1)
+
+    static let green = UIColor(red: 83/255, green: 90/255, blue: 59/255, alpha: 1)
+
+    static let lightBrown = UIColor(red: 168/255, green: 116/255, blue: 66/255, alpha: 1)
+
+    static let darkBrown = UIColor(red: 71/255, green: 40/255, blue: 12/255, alpha: 1)
+
+    static let gray = UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 1)
+
+    static let black = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+
 }
