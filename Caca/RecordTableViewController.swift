@@ -129,9 +129,7 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         // swiftlint:enable force_cast
 
-        cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-icon")
-        cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
-        cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
+        cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-small")
 
         cell.rowView.separateLineView.backgroundColor = Palette.darkblue
 
@@ -150,7 +148,9 @@ class RecordTableViewController: UITableViewController {
                             DispatchQueue.main.async {
 
                                 cell.rowView.cacaPhotoImageView.image = image
-
+                                cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
+                                cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
+                                
                             }
 
                         } catch {

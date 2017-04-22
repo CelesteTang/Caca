@@ -144,12 +144,12 @@ class FillinTableViewController: UITableViewController {
 
         self.amountSlider.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
         self.amountSlider.isContinuous = true
-        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "poo-icon"), targetRatio: 0.75)
+        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "caca-small"), targetRatio: 1.0)
         self.amountSlider.setThumbImage(thumbIamge, for: .normal)
         self.amountSlider.tintColor = UIColor.white
-        self.amountSlider.minimumValue = 0.5
-        self.amountSlider.maximumValue = 1.0
-        self.amountSlider.value = 0.75
+        self.amountSlider.minimumValue = 0.2
+        self.amountSlider.maximumValue = 2.0
+        self.amountSlider.value = 1.0
         self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
     }
@@ -169,7 +169,7 @@ class FillinTableViewController: UITableViewController {
     func changeThumbImageSize() {
 
         let ratio: CGFloat = CGFloat(self.amountSlider.value)
-        let thumbImage: UIImage = #imageLiteral(resourceName: "poo-icon")
+        let thumbImage: UIImage = #imageLiteral(resourceName: "caca-small")
 
         let newImage = self.resizeImage(image: thumbImage, targetRatio: ratio)
 
@@ -177,11 +177,11 @@ class FillinTableViewController: UITableViewController {
 
         if let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell {
 
-            if self.amountSlider.value > 0.91 {
+            if self.amountSlider.value > 1.4 {
 
                 amountCell.rowView.infoTextField.text = "L"
 
-            } else if self.amountSlider.value < 0.66 {
+            } else if self.amountSlider.value < 0.8 {
 
                 amountCell.rowView.infoTextField.text = "S"
 
@@ -255,11 +255,13 @@ class FillinTableViewController: UITableViewController {
 
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell else { return }
 
-        photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
-        photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
+        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
+        
+            photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
+            photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
+            
+        }
 
-        photoCell.rowView.cacaPictureImageView.layer.cornerRadius = photoCell.rowView.cacaPictureImageView.frame.width / 2
-        photoCell.rowView.cacaPictureImageView.layer.masksToBounds = true
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -785,7 +787,7 @@ class FillinTableViewController: UITableViewController {
         let photoID = UUID().uuidString
         let overallAdvice = getAdvice()
 
-        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") {
+        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
 
             CacaProvider.shared.saveCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
 
@@ -875,7 +877,7 @@ class FillinTableViewController: UITableViewController {
         let photoID = recievedCacaFromRecordDetail[0].photoID
         let overallAdvice = getAdvice()
 
-        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") && recievedCacaFromRecordDetail[0].photoID != "" {
+        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
 
             CacaProvider.shared.editCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
 
@@ -914,7 +916,7 @@ class FillinTableViewController: UITableViewController {
 
             })
 
-        } else if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") && recievedCacaFromRecordDetail[0].photoID == "" {
+        } else if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID == "" {
 
             CacaProvider.shared.saveCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
 
@@ -946,7 +948,7 @@ class FillinTableViewController: UITableViewController {
 
             })
 
-        } else if photoCell.rowView.cacaPhotoImageView.image == #imageLiteral(resourceName: "poo-icon") {
+        } else if photoCell.rowView.cacaPhotoImageView.image == #imageLiteral(resourceName: "caca-big") {
 
             let value = ["host": hostUID,
                          "cacaID": cacaID,
