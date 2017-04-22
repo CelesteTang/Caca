@@ -114,9 +114,9 @@ class RecordDetailViewController: UIViewController {
 
         self.navigationItem.title = "My caca"
 
-        self.cacaPhoto.backgroundColor = Palette.backgoundColor
-        self.shapeImageView.backgroundColor = Palette.backgoundColor
-        self.colorImageView.backgroundColor = Palette.backgoundColor
+        self.cacaPhoto.backgroundColor = Palette.lightblue2
+        self.shapeImageView.backgroundColor = Palette.lightblue2
+        self.colorImageView.backgroundColor = Palette.lightblue2
 
         self.cacaPhoto.image = #imageLiteral(resourceName: "caca-big")
 

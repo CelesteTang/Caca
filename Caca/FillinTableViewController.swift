@@ -148,6 +148,9 @@ class FillinTableViewController: UITableViewController {
         self.amountSlider.setThumbImage(thumbIamge, for: .normal)
         self.amountSlider.minimumValue = 0.05
         self.amountSlider.maximumValue = 0.15
+        self.amountSlider.maximumValueImage = #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysTemplate)
+        self.amountSlider.minimumValueImage = #imageLiteral(resourceName: "minus").withRenderingMode(.alwaysTemplate)
+        self.amountSlider.tintColor = Palette.darkblue
         self.amountSlider.value = 0.1
         self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
