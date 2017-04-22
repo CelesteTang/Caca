@@ -11,13 +11,13 @@ import UIKit
 class OpeningViewController: UIViewController {
 
     @IBOutlet weak var boy: UIImageView!
-    
+
     @IBOutlet weak var girl: UIImageView!
-    
+
     @IBOutlet weak var toilet: UIImageView!
-    
+
     @IBOutlet weak var cacaLogo: UIImageView!
-    
+
     @IBOutlet weak var goBackButton: UIButton!
 
     @IBOutlet weak var openingLabel: UILabel!
@@ -28,10 +28,20 @@ class OpeningViewController: UIViewController {
 
     @IBOutlet weak var forwardButton: UIButton!
 
+    @IBOutlet weak var startButton: UIButton!
+
     @IBAction func goBack(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+        }
+
+    }
+
+    @IBAction func start(_ sender: UIButton) {
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
         }
 
     }
@@ -43,11 +53,6 @@ class OpeningViewController: UIViewController {
         case 0...1:
             guard let pageViewController = parent as? OpeningPageViewController else { return }
             pageViewController.forward(index: index)
-
-        case 2:
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-            }
 
         default: break
 
@@ -73,6 +78,11 @@ class OpeningViewController: UIViewController {
         self.goBackButton.setImage(buttonimage, for: .normal)
         self.goBackButton.tintColor = Palette.darkblue
 
+        self.startButton.setTitle("Start", for: .normal)
+        self.startButton.tintColor = Palette.lightblue2
+        self.startButton.backgroundColor = Palette.darkblue
+        self.startButton.layer.cornerRadius = 22
+
         self.pageControl.currentPage = index
 
         switch index {
@@ -85,6 +95,8 @@ class OpeningViewController: UIViewController {
             self.girl.isHidden = false
             self.toilet.isHidden = true
             self.cacaLogo.isHidden = true
+            self.startButton.isHidden = true
+            self.startButton.isEnabled = false
 
         case 1:
 
@@ -94,6 +106,8 @@ class OpeningViewController: UIViewController {
             self.girl.isHidden = true
             self.toilet.isHidden = false
             self.cacaLogo.isHidden = true
+            self.startButton.isHidden = true
+            self.startButton.isEnabled = false
 
         case 2:
 
@@ -103,6 +117,10 @@ class OpeningViewController: UIViewController {
             self.girl.isHidden = true
             self.toilet.isHidden = true
             self.cacaLogo.isHidden = false
+            self.startButton.isHidden = false
+            self.startButton.isEnabled = true
+            self.forwardButton.isHidden = true
+            self.forwardButton.isEnabled = false
 
         default: break
 
