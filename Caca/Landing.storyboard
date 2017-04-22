@@ -71,7 +71,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dw-UN-8dT">
-                                <rect key="frame" x="16" y="20" width="46" height="30"/>
+                                <rect key="frame" x="16" y="28" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="goBack:" destination="xI1-68-AVu" eventType="touchUpInside" id="ErW-pU-OA6"/>
@@ -87,7 +87,7 @@
                             <constraint firstItem="aPk-MC-jdc" firstAttribute="leading" secondItem="bmI-Ij-63N" secondAttribute="leading" constant="90" id="UJI-zK-yUM"/>
                             <constraint firstItem="qO9-fS-Q3R" firstAttribute="centerX" secondItem="bmI-Ij-63N" secondAttribute="centerX" id="apQ-KL-zzj"/>
                             <constraint firstItem="AjH-xe-Enc" firstAttribute="top" secondItem="QY3-Jj-cFa" secondAttribute="bottom" constant="40" id="kGE-cm-vSm"/>
-                            <constraint firstItem="2dw-UN-8dT" firstAttribute="top" secondItem="Moe-cJ-1jg" secondAttribute="bottom" id="p7K-7h-rIR"/>
+                            <constraint firstItem="2dw-UN-8dT" firstAttribute="top" secondItem="Moe-cJ-1jg" secondAttribute="bottom" constant="8" id="p7K-7h-rIR"/>
                             <constraint firstItem="aPk-MC-jdc" firstAttribute="top" secondItem="Moe-cJ-1jg" secondAttribute="bottom" constant="55" id="wZh-50-8wV"/>
                             <constraint firstItem="qO9-fS-Q3R" firstAttribute="top" secondItem="aPk-MC-jdc" secondAttribute="bottom" id="wgo-uo-p3o"/>
                         </constraints>
@@ -184,7 +184,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgO-EC-Y7V">
-                                <rect key="frame" x="16" y="20" width="46" height="30"/>
+                                <rect key="frame" x="16" y="28" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="cancelSignUp:" destination="NcG-4j-OtU" eventType="touchUpInside" id="lhA-9c-M8i"/>
@@ -195,7 +195,7 @@
                         <constraints>
                             <constraint firstItem="tJ4-EE-sRL" firstAttribute="top" secondItem="Sek-ws-gfk" secondAttribute="bottom" id="0AL-5s-C0v"/>
                             <constraint firstItem="tJ4-EE-sRL" firstAttribute="centerX" secondItem="XbP-4j-lgY" secondAttribute="centerX" id="9XZ-eY-is9"/>
-                            <constraint firstItem="XgO-EC-Y7V" firstAttribute="top" secondItem="QWt-YF-YiT" secondAttribute="bottom" id="A78-M9-jxD"/>
+                            <constraint firstItem="XgO-EC-Y7V" firstAttribute="top" secondItem="QWt-YF-YiT" secondAttribute="bottom" constant="8" id="A78-M9-jxD"/>
                             <constraint firstItem="XgO-EC-Y7V" firstAttribute="leading" secondItem="XbP-4j-lgY" secondAttribute="leadingMargin" id="AGb-re-wDB"/>
                             <constraint firstItem="mgr-ZW-eQA" firstAttribute="leading" secondItem="XbP-4j-lgY" secondAttribute="leading" constant="50" id="GF5-rA-0Ft"/>
                             <constraint firstItem="Sek-ws-gfk" firstAttribute="centerX" secondItem="XbP-4j-lgY" secondAttribute="centerX" id="GRd-2x-fkl"/>

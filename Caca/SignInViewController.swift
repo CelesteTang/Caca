@@ -99,7 +99,7 @@ class SignInViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.goBackButton.setTitle("", for: .normal)
-        let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
+        let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
         self.goBackButton.setImage(buttonimage, for: .normal)
         self.goBackButton.tintColor = Palette.darkblue
 

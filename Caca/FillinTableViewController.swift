@@ -279,6 +279,16 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoTableViewCell", for: indexPath) as! PhotoTableViewCell
             // swiftlint:enable force_cast
 
+            cell.rowView.cancelButton.setTitle("", for: .normal)
+            let buttonImage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
+            cell.rowView.cancelButton.setImage(buttonImage, for: .normal)
+            cell.rowView.cancelButton.tintColor = Palette.darkblue
+            
+            cell.rowView.addPhotoButton.setTitle("", for: .normal)
+            let photoButtonImage = #imageLiteral(resourceName: "camera").withRenderingMode(.alwaysTemplate)
+            cell.rowView.addPhotoButton.setImage(photoButtonImage, for: .normal)
+            cell.rowView.addPhotoButton.tintColor = Palette.darkblue
+            
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qp1-dO-63S">
-                                <rect key="frame" x="30" y="55" width="315" height="107.5"/>
+                                <rect key="frame" x="30" y="64" width="315" height="107.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -57,6 +58,24 @@
                                     <action selector="goBack:" destination="amJ-I7-a1x" eventType="touchUpInside" id="E2w-EJ-OtU"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boy" translatesAutoresizingMaskIntoConstraints="NO" id="RDi-7A-DTW">
+                                <rect key="frame" x="-49" y="280" width="300" height="300"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl" translatesAutoresizingMaskIntoConstraints="NO" id="rEq-pS-yrA">
+                                <rect key="frame" x="124" y="280" width="300" height="300"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toilet" translatesAutoresizingMaskIntoConstraints="NO" id="z5i-Fi-Hvu">
+                                <rect key="frame" x="37.5" y="280" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="z5i-Fi-Hvu" secondAttribute="height" multiplier="1:1" id="0na-Vd-hzs"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caca-big" translatesAutoresizingMaskIntoConstraints="NO" id="7X3-Pi-Ew4">
+                                <rect key="frame" x="37.5" y="280" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7X3-Pi-Ew4" secondAttribute="height" multiplier="1:1" id="Vxv-jz-0hE"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="SeH-pP-0c1" firstAttribute="centerX" secondItem="zhS-ys-Oxk" secondAttribute="centerX" id="10c-X5-UoI"/>
@@ -65,23 +84,41 @@
                             <constraint firstItem="lOf-B7-6iN" firstAttribute="leading" secondItem="zhS-ys-Oxk" secondAttribute="leading" id="2aI-eR-gFy"/>
                             <constraint firstItem="MTL-Qn-PqA" firstAttribute="top" secondItem="gRT-2V-u1G" secondAttribute="bottom" constant="20" id="5XG-25-PVC"/>
                             <constraint firstItem="qp1-dO-63S" firstAttribute="centerX" secondItem="zhS-ys-Oxk" secondAttribute="centerX" id="9GK-6t-H6E"/>
+                            <constraint firstItem="rEq-pS-yrA" firstAttribute="width" secondItem="lOf-B7-6iN" secondAttribute="height" multiplier="300:667" id="AFC-eH-2JB"/>
+                            <constraint firstItem="z5i-Fi-Hvu" firstAttribute="centerX" secondItem="zhS-ys-Oxk" secondAttribute="centerX" id="B6J-ek-Sxs"/>
                             <constraint firstItem="qp1-dO-63S" firstAttribute="leading" secondItem="zhS-ys-Oxk" secondAttribute="leading" constant="30" id="Cal-gU-rLt"/>
+                            <constraint firstItem="SeH-pP-0c1" firstAttribute="top" secondItem="rEq-pS-yrA" secondAttribute="bottom" constant="30" id="Hor-bJ-IvM"/>
                             <constraint firstItem="FiE-BX-nhX" firstAttribute="leading" secondItem="zhS-ys-Oxk" secondAttribute="leadingMargin" id="KgJ-NS-exS"/>
+                            <constraint firstItem="SeH-pP-0c1" firstAttribute="top" secondItem="z5i-Fi-Hvu" secondAttribute="bottom" constant="30" id="LSt-9P-aBh"/>
                             <constraint firstItem="FiE-BX-nhX" firstAttribute="top" secondItem="eh6-8I-aAm" secondAttribute="bottom" id="QIK-57-SeB"/>
-                            <constraint firstItem="qp1-dO-63S" firstAttribute="top" secondItem="eh6-8I-aAm" secondAttribute="bottom" constant="35" id="RFF-WI-czP"/>
+                            <constraint firstItem="qp1-dO-63S" firstAttribute="top" secondItem="eh6-8I-aAm" secondAttribute="bottom" constant="44" id="RFF-WI-czP"/>
+                            <constraint firstItem="RDi-7A-DTW" firstAttribute="width" secondItem="RDi-7A-DTW" secondAttribute="height" multiplier="1:1" id="WFj-oN-fwx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rEq-pS-yrA" secondAttribute="trailing" constant="-65" id="XKA-0Q-WwG"/>
                             <constraint firstItem="SeH-pP-0c1" firstAttribute="centerY" secondItem="gRT-2V-u1G" secondAttribute="centerY" id="YnA-Di-mYt"/>
+                            <constraint firstItem="z5i-Fi-Hvu" firstAttribute="width" secondItem="lOf-B7-6iN" secondAttribute="height" multiplier="300:667" id="ZJ6-au-KoP"/>
+                            <constraint firstItem="7X3-Pi-Ew4" firstAttribute="centerX" secondItem="zhS-ys-Oxk" secondAttribute="centerX" id="ZV2-5D-J5e"/>
+                            <constraint firstItem="SeH-pP-0c1" firstAttribute="top" secondItem="7X3-Pi-Ew4" secondAttribute="bottom" constant="30" id="ZWn-AS-gno"/>
+                            <constraint firstItem="rEq-pS-yrA" firstAttribute="bottom" secondItem="RDi-7A-DTW" secondAttribute="bottom" id="eC3-GB-vJt"/>
+                            <constraint firstItem="rEq-pS-yrA" firstAttribute="width" secondItem="rEq-pS-yrA" secondAttribute="height" multiplier="1:1" id="gK0-8s-4T1"/>
+                            <constraint firstItem="rEq-pS-yrA" firstAttribute="top" secondItem="RDi-7A-DTW" secondAttribute="top" id="ghW-D7-f2R"/>
                             <constraint firstItem="gRT-2V-u1G" firstAttribute="trailing" secondItem="zhS-ys-Oxk" secondAttribute="trailingMargin" id="mEb-hD-Fn3"/>
                             <constraint firstItem="lOf-B7-6iN" firstAttribute="bottom" secondItem="MTL-Qn-PqA" secondAttribute="top" id="qgS-h7-eJq"/>
                             <constraint firstAttribute="trailing" secondItem="lOf-B7-6iN" secondAttribute="trailing" id="s91-Ng-lOk"/>
+                            <constraint firstItem="7X3-Pi-Ew4" firstAttribute="width" secondItem="lOf-B7-6iN" secondAttribute="height" multiplier="300:667" id="tji-vQ-9vc"/>
+                            <constraint firstItem="RDi-7A-DTW" firstAttribute="leading" secondItem="zhS-ys-Oxk" secondAttribute="leadingMargin" constant="-65" id="wd9-Wn-Mdz"/>
                             <constraint firstAttribute="trailing" secondItem="qp1-dO-63S" secondAttribute="trailing" constant="30" id="zw4-Jd-XOM"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="boy" destination="RDi-7A-DTW" id="kRN-rT-tJt"/>
+                        <outlet property="cacaLogo" destination="7X3-Pi-Ew4" id="3Sg-Ho-82W"/>
                         <outlet property="forwardButton" destination="gRT-2V-u1G" id="TZu-B4-du9"/>
+                        <outlet property="girl" destination="rEq-pS-yrA" id="O9x-ng-qiq"/>
                         <outlet property="goBackButton" destination="FiE-BX-nhX" id="WXo-jn-qTC"/>
                         <outlet property="openingImage" destination="lOf-B7-6iN" id="Bow-4P-e9Z"/>
                         <outlet property="openingLabel" destination="qp1-dO-63S" id="45K-Gu-PSE"/>
                         <outlet property="pageControl" destination="SeH-pP-0c1" id="YG3-W2-jbn"/>
+                        <outlet property="toilet" destination="z5i-Fi-Hvu" id="qnV-zx-vyl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyJ-Oz-2Qk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -89,4 +126,10 @@
             <point key="canvasLocation" x="989.60000000000002" y="-201.04947526236884"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="boy" width="1000" height="1000"/>
+        <image name="caca-big" width="1000" height="1000"/>
+        <image name="girl" width="1000" height="1000"/>
+        <image name="toilet" width="1000" height="1000"/>
+    </resources>
 </document>

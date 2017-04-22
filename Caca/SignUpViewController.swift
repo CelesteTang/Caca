@@ -196,7 +196,7 @@ class SignUpViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.cancelButton.setTitle("", for: .normal)
-        let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
+        let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
         self.cancelButton.setImage(buttonimage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
 
@@ -251,20 +251,6 @@ extension SignUpViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        
-//        if textField == self.emailField {
-//            
-//            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//            
-//        } else if textField == self.passwordField {
-//            
-//            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//            
-//        } else if textField == self.nameField {
-//        
-//            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//
-//        }
         
         return true
     }

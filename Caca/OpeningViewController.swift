@@ -10,6 +10,14 @@ import UIKit
 
 class OpeningViewController: UIViewController {
 
+    @IBOutlet weak var boy: UIImageView!
+    
+    @IBOutlet weak var girl: UIImageView!
+    
+    @IBOutlet weak var toilet: UIImageView!
+    
+    @IBOutlet weak var cacaLogo: UIImageView!
+    
     @IBOutlet weak var goBackButton: UIButton!
 
     @IBOutlet weak var openingLabel: UILabel!
@@ -60,8 +68,10 @@ class OpeningViewController: UIViewController {
         self.openingLabel.text = heading
         self.openingImage.image = UIImage(named: imageFile)
 
-        self.goBackButton.setImage(#imageLiteral(resourceName: "GoBack"), for: .normal)
         self.goBackButton.setTitle("", for: .normal)
+        let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
+        self.goBackButton.setImage(buttonimage, for: .normal)
+        self.goBackButton.tintColor = Palette.darkblue
 
         self.pageControl.currentPage = index
 
@@ -71,16 +81,28 @@ class OpeningViewController: UIViewController {
 
             self.forwardButton.setTitle("Next", for: .normal)
             self.goBackButton.isHidden = false
+            self.boy.isHidden = false
+            self.girl.isHidden = false
+            self.toilet.isHidden = true
+            self.cacaLogo.isHidden = true
 
         case 1:
 
             self.forwardButton.setTitle("Next", for: .normal)
             self.goBackButton.isHidden = true
+            self.boy.isHidden = true
+            self.girl.isHidden = true
+            self.toilet.isHidden = false
+            self.cacaLogo.isHidden = true
 
         case 2:
 
             self.forwardButton.setTitle("Done", for: .normal)
             self.goBackButton.isHidden = true
+            self.boy.isHidden = true
+            self.girl.isHidden = true
+            self.toilet.isHidden = true
+            self.cacaLogo.isHidden = false
 
         default: break
 

@@ -139,7 +139,12 @@ class TimingViewController: UIViewController {
         self.pauseButton.setTitle("Pause", for: UIControlState.normal)
         self.resetButton.setTitle("Reset", for: UIControlState.normal)
         self.finishButton.setTitle("Finish", for: UIControlState.normal)
-        self.cancelButton.setTitle("Cancel", for: .normal)
+        
+        self.cancelButton.setTitle("", for: .normal)
+        let buttonimage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
+        self.cancelButton.setImage(buttonimage, for: .normal)
+        self.cancelButton.tintColor = Palette.darkblue
+        self.cancelButton.backgroundColor = Palette.lightblue2
 
         self.pauseButton.isEnabled = false
         self.resetButton.isEnabled = false
