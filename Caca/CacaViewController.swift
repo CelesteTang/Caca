@@ -128,7 +128,7 @@ class CacaViewController: UIViewController {
 
         self.startButton.backgroundColor = Palette.darkblue
         self.startButton.tintColor = Palette.lightblue2
-        self.startButton.layer.cornerRadius = 15
+        self.startButton.layer.cornerRadius = 22
         self.startButton.setTitle("Start", for: UIControlState.normal)
 
     }
