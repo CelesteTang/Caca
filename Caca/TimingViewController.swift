@@ -129,7 +129,7 @@ class TimingViewController: UIViewController {
 
         self.view.backgroundColor = Palette.lightblue2
 
-        self.backgroundImageView.image = #imageLiteral(resourceName: "toilet2")
+        self.backgroundImageView.image = #imageLiteral(resourceName: "toilet-7+")
 
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
         self.timerLabel.textColor = Palette.darkblue

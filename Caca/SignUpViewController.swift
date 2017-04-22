@@ -200,7 +200,7 @@ class SignUpViewController: UIViewController {
         self.cancelButton.setImage(buttonimage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
 
-        self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
+        self.logoImageView.image = #imageLiteral(resourceName: "caca-big")
         self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
