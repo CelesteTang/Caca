@@ -99,11 +99,11 @@ class SignInViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.goBackButton.setTitle("", for: .normal)
-        let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
+        let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
         self.goBackButton.setImage(buttonimage, for: .normal)
         self.goBackButton.tintColor = Palette.darkblue
 
-        self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
+        self.logoImageView.image = #imageLiteral(resourceName: "caca-big")
         self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
@@ -127,6 +127,7 @@ class SignInViewController: UIViewController {
         self.signInButton.backgroundColor = Palette.darkblue
         self.signInButton.setTitle("Sign In", for: .normal)
         self.signInButton.layer.cornerRadius = 15
+        self.signInButton.tintColor = Palette.lightblue2
     }
 }
 
@@ -137,4 +138,28 @@ extension SignInViewController: UITextFieldDelegate {
 
         return true
     }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+
+        self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
+//        if textField == self.emailField {
+//            
+//            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+//            
+//        } else if textField == self.passwordField {
+//        
+//            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+//
+//        }
+
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+
+        self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
+    }
+
 }

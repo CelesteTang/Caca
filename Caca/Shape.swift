@@ -51,32 +51,31 @@ enum Shape: Int {
         switch self {
         case .separateHard:
 
-            return #imageLiteral(resourceName: "poo-icon")
-            //            return UIImage(named: "")!.withRenderingMode(.alwaysTemplate)
+            return #imageLiteral(resourceName: "separateHard")
 
         case .lumpySausage:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "lumpySausage")
 
         case .crackSausage:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "crackSausage")
 
         case .smoothSausage:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "smoothSausage")
 
         case .softBlob:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "softBlob")
 
         case .mushyStool:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "mushyStool")
 
         case .wateryStool:
 
-            return #imageLiteral(resourceName: "poo-icon")
+            return #imageLiteral(resourceName: "wateryStool")
         }
 
     }

@@ -317,12 +317,12 @@ class FillinViewController: UIViewController {
 
     private func setUp() {
 
-        self.view.backgroundColor = Palette.backgoundColor
+        self.view.backgroundColor = Palette.lightblue2
 
         self.cancelButton.setTitle("Cancel", for: .normal)
 
         self.cacaPhoto.image = #imageLiteral(resourceName: "poo-icon")
-        self.cacaPhoto.backgroundColor = Palette.backgoundColor
+        self.cacaPhoto.backgroundColor = Palette.lightblue2
 
         self.photoButton.setTitle("Take photo", for: .normal)
 

@@ -17,10 +17,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaG-4W-Snk">
-                    <rect key="frame" x="20" y="0.0" width="335" height="69"/>
+                    <rect key="frame" x="20" y="0.0" width="335" height="62"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8T-Wr-LzK">
-                            <rect key="frame" x="8" y="0.0" width="319" height="61"/>
+                            <rect key="frame" x="8" y="0.0" width="319" height="54"/>
                             <color key="backgroundColor" red="0.80000000000000004" green="0.89411764709999997" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                     </subviews>
@@ -33,8 +33,12 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYB-Co-3c8">
-                    <rect key="frame" x="100" y="50" width="174" height="30"/>
+                    <rect key="frame" x="100" y="36" width="174" height="44"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="JgN-jG-8yw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="Button"/>
                     <connections>
                         <action selector="didSend:" destination="Yyy-vC-jMy" eventType="touchUpInside" id="IDX-Qx-nj2"/>

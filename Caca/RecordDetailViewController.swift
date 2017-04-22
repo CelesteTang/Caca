@@ -22,7 +22,11 @@ class RecordDetailViewController: UIViewController {
 
     @IBOutlet weak var shapeImageView: UIImageView!
 
+    @IBOutlet weak var shapeLabel: UILabel!
+
     @IBOutlet weak var colorImageView: UIImageView!
+
+    @IBOutlet weak var colorLabel: UILabel!
 
     @IBOutlet weak var amountLabel: UILabel!
 
@@ -79,7 +83,8 @@ class RecordDetailViewController: UIViewController {
                         DispatchQueue.main.async {
 
                             self.cacaPhoto.image = image
-
+                            self.cacaPhoto.layer.cornerRadius = self.cacaPhoto.frame.width / 2
+                            self.cacaPhoto.layer.masksToBounds = true
                         }
 
                     } catch {
@@ -113,23 +118,23 @@ class RecordDetailViewController: UIViewController {
 
         self.navigationItem.title = "My caca"
 
-        self.cacaPhoto.backgroundColor = Palette.backgoundColor
-        self.shapeImageView.backgroundColor = Palette.backgoundColor
-        self.colorImageView.backgroundColor = Palette.backgoundColor
+        self.cacaPhoto.backgroundColor = Palette.lightblue2
+        self.shapeImageView.backgroundColor = Palette.lightblue2
+        self.colorImageView.backgroundColor = Palette.lightblue2
 
-        self.cacaPhoto.image = #imageLiteral(resourceName: "caca-icon")
-        self.cacaPhoto.layer.cornerRadius = self.cacaPhoto.frame.width / 2
-        self.cacaPhoto.layer.masksToBounds = true
+        self.cacaPhoto.image = #imageLiteral(resourceName: "caca-big")
 
         self.deleteRecordButton.setTitle("Delete", for: .normal)
 
         self.dateLabel.text = self.recievedCaca[0].date
         self.timeLabel.text = self.recievedCaca[0].time
         self.consumingTimeLabel.text = self.recievedCaca[0].consumingTime
+        self.shapeLabel.text = self.recievedCaca[0].shape
+        self.colorLabel.text = self.recievedCaca[0].color
 //        self.shapeImageView.image = self.recievedCaca[0].shape
 //        self.colorImageView.image = self.recievedCaca[0].color
-        self.shapeImageView.image = #imageLiteral(resourceName: "caca-icon")
-        self.colorImageView.image = #imageLiteral(resourceName: "caca-icon")
+        self.shapeImageView.image = #imageLiteral(resourceName: "caca-big")
+        self.colorImageView.image = #imageLiteral(resourceName: "caca-big")
         self.amountLabel.text = String(self.recievedCaca[0].amount)
         self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
         self.amountLabel.text = self.recievedCaca[0].amount

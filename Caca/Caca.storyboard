@@ -23,9 +23,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWj-8c-Qgc">
-                                <rect key="frame" x="100" y="503" width="120" height="30"/>
+                                <rect key="frame" x="100" y="489" width="120" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="xjm-Kz-azw"/>
+                                    <constraint firstAttribute="height" constant="44" id="5SA-Ng-qgo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Button"/>
@@ -34,7 +34,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Q9t-sW-KCt">
-                                <rect key="frame" x="20" y="390" width="280" height="93"/>
+                                <rect key="frame" x="20" y="390" width="280" height="79"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

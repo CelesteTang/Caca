@@ -75,6 +75,7 @@ class ProfileViewController: UIViewController {
         self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
+        self.signUpButton.tintColor = Palette.lightblue2
         let user = FIRAuth.auth()?.currentUser
         if user?.isAnonymous == true {
 
@@ -124,6 +125,14 @@ class ProfileViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         tabBarController?.tabBar.isHidden = false
+
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+        let value = ["name": nameTextField.text,
+                     "gender": genderSegmentedControl.selectedSegmentIndex,
+                     "age": ageTextField.text] as [String: Any]
+
+        UserManager.shared.editUser(with: uid, value: value)
+
         UserDefaults.standard.set(nameTextField.text, forKey: "Name")
         UserDefaults.standard.set(genderSegmentedControl.selectedSegmentIndex, forKey: "Gender")
         UserDefaults.standard.set(ageTextField.text, forKey: "Age")

@@ -196,11 +196,11 @@ class SignUpViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.cancelButton.setTitle("", for: .normal)
-        let buttonimage = #imageLiteral(resourceName: "GoBack").withRenderingMode(.alwaysTemplate)
+        let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
         self.cancelButton.setImage(buttonimage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
 
-        self.logoImageView.image = #imageLiteral(resourceName: "caca-icon")
+        self.logoImageView.image = #imageLiteral(resourceName: "caca-big")
         self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
@@ -234,6 +234,7 @@ class SignUpViewController: UIViewController {
         self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
+        self.signUpButton.tintColor = Palette.lightblue2
 
     }
 
@@ -245,5 +246,18 @@ extension SignUpViewController: UITextFieldDelegate {
         self.view.endEditing(true)
 
         return true
+    }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+
+        self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+
+        self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
     }
 }

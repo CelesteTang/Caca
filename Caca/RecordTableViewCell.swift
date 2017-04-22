@@ -47,7 +47,7 @@ class RecordTableViewCell: UITableViewCell {
 
         self.rowView.backgroundColor = Palette.lightblue2
 
-        self.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue2
+//        self.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue2
 
         self.rowView.dateLabel.textColor = Palette.darkblue
         self.rowView.timeLabel.textColor = Palette.darkblue

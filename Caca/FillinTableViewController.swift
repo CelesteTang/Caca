@@ -144,12 +144,14 @@ class FillinTableViewController: UITableViewController {
 
         self.amountSlider.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
         self.amountSlider.isContinuous = true
-        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "poo-icon"), targetRatio: 0.75)
+        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "caca-big"), targetRatio: 0.1)
         self.amountSlider.setThumbImage(thumbIamge, for: .normal)
-        self.amountSlider.tintColor = UIColor.white
-        self.amountSlider.minimumValue = 0.5
-        self.amountSlider.maximumValue = 1.0
-        self.amountSlider.value = 0.75
+        self.amountSlider.minimumValue = 0.05
+        self.amountSlider.maximumValue = 0.15
+        self.amountSlider.maximumValueImage = #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysTemplate)
+        self.amountSlider.minimumValueImage = #imageLiteral(resourceName: "minus").withRenderingMode(.alwaysTemplate)
+        self.amountSlider.tintColor = Palette.darkblue
+        self.amountSlider.value = 0.1
         self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
     }
@@ -168,28 +170,32 @@ class FillinTableViewController: UITableViewController {
 
     func changeThumbImageSize() {
 
-        let ratio: CGFloat = CGFloat(self.amountSlider.value)
-        let thumbImage: UIImage = #imageLiteral(resourceName: "poo-icon")
-
-        let newImage = self.resizeImage(image: thumbImage, targetRatio: ratio)
-
-        self.amountSlider.setThumbImage(newImage, for: .normal)
+        let thumbImage: UIImage = #imageLiteral(resourceName: "caca-big")
 
         if let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell {
 
-            if self.amountSlider.value > 0.91 {
+            switch self.amountSlider.value {
+            case 0.11...0.15:
 
-                amountCell.rowView.infoTextField.text = "L"
+                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.15)
+                amountCell.rowView.infoTextField.text = "Large"
+                self.amountSlider.setThumbImage(newImage, for: .normal)
 
-            } else if self.amountSlider.value < 0.66 {
+            case 0.08..<0.11:
 
-                amountCell.rowView.infoTextField.text = "S"
+                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.10)
+                amountCell.rowView.infoTextField.text = "Normal"
+                self.amountSlider.setThumbImage(newImage, for: .normal)
 
-            } else {
+            case 0.05..<0.08:
 
-                amountCell.rowView.infoTextField.text = "M"
+                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.05)
+                amountCell.rowView.infoTextField.text = "Small"
+                self.amountSlider.setThumbImage(newImage, for: .normal)
 
+            default: break
             }
+
         }
 
     }
@@ -255,11 +261,13 @@ class FillinTableViewController: UITableViewController {
 
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell else { return }
 
-        photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
-        photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
+        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
 
-        photoCell.rowView.cacaPictureImageView.layer.cornerRadius = photoCell.rowView.cacaPictureImageView.frame.width / 2
-        photoCell.rowView.cacaPictureImageView.layer.masksToBounds = true
+            photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
+            photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
+
+        }
+
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -274,10 +282,20 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoTableViewCell", for: indexPath) as! PhotoTableViewCell
             // swiftlint:enable force_cast
 
+            cell.rowView.cancelButton.setTitle("", for: .normal)
+            let buttonImage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
+            cell.rowView.cancelButton.setImage(buttonImage, for: .normal)
+            cell.rowView.cancelButton.tintColor = Palette.darkblue
+
+            cell.rowView.addPhotoButton.setTitle("", for: .normal)
+            let photoButtonImage = #imageLiteral(resourceName: "camera").withRenderingMode(.alwaysTemplate)
+            cell.rowView.addPhotoButton.setImage(photoButtonImage, for: .normal)
+            cell.rowView.addPhotoButton.tintColor = Palette.darkblue
+
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
-            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-icon")
+            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-big")
 
             if isFromRecordDetail == true {
 
@@ -785,7 +803,7 @@ class FillinTableViewController: UITableViewController {
         let photoID = UUID().uuidString
         let overallAdvice = getAdvice()
 
-        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") {
+        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
 
             CacaProvider.shared.saveCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
 
@@ -875,7 +893,7 @@ class FillinTableViewController: UITableViewController {
         let photoID = recievedCacaFromRecordDetail[0].photoID
         let overallAdvice = getAdvice()
 
-        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") && recievedCacaFromRecordDetail[0].photoID != "" {
+        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
 
             CacaProvider.shared.editCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
 
@@ -914,7 +932,7 @@ class FillinTableViewController: UITableViewController {
 
             })
 
-        } else if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "poo-icon") && recievedCacaFromRecordDetail[0].photoID == "" {
+        } else if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID == "" {
 
             CacaProvider.shared.saveCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
 
@@ -946,7 +964,7 @@ class FillinTableViewController: UITableViewController {
 
             })
 
-        } else if photoCell.rowView.cacaPhotoImageView.image == #imageLiteral(resourceName: "poo-icon") {
+        } else if photoCell.rowView.cacaPhotoImageView.image == #imageLiteral(resourceName: "caca-big") {
 
             let value = ["host": hostUID,
                          "cacaID": cacaID,
@@ -986,7 +1004,7 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
             guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else { return }
 
-            cell.rowView.cacaPictureImageView.backgroundColor = dominantColor.makeUIColor()
+            cell.rowView.detectionColorImageView.backgroundColor = dominantColor.makeUIColor()
 
         } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
@@ -994,7 +1012,7 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
             guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else { return }
 
-            cell.rowView.cacaPictureImageView.backgroundColor = dominantColor.makeUIColor()
+            cell.rowView.detectionColorImageView.backgroundColor = dominantColor.makeUIColor()
 
         }
 
