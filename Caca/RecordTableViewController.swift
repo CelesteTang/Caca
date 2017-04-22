@@ -150,7 +150,7 @@ class RecordTableViewController: UITableViewController {
                                 cell.rowView.cacaPhotoImageView.image = image
                                 cell.rowView.cacaPhotoImageView.layer.cornerRadius = cell.rowView.cacaPhotoImageView.frame.width / 2
                                 cell.rowView.cacaPhotoImageView.layer.masksToBounds = true
-                                
+
                             }
 
                         } catch {
