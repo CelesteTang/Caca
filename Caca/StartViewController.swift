@@ -108,14 +108,17 @@ class StartViewController: UIViewController {
         self.startButton.backgroundColor = Palette.darkblue
         self.startButton.setTitle("Start Now", for: .normal)
         self.startButton.layer.cornerRadius = 15
+        self.startButton.tintColor = Palette.lightblue2
 
         self.signInButton.backgroundColor = Palette.darkblue
         self.signInButton.setTitle("Sign In", for: .normal)
         self.signInButton.layer.cornerRadius = 15
+        self.signInButton.tintColor = Palette.lightblue2
 
         self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
+        self.signUpButton.tintColor = Palette.lightblue2
     }
 
 }

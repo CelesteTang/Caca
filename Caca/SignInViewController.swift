@@ -127,6 +127,7 @@ class SignInViewController: UIViewController {
         self.signInButton.backgroundColor = Palette.darkblue
         self.signInButton.setTitle("Sign In", for: .normal)
         self.signInButton.layer.cornerRadius = 15
+        self.signInButton.tintColor = Palette.lightblue2
     }
 }
 

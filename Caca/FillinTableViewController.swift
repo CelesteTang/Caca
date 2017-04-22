@@ -146,7 +146,6 @@ class FillinTableViewController: UITableViewController {
         self.amountSlider.isContinuous = true
         let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "caca-big"), targetRatio: 0.1)
         self.amountSlider.setThumbImage(thumbIamge, for: .normal)
-        self.amountSlider.tintColor = UIColor.white
         self.amountSlider.minimumValue = 0.05
         self.amountSlider.maximumValue = 0.15
         self.amountSlider.value = 0.1
@@ -992,7 +991,7 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
             guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else { return }
 
-            cell.rowView.cacaPictureImageView.backgroundColor = dominantColor.makeUIColor()
+            cell.rowView.detectionColorImageView.backgroundColor = dominantColor.makeUIColor()
 
         } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
@@ -1000,7 +999,7 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
             guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else { return }
 
-            cell.rowView.cacaPictureImageView.backgroundColor = dominantColor.makeUIColor()
+            cell.rowView.detectionColorImageView.backgroundColor = dominantColor.makeUIColor()
 
         }
 

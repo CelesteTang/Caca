@@ -78,8 +78,8 @@
                 <outlet property="addPhotoButton" destination="aQ6-XI-dyW" id="3QD-dv-TKi"/>
                 <outlet property="borderView" destination="3SM-tO-eKi" id="kaz-d3-SD7"/>
                 <outlet property="cacaPhotoImageView" destination="jg0-A9-rRv" id="Q4j-9g-C9Z"/>
-                <outlet property="cacaPictureImageView" destination="3kv-OJ-Iad" id="nu0-nB-cTL"/>
                 <outlet property="cancelButton" destination="Rpc-lK-PTc" id="rp4-cs-Kbq"/>
+                <outlet property="detectionColorImageView" destination="3kv-OJ-Iad" id="1Rl-0T-xHJ"/>
             </connections>
             <point key="canvasLocation" x="38.5" y="-314"/>
         </view>

@@ -79,7 +79,8 @@ class RecordDetailViewController: UIViewController {
                         DispatchQueue.main.async {
 
                             self.cacaPhoto.image = image
-
+                            self.cacaPhoto.layer.cornerRadius = self.cacaPhoto.frame.width / 2
+                            self.cacaPhoto.layer.masksToBounds = true
                         }
 
                     } catch {
@@ -118,8 +119,6 @@ class RecordDetailViewController: UIViewController {
         self.colorImageView.backgroundColor = Palette.backgoundColor
 
         self.cacaPhoto.image = #imageLiteral(resourceName: "caca-big")
-        self.cacaPhoto.layer.cornerRadius = self.cacaPhoto.frame.width / 2
-        self.cacaPhoto.layer.masksToBounds = true
 
         self.deleteRecordButton.setTitle("Delete", for: .normal)
 

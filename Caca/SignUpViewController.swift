@@ -234,6 +234,7 @@ class SignUpViewController: UIViewController {
         self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
+        self.signUpButton.tintColor = Palette.lightblue2
 
     }
 
