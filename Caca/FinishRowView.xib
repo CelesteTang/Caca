@@ -38,6 +38,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="JgN-jG-8yw"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="Button"/>
                     <connections>
                         <action selector="didSend:" destination="Yyy-vC-jMy" eventType="touchUpInside" id="IDX-Qx-nj2"/>
