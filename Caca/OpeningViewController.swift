@@ -85,7 +85,6 @@ class OpeningViewController: UIViewController {
         self.startButton.layer.cornerRadius = 22
         self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
-
         self.pageControl.currentPage = index
 
         switch index {

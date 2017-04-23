@@ -140,19 +140,19 @@ class TimingViewController: UIViewController {
         self.startButton.tintColor = Palette.orange
         self.startButton.backgroundColor = Palette.lightWhite
         self.startButton.layer.cornerRadius = 10
-        
+
         self.pauseButton.setTitle(" Pause ", for: UIControlState.normal)
         self.pauseButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
         self.pauseButton.tintColor = Palette.orange
         self.pauseButton.backgroundColor = Palette.lightWhite
         self.pauseButton.layer.cornerRadius = 10
-        
+
         self.resetButton.setTitle(" Reset ", for: UIControlState.normal)
         self.resetButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
         self.resetButton.tintColor = Palette.orange
         self.resetButton.backgroundColor = Palette.lightWhite
         self.resetButton.layer.cornerRadius = 10
-        
+
         self.finishButton.setTitle(" Finish ", for: UIControlState.normal)
         self.finishButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
         self.finishButton.tintColor = Palette.orange

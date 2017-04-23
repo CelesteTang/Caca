@@ -77,7 +77,7 @@ class CalendarViewController: UIViewController {
         self.headerTitleLabel.textColor = Palette.lightblue2
         self.headerTitleLabel.font = UIFont(name: "Futura-Bold", size: 20)
         self.adviceView.backgroundColor = Palette.lightblue2
-        
+
         self.adviceLabel.textColor = Palette.darkblue
         self.adviceLabel.text = "How's today?"
         self.adviceLabel.numberOfLines = 0

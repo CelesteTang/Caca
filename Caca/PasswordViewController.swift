@@ -22,13 +22,13 @@ class PasswordViewController: UIViewController {
     @IBOutlet weak var passwordLabel: UILabel!
 
     @IBOutlet weak var password1: UIImageView!
-    
+
     @IBOutlet weak var password2: UIImageView!
-    
+
     @IBOutlet weak var password3: UIImageView!
-    
+
     @IBOutlet weak var password4: UIImageView!
-    
+
     @IBOutlet weak var numberCollectionView: UICollectionView!
 
     @IBAction func cancel(_ sender: UIButton) {
@@ -145,7 +145,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
         // swiftlint:enable force_cast
 
         cell.itemView.numberLabel.text = numbers[indexPath.item]
-        
+
 //        let backgroundView = UIView()
 //        backgroundView.backgroundColor = Palette.darkblue
 //        cell.selectedBackgroundView = backgroundView
@@ -154,13 +154,13 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
         switch indexPath.item {
 
         case 0...8, 10:
 
             userPassword.append(numbers[indexPath.item])
-            
+
         case 9:
 
             userPassword.removeAll()
@@ -168,15 +168,15 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
         case 11:
 
             if userPassword.count > 0 {
-                
+
                 userPassword.removeLast()
-                
+
             }
 
         default: break
 
         }
-        
+
         print(userPassword)
     }
 

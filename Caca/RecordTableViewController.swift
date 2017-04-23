@@ -47,6 +47,7 @@ class RecordTableViewController: UITableViewController {
 
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
+        backItem.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20)], for: .normal)
         self.navigationItem.backBarButtonItem = backItem
 
         self.tableView.separatorStyle = .none
@@ -64,6 +65,7 @@ class RecordTableViewController: UITableViewController {
         let coverButton = UIBarButtonItem(title: coverButtonTitle, style: .plain, target: self, action: #selector(coverCaca))
         self.navigationItem.leftBarButtonItem = coverButton
 
+//        let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysTemplate), style: .bordered, target: self, action: #selector(addCaca))
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCaca))
         self.navigationItem.rightBarButtonItem = addButton
 

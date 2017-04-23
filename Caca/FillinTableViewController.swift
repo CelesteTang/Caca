@@ -252,9 +252,9 @@ class FillinTableViewController: UITableViewController {
         case .date, .time, .shape, .color, .amount, .other:
 
             return 80.0
-            
+
         case .finish:
-            
+
             return 100.0
 
         }
