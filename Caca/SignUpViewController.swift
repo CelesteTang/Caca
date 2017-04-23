@@ -169,7 +169,7 @@ class SignUpViewController: UIViewController {
                         self.present(alertController, animated: true, completion: nil)
 
                     } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                        appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
 
                         UserDefaults.standard.set(name, forKey: "Name")
                         UserDefaults.standard.set(gender, forKey: "Gender")
@@ -196,7 +196,7 @@ class SignUpViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.cancelButton.setTitle("", for: .normal)
-        let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
+        let buttonimage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
         self.cancelButton.setImage(buttonimage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
 
@@ -204,8 +204,8 @@ class SignUpViewController: UIViewController {
         self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
-        self.appName.textColor = Palette.darkblue
-        self.appName.font = UIFont(name: "Courier-Bold", size: 60)
+        self.appName.textColor = Palette.darkblue2
+        self.appName.font = UIFont(name: "Futura-Bold", size: 60)
 
         self.emailField.delegate = self
         self.emailField.clearButtonMode = .never
@@ -229,12 +229,14 @@ class SignUpViewController: UIViewController {
 
         self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
-        self.genderSegmentedControl.tintColor = Palette.darkblue
+        self.genderSegmentedControl.tintColor = Palette.darkblue2
+        self.genderSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
 
-        self.signUpButton.backgroundColor = Palette.darkblue
+        self.signUpButton.backgroundColor = Palette.darkblue2
         self.signUpButton.setTitle("Sign Up", for: .normal)
-        self.signUpButton.layer.cornerRadius = 15
-        self.signUpButton.tintColor = Palette.lightblue2
+        self.signUpButton.layer.cornerRadius = 22
+        self.signUpButton.tintColor = Palette.cream
+        self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
     }
 

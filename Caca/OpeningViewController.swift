@@ -72,6 +72,7 @@ class OpeningViewController: UIViewController {
 
         self.openingLabel.text = heading
         self.openingImage.image = UIImage(named: imageFile)
+        self.openingLabel.font = UIFont(name: "Futura-Bold", size: 30)
 
         self.goBackButton.setTitle("", for: .normal)
         let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
@@ -79,9 +80,10 @@ class OpeningViewController: UIViewController {
         self.goBackButton.tintColor = Palette.darkblue
 
         self.startButton.setTitle("Start", for: .normal)
-        self.startButton.tintColor = Palette.lightblue2
-        self.startButton.backgroundColor = Palette.darkblue
+        self.startButton.tintColor = Palette.cream
+        self.startButton.backgroundColor = Palette.darkblue2
         self.startButton.layer.cornerRadius = 22
+        self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
         self.pageControl.currentPage = index
 
@@ -90,6 +92,7 @@ class OpeningViewController: UIViewController {
         case 0:
 
             self.forwardButton.setTitle("Next", for: .normal)
+            self.forwardButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
             self.goBackButton.isHidden = false
             self.boy.isHidden = false
             self.girl.isHidden = false
@@ -101,6 +104,7 @@ class OpeningViewController: UIViewController {
         case 1:
 
             self.forwardButton.setTitle("Next", for: .normal)
+            self.forwardButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
             self.goBackButton.isHidden = true
             self.boy.isHidden = true
             self.girl.isHidden = true
@@ -112,6 +116,7 @@ class OpeningViewController: UIViewController {
         case 2:
 
             self.forwardButton.setTitle("Done", for: .normal)
+            self.forwardButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
             self.goBackButton.isHidden = true
             self.boy.isHidden = true
             self.girl.isHidden = true

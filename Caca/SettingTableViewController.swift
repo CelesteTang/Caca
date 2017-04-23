@@ -28,13 +28,20 @@ class SettingTableViewController: UITableViewController {
 
     }
 
-    private let settings: [Setting] = [.profile, .privacy, .notification, .language]
+    private let settings: [Setting] = [.profile, .privacy]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "Setting"
         self.view.backgroundColor = Palette.lightblue2
+
+        self.navigationItem.title = "Setting"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        backItem.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+        self.navigationItem.backBarButtonItem = backItem
 
         self.tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "SettingTableViewCell")
     }
@@ -61,6 +68,12 @@ class SettingTableViewController: UITableViewController {
 
         cell.rowView.iconImageView.image = #imageLiteral(resourceName: "caca-big")
         cell.rowView.titleLabel.text = settings[indexPath.row].title
+        cell.rowView.titleLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Palette.lightblue
+        cell.selectedBackgroundView = backgroundView
+        cell.selectionStyle = .default
 
         return cell
     }

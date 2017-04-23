@@ -23,19 +23,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lSR-Rs-sfD">
-                                <rect key="frame" x="115.5" y="249" width="144.5" height="169"/>
+                                <rect key="frame" x="137.5" y="263.5" width="101.5" height="140"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caca-small" translatesAutoresizingMaskIntoConstraints="NO" id="Uiq-Mt-02T">
-                                        <rect key="frame" x="21.5" y="0.0" width="101.5" height="101"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="101.5" height="101"/>
                                         <color key="backgroundColor" red="0.80000000000000004" green="0.89411764709999997" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Uiq-Mt-02T" secondAttribute="height" id="Bm4-Gb-RHD"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caca" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAw-l9-kxR">
-                                        <rect key="frame" x="0.0" y="101" width="144.5" height="68"/>
-                                        <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="60"/>
-                                        <color key="textColor" red="0.21176470588235294" green="0.31372549019607843" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="12.5" y="101" width="77" height="39"/>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="30"/>
+                                        <color key="textColor" red="0.1392130852" green="0.1909630299" blue="0.25745588539999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

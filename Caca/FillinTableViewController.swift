@@ -249,7 +249,11 @@ class FillinTableViewController: UITableViewController {
 
             return 200.0
 
-        case .date, .time, .shape, .color, .amount, .other, .finish:
+        case .date, .time, .shape, .color, .amount, .other:
+
+            return 80.0
+
+        case .finish:
 
             return 100.0
 
@@ -266,6 +270,8 @@ class FillinTableViewController: UITableViewController {
             photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
             photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
 
+            photoCell.rowView.detectionColorImageView.layer.cornerRadius = photoCell.rowView.detectionColorImageView.frame.width / 2
+            photoCell.rowView.detectionColorImageView.layer.masksToBounds = true
         }
 
     }
@@ -296,7 +302,8 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
             cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-big")
-
+            cell.rowView.detectionColorImageView.backgroundColor = UIColor.clear
+            
             if isFromRecordDetail == true {
 
                 if self.recievedCacaFromRecordDetail[0].photo != "" {
@@ -1141,7 +1148,8 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             default: break
             }
 
-//            pickerLabel.font = UIFont(name: "Arial-BoldMT", size: 80)
+            pickerLabel.font = UIFont(name: "Futura-Bold", size: 20)
+
             pickerLabel.textAlignment = NSTextAlignment.center
 
             return pickerLabel

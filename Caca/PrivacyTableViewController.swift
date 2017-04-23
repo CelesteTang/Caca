@@ -17,32 +17,30 @@ class PrivacyTableViewController: UITableViewController {
 
         setUp()
 
-        if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
-
-            authentications = [.password, .passwordChanging, .touchID]
-
-        } else {
-
-            authentications = [.password]
-
-        }
-
-        self.tableView.register(PrivacyTableViewCell.self, forCellReuseIdentifier: "PrivacyTableViewCell")
-
-        self.tableView.allowsSelection = true
-
-        tabBarController?.tabBar.isHidden = true
-
     }
 
     // MARK: Set Up
 
     private func setUp() {
 
-        self.navigationItem.title = "Privacy"
-
         self.tableView.backgroundColor = Palette.lightblue2
 
+        self.navigationItem.title = "Privacy"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+        
+        if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
+            
+            authentications = [.password, .passwordChanging, .touchID]
+            
+        } else {
+            
+            authentications = [.password]
+            
+        }
+        
+        self.tableView.register(PrivacyTableViewCell.self, forCellReuseIdentifier: "PrivacyTableViewCell")
+        self.tableView.allowsSelection = true
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,11 +91,17 @@ class PrivacyTableViewController: UITableViewController {
         case Authentication.password.rawValue:
 
             cell.selectionStyle = .none
-            switchButton.isOn = UserDefaults.standard.bool(forKey: "PasswordAuthentication")
+            if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
+                
+                switchButton.isOn = true
+                
+            } else {
+                
+                switchButton.isOn = false
+                
+            }
+            
             switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
-
-        case Authentication.passwordChanging.rawValue:
-            break
 
         case Authentication.touchID.rawValue:
 
@@ -119,10 +123,10 @@ class PrivacyTableViewController: UITableViewController {
         switch indexPath.row {
         case Authentication.passwordChanging.rawValue:
 
-            UserDefaults.standard.removeObject(forKey: "Password")
-
             let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
-            let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController")
+            guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+
+            passwordViewController.isFromPasswordChanging = true
 
             present(passwordViewController, animated: true)
 
@@ -135,11 +139,12 @@ class PrivacyTableViewController: UITableViewController {
 
         if sender.isOn == true {
 
-            UserDefaults.standard.removeObject(forKey: "Password")
             UserDefaults.standard.set(true, forKey: "PasswordAuthentication")
 
             let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
-            let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController")
+            guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+
+            passwordViewController.isFromPassword = true
 
             present(passwordViewController, animated: true)
 
@@ -147,7 +152,7 @@ class PrivacyTableViewController: UITableViewController {
 
             UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
 
-            tableView.reloadData()
+            self.tableView.reloadData()
 
         } else {
 
@@ -156,6 +161,7 @@ class PrivacyTableViewController: UITableViewController {
             UserDefaults.standard.removeObject(forKey: "Password")
 
             authentications = [.password]
+            
             self.tableView.reloadData()
 
         }

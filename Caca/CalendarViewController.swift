@@ -68,15 +68,20 @@ class CalendarViewController: UIViewController {
 
     private func setUp() {
 
-        self.navigationItem.title = "Calendar"
         self.view.backgroundColor = Palette.lightblue2
+
+        self.navigationItem.title = "Calendar"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20)]
 
         self.headerView.backgroundColor = Palette.darkblue
         self.headerTitleLabel.textColor = Palette.lightblue2
+        self.headerTitleLabel.font = UIFont(name: "Futura-Bold", size: 20)
         self.adviceView.backgroundColor = Palette.lightblue2
+
         self.adviceLabel.textColor = Palette.darkblue
         self.adviceLabel.text = "How's today?"
         self.adviceLabel.numberOfLines = 0
+        self.adviceLabel.font = UIFont(name: "Futura-Bold", size: 20)
 
     }
 
@@ -117,6 +122,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
         calendarCell.backgroundColor = Palette.lightblue2
         calendarCell.dayLabel.text = cellState.text
+        calendarCell.dayLabel.font = UIFont(name: "Futura-Bold", size: 20)
         calendarCell.bottomLine.backgroundColor = Palette.darkblue
         calendarCell.didCacaView.isHidden = true
         calendarCell.selectedView.isHidden = true

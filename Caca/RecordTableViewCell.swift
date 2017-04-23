@@ -51,6 +51,9 @@ class RecordTableViewCell: UITableViewCell {
 
         self.rowView.dateLabel.textColor = Palette.darkblue
         self.rowView.timeLabel.textColor = Palette.darkblue
+        self.rowView.dateLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        self.rowView.timeLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        self.rowView.passOrFailLabel.font = UIFont(name: "Futura-Bold", size: 30)
 
     }
 

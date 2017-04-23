@@ -21,9 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let PasswordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController {
 
-                appDelegate.window?.rootViewController = PasswordViewController
+                passwordViewController.isFromBeginning = true
+
+                appDelegate.window?.rootViewController = passwordViewController
                 appDelegate.window?.makeKeyAndVisible()
 
             }

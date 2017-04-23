@@ -117,19 +117,23 @@ class CacaViewController: UIViewController {
     private func setUp() {
 
         self.navigationItem.title = Time.dateString()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
 
         self.view.backgroundColor = Palette.lightblue2
 
         self.mainImageView.backgroundColor = Palette.lightblue2
+        self.mainImageView.image = #imageLiteral(resourceName: "boy")
 
         self.notificationLabel.textColor = Palette.darkblue
         self.notificationLabel.numberOfLines = 0
         self.notificationLabel.text = "How's today?"
+        self.notificationLabel.font = UIFont(name: "Futura-Bold", size: 25)
 
-        self.startButton.backgroundColor = Palette.darkblue
-        self.startButton.tintColor = Palette.lightblue2
+        self.startButton.backgroundColor = Palette.darkblue2
+        self.startButton.tintColor = Palette.cream
         self.startButton.layer.cornerRadius = 22
         self.startButton.setTitle("Start", for: UIControlState.normal)
+        self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
     }
 
