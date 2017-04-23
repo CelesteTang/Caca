@@ -12,29 +12,32 @@ import LocalAuthentication
 class PasswordViewController: UIViewController {
 
     var isFromPrivacy = false
-    
-    var isFromBeginning = false
-    
-    @IBOutlet weak var cancelButton: UIButton!
-    
-    @IBOutlet weak var passwordLabel: UILabel!
 
-    @IBOutlet weak var passwordField: UITextField!
+    var isFromBeginning = false
+
+    var userPassword = [String]()
+
+    @IBOutlet weak var cancelButton: UIButton!
+
+    @IBOutlet weak var passwordLabel: UILabel!
 
     @IBOutlet weak var numberCollectionView: UICollectionView!
 
     @IBAction func cancel(_ sender: UIButton) {
-        
-        if isFromPrivacy == true {
-            
-            dismiss(animated: true, completion: nil)
-        
-            isFromPrivacy = false
-            
-        }
+
+//        if isFromPrivacy == true {
+//
+//            dismiss(animated: true, completion: nil)
+//
+//            isFromPrivacy = false
+//
+//        }
+
+        dismiss(animated: true, completion: nil)
+
     }
-    
-    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Cancel", "0", "Delete"]
+
+    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Clean", "0", "Delete"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,30 +65,30 @@ class PasswordViewController: UIViewController {
 
         self.view.backgroundColor = Palette.lightblue2
         self.passwordLabel.text = "Please enter your password"
+//
+//        self.passwordField.delegate = self
+//        self.passwordField.clearButtonMode = .never
+//        self.passwordField.placeholder = "Password"
+//        self.passwordField.textAlignment = .center
+//        self.passwordField.clearsOnBeginEditing = true
+//        self.passwordField.isSecureTextEntry = true
+//        self.passwordField.returnKeyType = .done
 
-        self.passwordField.delegate = self
-        self.passwordField.clearButtonMode = .never
-        self.passwordField.placeholder = "Password"
-        self.passwordField.textAlignment = .center
-        self.passwordField.clearsOnBeginEditing = true
-        self.passwordField.isSecureTextEntry = true
-        self.passwordField.returnKeyType = .done
-        
         self.cancelButton.setTitle("", for: .normal)
         let buttonImage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
         self.cancelButton.setImage(buttonImage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
-        
+
         if isFromPrivacy == true {
-        
+
             self.cancelButton.isHidden = false
             self.cancelButton.isEnabled = true
-            
+
         } else if isFromBeginning == true {
-        
+
             self.cancelButton.isHidden = true
             self.cancelButton.isEnabled = false
-            
+
         }
 
     }
@@ -134,49 +137,72 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
         return cell
     }
 
-}
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-extension PasswordViewController: UITextFieldDelegate {
+        switch indexPath.item {
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        case 0...8, 10:
 
-        if UserDefaults.standard.string(forKey: "Password") == nil {
+            userPassword.append(numbers[indexPath.item])
 
-            UserDefaults.standard.set(passwordField.text, forKey: "Password")
+        case 9:
 
-            dismiss(animated: true, completion: nil)
+            userPassword.removeAll()
 
-        } else {
+        case 11:
 
-            if passwordField.text == UserDefaults.standard.value(forKey: "Password") as? String {
+            userPassword.removeLast()
 
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+        default: break
 
-                }
-
-            } else {
-
-                let alertController = UIAlertController(
-                    title: "Warning",
-                    message: "The password is incorrect. Try again.",
-                    preferredStyle: .alert)
-
-                let okAction = UIAlertAction(
-                    title: "OK",
-                    style: .default,
-                    handler: nil)
-
-                alertController.addAction(okAction)
-
-                self.present(
-                    alertController,
-                    animated: true,
-                    completion: nil)
-            }
         }
 
-        return true
+        print(userPassword)
     }
+
 }
+
+//extension PasswordViewController: UITextFieldDelegate {
+//
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        self.view.endEditing(true)
+//
+//        if UserDefaults.standard.string(forKey: "Password") == nil {
+//
+//            UserDefaults.standard.set(passwordField.text, forKey: "Password")
+//
+//            dismiss(animated: true, completion: nil)
+//
+//        } else {
+//
+//            if passwordField.text == UserDefaults.standard.value(forKey: "Password") as? String {
+//
+//                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+//                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+//
+//                }
+//
+//            } else {
+//
+//                let alertController = UIAlertController(
+//                    title: "Warning",
+//                    message: "The password is incorrect. Try again.",
+//                    preferredStyle: .alert)
+//
+//                let okAction = UIAlertAction(
+//                    title: "OK",
+//                    style: .default,
+//                    handler: nil)
+//
+//                alertController.addAction(okAction)
+//
+//                self.present(
+//                    alertController,
+//                    animated: true,
+//                    completion: nil)
+//            }
+//        }
+//
+//        return true
+//    }
+//}

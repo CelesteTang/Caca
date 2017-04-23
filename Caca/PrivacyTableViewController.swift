@@ -124,7 +124,7 @@ class PrivacyTableViewController: UITableViewController {
 
             let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
             guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
-            
+
             passwordViewController.isFromPrivacy = true
 
             present(passwordViewController, animated: true)

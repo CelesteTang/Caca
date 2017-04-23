@@ -44,7 +44,7 @@ class CacaNavigationController: UINavigationController {
         viewControllers = [ CacaViewController.create() ]
         self.tabBarItem = TabBarItemType.caca.item
         UINavigationBar.appearance().tintColor = Palette.darkblue
-        
+
     }
 
 }
