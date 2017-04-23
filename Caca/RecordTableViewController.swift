@@ -43,11 +43,11 @@ class RecordTableViewController: UITableViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "Record"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
 
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
-        backItem.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20)], for: .normal)
+        backItem.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
         self.navigationItem.backBarButtonItem = backItem
 
         self.tableView.separatorStyle = .none

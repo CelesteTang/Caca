@@ -72,24 +72,13 @@ class PasswordViewController: UIViewController {
 
         self.view.backgroundColor = Palette.lightblue2
         self.passwordLabel.text = "Please enter your password"
-//
-//        self.passwordField.delegate = self
-//        self.passwordField.clearButtonMode = .never
-//        self.passwordField.placeholder = "Password"
-//        self.passwordField.textAlignment = .center
-//        self.passwordField.clearsOnBeginEditing = true
-//        self.passwordField.isSecureTextEntry = true
-//        self.passwordField.returnKeyType = .done
+        self.passwordLabel.textColor = Palette.darkblue
+        self.passwordLabel.font = UIFont(name: "Futura-Bold", size: 20)
 
         self.cancelButton.setTitle("", for: .normal)
         let buttonImage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
         self.cancelButton.setImage(buttonImage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
-
-//        self.password1.isHidden = true
-//        self.password2.isHidden = true
-//        self.password3.isHidden = true
-//        self.password4.isHidden = true
 
         if isFromPrivacy == true {
 
@@ -103,11 +92,13 @@ class PasswordViewController: UIViewController {
 
         }
 
+        UserDefaults.standard.set(["1", "2", "3", "4"], forKey: "Password")
+
     }
 
     func touchIDAuthentication() {
 
-        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
+//        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
 
             let context = LAContext()
 
@@ -127,7 +118,7 @@ class PasswordViewController: UIViewController {
                     }
                 })
             }
-        }
+//        }
     }
 }
 
@@ -145,6 +136,8 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
         // swiftlint:enable force_cast
 
         cell.itemView.numberLabel.text = numbers[indexPath.item]
+        cell.itemView.numberLabel.textColor = Palette.darkblue
+        cell.itemView.numberLabel.font = UIFont(name: "Futura-Bold", size: 20)
 
 //        let backgroundView = UIView()
 //        backgroundView.backgroundColor = Palette.darkblue
@@ -177,52 +170,44 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
         }
 
+        if userPassword.count == 4 {
+
+            if UserDefaults.standard.value(forKey: "Password") == nil {
+
+                UserDefaults.standard.set(userPassword, forKey: "Password")
+
+                dismiss(animated: true, completion: nil)
+
+            } else if let storedPassword = UserDefaults.standard.value(forKey: "Password") as? [String], userPassword == storedPassword {
+
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+                }
+
+            } else {
+
+                let alertController = UIAlertController(
+                    title: "Warning",
+                    message: "The password is incorrect. Try again.",
+                    preferredStyle: .alert)
+
+                let okAction = UIAlertAction(
+                    title: "OK",
+                    style: .default,
+                    handler: nil)
+
+                alertController.addAction(okAction)
+
+                self.present(
+                    alertController,
+                    animated: true,
+                    completion: nil)
+            }
+
+        }
+
         print(userPassword)
     }
 
 }
-
-//extension PasswordViewController: UITextFieldDelegate {
-//
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        self.view.endEditing(true)
-//
-//        if UserDefaults.standard.string(forKey: "Password") == nil {
-//
-//            UserDefaults.standard.set(passwordField.text, forKey: "Password")
-//
-//            dismiss(animated: true, completion: nil)
-//
-//        } else {
-//
-//            if passwordField.text == UserDefaults.standard.value(forKey: "Password") as? String {
-//
-//                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-//                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-//
-//                }
-//
-//            } else {
-//
-//                let alertController = UIAlertController(
-//                    title: "Warning",
-//                    message: "The password is incorrect. Try again.",
-//                    preferredStyle: .alert)
-//
-//                let okAction = UIAlertAction(
-//                    title: "OK",
-//                    style: .default,
-//                    handler: nil)
-//
-//                alertController.addAction(okAction)
-//
-//                self.present(
-//                    alertController,
-//                    animated: true,
-//                    completion: nil)
-//            }
-//        }
-//
-//        return true
-//    }
-//}
