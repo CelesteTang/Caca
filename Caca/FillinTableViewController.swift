@@ -270,6 +270,8 @@ class FillinTableViewController: UITableViewController {
             photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
             photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
 
+            photoCell.rowView.detectionColorImageView.layer.cornerRadius = photoCell.rowView.detectionColorImageView.frame.width / 2
+            photoCell.rowView.detectionColorImageView.layer.masksToBounds = true
         }
 
     }
@@ -300,7 +302,8 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
             cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-big")
-
+            cell.rowView.detectionColorImageView.backgroundColor = UIColor.clear
+            
             if isFromRecordDetail == true {
 
                 if self.recievedCacaFromRecordDetail[0].photo != "" {
