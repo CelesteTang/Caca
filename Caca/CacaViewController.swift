@@ -129,10 +129,11 @@ class CacaViewController: UIViewController {
         self.notificationLabel.text = "How's today?"
         self.notificationLabel.font = UIFont(name: "Futura-Bold", size: 25)
 
-        self.startButton.backgroundColor = Palette.darkblue
-        self.startButton.tintColor = Palette.lightblue2
+        self.startButton.backgroundColor = Palette.darkblue2
+        self.startButton.tintColor = Palette.cream
         self.startButton.layer.cornerRadius = 22
         self.startButton.setTitle("Start", for: UIControlState.normal)
+        self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
     }
 

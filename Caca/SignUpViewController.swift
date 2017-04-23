@@ -204,7 +204,7 @@ class SignUpViewController: UIViewController {
         self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
-        self.appName.textColor = Palette.darkblue
+        self.appName.textColor = Palette.darkblue2
         self.appName.font = UIFont(name: "Futura-Bold", size: 60)
 
         self.emailField.delegate = self
@@ -229,12 +229,13 @@ class SignUpViewController: UIViewController {
 
         self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
-        self.genderSegmentedControl.tintColor = Palette.darkblue
+        self.genderSegmentedControl.tintColor = Palette.darkblue2
 
-        self.signUpButton.backgroundColor = Palette.darkblue
+        self.signUpButton.backgroundColor = Palette.darkblue2
         self.signUpButton.setTitle("Sign Up", for: .normal)
-        self.signUpButton.layer.cornerRadius = 15
+        self.signUpButton.layer.cornerRadius = 22
         self.signUpButton.tintColor = Palette.cream
+        self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
     }
 

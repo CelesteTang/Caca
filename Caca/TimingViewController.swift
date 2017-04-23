@@ -129,16 +129,35 @@ class TimingViewController: UIViewController {
 
         self.view.backgroundColor = Palette.lightblue2
 
-        self.backgroundImageView.image = #imageLiteral(resourceName: "toilet-26")
+        self.backgroundImageView.image = #imageLiteral(resourceName: "toilet-7+")
 
         self.timerLabel.font = UIFont(name: "Courier New", size: 35)
         self.timerLabel.textColor = Palette.darkblue
         self.timerLabel.text = "00:00:00"
 
-        self.startButton.setTitle("Start", for: UIControlState.normal)
-        self.pauseButton.setTitle("Pause", for: UIControlState.normal)
-        self.resetButton.setTitle("Reset", for: UIControlState.normal)
-        self.finishButton.setTitle("Finish", for: UIControlState.normal)
+        self.startButton.setTitle(" Start ", for: UIControlState.normal)
+        self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.startButton.tintColor = Palette.orange
+        self.startButton.backgroundColor = Palette.lightWhite
+        self.startButton.layer.cornerRadius = 10
+        
+        self.pauseButton.setTitle(" Pause ", for: UIControlState.normal)
+        self.pauseButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.pauseButton.tintColor = Palette.orange
+        self.pauseButton.backgroundColor = Palette.lightWhite
+        self.pauseButton.layer.cornerRadius = 10
+        
+        self.resetButton.setTitle(" Reset ", for: UIControlState.normal)
+        self.resetButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.resetButton.tintColor = Palette.orange
+        self.resetButton.backgroundColor = Palette.lightWhite
+        self.resetButton.layer.cornerRadius = 10
+        
+        self.finishButton.setTitle(" Finish ", for: UIControlState.normal)
+        self.finishButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.finishButton.tintColor = Palette.orange
+        self.finishButton.backgroundColor = Palette.lightWhite
+        self.finishButton.layer.cornerRadius = 10
 
         self.cancelButton.setTitle("", for: .normal)
         let buttonimage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)

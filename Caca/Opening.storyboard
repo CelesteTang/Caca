@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2eC-qc-YSW">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -28,21 +28,21 @@
                         <viewControllerLayoutGuide type="bottom" id="MTL-Qn-PqA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zhS-ys-Oxk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lOf-B7-6iN">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qp1-dO-63S">
-                                <rect key="frame" x="30" y="64" width="354" height="130"/>
+                                <rect key="frame" x="30" y="64" width="315" height="156"/>
                                 <string key="text">Do you remember the last caca time ? Do you know caca could reveal your healthy state? Let's build up the good habit of caca with Caca!</string>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRT-2V-u1G">
-                                <rect key="frame" x="334" y="672" width="60" height="44"/>
+                                <rect key="frame" x="299" y="603" width="60" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="sBm-go-GE4"/>
                                 </constraints>
@@ -53,35 +53,35 @@
                                 </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SeH-pP-0c1">
-                                <rect key="frame" x="187.66666666666666" y="671" width="39" height="45"/>
+                                <rect key="frame" x="168" y="602" width="39" height="45"/>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiE-BX-nhX">
-                                <rect key="frame" x="20" y="20" width="46" height="30"/>
+                                <rect key="frame" x="16" y="20" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="goBack:" destination="amJ-I7-a1x" eventType="touchUpInside" id="E2w-EJ-OtU"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boy" translatesAutoresizingMaskIntoConstraints="NO" id="RDi-7A-DTW">
-                                <rect key="frame" x="-45" y="310" width="331" height="331"/>
+                                <rect key="frame" x="-49" y="272" width="300" height="300"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl" translatesAutoresizingMaskIntoConstraints="NO" id="rEq-pS-yrA">
-                                <rect key="frame" x="128" y="310" width="331" height="331"/>
+                                <rect key="frame" x="124" y="272" width="300" height="300"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toilet" translatesAutoresizingMaskIntoConstraints="NO" id="z5i-Fi-Hvu">
-                                <rect key="frame" x="41.333333333333343" y="310" width="331.33333333333337" height="331"/>
+                                <rect key="frame" x="38" y="273" width="299" height="299"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="z5i-Fi-Hvu" secondAttribute="height" multiplier="1:1" id="0na-Vd-hzs"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caca-big" translatesAutoresizingMaskIntoConstraints="NO" id="7X3-Pi-Ew4">
-                                <rect key="frame" x="41.333333333333343" y="276" width="331.33333333333337" height="331"/>
+                                <rect key="frame" x="38" y="239" width="299" height="299"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7X3-Pi-Ew4" secondAttribute="height" multiplier="1:1" id="Vxv-jz-0hE"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEV-wU-PfZ">
-                                <rect key="frame" x="100" y="617" width="214" height="44"/>
+                                <rect key="frame" x="100" y="548" width="175" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4cE-RS-mOz"/>
                                 </constraints>

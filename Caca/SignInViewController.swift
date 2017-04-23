@@ -107,7 +107,7 @@ class SignInViewController: UIViewController {
         self.logoImageView.backgroundColor = Palette.lightblue2
 
         self.appName.text = "Caca"
-        self.appName.textColor = Palette.darkblue
+        self.appName.textColor = Palette.darkblue2
         self.appName.font = UIFont(name: "Futura-Bold", size: 60)
 
         self.emailField.delegate = self
@@ -124,10 +124,12 @@ class SignInViewController: UIViewController {
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
 
-        self.signInButton.backgroundColor = Palette.darkblue
+        self.signInButton.backgroundColor = Palette.darkblue2
         self.signInButton.setTitle("Sign In", for: .normal)
-        self.signInButton.layer.cornerRadius = 15
+        self.signInButton.layer.cornerRadius = 22
         self.signInButton.tintColor = Palette.cream
+        self.signInButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+
     }
 }
 

@@ -232,7 +232,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Be-az-wbh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caca-big" translatesAutoresizingMaskIntoConstraints="NO" id="4Be-az-wbh">
                                 <rect key="frame" x="90" y="75" width="195" height="195"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4Be-az-wbh" secondAttribute="height" multiplier="1:1" id="duO-B8-Azp"/>
@@ -311,4 +311,7 @@
             <point key="canvasLocation" x="225" y="64"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="caca-big" width="1000" height="1000"/>
+    </resources>
 </document>
