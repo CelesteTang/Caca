@@ -117,6 +117,7 @@ class RecordDetailViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "My caca"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue]
 
         self.cacaPhoto.backgroundColor = Palette.lightblue2
         self.shapeImageView.backgroundColor = Palette.lightblue2

@@ -39,9 +39,11 @@ class RecordTableViewController: UITableViewController {
     // MARK: Set Up
 
     private func setUp() {
+        
+        self.view.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "Record"
-        self.view.backgroundColor = Palette.lightblue2
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue]
 
         let backItem = UIBarButtonItem()
         backItem.title = "Back"

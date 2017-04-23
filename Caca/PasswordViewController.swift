@@ -11,12 +11,29 @@ import LocalAuthentication
 
 class PasswordViewController: UIViewController {
 
+    var isFromPrivacy = false
+    
+    var isFromBeginning = false
+    
+    @IBOutlet weak var cancelButton: UIButton!
+    
     @IBOutlet weak var passwordLabel: UILabel!
 
     @IBOutlet weak var passwordField: UITextField!
 
     @IBOutlet weak var numberCollectionView: UICollectionView!
 
+    @IBAction func cancel(_ sender: UIButton) {
+        
+        if isFromPrivacy == true {
+            
+            dismiss(animated: true, completion: nil)
+        
+            isFromPrivacy = false
+            
+        }
+    }
+    
     var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Cancel", "0", "Delete"]
 
     override func viewDidLoad() {
@@ -30,11 +47,10 @@ class PasswordViewController: UIViewController {
         guard let layout = numberCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
 
         layout.itemSize = CGSize(width: numberCollectionView.frame.width / 3, height: numberCollectionView.frame.height / 4)
-//        let columnGap = (numberCollectionView.bounds.width - layout.itemSize.width * 3) / 4
-//        let rowGap = (numberCollectionView.bounds.height - layout.itemSize.height * 4) / 5
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-//        layout.sectionInset = UIEdgeInsets(top: rowGap, left: columnGap, bottom: rowGap, right: columnGap)
+
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 5
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
 
         numberCollectionView.register(NumberCollectionViewCell.self, forCellWithReuseIdentifier: "NumberCollectionViewCell")
 
@@ -54,6 +70,23 @@ class PasswordViewController: UIViewController {
         self.passwordField.clearsOnBeginEditing = true
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
+        
+        self.cancelButton.setTitle("", for: .normal)
+        let buttonImage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
+        self.cancelButton.setImage(buttonImage, for: .normal)
+        self.cancelButton.tintColor = Palette.darkblue
+        
+        if isFromPrivacy == true {
+        
+            self.cancelButton.isHidden = false
+            self.cancelButton.isEnabled = true
+            
+        } else if isFromBeginning == true {
+        
+            self.cancelButton.isHidden = true
+            self.cancelButton.isEnabled = false
+            
+        }
 
     }
 

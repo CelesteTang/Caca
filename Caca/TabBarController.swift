@@ -71,21 +71,10 @@ enum TabBarItemType: Int {
 
 class TabBarController: UITabBarController {
 
-//    private let tabBarItemTypes: [TabBarItemType] = [.caca, .record, .calendar, .setting]
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.tabBar.items = [TabBarItemType.caca.item, TabBarItemType.record.item, TabBarItemType.calendar.item, TabBarItemType.setting.item]
-
-//        tabBar.items?.forEach { item in
-//            
-//            let itemType = TabBarItemType(rawValue: item.tag)!
-//            
-//            item.title = itemType.title
-//            item.image = itemType.image
-//            
-//        }
+        UITabBar.appearance().tintColor = Palette.darkblue
 
     }
 

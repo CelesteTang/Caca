@@ -98,9 +98,10 @@ class ProfileViewController: UIViewController {
 
     private func setUp() {
 
-        navigationItem.title = "Profile"
+        self.view.backgroundColor = Palette.lightblue2
 
-        view.backgroundColor = Palette.lightblue2
+        self.navigationItem.title = "Profile"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue]
 
         self.profileImageView.backgroundColor = Palette.lightblue2
 

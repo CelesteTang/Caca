@@ -33,8 +33,10 @@ class SettingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "Setting"
         self.view.backgroundColor = Palette.lightblue2
+
+        self.navigationItem.title = "Setting"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue]
 
         self.tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "SettingTableViewCell")
     }

@@ -39,9 +39,10 @@ class PrivacyTableViewController: UITableViewController {
 
     private func setUp() {
 
-        self.navigationItem.title = "Privacy"
-
         self.tableView.backgroundColor = Palette.lightblue2
+
+        self.navigationItem.title = "Privacy"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue]
 
     }
 
@@ -122,7 +123,9 @@ class PrivacyTableViewController: UITableViewController {
             UserDefaults.standard.removeObject(forKey: "Password")
 
             let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
-            let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController")
+            guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+            
+            passwordViewController.isFromPrivacy = true
 
             present(passwordViewController, animated: true)
 

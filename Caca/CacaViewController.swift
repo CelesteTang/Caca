@@ -117,6 +117,7 @@ class CacaViewController: UIViewController {
     private func setUp() {
 
         self.navigationItem.title = Time.dateString()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue]
 
         self.view.backgroundColor = Palette.lightblue2
 
