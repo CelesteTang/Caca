@@ -91,7 +91,16 @@ class PrivacyTableViewController: UITableViewController {
         case Authentication.password.rawValue:
 
             cell.selectionStyle = .none
-            switchButton.isOn = UserDefaults.standard.bool(forKey: "PasswordAuthentication")
+            if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
+                
+                switchButton.isOn = true
+                
+            } else {
+                
+                switchButton.isOn = false
+                
+            }
+            
             switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
 
         case Authentication.touchID.rawValue:
@@ -113,8 +122,6 @@ class PrivacyTableViewController: UITableViewController {
 
         switch indexPath.row {
         case Authentication.passwordChanging.rawValue:
-
-//            UserDefaults.standard.removeObject(forKey: "Password")
 
             let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
             guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
@@ -145,7 +152,7 @@ class PrivacyTableViewController: UITableViewController {
 
             UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
 
-            tableView.reloadData()
+            self.tableView.reloadData()
 
         } else {
 
@@ -154,6 +161,7 @@ class PrivacyTableViewController: UITableViewController {
             UserDefaults.standard.removeObject(forKey: "Password")
 
             authentications = [.password]
+            
             self.tableView.reloadData()
 
         }

@@ -39,12 +39,8 @@ class PasswordViewController: UIViewController {
 
         if isFromPassword == true {
 
-            DispatchQueue.main.async {
-                
-                UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
-
-            }
-
+            UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
+            
             userPassword.removeAll()
 
             isFromPassword = false
@@ -115,13 +111,12 @@ class PasswordViewController: UIViewController {
         self.password2.image = #imageLiteral(resourceName: "shadow")
         self.password3.image = #imageLiteral(resourceName: "shadow")
         self.password4.image = #imageLiteral(resourceName: "shadow")
-//        UserDefaults.standard.set(["1", "2", "3", "4"], forKey: "Password")
 
     }
 
     func touchIDAuthentication() {
 
-        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
+        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.value(forKey: "Password") as? [String] != nil {
 
             let context = LAContext()
 
