@@ -48,7 +48,7 @@ class ProfileViewController: UIViewController {
         self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue
-//        self.genderSegmentedControl.t
+        self.genderSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
         self.genderSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
         if gender == Gender.male.rawValue {
 
@@ -103,7 +103,7 @@ class ProfileViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "Profile"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
 
         self.profileImageView.backgroundColor = Palette.lightblue2
 
@@ -114,7 +114,7 @@ class ProfileViewController: UIViewController {
         self.nameTextField.clearsOnBeginEditing = true
         self.nameTextField.keyboardType = .alphabet
         self.nameTextField.returnKeyType = .done
-
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
