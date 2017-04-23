@@ -75,6 +75,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         UITabBar.appearance().tintColor = Palette.darkblue
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 15)], for: .normal)
 
     }
 
