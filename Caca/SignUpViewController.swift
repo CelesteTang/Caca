@@ -169,7 +169,7 @@ class SignUpViewController: UIViewController {
                         self.present(alertController, animated: true, completion: nil)
 
                     } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                        appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
 
                         UserDefaults.standard.set(name, forKey: "Name")
                         UserDefaults.standard.set(gender, forKey: "Gender")
@@ -196,7 +196,7 @@ class SignUpViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.cancelButton.setTitle("", for: .normal)
-        let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
+        let buttonimage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
         self.cancelButton.setImage(buttonimage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
 

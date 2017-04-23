@@ -28,7 +28,7 @@ class SettingTableViewController: UITableViewController {
 
     }
 
-    private let settings: [Setting] = [.profile, .privacy, .notification, .language]
+    private let settings: [Setting] = [.profile, .privacy]
 
     override func viewDidLoad() {
         super.viewDidLoad()

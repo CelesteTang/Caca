@@ -125,7 +125,9 @@ class RecordDetailViewController: UIViewController {
 
         self.cacaPhoto.image = #imageLiteral(resourceName: "caca-big")
 
-        self.deleteRecordButton.setTitle("Delete", for: .normal)
+        self.deleteRecordButton.setTitle("", for: .normal)
+        self.deleteRecordButton.setImage(#imageLiteral(resourceName: "trash").withRenderingMode(.alwaysTemplate), for: .normal)
+        self.deleteRecordButton.tintColor = Palette.darkblue
 
         self.dateLabel.text = self.recievedCaca[0].date
         self.timeLabel.text = self.recievedCaca[0].time
