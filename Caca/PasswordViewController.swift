@@ -52,19 +52,6 @@ class PasswordViewController: UIViewController {
             isFromPassword = false
 
             dismiss(animated: true, completion: nil)
-            
-//            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-//                
-//                let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
-//                guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
-//                
-//                passwordViewController.isFromPassword = true
-//                passwordViewController.isFirst = true
-//                passwordViewController.isSecond = false
-//                
-//                appDelegate.window?.rootViewController = passwordViewController
-//            }
-
 
         } else if isFromPasswordChanging == true {
 
@@ -212,15 +199,27 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
         }
 
         switch userPassword.count {
+        case 0:
+            password1.image = #imageLiteral(resourceName: "shadow")
+            password2.image = #imageLiteral(resourceName: "shadow")
+            password3.image = #imageLiteral(resourceName: "shadow")
+            password4.image = #imageLiteral(resourceName: "shadow")
         case 1:
             password1.image = #imageLiteral(resourceName: "caca-small")
+            password2.image = #imageLiteral(resourceName: "shadow")
+            password3.image = #imageLiteral(resourceName: "shadow")
+            password4.image = #imageLiteral(resourceName: "shadow")
         case 2:
             password1.image = #imageLiteral(resourceName: "caca-small")
             password2.image = #imageLiteral(resourceName: "caca-small")
+            password3.image = #imageLiteral(resourceName: "shadow")
+            password4.image = #imageLiteral(resourceName: "shadow")
         case 3:
             password1.image = #imageLiteral(resourceName: "caca-small")
             password2.image = #imageLiteral(resourceName: "caca-small")
             password3.image = #imageLiteral(resourceName: "caca-small")
+            password4.image = #imageLiteral(resourceName: "shadow")
+
         case 4:
             password1.image = #imageLiteral(resourceName: "caca-small")
             password2.image = #imageLiteral(resourceName: "caca-small")
