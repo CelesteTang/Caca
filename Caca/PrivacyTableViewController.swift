@@ -14,7 +14,7 @@ class PrivacyTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUp()
 
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
@@ -42,7 +42,7 @@ class PrivacyTableViewController: UITableViewController {
         self.tableView.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "Privacy"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
 
     }
 
@@ -97,9 +97,6 @@ class PrivacyTableViewController: UITableViewController {
             switchButton.isOn = UserDefaults.standard.bool(forKey: "PasswordAuthentication")
             switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
 
-        case Authentication.passwordChanging.rawValue:
-            break
-
         case Authentication.touchID.rawValue:
 
             cell.selectionStyle = .none
@@ -120,12 +117,14 @@ class PrivacyTableViewController: UITableViewController {
         switch indexPath.row {
         case Authentication.passwordChanging.rawValue:
 
-            UserDefaults.standard.removeObject(forKey: "Password")
+//            UserDefaults.standard.removeObject(forKey: "Password")
 
             let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
             guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
 
-            passwordViewController.isFromPrivacy = true
+            passwordViewController.isFromPasswordChanging = true
+            passwordViewController.isFirst = true
+            passwordViewController.isSecond = false
 
             present(passwordViewController, animated: true)
 
@@ -138,11 +137,14 @@ class PrivacyTableViewController: UITableViewController {
 
         if sender.isOn == true {
 
-            UserDefaults.standard.removeObject(forKey: "Password")
             UserDefaults.standard.set(true, forKey: "PasswordAuthentication")
 
             let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
-            let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController")
+            guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+
+            passwordViewController.isFromPassword = true
+            passwordViewController.isFirst = true
+            passwordViewController.isSecond = false
 
             present(passwordViewController, animated: true)
 

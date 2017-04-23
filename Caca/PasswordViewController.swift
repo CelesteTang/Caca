@@ -11,9 +11,19 @@ import LocalAuthentication
 
 class PasswordViewController: UIViewController {
 
-    var isFromPrivacy = false
+    var isFromPassword = false
+
+    var isFromPasswordChanging = false
 
     var isFromBeginning = false
+
+    var isFirst = false
+
+    var isSecond = false
+
+    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Clean", "0", "Delete"]
+
+    var finalUserPassword = [String]()
 
     var userPassword = [String]()
 
@@ -33,19 +43,40 @@ class PasswordViewController: UIViewController {
 
     @IBAction func cancel(_ sender: UIButton) {
 
-//        if isFromPrivacy == true {
-//
-//            dismiss(animated: true, completion: nil)
-//
-//            isFromPrivacy = false
-//
-//        }
+        if isFromPassword == true {
 
-        dismiss(animated: true, completion: nil)
+            UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
+
+            userPassword.removeAll()
+
+            isFromPassword = false
+
+            dismiss(animated: true, completion: nil)
+            
+//            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+//                
+//                let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
+//                guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+//                
+//                passwordViewController.isFromPassword = true
+//                passwordViewController.isFirst = true
+//                passwordViewController.isSecond = false
+//                
+//                appDelegate.window?.rootViewController = passwordViewController
+//            }
+
+
+        } else if isFromPasswordChanging == true {
+
+            userPassword.removeAll()
+
+            isFromPasswordChanging = false
+
+            dismiss(animated: true, completion: nil)
+
+        }
 
     }
-
-    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Clean", "0", "Delete"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +86,7 @@ class PasswordViewController: UIViewController {
 
         numberCollectionView.dataSource = self
         numberCollectionView.delegate = self
+        numberCollectionView.allowsSelection = true
 
         guard let layout = numberCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         layout.itemSize = CGSize(width: numberCollectionView.frame.width / 3, height: numberCollectionView.frame.height / 4)
@@ -71,7 +103,16 @@ class PasswordViewController: UIViewController {
     private func setUp() {
 
         self.view.backgroundColor = Palette.lightblue2
-        self.passwordLabel.text = "Please enter your password"
+
+        if isFirst == true {
+
+            self.passwordLabel.text = "Please enter your password"
+
+        } else if isSecond == true {
+
+            self.passwordLabel.text = "Please enter your password again"
+
+        }
         self.passwordLabel.textColor = Palette.darkblue
         self.passwordLabel.font = UIFont(name: "Futura-Bold", size: 20)
 
@@ -80,7 +121,7 @@ class PasswordViewController: UIViewController {
         self.cancelButton.setImage(buttonImage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
 
-        if isFromPrivacy == true {
+        if isFromPassword == true || isFromPasswordChanging == true {
 
             self.cancelButton.isHidden = false
             self.cancelButton.isEnabled = true
@@ -98,7 +139,7 @@ class PasswordViewController: UIViewController {
 
     func touchIDAuthentication() {
 
-//        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
+        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.string(forKey: "Password") != nil {
 
             let context = LAContext()
 
@@ -118,7 +159,7 @@ class PasswordViewController: UIViewController {
                     }
                 })
             }
-//        }
+        }
     }
 }
 
@@ -170,18 +211,79 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
         }
 
+        switch userPassword.count {
+        case 1:
+            password1.image = #imageLiteral(resourceName: "caca-small")
+        case 2:
+            password1.image = #imageLiteral(resourceName: "caca-small")
+            password2.image = #imageLiteral(resourceName: "caca-small")
+        case 3:
+            password1.image = #imageLiteral(resourceName: "caca-small")
+            password2.image = #imageLiteral(resourceName: "caca-small")
+            password3.image = #imageLiteral(resourceName: "caca-small")
+        case 4:
+            password1.image = #imageLiteral(resourceName: "caca-small")
+            password2.image = #imageLiteral(resourceName: "caca-small")
+            password3.image = #imageLiteral(resourceName: "caca-small")
+            password4.image = #imageLiteral(resourceName: "caca-small")
+        default: break
+        }
+        
         if userPassword.count == 4 {
+
+            numberCollectionView.allowsSelection = false
 
             if UserDefaults.standard.value(forKey: "Password") == nil {
 
-                UserDefaults.standard.set(userPassword, forKey: "Password")
+                if isFirst == true {
 
-                dismiss(animated: true, completion: nil)
+                    finalUserPassword = userPassword
+
+                    dismiss(animated: true, completion: nil)
+
+                } else if isSecond == true {
+
+                    if userPassword == finalUserPassword {
+
+                        UserDefaults.standard.set(userPassword, forKey: "Password")
+
+                        isFromPassword = false
+                        isSecond = false
+
+                        dismiss(animated: true, completion: nil)
+
+                    } else {
+
+                        let alertController = UIAlertController(
+                            title: "Warning",
+                            message: "The password is different. Try again.",
+                            preferredStyle: .alert)
+
+                        let okAction = UIAlertAction(
+                            title: "OK",
+                            style: .default,
+                            handler: nil)
+
+                        userPassword.removeAll()
+
+                        alertController.addAction(okAction)
+
+                        self.present(
+                            alertController,
+                            animated: true,
+                            completion: nil)
+
+                    }
+                }
 
             } else if let storedPassword = UserDefaults.standard.value(forKey: "Password") as? [String], userPassword == storedPassword {
 
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                if isFromBeginning == true {
+
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+                    }
 
                 }
 
@@ -196,6 +298,8 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
                     title: "OK",
                     style: .default,
                     handler: nil)
+
+                userPassword.removeAll()
 
                 alertController.addAction(okAction)
 
