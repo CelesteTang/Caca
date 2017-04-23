@@ -163,9 +163,9 @@ class TimingViewController: UIViewController {
         let buttonimage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
         self.cancelButton.setImage(buttonimage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
-        self.cancelButton.backgroundColor = Palette.lightblue2
-        self.cancelButton.layer.cornerRadius = self.cancelButton.frame.width / 2
-        self.cancelButton.layer.masksToBounds = true
+//        self.cancelButton.backgroundColor = Palette.lightblue2
+//        self.cancelButton.layer.cornerRadius = self.cancelButton.frame.width / 2
+//        self.cancelButton.layer.masksToBounds = true
 
         self.pauseButton.isEnabled = false
         self.resetButton.isEnabled = false
