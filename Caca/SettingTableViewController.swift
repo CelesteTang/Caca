@@ -69,6 +69,11 @@ class SettingTableViewController: UITableViewController {
         cell.rowView.iconImageView.image = #imageLiteral(resourceName: "caca-big")
         cell.rowView.titleLabel.text = settings[indexPath.row].title
         cell.rowView.titleLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Palette.lightblue
+        cell.selectedBackgroundView = backgroundView
+        cell.selectionStyle = .default
 
         return cell
     }

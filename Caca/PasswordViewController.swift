@@ -39,7 +39,11 @@ class PasswordViewController: UIViewController {
 
         if isFromPassword == true {
 
-            UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
+            DispatchQueue.main.async {
+                
+                UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
+
+            }
 
             userPassword.removeAll()
 
@@ -84,6 +88,7 @@ class PasswordViewController: UIViewController {
     private func setUp() {
 
         self.view.backgroundColor = Palette.lightblue2
+        self.numberCollectionView.backgroundColor = Palette.lightblue2
 
         self.passwordLabel.text = "Please enter your password"
         self.passwordLabel.textColor = Palette.darkblue
@@ -156,10 +161,6 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.itemView.numberLabel.text = numbers[indexPath.item]
         cell.itemView.numberLabel.textColor = Palette.darkblue
         cell.itemView.numberLabel.font = UIFont(name: "Futura-Bold", size: 20)
-
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = Palette.darkblue
-//        cell.selectedBackgroundView = backgroundView
 
         return cell
     }
@@ -271,7 +272,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
                         self.password2.image = #imageLiteral(resourceName: "shadow")
                         self.password3.image = #imageLiteral(resourceName: "shadow")
                         self.password4.image = #imageLiteral(resourceName: "shadow")
-                        
+
                         self.numberCollectionView.allowsSelection = true
 
                     })
@@ -290,10 +291,6 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
                 }
             }
-
         }
-
-        print(userPassword)
     }
-
 }
