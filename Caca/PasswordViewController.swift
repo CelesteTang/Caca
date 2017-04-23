@@ -17,13 +17,7 @@ class PasswordViewController: UIViewController {
 
     var isFromBeginning = false
 
-    var isFirst = false
-
-    var isSecond = false
-
     var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Clean", "0", "Delete"]
-
-    var finalUserPassword = [String]()
 
     var userPassword = [String]()
 
@@ -91,15 +85,7 @@ class PasswordViewController: UIViewController {
 
         self.view.backgroundColor = Palette.lightblue2
 
-        if isFirst == true {
-
-            self.passwordLabel.text = "Please enter your password"
-
-        } else if isSecond == true {
-
-            self.passwordLabel.text = "Please enter your password again"
-
-        }
+        self.passwordLabel.text = "Please enter your password"
         self.passwordLabel.textColor = Palette.darkblue
         self.passwordLabel.font = UIFont(name: "Futura-Bold", size: 20)
 
@@ -120,7 +106,11 @@ class PasswordViewController: UIViewController {
 
         }
 
-        UserDefaults.standard.set(["1", "2", "3", "4"], forKey: "Password")
+        self.password1.image = #imageLiteral(resourceName: "shadow")
+        self.password2.image = #imageLiteral(resourceName: "shadow")
+        self.password3.image = #imageLiteral(resourceName: "shadow")
+        self.password4.image = #imageLiteral(resourceName: "shadow")
+//        UserDefaults.standard.set(["1", "2", "3", "4"], forKey: "Password")
 
     }
 
@@ -198,34 +188,40 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
         }
 
-        switch userPassword.count {
-        case 0:
-            password1.image = #imageLiteral(resourceName: "shadow")
-            password2.image = #imageLiteral(resourceName: "shadow")
-            password3.image = #imageLiteral(resourceName: "shadow")
-            password4.image = #imageLiteral(resourceName: "shadow")
-        case 1:
-            password1.image = #imageLiteral(resourceName: "caca-small")
-            password2.image = #imageLiteral(resourceName: "shadow")
-            password3.image = #imageLiteral(resourceName: "shadow")
-            password4.image = #imageLiteral(resourceName: "shadow")
-        case 2:
-            password1.image = #imageLiteral(resourceName: "caca-small")
-            password2.image = #imageLiteral(resourceName: "caca-small")
-            password3.image = #imageLiteral(resourceName: "shadow")
-            password4.image = #imageLiteral(resourceName: "shadow")
-        case 3:
-            password1.image = #imageLiteral(resourceName: "caca-small")
-            password2.image = #imageLiteral(resourceName: "caca-small")
-            password3.image = #imageLiteral(resourceName: "caca-small")
-            password4.image = #imageLiteral(resourceName: "shadow")
+        DispatchQueue.main.async {
+            
+            switch self.userPassword.count {
+            case 0:
+                self.password1.image = #imageLiteral(resourceName: "shadow")
+                self.password2.image = #imageLiteral(resourceName: "shadow")
+                self.password3.image = #imageLiteral(resourceName: "shadow")
+                self.password4.image = #imageLiteral(resourceName: "shadow")
+            case 1:
+                self.password1.image = #imageLiteral(resourceName: "caca-small")
+                self.password2.image = #imageLiteral(resourceName: "shadow")
+                self.password3.image = #imageLiteral(resourceName: "shadow")
+                self.password4.image = #imageLiteral(resourceName: "shadow")
+            case 2:
+                self.password1.image = #imageLiteral(resourceName: "caca-small")
+                self.password2.image = #imageLiteral(resourceName: "caca-small")
+                self.password3.image = #imageLiteral(resourceName: "shadow")
+                self.password4.image = #imageLiteral(resourceName: "shadow")
+            case 3:
+                self.password1.image = #imageLiteral(resourceName: "caca-small")
+                self.password2.image = #imageLiteral(resourceName: "caca-small")
+                self.password3.image = #imageLiteral(resourceName: "caca-small")
+                self.password4.image = #imageLiteral(resourceName: "shadow")
+                
+            case 4:
+                self.password1.image = #imageLiteral(resourceName: "caca-small")
+                self.password2.image = #imageLiteral(resourceName: "caca-small")
+                self.password3.image = #imageLiteral(resourceName: "caca-small")
+                self.password4.image = #imageLiteral(resourceName: "caca-small")
+                
+            default: break
+                
+            }
 
-        case 4:
-            password1.image = #imageLiteral(resourceName: "caca-small")
-            password2.image = #imageLiteral(resourceName: "caca-small")
-            password3.image = #imageLiteral(resourceName: "caca-small")
-            password4.image = #imageLiteral(resourceName: "caca-small")
-        default: break
         }
         
         if userPassword.count == 4 {
@@ -234,78 +230,65 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
             if UserDefaults.standard.value(forKey: "Password") == nil {
 
-                if isFirst == true {
-
-                    finalUserPassword = userPassword
+                    UserDefaults.standard.set(userPassword, forKey: "Password")
 
                     dismiss(animated: true, completion: nil)
-
-                } else if isSecond == true {
-
-                    if userPassword == finalUserPassword {
-
-                        UserDefaults.standard.set(userPassword, forKey: "Password")
-
-                        isFromPassword = false
-                        isSecond = false
-
-                        dismiss(animated: true, completion: nil)
-
-                    } else {
-
-                        let alertController = UIAlertController(
-                            title: "Warning",
-                            message: "The password is different. Try again.",
-                            preferredStyle: .alert)
-
-                        let okAction = UIAlertAction(
-                            title: "OK",
-                            style: .default,
-                            handler: nil)
-
-                        userPassword.removeAll()
-
-                        alertController.addAction(okAction)
-
-                        self.present(
-                            alertController,
-                            animated: true,
-                            completion: nil)
-
-                    }
-                }
 
             } else if let storedPassword = UserDefaults.standard.value(forKey: "Password") as? [String], userPassword == storedPassword {
 
                 if isFromBeginning == true {
 
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        
                         appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                        
+                        isFromBeginning = false
 
                     }
+
+                } else if isFromPasswordChanging == true {
+
+                    UserDefaults.standard.set(userPassword, forKey: "Password")
+
+                    isFromPasswordChanging = false
+
+                    dismiss(animated: true, completion: nil)
 
                 }
 
             } else {
 
-                let alertController = UIAlertController(
-                    title: "Warning",
-                    message: "The password is incorrect. Try again.",
-                    preferredStyle: .alert)
+                if isFromBeginning == true {
 
-                let okAction = UIAlertAction(
-                    title: "OK",
-                    style: .default,
-                    handler: nil)
+                    let alertController = UIAlertController(title: "Warning",
+                                                            message: "The password is incorrect. Try again.",
+                                                            preferredStyle: UIAlertControllerStyle.alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
 
-                userPassword.removeAll()
+                        self.userPassword.removeAll()
 
-                alertController.addAction(okAction)
+                        self.password1.image = #imageLiteral(resourceName: "shadow")
+                        self.password2.image = #imageLiteral(resourceName: "shadow")
+                        self.password3.image = #imageLiteral(resourceName: "shadow")
+                        self.password4.image = #imageLiteral(resourceName: "shadow")
+                        
+                        self.numberCollectionView.allowsSelection = true
 
-                self.present(
-                    alertController,
-                    animated: true,
-                    completion: nil)
+                    })
+
+                    alertController.addAction(okAction)
+
+                    self.present(alertController, animated: true, completion: nil)
+
+                } else if isFromPasswordChanging == true {
+
+                    UserDefaults.standard.set(userPassword, forKey: "Password")
+
+                    isFromPasswordChanging = false
+
+                    dismiss(animated: true, completion: nil)
+
+                }
             }
 
         }

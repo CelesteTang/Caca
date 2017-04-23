@@ -14,7 +14,7 @@ class PrivacyTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setUp()
 
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
@@ -123,8 +123,6 @@ class PrivacyTableViewController: UITableViewController {
             guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
 
             passwordViewController.isFromPasswordChanging = true
-            passwordViewController.isFirst = true
-            passwordViewController.isSecond = false
 
             present(passwordViewController, animated: true)
 
@@ -143,8 +141,6 @@ class PrivacyTableViewController: UITableViewController {
             guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
 
             passwordViewController.isFromPassword = true
-            passwordViewController.isFirst = true
-            passwordViewController.isSecond = false
 
             present(passwordViewController, animated: true)
 
