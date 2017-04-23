@@ -47,6 +47,7 @@ class PrivacyTableViewCell: UITableViewCell {
 
         self.rowView.backgroundColor = Palette.lightblue2
         self.rowView.privacyLabel.textColor = Palette.darkblue
+        self.rowView.privacyLabel.font = UIFont(name: "Futura-Bold", size: 20)
 
     }
 

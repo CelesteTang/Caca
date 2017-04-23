@@ -117,7 +117,7 @@ class RecordDetailViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "My caca"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20)]
 
         self.cacaPhoto.backgroundColor = Palette.lightblue2
         self.shapeImageView.backgroundColor = Palette.lightblue2
@@ -140,7 +140,7 @@ class RecordDetailViewController: UIViewController {
         self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
         self.amountLabel.text = self.recievedCaca[0].amount
 
-        self.passOrFailLabel.textColor = Palette.lightblue2
+        self.passOrFailLabel.textColor = Palette.cream
 
         let editButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(editCaca))
         self.navigationItem.rightBarButtonItem = editButton

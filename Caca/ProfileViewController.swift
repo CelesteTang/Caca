@@ -48,6 +48,7 @@ class ProfileViewController: UIViewController {
         self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue
+//        self.genderSegmentedControl.t
         self.genderSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
         if gender == Gender.male.rawValue {
 
@@ -75,7 +76,8 @@ class ProfileViewController: UIViewController {
         self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
-        self.signUpButton.tintColor = Palette.lightblue2
+        self.signUpButton.tintColor = Palette.cream
+        self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
         let user = FIRAuth.auth()?.currentUser
         if user?.isAnonymous == true {
 
@@ -101,7 +103,7 @@ class ProfileViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "Profile"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20)]
 
         self.profileImageView.backgroundColor = Palette.lightblue2
 
