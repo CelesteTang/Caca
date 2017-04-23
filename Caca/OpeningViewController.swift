@@ -72,6 +72,7 @@ class OpeningViewController: UIViewController {
 
         self.openingLabel.text = heading
         self.openingImage.image = UIImage(named: imageFile)
+        self.openingLabel.font = UIFont(name: "Futura-Bold", size: 30)
 
         self.goBackButton.setTitle("", for: .normal)
         let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)

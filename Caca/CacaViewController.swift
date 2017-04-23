@@ -122,10 +122,12 @@ class CacaViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.mainImageView.backgroundColor = Palette.lightblue2
+        self.mainImageView.image = #imageLiteral(resourceName: "boy")
 
         self.notificationLabel.textColor = Palette.darkblue
         self.notificationLabel.numberOfLines = 0
         self.notificationLabel.text = "How's today?"
+        self.notificationLabel.font = UIFont(name: "Futura-Bold", size: 25)
 
         self.startButton.backgroundColor = Palette.darkblue
         self.startButton.tintColor = Palette.lightblue2

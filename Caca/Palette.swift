@@ -46,4 +46,6 @@ struct Palette {
 
     static let black = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
 
+    static let cream = UIColor(red: 242/255, green: 233/255, blue: 208/255, alpha: 1)
+
 }

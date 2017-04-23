@@ -108,7 +108,7 @@ class SignInViewController: UIViewController {
 
         self.appName.text = "Caca"
         self.appName.textColor = Palette.darkblue
-        self.appName.font = UIFont(name: "Courier-Bold", size: 60)
+        self.appName.font = UIFont(name: "Futura-Bold", size: 60)
 
         self.emailField.delegate = self
         self.emailField.clearButtonMode = .never
@@ -127,7 +127,7 @@ class SignInViewController: UIViewController {
         self.signInButton.backgroundColor = Palette.darkblue
         self.signInButton.setTitle("Sign In", for: .normal)
         self.signInButton.layer.cornerRadius = 15
-        self.signInButton.tintColor = Palette.lightblue2
+        self.signInButton.tintColor = Palette.cream
     }
 }
 

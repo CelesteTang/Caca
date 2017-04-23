@@ -205,7 +205,7 @@ class SignUpViewController: UIViewController {
 
         self.appName.text = "Caca"
         self.appName.textColor = Palette.darkblue
-        self.appName.font = UIFont(name: "Courier-Bold", size: 60)
+        self.appName.font = UIFont(name: "Futura-Bold", size: 60)
 
         self.emailField.delegate = self
         self.emailField.clearButtonMode = .never
@@ -234,7 +234,7 @@ class SignUpViewController: UIViewController {
         self.signUpButton.backgroundColor = Palette.darkblue
         self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
-        self.signUpButton.tintColor = Palette.lightblue2
+        self.signUpButton.tintColor = Palette.cream
 
     }
 

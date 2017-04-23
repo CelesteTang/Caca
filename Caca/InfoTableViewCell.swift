@@ -49,6 +49,7 @@ class InfoTableViewCell: UITableViewCell {
         self.rowView.borderView.backgroundColor = Palette.darkblue
 
         self.rowView.infoTextField.textAlignment = .center
+        self.rowView.infoLabel.textColor = Palette.darkblue
 
     }
 

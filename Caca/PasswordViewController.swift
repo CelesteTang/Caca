@@ -21,6 +21,14 @@ class PasswordViewController: UIViewController {
 
     @IBOutlet weak var passwordLabel: UILabel!
 
+    @IBOutlet weak var password1: UIImageView!
+    
+    @IBOutlet weak var password2: UIImageView!
+    
+    @IBOutlet weak var password3: UIImageView!
+    
+    @IBOutlet weak var password4: UIImageView!
+    
     @IBOutlet weak var numberCollectionView: UICollectionView!
 
     @IBAction func cancel(_ sender: UIButton) {
@@ -47,10 +55,9 @@ class PasswordViewController: UIViewController {
 
         numberCollectionView.dataSource = self
         numberCollectionView.delegate = self
+
         guard let layout = numberCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-
         layout.itemSize = CGSize(width: numberCollectionView.frame.width / 3, height: numberCollectionView.frame.height / 4)
-
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
@@ -78,6 +85,11 @@ class PasswordViewController: UIViewController {
         let buttonImage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
         self.cancelButton.setImage(buttonImage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
+
+//        self.password1.isHidden = true
+//        self.password2.isHidden = true
+//        self.password3.isHidden = true
+//        self.password4.isHidden = true
 
         if isFromPrivacy == true {
 
@@ -133,30 +145,38 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
         // swiftlint:enable force_cast
 
         cell.itemView.numberLabel.text = numbers[indexPath.item]
+        
+//        let backgroundView = UIView()
+//        backgroundView.backgroundColor = Palette.darkblue
+//        cell.selectedBackgroundView = backgroundView
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         switch indexPath.item {
 
         case 0...8, 10:
 
             userPassword.append(numbers[indexPath.item])
-
+            
         case 9:
 
             userPassword.removeAll()
 
         case 11:
 
-            userPassword.removeLast()
+            if userPassword.count > 0 {
+                
+                userPassword.removeLast()
+                
+            }
 
         default: break
 
         }
-
+        
         print(userPassword)
     }
 
