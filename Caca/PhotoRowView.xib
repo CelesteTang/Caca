@@ -47,11 +47,11 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpc-lK-PTc">
-                    <rect key="frame" x="8" y="20" width="46" height="30"/>
+                    <rect key="frame" x="16" y="20" width="46" height="30"/>
                     <state key="normal" title="Button"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQ6-XI-dyW">
-                    <rect key="frame" x="321" y="20" width="46" height="30"/>
+                    <rect key="frame" x="313" y="20" width="46" height="30"/>
                     <state key="normal" title="Button"/>
                 </button>
             </subviews>
@@ -67,9 +67,9 @@
                 <constraint firstAttribute="trailing" secondItem="3SM-tO-eKi" secondAttribute="trailing" constant="20" id="ecu-qL-UOq"/>
                 <constraint firstItem="3kv-OJ-Iad" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="guA-nc-F4o"/>
                 <constraint firstItem="aQ6-XI-dyW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="h8z-JH-6hX"/>
-                <constraint firstItem="Rpc-lK-PTc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="qdz-Lh-gWp"/>
+                <constraint firstItem="Rpc-lK-PTc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="qdz-Lh-gWp"/>
                 <constraint firstAttribute="bottom" secondItem="3SM-tO-eKi" secondAttribute="bottom" id="tlk-QK-HYd"/>
-                <constraint firstAttribute="trailing" secondItem="aQ6-XI-dyW" secondAttribute="trailing" constant="8" id="yRI-gI-jEe"/>
+                <constraint firstAttribute="trailing" secondItem="aQ6-XI-dyW" secondAttribute="trailing" constant="16" id="yRI-gI-jEe"/>
                 <constraint firstItem="jg0-A9-rRv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ylL-OA-OxO"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

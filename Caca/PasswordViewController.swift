@@ -46,6 +46,14 @@ class PasswordViewController: UIViewController {
             isFromPassword = false
 
             dismiss(animated: true, completion: nil)
+            
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                
+                tabBarController.selectedIndex = TabBarItemType.setting.rawValue
+                
+                appDelegate.window?.rootViewController = tabBarController
+                
+            }
 
         } else if isFromPasswordChanging == true {
 
@@ -63,8 +71,10 @@ class PasswordViewController: UIViewController {
         super.viewDidLoad()
 
         setUp()
-        touchIDAuthentication()
-
+        
+        if isFromBeginning == true {
+            touchIDAuthentication()
+        }
         numberCollectionView.dataSource = self
         numberCollectionView.delegate = self
         numberCollectionView.allowsSelection = true

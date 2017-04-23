@@ -1145,7 +1145,8 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             default: break
             }
 
-//            pickerLabel.font = UIFont(name: "Arial-BoldMT", size: 80)
+            pickerLabel.font = UIFont(name: "Futura-Bold", size: 20)
+
             pickerLabel.textAlignment = NSTextAlignment.center
 
             return pickerLabel

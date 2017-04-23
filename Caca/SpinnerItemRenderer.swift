@@ -18,6 +18,8 @@ class ColorSpinnerItemRenderer: UIControl {
         super.init(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
 
         label.text = color.title
+        label.font = UIFont(name: "Futura-Bold", size: 20)
+        label.textColor = color.color
         swatch.image = color.image
 
         addSubview(label)
@@ -43,9 +45,10 @@ class ShapeSpinnerItemRenderer: UIControl {
     let swatch = UIImageView()
 
     init(frame: CGRect, shape: Shape) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
+        super.init(frame: CGRect(x: 0, y: 0, width: 300, height: 200))
 
         label.text = shape.title
+        label.font = UIFont(name: "Futura-Bold", size: 20)
         swatch.image = shape.image
 
         addSubview(label)
@@ -58,8 +61,8 @@ class ShapeSpinnerItemRenderer: UIControl {
     }
 
     override func didMoveToWindow() {
-        label.frame = CGRect(x: 20, y: 0, width: 300, height: 100)
-        swatch.frame = CGRect(x: 240, y: 80 / 2 - 5, width: 30, height: 30)
+        label.frame = CGRect(x: 20, y: 0, width: 300, height: 200)
+        swatch.frame = CGRect(x: 240, y: 160 / 2 - 15, width: 70, height: 70)
     }
 
 }
