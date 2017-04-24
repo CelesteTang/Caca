@@ -242,8 +242,8 @@ class SignUpViewController: UIViewController {
         self.nameField.clearsOnBeginEditing = true
         self.nameField.returnKeyType = .done
 
-        self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
-        self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
+        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "male").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.male.rawValue)
+        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "female").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue2
         self.genderSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
 

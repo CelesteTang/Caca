@@ -81,9 +81,9 @@ class PasswordViewController: UIViewController {
 
         guard let layout = numberCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         layout.itemSize = CGSize(width: numberCollectionView.frame.width / 3, height: numberCollectionView.frame.height / 4)
-        layout.minimumInteritemSpacing = 5
-        layout.minimumLineSpacing = 5
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
 
         numberCollectionView.register(NumberCollectionViewCell.self, forCellWithReuseIdentifier: "NumberCollectionViewCell")
 

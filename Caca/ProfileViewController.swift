@@ -26,6 +26,28 @@ class ProfileViewController: UIViewController {
 
         setUp()
 
+    }
+
+    // MARK: Set Up
+
+    private func setUp() {
+
+        self.view.backgroundColor = Palette.lightblue2
+
+        self.navigationItem.title = "Profile"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+
+        self.profileImageView.backgroundColor = Palette.lightblue2
+        self.profileImageView.image = #imageLiteral(resourceName: "boy")
+
+        self.nameTextField.delegate = self
+        self.nameTextField.clearButtonMode = .whileEditing
+        self.nameTextField.placeholder = "Name"
+        self.nameTextField.textAlignment = .center
+        self.nameTextField.clearsOnBeginEditing = true
+        self.nameTextField.keyboardType = .alphabet
+        self.nameTextField.returnKeyType = .done
+
         if let name = UserDefaults.standard.value(forKey: "Name") as? String {
 
             self.nameTextField.text = name
@@ -34,8 +56,8 @@ class ProfileViewController: UIViewController {
 
         guard let gender = UserDefaults.standard.value(forKey: "Gender") as? Int else { return }
         self.genderSegmentedControl.selectedSegmentIndex = gender
-        self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
-        self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
+        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "male").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.male.rawValue)
+        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "female").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue
         self.genderSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
         self.genderSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
@@ -82,27 +104,6 @@ class ProfileViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-
-    }
-
-    // MARK: Set Up
-
-    private func setUp() {
-
-        self.view.backgroundColor = Palette.lightblue2
-
-        self.navigationItem.title = "Profile"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
-
-        self.profileImageView.backgroundColor = Palette.lightblue2
-
-        self.nameTextField.delegate = self
-        self.nameTextField.clearButtonMode = .whileEditing
-        self.nameTextField.placeholder = "Name"
-        self.nameTextField.textAlignment = .center
-        self.nameTextField.clearsOnBeginEditing = true
-        self.nameTextField.keyboardType = .alphabet
-        self.nameTextField.returnKeyType = .done
 
     }
 

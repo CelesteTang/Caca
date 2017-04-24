@@ -23,31 +23,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0go-Lf-FvQ">
-                                <rect key="frame" x="50" y="40" width="220" height="220"/>
+                                <rect key="frame" x="50" y="67.5" width="220" height="220"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0go-Lf-FvQ" secondAttribute="height" multiplier="1:1" id="9V1-B9-Mh8"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LAF-9i-Mh8">
-                                <rect key="frame" x="30" y="290" width="80.5" height="26"/>
+                                <rect key="frame" x="30" y="326" width="80.5" height="26"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                 <color key="textColor" red="0.21176470589999999" green="0.31372549020000001" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d18-6v-IEe">
-                                <rect key="frame" x="30" y="346" width="80.5" height="26"/>
+                                <rect key="frame" x="30" y="382" width="80.5" height="26"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                 <color key="textColor" red="0.21176470589999999" green="0.31372549020000001" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1kt-q3-fH3">
-                                <rect key="frame" x="30" y="402" width="80.5" height="26"/>
+                                <rect key="frame" x="30" y="438" width="80.5" height="26"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                 <color key="textColor" red="0.21176470589999999" green="0.31372549020000001" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SPd-gH-53c">
-                                <rect key="frame" x="140.5" y="281.5" width="149.5" height="44"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SPd-gH-53c">
+                                <rect key="frame" x="140.5" y="317.5" width="149.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4m3-cI-gEK"/>
                                 </constraints>
@@ -66,14 +66,15 @@
                                 </variation>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PF6-sH-6hk">
-                                <rect key="frame" x="140.5" y="337.5" width="149.5" height="45"/>
+                                <rect key="frame" x="140.5" y="373.5" width="149.5" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Zr3-nN-gEl"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="Male"/>
+                                    <segment title="Female"/>
                                 </segments>
+                                <color key="tintColor" red="0.21176470589999999" green="0.31372549020000001" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Zr3-nN-gEl"/>
@@ -85,8 +86,8 @@
                                     </mask>
                                 </variation>
                             </segmentedControl>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dnn-jj-xLm">
-                                <rect key="frame" x="140.5" y="393" width="149.5" height="44"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dnn-jj-xLm">
+                                <rect key="frame" x="140.5" y="429" width="149.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="sBQ-vb-11k"/>
                                 </constraints>
@@ -105,13 +106,15 @@
                                 </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7u-2c-tRx">
-                                <rect key="frame" x="100" y="458" width="120" height="44"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="100" y="494" width="120" height="44"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.31372549020000001" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="dCx-tE-ZcA"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Button"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="0.95009034869999998" green="0.91526788469999998" blue="0.81482785940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -128,6 +131,7 @@
                             <constraint firstItem="LAF-9i-Mh8" firstAttribute="top" secondItem="0go-Lf-FvQ" secondAttribute="bottom" constant="30" id="HCm-tH-akO"/>
                             <constraint firstItem="1kt-q3-fH3" firstAttribute="leading" secondItem="d18-6v-IEe" secondAttribute="leading" id="MPO-IS-3Vf"/>
                             <constraint firstItem="d18-6v-IEe" firstAttribute="leading" secondItem="LAF-9i-Mh8" secondAttribute="leading" id="NTq-ea-mIB"/>
+                            <constraint firstItem="l0d-xT-BP1" firstAttribute="top" secondItem="b7u-2c-tRx" secondAttribute="bottom" constant="30" id="S87-Mv-dtN"/>
                             <constraint firstItem="Dnn-jj-xLm" firstAttribute="centerY" secondItem="1kt-q3-fH3" secondAttribute="centerY" id="SHy-Da-bdv"/>
                             <constraint firstItem="1kt-q3-fH3" firstAttribute="trailing" secondItem="d18-6v-IEe" secondAttribute="trailing" id="WM9-bs-1qw"/>
                             <constraint firstItem="0go-Lf-FvQ" firstAttribute="top" secondItem="scl-Ga-aLN" secondAttribute="bottom" constant="20" id="ZE9-d2-Q4T"/>
@@ -141,19 +145,26 @@
                             <constraint firstItem="PF6-sH-6hk" firstAttribute="leading" secondItem="SPd-gH-53c" secondAttribute="leading" id="sCU-BP-Ygr"/>
                             <constraint firstItem="SPd-gH-53c" firstAttribute="centerY" secondItem="LAF-9i-Mh8" secondAttribute="centerY" id="sWH-MD-ImF"/>
                             <constraint firstItem="PF6-sH-6hk" firstAttribute="trailing" secondItem="SPd-gH-53c" secondAttribute="trailing" id="w42-3O-ZkO"/>
+                            <constraint firstItem="SPd-gH-53c" firstAttribute="top" secondItem="0go-Lf-FvQ" secondAttribute="bottom" constant="30" id="wlh-Nw-3HR"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="h5Q-TX-ZM6"/>
                                 <exclude reference="dl5-7h-AI9"/>
+                                <exclude reference="wlh-Nw-3HR"/>
+                                <exclude reference="S87-Mv-dtN"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
+                                <exclude reference="ZE9-d2-Q4T"/>
                                 <exclude reference="9Vc-Nt-UGh"/>
+                                <exclude reference="HCm-tH-akO"/>
                                 <include reference="h5Q-TX-ZM6"/>
                                 <exclude reference="G4U-Pc-uFd"/>
                                 <include reference="dl5-7h-AI9"/>
+                                <include reference="wlh-Nw-3HR"/>
+                                <include reference="S87-Mv-dtN"/>
                             </mask>
                         </variation>
                     </view>
