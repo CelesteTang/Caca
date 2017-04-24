@@ -168,6 +168,9 @@ class ProfileViewController: UIViewController {
             try FIRAuth.auth()?.signOut()
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                
+                UserDefaults.standard.set(false, forKey: "IsviewedWalkThrough")
+                
                 appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
 
             }

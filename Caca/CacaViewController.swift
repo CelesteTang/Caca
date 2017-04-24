@@ -24,21 +24,10 @@ class CacaViewController: UIViewController {
         }
 
     }
-    
-    @IBAction func crashButtonTapped(_ sender: AnyObject) {
-        Crashlytics.sharedInstance().crash()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let button = UIButton(type: .roundedRect)
-        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
-        button.setTitle("Crash", for: [])
-        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
-        view.addSubview(button)
-
-        
         setUp()
 
         guard let userName = UserDefaults.standard.value(forKey: "Name") as? String else { return }

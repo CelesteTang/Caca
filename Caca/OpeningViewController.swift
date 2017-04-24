@@ -50,10 +50,13 @@ class OpeningViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-
             isFromStart = false
             isFromSignUp = false
+            
+            UserDefaults.standard.set(true, forKey: "IsviewedWalkThrough")
+            
+            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
         }
 
     }
