@@ -63,7 +63,7 @@ class ProfileViewController: UIViewController {
         }
 
         self.signUpButton.backgroundColor = Palette.darkblue
-        self.signUpButton.layer.cornerRadius = 15
+        self.signUpButton.layer.cornerRadius = self.signUpButton.frame.height / 2
         self.signUpButton.tintColor = Palette.cream
         self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
         let user = FIRAuth.auth()?.currentUser
@@ -168,9 +168,9 @@ class ProfileViewController: UIViewController {
             try FIRAuth.auth()?.signOut()
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                
+
                 UserDefaults.standard.set(false, forKey: "IsviewedWalkThrough")
-                
+
                 appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
 
             }

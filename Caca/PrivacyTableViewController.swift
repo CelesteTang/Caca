@@ -83,8 +83,7 @@ class PrivacyTableViewController: UITableViewController {
 
         cell.rowView.privacyLabel.text = authentications[indexPath.row].title
 
-        let switchButton = authentications[indexPath.row].switchButton
-        switchButton.onTintColor = Palette.darkblue
+        cell.rowView.switchButton.onTintColor = Palette.darkblue
 
         switch indexPath.row {
 
@@ -93,26 +92,30 @@ class PrivacyTableViewController: UITableViewController {
             cell.selectionStyle = .none
             if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
 
-                switchButton.isOn = true
+                cell.rowView.switchButton.isOn = true
 
             } else {
 
-                switchButton.isOn = false
+                cell.rowView.switchButton.isOn = false
 
             }
 
-            switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
+            cell.rowView.switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
+
+        case Authentication.passwordChanging.rawValue:
+
+            cell.rowView.switchButton.isHidden = true
+            cell.rowView.switchButton.isEnabled = false
 
         case Authentication.touchID.rawValue:
 
             cell.selectionStyle = .none
-            switchButton.isOn = UserDefaults.standard.bool(forKey: "TouchIDAuthentication")
-            switchButton.addTarget(self, action: #selector(openTouchIDAuthentication), for: .valueChanged)
+            cell.rowView.switchButton.isOn = UserDefaults.standard.bool(forKey: "TouchIDAuthentication")
+            cell.rowView.switchButton.addTarget(self, action: #selector(openTouchIDAuthentication), for: .valueChanged)
 
         default: break
 
         }
-        cell.rowView.addSubview(switchButton)
 
         return cell
 

@@ -52,9 +52,9 @@ class OpeningViewController: UIViewController {
 
             isFromStart = false
             isFromSignUp = false
-            
+
             UserDefaults.standard.set(true, forKey: "IsviewedWalkThrough")
-            
+
             appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
 
         }
@@ -97,7 +97,7 @@ class OpeningViewController: UIViewController {
         self.startButton.setTitle("Start", for: .normal)
         self.startButton.tintColor = Palette.cream
         self.startButton.backgroundColor = Palette.darkblue2
-        self.startButton.layer.cornerRadius = 22
+        self.startButton.layer.cornerRadius = self.startButton.frame.height / 2
         self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
         self.pageControl.currentPage = index

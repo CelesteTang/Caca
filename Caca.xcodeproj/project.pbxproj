@@ -10,7 +10,6 @@
 		4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB3F1E8221E4006B0D5D /* Timing.storyboard */; };
 		4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB411E822232006B0D5D /* Fillin.storyboard */; };
 		4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB431E82240F006B0D5D /* TimingViewController.swift */; };
-		4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB451E82242A006B0D5D /* FillinViewController.swift */; };
 		4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB4D1E838EAF006B0D5D /* Time.swift */; };
 		4322EB521E8398FA006B0D5D /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB511E8398FA006B0D5D /* Palette.swift */; };
 		4322EB541E83A8C6006B0D5D /* Caca.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB531E83A8C6006B0D5D /* Caca.swift */; };
@@ -85,7 +84,6 @@
 		4322EB3F1E8221E4006B0D5D /* Timing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timing.storyboard; sourceTree = "<group>"; };
 		4322EB411E822232006B0D5D /* Fillin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Fillin.storyboard; sourceTree = "<group>"; };
 		4322EB431E82240F006B0D5D /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
-		4322EB451E82242A006B0D5D /* FillinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillinViewController.swift; sourceTree = "<group>"; };
 		4322EB4D1E838EAF006B0D5D /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		4322EB511E8398FA006B0D5D /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		4322EB531E83A8C6006B0D5D /* Caca.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caca.swift; sourceTree = "<group>"; };
@@ -328,7 +326,6 @@
 				43372D1B1E7FC603002E2AE3 /* CacaViewController.swift */,
 				4322EB431E82240F006B0D5D /* TimingViewController.swift */,
 				435B71E01EA603BD00FBABBF /* Fillin */,
-				4322EB451E82242A006B0D5D /* FillinViewController.swift */,
 				4322EB4D1E838EAF006B0D5D /* Time.swift */,
 				4322EB531E83A8C6006B0D5D /* Caca.swift */,
 				438B90AE1EA73617001E0A5E /* Shape.swift */,
@@ -557,7 +554,6 @@
 				4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */,
 				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
 				435B71F41EA60B9100FBABBF /* FillinTableViewController.swift in Sources */,
-				4322EB461E82242A006B0D5D /* FillinViewController.swift in Sources */,
 				435B71EC1EA6080E00FBABBF /* FinishRowView.swift in Sources */,
 				43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */,
 				43811DC41EA8D64C0035B672 /* NumberCollectionViewCell.swift in Sources */,

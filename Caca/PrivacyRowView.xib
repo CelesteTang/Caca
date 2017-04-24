@@ -21,16 +21,22 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="anA-no-3Gy">
+                    <rect key="frame" x="296" y="39" width="51" height="31"/>
+                </switch>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="anA-no-3Gy" secondAttribute="trailing" constant="30" id="Sp5-AY-5d7"/>
                 <constraint firstItem="frs-tw-Qac" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="W7V-Ug-TtF"/>
+                <constraint firstItem="anA-no-3Gy" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZsV-Nl-uzM"/>
                 <constraint firstItem="frs-tw-Qac" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="pcw-vJ-EgB"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="privacyLabel" destination="frs-tw-Qac" id="f46-J7-SgW"/>
+                <outlet property="switchButton" destination="anA-no-3Gy" id="8f2-Oy-0i0"/>
             </connections>
             <point key="canvasLocation" x="-196" y="163"/>
         </view>

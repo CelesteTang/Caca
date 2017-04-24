@@ -146,7 +146,7 @@ class SignUpViewController: UIViewController {
                             UserDefaults.standard.set(gender, forKey: "Gender")
 
                             self.isFromStart = false
-                            
+
                         }
                     }
 
@@ -189,7 +189,7 @@ class SignUpViewController: UIViewController {
                             UserDefaults.standard.set(gender, forKey: "Gender")
 
                             self.isFromProfile = false
-                            
+
                         }
                     }
                 })
@@ -249,7 +249,7 @@ class SignUpViewController: UIViewController {
 
         self.signUpButton.backgroundColor = Palette.darkblue2
         self.signUpButton.setTitle("Sign Up", for: .normal)
-        self.signUpButton.layer.cornerRadius = 22
+        self.signUpButton.layer.cornerRadius = self.signUpButton.frame.height / 2
         self.signUpButton.tintColor = Palette.cream
         self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 

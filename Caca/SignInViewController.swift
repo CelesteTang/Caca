@@ -123,7 +123,7 @@ class SignInViewController: UIViewController {
 
         self.signInButton.backgroundColor = Palette.darkblue2
         self.signInButton.setTitle("Log In", for: .normal)
-        self.signInButton.layer.cornerRadius = 22
+        self.signInButton.layer.cornerRadius = self.signInButton.frame.height / 2
         self.signInButton.tintColor = Palette.cream
         self.signInButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 

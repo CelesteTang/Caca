@@ -132,7 +132,7 @@ class CacaViewController: UIViewController {
 
         self.startButton.backgroundColor = Palette.darkblue2
         self.startButton.tintColor = Palette.cream
-        self.startButton.layer.cornerRadius = 22
+        self.startButton.layer.cornerRadius = self.startButton.frame.height / 2
         self.startButton.setTitle("Start", for: UIControlState.normal)
         self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 

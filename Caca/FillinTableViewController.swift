@@ -65,9 +65,6 @@ class FillinTableViewController: UITableViewController {
     var finalMin = "00"
     var finalSec = "00"
 
-//    var didSelectShape = Int()
-//    var didSelectColor = Int()
-
     var ispassed = false
 
     var isCorrect = false

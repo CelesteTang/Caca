@@ -51,7 +51,7 @@ class FinishTableViewCell: UITableViewCell {
         self.rowView.finishButton.setTitle("Finish", for: .normal)
         self.rowView.finishButton.backgroundColor = Palette.darkblue2
         self.rowView.finishButton.tintColor = Palette.cream
-        self.rowView.finishButton.layer.cornerRadius = 22
+        self.rowView.finishButton.layer.cornerRadius = self.rowView.finishButton.frame.height / 2
         self.rowView.finishButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
     }
