@@ -130,8 +130,16 @@ class SignUpViewController: UIViewController {
                         self.present(alertController, animated: true, completion: nil)
 
                     } else {
-                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                                appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                        
+                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                            
+                            let openingPageViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                            
+                            let openingViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningViewController") as? OpeningViewController
+                            
+                            openingViewController?.isFromStart = true
+                            
+                            appDelegate.window?.rootViewController = openingPageViewController
 
                             UserDefaults.standard.set(name, forKey: "Name")
                             UserDefaults.standard.set(gender, forKey: "Gender")
@@ -170,15 +178,17 @@ class SignUpViewController: UIViewController {
 
                         self.present(alertController, animated: true, completion: nil)
 
-                    } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                    } else {
 
-                        UserDefaults.standard.set(name, forKey: "Name")
-                        UserDefaults.standard.set(gender, forKey: "Gender")
+                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
 
-                        self.isFromProfile = false
+                            UserDefaults.standard.set(name, forKey: "Name")
+                            UserDefaults.standard.set(gender, forKey: "Gender")
+
+                            self.isFromProfile = false
+                        }
                     }
-
                 })
             }
         }

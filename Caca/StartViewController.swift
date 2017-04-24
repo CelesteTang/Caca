@@ -23,14 +23,6 @@ class StartViewController: UIViewController {
 
     @IBAction func startDirectly(_ sender: UIButton) {
 
-//        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
-//            
-//            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-//                appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
-//                }
-//
-//        })
-
         UserManager.shared.createAnonymousUser { (createError, storageError) in
 
             if let error = createError {
@@ -62,8 +54,17 @@ class StartViewController: UIViewController {
         }
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+            
+            let openingPageViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+            
+            let openingViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningViewController") as? OpeningViewController
+            
+            openingViewController?.isFromStart = true
+            
+            appDelegate.window?.rootViewController = openingPageViewController
+            
         }
+
     }
 
     @IBAction func goToSignIn(_ sender: UIButton) {

@@ -35,13 +35,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRAuth.auth()?.addStateDidChangeListener({ (_, user) in
 
             guard let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController,
-                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController else {
+                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController,
+            let openingController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController else {
                     return
             }
 
-            if user != nil {
+            if user != nil && user?.email != nil {
 
                 self.window?.rootViewController = tabBarController
+                self.window?.makeKeyAndVisible()
+
+            } else if user != nil && user?.email == nil {
+
+                self.window?.rootViewController = startViewController
                 self.window?.makeKeyAndVisible()
 
             } else if user == nil {

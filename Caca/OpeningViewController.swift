@@ -10,6 +10,10 @@ import UIKit
 
 class OpeningViewController: UIViewController {
 
+    var isFromStart = false
+    
+    var isFromSignUp = false
+    
     @IBOutlet weak var boy: UIImageView!
 
     @IBOutlet weak var girl: UIImageView!
@@ -34,6 +38,8 @@ class OpeningViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+            
+            isFromStart = false
         }
 
     }
@@ -41,7 +47,11 @@ class OpeningViewController: UIViewController {
     @IBAction func start(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
             appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+            isFromStart = false
+            isFromSignUp = false
         }
 
     }
@@ -93,14 +103,22 @@ class OpeningViewController: UIViewController {
 
             self.forwardButton.setTitle("Next", for: .normal)
             self.forwardButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
-            self.goBackButton.isHidden = false
             self.boy.isHidden = false
             self.girl.isHidden = false
             self.toilet.isHidden = true
             self.cacaLogo.isHidden = true
             self.startButton.isHidden = true
             self.startButton.isEnabled = false
+            if isFromStart == true {
+                
+                self.goBackButton.isHidden = false
 
+            } else if isFromSignUp == true {
+            
+                self.goBackButton.isHidden = true
+
+            }
+            
         case 1:
 
             self.forwardButton.setTitle("Next", for: .normal)
@@ -112,7 +130,7 @@ class OpeningViewController: UIViewController {
             self.cacaLogo.isHidden = true
             self.startButton.isHidden = true
             self.startButton.isEnabled = false
-
+            
         case 2:
 
             self.forwardButton.setTitle("Done", for: .normal)

@@ -72,12 +72,14 @@ class SignInViewController: UIViewController {
 
                     self.present(alertController, animated: true, completion: nil)
 
-                } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                } else {
+
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                    }
                 }
             })
         }
-
     }
 
     override func viewDidLoad() {

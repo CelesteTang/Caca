@@ -150,39 +150,41 @@ class ProfileViewController: UIViewController {
         }
 
     }
-    
+
     func signUp() {
-    
+
         let signUpStorybard = UIStoryboard(name: "Landing", bundle: nil)
         guard let signUpViewController = signUpStorybard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
-        
+
         signUpViewController.isFromProfile = true
-        
+
         present(signUpViewController, animated: true)
-        
+
     }
-    
+
     func logOut() {
-        
+
         do {
             try FIRAuth.auth()?.signOut()
-            
+
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+
             }
-            
+
         } catch (let error) {
-            
+
             let alertController = UIAlertController(title: "Warning",
                                                     message: error.localizedDescription,
                                                     preferredStyle: .alert)
-            
+
             alertController.addAction(UIAlertAction(title: "OK",
                                                     style: .default,
                                                     handler: nil))
-            
+
             self.present(alertController, animated: true, completion: nil)
         }
+
     }
 
 }
