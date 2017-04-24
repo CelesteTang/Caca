@@ -82,9 +82,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="signUp:" destination="IZz-L3-UDN" eventType="touchUpInside" id="dVv-lZ-vqP"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

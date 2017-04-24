@@ -21,17 +21,6 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var signUpButton: UIButton!
 
-    @IBAction func signUp(_ sender: UIButton) {
-
-        let signUpStorybard = UIStoryboard(name: "Landing", bundle: nil)
-        guard let signUpViewController = signUpStorybard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
-
-        signUpViewController.isFromProfile = true
-
-        present(signUpViewController, animated: true)
-
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -74,19 +63,19 @@ class ProfileViewController: UIViewController {
         }
 
         self.signUpButton.backgroundColor = Palette.darkblue
-        self.signUpButton.setTitle("Sign Up", for: .normal)
         self.signUpButton.layer.cornerRadius = 15
         self.signUpButton.tintColor = Palette.cream
         self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
         let user = FIRAuth.auth()?.currentUser
         if user?.isAnonymous == true {
 
-            signUpButton.isHidden = false
+            self.signUpButton.setTitle("Sign Up", for: .normal)
+            self.signUpButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
 
         } else {
 
-            signUpButton.isHidden = true
-            signUpButton.isEnabled = false
+            self.signUpButton.setTitle("Log out", for: .normal)
+            self.signUpButton.addTarget(self, action: #selector(logOut), for: .touchUpInside)
 
         }
 
@@ -130,9 +119,9 @@ class ProfileViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
 
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-        let value = ["name": nameTextField.text,
+        let value = ["name": nameTextField.text ?? "Hello",
                      "gender": genderSegmentedControl.selectedSegmentIndex,
-                     "age": ageTextField.text] as [String: Any]
+                     "age": ageTextField.text ?? "??"] as [String: Any]
 
         UserManager.shared.editUser(with: uid, value: value)
 
@@ -160,6 +149,40 @@ class ProfileViewController: UIViewController {
 
         }
 
+    }
+    
+    func signUp() {
+    
+        let signUpStorybard = UIStoryboard(name: "Landing", bundle: nil)
+        guard let signUpViewController = signUpStorybard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
+        
+        signUpViewController.isFromProfile = true
+        
+        present(signUpViewController, animated: true)
+        
+    }
+    
+    func logOut() {
+        
+        do {
+            try FIRAuth.auth()?.signOut()
+            
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+            }
+            
+        } catch (let error) {
+            
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: error.localizedDescription,
+                                                    preferredStyle: .alert)
+            
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: .default,
+                                                    handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 
 }
