@@ -10,10 +10,6 @@ import UIKit
 
 struct Palette {
 
-//    static let backgoundColor = UIColor(red: 216/255, green: 219/255, blue: 186/255, alpha: 1)
-//
-//    static let textColor = UIColor(red: 131/255, green: 91/255, blue: 0/255, alpha: 1)
-
     static let selectedColor = UIColor(red: 226/255, green: 224/255, blue: 165/255, alpha: 1)
 
     static let passColor = UIColor(red: 54/255, green: 166/255, blue: 54/255, alpha: 1)

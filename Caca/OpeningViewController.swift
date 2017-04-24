@@ -11,9 +11,9 @@ import UIKit
 class OpeningViewController: UIViewController {
 
     var isFromStart = false
-    
+
     var isFromSignUp = false
-    
+
     @IBOutlet weak var boy: UIImageView!
 
     @IBOutlet weak var girl: UIImageView!
@@ -38,8 +38,10 @@ class OpeningViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
-            
+
             isFromStart = false
+            isFromSignUp = false
+
         }
 
     }
@@ -110,15 +112,15 @@ class OpeningViewController: UIViewController {
             self.startButton.isHidden = true
             self.startButton.isEnabled = false
             if isFromStart == true {
-                
+
                 self.goBackButton.isHidden = false
 
             } else if isFromSignUp == true {
-            
+
                 self.goBackButton.isHidden = true
 
             }
-            
+
         case 1:
 
             self.forwardButton.setTitle("Next", for: .normal)
@@ -130,7 +132,7 @@ class OpeningViewController: UIViewController {
             self.cacaLogo.isHidden = true
             self.startButton.isHidden = true
             self.startButton.isEnabled = false
-            
+
         case 2:
 
             self.forwardButton.setTitle("Done", for: .normal)

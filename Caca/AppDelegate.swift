@@ -40,14 +40,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     return
             }
 
-            if user != nil && user?.email != nil {
+            let isviewedWalkThrough = UserDefaults.standard.bool(forKey: "IsviewedWalkThrough")
+
+            if user != nil && user?.isAnonymous == false && isviewedWalkThrough == false {
+
+                self.window?.rootViewController = openingController
+                self.window?.makeKeyAndVisible()
+
+            } else if user != nil && user?.isAnonymous == false && isviewedWalkThrough == true {
 
                 self.window?.rootViewController = tabBarController
                 self.window?.makeKeyAndVisible()
 
-            } else if user != nil && user?.email == nil {
+            } else if user != nil && user?.isAnonymous == true && isviewedWalkThrough == true {
 
-                self.window?.rootViewController = startViewController
+                self.window?.rootViewController = tabBarController
+                self.window?.makeKeyAndVisible()
+
+            } else if user != nil && user?.isAnonymous == true && isviewedWalkThrough == false {
+
+                self.window?.rootViewController = openingController
                 self.window?.makeKeyAndVisible()
 
             } else if user == nil {

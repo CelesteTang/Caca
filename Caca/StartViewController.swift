@@ -54,15 +54,15 @@ class StartViewController: UIViewController {
         }
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            
+
             let openingPageViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
-            
+
             let openingViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningViewController") as? OpeningViewController
-            
+
             openingViewController?.isFromStart = true
-            
+
             appDelegate.window?.rootViewController = openingPageViewController
-            
+
         }
 
     }
@@ -113,7 +113,7 @@ class StartViewController: UIViewController {
         self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
         self.signInButton.backgroundColor = Palette.darkblue2
-        self.signInButton.setTitle("Sign In", for: .normal)
+        self.signInButton.setTitle("Log In", for: .normal)
         self.signInButton.layer.cornerRadius = 22
         self.signInButton.tintColor = Palette.cream
         self.signInButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
