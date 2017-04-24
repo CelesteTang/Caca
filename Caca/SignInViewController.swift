@@ -62,10 +62,8 @@ class SignInViewController: UIViewController {
 
                 if let error = error {
 
-                    print("-SignIn---------\(error)")
-
                     let alertController = UIAlertController(title: "Warning",
-                                                            message: "Incorrect email or password.",
+                                                            message: error.localizedDescription,
                                                             preferredStyle: .alert)
 
                     alertController.addAction(UIAlertAction(title: "OK",
@@ -74,10 +72,7 @@ class SignInViewController: UIViewController {
 
                     self.present(alertController, animated: true, completion: nil)
 
-                    return
-                }
-
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
                 }
             })

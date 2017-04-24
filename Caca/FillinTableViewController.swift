@@ -303,7 +303,7 @@ class FillinTableViewController: UITableViewController {
 
             cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-big")
             cell.rowView.detectionColorImageView.backgroundColor = UIColor.clear
-            
+
             if isFromRecordDetail == true {
 
                 if self.recievedCacaFromRecordDetail[0].photo != "" {

@@ -80,36 +80,36 @@ enum Color: Int {
     }
 
     var color: UIColor {
-        
+
         switch self {
         case .red:
-            
+
             return Palette.red
-            
+
         case .yellow:
-            
+
             return Palette.yellow
         case .green:
-            
+
             return Palette.green
-            
+
         case .lightBrown:
-            
+
             return Palette.lightBrown
-            
+
         case .darkBrown:
-            
+
             return Palette.darkBrown
-            
+
         case .gray:
-            
+
             return Palette.gray
-            
+
         case .black:
-            
+
             return Palette.black
         }
-        
+
     }
 
 }

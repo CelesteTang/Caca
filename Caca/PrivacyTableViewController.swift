@@ -27,20 +27,20 @@ class PrivacyTableViewController: UITableViewController {
 
         self.navigationItem.title = "Privacy"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
-        
+
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
-            
+
             authentications = [.password, .passwordChanging, .touchID]
-            
+
         } else {
-            
+
             authentications = [.password]
-            
+
         }
-        
+
         self.tableView.register(PrivacyTableViewCell.self, forCellReuseIdentifier: "PrivacyTableViewCell")
         self.tableView.allowsSelection = true
-        
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -92,15 +92,15 @@ class PrivacyTableViewController: UITableViewController {
 
             cell.selectionStyle = .none
             if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
-                
+
                 switchButton.isOn = true
-                
+
             } else {
-                
+
                 switchButton.isOn = false
-                
+
             }
-            
+
             switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
 
         case Authentication.touchID.rawValue:
@@ -161,7 +161,7 @@ class PrivacyTableViewController: UITableViewController {
             UserDefaults.standard.removeObject(forKey: "Password")
 
             authentications = [.password]
-            
+
             self.tableView.reloadData()
 
         }

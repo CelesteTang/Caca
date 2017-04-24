@@ -42,7 +42,11 @@ class UserManager {
 
                             completion(nil, error)
 
+                        } else {
+
+                            completion(nil, nil)
                         }
+
                     })
                 }
             }
@@ -76,6 +80,9 @@ class UserManager {
 
                             completion(nil, error)
 
+                        } else {
+
+                            completion(nil, nil)
                         }
                     })
                 }
@@ -112,11 +119,13 @@ class UserManager {
 
                             completion(nil, error)
 
+                        } else {
+
+                            completion(nil, nil)
                         }
                     })
                 }
             }
-
         })
     }
 

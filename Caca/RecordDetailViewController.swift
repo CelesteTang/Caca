@@ -172,11 +172,11 @@ class RecordDetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
 
     }
-    
+
     func titleToImage(title: String) -> UIImage {
-    
+
         switch title {
-        
+
         case Color.red.title: return Color.red.image
         case Color.yellow.title: return Color.yellow.image
         case Color.green.title: return Color.green.image
@@ -184,7 +184,7 @@ class RecordDetailViewController: UIViewController {
         case Color.darkBrown.title: return Color.darkBrown.image
         case Color.gray.title: return Color.gray.image
         case Color.black.title: return Color.black.image
-            
+
         case Shape.separateHard.title: return Shape.separateHard.image
         case Shape.lumpySausage.title: return Shape.lumpySausage.image
         case Shape.crackSausage.title: return Shape.crackSausage.image
@@ -192,11 +192,11 @@ class RecordDetailViewController: UIViewController {
         case Shape.softBlob.title: return Shape.softBlob.image
         case Shape.mushyStool.title: return Shape.mushyStool.image
         case Shape.wateryStool.title: return Shape.wateryStool.image
-            
+
         default: break
-        
+
         }
-        
+
         return #imageLiteral(resourceName: "caca-small")
     }
 }

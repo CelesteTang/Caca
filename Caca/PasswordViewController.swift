@@ -40,19 +40,19 @@ class PasswordViewController: UIViewController {
         if isFromPassword == true {
 
             UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
-            
+
             userPassword.removeAll()
 
             isFromPassword = false
 
             dismiss(animated: true, completion: nil)
-            
+
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-                
+
                 tabBarController.selectedIndex = TabBarItemType.setting.rawValue
-                
+
                 appDelegate.window?.rootViewController = tabBarController
-                
+
             }
 
         } else if isFromPasswordChanging == true {
@@ -71,7 +71,7 @@ class PasswordViewController: UIViewController {
         super.viewDidLoad()
 
         setUp()
-        
+
         if isFromBeginning == true {
             touchIDAuthentication()
         }
@@ -195,7 +195,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
         }
 
         DispatchQueue.main.async {
-            
+
             switch self.userPassword.count {
             case 0:
                 self.password1.image = #imageLiteral(resourceName: "shadow")
@@ -217,19 +217,19 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
                 self.password2.image = #imageLiteral(resourceName: "caca-small")
                 self.password3.image = #imageLiteral(resourceName: "caca-small")
                 self.password4.image = #imageLiteral(resourceName: "shadow")
-                
+
             case 4:
                 self.password1.image = #imageLiteral(resourceName: "caca-small")
                 self.password2.image = #imageLiteral(resourceName: "caca-small")
                 self.password3.image = #imageLiteral(resourceName: "caca-small")
                 self.password4.image = #imageLiteral(resourceName: "caca-small")
-                
+
             default: break
-                
+
             }
 
         }
-        
+
         if userPassword.count == 4 {
 
             numberCollectionView.allowsSelection = false
@@ -245,9 +245,9 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
                 if isFromBeginning == true {
 
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        
+
                         appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-                        
+
                         isFromBeginning = false
 
                     }

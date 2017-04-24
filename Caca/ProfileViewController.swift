@@ -114,7 +114,7 @@ class ProfileViewController: UIViewController {
         self.nameTextField.clearsOnBeginEditing = true
         self.nameTextField.keyboardType = .alphabet
         self.nameTextField.returnKeyType = .done
-        
+
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -129,13 +129,15 @@ class SignUpViewController: UIViewController {
 
                         self.present(alertController, animated: true, completion: nil)
 
-                    } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                    } else {
+                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                                appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
 
-                        UserDefaults.standard.set(name, forKey: "Name")
-                        UserDefaults.standard.set(gender, forKey: "Gender")
+                            UserDefaults.standard.set(name, forKey: "Name")
+                            UserDefaults.standard.set(gender, forKey: "Gender")
 
-                        self.isFromStart = false
+                            self.isFromStart = false
+                        }
                     }
 
                 })

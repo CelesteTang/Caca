@@ -41,43 +41,43 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Caca/UserManager.swift"
-            timestampString = "514663260.586694"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514694257.464508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "linkUser(with:password:name:gender:completion:)"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "signUp(_:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Caca.UserManager.linkUser (with : Swift.String, password : Swift.String, name : Swift.String, gender : Swift.Int, completion : (Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "Caca.SignUpViewController.signUp (__ObjC.UIButton) -&gt; ()"
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/UserManager.swift"
-                  timestampString = "514665020.768175"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/SignUpViewController.swift"
+                  timestampString = "514699306.776595"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "332">
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "5364">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Caca.UserManager.(linkUser (with : Swift.String, password : Swift.String, name : Swift.String, gender : Swift.Int, completion : (Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "Caca.SignUpViewController.(signUp (__ObjC.UIButton) -&gt; ()).(closure #1)"
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/UserManager.swift"
-                  timestampString = "514665020.769573"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/SignUpViewController.swift"
+                  timestampString = "514699306.777792"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
                   offsetFromSymbolStart = "48">
                </Location>
             </Locations>
@@ -89,46 +89,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Caca/UserManager.swift"
-            timestampString = "514663264.615287"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514694263.636587"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "createAnonymousUser(completion:)"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "signUp(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Caca.UserManager.createAnonymousUser (completion : (Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Caca"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/UserManager.swift"
-                  timestampString = "514665020.772236"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Caca.UserManager.(createAnonymousUser (completion : (Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "Caca"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/UserManager.swift"
-                  timestampString = "514665020.773478"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "32">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -137,43 +105,59 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Caca/UserManager.swift"
-            timestampString = "514663268.401338"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514694269.786669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "createUser(with:password:name:gender:completion:)"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "signUp(_:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Caca.UserManager.createUser (with : Swift.String, password : Swift.String, name : Swift.String, gender : Swift.Int, completion : (Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "Caca.SignUpViewController.signUp (__ObjC.UIButton) -&gt; ()"
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/UserManager.swift"
-                  timestampString = "514665022.114771"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/SignUpViewController.swift"
+                  timestampString = "514699306.785873"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "88">
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "5684">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Caca.UserManager.(createUser (with : Swift.String, password : Swift.String, name : Swift.String, gender : Swift.Int, completion : (Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "Caca.SignUpViewController.(signUp (__ObjC.UIButton) -&gt; ()).(closure #2)"
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/UserManager.swift"
-                  timestampString = "514665022.11669"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/SignUpViewController.swift"
+                  timestampString = "514699306.787063"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
                   offsetFromSymbolStart = "48">
                </Location>
             </Locations>
@@ -185,13 +169,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Caca/UserManager.swift"
-            timestampString = "514663289.116506"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "linkUser(with:password:name:gender:completion:)"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "signUp(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -201,13 +185,317 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Caca/UserManager.swift"
-            timestampString = "514663291.634623"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "linkUser(with:password:name:gender:completion:)"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698650.879737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514697958.567539"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Caca.SignUpViewController.(signUp (__ObjC.UIButton) -&gt; ()).(closure #1)"
+                  moduleName = "Caca"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/SignUpViewController.swift"
+                  timestampString = "514699306.814108"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "1128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Caca.SignUpViewController.(signUp (__ObjC.UIButton) -&gt; ()).(closure #1)"
+                  moduleName = "Caca"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/SignUpViewController.swift"
+                  timestampString = "514699306.815279"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "1176">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514697959.358614"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514697960.919331"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514697961.544547"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698768.235064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Caca.SignUpViewController.(signUp (__ObjC.UIButton) -&gt; ()).(closure #1)"
+                  moduleName = "Caca"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/SignUpViewController.swift"
+                  timestampString = "514699306.825106"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "2280">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Caca.SignUpViewController.(signUp (__ObjC.UIButton) -&gt; ()).(closure #1)"
+                  moduleName = "Caca"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/SignUpViewController.swift"
+                  timestampString = "514699306.826293"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "2540">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698771.701276"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "signUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Caca/SignUpViewController.swift"
+            timestampString = "514698790.900472"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "signUp(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
