@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Crashlytics
 
 enum Gender: Int {
 
@@ -145,6 +146,7 @@ class SignUpViewController: UIViewController {
                             UserDefaults.standard.set(gender, forKey: "Gender")
 
                             self.isFromStart = false
+                            
                         }
                     }
 
@@ -187,6 +189,7 @@ class SignUpViewController: UIViewController {
                             UserDefaults.standard.set(gender, forKey: "Gender")
 
                             self.isFromProfile = false
+                            
                         }
                     }
                 })

@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import Firebase
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FIRApp.configure()
 
+        Fabric.with([Crashlytics.self])
+        
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController {

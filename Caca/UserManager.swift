@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import Crashlytics
 
 class UserManager {
 
@@ -15,6 +16,15 @@ class UserManager {
 
     static let shared = UserManager()
 
+    // MARK: Crashlytics
+    
+    func logUser(email: String, uid: String, name: String) {
+        
+        Crashlytics.sharedInstance().setUserEmail(email)
+        Crashlytics.sharedInstance().setUserIdentifier(uid)
+        Crashlytics.sharedInstance().setUserName(name)
+    }
+    
     // MARK: Create user
 
     typealias CreateHadler = (Error?, Error?) -> Void
@@ -31,7 +41,7 @@ class UserManager {
 
                 let value = ["name": name,
                              "gender": gender] as [String: Any]
-
+                
                 if let user = user {
 
                     let uid = user.uid
@@ -43,6 +53,8 @@ class UserManager {
                             completion(nil, error)
 
                         } else {
+
+                            self.logUser(email: email, uid: uid, name: name)
 
                             completion(nil, nil)
                         }
@@ -120,6 +132,8 @@ class UserManager {
                             completion(nil, error)
 
                         } else {
+
+                            self.logUser(email: email, uid: uid, name: name)
 
                             completion(nil, nil)
                         }

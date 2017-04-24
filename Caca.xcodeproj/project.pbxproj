@@ -388,6 +388,7 @@
 				1823AE7D3636F1CC228E5E6C /* [CP] Embed Pods Frameworks */,
 				1107703EA5C3EE6CB4C3A34D /* [CP] Copy Pods Resources */,
 				43372D181E7FBC9C002E2AE3 /* SwiftLint */,
+				43016AE71EADE6800030AC73 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -497,6 +498,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Caca/Pods-Caca-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		43016AE71EADE6800030AC73 /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 8d859f1c85e6982b092b11fcfefda3fb4e17ddee 20d4fbebe02d189cc0b390a0c6b9958aca1bd330de0cdd1f40a94ee1032d6d8c";
 		};
 		43372D181E7FBC9C002E2AE3 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
