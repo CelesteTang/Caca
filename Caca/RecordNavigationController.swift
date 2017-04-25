@@ -41,7 +41,8 @@ class RecordNavigationController: UINavigationController {
 
     private func setUp() {
 
-        viewControllers = [ RecordTableViewController() ]
+        viewControllers = [RecordTableViewController()]
+        
         self.tabBarItem = TabBarItemType.record.item
 
     }

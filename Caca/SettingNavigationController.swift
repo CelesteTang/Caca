@@ -41,7 +41,8 @@ class SettingNavigationController: UINavigationController {
 
     private func setUp() {
 
-        viewControllers = [ SettingTableViewController() ]
+        viewControllers = [SettingTableViewController()]
+        
         self.tabBarItem = TabBarItemType.setting.item
 
     }

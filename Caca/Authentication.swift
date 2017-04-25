@@ -17,10 +17,11 @@ enum Authentication: Int {
         switch self {
 
         case .password: return "Password"
+            
         case .passwordChanging: return "New password"
+            
         case .touchID: return "TouchID"
 
         }
     }
-
 }
