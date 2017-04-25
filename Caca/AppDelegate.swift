@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import Firebase
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         FIRApp.configure()
+
+        Fabric.with([Crashlytics.self])
 
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
 
@@ -30,24 +34,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             }
 
-        }
+        } else {
 
-//        FIRAuth.auth()?.addStateDidChangeListener({ (_, user) in
-//
-//            guard let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController else { return }
-//
-//            if user != nil {
-//
-//                self.window?.rootViewController = tabBarController
-//                self.window?.makeKeyAndVisible()
-//
-//            } else if user == nil {
-//
-//                self.window?.rootViewController = startViewController
-//                self.window?.makeKeyAndVisible()
-//
-//            }
-//        })
+            FIRAuth.auth()?.addStateDidChangeListener({ (_, user) in
+
+                guard let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController,
+                    let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController,
+                    let openingController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController else {
+                        return
+                }
+
+                let isviewedWalkThrough = UserDefaults.standard.bool(forKey: "IsviewedWalkThrough")
+
+                if user != nil && user?.isAnonymous == false && isviewedWalkThrough == false {
+
+                    self.window?.rootViewController = openingController
+                    self.window?.makeKeyAndVisible()
+
+                } else if user != nil && user?.isAnonymous == false && isviewedWalkThrough == true {
+
+                    self.window?.rootViewController = tabBarController
+                    self.window?.makeKeyAndVisible()
+
+                } else if user != nil && user?.isAnonymous == true && isviewedWalkThrough == true {
+
+                    self.window?.rootViewController = tabBarController
+                    self.window?.makeKeyAndVisible()
+
+                } else if user != nil && user?.isAnonymous == true && isviewedWalkThrough == false {
+
+                    self.window?.rootViewController = startViewController
+                    self.window?.makeKeyAndVisible()
+
+                } else if user == nil {
+
+                    self.window?.rootViewController = startViewController
+                    self.window?.makeKeyAndVisible()
+
+                }
+            })
+
+        }
 
         return true
     }

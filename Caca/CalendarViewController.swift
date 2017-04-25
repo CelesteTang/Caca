@@ -71,11 +71,12 @@ class CalendarViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "Calendar"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
 
         self.headerView.backgroundColor = Palette.darkblue
         self.headerTitleLabel.textColor = Palette.lightblue2
         self.headerTitleLabel.font = UIFont(name: "Futura-Bold", size: 20)
+
         self.adviceView.backgroundColor = Palette.lightblue2
 
         self.adviceLabel.textColor = Palette.darkblue
@@ -130,6 +131,8 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         let currentDateString = dateFormatter.string(from: Date())
         let cellStateDateString = dateFormatter.string(from: cellState.date)
 
+        // MARK : Calendar setting (today/this month/not this month)
+
         if cellState.dateBelongsTo != .thisMonth {
 
             calendarCell.isUserInteractionEnabled = false
@@ -148,6 +151,8 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
             calendarCell.dayLabel.textColor = Palette.lightblue2
 
         }
+
+        // MARK : Have caca
 
         for caca in cacas {
 

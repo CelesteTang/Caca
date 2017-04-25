@@ -10,6 +10,10 @@ import UIKit
 
 class OpeningViewController: UIViewController {
 
+    var isFromStart = false
+
+    var isFromSignUp = false
+
     @IBOutlet weak var boy: UIImageView!
 
     @IBOutlet weak var girl: UIImageView!
@@ -33,7 +37,14 @@ class OpeningViewController: UIViewController {
     @IBAction func goBack(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+
+            let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+
+            appDelegate.window?.rootViewController = startViewController
+
+            isFromStart = false
+            isFromSignUp = false
+
         }
 
     }
@@ -41,7 +52,16 @@ class OpeningViewController: UIViewController {
     @IBAction func start(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+            isFromStart = false
+            isFromSignUp = false
+
+            UserDefaults.standard.set(true, forKey: "IsviewedWalkThrough")
+
+            let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+            appDelegate.window?.rootViewController = tabBarController
+
         }
 
     }
@@ -51,6 +71,7 @@ class OpeningViewController: UIViewController {
         switch index {
 
         case 0...1:
+
             guard let pageViewController = parent as? OpeningPageViewController else { return }
             pageViewController.forward(index: index)
 
@@ -66,13 +87,23 @@ class OpeningViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUp()
+
+    }
+
+    // MARK: Set Up
+
+    private func setUp() {
+
         self.view.backgroundColor = Palette.lightblue2
-        self.openingLabel.textColor = Palette.darkblue
+
         self.forwardButton.tintColor = Palette.darkblue
 
+        self.openingLabel.textColor = Palette.darkblue
         self.openingLabel.text = heading
-        self.openingImage.image = UIImage(named: imageFile)
         self.openingLabel.font = UIFont(name: "Futura-Bold", size: 30)
+
+        self.openingImage.image = UIImage(named: imageFile)
 
         self.goBackButton.setTitle("", for: .normal)
         let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
@@ -82,7 +113,7 @@ class OpeningViewController: UIViewController {
         self.startButton.setTitle("Start", for: .normal)
         self.startButton.tintColor = Palette.cream
         self.startButton.backgroundColor = Palette.darkblue2
-        self.startButton.layer.cornerRadius = 22
+        self.startButton.layer.cornerRadius = self.startButton.frame.height / 2
         self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
         self.pageControl.currentPage = index
@@ -93,13 +124,21 @@ class OpeningViewController: UIViewController {
 
             self.forwardButton.setTitle("Next", for: .normal)
             self.forwardButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
-            self.goBackButton.isHidden = false
             self.boy.isHidden = false
             self.girl.isHidden = false
             self.toilet.isHidden = true
             self.cacaLogo.isHidden = true
             self.startButton.isHidden = true
             self.startButton.isEnabled = false
+            if isFromStart == true {
+
+                self.goBackButton.isHidden = false
+
+            } else if isFromSignUp == true {
+
+                self.goBackButton.isHidden = true
+
+            }
 
         case 1:
 
@@ -130,7 +169,5 @@ class OpeningViewController: UIViewController {
         default: break
 
         }
-
     }
-
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class CacaViewController: UIViewController {
 
@@ -19,7 +20,11 @@ class CacaViewController: UIViewController {
     @IBAction func switchToTiming(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Timing", bundle: nil).instantiateViewController(withIdentifier: "TimingViewController") as? TimingViewController
+
+            let timingViewController = UIStoryboard(name: "Timing", bundle: nil).instantiateViewController(withIdentifier: "TimingViewController") as? TimingViewController
+
+            appDelegate.window?.rootViewController = timingViewController
+
         }
 
     }
@@ -29,8 +34,20 @@ class CacaViewController: UIViewController {
 
         setUp()
 
-        guard let userName = UserDefaults.standard.value(forKey: "Name") as? String else { return }
+        detectFrequency()
+    }
 
+    // MARK: Set Up
+
+    private func setUp() {
+
+        self.navigationItem.title = Time.dateString()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+
+        self.view.backgroundColor = Palette.lightblue2
+
+        self.mainImageView.backgroundColor = Palette.lightblue2
+        self.mainImageView.image = #imageLiteral(resourceName: "boy")
         if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
 
             if gender == Gender.male.rawValue {
@@ -44,7 +61,24 @@ class CacaViewController: UIViewController {
             }
         }
 
-        // MARK: Frequency
+        self.notificationLabel.textColor = Palette.darkblue
+        self.notificationLabel.numberOfLines = 0
+        self.notificationLabel.text = "How's today?"
+        self.notificationLabel.font = UIFont(name: "Futura-Bold", size: 25)
+
+        self.startButton.backgroundColor = Palette.darkblue2
+        self.startButton.tintColor = Palette.cream
+        self.startButton.layer.cornerRadius = self.startButton.frame.height / 2
+        self.startButton.setTitle("Start", for: UIControlState.normal)
+        self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+
+    }
+
+    // MARK : Frequency
+
+    private func detectFrequency() {
+
+        guard let userName = UserDefaults.standard.value(forKey: "Name") as? String else { return }
 
         CacaProvider.shared.getCaca { (cacas, _) in
 
@@ -111,32 +145,6 @@ class CacaViewController: UIViewController {
             }
         }
     }
-
-    // MARK: Set Up
-
-    private func setUp() {
-
-        self.navigationItem.title = Time.dateString()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
-
-        self.view.backgroundColor = Palette.lightblue2
-
-        self.mainImageView.backgroundColor = Palette.lightblue2
-        self.mainImageView.image = #imageLiteral(resourceName: "boy")
-
-        self.notificationLabel.textColor = Palette.darkblue
-        self.notificationLabel.numberOfLines = 0
-        self.notificationLabel.text = "How's today?"
-        self.notificationLabel.font = UIFont(name: "Futura-Bold", size: 25)
-
-        self.startButton.backgroundColor = Palette.darkblue2
-        self.startButton.tintColor = Palette.cream
-        self.startButton.layer.cornerRadius = 22
-        self.startButton.setTitle("Start", for: UIControlState.normal)
-        self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
-
-    }
-
 }
 
 extension CacaViewController {

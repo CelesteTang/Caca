@@ -31,9 +31,10 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKn-bM-wpN">
-                                <rect key="frame" x="253" y="28" width="51" height="44"/>
+                                <rect key="frame" x="260" y="28" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="A5a-zJ-kSI"/>
+                                    <constraint firstAttribute="width" secondItem="CKn-bM-wpN" secondAttribute="height" multiplier="1:1" id="GTE-0I-FtG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Button"/>

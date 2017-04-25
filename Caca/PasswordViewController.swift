@@ -40,19 +40,21 @@ class PasswordViewController: UIViewController {
         if isFromPassword == true {
 
             UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
-            
+
             userPassword.removeAll()
 
             isFromPassword = false
 
             dismiss(animated: true, completion: nil)
-            
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-                
-                tabBarController.selectedIndex = TabBarItemType.setting.rawValue
-                
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+                tabBarController?.selectedIndex = TabBarItemType.setting.rawValue
+
                 appDelegate.window?.rootViewController = tabBarController
-                
+
             }
 
         } else if isFromPasswordChanging == true {
@@ -71,19 +73,22 @@ class PasswordViewController: UIViewController {
         super.viewDidLoad()
 
         setUp()
-        
+
         if isFromBeginning == true {
+
             touchIDAuthentication()
+
         }
+
         numberCollectionView.dataSource = self
         numberCollectionView.delegate = self
         numberCollectionView.allowsSelection = true
 
         guard let layout = numberCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         layout.itemSize = CGSize(width: numberCollectionView.frame.width / 3, height: numberCollectionView.frame.height / 4)
-        layout.minimumInteritemSpacing = 5
-        layout.minimumLineSpacing = 5
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
 
         numberCollectionView.register(NumberCollectionViewCell.self, forCellWithReuseIdentifier: "NumberCollectionViewCell")
 
@@ -135,9 +140,12 @@ class PasswordViewController: UIViewController {
                 context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use TouchID to enter Caca", reply: { (success, _) in
 
                     if success {
+
                         DispatchQueue.main.async {
 
-                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+                                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
 
                                 appDelegate.window?.rootViewController = tabBarController
 
@@ -195,7 +203,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
         }
 
         DispatchQueue.main.async {
-            
+
             switch self.userPassword.count {
             case 0:
                 self.password1.image = #imageLiteral(resourceName: "shadow")
@@ -217,37 +225,39 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
                 self.password2.image = #imageLiteral(resourceName: "caca-small")
                 self.password3.image = #imageLiteral(resourceName: "caca-small")
                 self.password4.image = #imageLiteral(resourceName: "shadow")
-                
+
             case 4:
                 self.password1.image = #imageLiteral(resourceName: "caca-small")
                 self.password2.image = #imageLiteral(resourceName: "caca-small")
                 self.password3.image = #imageLiteral(resourceName: "caca-small")
                 self.password4.image = #imageLiteral(resourceName: "caca-small")
-                
+
             default: break
-                
+
             }
 
         }
-        
+
         if userPassword.count == 4 {
 
             numberCollectionView.allowsSelection = false
 
             if UserDefaults.standard.value(forKey: "Password") == nil {
 
-                    UserDefaults.standard.set(userPassword, forKey: "Password")
+                UserDefaults.standard.set(userPassword, forKey: "Password")
 
-                    dismiss(animated: true, completion: nil)
+                dismiss(animated: true, completion: nil)
 
             } else if let storedPassword = UserDefaults.standard.value(forKey: "Password") as? [String], userPassword == storedPassword {
 
                 if isFromBeginning == true {
 
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-                        
+
+                        let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+                        appDelegate.window?.rootViewController = tabBarController
+
                         isFromBeginning = false
 
                     }
@@ -269,6 +279,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
                     let alertController = UIAlertController(title: "Warning",
                                                             message: "The password is incorrect. Try again.",
                                                             preferredStyle: UIAlertControllerStyle.alert)
+
                     let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
 
                         self.userPassword.removeAll()

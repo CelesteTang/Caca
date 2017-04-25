@@ -10,7 +10,10 @@ import UIKit
 
 class OpeningPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
-    var pageHeadings = ["Do you remember the last caca time ?", "Do you know caca could reveal your healthy state?", "Let's build up the good habit of caca with Caca!"]
+    var pageHeadings = ["Do you remember the last caca time ?",
+                        "Do you know caca could reveal your healthy state?",
+                        "Let's build up the good habit of caca with Caca!"]
+
     var pageImages = ["A", "B", "C"]
 
     override func viewDidLoad() {
@@ -21,7 +24,9 @@ class OpeningPageViewController: UIPageViewController, UIPageViewControllerDataS
         self.dataSource = self
 
         if let startingViewController = contentViewController(at: 0) {
+
             setViewControllers([startingViewController], direction: .forward, animated: true, completion: nil)
+
         }
 
     }

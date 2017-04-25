@@ -52,28 +52,26 @@ class RecordTableViewController: UITableViewController {
 
         self.tableView.separatorStyle = .none
 
+        self.coverButtonTitle = "Hide"
+
         if UserDefaults.standard.bool(forKey: "Hide") == true {
 
             coverButtonTitle = "Show"
 
-        } else {
+        } else if UserDefaults.standard.bool(forKey: "Hide") == false {
 
             coverButtonTitle = "Hide"
 
         }
 
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+
         let coverButton = UIBarButtonItem(title: coverButtonTitle, style: .plain, target: self, action: #selector(coverCaca))
         self.navigationItem.leftBarButtonItem = coverButton
 
-//        let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysTemplate), style: .bordered, target: self, action: #selector(addCaca))
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCaca))
         self.navigationItem.rightBarButtonItem = addButton
 
-//        let image = UIImage()
-//        navigationController?.navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
-//        navigationController?.navigationBar.shadowImage = image
-//        navigationController?.navigationBar.isTranslucent = true
-//        navigationController?.view.backgroundColor = UIColor.clear
     }
 
     func coverCaca() {
@@ -81,15 +79,15 @@ class RecordTableViewController: UITableViewController {
         if isCovered == false {
 
             isCovered = true
-            UserDefaults.standard.set(isCovered, forKey: "Hide")
-            coverButtonTitle = "Show"
+            UserDefaults.standard.set(true, forKey: "Hide")
+            self.navigationItem.leftBarButtonItem?.title = "Show"
             self.tableView.reloadData()
 
         } else {
 
             isCovered = false
-            UserDefaults.standard.set(isCovered, forKey: "Hide")
-            coverButtonTitle = "Hide"
+            UserDefaults.standard.set(false, forKey: "Hide")
+            self.navigationItem.leftBarButtonItem?.title = "Hide"
             self.tableView.reloadData()
 
         }
@@ -98,8 +96,7 @@ class RecordTableViewController: UITableViewController {
 
     func addCaca() {
 
-        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
-        guard let fillinViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
+        guard let fillinViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
 
         fillinViewController.isFromRecord = true
 
@@ -138,7 +135,7 @@ class RecordTableViewController: UITableViewController {
 
         cell.rowView.separateLineView.backgroundColor = Palette.darkblue
 
-        if UserDefaults.standard.bool(forKey: "Hide") == false {
+        if isCovered == false {
 
             if cacas[indexPath.row].photo != "" {
 
@@ -196,10 +193,7 @@ class RecordTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let storyBoard = UIStoryboard(name: "RecordDetail", bundle: nil)
-        guard let recordDetailViewController = storyBoard.instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else {
-            return
-        }
+        guard let recordDetailViewController = UIStoryboard(name: "RecordDetail", bundle: nil).instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else { return }
 
         recordDetailViewController.recievedCaca = [self.cacas[indexPath.row]]
         recordDetailViewController.indexPath = indexPath
@@ -211,8 +205,8 @@ class RecordTableViewController: UITableViewController {
 
         if editingStyle == .delete {
 
-            CacaProvider.shared.deleteCaca(of: self.cacas[indexPath.row].cacaID)
-            CacaProvider.shared.deleteCacaPhoto(of: self.cacas[indexPath.row].photoID)
+            CacaProvider.shared.deleteCaca(cacaID: self.cacas[indexPath.row].cacaID)
+            CacaProvider.shared.deleteCacaPhoto(photoID: self.cacas[indexPath.row].photoID)
             self.cacas.remove(at: indexPath.row)
 
             self.tableView.deleteRows(at: [indexPath], with: .fade)

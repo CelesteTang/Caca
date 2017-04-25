@@ -17,39 +17,11 @@ enum Authentication: Int {
         switch self {
 
         case .password: return "Password"
+
         case .passwordChanging: return "New password"
+
         case .touchID: return "TouchID"
 
-        }
-    }
-
-    var switchButton: UISwitch {
-
-        switch self {
-
-        case .password:
-
-            let passwordSwitch = UISwitch()
-
-            passwordSwitch.center = CGPoint(x: PrivacyRowView.create().bounds.width * 0.9, y: PrivacyRowView.create().bounds.height * 0.5)
-
-            return passwordSwitch
-
-        case .passwordChanging:
-
-            let passwordChangingSwitch = UISwitch()
-
-            passwordChangingSwitch.isHidden = true
-
-            return passwordChangingSwitch
-
-        case .touchID:
-
-            let touchIDSwitch = UISwitch()
-
-            touchIDSwitch.center = CGPoint(x: PrivacyRowView.create().bounds.width * 0.9, y: PrivacyRowView.create().bounds.height * 0.5)
-
-            return touchIDSwitch
         }
     }
 }

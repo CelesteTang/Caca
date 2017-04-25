@@ -14,5 +14,7 @@ pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'JTAppleCalendar', '~> 6.1'
 pod 'ColorThiefSwift', '>= 0.2.0'
+pod 'Fabric'
+pod 'Crashlytics'
 
 end

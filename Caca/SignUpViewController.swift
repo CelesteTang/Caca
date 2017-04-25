@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Crashlytics
 
 enum Gender: Int {
 
@@ -42,7 +43,11 @@ class SignUpViewController: UIViewController {
         if isFromStart == true {
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+
+                let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+
+                appDelegate.window?.rootViewController = startViewController
+
             }
 
             isFromStart = false
@@ -103,6 +108,8 @@ class SignUpViewController: UIViewController {
 
             if isFromStart == true {
 
+                // MARK : Create user
+
                 UserManager.shared.createUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
 
                     if let error = createError {
@@ -129,18 +136,32 @@ class SignUpViewController: UIViewController {
 
                         self.present(alertController, animated: true, completion: nil)
 
-                    } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                    } else {
 
-                        UserDefaults.standard.set(name, forKey: "Name")
-                        UserDefaults.standard.set(gender, forKey: "Gender")
+                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                        self.isFromStart = false
+                            let openingPageViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+
+                            let openingViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningViewController") as? OpeningViewController
+
+                            openingViewController?.isFromStart = true
+
+                            appDelegate.window?.rootViewController = openingPageViewController
+
+                            UserDefaults.standard.set(name, forKey: "Name")
+                            UserDefaults.standard.set(gender, forKey: "Gender")
+                            UserDefaults.standard.set("", forKey: "Age")
+
+                            self.isFromStart = false
+
+                        }
                     }
 
                 })
 
             } else if isFromProfile == true {
+
+                // MARK : Link anonymous user to permanent account
 
                 UserManager.shared.linkUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
 
@@ -168,15 +189,21 @@ class SignUpViewController: UIViewController {
 
                         self.present(alertController, animated: true, completion: nil)
 
-                    } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                    } else {
 
-                        UserDefaults.standard.set(name, forKey: "Name")
-                        UserDefaults.standard.set(gender, forKey: "Gender")
+                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                        self.isFromProfile = false
+                            let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+                            appDelegate.window?.rootViewController = tabBarController
+
+                            UserDefaults.standard.set(name, forKey: "Name")
+                            UserDefaults.standard.set(gender, forKey: "Gender")
+
+                            self.isFromProfile = false
+
+                        }
                     }
-
                 })
             }
         }
@@ -227,14 +254,14 @@ class SignUpViewController: UIViewController {
         self.nameField.clearsOnBeginEditing = true
         self.nameField.returnKeyType = .done
 
-        self.genderSegmentedControl.setTitle("Male", forSegmentAt: Gender.male.rawValue)
-        self.genderSegmentedControl.setTitle("Female", forSegmentAt: Gender.female.rawValue)
+        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "male").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.male.rawValue)
+        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "female").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue2
         self.genderSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
 
         self.signUpButton.backgroundColor = Palette.darkblue2
         self.signUpButton.setTitle("Sign Up", for: .normal)
-        self.signUpButton.layer.cornerRadius = 22
+        self.signUpButton.layer.cornerRadius = self.signUpButton.frame.height / 2
         self.signUpButton.tintColor = Palette.cream
         self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 

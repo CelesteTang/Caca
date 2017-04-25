@@ -1,5 +1,8 @@
 PODS:
   - ColorThiefSwift (0.2.1)
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
   - Firebase/Auth (3.14.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
@@ -44,6 +47,8 @@ PODS:
 
 DEPENDENCIES:
   - ColorThiefSwift (>= 0.2.0)
+  - Crashlytics
+  - Fabric
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -53,6 +58,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   ColorThiefSwift: e10bf1920b97a3230ef415a632743a955e59b4a8
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
@@ -65,6 +72,6 @@ SPEC CHECKSUMS:
   JTAppleCalendar: d70a0563dfff74af2c1375c23550e15d51875380
   SwiftLint: b8b683208cc09640898f16318a7a452274e91f61
 
-PODFILE CHECKSUM: aa0bb5eac4d819c2918348662330d307351b7e31
+PODFILE CHECKSUM: 618360fb5e808dde683573f779a55f1ccf5b2c0e
 
 COCOAPODS: 1.2.0

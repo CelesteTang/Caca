@@ -41,7 +41,8 @@ class CalendarNavigationController: UINavigationController {
 
     private func setUp() {
 
-        viewControllers = [ CalendarViewController.create() ]
+        viewControllers = [CalendarViewController.create()]
+
         self.tabBarItem = TabBarItemType.calendar.item
 
     }

@@ -43,20 +43,24 @@ class RecordDetailViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "No",
                                          style: .cancel,
                                          handler: nil)
+
         alertController.addAction(cancelAction)
 
         let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                tabBarController.selectedIndex = TabBarItemType.record.rawValue
+                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
 
-                CacaProvider.shared.deleteCaca(of: self.recievedCaca[0].cacaID)
+                tabBarController?.selectedIndex = TabBarItemType.record.rawValue
+
+                CacaProvider.shared.deleteCaca(cacaID: self.recievedCaca[0].cacaID)
 
                 appDelegate.window?.rootViewController = tabBarController
+
             }
         }
+
         alertController.addAction(okAction)
 
         self.present(alertController, animated: true, completion: nil)
@@ -119,11 +123,8 @@ class RecordDetailViewController: UIViewController {
         self.navigationItem.title = "My caca"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
 
-        self.cacaPhoto.backgroundColor = Palette.lightblue2
-        self.shapeImageView.backgroundColor = Palette.lightblue2
-        self.colorImageView.backgroundColor = Palette.lightblue2
-
         self.cacaPhoto.image = #imageLiteral(resourceName: "caca-big")
+        self.cacaPhoto.backgroundColor = Palette.lightblue2
 
         self.deleteRecordButton.setTitle("", for: .normal)
         self.deleteRecordButton.setImage(#imageLiteral(resourceName: "trash").withRenderingMode(.alwaysTemplate), for: .normal)
@@ -134,11 +135,13 @@ class RecordDetailViewController: UIViewController {
         self.consumingTimeLabel.text = self.recievedCaca[0].consumingTime
         self.shapeLabel.text = self.recievedCaca[0].shape
         self.colorLabel.text = self.recievedCaca[0].color
+        self.amountLabel.text = self.recievedCaca[0].amount
+        self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
+
         self.shapeImageView.image = titleToImage(title: self.recievedCaca[0].shape)
         self.colorImageView.image = titleToImage(title: self.recievedCaca[0].color)
-        self.amountLabel.text = String(self.recievedCaca[0].amount)
-        self.otherInfoLabel.text = self.recievedCaca[0].otherInfo
-        self.amountLabel.text = self.recievedCaca[0].amount
+        self.shapeImageView.backgroundColor = Palette.lightblue2
+        self.colorImageView.backgroundColor = Palette.lightblue2
 
         self.passOrFailLabel.textColor = Palette.cream
 
@@ -149,8 +152,7 @@ class RecordDetailViewController: UIViewController {
 
     func editCaca() {
 
-        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
-        guard let fillinTableViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
+        guard let fillinTableViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
 
         fillinTableViewController.recievedCacaFromRecordDetail = self.recievedCaca
         fillinTableViewController.isFromRecordDetail = true
@@ -172,11 +174,11 @@ class RecordDetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
 
     }
-    
+
     func titleToImage(title: String) -> UIImage {
-    
+
         switch title {
-        
+
         case Color.red.title: return Color.red.image
         case Color.yellow.title: return Color.yellow.image
         case Color.green.title: return Color.green.image
@@ -184,7 +186,7 @@ class RecordDetailViewController: UIViewController {
         case Color.darkBrown.title: return Color.darkBrown.image
         case Color.gray.title: return Color.gray.image
         case Color.black.title: return Color.black.image
-            
+
         case Shape.separateHard.title: return Shape.separateHard.image
         case Shape.lumpySausage.title: return Shape.lumpySausage.image
         case Shape.crackSausage.title: return Shape.crackSausage.image
@@ -192,11 +194,11 @@ class RecordDetailViewController: UIViewController {
         case Shape.softBlob.title: return Shape.softBlob.image
         case Shape.mushyStool.title: return Shape.mushyStool.image
         case Shape.wateryStool.title: return Shape.wateryStool.image
-            
+
         default: break
-        
+
         }
-        
+
         return #imageLiteral(resourceName: "caca-small")
     }
 }

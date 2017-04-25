@@ -27,20 +27,20 @@ class PrivacyTableViewController: UITableViewController {
 
         self.navigationItem.title = "Privacy"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
-        
+
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
-            
+
             authentications = [.password, .passwordChanging, .touchID]
-            
+
         } else {
-            
+
             authentications = [.password]
-            
+
         }
-        
+
         self.tableView.register(PrivacyTableViewCell.self, forCellReuseIdentifier: "PrivacyTableViewCell")
         self.tableView.allowsSelection = true
-        
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -83,8 +83,7 @@ class PrivacyTableViewController: UITableViewController {
 
         cell.rowView.privacyLabel.text = authentications[indexPath.row].title
 
-        let switchButton = authentications[indexPath.row].switchButton
-        switchButton.onTintColor = Palette.darkblue
+        cell.rowView.switchButton.onTintColor = Palette.darkblue
 
         switch indexPath.row {
 
@@ -92,27 +91,31 @@ class PrivacyTableViewController: UITableViewController {
 
             cell.selectionStyle = .none
             if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
-                
-                switchButton.isOn = true
-                
+
+                cell.rowView.switchButton.isOn = true
+
             } else {
-                
-                switchButton.isOn = false
-                
+
+                cell.rowView.switchButton.isOn = false
+
             }
-            
-            switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
+
+            cell.rowView.switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
+
+        case Authentication.passwordChanging.rawValue:
+
+            cell.rowView.switchButton.isHidden = true
+            cell.rowView.switchButton.isEnabled = false
 
         case Authentication.touchID.rawValue:
 
             cell.selectionStyle = .none
-            switchButton.isOn = UserDefaults.standard.bool(forKey: "TouchIDAuthentication")
-            switchButton.addTarget(self, action: #selector(openTouchIDAuthentication), for: .valueChanged)
+            cell.rowView.switchButton.isOn = UserDefaults.standard.bool(forKey: "TouchIDAuthentication")
+            cell.rowView.switchButton.addTarget(self, action: #selector(openTouchIDAuthentication), for: .valueChanged)
 
         default: break
 
         }
-        cell.rowView.addSubview(switchButton)
 
         return cell
 
@@ -121,10 +124,10 @@ class PrivacyTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         switch indexPath.row {
+
         case Authentication.passwordChanging.rawValue:
 
-            let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
-            guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+            guard let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
 
             passwordViewController.isFromPasswordChanging = true
 
@@ -140,17 +143,15 @@ class PrivacyTableViewController: UITableViewController {
         if sender.isOn == true {
 
             UserDefaults.standard.set(true, forKey: "PasswordAuthentication")
+            UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
 
-            let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
-            guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+            guard let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
 
             passwordViewController.isFromPassword = true
 
             present(passwordViewController, animated: true)
 
             authentications.append(contentsOf: [.passwordChanging, .touchID])
-
-            UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
 
             self.tableView.reloadData()
 
@@ -161,7 +162,7 @@ class PrivacyTableViewController: UITableViewController {
             UserDefaults.standard.removeObject(forKey: "Password")
 
             authentications = [.password]
-            
+
             self.tableView.reloadData()
 
         }

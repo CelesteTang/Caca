@@ -12,6 +12,7 @@ class PrivacyRowView: UIView {
 
     @IBOutlet weak var privacyLabel: UILabel!
 
+    @IBOutlet weak var switchButton: UISwitch!
 }
 
 extension PrivacyRowView {

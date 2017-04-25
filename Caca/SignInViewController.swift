@@ -26,7 +26,11 @@ class SignInViewController: UIViewController {
     @IBAction func goBack(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+
+            let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+
+            appDelegate.window?.rootViewController = startViewController
+
         }
     }
 
@@ -58,14 +62,14 @@ class SignInViewController: UIViewController {
 
         } else if let email = self.emailField.text, let password = self.passwordField.text {
 
+            // MARK : User log in
+
             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (_, error) in
 
                 if let error = error {
 
-                    print("-SignIn---------\(error)")
-
                     let alertController = UIAlertController(title: "Warning",
-                                                            message: "Incorrect email or password.",
+                                                            message: error.localizedDescription,
                                                             preferredStyle: .alert)
 
                     alertController.addAction(UIAlertAction(title: "OK",
@@ -74,15 +78,18 @@ class SignInViewController: UIViewController {
 
                     self.present(alertController, animated: true, completion: nil)
 
-                    return
-                }
+                } else {
 
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+                        let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+                        appDelegate.window?.rootViewController = tabBarController
+
+                    }
                 }
             })
         }
-
     }
 
     override func viewDidLoad() {
@@ -125,8 +132,8 @@ class SignInViewController: UIViewController {
         self.passwordField.returnKeyType = .done
 
         self.signInButton.backgroundColor = Palette.darkblue2
-        self.signInButton.setTitle("Sign In", for: .normal)
-        self.signInButton.layer.cornerRadius = 22
+        self.signInButton.setTitle("Log In", for: .normal)
+        self.signInButton.layer.cornerRadius = self.signInButton.frame.height / 2
         self.signInButton.tintColor = Palette.cream
         self.signInButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
@@ -144,16 +151,6 @@ extension SignInViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 
         self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-
-//        if textField == self.emailField {
-//            
-//            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//            
-//        } else if textField == self.passwordField {
-//        
-//            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//
-//        }
 
         return true
     }

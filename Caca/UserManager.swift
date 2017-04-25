@@ -8,12 +8,22 @@
 
 import Foundation
 import Firebase
+import Crashlytics
 
 class UserManager {
 
     // MARK: Property
 
     static let shared = UserManager()
+
+    // MARK: Crashlytics
+
+    func logUser(email: String, uid: String, name: String) {
+
+        Crashlytics.sharedInstance().setUserEmail(email)
+        Crashlytics.sharedInstance().setUserIdentifier(uid)
+        Crashlytics.sharedInstance().setUserName(name)
+    }
 
     // MARK: Create user
 
@@ -42,7 +52,13 @@ class UserManager {
 
                             completion(nil, error)
 
+                        } else {
+
+                            self.logUser(email: email, uid: uid, name: name)
+
+                            completion(nil, nil)
                         }
+
                     })
                 }
             }
@@ -63,8 +79,8 @@ class UserManager {
 
             } else {
 
-                let value = ["name": "",
-                             "gender": ""] as [String: Any]
+                let value = ["name": "Hello",
+                             "gender": 0] as [String: Any]
 
                 if let user = user {
 
@@ -76,6 +92,9 @@ class UserManager {
 
                             completion(nil, error)
 
+                        } else {
+
+                            completion(nil, nil)
                         }
                     })
                 }
@@ -112,11 +131,15 @@ class UserManager {
 
                             completion(nil, error)
 
+                        } else {
+
+                            self.logUser(email: email, uid: uid, name: name)
+
+                            completion(nil, nil)
                         }
                     })
                 }
             }
-
         })
     }
 

@@ -47,15 +47,17 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpc-lK-PTc">
-                    <rect key="frame" x="16" y="20" width="46" height="44"/>
+                    <rect key="frame" x="16" y="20" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="PLx-sT-thN"/>
+                        <constraint firstAttribute="width" secondItem="Rpc-lK-PTc" secondAttribute="height" multiplier="1:1" id="bEA-gf-aLj"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQ6-XI-dyW">
-                    <rect key="frame" x="313" y="20" width="46" height="44"/>
+                    <rect key="frame" x="315" y="20" width="44" height="44"/>
                     <constraints>
+                        <constraint firstAttribute="width" secondItem="aQ6-XI-dyW" secondAttribute="height" multiplier="1:1" id="4dV-cd-O1i"/>
                         <constraint firstAttribute="height" constant="44" id="tDb-Nh-a0B"/>
                     </constraints>
                     <state key="normal" title="Button"/>
