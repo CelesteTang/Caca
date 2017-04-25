@@ -79,8 +79,8 @@ class UserManager {
 
             } else {
 
-                let value = ["name": "",
-                             "gender": ""] as [String: Any]
+                let value = ["name": "Hello",
+                             "gender": 0] as [String: Any]
 
                 if let user = user {
 

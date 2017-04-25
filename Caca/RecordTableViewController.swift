@@ -52,16 +52,20 @@ class RecordTableViewController: UITableViewController {
 
         self.tableView.separatorStyle = .none
 
+        self.coverButtonTitle = "Hide"
+
         if UserDefaults.standard.bool(forKey: "Hide") == true {
 
             coverButtonTitle = "Show"
 
-        } else {
+        } else if UserDefaults.standard.bool(forKey: "Hide") == false {
 
             coverButtonTitle = "Hide"
 
         }
 
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+        
         let coverButton = UIBarButtonItem(title: coverButtonTitle, style: .plain, target: self, action: #selector(coverCaca))
         self.navigationItem.leftBarButtonItem = coverButton
 
@@ -75,14 +79,14 @@ class RecordTableViewController: UITableViewController {
         if isCovered == false {
 
             isCovered = true
-            UserDefaults.standard.set(isCovered, forKey: "Hide")
+            UserDefaults.standard.set(true, forKey: "Hide")
             coverButtonTitle = "Show"
             self.tableView.reloadData()
 
         } else {
 
             isCovered = false
-            UserDefaults.standard.set(isCovered, forKey: "Hide")
+            UserDefaults.standard.set(false, forKey: "Hide")
             coverButtonTitle = "Hide"
             self.tableView.reloadData()
 
@@ -131,7 +135,7 @@ class RecordTableViewController: UITableViewController {
 
         cell.rowView.separateLineView.backgroundColor = Palette.darkblue
 
-        if UserDefaults.standard.bool(forKey: "Hide") == false {
+        if isCovered == false {
 
             if cacas[indexPath.row].photo != "" {
 
