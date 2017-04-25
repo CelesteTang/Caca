@@ -124,10 +124,10 @@ class PrivacyTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         switch indexPath.row {
+            
         case Authentication.passwordChanging.rawValue:
 
-            let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
-            guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+            guard let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
 
             passwordViewController.isFromPasswordChanging = true
 
@@ -144,8 +144,7 @@ class PrivacyTableViewController: UITableViewController {
 
             UserDefaults.standard.set(true, forKey: "PasswordAuthentication")
 
-            let passwordStorybard = UIStoryboard(name: "Password", bundle: nil)
-            guard let passwordViewController = passwordStorybard.instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+            guard let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
 
             passwordViewController.isFromPassword = true
 
