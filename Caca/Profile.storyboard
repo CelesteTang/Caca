@@ -71,10 +71,9 @@
                                     <constraint firstAttribute="height" constant="44" id="Zr3-nN-gEl"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Male"/>
-                                    <segment title="Female"/>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
                                 </segments>
-                                <color key="tintColor" red="0.21176470589999999" green="0.31372549020000001" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Zr3-nN-gEl"/>
@@ -107,14 +106,12 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7u-2c-tRx">
                                 <rect key="frame" x="100" y="494" width="120" height="44"/>
-                                <color key="backgroundColor" red="0.21176470589999999" green="0.31372549020000001" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="dCx-tE-ZcA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
-                                <state key="normal" title="Sign Up">
-                                    <color key="titleColor" red="0.95009034869999998" green="0.91526788469999998" blue="0.81482785940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="Sign Up"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

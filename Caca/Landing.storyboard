@@ -71,7 +71,10 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dw-UN-8dT">
-                                <rect key="frame" x="16" y="28" width="46" height="30"/>
+                                <rect key="frame" x="16" y="28" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2dw-UN-8dT" secondAttribute="height" multiplier="1:1" id="FWF-Zs-UbD"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="goBack:" destination="xI1-68-AVu" eventType="touchUpInside" id="ErW-pU-OA6"/>
@@ -184,7 +187,10 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgO-EC-Y7V">
-                                <rect key="frame" x="16" y="28" width="46" height="30"/>
+                                <rect key="frame" x="16" y="28" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XgO-EC-Y7V" secondAttribute="height" multiplier="1:1" id="fpb-Tm-57B"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="cancelSignUp:" destination="NcG-4j-OtU" eventType="touchUpInside" id="lhA-9c-M8i"/>
