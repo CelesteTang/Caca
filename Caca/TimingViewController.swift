@@ -34,8 +34,10 @@ class TimingViewController: UIViewController {
 
     @IBAction func cancelTiming(_ sender: UIButton) {
 
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
+            let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+            
             appDelegate.window?.rootViewController = tabBarController
 
         }
@@ -102,15 +104,13 @@ class TimingViewController: UIViewController {
 
         Time.consumingTime = timeString(time: TimeInterval(seconds))
 
-        let fillinStorybard = UIStoryboard(name: "Fillin", bundle: nil)
-
-        guard let fillinTableViewController = fillinStorybard.instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
-
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-
+            
+            let fillinTableViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController
+            
+            fillinTableViewController?.isFromCaca = true
+            
             appDelegate.window?.rootViewController = fillinTableViewController
-
-            fillinTableViewController.isFromCaca = true
 
         }
 
@@ -146,12 +146,14 @@ class TimingViewController: UIViewController {
         self.pauseButton.tintColor = Palette.orange
         self.pauseButton.backgroundColor = Palette.lightWhite
         self.pauseButton.layer.cornerRadius = 10
+        self.pauseButton.isEnabled = false
 
         self.resetButton.setTitle(" Reset ", for: UIControlState.normal)
         self.resetButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
         self.resetButton.tintColor = Palette.orange
         self.resetButton.backgroundColor = Palette.lightWhite
         self.resetButton.layer.cornerRadius = 10
+        self.resetButton.isEnabled = false
 
         self.finishButton.setTitle(" Finish ", for: UIControlState.normal)
         self.finishButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
@@ -163,12 +165,6 @@ class TimingViewController: UIViewController {
         let buttonimage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
         self.cancelButton.setImage(buttonimage, for: .normal)
         self.cancelButton.tintColor = Palette.darkblue
-//        self.cancelButton.backgroundColor = Palette.lightblue2
-//        self.cancelButton.layer.cornerRadius = self.cancelButton.frame.width / 2
-//        self.cancelButton.layer.masksToBounds = true
-
-        self.pauseButton.isEnabled = false
-        self.resetButton.isEnabled = false
 
     }
 
@@ -183,6 +179,7 @@ class TimingViewController: UIViewController {
     }
 
     func updateTimer() {
+        
         seconds += 1
         timerLabel.text = timeString(time: TimeInterval(seconds))
     }
