@@ -19,8 +19,11 @@ class SettingTableViewController: UITableViewController {
             switch self {
 
             case .profile: return "Profile"
+                
             case .privacy: return "Privacy"
+                
             case .notification: return "Notification"
+                
             case .language: return "Language"
 
             }
@@ -84,17 +87,15 @@ class SettingTableViewController: UITableViewController {
 
         case Setting.profile.rawValue:
 
-            let storyBoard = UIStoryboard(name: "Profile", bundle: nil)
-            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+            guard let profileViewController = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
 
-            self.navigationController?.pushViewController(viewController, animated: true)
+            self.navigationController?.pushViewController(profileViewController, animated: true)
 
         case Setting.privacy.rawValue:
 
-            let storyBoard = UIStoryboard(name: "Privacy", bundle: nil)
-            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "PrivacyTableViewController") as? PrivacyTableViewController else { return }
+            guard let privacyTableViewController = UIStoryboard(name: "Privacy", bundle: nil).instantiateViewController(withIdentifier: "PrivacyTableViewController") as? PrivacyTableViewController else { return }
 
-            self.navigationController?.pushViewController(viewController, animated: true)
+            self.navigationController?.pushViewController(privacyTableViewController, animated: true)
 
         default: break
 
