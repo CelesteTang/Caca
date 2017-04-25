@@ -43,7 +43,11 @@ class SignUpViewController: UIViewController {
         if isFromStart == true {
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+                
+                let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+                
+                appDelegate.window?.rootViewController = startViewController
+            
             }
 
             isFromStart = false
@@ -104,6 +108,8 @@ class SignUpViewController: UIViewController {
 
             if isFromStart == true {
 
+                // MARK : Create user
+                
                 UserManager.shared.createUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
 
                     if let error = createError {
@@ -154,6 +160,8 @@ class SignUpViewController: UIViewController {
 
             } else if isFromProfile == true {
 
+                // MARK : Link anonymous user to permanent account
+                
                 UserManager.shared.linkUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
 
                     if let error = createError {
@@ -183,7 +191,10 @@ class SignUpViewController: UIViewController {
                     } else {
 
                         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                            
+                            let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                            
+                            appDelegate.window?.rootViewController = tabBarController
 
                             UserDefaults.standard.set(name, forKey: "Name")
                             UserDefaults.standard.set(gender, forKey: "Gender")

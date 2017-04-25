@@ -26,7 +26,11 @@ class SignInViewController: UIViewController {
     @IBAction func goBack(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+            
+            let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+            
+            appDelegate.window?.rootViewController = startViewController
+            
         }
     }
 
@@ -58,6 +62,8 @@ class SignInViewController: UIViewController {
 
         } else if let email = self.emailField.text, let password = self.passwordField.text {
 
+            // MARK : User log in
+            
             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (_, error) in
 
                 if let error = error {
@@ -75,7 +81,11 @@ class SignInViewController: UIViewController {
                 } else {
 
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                        
+                        let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                        
+                        appDelegate.window?.rootViewController = tabBarController
+                        
                     }
                 }
             })
@@ -141,16 +151,6 @@ extension SignInViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 
         self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-
-//        if textField == self.emailField {
-//            
-//            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//            
-//        } else if textField == self.passwordField {
-//        
-//            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
-//
-//        }
 
         return true
     }

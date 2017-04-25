@@ -23,6 +23,8 @@ class StartViewController: UIViewController {
 
     @IBAction func startDirectly(_ sender: UIButton) {
 
+        // MARK : Create user anonymously
+        
         UserManager.shared.createAnonymousUser { (createError, storageError) in
 
             if let error = createError {
@@ -62,6 +64,9 @@ class StartViewController: UIViewController {
             openingViewController?.isFromStart = true
 
             appDelegate.window?.rootViewController = openingPageViewController
+            
+            UserDefaults.standard.set("Hello", forKey: "Name")
+            UserDefaults.standard.set(0, forKey: "Gender")
 
         }
 
@@ -70,21 +75,24 @@ class StartViewController: UIViewController {
     @IBAction func goToSignIn(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
+            
+            let signInViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
+            
+            appDelegate.window?.rootViewController = signInViewController
+            
         }
     }
 
     @IBAction func goTiSignUp(_ sender: UIButton) {
 
-        let signUpStoryboard = UIStoryboard(name: "Landing", bundle: nil)
-
-        guard let signUpViewController = signUpStoryboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
-
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            
+            let signUpViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
 
+            signUpViewController?.isFromStart = true
+            
             appDelegate.window?.rootViewController = signUpViewController
 
-            signUpViewController.isFromStart = true
         }
     }
 
@@ -99,6 +107,7 @@ class StartViewController: UIViewController {
     private func setUp() {
 
         self.view.backgroundColor = Palette.lightblue2
+        
         self.logoImageView.image = #imageLiteral(resourceName: "caca-big")
         self.logoImageView.backgroundColor = Palette.lightblue2
 
