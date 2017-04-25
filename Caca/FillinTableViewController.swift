@@ -1012,7 +1012,7 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         if let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage {
 
             cell.rowView.cacaPhotoImageView.image = editedCacaImage
-            
+
             finalCaca.image = editedCacaImage
 
             guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else { return }
@@ -1022,7 +1022,7 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
             cell.rowView.cacaPhotoImageView.image = originalCacaImage
-            
+
             finalCaca.image = originalCacaImage
 
             guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else { return }
