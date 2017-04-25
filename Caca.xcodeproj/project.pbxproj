@@ -408,7 +408,7 @@
 				TargetAttributes = {
 					43372CFF1E7FB4BD002E2AE3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ABW6V45P3T;
+						DevelopmentTeam = V35V7R5VNP;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -707,11 +707,14 @@
 			baseConfigurationReference = 7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ABW6V45P3T;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = V35V7R5VNP;
 				INFOPLIST_FILE = Caca/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hsinyutang.Caca;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.hsinyutang.Caca;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -721,11 +724,14 @@
 			baseConfigurationReference = 7FD9A553529C5EDD2843816A /* Pods-Caca.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ABW6V45P3T;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = V35V7R5VNP;
 				INFOPLIST_FILE = Caca/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hsinyutang.Caca;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.hsinyutang.Caca;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
