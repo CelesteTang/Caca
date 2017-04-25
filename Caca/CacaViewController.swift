@@ -8,6 +8,7 @@
 
 import UIKit
 import Crashlytics
+import Firebase
 
 class CacaViewController: UIViewController {
 
@@ -22,7 +23,7 @@ class CacaViewController: UIViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
             let timingViewController = UIStoryboard(name: "Timing", bundle: nil).instantiateViewController(withIdentifier: "TimingViewController") as? TimingViewController
-
+            FIRAnalytics.logEvent(withName: "StartTiming", parameters: nil)
             appDelegate.window?.rootViewController = timingViewController
 
         }
