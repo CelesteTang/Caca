@@ -54,27 +54,29 @@ class ProfileViewController: UIViewController {
 
         }
 
-        if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
-        
-            self.genderSegmentedControl.selectedSegmentIndex = gender
-            
-            if gender == Gender.male.rawValue {
-                
-                self.profileImageView.image = #imageLiteral(resourceName: "boy")
-                
-            } else if gender == Gender.female.rawValue {
-                
-                self.profileImageView.image = #imageLiteral(resourceName: "girl")
-                
-            }
-            
-        }
-        
         self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "male").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "female").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue
         self.genderSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
         self.genderSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
+
+        self.genderSegmentedControl.selectedSegmentIndex = 0
+
+        if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
+
+            self.genderSegmentedControl.selectedSegmentIndex = gender
+
+            if gender == Gender.male.rawValue {
+
+                self.profileImageView.image = #imageLiteral(resourceName: "boy")
+
+            } else if gender == Gender.female.rawValue {
+
+                self.profileImageView.image = #imageLiteral(resourceName: "girl")
+
+            }
+
+        }
 
         self.ageTextField.delegate = self
         self.ageTextField.clearButtonMode = .whileEditing
@@ -83,6 +85,7 @@ class ProfileViewController: UIViewController {
         self.ageTextField.clearsOnBeginEditing = true
         self.ageTextField.keyboardType = .numberPad
         self.ageTextField.returnKeyType = .done
+
         if let age = UserDefaults.standard.value(forKey: "Age") as? String {
 
             ageTextField.text = age
@@ -177,9 +180,9 @@ class ProfileViewController: UIViewController {
                 UserDefaults.standard.set(false, forKey: "IsviewedWalkThrough")
 
                 let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
-                
+
                 appDelegate.window?.rootViewController = startViewController
-                
+
             }
 
         } catch (let error) {

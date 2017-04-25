@@ -50,7 +50,7 @@ class PasswordViewController: UIViewController {
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
                 let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-                
+
                 tabBarController?.selectedIndex = TabBarItemType.setting.rawValue
 
                 appDelegate.window?.rootViewController = tabBarController
@@ -75,11 +75,11 @@ class PasswordViewController: UIViewController {
         setUp()
 
         if isFromBeginning == true {
-            
+
             touchIDAuthentication()
-            
+
         }
-        
+
         numberCollectionView.dataSource = self
         numberCollectionView.delegate = self
         numberCollectionView.allowsSelection = true
@@ -140,13 +140,13 @@ class PasswordViewController: UIViewController {
                 context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use TouchID to enter Caca", reply: { (success, _) in
 
                     if success {
-                        
+
                         DispatchQueue.main.async {
 
                             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
                                 let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-                                
+
                                 appDelegate.window?.rootViewController = tabBarController
 
                             }
@@ -255,9 +255,9 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
                         let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-                        
+
                         appDelegate.window?.rootViewController = tabBarController
-                        
+
                         isFromBeginning = false
 
                     }
@@ -279,7 +279,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
                     let alertController = UIAlertController(title: "Warning",
                                                             message: "The password is incorrect. Try again.",
                                                             preferredStyle: UIAlertControllerStyle.alert)
-                    
+
                     let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
 
                         self.userPassword.removeAll()

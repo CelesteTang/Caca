@@ -65,7 +65,7 @@ class RecordTableViewController: UITableViewController {
         }
 
         UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
-        
+
         let coverButton = UIBarButtonItem(title: coverButtonTitle, style: .plain, target: self, action: #selector(coverCaca))
         self.navigationItem.leftBarButtonItem = coverButton
 

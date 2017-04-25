@@ -19,11 +19,11 @@ class SettingTableViewController: UITableViewController {
             switch self {
 
             case .profile: return "Profile"
-                
+
             case .privacy: return "Privacy"
-                
+
             case .notification: return "Notification"
-                
+
             case .language: return "Language"
 
             }

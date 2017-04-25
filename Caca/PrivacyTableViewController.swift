@@ -124,7 +124,7 @@ class PrivacyTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         switch indexPath.row {
-            
+
         case Authentication.passwordChanging.rawValue:
 
             guard let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
@@ -143,6 +143,7 @@ class PrivacyTableViewController: UITableViewController {
         if sender.isOn == true {
 
             UserDefaults.standard.set(true, forKey: "PasswordAuthentication")
+            UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
 
             guard let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
 
@@ -151,8 +152,6 @@ class PrivacyTableViewController: UITableViewController {
             present(passwordViewController, animated: true)
 
             authentications.append(contentsOf: [.passwordChanging, .touchID])
-
-            UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
 
             self.tableView.reloadData()
 

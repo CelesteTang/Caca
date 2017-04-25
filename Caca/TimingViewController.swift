@@ -37,7 +37,7 @@ class TimingViewController: UIViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
             let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-            
+
             appDelegate.window?.rootViewController = tabBarController
 
         }
@@ -105,11 +105,11 @@ class TimingViewController: UIViewController {
         Time.consumingTime = timeString(time: TimeInterval(seconds))
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            
+
             let fillinTableViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController
-            
+
             fillinTableViewController?.isFromCaca = true
-            
+
             appDelegate.window?.rootViewController = fillinTableViewController
 
         }
@@ -179,7 +179,7 @@ class TimingViewController: UIViewController {
     }
 
     func updateTimer() {
-        
+
         seconds += 1
         timerLabel.text = timeString(time: TimeInterval(seconds))
     }

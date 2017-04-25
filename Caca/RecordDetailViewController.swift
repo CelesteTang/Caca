@@ -43,7 +43,7 @@ class RecordDetailViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "No",
                                          style: .cancel,
                                          handler: nil)
-        
+
         alertController.addAction(cancelAction)
 
         let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
@@ -51,16 +51,16 @@ class RecordDetailViewController: UIViewController {
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
                 let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-                
+
                 tabBarController?.selectedIndex = TabBarItemType.record.rawValue
 
                 CacaProvider.shared.deleteCaca(cacaID: self.recievedCaca[0].cacaID)
 
                 appDelegate.window?.rootViewController = tabBarController
-                
+
             }
         }
-        
+
         alertController.addAction(okAction)
 
         self.present(alertController, animated: true, completion: nil)
@@ -142,7 +142,7 @@ class RecordDetailViewController: UIViewController {
         self.colorImageView.image = titleToImage(title: self.recievedCaca[0].color)
         self.shapeImageView.backgroundColor = Palette.lightblue2
         self.colorImageView.backgroundColor = Palette.lightblue2
-        
+
         self.passOrFailLabel.textColor = Palette.cream
 
         let editButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(editCaca))

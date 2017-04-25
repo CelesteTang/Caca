@@ -191,7 +191,7 @@ class FillinTableViewController: UITableViewController {
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
             default: break
-                
+
             }
         }
     }
@@ -482,7 +482,7 @@ class FillinTableViewController: UITableViewController {
         if isFromCaca == true {
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                
+
                 let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
 
                 appDelegate.window?.rootViewController = tabBarController
@@ -516,7 +516,7 @@ class FillinTableViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel",
                                          style: .cancel,
                                          handler: nil)
-        
+
         alertController.addAction(cancelAction)
 
         let photoAction = UIAlertAction(title: "Choose from library", style: .default) { _ in
@@ -529,7 +529,7 @@ class FillinTableViewController: UITableViewController {
             self.present(picker, animated: true, completion: nil)
 
         }
-        
+
         alertController.addAction(photoAction)
 
         let cameraAction = UIAlertAction(title: "Take photo", style: .default) { _ in
@@ -545,7 +545,7 @@ class FillinTableViewController: UITableViewController {
             self.present(picker, animated: true, completion: nil)
 
         }
-        
+
         alertController.addAction(cameraAction)
 
         self.present(alertController, animated: true, completion: nil)
@@ -766,7 +766,7 @@ class FillinTableViewController: UITableViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
             let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-            
+
             tabBarController?.selectedIndex = TabBarItemType.record.rawValue
 
             appDelegate.window?.rootViewController = tabBarController
@@ -807,7 +807,7 @@ class FillinTableViewController: UITableViewController {
         let overallAdvice = getAdvice()
 
         // MARK : Create caca with photo
-        
+
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
 
             CacaProvider.shared.saveCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, error) in
@@ -843,7 +843,7 @@ class FillinTableViewController: UITableViewController {
         } else {
 
             // MARK : Create caca without photo
-            
+
             let value = ["host": hostUID,
                          "cacaID": cacaID,
                          "photo": "",
@@ -901,7 +901,7 @@ class FillinTableViewController: UITableViewController {
         let overallAdvice = getAdvice()
 
         // MARK : Edit caca with new photo (had old photo)
-        
+
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
 
             CacaProvider.shared.editCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
@@ -944,7 +944,7 @@ class FillinTableViewController: UITableViewController {
         } else if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID == "" {
 
             // MARK : Edit caca with new photo (no old photo)
-            
+
             CacaProvider.shared.saveCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, error) in
 
                 if error != nil {
@@ -978,7 +978,7 @@ class FillinTableViewController: UITableViewController {
         } else if photoCell.rowView.cacaPhotoImageView.image == #imageLiteral(resourceName: "caca-big") {
 
             // MARK : Edit caca without new photo (no old photo)
-            
+
             let value = ["host": hostUID,
                          "cacaID": cacaID,
                          "photo": "",
@@ -1068,15 +1068,15 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
         case timePicker:
 
             switch component {
-                
+
             case 0: return hour.count
-                
+
             case 1: return min.count
-                
+
             case 2: return sec.count
-                
+
             default: return 0
-                
+
             }
 
         case shapePicker: return shapes.count
@@ -1100,15 +1100,15 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             case timePicker:
 
                 switch component {
-                    
+
                 case 0: finalHour = String(format: "%02i", hour[row])
-                    
+
                 case 1: finalMin = String(format: "%02i", min[row])
-                    
+
                 case 2: finalSec = String(format: "%02i", sec[row])
-                    
+
                 default: break
-                    
+
                 }
 
             timeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
@@ -1137,18 +1137,18 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             let pickerLabel = UILabel()
 
             switch component {
-                
+
             case 0:
                 pickerLabel.text = String(format: "%02i", hour[row])
-                
+
             case 1:
                 pickerLabel.text = String(format: "%02i", min[row])
-                
+
             case 2:
                 pickerLabel.text = String(format: "%02i", sec[row])
-                
+
             default: break
-                
+
             }
 
             pickerLabel.font = UIFont(name: "Futura-Bold", size: 20)
@@ -1190,23 +1190,23 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 extension String {
 
     func index(from: Int) -> Index {
-        
+
         return self.index(startIndex, offsetBy: from)
-        
+
     }
 
     func substring(from: Int) -> String {
-        
+
         let fromIndex = index(from: from)
         return substring(from: fromIndex)
-        
+
     }
 
     func substring(to: Int) -> String {
-        
+
         let toIndex = index(from: to)
         return substring(to: toIndex)
-        
+
     }
 
 }

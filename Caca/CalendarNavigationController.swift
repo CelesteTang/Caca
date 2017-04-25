@@ -42,7 +42,7 @@ class CalendarNavigationController: UINavigationController {
     private func setUp() {
 
         viewControllers = [CalendarViewController.create()]
-        
+
         self.tabBarItem = TabBarItemType.calendar.item
 
     }
