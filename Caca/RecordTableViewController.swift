@@ -80,14 +80,14 @@ class RecordTableViewController: UITableViewController {
 
             isCovered = true
             UserDefaults.standard.set(true, forKey: "Hide")
-            coverButtonTitle = "Show"
+            self.navigationItem.leftBarButtonItem?.title = "Show"
             self.tableView.reloadData()
 
         } else {
 
             isCovered = false
             UserDefaults.standard.set(false, forKey: "Hide")
-            coverButtonTitle = "Hide"
+            self.navigationItem.leftBarButtonItem?.title = "Hide"
             self.tableView.reloadData()
 
         }
