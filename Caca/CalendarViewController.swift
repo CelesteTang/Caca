@@ -71,7 +71,7 @@ class CalendarViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.navigationItem.title = "Calendar"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
 
         self.headerView.backgroundColor = Palette.darkblue
         self.headerTitleLabel.textColor = Palette.lightblue2
