@@ -23,6 +23,7 @@ enum TabBarItemType: Int {
     var title: String {
 
         switch self {
+            
         case .caca:
 
             return "Caca"
@@ -45,6 +46,7 @@ enum TabBarItemType: Int {
     var image: UIImage {
 
         switch self {
+            
         case .caca:
 
             return #imageLiteral(resourceName: "caca").withRenderingMode(.alwaysTemplate)
