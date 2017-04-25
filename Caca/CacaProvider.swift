@@ -35,7 +35,7 @@ class CacaProvider {
 
     typealias CacaPhotoHadler = (String?, Error?) -> Void
 
-    func saveCacaPhoto(of image: UIImage, with photoID: String, completion: @escaping CacaPhotoHadler) {
+    func saveCacaPhoto(image: UIImage, photoID: String, completion: @escaping CacaPhotoHadler) {
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
         let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(photoID).jpg")
@@ -101,7 +101,7 @@ class CacaProvider {
 
     // MARK: Edit caca
 
-    func editCaca(of cacaID: String, value: [String : Any]) {
+    func editCaca(cacaID: String, value: [String : Any]) {
 
         FIRDatabase.database().reference().child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
 
@@ -120,7 +120,7 @@ class CacaProvider {
 
     typealias EditCacaPhotoHadler = (String?, Error?, Error?) -> Void
 
-    func editCacaPhoto(of image: UIImage, with photoID: String, completion: @escaping EditCacaPhotoHadler) {
+    func editCacaPhoto(image: UIImage, photoID: String, completion: @escaping EditCacaPhotoHadler) {
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
         let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(photoID).jpg")
@@ -155,7 +155,7 @@ class CacaProvider {
 
     // MARK: Delete caca
 
-    func deleteCaca(of cacaID: String) {
+    func deleteCaca(cacaID: String) {
 
         FIRDatabase.database().reference().child("cacas").child(cacaID).removeValue { (error, _) in
 
@@ -170,7 +170,7 @@ class CacaProvider {
 
     // MARK: Delete caca photo
 
-    func deleteCacaPhoto(of photoID: String) {
+    func deleteCacaPhoto(photoID: String) {
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
         let storageRef = FIRStorage.storage().reference().child(hostUID).child("\(photoID).jpg")

@@ -810,7 +810,7 @@ class FillinTableViewController: UITableViewController {
         
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
 
-            CacaProvider.shared.saveCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
+            CacaProvider.shared.saveCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, error) in
 
                 if error != nil {
 
@@ -904,7 +904,7 @@ class FillinTableViewController: UITableViewController {
         
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
 
-            CacaProvider.shared.editCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
+            CacaProvider.shared.editCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
 
                 if storageError != nil {
 
@@ -935,7 +935,7 @@ class FillinTableViewController: UITableViewController {
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
 
-                CacaProvider.shared.editCaca(of: cacaID, value: value)
+                CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
 
                 self.switchToRecord()
 
@@ -945,7 +945,7 @@ class FillinTableViewController: UITableViewController {
 
             // MARK : Edit caca with new photo (no old photo)
             
-            CacaProvider.shared.saveCacaPhoto(of: photoCell.rowView.cacaPhotoImageView.image!, with: photoID, completion: { (cacaPhotoUrl, error) in
+            CacaProvider.shared.saveCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, error) in
 
                 if error != nil {
 
@@ -969,7 +969,7 @@ class FillinTableViewController: UITableViewController {
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
 
-                CacaProvider.shared.editCaca(of: cacaID, value: value)
+                CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
 
                 self.switchToRecord()
 
@@ -993,7 +993,7 @@ class FillinTableViewController: UITableViewController {
                          "grading": self.ispassed,
                          "advice": overallAdvice] as [String : Any]
 
-            CacaProvider.shared.editCaca(of: cacaID, value: value)
+            CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
             self.switchToRecord()
 
         }
