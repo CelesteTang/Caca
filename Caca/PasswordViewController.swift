@@ -47,9 +47,11 @@ class PasswordViewController: UIViewController {
 
             dismiss(animated: true, completion: nil)
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                tabBarController.selectedIndex = TabBarItemType.setting.rawValue
+                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                
+                tabBarController?.selectedIndex = TabBarItemType.setting.rawValue
 
                 appDelegate.window?.rootViewController = tabBarController
 
@@ -73,8 +75,11 @@ class PasswordViewController: UIViewController {
         setUp()
 
         if isFromBeginning == true {
+            
             touchIDAuthentication()
+            
         }
+        
         numberCollectionView.dataSource = self
         numberCollectionView.delegate = self
         numberCollectionView.allowsSelection = true
@@ -135,10 +140,13 @@ class PasswordViewController: UIViewController {
                 context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use TouchID to enter Caca", reply: { (success, _) in
 
                     if success {
+                        
                         DispatchQueue.main.async {
 
-                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
+                                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                                
                                 appDelegate.window?.rootViewController = tabBarController
 
                             }
@@ -236,9 +244,9 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
             if UserDefaults.standard.value(forKey: "Password") == nil {
 
-                    UserDefaults.standard.set(userPassword, forKey: "Password")
+                UserDefaults.standard.set(userPassword, forKey: "Password")
 
-                    dismiss(animated: true, completion: nil)
+                dismiss(animated: true, completion: nil)
 
             } else if let storedPassword = UserDefaults.standard.value(forKey: "Password") as? [String], userPassword == storedPassword {
 
@@ -246,8 +254,10 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                        appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
-
+                        let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                        
+                        appDelegate.window?.rootViewController = tabBarController
+                        
                         isFromBeginning = false
 
                     }
@@ -269,6 +279,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
                     let alertController = UIAlertController(title: "Warning",
                                                             message: "The password is incorrect. Try again.",
                                                             preferredStyle: UIAlertControllerStyle.alert)
+                    
                     let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
 
                         self.userPassword.removeAll()
