@@ -82,6 +82,7 @@ enum Color: Int {
     var color: UIColor {
 
         switch self {
+
         case .red:
 
             return Palette.red
@@ -89,6 +90,7 @@ enum Color: Int {
         case .yellow:
 
             return Palette.yellow
+
         case .green:
 
             return Palette.green
