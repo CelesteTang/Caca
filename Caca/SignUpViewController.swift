@@ -222,10 +222,21 @@ class SignUpViewController: UIViewController {
 
         self.view.backgroundColor = Palette.lightblue2
 
-        self.cancelButton.setTitle("", for: .normal)
-        let buttonimage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
-        self.cancelButton.setImage(buttonimage, for: .normal)
-        self.cancelButton.tintColor = Palette.darkblue
+        if isFromStart == true {
+        
+            self.cancelButton.setTitle("", for: .normal)
+            let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
+            self.cancelButton.setImage(buttonimage, for: .normal)
+            self.cancelButton.tintColor = Palette.darkblue
+            
+        } else if isFromProfile == true {
+        
+            self.cancelButton.setTitle("", for: .normal)
+            let buttonimage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
+            self.cancelButton.setImage(buttonimage, for: .normal)
+            self.cancelButton.tintColor = Palette.darkblue
+            
+        }
 
         self.logoImageView.image = #imageLiteral(resourceName: "caca-big")
         self.logoImageView.backgroundColor = Palette.lightblue2
