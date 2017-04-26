@@ -137,6 +137,15 @@ class SignInViewController: UIViewController {
         self.signInButton.tintColor = Palette.cream
         self.signInButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+    }
+
+    func hideKeyBoard() {
+
+        self.view.endEditing(true)
+
     }
 }
 

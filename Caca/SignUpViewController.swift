@@ -266,6 +266,16 @@ class SignUpViewController: UIViewController {
         self.signUpButton.tintColor = Palette.cream
         self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+
+    }
+
+    func hideKeyBoard() {
+
+        self.view.endEditing(true)
+
     }
 
     func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
