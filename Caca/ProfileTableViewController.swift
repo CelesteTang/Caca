@@ -76,12 +76,6 @@ class ProfileTableViewController: UITableViewController {
 
     }
 
-    func hideKeyBoard() {
-
-        self.view.endEditing(true)
-
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -94,16 +88,29 @@ class ProfileTableViewController: UITableViewController {
 
         tabBarController?.tabBar.isHidden = false
 
-//        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-//        let value = ["name": nameTextField.text ?? "Hello",
-//                     "gender": genderSegmentedControl.selectedSegmentIndex,
-//                     "age": ageTextField.text ?? "??"] as [String: Any]
-//        
-//        UserManager.shared.editUser(with: uid, value: value)
-//        
-//        UserDefaults.standard.set(nameTextField.text, forKey: "Name")
-//        UserDefaults.standard.set(genderSegmentedControl.selectedSegmentIndex, forKey: "Gender")
-//        UserDefaults.standard.set(ageTextField.text, forKey: "Age")
+        if let uid = FIRAuth.auth()?.currentUser?.uid,
+           let nameCell = tableView.visibleCells[Component.name.rawValue] as? ProfileTextFieldTableViewCell,
+           let genderCell = tableView.visibleCells[Component.gender.rawValue] as? ProfileSegmentTableViewCell,
+           let ageCell = tableView.visibleCells[Component.age.rawValue] as? ProfileTextFieldTableViewCell,
+           let medicineCell = tableView.visibleCells[Component.gender.rawValue] as? ProfileSegmentTableViewCell {
+
+            let name = nameCell.rowView.infoTextField.text ?? "Hello"
+            let gender = genderCell.rowView.infoSegmentedControl.selectedSegmentIndex
+            let age = ageCell.rowView.infoTextField.text ?? "??"
+            let medicine = medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex
+
+            let value = ["name": name,
+                         "gender": gender,
+                         "age": age,
+                         "medicine": medicine] as [String: Any]
+
+            UserManager.shared.editUser(with: uid, value: value)
+
+            UserDefaults.standard.set(name, forKey: "Name")
+            UserDefaults.standard.set(gender, forKey: "Gender")
+            UserDefaults.standard.set(age, forKey: "Age")
+            UserDefaults.standard.set(medicine, forKey: "Medicine")
+        }
 
     }
 
@@ -169,10 +176,16 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
-            
+
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
             cell.rowView.infoTextField.textAlignment = .center
+
+            if let name = UserDefaults.standard.value(forKey: "Name") as? String {
+
+                cell.rowView.infoTextField.text = name
+
+            }
 
             return cell
 
@@ -197,6 +210,12 @@ class ProfileTableViewController: UITableViewController {
 
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 0
 
+            if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
+
+                cell.rowView.infoSegmentedControl.selectedSegmentIndex = gender
+
+            }
+
             return cell
 
         case .age:
@@ -214,6 +233,12 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoTextField.returnKeyType = .done
 
             cell.rowView.infoTextField.inputView = agePicker
+
+            if let age = UserDefaults.standard.value(forKey: "Age") as? String {
+
+                cell.rowView.infoTextField.text = age
+
+            }
 
             return cell
 
@@ -236,6 +261,12 @@ class ProfileTableViewController: UITableViewController {
 
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
 
+            if let medicine = UserDefaults.standard.value(forKey: "Medicine") as? Int {
+
+                cell.rowView.infoSegmentedControl.selectedSegmentIndex = medicine
+
+            }
+
             return cell
 
         case .finish:
@@ -248,6 +279,7 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.profileButton.layer.cornerRadius = cell.rowView.profileButton.frame.height / 2
             cell.rowView.profileButton.tintColor = Palette.cream
             cell.rowView.profileButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+
             let user = FIRAuth.auth()?.currentUser
             if user?.isAnonymous == true {
 
@@ -286,6 +318,12 @@ class ProfileTableViewController: UITableViewController {
             return 100.0
 
         }
+    }
+
+    func hideKeyBoard() {
+
+        self.view.endEditing(true)
+
     }
 
     func signUp() {
@@ -405,7 +443,7 @@ extension ProfileTableViewController: UIPickerViewDataSource, UIPickerViewDelega
 
                 ageCell.rowView.infoTextField.text = String(age[row])
                 ageCell.rowView.infoTextField.textAlignment = .center
-                
+
             default: break
 
             }

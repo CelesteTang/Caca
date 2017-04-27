@@ -151,6 +151,7 @@ class SignUpViewController: UIViewController {
                             UserDefaults.standard.set(name, forKey: "Name")
                             UserDefaults.standard.set(gender, forKey: "Gender")
                             UserDefaults.standard.set("", forKey: "Age")
+                            UserDefaults.standard.set(false, forKey: "Medicine")
 
                             self.isFromStart = false
 
