@@ -6,4 +6,20 @@
 //  Copyright © 2017年 Hsin-Yu Tang. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class ProfileSegmentRowView: UIView {
+    
+    
+}
+
+extension ProfileSegmentRowView {
+    
+    // swiftlint:disable force_cast
+    class func create() -> ProfileSegmentRowView {
+        
+        return UINib(nibName: "ProfileSegmentRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! ProfileSegmentRowView
+    }
+    // swiftlint:enable force_cast
+    
+}

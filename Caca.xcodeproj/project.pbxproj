@@ -74,6 +74,10 @@
 		438EFDA91EB1C34300D9B18A /* ProfileSegmentRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 438EFDA81EB1C34300D9B18A /* ProfileSegmentRowView.xib */; };
 		438EFDAB1EB1C35A00D9B18A /* ProfileButtonRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDAA1EB1C35A00D9B18A /* ProfileButtonRowView.swift */; };
 		438EFDAD1EB1C36300D9B18A /* ProfileButtonRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 438EFDAC1EB1C36300D9B18A /* ProfileButtonRowView.xib */; };
+		438EFDB01EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDAF1EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift */; };
+		438EFDB21EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB11EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift */; };
+		438EFDB41EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB31EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift */; };
+		438EFDB61EB1C58600D9B18A /* ProfileButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB51EB1C58600D9B18A /* ProfileButtonTableViewCell.swift */; };
 		4396B58A1EA1F63A00A69C4E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396B5891EA1F63A00A69C4E /* StartViewController.swift */; };
 		43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F961E7FCEED0052125B /* Landing.storyboard */; };
 		43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F981E7FCF9B0052125B /* Opening.storyboard */; };
@@ -158,6 +162,10 @@
 		438EFDA81EB1C34300D9B18A /* ProfileSegmentRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSegmentRowView.xib; sourceTree = "<group>"; };
 		438EFDAA1EB1C35A00D9B18A /* ProfileButtonRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileButtonRowView.swift; sourceTree = "<group>"; };
 		438EFDAC1EB1C36300D9B18A /* ProfileButtonRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileButtonRowView.xib; sourceTree = "<group>"; };
+		438EFDAF1EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoTableViewCell.swift; sourceTree = "<group>"; };
+		438EFDB11EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		438EFDB31EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSegmentTableViewCell.swift; sourceTree = "<group>"; };
+		438EFDB51EB1C58600D9B18A /* ProfileButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileButtonTableViewCell.swift; sourceTree = "<group>"; };
 		4396B5891EA1F63A00A69C4E /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		43BA3F961E7FCEED0052125B /* Landing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
 		43BA3F981E7FCF9B0052125B /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
@@ -314,12 +322,16 @@
 			children = (
 				438EFDA01EB1C30600D9B18A /* ProfilePhotoRowView.xib */,
 				438EFD9E1EB1C2F300D9B18A /* ProfilePhotoRowView.swift */,
+				438EFDAF1EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift */,
 				438EFDA41EB1C32200D9B18A /* ProfileTextFieldRowView.xib */,
 				438EFDA21EB1C31A00D9B18A /* ProfileTextFieldRowView.swift */,
+				438EFDB11EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift */,
 				438EFDA81EB1C34300D9B18A /* ProfileSegmentRowView.xib */,
 				438EFDA61EB1C33700D9B18A /* ProfileSegmentRowView.swift */,
+				438EFDB31EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift */,
 				438EFDAC1EB1C36300D9B18A /* ProfileButtonRowView.xib */,
 				438EFDAA1EB1C35A00D9B18A /* ProfileButtonRowView.swift */,
+				438EFDB51EB1C58600D9B18A /* ProfileButtonTableViewCell.swift */,
 				4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */,
 			);
 			name = Profile;
@@ -613,6 +625,8 @@
 				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
 				438EFDAB1EB1C35A00D9B18A /* ProfileButtonRowView.swift in Sources */,
 				4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */,
+				438EFDB01EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift in Sources */,
+				438EFDB41EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift in Sources */,
 				4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */,
 				438B90AD1EA7360A001E0A5E /* Color.swift in Sources */,
 				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
@@ -620,11 +634,13 @@
 				43811DC61EA8D7E20035B672 /* Authentication.swift in Sources */,
 				4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */,
 				435B71EE1EA60AB500FBABBF /* PhotoTableViewCell.swift in Sources */,
+				438EFDB21EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,
 				43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */,
 				435B71EA1EA6080000FBABBF /* InfoRowView.swift in Sources */,
 				43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */,
 				4396B58A1EA1F63A00A69C4E /* StartViewController.swift in Sources */,
+				438EFDB61EB1C58600D9B18A /* ProfileButtonTableViewCell.swift in Sources */,
 				43372D391E7FCC84002E2AE3 /* CacaNavigationController.swift in Sources */,
 				43372D041E7FB4BD002E2AE3 /* AppDelegate.swift in Sources */,
 				438B90AF1EA73617001E0A5E /* Shape.swift in Sources */,
