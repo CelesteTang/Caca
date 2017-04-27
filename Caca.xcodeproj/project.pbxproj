@@ -78,6 +78,7 @@
 		438EFDB21EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB11EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift */; };
 		438EFDB41EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB31EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift */; };
 		438EFDB61EB1C58600D9B18A /* ProfileButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB51EB1C58600D9B18A /* ProfileButtonTableViewCell.swift */; };
+		438EFDB81EB1CB7700D9B18A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB71EB1CB7700D9B18A /* ProfileTableViewController.swift */; };
 		4396B58A1EA1F63A00A69C4E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396B5891EA1F63A00A69C4E /* StartViewController.swift */; };
 		43BA3F971E7FCEED0052125B /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F961E7FCEED0052125B /* Landing.storyboard */; };
 		43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3F981E7FCF9B0052125B /* Opening.storyboard */; };
@@ -166,6 +167,7 @@
 		438EFDB11EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		438EFDB31EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSegmentTableViewCell.swift; sourceTree = "<group>"; };
 		438EFDB51EB1C58600D9B18A /* ProfileButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileButtonTableViewCell.swift; sourceTree = "<group>"; };
+		438EFDB71EB1CB7700D9B18A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		4396B5891EA1F63A00A69C4E /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		43BA3F961E7FCEED0052125B /* Landing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
 		43BA3F981E7FCF9B0052125B /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
 				4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */,
 				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
+				4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */,
 				438EFDAE1EB1C36900D9B18A /* Profile */,
 				4396B58B1EA2241E00A69C4E /* Privacy */,
 			);
@@ -332,7 +335,7 @@
 				438EFDAC1EB1C36300D9B18A /* ProfileButtonRowView.xib */,
 				438EFDAA1EB1C35A00D9B18A /* ProfileButtonRowView.swift */,
 				438EFDB51EB1C58600D9B18A /* ProfileButtonTableViewCell.swift */,
-				4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */,
+				438EFDB71EB1CB7700D9B18A /* ProfileTableViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
 				438EFDAB1EB1C35A00D9B18A /* ProfileButtonRowView.swift in Sources */,
 				4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */,
+				438EFDB81EB1CB7700D9B18A /* ProfileTableViewController.swift in Sources */,
 				438EFDB01EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift in Sources */,
 				438EFDB41EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift in Sources */,
 				4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */,

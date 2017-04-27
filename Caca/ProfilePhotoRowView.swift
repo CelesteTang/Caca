@@ -10,6 +10,7 @@ import UIKit
 
 class ProfilePhotoRowView: UIView {
     
+    @IBOutlet weak var photoImageView: UIImageView!
     
 }
 

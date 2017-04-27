@@ -10,6 +10,9 @@ import UIKit
 
 class ProfileTextFieldRowView: UIView {
     
+    @IBOutlet weak var infoLabel: UILabel!
+    
+    @IBOutlet weak var infoTextField: UITextField!
     
 }
 

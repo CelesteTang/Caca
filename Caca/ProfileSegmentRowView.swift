@@ -10,6 +10,9 @@ import UIKit
 
 class ProfileSegmentRowView: UIView {
     
+    @IBOutlet weak var infoLabel: UILabel!
+    
+    @IBOutlet weak var infoSegmentedControl: UISegmentedControl!
     
 }
 

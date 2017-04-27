@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileButtonRowView: UIView {
     
+    @IBOutlet weak var profileButton: UIButton!
     
 }
 
