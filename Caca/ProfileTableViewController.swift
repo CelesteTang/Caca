@@ -166,6 +166,8 @@ class ProfileTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
@@ -178,6 +180,8 @@ class ProfileTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.infoLabel.textColor = Palette.darkblue
 
             let maleImage = resizeImage(image: #imageLiteral(resourceName: "male"), targetRatio: 0.5)
             let femaleImage = resizeImage(image: #imageLiteral(resourceName: "female"), targetRatio: 0.5)
@@ -198,6 +202,9 @@ class ProfileTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.infoLabel.textColor = Palette.darkblue
+
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
@@ -212,6 +219,16 @@ class ProfileTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.infoLabel.textColor = Palette.darkblue
+
+            cell.rowView.infoSegmentedControl.setTitle("Yes", forSegmentAt: 0)
+            cell.rowView.infoSegmentedControl.setTitle("No", forSegmentAt: 1)
+            cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
+            cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+            cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
+
+            cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
 
             return cell
 
@@ -220,6 +237,23 @@ class ProfileTableViewController: UITableViewController {
             // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileButtonTableViewCell", for: indexPath) as! ProfileButtonTableViewCell
             // swiftlint:enable force_cast
+
+            cell.rowView.profileButton.backgroundColor = Palette.darkblue
+            cell.rowView.profileButton.layer.cornerRadius = cell.rowView.profileButton.frame.height / 2
+            cell.rowView.profileButton.tintColor = Palette.cream
+            cell.rowView.profileButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+            let user = FIRAuth.auth()?.currentUser
+            if user?.isAnonymous == true {
+
+                cell.rowView.profileButton.setTitle("Sign Up", for: .normal)
+                cell.rowView.profileButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+
+            } else {
+
+                cell.rowView.profileButton.setTitle("Log out", for: .normal)
+                cell.rowView.profileButton.addTarget(self, action: #selector(logOut), for: .touchUpInside)
+
+            }
 
             return cell
 
@@ -235,17 +269,57 @@ class ProfileTableViewController: UITableViewController {
 
         case .photo:
 
-            return 200.0
+            return 300.0
 
         case .name, .gender, .age, .medicine:
 
-            return 80.0
+            return 50.0
 
         case .finish:
 
             return 100.0
 
         }
+    }
+
+    func signUp() {
+
+        guard let signUpViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
+
+        signUpViewController.isFromProfile = true
+
+        self.present(signUpViewController, animated: true)
+
+    }
+
+    func logOut() {
+
+        do {
+            try FIRAuth.auth()?.signOut()
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+                UserDefaults.standard.set(false, forKey: "IsviewedWalkThrough")
+
+                let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+
+                appDelegate.window?.rootViewController = startViewController
+
+            }
+
+        } catch (let error) {
+
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: error.localizedDescription,
+                                                    preferredStyle: .alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: .default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+        }
+
     }
 
     func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
@@ -317,14 +391,15 @@ extension ProfileTableViewController: UIPickerViewDataSource, UIPickerViewDelega
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
-        if let ageCell = tableView.visibleCells[Component.age.rawValue] as? InfoTableViewCell {
+        if let ageCell = tableView.visibleCells[Component.age.rawValue] as? ProfileTextFieldTableViewCell {
 
             switch pickerView {
 
             case agePicker:
 
                 ageCell.rowView.infoTextField.text = String(age[row])
-
+                ageCell.rowView.infoTextField.textAlignment = .center
+                
             default: break
 
             }
