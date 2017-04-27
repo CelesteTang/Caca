@@ -151,6 +151,7 @@ class SignUpViewController: UIViewController {
                             UserDefaults.standard.set(name, forKey: "Name")
                             UserDefaults.standard.set(gender, forKey: "Gender")
                             UserDefaults.standard.set("", forKey: "Age")
+                            UserDefaults.standard.set(false, forKey: "Medicine")
 
                             self.isFromStart = false
 
@@ -222,10 +223,21 @@ class SignUpViewController: UIViewController {
 
         self.view.backgroundColor = Palette.lightblue2
 
-        self.cancelButton.setTitle("", for: .normal)
-        let buttonimage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
-        self.cancelButton.setImage(buttonimage, for: .normal)
-        self.cancelButton.tintColor = Palette.darkblue
+        if isFromStart == true {
+
+            self.cancelButton.setTitle("", for: .normal)
+            let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
+            self.cancelButton.setImage(buttonimage, for: .normal)
+            self.cancelButton.tintColor = Palette.darkblue
+
+        } else if isFromProfile == true {
+
+            self.cancelButton.setTitle("", for: .normal)
+            let buttonimage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
+            self.cancelButton.setImage(buttonimage, for: .normal)
+            self.cancelButton.tintColor = Palette.darkblue
+
+        }
 
         self.logoImageView.image = #imageLiteral(resourceName: "caca-big")
         self.logoImageView.backgroundColor = Palette.lightblue2
@@ -254,10 +266,11 @@ class SignUpViewController: UIViewController {
         self.nameField.clearsOnBeginEditing = true
         self.nameField.returnKeyType = .done
 
-        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "male").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.male.rawValue)
-        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "female").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.female.rawValue)
+        let maleImage = resizeImage(image: #imageLiteral(resourceName: "male"), targetRatio: 0.5)
+        let femaleImage = resizeImage(image: #imageLiteral(resourceName: "female"), targetRatio: 0.5)
+        self.genderSegmentedControl.setImage(maleImage, forSegmentAt: Gender.male.rawValue)
+        self.genderSegmentedControl.setImage(femaleImage, forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue2
-        self.genderSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
 
         self.signUpButton.backgroundColor = Palette.darkblue2
         self.signUpButton.setTitle("Sign Up", for: .normal)
@@ -265,8 +278,36 @@ class SignUpViewController: UIViewController {
         self.signUpButton.tintColor = Palette.cream
         self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
 
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+
     }
 
+    func hideKeyBoard() {
+
+        self.view.endEditing(true)
+
+    }
+
+    func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
+
+        let size = image.size
+
+        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
+
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+
+        image.draw(in: rect)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        UIGraphicsEndImageContext()
+
+        return newImage!
+    }
 }
 
 extension SignUpViewController: UITextFieldDelegate {

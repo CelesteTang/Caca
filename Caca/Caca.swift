@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Caca {
 
@@ -50,6 +51,41 @@ class Caca {
         self.otherInfo = otherInfo
         self.grading = grading
         self.advice = advice
+
+    }
+
+}
+
+class FinalCaca {
+
+    // MARK: Property
+
+    let date: String
+
+    let time: String
+
+    let consumingTime: String
+
+    let shape: String
+
+    let color: String
+
+    let amount: String
+
+    let otherInfo: String?
+
+    var image: UIImage
+
+    init(date: String, time: String, consumingTime: String, shape: String, color: String, amount: String, otherInfo: String?, image: UIImage) {
+
+        self.date = date
+        self.time = time
+        self.consumingTime = consumingTime
+        self.shape = shape
+        self.color = color
+        self.amount = amount
+        self.otherInfo = otherInfo
+        self.image = image
 
     }
 

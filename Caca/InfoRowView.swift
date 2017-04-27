@@ -14,7 +14,7 @@ class InfoRowView: UIView {
 
     @IBOutlet weak var infoLabel: UILabel!
 
-    @IBOutlet weak var infoTextField: UITextField!
+    @IBOutlet weak var infoTextField: InfoTextField!
 }
 
 extension InfoRowView {
@@ -25,5 +25,14 @@ extension InfoRowView {
         return UINib(nibName: "InfoRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! InfoRowView
     }
     // swiftlint:enable force_cast
+
+}
+
+class InfoTextField: UITextField {
+
+    override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+
+        return false
+    }
 
 }

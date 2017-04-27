@@ -54,8 +54,10 @@ class ProfileViewController: UIViewController {
 
         }
 
-        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "male").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.male.rawValue)
-        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "female").withRenderingMode(.alwaysTemplate), forSegmentAt: Gender.female.rawValue)
+        let maleImage = resizeImage(image: #imageLiteral(resourceName: "male"), targetRatio: 0.5)
+        let femaleImage = resizeImage(image: #imageLiteral(resourceName: "female"), targetRatio: 0.5)
+        self.genderSegmentedControl.setImage(maleImage, forSegmentAt: Gender.male.rawValue)
+        self.genderSegmentedControl.setImage(femaleImage, forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue
         self.genderSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
         self.genderSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
@@ -198,6 +200,25 @@ class ProfileViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
         }
 
+    }
+
+    func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
+
+        let size = image.size
+
+        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
+
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+
+        image.draw(in: rect)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        UIGraphicsEndImageContext()
+
+        return newImage!
     }
 
 }

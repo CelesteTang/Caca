@@ -69,6 +69,8 @@ class FillinTableViewController: UITableViewController {
 
     var isCorrect = false
 
+    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: UIImage())
+
     var cacas = [Caca]()
 
     var advice = String()
@@ -430,7 +432,7 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.infoLabel.text = "Amount"
+            cell.rowView.infoLabel.text = component.title
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
@@ -450,7 +452,7 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.infoLabel.text = "Other"
+            cell.rowView.infoLabel.text = component.title
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
@@ -1011,6 +1013,8 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
             cell.rowView.cacaPhotoImageView.image = editedCacaImage
 
+            finalCaca.image = editedCacaImage
+
             guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else { return }
 
             cell.rowView.detectionColorImageView.backgroundColor = dominantColor.makeUIColor()
@@ -1018,6 +1022,8 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
             cell.rowView.cacaPhotoImageView.image = originalCacaImage
+
+            finalCaca.image = originalCacaImage
 
             guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else { return }
 
@@ -1045,6 +1051,12 @@ extension FillinTableViewController: UITextFieldDelegate {
         return true
     }
 
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        
+//        guard let photoCell = textField.superview?.superview?.superview as? PhotoTableViewCell, let infoCell = textField.superview?.superview?.superview as? InfoTableViewCell else { return }
+//        
+//        
+//    }
 }
 
 extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegate {

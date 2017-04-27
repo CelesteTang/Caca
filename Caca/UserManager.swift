@@ -57,6 +57,7 @@ class UserManager {
                             self.logUser(email: email, uid: uid, name: name)
 
                             completion(nil, nil)
+
                         }
 
                     })

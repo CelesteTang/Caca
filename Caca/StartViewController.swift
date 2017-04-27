@@ -68,6 +68,7 @@ class StartViewController: UIViewController {
             UserDefaults.standard.set("Hello", forKey: "Name")
             UserDefaults.standard.set(0, forKey: "Gender")
             UserDefaults.standard.set("", forKey: "Age")
+            UserDefaults.standard.set(false, forKey: "Medicine")
 
         }
 
