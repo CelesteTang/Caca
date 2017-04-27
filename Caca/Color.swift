@@ -15,6 +15,7 @@ enum Color: Int {
     var title: String {
 
         switch self {
+            
         case .red:
 
             return "Red"
@@ -22,6 +23,7 @@ enum Color: Int {
         case .yellow:
 
             return "Yellow"
+            
         case .green:
 
             return "Green"
@@ -48,6 +50,7 @@ enum Color: Int {
     var image: UIImage {
 
         switch self {
+            
         case .red:
 
             return #imageLiteral(resourceName: "red")

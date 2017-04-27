@@ -140,7 +140,7 @@ class SignInViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-        
+
     }
 
     func hideKeyBoard() {
