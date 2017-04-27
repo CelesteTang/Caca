@@ -9,18 +9,18 @@
 import UIKit
 
 class ProfileButtonRowView: UIView {
-    
+
     @IBOutlet weak var profileButton: UIButton!
-    
+
 }
 
 extension ProfileButtonRowView {
-    
+
     // swiftlint:disable force_cast
     class func create() -> ProfileButtonRowView {
-        
+
         return UINib(nibName: "ProfileButtonRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! ProfileButtonRowView
     }
     // swiftlint:enable force_cast
-    
+
 }
