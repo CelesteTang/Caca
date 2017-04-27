@@ -14,6 +14,8 @@ class ProfileTableViewController: UITableViewController {
 
     var age = [Int]()
 
+    var user = User(name: "", gender: 0, age: "", medicine: false)
+
     enum Component: Int {
 
         case photo, name, gender, age, medicine, finish
@@ -75,20 +77,110 @@ class ProfileTableViewController: UITableViewController {
 
     func hideKeyBoard() {
 
-        self.tableView.endEditing(true)
+        self.view.endEditing(true)
 
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+
+        return components.count
+
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+
+        let component = components[section]
+
+        switch component {
+
+        case .photo, .name, .gender, .age, .medicine, .finish:
+
+            return 1
+
+        }
+
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let component = components[indexPath.section]
+
+        switch component {
+
+        case .photo:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfilePhotoTableViewCell", for: indexPath) as! ProfilePhotoTableViewCell
+            // swiftlint:enable force_cast
+
+            cell.rowView.photoImageView.image = #imageLiteral(resourceName: "boy")
+
+            if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
+
+                if gender == Gender.male.rawValue {
+
+                    cell.rowView.photoImageView.image = #imageLiteral(resourceName: "boy")
+
+                } else if gender == Gender.female.rawValue {
+
+                    cell.rowView.photoImageView.image = #imageLiteral(resourceName: "girl")
+
+                }
+
+            }
+
+            return cell
+
+        case .name:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTextFieldTableViewCell", for: indexPath) as! ProfileTextFieldTableViewCell
+            // swiftlint:enable force_cast
+
+            return cell
+
+        case .gender:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileSegmentTableViewCell", for: indexPath) as! ProfileSegmentTableViewCell
+            // swiftlint:enable force_cast
+
+            return cell
+
+        case .age:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTextFieldTableViewCell", for: indexPath) as! ProfileTextFieldTableViewCell
+            // swiftlint:enable force_cast
+
+            cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+
+            cell.rowView.infoTextField.inputView = agePicker
+
+            return cell
+
+        case .medicine:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileSegmentTableViewCell", for: indexPath) as! ProfileSegmentTableViewCell
+            // swiftlint:enable force_cast
+
+            return cell
+
+        case .finish:
+
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileButtonTableViewCell", for: indexPath) as! ProfileButtonTableViewCell
+            // swiftlint:enable force_cast
+
+            return cell
+
+        }
+
     }
 
 }
@@ -169,6 +261,24 @@ extension ProfileTableViewController: UIPickerViewDataSource, UIPickerViewDelega
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
 
         return 50.0
+    }
+
+}
+
+extension ProfileTableViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        self.view.endEditing(true)
+
+        return true
+    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+
+        self.view.endEditing(true)
+
+        return true
     }
 
 }

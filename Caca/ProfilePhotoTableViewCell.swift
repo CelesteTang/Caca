@@ -12,7 +12,7 @@ class ProfilePhotoTableViewCell: UITableViewCell {
 
     // MARK: Property
 
-    let rowView = SettingRowView.create()
+    let rowView = ProfilePhotoRowView.create()
 
     // MARK: Init
 
@@ -46,8 +46,6 @@ class ProfilePhotoTableViewCell: UITableViewCell {
         rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
 
         rowView.backgroundColor = Palette.lightblue2
-
-        rowView.titleLabel.textColor = Palette.darkblue
 
     }
 
