@@ -168,8 +168,11 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoLabel.text = component.title
             cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
+            cell.rowView.infoLabel.textAlignment = .center
+            
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
+            cell.rowView.infoTextField.textAlignment = .center
 
             return cell
 
@@ -182,6 +185,7 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoLabel.text = component.title
             cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
+            cell.rowView.infoLabel.textAlignment = .center
 
             let maleImage = resizeImage(image: #imageLiteral(resourceName: "male"), targetRatio: 0.5)
             let femaleImage = resizeImage(image: #imageLiteral(resourceName: "female"), targetRatio: 0.5)
@@ -204,6 +208,7 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoLabel.text = component.title
             cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
+            cell.rowView.infoLabel.textAlignment = .center
 
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
@@ -221,6 +226,7 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoLabel.text = component.title
             cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
+            cell.rowView.infoLabel.textAlignment = .center
 
             cell.rowView.infoSegmentedControl.setTitle("Yes", forSegmentAt: 0)
             cell.rowView.infoSegmentedControl.setTitle("No", forSegmentAt: 1)
