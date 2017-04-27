@@ -432,7 +432,7 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.infoLabel.text = "Amount"
+            cell.rowView.infoLabel.text = component.title
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
@@ -452,7 +452,7 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.infoLabel.text = "Other"
+            cell.rowView.infoLabel.text = component.title
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 

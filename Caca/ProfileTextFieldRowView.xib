@@ -16,13 +16,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtj-Qm-9lG">
-                    <rect key="frame" x="20" y="54" width="42" height="21"/>
+                    <rect key="frame" x="20" y="54" width="95.5" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="deM-ff-HIT">
-                    <rect key="frame" x="82" y="49" width="273" height="30"/>
+                    <rect key="frame" x="135.5" y="49" width="219.5" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -32,6 +32,7 @@
             <constraints>
                 <constraint firstItem="mtj-Qm-9lG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2Jr-Lc-MaC"/>
                 <constraint firstItem="deM-ff-HIT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2jg-eJ-xb0"/>
+                <constraint firstItem="deM-ff-HIT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="135.5" id="Dcb-RY-Ilb"/>
                 <constraint firstItem="deM-ff-HIT" firstAttribute="leading" secondItem="mtj-Qm-9lG" secondAttribute="trailing" constant="20" id="JDZ-Or-s8f"/>
                 <constraint firstAttribute="trailing" secondItem="deM-ff-HIT" secondAttribute="trailing" constant="20" id="nb9-Zk-IBH"/>
                 <constraint firstItem="mtj-Qm-9lG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="pWK-qO-DNb"/>

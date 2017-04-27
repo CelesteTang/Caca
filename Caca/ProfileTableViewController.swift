@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileTableViewController: UITableViewController {
 
@@ -81,6 +82,31 @@ class ProfileTableViewController: UITableViewController {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tabBarController?.tabBar.isHidden = true
+
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        tabBarController?.tabBar.isHidden = false
+
+//        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+//        let value = ["name": nameTextField.text ?? "Hello",
+//                     "gender": genderSegmentedControl.selectedSegmentIndex,
+//                     "age": ageTextField.text ?? "??"] as [String: Any]
+//        
+//        UserManager.shared.editUser(with: uid, value: value)
+//        
+//        UserDefaults.standard.set(nameTextField.text, forKey: "Name")
+//        UserDefaults.standard.set(genderSegmentedControl.selectedSegmentIndex, forKey: "Gender")
+//        UserDefaults.standard.set(ageTextField.text, forKey: "Age")
+
+    }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -139,6 +165,10 @@ class ProfileTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTextFieldTableViewCell", for: indexPath) as! ProfileTextFieldTableViewCell
             // swiftlint:enable force_cast
 
+            cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+
             return cell
 
         case .gender:
@@ -146,6 +176,18 @@ class ProfileTableViewController: UITableViewController {
             // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileSegmentTableViewCell", for: indexPath) as! ProfileSegmentTableViewCell
             // swiftlint:enable force_cast
+
+            cell.rowView.infoLabel.text = component.title
+
+            let maleImage = resizeImage(image: #imageLiteral(resourceName: "male"), targetRatio: 0.5)
+            let femaleImage = resizeImage(image: #imageLiteral(resourceName: "female"), targetRatio: 0.5)
+            cell.rowView.infoSegmentedControl.setImage(maleImage, forSegmentAt: Gender.male.rawValue)
+            cell.rowView.infoSegmentedControl.setImage(femaleImage, forSegmentAt: Gender.female.rawValue)
+            cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
+            cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+            cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
+
+            cell.rowView.infoSegmentedControl.selectedSegmentIndex = 0
 
             return cell
 
@@ -169,6 +211,8 @@ class ProfileTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileSegmentTableViewCell", for: indexPath) as! ProfileSegmentTableViewCell
             // swiftlint:enable force_cast
 
+            cell.rowView.infoLabel.text = component.title
+
             return cell
 
         case .finish:
@@ -179,6 +223,64 @@ class ProfileTableViewController: UITableViewController {
 
             return cell
 
+        }
+
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        let component = components[indexPath.section]
+
+        switch component {
+
+        case .photo:
+
+            return 200.0
+
+        case .name, .gender, .age, .medicine:
+
+            return 80.0
+
+        case .finish:
+
+            return 100.0
+
+        }
+    }
+
+    func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
+
+        let size = image.size
+
+        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
+
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+
+        image.draw(in: rect)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        UIGraphicsEndImageContext()
+
+        return newImage!
+    }
+
+    func changeGender() {
+
+        if let photoCell = tableView.visibleCells[Component.photo.rawValue] as? ProfilePhotoTableViewCell,
+           let genderCell = tableView.visibleCells[Component.gender.rawValue] as? ProfileSegmentTableViewCell {
+
+            if genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
+
+                photoCell.rowView.photoImageView.image = #imageLiteral(resourceName: "boy")
+
+            } else if genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.female.rawValue {
+
+                photoCell.rowView.photoImageView.image = #imageLiteral(resourceName: "girl")
+
+            }
         }
 
     }

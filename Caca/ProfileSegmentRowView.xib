@@ -15,14 +15,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="121"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFD-3o-lN0">
-                    <rect key="frame" x="20" y="50" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medicine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFD-3o-lN0">
+                    <rect key="frame" x="20" y="48" width="95.5" height="26"/>
+                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Np6-7L-yrs">
-                    <rect key="frame" x="82" y="47" width="273" height="29"/>
+                    <rect key="frame" x="135.5" y="47" width="219.5" height="29"/>
                     <segments>
                         <segment title="First"/>
                         <segment title="Second"/>
@@ -33,6 +33,7 @@
             <constraints>
                 <constraint firstItem="Np6-7L-yrs" firstAttribute="leading" secondItem="gFD-3o-lN0" secondAttribute="trailing" constant="20" id="7ii-pE-F4p"/>
                 <constraint firstAttribute="trailing" secondItem="Np6-7L-yrs" secondAttribute="trailing" constant="20" id="FYv-nc-Ext"/>
+                <constraint firstItem="Np6-7L-yrs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="135.5" id="QnD-9u-pE8"/>
                 <constraint firstItem="gFD-3o-lN0" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bQy-Gw-9CJ"/>
                 <constraint firstItem="Np6-7L-yrs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="dX7-dI-LDg"/>
                 <constraint firstItem="gFD-3o-lN0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="f36-fo-58N"/>

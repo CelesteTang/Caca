@@ -87,7 +87,7 @@ class SettingTableViewController: UITableViewController {
 
         case Setting.profile.rawValue:
 
-            guard let profileViewController = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+            guard let profileViewController = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "ProfileTableViewController") as? ProfileTableViewController else { return }
 
             self.navigationController?.pushViewController(profileViewController, animated: true)
 
