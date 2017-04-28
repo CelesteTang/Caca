@@ -106,7 +106,7 @@ class FillinTableViewController: UITableViewController {
                 if let cacas = cacas {
 
                     self.cacas = cacas
-
+                    
                 }
             }
         }
@@ -313,10 +313,11 @@ class FillinTableViewController: UITableViewController {
 
                             do {
                                 let data = try Data(contentsOf: url)
-                                let image = UIImage(data: data)
+                                guard let image = UIImage(data: data) else { return }
 
                                 DispatchQueue.main.async {
-
+                                    
+                                    self.finalCaca.image = image
                                     cell.rowView.cacaPhotoImageView.image = image
 
                                 }
@@ -796,9 +797,6 @@ class FillinTableViewController: UITableViewController {
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
             let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
             let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
-            let shape = shapeCell.rowView.infoTextField.text,
-            let color = colorCell.rowView.infoTextField.text,
-            let consumingTime = timeCell.rowView.infoTextField.text,
             let amount = amountCell.rowView.infoTextField.text,
             let other = otherCell.rowView.infoTextField.text else {
 
@@ -812,6 +810,8 @@ class FillinTableViewController: UITableViewController {
 
         finalCaca.date = date
         finalCaca.time = time
+        finalCaca.amount = amount
+        finalCaca.otherInfo = other
 
         // MARK : Create caca with photo
 
@@ -909,7 +909,9 @@ class FillinTableViewController: UITableViewController {
 
         finalCaca.date = date
         finalCaca.time = time
-
+        finalCaca.amount = amount
+        finalCaca.otherInfo = other
+        
         // MARK : Edit caca with new photo (had old photo)
 
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
