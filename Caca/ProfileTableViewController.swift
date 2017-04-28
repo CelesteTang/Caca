@@ -200,10 +200,8 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
 
-            let maleImage = resizeImage(image: #imageLiteral(resourceName: "male"), targetRatio: 0.5)
-            let femaleImage = resizeImage(image: #imageLiteral(resourceName: "female"), targetRatio: 0.5)
-            cell.rowView.infoSegmentedControl.setImage(maleImage, forSegmentAt: Gender.male.rawValue)
-            cell.rowView.infoSegmentedControl.setImage(femaleImage, forSegmentAt: Gender.female.rawValue)
+            cell.rowView.infoSegmentedControl.setImage(#imageLiteral(resourceName: "male"), forSegmentAt: Gender.male.rawValue)
+            cell.rowView.infoSegmentedControl.setImage(#imageLiteral(resourceName: "female"), forSegmentAt: Gender.female.rawValue)
             cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)

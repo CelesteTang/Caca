@@ -266,10 +266,8 @@ class SignUpViewController: UIViewController {
         self.nameField.clearsOnBeginEditing = true
         self.nameField.returnKeyType = .done
 
-        let maleImage = resizeImage(image: #imageLiteral(resourceName: "male"), targetRatio: 0.5)
-        let femaleImage = resizeImage(image: #imageLiteral(resourceName: "female"), targetRatio: 0.5)
-        self.genderSegmentedControl.setImage(maleImage, forSegmentAt: Gender.male.rawValue)
-        self.genderSegmentedControl.setImage(femaleImage, forSegmentAt: Gender.female.rawValue)
+        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "male"), forSegmentAt: Gender.male.rawValue)
+        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "female"), forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue2
 
         self.signUpButton.backgroundColor = Palette.darkblue2

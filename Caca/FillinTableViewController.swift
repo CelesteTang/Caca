@@ -145,11 +145,13 @@ class FillinTableViewController: UITableViewController {
         self.amountSlider.isContinuous = true
         let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "caca-big"), targetRatio: 0.1)
         self.amountSlider.setThumbImage(thumbIamge, for: .normal)
+        let plusImage = self.resizeImage(image: #imageLiteral(resourceName: "plus"), targetRatio: 0.5)
+        let minusImage = self.resizeImage(image: #imageLiteral(resourceName: "minus"), targetRatio: 0.5)
+        self.amountSlider.maximumValueImage = plusImage.withRenderingMode(.alwaysTemplate)
+        self.amountSlider.minimumValueImage = minusImage.withRenderingMode(.alwaysTemplate)
+        self.amountSlider.tintColor = Palette.darkblue
         self.amountSlider.minimumValue = 0.05
         self.amountSlider.maximumValue = 0.15
-        self.amountSlider.maximumValueImage = #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysTemplate)
-        self.amountSlider.minimumValueImage = #imageLiteral(resourceName: "minus").withRenderingMode(.alwaysTemplate)
-        self.amountSlider.tintColor = Palette.darkblue
         self.amountSlider.value = 0.1
         self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
@@ -812,7 +814,7 @@ class FillinTableViewController: UITableViewController {
 
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
 
-            CacaProvider.shared.saveCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, error) in
+            CacaProvider.shared.saveCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, error) in
 
                 if error != nil {
 
@@ -826,13 +828,13 @@ class FillinTableViewController: UITableViewController {
                              "cacaID": cacaID,
                              "photo": cacaPhotoUrl,
                              "photoID": photoID,
-                             "date": date,
-                             "time": time,
-                             "consumingTime": consumingTime,
-                             "shape": shape,
-                             "color": color,
-                             "amount": amount,
-                             "other": other,
+                             "date": self.finalCaca.date,
+                             "time": self.finalCaca.time,
+                             "consumingTime": self.finalCaca.consumingTime,
+                             "shape": self.finalCaca.shape,
+                             "color": self.finalCaca.color,
+                             "amount": self.finalCaca.amount,
+                             "other": self.finalCaca.otherInfo,
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
 
@@ -901,12 +903,15 @@ class FillinTableViewController: UITableViewController {
         let cacaID = recievedCacaFromRecordDetail[0].cacaID
         let photoID = recievedCacaFromRecordDetail[0].photoID
         let overallAdvice = getAdvice()
-
+        
+        finalCaca.date = date
+        finalCaca.time = time
+        
         // MARK : Edit caca with new photo (had old photo)
 
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
 
-            CacaProvider.shared.editCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
+            CacaProvider.shared.editCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
 
                 if storageError != nil {
 
@@ -927,11 +932,11 @@ class FillinTableViewController: UITableViewController {
                              "cacaID": cacaID,
                              "photo": cacaPhotoUrl,
                              "photoID": photoID,
-                             "date": date,
-                             "time": time,
-                             "consumingTime": consumingTime,
-                             "shape": shape,
-                             "color": color,
+                             "date": self.finalCaca.date,
+                             "time": self.finalCaca.time,
+                             "consumingTime": self.finalCaca.consumingTime,
+                             "shape": self.finalCaca.shape,
+                             "color": self.finalCaca.color,
                              "amount": amount,
                              "other": other,
                              "grading": self.ispassed,
@@ -947,7 +952,7 @@ class FillinTableViewController: UITableViewController {
 
             // MARK : Edit caca with new photo (no old photo)
 
-            CacaProvider.shared.saveCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, error) in
+            CacaProvider.shared.saveCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, error) in
 
                 if error != nil {
 
@@ -961,12 +966,12 @@ class FillinTableViewController: UITableViewController {
                              "cacaID": cacaID,
                              "photo": cacaPhotoUrl,
                              "photoID": photoID,
-                             "date": date,
-                             "time": time,
-                             "consumingTime": consumingTime,
-                             "shape": shape,
-                             "color": color,
-                             "amount": amount,
+                             "date": self.finalCaca.date,
+                             "time": self.finalCaca.time,
+                             "consumingTime": self.finalCaca.consumingTime,
+                             "shape": self.finalCaca.shape,
+                             "color": self.finalCaca.color,
+                             "amount": self.finalCaca.amount,
                              "other": other,
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
@@ -1047,16 +1052,17 @@ extension FillinTableViewController: UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
 
         self.view.endEditing(true)
-
+        
         return true
     }
 
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        
-//        guard let photoCell = textField.superview?.superview?.superview as? PhotoTableViewCell, let infoCell = textField.superview?.superview?.superview as? InfoTableViewCell else { return }
-//        
-//        
-//    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        guard let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell else { return }
+        
+        finalCaca.otherInfo = otherCell.rowView.infoTextField.text
+        
+    }
 }
 
 extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -1123,16 +1129,19 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
                 }
 
-            timeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
-
+                timeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
+                finalCaca.consumingTime = "\(finalHour):\(finalMin):\(finalSec)"
+                
             case shapePicker:
 
-                shapeCell.rowView.infoTextField.text = String(shapes[row].title)
-
+                shapeCell.rowView.infoTextField.text = shapes[row].title
+                finalCaca.shape = shapes[row].title
+                
             case colorPicker:
 
-                colorCell.rowView.infoTextField.text = String(colors[row].title)
-
+                colorCell.rowView.infoTextField.text = colors[row].title
+                finalCaca.color = colors[row].title
+                
             default: break
 
             }
@@ -1171,13 +1180,13 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
         case shapePicker:
 
-            let rendererShape = (row == 0) ? Shape.separateHard : shapes[row]
+            let rendererShape = shapes[row]
 
             return ShapeSpinnerItemRenderer(frame: CGRect(), shape : rendererShape)
 
         case colorPicker:
 
-            let rendererColor = (row == 0) ? Color.red : colors[row]
+            let rendererColor = colors[row]
 
             return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
 
