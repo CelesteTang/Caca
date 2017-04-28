@@ -14,6 +14,12 @@ class CacaViewController: UIViewController {
 
     @IBOutlet weak var mainImageView: UIImageView!
 
+    @IBOutlet weak var magnifierView: UIView!
+
+    @IBOutlet weak var gutImageView: UIImageView!
+
+    @IBOutlet weak var magnifierButton: UIButton!
+
     @IBOutlet weak var notificationLabel: UILabel!
 
     @IBOutlet weak var startButton: UIButton!
@@ -61,6 +67,16 @@ class CacaViewController: UIViewController {
 
             }
         }
+
+        self.magnifierView.backgroundColor = Palette.lightWhite
+        self.magnifierView.layer.borderWidth = 5
+        self.magnifierView.layer.borderColor = Palette.orange.cgColor
+        self.magnifierView.isHidden = true
+
+        self.gutImageView.image = #imageLiteral(resourceName: "gut")
+
+        self.magnifierButton.setTitle("", for: .normal)
+        self.magnifierButton.addTarget(self, action: #selector(hideOrShowGut), for: .touchUpInside)
 
         self.notificationLabel.textColor = Palette.darkblue
         self.notificationLabel.numberOfLines = 0
@@ -144,6 +160,21 @@ class CacaViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+
+    // MARK : Hide Or Show Gut
+
+    func hideOrShowGut() {
+
+        if self.magnifierView.isHidden == true {
+
+            self.magnifierView.isHidden = false
+
+        } else if self.magnifierView.isHidden == false {
+
+            self.magnifierView.isHidden = true
+
         }
     }
 }

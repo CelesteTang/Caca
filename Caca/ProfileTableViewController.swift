@@ -22,27 +22,27 @@ class ProfileTableViewController: UITableViewController {
         var title: String {
 
             switch self {
-                
+
             case .name:
-                
+
                 return "Name"
-                
+
             case .gender:
-                
+
                 return "Gender"
-                
+
             case .age:
-                
+
                 return "Age"
-                
+
             case .medicine:
-                
+
                 return "Medicine"
-                
+
             default:
-                
+
                 return ""
-                
+
             }
         }
     }
