@@ -48,6 +48,14 @@ class CacaViewController: UIViewController {
         detectFrequency()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.magnifierView.layer.cornerRadius = self.magnifierView.frame.width / 2
+        self.magnifierView.layer.masksToBounds = true
+        
+    }
+    
     // MARK: Set Up
 
     private func setUp() {
@@ -118,6 +126,7 @@ class CacaViewController: UIViewController {
                 if cacas.last?.date == nil {
 
                     self.notificationLabel.text = "\(userName), start caca now!"
+                    
                     self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
                     
                 } else if dayToNow > 0 {
@@ -125,15 +134,21 @@ class CacaViewController: UIViewController {
                     switch dayToNow {
 
                     case 1:
+                        
                         self.notificationLabel.text = "\(userName), you don't caca today."
+                        
                         self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
                     case 2...3:
+                        
                         self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days. Remember to caca at least every 3 days."
+                        
                         self.cacaImageView.image = #imageLiteral(resourceName: "crackSausage")
 
                     default:
+                        
                         self.notificationLabel.text = "\(userName), you don't caca for a long time. Remember to caca at least every 3 days."
+                        
                         self.cacaImageView.image = #imageLiteral(resourceName: "lumpySausage")
 
                     }
@@ -160,6 +175,7 @@ class CacaViewController: UIViewController {
                     if todayCacaTimes > 3 {
 
                         self.notificationLabel.text = "\(userName), you caca too much today. You should not caca over 3 times per day."
+                        
                         self.cacaImageView.image = #imageLiteral(resourceName: "wateryStool")
 
                     } else {

@@ -50,13 +50,13 @@
                                 <rect key="frame" x="110" y="210" width="100" height="100"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ox8-oq-2ec">
-                                        <rect key="frame" x="0.0" y="-0.5" width="101" height="101"/>
+                                        <rect key="frame" x="15.5" y="15" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Ox8-oq-2ec" secondAttribute="height" multiplier="1:1" id="ELP-t6-yAH"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Lg-Ru-hoc">
-                                        <rect key="frame" x="10" y="9.5" width="81" height="81"/>
+                                        <rect key="frame" x="25.5" y="25" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="1Lg-Ru-hoc" secondAttribute="height" multiplier="1:1" id="1DB-hi-uzK"/>
                                         </constraints>
@@ -66,11 +66,11 @@
                                 <constraints>
                                     <constraint firstItem="Ox8-oq-2ec" firstAttribute="centerX" secondItem="jBr-71-M2q" secondAttribute="centerX" id="DAE-si-5Gt"/>
                                     <constraint firstItem="Ox8-oq-2ec" firstAttribute="centerY" secondItem="jBr-71-M2q" secondAttribute="centerY" id="Dlb-YS-gha"/>
+                                    <constraint firstItem="Ox8-oq-2ec" firstAttribute="width" secondItem="jBr-71-M2q" secondAttribute="height" multiplier="7:10" id="Ie8-i2-6Jq"/>
                                     <constraint firstItem="1Lg-Ru-hoc" firstAttribute="centerX" secondItem="jBr-71-M2q" secondAttribute="centerX" id="QUx-s9-kCE"/>
                                     <constraint firstItem="1Lg-Ru-hoc" firstAttribute="centerY" secondItem="jBr-71-M2q" secondAttribute="centerY" id="Qx4-im-ZB6"/>
-                                    <constraint firstItem="Ox8-oq-2ec" firstAttribute="leading" secondItem="jBr-71-M2q" secondAttribute="leading" id="bod-Lc-L6j"/>
                                     <constraint firstAttribute="width" secondItem="jBr-71-M2q" secondAttribute="height" multiplier="1:1" id="cal-S2-Hmi"/>
-                                    <constraint firstItem="1Lg-Ru-hoc" firstAttribute="leading" secondItem="jBr-71-M2q" secondAttribute="leading" constant="10" id="s3w-A7-HCp"/>
+                                    <constraint firstItem="1Lg-Ru-hoc" firstAttribute="leading" secondItem="Ox8-oq-2ec" secondAttribute="leading" constant="10" id="d16-sU-Sva"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BU1-oB-0eg">
