@@ -84,6 +84,8 @@ class SignInViewController: UIViewController {
 
                         let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
 
+                        UserDefaults.standard.set(true, forKey: "IsviewedWalkThrough")
+
                         appDelegate.window?.rootViewController = tabBarController
 
                     }

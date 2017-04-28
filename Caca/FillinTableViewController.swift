@@ -682,7 +682,7 @@ class FillinTableViewController: UITableViewController {
 
         } else {
 
-            self.advice = "Warning! Your caca may not healthy! "
+            self.advice = "Warning! Your caca may not be healthy! "
 
             // MARK: Shape
 
@@ -824,7 +824,7 @@ class FillinTableViewController: UITableViewController {
                 }
 
                 FIRAnalytics.logEvent(withName: "CreateWithPhoto", parameters: nil)
-                
+
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
@@ -926,7 +926,7 @@ class FillinTableViewController: UITableViewController {
                 }
 
                 FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
-                
+
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
@@ -962,7 +962,7 @@ class FillinTableViewController: UITableViewController {
                 }
 
                 FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
-                
+
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
