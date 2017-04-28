@@ -810,6 +810,9 @@ class FillinTableViewController: UITableViewController {
         let photoID = UUID().uuidString
         let overallAdvice = getAdvice()
 
+        finalCaca.date = date
+        finalCaca.time = time
+
         // MARK : Create caca with photo
 
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {

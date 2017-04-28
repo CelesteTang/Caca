@@ -307,13 +307,9 @@ class ProfileTableViewController: UITableViewController {
 
             return 300.0
 
-        case .name, .gender, .age, .medicine:
+        case .name, .gender, .age, .medicine, .finish:
 
-            return 50.0
-
-        case .finish:
-
-            return 100.0
+            return 80.0
 
         }
     }
@@ -339,6 +335,12 @@ class ProfileTableViewController: UITableViewController {
         let alertController = UIAlertController(title: "Warning",
                                                 message: "Do you want to log out?",
                                                 preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(title: "No",
+                                         style: .cancel,
+                                         handler: nil)
+
+        alertController.addAction(cancelAction)
 
         let okAction = UIAlertAction(title: "Yes", style: .default) { _ in
 
@@ -371,12 +373,6 @@ class ProfileTableViewController: UITableViewController {
         }
 
         alertController.addAction(okAction)
-
-        let cancelAction = UIAlertAction(title: "No",
-                                         style: .cancel,
-                                         handler: nil)
-
-        alertController.addAction(cancelAction)
 
         self.present(alertController, animated: true, completion: nil)
 
