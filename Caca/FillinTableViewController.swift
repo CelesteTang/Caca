@@ -69,7 +69,7 @@ class FillinTableViewController: UITableViewController {
 
     var isCorrect = false
 
-    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: UIImage())
+    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "caca-big"))
 
     var cacas = [Caca]()
 
@@ -301,7 +301,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
-            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-big")
+            cell.rowView.cacaPhotoImageView.image = finalCaca.image
             cell.rowView.detectionColorImageView.backgroundColor = UIColor.clear
 
             if isFromRecordDetail == true {
@@ -834,7 +834,7 @@ class FillinTableViewController: UITableViewController {
                              "shape": self.finalCaca.shape,
                              "color": self.finalCaca.color,
                              "amount": self.finalCaca.amount,
-                             "other": self.finalCaca.otherInfo,
+                             "other": self.finalCaca.otherInfo ?? "",
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
 
@@ -852,13 +852,13 @@ class FillinTableViewController: UITableViewController {
                          "cacaID": cacaID,
                          "photo": "",
                          "photoID": "",
-                         "date": date,
-                         "time": time,
-                         "consumingTime": consumingTime,
-                         "shape": shape,
-                         "color": color,
-                         "amount": amount,
-                         "other": other,
+                         "date": self.finalCaca.date,
+                         "time": self.finalCaca.time,
+                         "consumingTime": self.finalCaca.consumingTime,
+                         "shape": self.finalCaca.shape,
+                         "color": self.finalCaca.color,
+                         "amount": self.finalCaca.amount,
+                         "other": self.finalCaca.otherInfo ?? "",
                          "grading": self.ispassed,
                          "advice": overallAdvice] as [String : Any]
 
@@ -903,10 +903,10 @@ class FillinTableViewController: UITableViewController {
         let cacaID = recievedCacaFromRecordDetail[0].cacaID
         let photoID = recievedCacaFromRecordDetail[0].photoID
         let overallAdvice = getAdvice()
-        
+
         finalCaca.date = date
         finalCaca.time = time
-        
+
         // MARK : Edit caca with new photo (had old photo)
 
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
@@ -937,8 +937,8 @@ class FillinTableViewController: UITableViewController {
                              "consumingTime": self.finalCaca.consumingTime,
                              "shape": self.finalCaca.shape,
                              "color": self.finalCaca.color,
-                             "amount": amount,
-                             "other": other,
+                             "amount": self.finalCaca.amount,
+                             "other": self.finalCaca.otherInfo ?? "",
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
 
@@ -972,7 +972,7 @@ class FillinTableViewController: UITableViewController {
                              "shape": self.finalCaca.shape,
                              "color": self.finalCaca.color,
                              "amount": self.finalCaca.amount,
-                             "other": other,
+                             "other": self.finalCaca.otherInfo ?? "",
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
 
@@ -990,13 +990,13 @@ class FillinTableViewController: UITableViewController {
                          "cacaID": cacaID,
                          "photo": "",
                          "photoID": "",
-                         "date": date,
-                         "time": time,
-                         "consumingTime": consumingTime,
-                         "shape": shape,
-                         "color": color,
-                         "amount": amount ,
-                         "other": other,
+                         "date": self.finalCaca.date,
+                         "time": self.finalCaca.time,
+                         "consumingTime": self.finalCaca.consumingTime,
+                         "shape": self.finalCaca.shape,
+                         "color": self.finalCaca.color,
+                         "amount": self.finalCaca.amount ,
+                         "other": self.finalCaca.otherInfo ?? "",
                          "grading": self.ispassed,
                          "advice": overallAdvice] as [String : Any]
 
@@ -1052,16 +1052,16 @@ extension FillinTableViewController: UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
 
         self.view.endEditing(true)
-        
+
         return true
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
+
         guard let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell else { return }
-        
+
         finalCaca.otherInfo = otherCell.rowView.infoTextField.text
-        
+
     }
 }
 
@@ -1131,17 +1131,17 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
                 timeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
                 finalCaca.consumingTime = "\(finalHour):\(finalMin):\(finalSec)"
-                
+
             case shapePicker:
 
                 shapeCell.rowView.infoTextField.text = shapes[row].title
                 finalCaca.shape = shapes[row].title
-                
+
             case colorPicker:
 
                 colorCell.rowView.infoTextField.text = colors[row].title
                 finalCaca.color = colors[row].title
-                
+
             default: break
 
             }
