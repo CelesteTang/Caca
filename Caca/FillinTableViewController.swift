@@ -823,6 +823,8 @@ class FillinTableViewController: UITableViewController {
                     return
                 }
 
+                FIRAnalytics.logEvent(withName: "CreateWithPhoto", parameters: nil)
+                
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
@@ -874,10 +876,7 @@ class FillinTableViewController: UITableViewController {
 
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell,
             let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
-            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
-            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
             let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell,
-            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
             let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell,
             let finishCell = tableView.visibleCells[Component.finish.rawValue] as? FinishTableViewCell else {
 
@@ -926,6 +925,8 @@ class FillinTableViewController: UITableViewController {
                     return
                 }
 
+                FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
+                
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
@@ -960,6 +961,8 @@ class FillinTableViewController: UITableViewController {
                     return
                 }
 
+                FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
+                
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
