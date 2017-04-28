@@ -106,7 +106,7 @@ class FillinTableViewController: UITableViewController {
                 if let cacas = cacas {
 
                     self.cacas = cacas
-                    
+
                 }
             }
         }
@@ -316,7 +316,7 @@ class FillinTableViewController: UITableViewController {
                                 guard let image = UIImage(data: data) else { return }
 
                                 DispatchQueue.main.async {
-                                    
+
                                     self.finalCaca.image = image
                                     cell.rowView.cacaPhotoImageView.image = image
 
@@ -784,9 +784,6 @@ class FillinTableViewController: UITableViewController {
 
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell,
             let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
-            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
-            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
-            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
             let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell,
             let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell,
             let finishCell = tableView.visibleCells[Component.finish.rawValue] as? FinishTableViewCell
@@ -893,9 +890,6 @@ class FillinTableViewController: UITableViewController {
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
             let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
             let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
-            let shape = shapeCell.rowView.infoTextField.text,
-            let color = colorCell.rowView.infoTextField.text,
-            let consumingTime = timeCell.rowView.infoTextField.text,
             let amount = amountCell.rowView.infoTextField.text,
             let other = otherCell.rowView.infoTextField.text else {
 
@@ -911,7 +905,7 @@ class FillinTableViewController: UITableViewController {
         finalCaca.time = time
         finalCaca.amount = amount
         finalCaca.otherInfo = other
-        
+
         // MARK : Edit caca with new photo (had old photo)
 
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {

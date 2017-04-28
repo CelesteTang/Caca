@@ -15,8 +15,6 @@ class ProfileTableViewController: UITableViewController {
 
     var age = [Int]()
 
-    var user = User(name: "", gender: 0, age: "", medicine: false)
-
     enum Component: Int {
 
         case photo, name, gender, age, medicine, finish
@@ -99,10 +97,12 @@ class ProfileTableViewController: UITableViewController {
             let age = ageCell.rowView.infoTextField.text ?? "??"
             let medicine = medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex
 
-            let value = ["name": name,
-                         "gender": gender,
-                         "age": age,
-                         "medicine": medicine] as [String: Any]
+            let user = User(name: name, gender: gender, age: age, medicine: medicine)
+
+            let value = ["name": user.name,
+                         "gender": user.gender,
+                         "age": user.age,
+                         "medicine": user.medicine] as [String: Any]
 
             UserManager.shared.editUser(with: uid, value: value)
 
