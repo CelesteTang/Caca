@@ -55,13 +55,22 @@
                                             <constraint firstAttribute="width" secondItem="Ox8-oq-2ec" secondAttribute="height" multiplier="1:1" id="ELP-t6-yAH"/>
                                         </constraints>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Lg-Ru-hoc">
+                                        <rect key="frame" x="10" y="9.5" width="81" height="81"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="1Lg-Ru-hoc" secondAttribute="height" multiplier="1:1" id="1DB-hi-uzK"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Ox8-oq-2ec" firstAttribute="centerX" secondItem="jBr-71-M2q" secondAttribute="centerX" id="DAE-si-5Gt"/>
                                     <constraint firstItem="Ox8-oq-2ec" firstAttribute="centerY" secondItem="jBr-71-M2q" secondAttribute="centerY" id="Dlb-YS-gha"/>
+                                    <constraint firstItem="1Lg-Ru-hoc" firstAttribute="centerX" secondItem="jBr-71-M2q" secondAttribute="centerX" id="QUx-s9-kCE"/>
+                                    <constraint firstItem="1Lg-Ru-hoc" firstAttribute="centerY" secondItem="jBr-71-M2q" secondAttribute="centerY" id="Qx4-im-ZB6"/>
                                     <constraint firstItem="Ox8-oq-2ec" firstAttribute="leading" secondItem="jBr-71-M2q" secondAttribute="leading" id="bod-Lc-L6j"/>
                                     <constraint firstAttribute="width" secondItem="jBr-71-M2q" secondAttribute="height" multiplier="1:1" id="cal-S2-Hmi"/>
+                                    <constraint firstItem="1Lg-Ru-hoc" firstAttribute="leading" secondItem="jBr-71-M2q" secondAttribute="leading" constant="10" id="s3w-A7-HCp"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BU1-oB-0eg">
@@ -92,6 +101,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cacaImageView" destination="1Lg-Ru-hoc" id="JhA-Tc-fQN"/>
                         <outlet property="gutImageView" destination="Ox8-oq-2ec" id="Jwc-SD-70Y"/>
                         <outlet property="magnifierButton" destination="BU1-oB-0eg" id="Iap-hJ-1SJ"/>
                         <outlet property="magnifierView" destination="jBr-71-M2q" id="SDK-7X-s7l"/>

@@ -246,6 +246,7 @@ class ProfileTableViewController: UITableViewController {
             if let age = UserDefaults.standard.value(forKey: "Age") as? String {
 
                 cell.rowView.infoTextField.text = age
+                cell.rowView.infoTextField.textAlignment = .center
 
             }
 

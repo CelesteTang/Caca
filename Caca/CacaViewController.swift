@@ -18,6 +18,8 @@ class CacaViewController: UIViewController {
 
     @IBOutlet weak var gutImageView: UIImageView!
 
+    @IBOutlet weak var cacaImageView: UIImageView!
+    
     @IBOutlet weak var magnifierButton: UIButton!
 
     @IBOutlet weak var notificationLabel: UILabel!
@@ -114,19 +116,23 @@ class CacaViewController: UIViewController {
                 if cacas.last?.date == nil {
 
                     self.notificationLabel.text = "\(userName), start caca now!"
-
+                    self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
+                    
                 } else if dayToNow > 0 {
 
                     switch dayToNow {
 
                     case 1:
                         self.notificationLabel.text = "\(userName), you don't caca today."
+                        self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
                     case 2...3:
                         self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days. Remember to caca at least every 3 days."
+                        self.cacaImageView.image = #imageLiteral(resourceName: "crackSausage")
 
                     default:
                         self.notificationLabel.text = "\(userName), you don't caca for a long time. Remember to caca at least every 3 days."
+                        self.cacaImageView.image = #imageLiteral(resourceName: "lumpySausage")
 
                     }
 
@@ -152,6 +158,7 @@ class CacaViewController: UIViewController {
                     if todayCacaTimes > 3 {
 
                         self.notificationLabel.text = "\(userName), you caca too much today. You should not caca over 3 times per day."
+                        self.cacaImageView.image = #imageLiteral(resourceName: "wateryStool")
 
                     } else {
 
