@@ -143,16 +143,14 @@ class FillinTableViewController: UITableViewController {
 
         self.amountSlider.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
         self.amountSlider.isContinuous = true
-        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "caca-big"), targetRatio: 0.1)
+        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "caca-big"), targetRatio: 0.2)
         self.amountSlider.setThumbImage(thumbIamge, for: .normal)
-        let plusImage = self.resizeImage(image: #imageLiteral(resourceName: "plus"), targetRatio: 0.5)
-        let minusImage = self.resizeImage(image: #imageLiteral(resourceName: "minus"), targetRatio: 0.5)
-        self.amountSlider.maximumValueImage = plusImage.withRenderingMode(.alwaysTemplate)
-        self.amountSlider.minimumValueImage = minusImage.withRenderingMode(.alwaysTemplate)
+        self.amountSlider.maximumValueImage = #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysTemplate)
+        self.amountSlider.minimumValueImage = #imageLiteral(resourceName: "minus").withRenderingMode(.alwaysTemplate)
         self.amountSlider.tintColor = Palette.darkblue
-        self.amountSlider.minimumValue = 0.05
-        self.amountSlider.maximumValue = 0.15
-        self.amountSlider.value = 0.1
+        self.amountSlider.minimumValue = 0.1
+        self.amountSlider.maximumValue = 0.3
+        self.amountSlider.value = 0.2
         self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
     }
@@ -176,21 +174,21 @@ class FillinTableViewController: UITableViewController {
         if let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell {
 
             switch self.amountSlider.value {
-            case 0.11...0.15:
+            case 0.23...0.3:
 
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.15)
+                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.3)
                 amountCell.rowView.infoTextField.text = "Large"
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
-            case 0.08..<0.11:
+            case 0.16..<0.23:
 
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.10)
+                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.2)
                 amountCell.rowView.infoTextField.text = "Normal"
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
-            case 0.05..<0.08:
+            case 0.10..<0.16:
 
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.05)
+                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.1)
                 amountCell.rowView.infoTextField.text = "Small"
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
@@ -809,6 +807,7 @@ class FillinTableViewController: UITableViewController {
         finalCaca.time = time
         finalCaca.amount = amount
         finalCaca.otherInfo = other
+        finalCaca.consumingTime = Time.consumingTime
 
         // MARK : Create caca with photo
 
@@ -876,6 +875,9 @@ class FillinTableViewController: UITableViewController {
 
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell,
             let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
+            let consumingTimeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
+            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
+            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
             let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell,
             let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell,
             let finishCell = tableView.visibleCells[Component.finish.rawValue] as? FinishTableViewCell else {
@@ -889,6 +891,9 @@ class FillinTableViewController: UITableViewController {
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
             let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
             let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
+            let consumingTime = consumingTimeCell.rowView.infoTextField.text,
+            let shape = shapeCell.rowView.infoTextField.text,
+            let color = colorCell.rowView.infoTextField.text,
             let amount = amountCell.rowView.infoTextField.text,
             let other = otherCell.rowView.infoTextField.text else {
 
@@ -902,6 +907,9 @@ class FillinTableViewController: UITableViewController {
 
         finalCaca.date = date
         finalCaca.time = time
+        finalCaca.consumingTime = consumingTime
+        finalCaca.shape = shape
+        finalCaca.color = color
         finalCaca.amount = amount
         finalCaca.otherInfo = other
 

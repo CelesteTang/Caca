@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,12 +28,23 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5m-Xh-KcG">
+                    <rect key="frame" x="5" y="96" width="365" height="2"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="DnV-J7-Jjb"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="g5m-Xh-KcG" firstAttribute="leading" secondItem="gxn-0v-klC" secondAttribute="leading" constant="5" id="2wX-sd-bJ4"/>
                 <constraint firstItem="4GS-zA-ySo" firstAttribute="leading" secondItem="E9g-dq-CKR" secondAttribute="trailing" constant="20" id="Cwj-s3-Wqu"/>
+                <constraint firstAttribute="bottom" secondItem="g5m-Xh-KcG" secondAttribute="bottom" id="J5e-eS-NIu"/>
                 <constraint firstItem="E9g-dq-CKR" firstAttribute="top" secondItem="gxn-0v-klC" secondAttribute="top" constant="20" id="K0v-tS-yat"/>
+                <constraint firstItem="g5m-Xh-KcG" firstAttribute="centerX" secondItem="gxn-0v-klC" secondAttribute="centerX" id="Lra-L8-RRF"/>
                 <constraint firstItem="E9g-dq-CKR" firstAttribute="leading" secondItem="gxn-0v-klC" secondAttribute="leading" constant="20" id="Ujs-gR-I7V"/>
+                <constraint firstAttribute="trailing" secondItem="g5m-Xh-KcG" secondAttribute="trailing" constant="5" id="f2V-qc-I81"/>
                 <constraint firstItem="4GS-zA-ySo" firstAttribute="centerY" secondItem="gxn-0v-klC" secondAttribute="centerY" id="jax-cQ-Kpp"/>
                 <constraint firstItem="E9g-dq-CKR" firstAttribute="centerY" secondItem="gxn-0v-klC" secondAttribute="centerY" id="rET-EO-rBp"/>
             </constraints>
@@ -41,6 +52,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="iconImageView" destination="E9g-dq-CKR" id="SyP-9n-cUD"/>
+                <outlet property="separateLineView" destination="g5m-Xh-KcG" id="bFh-Qs-dtX"/>
                 <outlet property="titleLabel" destination="4GS-zA-ySo" id="I42-Tg-zba"/>
             </connections>
             <point key="canvasLocation" x="-944.5" y="615"/>
