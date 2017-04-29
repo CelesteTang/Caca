@@ -20,7 +20,7 @@ class FillinTableViewController: UITableViewController {
 
     enum Component: Int {
 
-        case photo, date, time, shape, color, amount, other, finish
+        case photo, date, time, shape, color, amount, period, medicine, other, finish
 
         var title: String {
 
@@ -35,6 +35,10 @@ class FillinTableViewController: UITableViewController {
                 return "Color"
             case .amount:
                 return "Amount"
+            case .period:
+                return "Period"
+            case .medicine:
+                return "Medicine"
             case .other:
                 return "Other"
             default:
@@ -44,9 +48,9 @@ class FillinTableViewController: UITableViewController {
     }
 
     // MARK: Property
-
-    let components: [Component] = [.photo, .date, .time, .shape, .color, .amount, .other, .finish]
-
+    
+    var components: [Component] = [.photo, .date, .time, .shape, .color, .amount, .other, .finish]
+    
     let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
 
     let colors: [Color] = [.red, .yellow, .green, .lightBrown, .darkBrown, .gray, .black]
@@ -69,7 +73,7 @@ class FillinTableViewController: UITableViewController {
 
     var isCorrect = false
 
-    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "caca-big"))
+    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "caca-big"), period: nil, medicine: "")
 
     var cacas = [Caca]()
 
@@ -86,9 +90,24 @@ class FillinTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if UserDefaults.standard.value(forKey: "Gender") as? Int == Gender.female.rawValue && UserDefaults.standard.value(forKey: "Medicine") as? Int == 0 {
+            
+            components = [.photo, .date, .time, .shape, .color, .amount, .period, .medicine, .other, .finish]
+            
+        } else if UserDefaults.standard.value(forKey: "Gender") as? Int == Gender.female.rawValue {
+        
+            components = [.photo, .date, .time, .shape, .color, .amount, .period, .other, .finish]
+
+        } else if UserDefaults.standard.value(forKey: "Medicine") as? Int == 0 {
+            
+            components = [.photo, .date, .time, .shape, .color, .amount, .medicine, .other, .finish]
+            
+        }
+        
         self.tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoTableViewCell")
         self.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "InfoTableViewCell")
         self.tableView.register(FinishTableViewCell.self, forCellReuseIdentifier: "FinishTableViewCell")
+        self.tableView.register(InfoSegmentTableViewCell.self, forCellReuseIdentifier: "InfoSegmentTableViewCell")
 
         self.tableView.allowsSelection = false
         self.tableView.separatorStyle = .none
@@ -230,10 +249,8 @@ class FillinTableViewController: UITableViewController {
 
         switch component {
 
-        case .photo, .date, .time, .shape, .color, .amount, .other, .finish:
-
-            return 1
-
+        case .photo, .date, .time, .shape, .color, .amount, .period, .medicine, .other, .finish: return 1
+            
         }
     }
 
@@ -243,18 +260,12 @@ class FillinTableViewController: UITableViewController {
 
         switch component {
 
-        case .photo:
+        case .photo: return 200.0
 
-            return 200.0
+        case .date, .time, .shape, .color, .amount, .period, .medicine, .other: return 80.0
 
-        case .date, .time, .shape, .color, .amount, .other:
-
-            return 80.0
-
-        case .finish:
-
-            return 100.0
-
+        case .finish: return 100.0
+            
         }
     }
 
@@ -447,6 +458,53 @@ class FillinTableViewController: UITableViewController {
 
             return cell
 
+        case .period:
+            
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoSegmentTableViewCell", for: indexPath) as! InfoSegmentTableViewCell
+            // swiftlint:enable force_cast
+            
+            cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.infoLabel.textColor = Palette.darkblue
+            cell.rowView.infoLabel.textAlignment = .center
+            
+            cell.rowView.infoSegmentedControl.setTitle("Yes", forSegmentAt: 0)
+            cell.rowView.infoSegmentedControl.setTitle("No", forSegmentAt: 1)
+            cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
+            cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+            
+            cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
+            
+            if isFromRecordDetail == true {
+                
+                if let period = self.recievedCacaFromRecordDetail[0].period {
+                
+                cell.rowView.infoSegmentedControl.selectedSegmentIndex = period
+                
+                }
+            }
+            
+            return cell
+
+        case .medicine:
+            
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
+            // swiftlint:enable force_cast
+            
+            cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoTextField.delegate = self
+            cell.rowView.infoTextField.returnKeyType = .done
+            
+            if isFromRecordDetail == true {
+                
+                cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].medicine
+                
+            }
+            
+            return cell
+            
         case .other:
 
             // swiftlint:disable force_cast
@@ -476,6 +534,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.finishButton.addTarget(self, action: #selector(didFillin), for: .touchUpInside)
 
             return cell
+                        
         }
 
     }
@@ -837,7 +896,9 @@ class FillinTableViewController: UITableViewController {
                              "amount": self.finalCaca.amount,
                              "other": self.finalCaca.otherInfo ?? "",
                              "grading": self.ispassed,
-                             "advice": overallAdvice] as [String : Any]
+                             "advice": overallAdvice,
+                             "period": self.finalCaca.period ?? "",
+                             "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
 
                 CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
@@ -861,7 +922,9 @@ class FillinTableViewController: UITableViewController {
                          "amount": self.finalCaca.amount,
                          "other": self.finalCaca.otherInfo ?? "",
                          "grading": self.ispassed,
-                         "advice": overallAdvice] as [String : Any]
+                         "advice": overallAdvice,
+                         "period": self.finalCaca.period ?? "",
+                         "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
 
             CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
@@ -948,7 +1011,9 @@ class FillinTableViewController: UITableViewController {
                              "amount": self.finalCaca.amount,
                              "other": self.finalCaca.otherInfo ?? "",
                              "grading": self.ispassed,
-                             "advice": overallAdvice] as [String : Any]
+                             "advice": overallAdvice,
+                             "period": self.finalCaca.period ?? "",
+                             "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
 
                 CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
 
@@ -984,7 +1049,9 @@ class FillinTableViewController: UITableViewController {
                              "amount": self.finalCaca.amount,
                              "other": self.finalCaca.otherInfo ?? "",
                              "grading": self.ispassed,
-                             "advice": overallAdvice] as [String : Any]
+                             "advice": overallAdvice,
+                             "period": self.finalCaca.period ?? "",
+                             "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
 
                 CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
 
@@ -1008,7 +1075,9 @@ class FillinTableViewController: UITableViewController {
                          "amount": self.finalCaca.amount ,
                          "other": self.finalCaca.otherInfo ?? "",
                          "grading": self.ispassed,
-                         "advice": overallAdvice] as [String : Any]
+                         "advice": overallAdvice,
+                         "period": self.finalCaca.period ?? "",
+                         "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
 
             CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
             self.switchToRecord()
