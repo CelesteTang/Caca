@@ -48,9 +48,9 @@ class FillinTableViewController: UITableViewController {
     }
 
     // MARK: Property
-    
+
     var components: [Component] = [.photo, .date, .time, .shape, .color, .amount, .other, .finish]
-    
+
     let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
 
     let colors: [Color] = [.red, .yellow, .green, .lightBrown, .darkBrown, .gray, .black]
@@ -91,19 +91,19 @@ class FillinTableViewController: UITableViewController {
         super.viewDidLoad()
 
         if UserDefaults.standard.value(forKey: "Gender") as? Int == Gender.female.rawValue && UserDefaults.standard.value(forKey: "Medicine") as? Int == 0 {
-            
+
             components = [.photo, .date, .time, .shape, .color, .amount, .period, .medicine, .other, .finish]
-            
+
         } else if UserDefaults.standard.value(forKey: "Gender") as? Int == Gender.female.rawValue {
-        
+
             components = [.photo, .date, .time, .shape, .color, .amount, .period, .other, .finish]
 
         } else if UserDefaults.standard.value(forKey: "Medicine") as? Int == 0 {
-            
+
             components = [.photo, .date, .time, .shape, .color, .amount, .medicine, .other, .finish]
-            
+
         }
-        
+
         self.tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoTableViewCell")
         self.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "InfoTableViewCell")
         self.tableView.register(FinishTableViewCell.self, forCellReuseIdentifier: "FinishTableViewCell")
@@ -174,54 +174,50 @@ class FillinTableViewController: UITableViewController {
 
     }
 
-    func datePickerChanged(_ sender: UIDatePicker) {
+    func datePickerChanged() {
 
-        if sender === datePicker, let dateSection = components.index(of: Component.date) {
-            
+        if let dateSection = components.index(of: Component.date) {
+
             let indexPath = IndexPath(row: 0, section: dateSection)
 
             let dateCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell
-            
+
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm"
-            
-            dateCell?.rowView.infoTextField.text = formatter.string(from: sender.date)
-            
+
+            dateCell?.rowView.infoTextField.text = formatter.string(from: datePicker.date)
+
         }
-        
-//        if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell {
-//
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "yyyy-MM-dd HH:mm"
-//
-//            dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
-//
-//        }
     }
 
     func changeThumbImageSize() {
 
         let thumbImage: UIImage = #imageLiteral(resourceName: "caca-big")
 
-        if let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell {
+        if let amountSection = components.index(of: Component.amount) {
 
-            switch self.amountSlider.value {
+            let indexPath = IndexPath(row: 0, section: amountSection)
+
+            let amountCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell
+
+            switch amountSlider.value {
+
             case 0.23...0.3:
 
                 let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.3)
-                amountCell.rowView.infoTextField.text = "Large"
+                amountCell?.rowView.infoTextField.text = "Large"
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
             case 0.16..<0.23:
 
                 let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.2)
-                amountCell.rowView.infoTextField.text = "Normal"
+                amountCell?.rowView.infoTextField.text = "Normal"
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
             case 0.10..<0.16:
 
                 let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.1)
-                amountCell.rowView.infoTextField.text = "Small"
+                amountCell?.rowView.infoTextField.text = "Small"
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
             default: break
@@ -263,7 +259,7 @@ class FillinTableViewController: UITableViewController {
         switch component {
 
         case .photo, .date, .time, .shape, .color, .amount, .period, .medicine, .other, .finish: return 1
-            
+
         }
     }
 
@@ -278,7 +274,7 @@ class FillinTableViewController: UITableViewController {
         case .date, .time, .shape, .color, .amount, .period, .medicine, .other: return 80.0
 
         case .finish: return 100.0
-            
+
         }
     }
 
@@ -472,52 +468,52 @@ class FillinTableViewController: UITableViewController {
             return cell
 
         case .period:
-            
+
             // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoSegmentTableViewCell", for: indexPath) as! InfoSegmentTableViewCell
             // swiftlint:enable force_cast
-            
+
             cell.rowView.infoLabel.text = component.title
             cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
-            
+
             cell.rowView.infoSegmentedControl.setTitle("Yes", forSegmentAt: 0)
             cell.rowView.infoSegmentedControl.setTitle("No", forSegmentAt: 1)
             cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
-            
+
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
-            
+
             if isFromRecordDetail == true {
-                
+
                 if let period = self.recievedCacaFromRecordDetail[0].period {
-                
+
                 cell.rowView.infoSegmentedControl.selectedSegmentIndex = period
-                
+
                 }
             }
-            
+
             return cell
 
         case .medicine:
-            
+
             // swiftlint:disable force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as! InfoTableViewCell
             // swiftlint:enable force_cast
-            
+
             cell.rowView.infoLabel.text = component.title
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
-            
+
             if isFromRecordDetail == true {
-                
+
                 cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].medicine
-                
+
             }
-            
+
             return cell
-            
+
         case .other:
 
             // swiftlint:disable force_cast
@@ -547,7 +543,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.finishButton.addTarget(self, action: #selector(didFillin), for: .touchUpInside)
 
             return cell
-                        
+
         }
 
     }
@@ -635,13 +631,25 @@ class FillinTableViewController: UITableViewController {
 
     func checkNil() {
 
-        guard let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
-            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
-            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
-            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
-            let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell else { return }
+        guard let dateSection = components.index(of: Component.date),
+              let timeSection = components.index(of: Component.time),
+              let shapeSection = components.index(of: Component.shape),
+              let colorSection = components.index(of: Component.color),
+              let amountSection = components.index(of: Component.amount) else { return }
 
-        if dateCell.rowView.infoTextField.text == "" {
+        let dateIndexPath = IndexPath(row: 0, section: dateSection)
+        let timeIndexPath = IndexPath(row: 0, section: timeSection)
+        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
+        let colorIndexPath = IndexPath(row: 0, section: colorSection)
+        let amountIndexPath = IndexPath(row: 0, section: amountSection)
+
+        let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell
+        let timeCell = tableView.cellForRow(at: timeIndexPath) as? InfoTableViewCell
+        let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell
+        let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell
+        let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell
+
+        if dateCell?.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: "Warning",
                                                     message: "Please enter the date",
@@ -653,7 +661,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if timeCell.rowView.infoTextField.text == "" {
+        } else if timeCell?.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: "Warning",
                                                     message: "Please enter the time",
@@ -665,7 +673,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if shapeCell.rowView.infoTextField.text == "" {
+        } else if shapeCell?.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: "Warning",
                                                     message: "Please enter the shape",
@@ -677,7 +685,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if colorCell.rowView.infoTextField.text == "" {
+        } else if colorCell?.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: "Warning",
                                                     message: "Please enter the color",
@@ -689,7 +697,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if amountCell.rowView.infoTextField.text == "" {
+        } else if amountCell?.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: "Warning",
                                                     message: "Please enter the amount",
