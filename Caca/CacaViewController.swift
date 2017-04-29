@@ -217,9 +217,6 @@ class CacaViewController: UIViewController {
                 self.magnifierView.transform = self.magnifierView.transform.scaledBy(x: 10, y: 10)
             })
 
-            UIView.animate(withDuration: 0.5, animations: {
-
-            })
         }
     }
 }
