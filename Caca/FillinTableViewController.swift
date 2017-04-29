@@ -281,9 +281,12 @@ class FillinTableViewController: UITableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell else { return }
+        guard let photoSection = components.index(of: Component.photo) else { return }
 
-        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
+        let indexPath = IndexPath(row: 0, section: photoSection)
+
+        if let photoCell = tableView.cellForRow(at: indexPath) as? PhotoTableViewCell,
+           photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
 
             photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
             photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
@@ -745,8 +748,14 @@ class FillinTableViewController: UITableViewController {
 
     func getAdvice() -> String {
 
-        guard let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
-              let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
+        guard let shapeSection = components.index(of: Component.shape),
+              let colorSection = components.index(of: Component.color) else { return "" }
+
+        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
+        let colorIndexPath = IndexPath(row: 0, section: colorSection)
+
+        guard let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
+              let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
               let shape = shapeCell.rowView.infoTextField.text,
               let color = colorCell.rowView.infoTextField.text else { return "" }
 
