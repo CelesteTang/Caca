@@ -174,16 +174,29 @@ class FillinTableViewController: UITableViewController {
 
     }
 
-    func datePickerChanged() {
+    func datePickerChanged(_ sender: UIDatePicker) {
 
-        if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell {
+        if sender === datePicker, let dateSection = components.index(of: Component.date) {
+            
+            let indexPath = IndexPath(row: 0, section: dateSection)
 
+            let dateCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell
+            
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm"
-
-            dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
-
+            
+            dateCell?.rowView.infoTextField.text = formatter.string(from: sender.date)
+            
         }
+        
+//        if let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell {
+//
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+//
+//            dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
+//
+//        }
     }
 
     func changeThumbImageSize() {
