@@ -60,19 +60,19 @@ class FinalCaca {
 
     // MARK: Property
 
-    let date: String
+    var date: String
 
-    let time: String
+    var time: String
 
-    let consumingTime: String
+    var consumingTime: String
 
-    let shape: String
+    var shape: String
 
-    let color: String
+    var color: String
 
-    let amount: String
+    var amount: String
 
-    let otherInfo: String?
+    var otherInfo: String?
 
     var image: UIImage
 

@@ -15,8 +15,6 @@ class ProfileTableViewController: UITableViewController {
 
     var age = [Int]()
 
-    var user = User(name: "", gender: 0, age: "", medicine: false)
-
     enum Component: Int {
 
         case photo, name, gender, age, medicine, finish
@@ -24,16 +22,27 @@ class ProfileTableViewController: UITableViewController {
         var title: String {
 
             switch self {
+
             case .name:
+
                 return "Name"
+
             case .gender:
+
                 return "Gender"
+
             case .age:
+
                 return "Age"
+
             case .medicine:
+
                 return "Medicine"
+
             default:
+
                 return ""
+
             }
         }
     }
@@ -99,10 +108,12 @@ class ProfileTableViewController: UITableViewController {
             let age = ageCell.rowView.infoTextField.text ?? "??"
             let medicine = medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex
 
-            let value = ["name": name,
-                         "gender": gender,
-                         "age": age,
-                         "medicine": medicine] as [String: Any]
+            let user = User(name: name, gender: gender, age: age, medicine: medicine)
+
+            let value = ["name": user.name,
+                         "gender": user.gender,
+                         "age": user.age,
+                         "medicine": user.medicine] as [String: Any]
 
             UserManager.shared.editUser(with: uid, value: value)
 
@@ -200,10 +211,8 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
 
-            let maleImage = resizeImage(image: #imageLiteral(resourceName: "male"), targetRatio: 0.5)
-            let femaleImage = resizeImage(image: #imageLiteral(resourceName: "female"), targetRatio: 0.5)
-            cell.rowView.infoSegmentedControl.setImage(maleImage, forSegmentAt: Gender.male.rawValue)
-            cell.rowView.infoSegmentedControl.setImage(femaleImage, forSegmentAt: Gender.female.rawValue)
+            cell.rowView.infoSegmentedControl.setImage(#imageLiteral(resourceName: "male"), forSegmentAt: Gender.male.rawValue)
+            cell.rowView.infoSegmentedControl.setImage(#imageLiteral(resourceName: "female"), forSegmentAt: Gender.female.rawValue)
             cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
@@ -237,6 +246,7 @@ class ProfileTableViewController: UITableViewController {
             if let age = UserDefaults.standard.value(forKey: "Age") as? String {
 
                 cell.rowView.infoTextField.text = age
+                cell.rowView.infoTextField.textAlignment = .center
 
             }
 
@@ -309,13 +319,9 @@ class ProfileTableViewController: UITableViewController {
 
             return 300.0
 
-        case .name, .gender, .age, .medicine:
+        case .name, .gender, .age, .medicine, .finish:
 
-            return 50.0
-
-        case .finish:
-
-            return 100.0
+            return 80.0
 
         }
     }
@@ -338,31 +344,49 @@ class ProfileTableViewController: UITableViewController {
 
     func logOut() {
 
-        do {
-            try FIRAuth.auth()?.signOut()
+        let alertController = UIAlertController(title: "Warning",
+                                                message: "Do you want to log out?",
+                                                preferredStyle: .alert)
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+        let cancelAction = UIAlertAction(title: "No",
+                                         style: .cancel,
+                                         handler: nil)
 
-                UserDefaults.standard.set(false, forKey: "IsviewedWalkThrough")
+        alertController.addAction(cancelAction)
 
-                let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+        let okAction = UIAlertAction(title: "Yes", style: .default) { _ in
 
-                appDelegate.window?.rootViewController = startViewController
+            do {
+                try FIRAuth.auth()?.signOut()
 
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+                    UserDefaults.standard.set(false, forKey: "IsviewedWalkThrough")
+
+                    let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+
+                    appDelegate.window?.rootViewController = startViewController
+
+                }
+
+            } catch (let error) {
+
+                let alertController = UIAlertController(title: "Warning",
+                                                        message: error.localizedDescription,
+                                                        preferredStyle: .alert)
+
+                alertController.addAction(UIAlertAction(title: "OK",
+                                                        style: .default,
+                                                        handler: nil))
+
+                self.present(alertController, animated: true, completion: nil)
             }
 
-        } catch (let error) {
-
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: error.localizedDescription,
-                                                    preferredStyle: .alert)
-
-            alertController.addAction(UIAlertAction(title: "OK",
-                                                    style: .default,
-                                                    handler: nil))
-
-            self.present(alertController, animated: true, completion: nil)
         }
+
+        alertController.addAction(okAction)
+
+        self.present(alertController, animated: true, completion: nil)
 
     }
 

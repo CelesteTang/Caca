@@ -18,9 +18,9 @@ class User {
 
     let age: String
 
-    let medicine: Bool
+    let medicine: Int
 
-    init(name: String, gender: Int, age: String, medicine: Bool) {
+    init(name: String, gender: Int, age: String, medicine: Int) {
 
         self.name = name
         self.gender = gender

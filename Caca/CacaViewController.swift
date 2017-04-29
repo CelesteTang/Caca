@@ -14,6 +14,14 @@ class CacaViewController: UIViewController {
 
     @IBOutlet weak var mainImageView: UIImageView!
 
+    @IBOutlet weak var magnifierView: UIView!
+
+    @IBOutlet weak var gutImageView: UIImageView!
+
+    @IBOutlet weak var cacaImageView: UIImageView!
+
+    @IBOutlet weak var magnifierButton: UIButton!
+
     @IBOutlet weak var notificationLabel: UILabel!
 
     @IBOutlet weak var startButton: UIButton!
@@ -23,7 +31,9 @@ class CacaViewController: UIViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
             let timingViewController = UIStoryboard(name: "Timing", bundle: nil).instantiateViewController(withIdentifier: "TimingViewController") as? TimingViewController
-            FIRAnalytics.logEvent(withName: "StartTiming", parameters: nil)
+
+            FIRAnalytics.logEvent(withName: "GoToTiming", parameters: nil)
+
             appDelegate.window?.rootViewController = timingViewController
 
         }
@@ -36,6 +46,14 @@ class CacaViewController: UIViewController {
         setUp()
 
         detectFrequency()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        self.magnifierView.layer.cornerRadius = self.magnifierView.frame.width / 2
+        self.magnifierView.layer.masksToBounds = true
+
     }
 
     // MARK: Set Up
@@ -61,6 +79,16 @@ class CacaViewController: UIViewController {
 
             }
         }
+
+        self.magnifierView.backgroundColor = Palette.lightWhite
+        self.magnifierView.layer.borderWidth = 5
+        self.magnifierView.layer.borderColor = Palette.orange.cgColor
+        self.magnifierView.isHidden = true
+
+        self.gutImageView.image = #imageLiteral(resourceName: "gut")
+
+        self.magnifierButton.setTitle("", for: .normal)
+        self.magnifierButton.addTarget(self, action: #selector(hideOrShowGut), for: .touchUpInside)
 
         self.notificationLabel.textColor = Palette.darkblue
         self.notificationLabel.numberOfLines = 0
@@ -99,18 +127,29 @@ class CacaViewController: UIViewController {
 
                     self.notificationLabel.text = "\(userName), start caca now!"
 
+                    self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
+
                 } else if dayToNow > 0 {
 
                     switch dayToNow {
 
                     case 1:
+
                         self.notificationLabel.text = "\(userName), you don't caca today."
 
+                        self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
+
                     case 2...3:
+
                         self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days. Remember to caca at least every 3 days."
 
+                        self.cacaImageView.image = #imageLiteral(resourceName: "crackSausage")
+
                     default:
+
                         self.notificationLabel.text = "\(userName), you don't caca for a long time. Remember to caca at least every 3 days."
+
+                        self.cacaImageView.image = #imageLiteral(resourceName: "lumpySausage")
 
                     }
 
@@ -137,6 +176,8 @@ class CacaViewController: UIViewController {
 
                         self.notificationLabel.text = "\(userName), you caca too much today. You should not caca over 3 times per day."
 
+                        self.cacaImageView.image = #imageLiteral(resourceName: "wateryStool")
+
                     } else {
 
                         self.notificationLabel.text = "\(userName), you caca today."
@@ -144,6 +185,38 @@ class CacaViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+
+    // MARK : Hide Or Show Gut (Animation)
+
+    func hideOrShowGut() {
+
+        if self.magnifierView.isHidden == true {
+
+            self.magnifierView.transform = self.magnifierView.transform.scaledBy(x: 0.1, y: 0.1)
+
+            UIView.animate(withDuration: 0.5, animations: {
+
+                self.magnifierView.transform = self.magnifierView.transform.scaledBy(x: 10.0, y: 10.0)
+
+                self.magnifierView.isHidden = false
+
+            })
+
+        } else if self.magnifierView.isHidden == false {
+
+            UIView.animate(withDuration: 0.5, animations: {
+
+                self.magnifierView.transform = self.magnifierView.transform.scaledBy(x: 0.1, y: 0.1)
+
+            }, completion: { (_) in
+
+                self.magnifierView.isHidden = true
+
+                self.magnifierView.transform = self.magnifierView.transform.scaledBy(x: 10, y: 10)
+            })
+
         }
     }
 }

@@ -69,7 +69,7 @@ class FillinTableViewController: UITableViewController {
 
     var isCorrect = false
 
-    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: UIImage())
+    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "caca-big"))
 
     var cacas = [Caca]()
 
@@ -143,14 +143,14 @@ class FillinTableViewController: UITableViewController {
 
         self.amountSlider.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
         self.amountSlider.isContinuous = true
-        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "caca-big"), targetRatio: 0.1)
+        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "caca-big"), targetRatio: 0.2)
         self.amountSlider.setThumbImage(thumbIamge, for: .normal)
-        self.amountSlider.minimumValue = 0.05
-        self.amountSlider.maximumValue = 0.15
         self.amountSlider.maximumValueImage = #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysTemplate)
         self.amountSlider.minimumValueImage = #imageLiteral(resourceName: "minus").withRenderingMode(.alwaysTemplate)
         self.amountSlider.tintColor = Palette.darkblue
-        self.amountSlider.value = 0.1
+        self.amountSlider.minimumValue = 0.1
+        self.amountSlider.maximumValue = 0.3
+        self.amountSlider.value = 0.2
         self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
     }
@@ -174,21 +174,21 @@ class FillinTableViewController: UITableViewController {
         if let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell {
 
             switch self.amountSlider.value {
-            case 0.11...0.15:
+            case 0.23...0.3:
 
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.15)
+                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.3)
                 amountCell.rowView.infoTextField.text = "Large"
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
-            case 0.08..<0.11:
+            case 0.16..<0.23:
 
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.10)
+                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.2)
                 amountCell.rowView.infoTextField.text = "Normal"
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
-            case 0.05..<0.08:
+            case 0.10..<0.16:
 
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.05)
+                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.1)
                 amountCell.rowView.infoTextField.text = "Small"
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
@@ -299,7 +299,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
-            cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-big")
+            cell.rowView.cacaPhotoImageView.image = finalCaca.image
             cell.rowView.detectionColorImageView.backgroundColor = UIColor.clear
 
             if isFromRecordDetail == true {
@@ -311,10 +311,11 @@ class FillinTableViewController: UITableViewController {
 
                             do {
                                 let data = try Data(contentsOf: url)
-                                let image = UIImage(data: data)
+                                guard let image = UIImage(data: data) else { return }
 
                                 DispatchQueue.main.async {
 
+                                    self.finalCaca.image = image
                                     cell.rowView.cacaPhotoImageView.image = image
 
                                 }
@@ -679,7 +680,7 @@ class FillinTableViewController: UITableViewController {
 
         } else {
 
-            self.advice = "Warning! Your caca may not healthy! "
+            self.advice = "Warning! Your caca may not be healthy! "
 
             // MARK: Shape
 
@@ -781,9 +782,6 @@ class FillinTableViewController: UITableViewController {
 
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell,
             let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
-            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
-            let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
-            let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
             let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell,
             let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell,
             let finishCell = tableView.visibleCells[Component.finish.rawValue] as? FinishTableViewCell
@@ -794,9 +792,6 @@ class FillinTableViewController: UITableViewController {
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
             let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
             let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
-            let shape = shapeCell.rowView.infoTextField.text,
-            let color = colorCell.rowView.infoTextField.text,
-            let consumingTime = timeCell.rowView.infoTextField.text,
             let amount = amountCell.rowView.infoTextField.text,
             let other = otherCell.rowView.infoTextField.text else {
 
@@ -808,11 +803,17 @@ class FillinTableViewController: UITableViewController {
         let photoID = UUID().uuidString
         let overallAdvice = getAdvice()
 
+        finalCaca.date = date
+        finalCaca.time = time
+        finalCaca.amount = amount
+        finalCaca.otherInfo = other
+        finalCaca.consumingTime = Time.consumingTime
+
         // MARK : Create caca with photo
 
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
 
-            CacaProvider.shared.saveCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, error) in
+            CacaProvider.shared.saveCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, error) in
 
                 if error != nil {
 
@@ -821,18 +822,20 @@ class FillinTableViewController: UITableViewController {
                     return
                 }
 
+                FIRAnalytics.logEvent(withName: "CreateWithPhoto", parameters: nil)
+
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
                              "photo": cacaPhotoUrl,
                              "photoID": photoID,
-                             "date": date,
-                             "time": time,
-                             "consumingTime": consumingTime,
-                             "shape": shape,
-                             "color": color,
-                             "amount": amount,
-                             "other": other,
+                             "date": self.finalCaca.date,
+                             "time": self.finalCaca.time,
+                             "consumingTime": self.finalCaca.consumingTime,
+                             "shape": self.finalCaca.shape,
+                             "color": self.finalCaca.color,
+                             "amount": self.finalCaca.amount,
+                             "other": self.finalCaca.otherInfo ?? "",
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
 
@@ -850,13 +853,13 @@ class FillinTableViewController: UITableViewController {
                          "cacaID": cacaID,
                          "photo": "",
                          "photoID": "",
-                         "date": date,
-                         "time": time,
-                         "consumingTime": consumingTime,
-                         "shape": shape,
-                         "color": color,
-                         "amount": amount,
-                         "other": other,
+                         "date": self.finalCaca.date,
+                         "time": self.finalCaca.time,
+                         "consumingTime": self.finalCaca.consumingTime,
+                         "shape": self.finalCaca.shape,
+                         "color": self.finalCaca.color,
+                         "amount": self.finalCaca.amount,
+                         "other": self.finalCaca.otherInfo ?? "",
                          "grading": self.ispassed,
                          "advice": overallAdvice] as [String : Any]
 
@@ -872,10 +875,10 @@ class FillinTableViewController: UITableViewController {
 
         guard let photoCell = tableView.visibleCells[Component.photo.rawValue] as? PhotoTableViewCell,
             let dateCell = tableView.visibleCells[Component.date.rawValue] as? InfoTableViewCell,
-            let timeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
+            let consumingTimeCell = tableView.visibleCells[Component.time.rawValue] as? InfoTableViewCell,
             let shapeCell = tableView.visibleCells[Component.shape.rawValue] as? InfoTableViewCell,
-            let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell,
             let colorCell = tableView.visibleCells[Component.color.rawValue] as? InfoTableViewCell,
+            let amountCell = tableView.visibleCells[Component.amount.rawValue] as? InfoTableViewCell,
             let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell,
             let finishCell = tableView.visibleCells[Component.finish.rawValue] as? FinishTableViewCell else {
 
@@ -888,9 +891,9 @@ class FillinTableViewController: UITableViewController {
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
             let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
             let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
+            let consumingTime = consumingTimeCell.rowView.infoTextField.text,
             let shape = shapeCell.rowView.infoTextField.text,
             let color = colorCell.rowView.infoTextField.text,
-            let consumingTime = timeCell.rowView.infoTextField.text,
             let amount = amountCell.rowView.infoTextField.text,
             let other = otherCell.rowView.infoTextField.text else {
 
@@ -902,11 +905,19 @@ class FillinTableViewController: UITableViewController {
         let photoID = recievedCacaFromRecordDetail[0].photoID
         let overallAdvice = getAdvice()
 
+        finalCaca.date = date
+        finalCaca.time = time
+        finalCaca.consumingTime = consumingTime
+        finalCaca.shape = shape
+        finalCaca.color = color
+        finalCaca.amount = amount
+        finalCaca.otherInfo = other
+
         // MARK : Edit caca with new photo (had old photo)
 
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
 
-            CacaProvider.shared.editCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
+            CacaProvider.shared.editCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
 
                 if storageError != nil {
 
@@ -922,18 +933,20 @@ class FillinTableViewController: UITableViewController {
                     return
                 }
 
+                FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
+
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
                              "photo": cacaPhotoUrl,
                              "photoID": photoID,
-                             "date": date,
-                             "time": time,
-                             "consumingTime": consumingTime,
-                             "shape": shape,
-                             "color": color,
-                             "amount": amount,
-                             "other": other,
+                             "date": self.finalCaca.date,
+                             "time": self.finalCaca.time,
+                             "consumingTime": self.finalCaca.consumingTime,
+                             "shape": self.finalCaca.shape,
+                             "color": self.finalCaca.color,
+                             "amount": self.finalCaca.amount,
+                             "other": self.finalCaca.otherInfo ?? "",
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
 
@@ -947,7 +960,7 @@ class FillinTableViewController: UITableViewController {
 
             // MARK : Edit caca with new photo (no old photo)
 
-            CacaProvider.shared.saveCacaPhoto(image: photoCell.rowView.cacaPhotoImageView.image!, photoID: photoID, completion: { (cacaPhotoUrl, error) in
+            CacaProvider.shared.saveCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, error) in
 
                 if error != nil {
 
@@ -956,18 +969,20 @@ class FillinTableViewController: UITableViewController {
                     return
                 }
 
+                FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
+
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
                              "photo": cacaPhotoUrl,
                              "photoID": photoID,
-                             "date": date,
-                             "time": time,
-                             "consumingTime": consumingTime,
-                             "shape": shape,
-                             "color": color,
-                             "amount": amount,
-                             "other": other,
+                             "date": self.finalCaca.date,
+                             "time": self.finalCaca.time,
+                             "consumingTime": self.finalCaca.consumingTime,
+                             "shape": self.finalCaca.shape,
+                             "color": self.finalCaca.color,
+                             "amount": self.finalCaca.amount,
+                             "other": self.finalCaca.otherInfo ?? "",
                              "grading": self.ispassed,
                              "advice": overallAdvice] as [String : Any]
 
@@ -985,13 +1000,13 @@ class FillinTableViewController: UITableViewController {
                          "cacaID": cacaID,
                          "photo": "",
                          "photoID": "",
-                         "date": date,
-                         "time": time,
-                         "consumingTime": consumingTime,
-                         "shape": shape,
-                         "color": color,
-                         "amount": amount ,
-                         "other": other,
+                         "date": self.finalCaca.date,
+                         "time": self.finalCaca.time,
+                         "consumingTime": self.finalCaca.consumingTime,
+                         "shape": self.finalCaca.shape,
+                         "color": self.finalCaca.color,
+                         "amount": self.finalCaca.amount ,
+                         "other": self.finalCaca.otherInfo ?? "",
                          "grading": self.ispassed,
                          "advice": overallAdvice] as [String : Any]
 
@@ -1051,12 +1066,13 @@ extension FillinTableViewController: UITextFieldDelegate {
         return true
     }
 
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        
-//        guard let photoCell = textField.superview?.superview?.superview as? PhotoTableViewCell, let infoCell = textField.superview?.superview?.superview as? InfoTableViewCell else { return }
-//        
-//        
-//    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+
+        guard let otherCell = tableView.visibleCells[Component.other.rawValue] as? InfoTableViewCell else { return }
+
+        finalCaca.otherInfo = otherCell.rowView.infoTextField.text
+
+    }
 }
 
 extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -1123,15 +1139,18 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
                 }
 
-            timeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
+                timeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
+                finalCaca.consumingTime = "\(finalHour):\(finalMin):\(finalSec)"
 
             case shapePicker:
 
-                shapeCell.rowView.infoTextField.text = String(shapes[row].title)
+                shapeCell.rowView.infoTextField.text = shapes[row].title
+                finalCaca.shape = shapes[row].title
 
             case colorPicker:
 
-                colorCell.rowView.infoTextField.text = String(colors[row].title)
+                colorCell.rowView.infoTextField.text = colors[row].title
+                finalCaca.color = colors[row].title
 
             default: break
 
@@ -1171,13 +1190,13 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
         case shapePicker:
 
-            let rendererShape = (row == 0) ? Shape.separateHard : shapes[row]
+            let rendererShape = shapes[row]
 
             return ShapeSpinnerItemRenderer(frame: CGRect(), shape : rendererShape)
 
         case colorPicker:
 
-            let rendererColor = (row == 0) ? Color.red : colors[row]
+            let rendererColor = colors[row]
 
             return ColorSpinnerItemRenderer(frame: CGRect(), color : rendererColor)
 

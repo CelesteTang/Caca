@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class TimingViewController: UIViewController {
 
@@ -37,6 +38,8 @@ class TimingViewController: UIViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
             let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+            FIRAnalytics.logEvent(withName: "CancelTiming", parameters: nil)
 
             appDelegate.window?.rootViewController = tabBarController
 
@@ -109,6 +112,8 @@ class TimingViewController: UIViewController {
             let fillinTableViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController
 
             fillinTableViewController?.isFromCaca = true
+
+            FIRAnalytics.logEvent(withName: "DidTiming", parameters: nil)
 
             appDelegate.window?.rootViewController = fillinTableViewController
 

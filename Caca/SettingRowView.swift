@@ -14,6 +14,7 @@ class SettingRowView: UIView {
 
     @IBOutlet weak var titleLabel: UILabel!
 
+    @IBOutlet weak var separateLineView: UIView!
 }
 
 extension SettingRowView {

@@ -22,7 +22,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Np6-7L-yrs">
-                    <rect key="frame" x="135.5" y="47" width="219.5" height="29"/>
+                    <rect key="frame" x="135.5" y="39" width="219.5" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="YhS-se-cPZ"/>
+                    </constraints>
                     <segments>
                         <segment title="First"/>
                         <segment title="Second"/>

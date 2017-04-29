@@ -46,6 +46,7 @@ class SettingTableViewController: UITableViewController {
         backItem.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
         self.navigationItem.backBarButtonItem = backItem
 
+        self.tableView.separatorStyle = .none
         self.tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "SettingTableViewCell")
     }
 
@@ -72,6 +73,7 @@ class SettingTableViewController: UITableViewController {
         cell.rowView.iconImageView.image = #imageLiteral(resourceName: "caca-big")
         cell.rowView.titleLabel.text = settings[indexPath.row].title
         cell.rowView.titleLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        cell.rowView.separateLineView.backgroundColor = Palette.darkblue
 
         let backgroundView = UIView()
         backgroundView.backgroundColor = Palette.lightblue

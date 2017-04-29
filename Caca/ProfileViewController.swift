@@ -174,31 +174,49 @@ class ProfileViewController: UIViewController {
 
     func logOut() {
 
-        do {
-            try FIRAuth.auth()?.signOut()
+        let alertController = UIAlertController(title: "Warning",
+                                                message: "Do you want to log out?",
+                                                preferredStyle: .alert)
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+        let cancelAction = UIAlertAction(title: "No",
+                                         style: .cancel,
+                                         handler: nil)
 
-                UserDefaults.standard.set(false, forKey: "IsviewedWalkThrough")
+        alertController.addAction(cancelAction)
 
-                let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+        let okAction = UIAlertAction(title: "Yes", style: .default) { _ in
 
-                appDelegate.window?.rootViewController = startViewController
+            do {
+                try FIRAuth.auth()?.signOut()
 
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+                    UserDefaults.standard.set(false, forKey: "IsviewedWalkThrough")
+
+                    let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+
+                    appDelegate.window?.rootViewController = startViewController
+
+                }
+
+            } catch (let error) {
+
+                let alertController = UIAlertController(title: "Warning",
+                                                        message: error.localizedDescription,
+                                                        preferredStyle: .alert)
+
+                alertController.addAction(UIAlertAction(title: "OK",
+                                                        style: .default,
+                                                        handler: nil))
+
+                self.present(alertController, animated: true, completion: nil)
             }
 
-        } catch (let error) {
-
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: error.localizedDescription,
-                                                    preferredStyle: .alert)
-
-            alertController.addAction(UIAlertAction(title: "OK",
-                                                    style: .default,
-                                                    handler: nil))
-
-            self.present(alertController, animated: true, completion: nil)
         }
+
+        alertController.addAction(okAction)
+
+        self.present(alertController, animated: true, completion: nil)
 
     }
 
