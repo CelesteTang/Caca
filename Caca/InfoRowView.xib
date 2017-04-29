@@ -21,8 +21,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6N-Bu-9ja">
                             <rect key="frame" x="8" y="0.0" width="319" height="100"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHY-Eu-KPi">
-                                    <rect key="frame" x="16" y="37" width="84.5" height="26"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medicine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHY-Eu-KPi">
+                                    <rect key="frame" x="16" y="37" width="95.5" height="26"/>
                                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -36,9 +36,9 @@
                             </subviews>
                             <color key="backgroundColor" red="0.80000000000000004" green="0.89411764709999997" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="ehA-xv-S0k" firstAttribute="leading" secondItem="FHY-Eu-KPi" secondAttribute="trailing" constant="19.5" id="BUb-TE-lMb"/>
                                 <constraint firstAttribute="trailing" secondItem="ehA-xv-S0k" secondAttribute="trailing" constant="20" id="Gzv-cS-Gi0"/>
                                 <constraint firstItem="ehA-xv-S0k" firstAttribute="centerY" secondItem="W6N-Bu-9ja" secondAttribute="centerY" id="OCu-L6-AbE"/>
+                                <constraint firstItem="ehA-xv-S0k" firstAttribute="leading" secondItem="FHY-Eu-KPi" secondAttribute="trailing" constant="8.5" id="YoC-Yk-yMf"/>
                                 <constraint firstItem="FHY-Eu-KPi" firstAttribute="centerY" secondItem="W6N-Bu-9ja" secondAttribute="centerY" id="ZjU-Ts-50b"/>
                                 <constraint firstItem="ehA-xv-S0k" firstAttribute="leading" secondItem="W6N-Bu-9ja" secondAttribute="leading" constant="120" id="adZ-Db-53q"/>
                                 <constraint firstItem="FHY-Eu-KPi" firstAttribute="leading" secondItem="W6N-Bu-9ja" secondAttribute="leading" constant="16" id="jIg-PZ-SsQ"/>

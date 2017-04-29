@@ -97,31 +97,40 @@ class ProfileTableViewController: UITableViewController {
 
         tabBarController?.tabBar.isHidden = false
 
-        if let uid = FIRAuth.auth()?.currentUser?.uid,
-           let nameCell = tableView.visibleCells[Component.name.rawValue] as? ProfileTextFieldTableViewCell,
-           let genderCell = tableView.visibleCells[Component.gender.rawValue] as? ProfileSegmentTableViewCell,
-           let ageCell = tableView.visibleCells[Component.age.rawValue] as? ProfileTextFieldTableViewCell,
-           let medicineCell = tableView.visibleCells[Component.gender.rawValue] as? ProfileSegmentTableViewCell {
+        guard let nameSection = components.index(of: Component.name),
+            let genderSection = components.index(of: Component.gender),
+            let ageSection = components.index(of: Component.age),
+            let medicineSection = components.index(of: Component.medicine) else { return }
 
-            let name = nameCell.rowView.infoTextField.text ?? "Hello"
-            let gender = genderCell.rowView.infoSegmentedControl.selectedSegmentIndex
-            let age = ageCell.rowView.infoTextField.text ?? "??"
-            let medicine = medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex
+        let nameIndexPath = IndexPath(row: 0, section: nameSection)
+        let genderIndexPath = IndexPath(row: 0, section: genderSection)
+        let ageIndexPath = IndexPath(row: 0, section: ageSection)
+        let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
 
-            let user = User(name: name, gender: gender, age: age, medicine: medicine)
+        guard let nameCell = tableView.cellForRow(at: nameIndexPath) as? ProfileTextFieldTableViewCell,
+            let genderCell = tableView.cellForRow(at: genderIndexPath) as? ProfileSegmentTableViewCell,
+            let ageCell = tableView.cellForRow(at: ageIndexPath) as? ProfileTextFieldTableViewCell,
+            let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? ProfileSegmentTableViewCell,
+            let uid = FIRAuth.auth()?.currentUser?.uid else { return }
 
-            let value = ["name": user.name,
-                         "gender": user.gender,
-                         "age": user.age,
-                         "medicine": user.medicine] as [String: Any]
+        let name = nameCell.rowView.infoTextField.text ?? "Hello"
+        let gender = genderCell.rowView.infoSegmentedControl.selectedSegmentIndex
+        let age = ageCell.rowView.infoTextField.text ?? "??"
+        let medicine = medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex
 
-            UserManager.shared.editUser(with: uid, value: value)
+        let user = User(name: name, gender: gender, age: age, medicine: medicine)
 
-            UserDefaults.standard.set(name, forKey: "Name")
-            UserDefaults.standard.set(gender, forKey: "Gender")
-            UserDefaults.standard.set(age, forKey: "Age")
-            UserDefaults.standard.set(medicine, forKey: "Medicine")
-        }
+        let value = ["name": user.name,
+                     "gender": user.gender,
+                     "age": user.age,
+                     "medicine": user.medicine] as [String: Any]
+
+        UserManager.shared.editUser(with: uid, value: value)
+
+        UserDefaults.standard.set(name, forKey: "Name")
+        UserDefaults.standard.set(gender, forKey: "Gender")
+        UserDefaults.standard.set(age, forKey: "Age")
+        UserDefaults.standard.set(medicine, forKey: "Medicine")
 
     }
 
@@ -411,22 +420,25 @@ class ProfileTableViewController: UITableViewController {
 
     func changeGender() {
 
-        if let photoCell = tableView.visibleCells[Component.photo.rawValue] as? ProfilePhotoTableViewCell,
-           let genderCell = tableView.visibleCells[Component.gender.rawValue] as? ProfileSegmentTableViewCell {
+        guard let photoSection = components.index(of: Component.photo),
+            let genderSection = components.index(of: Component.gender) else { return }
 
-            if genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
+        let photoIndexPath = IndexPath(row: 0, section: photoSection)
+        let genderIndexPath = IndexPath(row: 0, section: genderSection)
 
-                photoCell.rowView.photoImageView.image = #imageLiteral(resourceName: "boy")
+        guard let photoCell = tableView.cellForRow(at: photoIndexPath) as? ProfilePhotoTableViewCell,
+            let genderCell = tableView.cellForRow(at: genderIndexPath) as? ProfileSegmentTableViewCell else { return }
 
-            } else if genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.female.rawValue {
+        if genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
 
-                photoCell.rowView.photoImageView.image = #imageLiteral(resourceName: "girl")
+            photoCell.rowView.photoImageView.image = #imageLiteral(resourceName: "boy")
 
-            }
+        } else if genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.female.rawValue {
+
+            photoCell.rowView.photoImageView.image = #imageLiteral(resourceName: "girl")
+
         }
-
     }
-
 }
 
 extension ProfileTableViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -459,20 +471,22 @@ extension ProfileTableViewController: UIPickerViewDataSource, UIPickerViewDelega
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
-        if let ageCell = tableView.visibleCells[Component.age.rawValue] as? ProfileTextFieldTableViewCell {
+        guard let ageSection = components.index(of: Component.age) else { return }
 
-            switch pickerView {
+        let ageIndexPath = IndexPath(row: 0, section: ageSection)
 
-            case agePicker:
+        guard let ageCell = tableView.cellForRow(at: ageIndexPath) as? ProfileTextFieldTableViewCell else { return }
 
-                ageCell.rowView.infoTextField.text = String(age[row])
-                ageCell.rowView.infoTextField.textAlignment = .center
+        switch pickerView {
 
-            default: break
+        case agePicker:
 
-            }
+            ageCell.rowView.infoTextField.text = String(age[row])
+            ageCell.rowView.infoTextField.textAlignment = .center
+
+        default: break
+
         }
-
     }
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

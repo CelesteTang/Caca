@@ -37,7 +37,11 @@ class Caca {
 
     let advice: String
 
-    init(cacaID: String, photo: String, photoID: String, date: String, time: String, consumingTime: String, shape: String, color: String, amount: String, otherInfo: String?, grading: Bool, advice: String) {
+    let period: Int?
+
+    let medicine: String?
+
+    init(cacaID: String, photo: String, photoID: String, date: String, time: String, consumingTime: String, shape: String, color: String, amount: String, otherInfo: String?, grading: Bool, advice: String, period: Int?, medicine: String?) {
 
         self.cacaID = cacaID
         self.photo = photo
@@ -51,6 +55,8 @@ class Caca {
         self.otherInfo = otherInfo
         self.grading = grading
         self.advice = advice
+        self.period = period
+        self.medicine = medicine
 
     }
 
@@ -76,7 +82,11 @@ class FinalCaca {
 
     var image: UIImage
 
-    init(date: String, time: String, consumingTime: String, shape: String, color: String, amount: String, otherInfo: String?, image: UIImage) {
+    let period: Int?
+
+    let medicine: String?
+
+    init(date: String, time: String, consumingTime: String, shape: String, color: String, amount: String, otherInfo: String?, image: UIImage, period: Int?, medicine: String?) {
 
         self.date = date
         self.time = time
@@ -86,6 +96,8 @@ class FinalCaca {
         self.amount = amount
         self.otherInfo = otherInfo
         self.image = image
+        self.period = period
+        self.medicine = medicine
 
     }
 

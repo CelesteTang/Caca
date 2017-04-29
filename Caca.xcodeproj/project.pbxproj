@@ -47,6 +47,9 @@
 		43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */; };
 		43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */; };
 		434398171EAA66F900A8F220 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434398161EAA66F900A8F220 /* UserManager.swift */; };
+		434913041EB465D9006A680C /* InfoSegmentRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434913031EB465D9006A680C /* InfoSegmentRowView.xib */; };
+		434913061EB465ED006A680C /* InfoSegmentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434913051EB465ED006A680C /* InfoSegmentRowView.swift */; };
+		434913081EB46608006A680C /* InfoSegmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434913071EB46608006A680C /* InfoSegmentTableViewCell.swift */; };
 		435B71E21EA603F300FBABBF /* PhotoRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435B71E11EA603F300FBABBF /* PhotoRowView.xib */; };
 		435B71E41EA6040F00FBABBF /* InfoRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435B71E31EA6040F00FBABBF /* InfoRowView.xib */; };
 		435B71E61EA6042000FBABBF /* FinishRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435B71E51EA6042000FBABBF /* FinishRowView.xib */; };
@@ -137,6 +140,9 @@
 		43372D3C1E7FCCB5002E2AE3 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
 		43372D3E1E7FCCC7002E2AE3 /* SettingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
 		434398161EAA66F900A8F220 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		434913031EB465D9006A680C /* InfoSegmentRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoSegmentRowView.xib; sourceTree = "<group>"; };
+		434913051EB465ED006A680C /* InfoSegmentRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoSegmentRowView.swift; sourceTree = "<group>"; };
+		434913071EB46608006A680C /* InfoSegmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoSegmentTableViewCell.swift; sourceTree = "<group>"; };
 		435B71E11EA603F300FBABBF /* PhotoRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoRowView.xib; sourceTree = "<group>"; };
 		435B71E31EA6040F00FBABBF /* InfoRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoRowView.xib; sourceTree = "<group>"; };
 		435B71E51EA6042000FBABBF /* FinishRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FinishRowView.xib; sourceTree = "<group>"; };
@@ -313,6 +319,9 @@
 				435B71E31EA6040F00FBABBF /* InfoRowView.xib */,
 				435B71E91EA6080000FBABBF /* InfoRowView.swift */,
 				435B71EF1EA60AC100FBABBF /* InfoTableViewCell.swift */,
+				434913031EB465D9006A680C /* InfoSegmentRowView.xib */,
+				434913051EB465ED006A680C /* InfoSegmentRowView.swift */,
+				434913071EB46608006A680C /* InfoSegmentTableViewCell.swift */,
 				435B71E51EA6042000FBABBF /* FinishRowView.xib */,
 				435B71EB1EA6080E00FBABBF /* FinishRowView.swift */,
 				435B71F11EA60ACE00FBABBF /* FinishTableViewCell.swift */,
@@ -503,6 +512,7 @@
 				43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */,
 				43372D0E1E7FB4BD002E2AE3 /* Assets.xcassets in Resources */,
 				4328DCA41E9C8202006D3FB8 /* Privacy.storyboard in Resources */,
+				434913041EB465D9006A680C /* InfoSegmentRowView.xib in Resources */,
 				4336811B1E8A427F00D51B5C /* CalendarCellView.xib in Resources */,
 				43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */,
 				435B71E41EA6040F00FBABBF /* InfoRowView.xib in Resources */,
@@ -627,6 +637,7 @@
 				4328DCA11E9C7233006D3FB8 /* ProfileViewController.swift in Sources */,
 				4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */,
 				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
+				434913081EB46608006A680C /* InfoSegmentTableViewCell.swift in Sources */,
 				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,
 				435B71E81EA607F300FBABBF /* PhotoRowView.swift in Sources */,
 				43372D3B1E7FCC9D002E2AE3 /* RecordNavigationController.swift in Sources */,
@@ -634,6 +645,7 @@
 				4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */,
 				438EFDB81EB1CB7700D9B18A /* ProfileTableViewController.swift in Sources */,
 				438EFDB01EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift in Sources */,
+				434913061EB465ED006A680C /* InfoSegmentRowView.swift in Sources */,
 				438EFDB41EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift in Sources */,
 				4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */,
 				438B90AD1EA7360A001E0A5E /* Color.swift in Sources */,
