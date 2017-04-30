@@ -73,7 +73,7 @@ class FillinTableViewController: UITableViewController {
 
     var isCorrect = false
 
-    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "caca-big"), period: nil, medicine: "")
+    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "caca-big"), period: 1, medicine: "")
 
     var cacas = [Caca]()
 
@@ -271,9 +271,7 @@ class FillinTableViewController: UITableViewController {
 
         case .photo: return 200.0
 
-        case .date, .time, .shape, .color, .amount, .period, .medicine, .other: return 80.0
-
-        case .finish: return 100.0
+        case .date, .time, .shape, .color, .amount, .period, .medicine, .other, .finish: return 80.0
 
         }
     }
@@ -873,7 +871,9 @@ class FillinTableViewController: UITableViewController {
             let dateSection = components.index(of: Component.date),
             let amountSection = components.index(of: Component.amount),
             let otherSection = components.index(of: Component.other),
-            let finishSection = components.index(of: Component.finish) else { return }
+            let finishSection = components.index(of: Component.finish) else {
+                return
+        }
 
         let photoIndexPath = IndexPath(row: 0, section: photoSection)
         let dateIndexPath = IndexPath(row: 0, section: dateSection)
@@ -885,7 +885,9 @@ class FillinTableViewController: UITableViewController {
               let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
               let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
               let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell,
-              let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else { return }
+              let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else {
+                return
+        }
 
         finishCell.rowView.finishButton.isEnabled = false
 
