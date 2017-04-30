@@ -25,24 +25,15 @@ class FillinTableViewController: UITableViewController {
         var title: String {
 
             switch self {
-            case .date:
-                return "Date"
-            case .time:
-                return "Time"
-            case .shape:
-                return "Shape"
-            case .color:
-                return "Color"
-            case .amount:
-                return "Amount"
-            case .period:
-                return "Period"
-            case .medicine:
-                return "Medicine"
-            case .other:
-                return "Other"
-            default:
-                return ""
+            case .date: return "Date"
+            case .time: return "Time"
+            case .shape: return "Shape"
+            case .color: return "Color"
+            case .amount: return "Amount"
+            case .period: return "Period"
+            case .medicine: return "Medicine"
+            case .other: return "Other"
+            default: return ""
             }
         }
     }
@@ -74,7 +65,7 @@ class FillinTableViewController: UITableViewController {
     var isCorrect = false
 
     var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "caca-big"), period: 1, medicine: "")
-
+    
     var cacas = [Caca]()
 
     var advice = String()
@@ -866,66 +857,44 @@ class FillinTableViewController: UITableViewController {
 
     func createCaca() {
 
-        guard let photoSection = components.index(of: Component.photo),
-            let dateSection = components.index(of: Component.date),
-            let amountSection = components.index(of: Component.amount),
-            let otherSection = components.index(of: Component.other),
-            let finishSection = components.index(of: Component.finish) else {
-                return
-        }
+        guard let finishSection = components.index(of: Component.finish) else { return }
 
-        let photoIndexPath = IndexPath(row: 0, section: photoSection)
-        let dateIndexPath = IndexPath(row: 0, section: dateSection)
-        let amountIndexPath = IndexPath(row: 0, section: amountSection)
-        let otherIndexPath = IndexPath(row: 0, section: otherSection)
         let finishIndexPath = IndexPath(row: 0, section: finishSection)
 
-        guard let photoCell = tableView.cellForRow(at: photoIndexPath) as? PhotoTableViewCell,
-              let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
-              let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
-              let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell,
-              let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else {
-                return
-        }
+        guard let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else { return }
 
         finishCell.rowView.finishButton.isEnabled = false
 
-        guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
-            let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
-            let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
-            let amount = amountCell.rowView.infoTextField.text,
-            let other = otherCell.rowView.infoTextField.text else {
-
-                return
-
-        }
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
 
         let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
         let photoID = UUID().uuidString
         let overallAdvice = getAdvice()
 
-        finalCaca.date = date
-        finalCaca.time = time
-        finalCaca.amount = amount
-        finalCaca.otherInfo = other
-        finalCaca.consumingTime = Time.consumingTime
-
         // MARK : Create caca with photo
 
-        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
+        if finalCaca.image != #imageLiteral(resourceName: "caca-big") {
 
             CacaProvider.shared.saveCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, error) in
 
                 if error != nil {
 
-                    print(error?.localizedDescription ?? "storageError")
-
-                    return
+                    let alertController = UIAlertController(title: "Warning",
+                                                            message: error?.localizedDescription,
+                                                            preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: "OK",
+                                                            style: .default,
+                                                            handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
                 }
 
                 FIRAnalytics.logEvent(withName: "CreateWithPhoto", parameters: nil)
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
+                
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
                              "photo": cacaPhotoUrl,
@@ -978,78 +947,52 @@ class FillinTableViewController: UITableViewController {
 
     func editCaca() {
 
-        guard let photoSection = components.index(of: Component.photo),
-            let dateSection = components.index(of: Component.date),
-            let consumingTimeSection = components.index(of: Component.time),
-            let shapeSection = components.index(of: Component.shape),
-            let colorSection = components.index(of: Component.color),
-            let amountSection = components.index(of: Component.amount),
-            let otherSection = components.index(of: Component.other),
-            let finishSection = components.index(of: Component.finish) else { return }
-
-        let photoIndexPath = IndexPath(row: 0, section: photoSection)
-        let dateIndexPath = IndexPath(row: 0, section: dateSection)
-        let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)
-        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
-        let colorIndexPath = IndexPath(row: 0, section: colorSection)
-        let amountIndexPath = IndexPath(row: 0, section: amountSection)
-        let otherIndexPath = IndexPath(row: 0, section: otherSection)
+        guard let finishSection = components.index(of: Component.finish) else { return }
+        
         let finishIndexPath = IndexPath(row: 0, section: finishSection)
-
-        guard let photoCell = tableView.cellForRow(at: photoIndexPath) as? PhotoTableViewCell,
-            let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
-            let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
-            let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
-            let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
-            let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
-            let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell,
-            let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else { return }
-
+        
+        guard let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else { return }
+        
         finishCell.rowView.finishButton.isEnabled = false
 
-        guard let hostUID = FIRAuth.auth()?.currentUser?.uid,
-            let date = dateCell.rowView.infoTextField.text?.substring(to: 10),
-            let time = dateCell.rowView.infoTextField.text?.substring(from: 11),
-            let consumingTime = consumingTimeCell.rowView.infoTextField.text,
-            let shape = shapeCell.rowView.infoTextField.text,
-            let color = colorCell.rowView.infoTextField.text,
-            let amount = amountCell.rowView.infoTextField.text,
-            let other = otherCell.rowView.infoTextField.text else {
-
-                return
-
-        }
+        guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
 
         let cacaID = recievedCacaFromRecordDetail[0].cacaID
         let photoID = recievedCacaFromRecordDetail[0].photoID
         let overallAdvice = getAdvice()
 
-        finalCaca.date = date
-        finalCaca.time = time
-        finalCaca.consumingTime = consumingTime
-        finalCaca.shape = shape
-        finalCaca.color = color
-        finalCaca.amount = amount
-        finalCaca.otherInfo = other
-
         // MARK : Edit caca with new photo (had old photo)
 
-        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
+        if finalCaca.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
 
             CacaProvider.shared.editCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
 
                 if storageError != nil {
 
-                    print(storageError?.localizedDescription ?? "storageError")
-
-                    return
+                    let alertController = UIAlertController(title: "Warning",
+                                                            message: storageError?.localizedDescription,
+                                                            preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: "OK",
+                                                            style: .default,
+                                                            handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
                 }
 
                 if deleteError != nil {
 
-                    print(deleteError?.localizedDescription ?? "deleteError")
-
-                    return
+                    let alertController = UIAlertController(title: "Warning",
+                                                            message: deleteError?.localizedDescription,
+                                                            preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: "OK",
+                                                            style: .default,
+                                                            handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
                 }
 
                 FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
@@ -1077,7 +1020,7 @@ class FillinTableViewController: UITableViewController {
 
             })
 
-        } else if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID == "" {
+        } else if finalCaca.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID == "" {
 
             // MARK : Edit caca with new photo (no old photo)
 
@@ -1085,9 +1028,16 @@ class FillinTableViewController: UITableViewController {
 
                 if error != nil {
 
-                    print(error?.localizedDescription ?? "storageError")
+                    let alertController = UIAlertController(title: "Warning",
+                                                            message: error?.localizedDescription,
+                                                            preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: "OK",
+                                                            style: .default,
+                                                            handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
 
-                    return
                 }
 
                 FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
@@ -1115,7 +1065,7 @@ class FillinTableViewController: UITableViewController {
 
             })
 
-        } else if photoCell.rowView.cacaPhotoImageView.image == #imageLiteral(resourceName: "caca-big") {
+        } else if finalCaca.image == #imageLiteral(resourceName: "caca-big") {
 
             // MARK : Edit caca without new photo (no old photo)
 
@@ -1136,10 +1086,10 @@ class FillinTableViewController: UITableViewController {
                          "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
 
             CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
+            
             self.switchToRecord()
 
         }
-
     }
 }
 
@@ -1176,6 +1126,22 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         }
 
         dismiss(animated: true, completion: nil)
+    }
+    
+    func calculateColor(of dominantColor: MMCQ.Color) -> Palette {
+    
+        let r = dominantColor.r
+        let g = dominantColor.g
+        let b = dominantColor.b
+        
+        let toRed = sqrt((146 - r) * (146 - r) + (18 - g) * (18 - g) + (36 - b) * (36 - b))
+        let toYellow = sqrt((255 - r) * (255 - r) + (205 - g) * (205 - g) + (56 - b) * (56 - b))
+        let toGreen = sqrt((83 - r) * (83 - r) + (90 - g) * (90 - g) + (59 - b) * (59 - b))
+        let toLightBrown = sqrt((168 - r) * (168 - r) + (116 - g) * (116 - g) + (66 - b) * (66 - b))
+        let toDarkBrown = sqrt((71 - r) * (71 - r) + (40 - g) * (40 - g) + (12 - b) * (12 - b))
+        let toGray = sqrt((192 - r) * (192 - r) + (192 - g) * (192 - g) + (192 - b) * (192 - b))
+        let toBlack = sqrt((0 - r) * (0 - r) + (0 - g) * (0 - g) + (0 - b) * (0 - b))
+        
     }
 }
 
