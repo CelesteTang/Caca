@@ -66,7 +66,7 @@ class FillinTableViewController: UITableViewController {
     var isCorrect = false
 
     var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "caca-big"), period: 1, medicine: "")
-    
+
     var cacas = [Caca]()
 
     var advice = String()
@@ -883,19 +883,19 @@ class FillinTableViewController: UITableViewController {
                     let alertController = UIAlertController(title: "Warning",
                                                             message: error?.localizedDescription,
                                                             preferredStyle: .alert)
-                    
+
                     alertController.addAction(UIAlertAction(title: "OK",
                                                             style: .default,
                                                             handler: nil))
-                    
+
                     self.present(alertController, animated: true, completion: nil)
-                    
+
                 }
 
                 FIRAnalytics.logEvent(withName: "CreateWithPhoto", parameters: nil)
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
-                
+
                 let value = ["host": hostUID,
                              "cacaID": cacaID,
                              "photo": cacaPhotoUrl,
@@ -949,11 +949,11 @@ class FillinTableViewController: UITableViewController {
     func editCaca() {
 
         guard let finishSection = components.index(of: Component.finish) else { return }
-        
+
         let finishIndexPath = IndexPath(row: 0, section: finishSection)
-        
+
         guard let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else { return }
-        
+
         finishCell.rowView.finishButton.isEnabled = false
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
@@ -973,13 +973,13 @@ class FillinTableViewController: UITableViewController {
                     let alertController = UIAlertController(title: "Warning",
                                                             message: storageError?.localizedDescription,
                                                             preferredStyle: .alert)
-                    
+
                     alertController.addAction(UIAlertAction(title: "OK",
                                                             style: .default,
                                                             handler: nil))
-                    
+
                     self.present(alertController, animated: true, completion: nil)
-                    
+
                 }
 
                 if deleteError != nil {
@@ -987,13 +987,13 @@ class FillinTableViewController: UITableViewController {
                     let alertController = UIAlertController(title: "Warning",
                                                             message: deleteError?.localizedDescription,
                                                             preferredStyle: .alert)
-                    
+
                     alertController.addAction(UIAlertAction(title: "OK",
                                                             style: .default,
                                                             handler: nil))
-                    
+
                     self.present(alertController, animated: true, completion: nil)
-                    
+
                 }
 
                 FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
@@ -1032,11 +1032,11 @@ class FillinTableViewController: UITableViewController {
                     let alertController = UIAlertController(title: "Warning",
                                                             message: error?.localizedDescription,
                                                             preferredStyle: .alert)
-                    
+
                     alertController.addAction(UIAlertAction(title: "OK",
                                                             style: .default,
                                                             handler: nil))
-                    
+
                     self.present(alertController, animated: true, completion: nil)
 
                 }
@@ -1087,7 +1087,7 @@ class FillinTableViewController: UITableViewController {
                          "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
 
             CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
-            
+
             self.switchToRecord()
 
         }
@@ -1112,7 +1112,7 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
             guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else { return }
 
-            cell.rowView.detectionColorImageView.backgroundColor = dominantColor.makeUIColor()
+            cell.rowView.detectionColorImageView.backgroundColor = getClosedColor(of: dominantColor)
 
         } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
@@ -1122,65 +1122,64 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
             guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else { return }
 
-            cell.rowView.detectionColorImageView.backgroundColor = dominantColor.makeUIColor()
-
+            cell.rowView.detectionColorImageView.backgroundColor = getClosedColor(of: dominantColor)
         }
 
         dismiss(animated: true, completion: nil)
     }
-    
+
     func getClosedColor(of dominantColor: MMCQ.Color) -> UIColor {
-        
-        let r = dominantColor.r
-        let g = dominantColor.g
-        let b = dominantColor.b
-        
-        let toRed = (146 - r) * (146 - r) + (18 - g) * (18 - g) + (36 - b) * (36 - b)
-        let toYellow = (255 - r) * (255 - r) + (205 - g) * (205 - g) + (56 - b) * (56 - b)
-        let toGreen = (83 - r) * (83 - r) + (90 - g) * (90 - g) + (59 - b) * (59 - b)
-        let toLightBrown = (168 - r) * (168 - r) + (116 - g) * (116 - g) + (66 - b) * (66 - b)
-        let toDarkBrown = (71 - r) * (71 - r) + (40 - g) * (40 - g) + (12 - b) * (12 - b)
-        let toGray = (192 - r) * (192 - r) + (192 - g) * (192 - g) + (192 - b) * (192 - b)
-        let toBlack = (0 - r) * (0 - r) + (0 - g) * (0 - g) + (0 - b) * (0 - b)
-        
-        let UInt8Array = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ].sorted()
+
+        let r = Int(dominantColor.r)
+        let g = Int(dominantColor.g)
+        let b = Int(dominantColor.b)
+
+        let toRed = ((146 - r) * (146 - r)) + ((18 - g) * (18 - g)) + ((36 - b) * (36 - b))
+        let toYellow = ((255 - r) * (255 - r)) + ((205 - g) * (205 - g)) + ((56 - b) * (56 - b))
+        let toGreen = ((83 - r) * (83 - r)) + ((90 - g) * (90 - g)) + ((59 - b) * (59 - b))
+        let toLightBrown = ((168 - r) * (168 - r)) + ((116 - g) * (116 - g)) + ((66 - b) * (66 - b))
+        let toDarkBrown = ((71 - r) * (71 - r)) + ((40 - g) * (40 - g)) + ((12 - b) * (12 - b))
+        let toGray = ((192 - r) * (192 - r)) + ((192 - g) * (192 - g)) + ((192 - b) * (192 - b))
+        let toBlack = ((0 - r) * (0 - r)) + ((0 - g) * (0 - g)) + ((0 - b) * (0 - b))
+
+        let UInt8Array = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ]
         let closedUInt8 = UInt8Array.sorted { $0 < $1 }.first
-        
+
         if closedUInt8 == toRed {
-        
+
             return Palette.red
 
         } else if closedUInt8 == toYellow {
-            
+
             return Palette.yellow
-            
+
         } else if closedUInt8 == toGreen {
-            
+
             return Palette.green
-            
+
         } else if closedUInt8 == toLightBrown {
-            
+
             return Palette.lightBrown
-            
+
         } else if closedUInt8 == toDarkBrown {
-            
+
             return Palette.darkBrown
-            
+
         } else if closedUInt8 == toGray {
-            
+
             return Palette.gray
-            
+
         } else if closedUInt8 == toBlack {
-            
+
             return Palette.black
-            
+
         } else {
-        
+
             return UIColor.clear
         }
-        
+
     }
-    
+
 }
 
 extension FillinTableViewController: UITextFieldDelegate {
