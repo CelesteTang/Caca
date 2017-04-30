@@ -1098,37 +1098,45 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
-        guard let photoSection = components.index(of: Component.photo) else { return }
+        guard let photoSection = components.index(of: Component.photo),
+              let colorSection = components.index(of: Component.color) else { return }
 
-        let indexPath = IndexPath(row: 0, section: photoSection)
+        let photoIndexPath = IndexPath(row: 0, section: photoSection)
+        let colorIndexPath = IndexPath(row: 0, section: colorSection)
 
-        guard let cell = tableView.cellForRow(at: indexPath) as? PhotoTableViewCell else { return }
+        guard let photoCell = tableView.cellForRow(at: photoIndexPath) as? PhotoTableViewCell,
+              let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell else { return }
 
         if let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage {
 
-            cell.rowView.cacaPhotoImageView.image = editedCacaImage
+            photoCell.rowView.cacaPhotoImageView.image = editedCacaImage
 
             finalCaca.image = editedCacaImage
 
             guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else { return }
 
-            cell.rowView.detectionColorImageView.backgroundColor = getClosedColor(of: dominantColor)
+//            photoCell.rowView.detectionColorImageView.backgroundColor = getClosedColor(of: dominantColor)
 
-        } else if let originalCacaImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-
-            cell.rowView.cacaPhotoImageView.image = originalCacaImage
-
-            finalCaca.image = originalCacaImage
-
-            guard let dominantColor = ColorThief.getColor(from: originalCacaImage) else { return }
-
-            cell.rowView.detectionColorImageView.backgroundColor = getClosedColor(of: dominantColor)
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "The color of your caca is closed to \(self.getClosedColor(of: dominantColor))",
+                                                    preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                
+                colorCell.rowView.infoTextField.text = "\(self.getClosedColor(of: dominantColor))"
+                
+            })
+            
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
         }
 
         dismiss(animated: true, completion: nil)
     }
 
-    func getClosedColor(of dominantColor: MMCQ.Color) -> UIColor {
+    func getClosedColor(of dominantColor: MMCQ.Color) -> String {
 
         let r = Int(dominantColor.r)
         let g = Int(dominantColor.g)
@@ -1147,35 +1155,35 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
         if closedUInt8 == toRed {
 
-            return Palette.red
+            return Color.red.title
 
         } else if closedUInt8 == toYellow {
 
-            return Palette.yellow
+            return Color.yellow.title
 
         } else if closedUInt8 == toGreen {
 
-            return Palette.green
+            return Color.green.title
 
         } else if closedUInt8 == toLightBrown {
 
-            return Palette.lightBrown
+            return Color.lightBrown.title
 
         } else if closedUInt8 == toDarkBrown {
 
-            return Palette.darkBrown
+            return Color.darkBrown.title
 
         } else if closedUInt8 == toGray {
 
-            return Palette.gray
+            return Color.gray.title
 
         } else if closedUInt8 == toBlack {
 
-            return Palette.black
+            return Color.black.title
 
         } else {
 
-            return UIColor.clear
+            return ""
         }
 
     }
