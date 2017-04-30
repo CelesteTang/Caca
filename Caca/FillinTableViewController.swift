@@ -41,7 +41,7 @@ class FillinTableViewController: UITableViewController {
 
     // MARK: Property
 
-    var components: [Component] = [.photo, .date, .time, .shape, .color, .amount, .other, .finish]
+    var components: [Component] = [.photo, .date, .time, .color, .shape, .amount, .other, .finish]
 
     let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
 
@@ -84,15 +84,15 @@ class FillinTableViewController: UITableViewController {
 
         if UserDefaults.standard.value(forKey: "Gender") as? Int == Gender.female.rawValue && UserDefaults.standard.value(forKey: "Medicine") as? Int == 0 {
 
-            components = [.photo, .date, .time, .shape, .color, .amount, .period, .medicine, .other, .finish]
+            components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
 
         } else if UserDefaults.standard.value(forKey: "Gender") as? Int == Gender.female.rawValue {
 
-            components = [.photo, .date, .time, .shape, .color, .amount, .period, .other, .finish]
+            components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
 
         } else if UserDefaults.standard.value(forKey: "Medicine") as? Int == 0 {
 
-            components = [.photo, .date, .time, .shape, .color, .amount, .medicine, .other, .finish]
+            components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
 
         }
 
@@ -365,6 +365,8 @@ class FillinTableViewController: UITableViewController {
             if isFromRecordDetail == true {
 
                 cell.rowView.infoTextField.text = "\(recievedCacaFromRecordDetail[0].date) \(recievedCacaFromRecordDetail[0].time)"
+                self.finalCaca.date = recievedCacaFromRecordDetail[0].date
+                self.finalCaca.time = recievedCacaFromRecordDetail[0].time
 
             }
 
@@ -392,6 +394,7 @@ class FillinTableViewController: UITableViewController {
             if isFromRecordDetail == true {
 
                 cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].consumingTime
+                self.finalCaca.consumingTime = recievedCacaFromRecordDetail[0].consumingTime
 
             }
 
@@ -414,6 +417,7 @@ class FillinTableViewController: UITableViewController {
             if isFromRecordDetail == true {
 
                 cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].shape
+                self.finalCaca.shape = recievedCacaFromRecordDetail[0].shape
 
             }
 
@@ -434,6 +438,7 @@ class FillinTableViewController: UITableViewController {
             if isFromRecordDetail == true {
 
                 cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].color
+                self.finalCaca.color = recievedCacaFromRecordDetail[0].color
 
             }
 
@@ -454,6 +459,7 @@ class FillinTableViewController: UITableViewController {
             if isFromRecordDetail == true {
 
                 cell.rowView.infoTextField.text = self.recievedCacaFromRecordDetail[0].amount
+                self.finalCaca.amount = recievedCacaFromRecordDetail[0].amount
 
             }
 
@@ -481,7 +487,8 @@ class FillinTableViewController: UITableViewController {
 
                 if let period = self.recievedCacaFromRecordDetail[0].period {
 
-                cell.rowView.infoSegmentedControl.selectedSegmentIndex = period
+                    cell.rowView.infoSegmentedControl.selectedSegmentIndex = period
+                    self.finalCaca.period = period
 
                 }
             }
@@ -501,6 +508,7 @@ class FillinTableViewController: UITableViewController {
             if isFromRecordDetail == true {
 
                 cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].medicine
+                self.finalCaca.medicine = recievedCacaFromRecordDetail[0].medicine
 
             }
 
@@ -519,7 +527,7 @@ class FillinTableViewController: UITableViewController {
             if isFromRecordDetail == true {
 
                 cell.rowView.infoTextField.text = recievedCacaFromRecordDetail[0].otherInfo
-
+                self.finalCaca.otherInfo = recievedCacaFromRecordDetail[0].otherInfo
             }
 
             return cell
