@@ -1220,7 +1220,9 @@ extension FillinTableViewController: UITextFieldDelegate {
             let colorSection = components.index(of: Component.color),
             let amountSection = components.index(of: Component.amount),
             let medicineSection = components.index(of: Component.medicine),
-            let otherSection = components.index(of: Component.other) else { return }
+            let otherSection = components.index(of: Component.other) else {
+                return
+        }
 
         let dateIndexPath = IndexPath(row: 0, section: dateSection)
         let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)
@@ -1230,57 +1232,57 @@ extension FillinTableViewController: UITextFieldDelegate {
         let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
         let otherIndexPath = IndexPath(row: 0, section: otherSection)
 
-        guard let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
-            let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
-            let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
-            let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
-            let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
-            let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? InfoTableViewCell,
-            let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell else { return }
-
-        if let date = dateCell.rowView.infoTextField.text?.substring(to: 10) {
+        if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
+           let date = dateCell.rowView.infoTextField.text?.substring(to: 10) {
 
             finalCaca.date = date
 
         }
 
-        if let time = dateCell.rowView.infoTextField.text?.substring(from: 11) {
+        if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
+           let time = dateCell.rowView.infoTextField.text?.substring(from: 11) {
 
             finalCaca.time = time
 
         }
 
-        if let consumingTime = consumingTimeCell.rowView.infoTextField.text {
+        if let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
+           let consumingTime = consumingTimeCell.rowView.infoTextField.text {
 
             finalCaca.consumingTime = consumingTime
 
         }
 
-        if let shape = shapeCell.rowView.infoTextField.text {
+        if let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
+           let shape = shapeCell.rowView.infoTextField.text {
 
             finalCaca.shape = shape
 
         }
 
-        if let color = colorCell.rowView.infoTextField.text {
+        if let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
+           let color = colorCell.rowView.infoTextField.text {
 
             finalCaca.color = color
 
         }
 
-        if let amount = amountCell.rowView.infoTextField.text {
+        if let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
+           let amount = amountCell.rowView.infoTextField.text {
 
             finalCaca.amount = amount
 
         }
 
-        if let medicine = medicineCell.rowView.infoTextField.text {
+        if let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? InfoTableViewCell,
+           let medicine = medicineCell.rowView.infoTextField.text {
 
             finalCaca.medicine = medicine
 
         }
 
-        if let otherInfo = otherCell.rowView.infoTextField.text {
+        if let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell,
+           let otherInfo = otherCell.rowView.infoTextField.text {
 
             finalCaca.otherInfo = otherInfo
 
