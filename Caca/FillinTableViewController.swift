@@ -6,6 +6,7 @@
 //  Copyright © 2017年 Hsin-Yu Tang. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import Firebase
 import ColorThiefSwift
@@ -1128,21 +1129,58 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true, completion: nil)
     }
     
-    func calculateColor(of dominantColor: MMCQ.Color) -> Palette {
-    
+    func getClosedColor(of dominantColor: MMCQ.Color) -> UIColor {
+        
         let r = dominantColor.r
         let g = dominantColor.g
         let b = dominantColor.b
         
-        let toRed = sqrt((146 - r) * (146 - r) + (18 - g) * (18 - g) + (36 - b) * (36 - b))
-        let toYellow = sqrt((255 - r) * (255 - r) + (205 - g) * (205 - g) + (56 - b) * (56 - b))
-        let toGreen = sqrt((83 - r) * (83 - r) + (90 - g) * (90 - g) + (59 - b) * (59 - b))
-        let toLightBrown = sqrt((168 - r) * (168 - r) + (116 - g) * (116 - g) + (66 - b) * (66 - b))
-        let toDarkBrown = sqrt((71 - r) * (71 - r) + (40 - g) * (40 - g) + (12 - b) * (12 - b))
-        let toGray = sqrt((192 - r) * (192 - r) + (192 - g) * (192 - g) + (192 - b) * (192 - b))
-        let toBlack = sqrt((0 - r) * (0 - r) + (0 - g) * (0 - g) + (0 - b) * (0 - b))
+        let toRed = (146 - r) * (146 - r) + (18 - g) * (18 - g) + (36 - b) * (36 - b)
+        let toYellow = (255 - r) * (255 - r) + (205 - g) * (205 - g) + (56 - b) * (56 - b)
+        let toGreen = (83 - r) * (83 - r) + (90 - g) * (90 - g) + (59 - b) * (59 - b)
+        let toLightBrown = (168 - r) * (168 - r) + (116 - g) * (116 - g) + (66 - b) * (66 - b)
+        let toDarkBrown = (71 - r) * (71 - r) + (40 - g) * (40 - g) + (12 - b) * (12 - b)
+        let toGray = (192 - r) * (192 - r) + (192 - g) * (192 - g) + (192 - b) * (192 - b)
+        let toBlack = (0 - r) * (0 - r) + (0 - g) * (0 - g) + (0 - b) * (0 - b)
+        
+        let UInt8Array = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ].sorted()
+        let closedUInt8 = UInt8Array.sorted { $0 < $1 }.first
+        
+        if closedUInt8 == toRed {
+        
+            return Palette.red
+
+        } else if closedUInt8 == toYellow {
+            
+            return Palette.yellow
+            
+        } else if closedUInt8 == toGreen {
+            
+            return Palette.green
+            
+        } else if closedUInt8 == toLightBrown {
+            
+            return Palette.lightBrown
+            
+        } else if closedUInt8 == toDarkBrown {
+            
+            return Palette.darkBrown
+            
+        } else if closedUInt8 == toGray {
+            
+            return Palette.gray
+            
+        } else if closedUInt8 == toBlack {
+            
+            return Palette.black
+            
+        } else {
+        
+            return UIColor.clear
+        }
         
     }
+    
 }
 
 extension FillinTableViewController: UITextFieldDelegate {
