@@ -70,7 +70,7 @@ class ProfileTableViewController: UITableViewController {
         self.tableView.backgroundColor = Palette.lightblue2
         self.tableView.allowsSelection = false
         self.tableView.separatorStyle = .none
-        
+
         self.navigationItem.title = "Profile"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
 

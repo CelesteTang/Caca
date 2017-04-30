@@ -109,13 +109,6 @@ class FillinTableViewController: UITableViewController {
         self.tableView.register(FinishTableViewCell.self, forCellReuseIdentifier: "FinishTableViewCell")
         self.tableView.register(InfoSegmentTableViewCell.self, forCellReuseIdentifier: "InfoSegmentTableViewCell")
 
-        self.tableView.allowsSelection = false
-        self.tableView.separatorStyle = .none
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
-        tap.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(tap)
-
         setUp()
 
         DispatchQueue.global().async {
@@ -135,6 +128,9 @@ class FillinTableViewController: UITableViewController {
     private func setUp() {
 
         ispassed = false
+
+        self.tableView.allowsSelection = false
+        self.tableView.separatorStyle = .none
 
         self.datePicker.datePickerMode = .dateAndTime
         self.datePicker.minuteInterval = 1
@@ -172,6 +168,9 @@ class FillinTableViewController: UITableViewController {
         self.amountSlider.value = 0.2
         self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
     }
 
     func datePickerChanged() {
@@ -1198,13 +1197,77 @@ extension FillinTableViewController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
 
-        guard let otherSection = components.index(of: Component.other) else { return }
+        guard let dateSection = components.index(of: Component.date),
+            let consumingTimeSection = components.index(of: Component.time),
+            let shapeSection = components.index(of: Component.shape),
+            let colorSection = components.index(of: Component.color),
+            let amountSection = components.index(of: Component.amount),
+            let medicineSection = components.index(of: Component.medicine),
+            let otherSection = components.index(of: Component.other) else { return }
 
-        let indexPath = IndexPath(row: 0, section: otherSection)
+        let dateIndexPath = IndexPath(row: 0, section: dateSection)
+        let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)
+        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
+        let colorIndexPath = IndexPath(row: 0, section: colorSection)
+        let amountIndexPath = IndexPath(row: 0, section: amountSection)
+        let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
+        let otherIndexPath = IndexPath(row: 0, section: otherSection)
 
-        guard let otherCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell else { return }
+        guard let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
+            let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
+            let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
+            let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
+            let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
+            let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? InfoTableViewCell,
+            let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell else { return }
 
-        finalCaca.otherInfo = otherCell.rowView.infoTextField.text
+        if let date = dateCell.rowView.infoTextField.text?.substring(to: 10) {
+
+            finalCaca.date = date
+
+        }
+
+        if let time = dateCell.rowView.infoTextField.text?.substring(from: 11) {
+
+            finalCaca.time = time
+
+        }
+
+        if let consumingTime = consumingTimeCell.rowView.infoTextField.text {
+
+            finalCaca.consumingTime = consumingTime
+
+        }
+
+        if let shape = shapeCell.rowView.infoTextField.text {
+
+            finalCaca.shape = shape
+
+        }
+
+        if let color = colorCell.rowView.infoTextField.text {
+
+            finalCaca.color = color
+
+        }
+
+        if let amount = amountCell.rowView.infoTextField.text {
+
+            finalCaca.amount = amount
+
+        }
+
+        if let medicine = medicineCell.rowView.infoTextField.text {
+
+            finalCaca.medicine = medicine
+
+        }
+
+        if let otherInfo = otherCell.rowView.infoTextField.text {
+
+            finalCaca.otherInfo = otherInfo
+
+        }
 
     }
 }

@@ -21,7 +21,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAW-5c-fb8">
                             <rect key="frame" x="8" y="0.0" width="319" height="100"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medicine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bv1-1E-rMB">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bv1-1E-rMB">
                                     <rect key="frame" x="16" y="37" width="95.5" height="26"/>
                                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                     <nil key="textColor"/>
@@ -38,6 +38,7 @@
                             <color key="backgroundColor" red="0.80000000000000004" green="0.89411764709999997" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="cw9-oZ-J9C" firstAttribute="leading" secondItem="Bv1-1E-rMB" secondAttribute="trailing" constant="8.5" id="JK9-o2-Ds0"/>
+                                <constraint firstItem="cw9-oZ-J9C" firstAttribute="leading" secondItem="aAW-5c-fb8" secondAttribute="leading" constant="120" id="gGj-U4-1IU"/>
                                 <constraint firstItem="Bv1-1E-rMB" firstAttribute="centerY" secondItem="aAW-5c-fb8" secondAttribute="centerY" id="jOa-3z-VOK"/>
                                 <constraint firstItem="Bv1-1E-rMB" firstAttribute="leading" secondItem="aAW-5c-fb8" secondAttribute="leading" constant="16" id="joq-uw-WcU"/>
                                 <constraint firstItem="cw9-oZ-J9C" firstAttribute="centerY" secondItem="aAW-5c-fb8" secondAttribute="centerY" id="qtw-qL-FLF"/>

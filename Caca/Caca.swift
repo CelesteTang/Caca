@@ -82,9 +82,9 @@ class FinalCaca {
 
     var image: UIImage
 
-    let period: Int?
+    var period: Int?
 
-    let medicine: String?
+    var medicine: String?
 
     init(date: String, time: String, consumingTime: String, shape: String, color: String, amount: String, otherInfo: String?, image: UIImage, period: Int?, medicine: String?) {
 
