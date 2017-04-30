@@ -65,7 +65,7 @@ class FillinTableViewController: UITableViewController {
 
     var isCorrect = false
 
-    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "caca-big"), period: 1, medicine: "")
+    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "POO-23"), period: 1, medicine: "")
 
     var cacas = [Caca]()
 
@@ -275,8 +275,10 @@ class FillinTableViewController: UITableViewController {
         let indexPath = IndexPath(row: 0, section: photoSection)
 
         if let photoCell = tableView.cellForRow(at: indexPath) as? PhotoTableViewCell,
-           photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "caca-big") {
+           photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "POO-23") {
 
+            photoCell.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue
+            
             photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
             photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
 
@@ -303,10 +305,10 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.cancelButton.setImage(buttonImage, for: .normal)
             cell.rowView.cancelButton.tintColor = Palette.darkblue
 
-            cell.rowView.addPhotoButton.setTitle("", for: .normal)
-            let photoButtonImage = #imageLiteral(resourceName: "camera").withRenderingMode(.alwaysTemplate)
-            cell.rowView.addPhotoButton.setImage(photoButtonImage, for: .normal)
-            cell.rowView.addPhotoButton.tintColor = Palette.darkblue
+//            cell.rowView.addPhotoButton.setTitle("", for: .normal)
+//            let photoButtonImage = #imageLiteral(resourceName: "camera").withRenderingMode(.alwaysTemplate)
+//            cell.rowView.addPhotoButton.setImage(photoButtonImage, for: .normal)
+//            cell.rowView.addPhotoButton.tintColor = Palette.darkblue
 
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
@@ -315,7 +317,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.detectionColorImageView.backgroundColor = UIColor.clear
 
             if isFromRecordDetail == true {
-
+                
                 if self.recievedCacaFromRecordDetail[0].photo != "" {
 
                     DispatchQueue.global().async {
