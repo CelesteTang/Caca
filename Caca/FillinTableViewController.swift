@@ -1107,33 +1107,31 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         guard let photoCell = tableView.cellForRow(at: photoIndexPath) as? PhotoTableViewCell,
               let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell else { return }
 
-        if let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+        guard let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
 
-            photoCell.rowView.cacaPhotoImageView.image = editedCacaImage
+        photoCell.rowView.cacaPhotoImageView.image = editedCacaImage
 
-            finalCaca.image = editedCacaImage
+        finalCaca.image = editedCacaImage
 
-            guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else { return }
+        guard let dominantColor = ColorThief.getColor(from: editedCacaImage) else { return }
 
-//            photoCell.rowView.detectionColorImageView.backgroundColor = getClosedColor(of: dominantColor)
+        dismiss(animated: true) {
 
-            let alertController = UIAlertController(title: "Warning",
+            let alertController = UIAlertController(title: "Note",
                                                     message: "The color of your caca is closed to \(self.getClosedColor(of: dominantColor))",
-                                                    preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                
-                colorCell.rowView.infoTextField.text = "\(self.getClosedColor(of: dominantColor))"
-                
-            })
-            
-            alertController.addAction(okAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-            
-        }
+                preferredStyle: .alert)
 
-        dismiss(animated: true, completion: nil)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+
+                colorCell.rowView.infoTextField.text = "\(self.getClosedColor(of: dominantColor))"
+
+            })
+
+            alertController.addAction(okAction)
+
+            self.present(alertController, animated: true, completion: nil)
+
+        }
     }
 
     func getClosedColor(of dominantColor: MMCQ.Color) -> String {
