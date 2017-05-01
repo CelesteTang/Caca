@@ -9,6 +9,7 @@
 import UIKit
 import Crashlytics
 import Firebase
+import UserNotifications
 
 class CacaViewController: UIViewController {
 
@@ -46,6 +47,8 @@ class CacaViewController: UIViewController {
         setUp()
 
         detectFrequency()
+        
+        prepareNotification()
     }
 
     override func viewDidLayoutSubviews() {
@@ -218,6 +221,18 @@ class CacaViewController: UIViewController {
             })
 
         }
+    }
+    
+    // MARK : Notification
+
+    func prepareNotification() {
+    
+        let content = UNMutableNotificationContent()
+        content.title = "Notification"
+        content.body = "You don't caca for 3 days. Remember to caca at least every 3 days."
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 259200, repeats: false)
+        let request = UNNotificationRequest(identifier: "caca.longTimeNoCaca", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 }
 
