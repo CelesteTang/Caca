@@ -34,12 +34,6 @@
                         <constraint firstAttribute="bottom" secondItem="0tS-hG-Uhq" secondAttribute="bottom" id="rZq-pE-ufH"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3kv-OJ-Iad">
-                    <rect key="frame" x="120" y="32.5" width="135" height="135"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="3kv-OJ-Iad" secondAttribute="height" multiplier="1:1" id="D6Q-iF-Xob"/>
-                    </constraints>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jg0-A9-rRv">
                     <rect key="frame" x="125" y="37.5" width="125" height="125"/>
                     <constraints>
@@ -63,16 +57,13 @@
             <constraints>
                 <constraint firstItem="jg0-A9-rRv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0aW-A2-bfH"/>
                 <constraint firstItem="Rpc-lK-PTc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="1pY-wT-7Cd"/>
-                <constraint firstItem="3kv-OJ-Iad" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2kc-pl-fok"/>
                 <constraint firstItem="aQ6-XI-dyW" firstAttribute="centerY" secondItem="jg0-A9-rRv" secondAttribute="centerY" id="4It-HT-MTF"/>
                 <constraint firstItem="3SM-tO-eKi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="9S0-p0-vIK"/>
                 <constraint firstItem="aQ6-XI-dyW" firstAttribute="top" secondItem="jg0-A9-rRv" secondAttribute="top" id="KVT-MH-ySC"/>
                 <constraint firstItem="3SM-tO-eKi" firstAttribute="top" secondItem="jg0-A9-rRv" secondAttribute="centerY" id="Ye7-Cb-t2f"/>
-                <constraint firstItem="3kv-OJ-Iad" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="120" id="aXi-Jy-oHo"/>
                 <constraint firstItem="aQ6-XI-dyW" firstAttribute="centerX" secondItem="jg0-A9-rRv" secondAttribute="centerX" id="abM-E3-NVO"/>
                 <constraint firstItem="jg0-A9-rRv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="125" id="c5E-ib-nMH"/>
                 <constraint firstAttribute="trailing" secondItem="3SM-tO-eKi" secondAttribute="trailing" constant="20" id="ecu-qL-UOq"/>
-                <constraint firstItem="3kv-OJ-Iad" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="guA-nc-F4o"/>
                 <constraint firstItem="Rpc-lK-PTc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="qdz-Lh-gWp"/>
                 <constraint firstItem="aQ6-XI-dyW" firstAttribute="leading" secondItem="jg0-A9-rRv" secondAttribute="leading" id="srz-gv-lhW"/>
                 <constraint firstAttribute="bottom" secondItem="3SM-tO-eKi" secondAttribute="bottom" id="tlk-QK-HYd"/>
@@ -85,7 +76,6 @@
                 <outlet property="borderView" destination="3SM-tO-eKi" id="kaz-d3-SD7"/>
                 <outlet property="cacaPhotoImageView" destination="jg0-A9-rRv" id="Q4j-9g-C9Z"/>
                 <outlet property="cancelButton" destination="Rpc-lK-PTc" id="rp4-cs-Kbq"/>
-                <outlet property="detectionColorImageView" destination="3kv-OJ-Iad" id="1Rl-0T-xHJ"/>
             </connections>
             <point key="canvasLocation" x="38.5" y="-314"/>
         </view>

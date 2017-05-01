@@ -282,8 +282,6 @@ class FillinTableViewController: UITableViewController {
             photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
             photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
 
-            photoCell.rowView.detectionColorImageView.layer.cornerRadius = photoCell.rowView.detectionColorImageView.frame.width / 2
-            photoCell.rowView.detectionColorImageView.layer.masksToBounds = true
         }
 
     }
@@ -311,7 +309,6 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
             cell.rowView.cacaPhotoImageView.image = finalCaca.image
-            cell.rowView.detectionColorImageView.backgroundColor = UIColor.clear
 
             if isFromRecordDetail == true {
 
@@ -1130,7 +1127,8 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
 
-                colorCell.rowView.infoTextField.text = "\(self.getClosedColor(of: dominantColor))"
+                colorCell.rowView.infoTextField.text = self.getClosedColor(of: dominantColor)
+                self.finalCaca.color = self.getClosedColor(of: dominantColor)
 
             })
 

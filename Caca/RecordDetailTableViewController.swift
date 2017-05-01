@@ -12,9 +12,11 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
 
     @IBOutlet weak var cacaPhoto: UIImageView!
 
+    @IBOutlet weak var passOrFailView: UIView!
+
     @IBOutlet weak var infoTableView: UITableView!
 
-    @IBOutlet weak var passOrFailLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
 
     enum Component: Int {
 
@@ -70,7 +72,7 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
 
         self.view.backgroundColor = Palette.lightblue2
         self.infoTableView.backgroundColor = Palette.lightblue2
-        
+
         self.navigationItem.title = "My caca"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
 
@@ -79,6 +81,8 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
 
         self.infoTableView.allowsSelection = false
         self.infoTableView.separatorStyle = .none
+
+        self.passOrFailView.isHidden = true
 
         if self.recievedCaca[0].photo != "" {
 
@@ -94,6 +98,18 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
                             self.cacaPhoto.image = image
                             self.cacaPhoto.layer.cornerRadius = self.cacaPhoto.frame.width / 2
                             self.cacaPhoto.layer.masksToBounds = true
+                            self.passOrFailView.isHidden = false
+                            self.passOrFailView.layer.cornerRadius = self.passOrFailView.frame.width / 2
+
+                            if self.recievedCaca[0].grading == true {
+
+                                self.passOrFailView.backgroundColor = Palette.passColor
+
+                            } else {
+
+                                self.passOrFailView.backgroundColor = Palette.failColor
+
+                            }
                         }
 
                     } catch {
@@ -105,22 +121,16 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
             }
         }
 
-        if self.recievedCaca[0].grading == true {
-
-            self.passOrFailLabel.text = "Pass"
-            self.passOrFailLabel.backgroundColor = Palette.passColor
-
-        } else {
-
-            self.passOrFailLabel.text = "Fail"
-            self.passOrFailLabel.backgroundColor = Palette.failColor
-
-        }
-
-        self.passOrFailLabel.textColor = Palette.cream
-
         let editButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(editCaca))
         self.navigationItem.rightBarButtonItem = editButton
+
+        self.deleteButton.setTitle("DELETE", for: .normal)
+        self.deleteButton.backgroundColor = Palette.darkblue
+        self.deleteButton.tintColor = Palette.cream
+        self.deleteButton.layer.cornerRadius = self.deleteButton.frame.height / 2
+        self.deleteButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.deleteButton.addTarget(self, action: #selector(deleteRecord), for: .touchUpInside)
+
     }
 
     func editCaca() {
@@ -131,6 +141,39 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
         fillinTableViewController.isFromRecordDetail = true
 
         present(fillinTableViewController, animated: true)
+
+    }
+
+    func deleteRecord() {
+
+        let alertController = UIAlertController(title: "Warning",
+                                                message: "Do you want to delete this record?",
+                                                preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(title: "No",
+                                         style: .cancel,
+                                         handler: nil)
+
+        alertController.addAction(cancelAction)
+
+        let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+
+                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+
+                tabBarController?.selectedIndex = TabBarItemType.record.rawValue
+
+                CacaProvider.shared.deleteCaca(cacaID: self.recievedCaca[0].cacaID)
+
+                appDelegate.window?.rootViewController = tabBarController
+
+            }
+        }
+
+        alertController.addAction(okAction)
+
+        self.present(alertController, animated: true, completion: nil)
 
     }
 
@@ -189,7 +232,7 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
-            cell.rowView.infoTextLabel.text = self.recievedCaca[0].date
+            cell.rowView.infoTextLabel.text = "\(self.recievedCaca[0].date) \(self.recievedCaca[0].time)"
 
             return cell
 
