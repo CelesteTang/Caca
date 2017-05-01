@@ -245,7 +245,6 @@
 		43372D021E7FB4BD002E2AE3 /* Caca */ = {
 			isa = PBXGroup;
 			children = (
-				433737921EB7361600F3A524 /* Caca.entitlements */,
 				43A8D8BC1E85079200B28A6F /* Landing */,
 				43BA3FA51E8006CF0052125B /* Opening */,
 				43BA3F9F1E7FD13B0052125B /* Caca */,
@@ -261,6 +260,7 @@
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
 				4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */,
 				43372D0A1E7FB4BD002E2AE3 /* Caca.xcdatamodeld */,
+				433737921EB7361600F3A524 /* Caca.entitlements */,
 			);
 			path = Caca;
 			sourceTree = "<group>";

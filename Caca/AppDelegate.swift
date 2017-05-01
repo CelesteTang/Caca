@@ -24,20 +24,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Fabric.with([Crashlytics.self])
 
-        UNUserNotificationCenter.current().requestAuthorization(options: .alert) { (granted, error) in
-            
+        UNUserNotificationCenter.current().requestAuthorization(options: .alert) { (granted, _) in
+
             if granted {
-            
+
                 print("allowed")
-                
+
             } else {
-            
+
                 print("not allowed")
-                
+
             }
-            
+
         }
-        
+
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController {
