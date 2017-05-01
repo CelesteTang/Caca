@@ -65,7 +65,7 @@ class FillinTableViewController: UITableViewController {
 
     var isCorrect = false
 
-    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "POO-23"), period: 1, medicine: "")
+    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "cacaWithCamera"), period: 1, medicine: "")
 
     var cacas = [Caca]()
 
@@ -275,7 +275,7 @@ class FillinTableViewController: UITableViewController {
         let indexPath = IndexPath(row: 0, section: photoSection)
 
         if let photoCell = tableView.cellForRow(at: indexPath) as? PhotoTableViewCell,
-           photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "POO-23") {
+           photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "cacaWithCamera") {
 
             photoCell.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue
 
@@ -881,7 +881,7 @@ class FillinTableViewController: UITableViewController {
 
         // MARK : Create caca with photo
 
-        if finalCaca.image != #imageLiteral(resourceName: "caca-big") {
+        if finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") {
 
             CacaProvider.shared.saveCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, error) in
 
@@ -971,7 +971,7 @@ class FillinTableViewController: UITableViewController {
 
         // MARK : Edit caca with new photo (had old photo)
 
-        if finalCaca.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID != "" {
+        if finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") && recievedCacaFromRecordDetail[0].photoID != "" {
 
             CacaProvider.shared.editCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
 
@@ -1028,7 +1028,7 @@ class FillinTableViewController: UITableViewController {
 
             })
 
-        } else if finalCaca.image != #imageLiteral(resourceName: "caca-big") && recievedCacaFromRecordDetail[0].photoID == "" {
+        } else if finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") && recievedCacaFromRecordDetail[0].photoID == "" {
 
             // MARK : Edit caca with new photo (no old photo)
 
@@ -1073,7 +1073,7 @@ class FillinTableViewController: UITableViewController {
 
             })
 
-        } else if finalCaca.image == #imageLiteral(resourceName: "caca-big") {
+        } else if finalCaca.image == #imageLiteral(resourceName: "cacaWithCamera") {
 
             // MARK : Edit caca without new photo (no old photo)
 
