@@ -61,9 +61,6 @@ class ProfileTableViewController: UITableViewController {
         self.tableView.register(ProfileSegmentTableViewCell.self, forCellReuseIdentifier: "ProfileSegmentTableViewCell")
         self.tableView.register(ProfileButtonTableViewCell.self, forCellReuseIdentifier: "ProfileButtonTableViewCell")
 
-        self.tableView.allowsSelection = false
-        self.tableView.separatorStyle = .none
-
     }
 
     // MARK: Set Up
@@ -71,6 +68,8 @@ class ProfileTableViewController: UITableViewController {
     private func setUp() {
 
         self.tableView.backgroundColor = Palette.lightblue2
+        self.tableView.allowsSelection = false
+        self.tableView.separatorStyle = .none
 
         self.navigationItem.title = "Profile"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
@@ -148,9 +147,7 @@ class ProfileTableViewController: UITableViewController {
 
         switch component {
 
-        case .photo, .name, .gender, .age, .medicine, .finish:
-
-            return 1
+        case .photo, .name, .gender, .age, .medicine, .finish: return 1
 
         }
 
@@ -324,13 +321,9 @@ class ProfileTableViewController: UITableViewController {
 
         switch component {
 
-        case .photo:
+        case .photo: return 300.0
 
-            return 300.0
-
-        case .name, .gender, .age, .medicine, .finish:
-
-            return 80.0
+        case .name, .gender, .age, .medicine, .finish: return 80.0
 
         }
     }
@@ -397,25 +390,6 @@ class ProfileTableViewController: UITableViewController {
 
         self.present(alertController, animated: true, completion: nil)
 
-    }
-
-    func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
-
-        let size = image.size
-
-        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
-
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-
-        image.draw(in: rect)
-
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-
-        UIGraphicsEndImageContext()
-
-        return newImage!
     }
 
     func changeGender() {
