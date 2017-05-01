@@ -24,6 +24,9 @@
 		4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */; };
 		4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */; };
 		433032F91EB6FCA600E308DE /* RecordDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433032F81EB6FCA600E308DE /* RecordDetailTableViewController.swift */; };
+		433032FB1EB7054300E308DE /* RecordDetailRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 433032FA1EB7054300E308DE /* RecordDetailRowView.xib */; };
+		433032FD1EB7055200E308DE /* RecordDetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433032FC1EB7055200E308DE /* RecordDetailRowView.swift */; };
+		433032FF1EB7056B00E308DE /* RecordDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433032FE1EB7056B00E308DE /* RecordDetailTableViewCell.swift */; };
 		43308EB31E9B4D4D00BB4F0D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43308EB21E9B4D4D00BB4F0D /* Profile.storyboard */; };
 		4330959B1E8CE68200E65E08 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */; };
 		433681191E8A424900D51B5C /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433681181E8A424900D51B5C /* Calendar.storyboard */; };
@@ -116,6 +119,9 @@
 		4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyRowView.swift; sourceTree = "<group>"; };
 		4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewCell.swift; sourceTree = "<group>"; };
 		433032F81EB6FCA600E308DE /* RecordDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDetailTableViewController.swift; sourceTree = "<group>"; };
+		433032FA1EB7054300E308DE /* RecordDetailRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordDetailRowView.xib; sourceTree = "<group>"; };
+		433032FC1EB7055200E308DE /* RecordDetailRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDetailRowView.swift; sourceTree = "<group>"; };
+		433032FE1EB7056B00E308DE /* RecordDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDetailTableViewCell.swift; sourceTree = "<group>"; };
 		43308EB21E9B4D4D00BB4F0D /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		433681181E8A424900D51B5C /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
@@ -206,6 +212,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		433033001EB7075C00E308DE /* RecordDetail */ = {
+			isa = PBXGroup;
+			children = (
+				433032FA1EB7054300E308DE /* RecordDetailRowView.xib */,
+				433032FC1EB7055200E308DE /* RecordDetailRowView.swift */,
+				433032FE1EB7056B00E308DE /* RecordDetailTableViewCell.swift */,
+				433032F81EB6FCA600E308DE /* RecordDetailTableViewController.swift */,
+			);
+			name = RecordDetail;
+			sourceTree = "<group>";
+		};
 		43372CF71E7FB4BD002E2AE3 = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +285,7 @@
 				43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */,
 				43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */,
 				4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */,
-				433032F81EB6FCA600E308DE /* RecordDetailTableViewController.swift */,
+				433033001EB7075C00E308DE /* RecordDetail */,
 			);
 			name = Record;
 			sourceTree = "<group>";
@@ -519,6 +536,7 @@
 				4336811B1E8A427F00D51B5C /* CalendarCellView.xib in Resources */,
 				43372D361E7FCA89002E2AE3 /* TabBar.storyboard in Resources */,
 				435B71E41EA6040F00FBABBF /* InfoRowView.xib in Resources */,
+				433032FB1EB7054300E308DE /* RecordDetailRowView.xib in Resources */,
 				438EFDA91EB1C34300D9B18A /* ProfileSegmentRowView.xib in Resources */,
 				438EFDA11EB1C30600D9B18A /* ProfilePhotoRowView.xib in Resources */,
 				4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */,
@@ -614,6 +632,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				435B71F21EA60ACE00FBABBF /* FinishTableViewCell.swift in Sources */,
+				433032FD1EB7055200E308DE /* RecordDetailRowView.swift in Sources */,
 				435B71F01EA60AC100FBABBF /* InfoTableViewCell.swift in Sources */,
 				434398171EAA66F900A8F220 /* UserManager.swift in Sources */,
 				438EFDA71EB1C33700D9B18A /* ProfileSegmentRowView.swift in Sources */,
@@ -671,6 +690,7 @@
 				4336811D1E8A441B00D51B5C /* CalendarCellView.swift in Sources */,
 				43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */,
 				43372D0C1E7FB4BD002E2AE3 /* Caca.xcdatamodeld in Sources */,
+				433032FF1EB7056B00E308DE /* RecordDetailTableViewCell.swift in Sources */,
 				43372D1C1E7FC603002E2AE3 /* CacaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

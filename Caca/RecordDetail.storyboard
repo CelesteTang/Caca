@@ -218,5 +218,62 @@
             </objects>
             <point key="canvasLocation" x="68" y="189.3553223388306"/>
         </scene>
+        <!--Record Detail Table View Controller-->
+        <scene sceneID="vfu-6h-6Bp">
+            <objects>
+                <viewController storyboardIdentifier="RecordDetailTableViewController" id="g6E-dg-gNn" customClass="RecordDetailTableViewController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YYY-5h-JsL"/>
+                        <viewControllerLayoutGuide type="bottom" id="pcJ-ai-fNE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uk6-lR-rAF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3AO-E9-kvw">
+                                <rect key="frame" x="87" y="28" width="146" height="146"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3AO-E9-kvw" secondAttribute="height" multiplier="1:1" id="QhD-sW-2Th"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rz-CH-hHw">
+                                <rect key="frame" x="16" y="508" width="288" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="IiF-Ap-BoK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cl4-7c-aUG">
+                                <rect key="frame" x="0.0" y="182" width="320" height="318"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Cl4-7c-aUG" secondAttribute="trailing" id="GnU-B7-I2Z"/>
+                            <constraint firstItem="Cl4-7c-aUG" firstAttribute="leading" secondItem="Uk6-lR-rAF" secondAttribute="leading" id="Sb6-8v-dLy"/>
+                            <constraint firstItem="3AO-E9-kvw" firstAttribute="leading" secondItem="Uk6-lR-rAF" secondAttribute="leading" constant="87" id="ZhM-jJ-9xl"/>
+                            <constraint firstItem="Cl4-7c-aUG" firstAttribute="top" secondItem="3AO-E9-kvw" secondAttribute="bottom" constant="8" id="cWM-hp-GOu"/>
+                            <constraint firstItem="3AO-E9-kvw" firstAttribute="centerX" secondItem="Uk6-lR-rAF" secondAttribute="centerX" id="hKn-e6-lVd"/>
+                            <constraint firstItem="5Rz-CH-hHw" firstAttribute="top" secondItem="Cl4-7c-aUG" secondAttribute="bottom" constant="8" id="iR6-8A-4Rl"/>
+                            <constraint firstItem="5Rz-CH-hHw" firstAttribute="leading" secondItem="Uk6-lR-rAF" secondAttribute="leadingMargin" id="k3X-g8-hWJ"/>
+                            <constraint firstItem="pcJ-ai-fNE" firstAttribute="top" secondItem="5Rz-CH-hHw" secondAttribute="bottom" constant="16" id="rgZ-KD-zwp"/>
+                            <constraint firstItem="3AO-E9-kvw" firstAttribute="top" secondItem="YYY-5h-JsL" secondAttribute="bottom" constant="8" id="uA4-7L-3nO"/>
+                            <constraint firstItem="5Rz-CH-hHw" firstAttribute="trailing" secondItem="Uk6-lR-rAF" secondAttribute="trailingMargin" id="zbh-hd-0II"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cacaPhoto" destination="3AO-E9-kvw" id="6f3-oQ-1Aj"/>
+                        <outlet property="infoTableView" destination="Cl4-7c-aUG" id="gkQ-EG-29m"/>
+                        <outlet property="passOrFailLabel" destination="5Rz-CH-hHw" id="6yk-BN-tMs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b3l-cs-pYm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="721.875" y="188.02816901408451"/>
+        </scene>
     </scenes>
 </document>

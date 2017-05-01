@@ -8,8 +8,14 @@
 
 import UIKit
 
-class RecordDetailTableViewController: UITableViewController {
+class RecordDetailTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var cacaPhoto: UIImageView!
+    
+    @IBOutlet weak var infoTableView: UITableView!
+    
+    @IBOutlet weak var passOrFailLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,14 +23,16 @@ class RecordDetailTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 0
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 
 }
