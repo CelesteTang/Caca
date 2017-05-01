@@ -99,7 +99,7 @@ class PasswordViewController: UIViewController {
     private func setUp() {
 
         self.view.backgroundColor = Palette.lightblue2
-        self.numberCollectionView.backgroundColor = Palette.lightblue2
+        self.numberCollectionView.backgroundColor = Palette.lightblue
 
         self.passwordLabel.text = "Please enter your password"
         self.passwordLabel.textColor = Palette.darkblue

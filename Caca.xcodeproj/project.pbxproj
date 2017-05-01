@@ -23,6 +23,7 @@
 		4328DCA81E9C8E6D006D3FB8 /* PrivacyRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4328DCA71E9C8E6D006D3FB8 /* PrivacyRowView.xib */; };
 		4328DCAA1E9C8EA8006D3FB8 /* PrivacyRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */; };
 		4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */; };
+		433032F91EB6FCA600E308DE /* RecordDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433032F81EB6FCA600E308DE /* RecordDetailTableViewController.swift */; };
 		43308EB31E9B4D4D00BB4F0D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43308EB21E9B4D4D00BB4F0D /* Profile.storyboard */; };
 		4330959B1E8CE68200E65E08 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */; };
 		433681191E8A424900D51B5C /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433681181E8A424900D51B5C /* Calendar.storyboard */; };
@@ -114,6 +115,7 @@
 		4328DCA71E9C8E6D006D3FB8 /* PrivacyRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyRowView.xib; sourceTree = "<group>"; };
 		4328DCA91E9C8EA8006D3FB8 /* PrivacyRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyRowView.swift; sourceTree = "<group>"; };
 		4328DCAB1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewCell.swift; sourceTree = "<group>"; };
+		433032F81EB6FCA600E308DE /* RecordDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDetailTableViewController.swift; sourceTree = "<group>"; };
 		43308EB21E9B4D4D00BB4F0D /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		433681181E8A424900D51B5C /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */,
 				43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */,
 				4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */,
+				433032F81EB6FCA600E308DE /* RecordDetailTableViewController.swift */,
 			);
 			name = Record;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				435B71EE1EA60AB500FBABBF /* PhotoTableViewCell.swift in Sources */,
 				438EFDB21EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,
+				433032F91EB6FCA600E308DE /* RecordDetailTableViewController.swift in Sources */,
 				43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */,
 				435B71EA1EA6080000FBABBF /* InfoRowView.swift in Sources */,
 				43372D1F1E7FC635002E2AE3 /* RecordTableViewController.swift in Sources */,
