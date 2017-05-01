@@ -11,18 +11,18 @@ import UIKit
 class RecordDetailRowView: UIView {
 
     @IBOutlet weak var infoLabel: UILabel!
-    
+
     @IBOutlet weak var infoTextLabel: UILabel!
 
 }
 
 extension RecordDetailRowView {
-    
+
     // swiftlint:disable force_cast
     class func create() -> RecordDetailRowView {
-        
+
         return UINib(nibName: "RecordDetailRowView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! RecordDetailRowView
     }
     // swiftlint:enable force_cast
-    
+
 }

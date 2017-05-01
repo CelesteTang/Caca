@@ -193,12 +193,11 @@ class RecordTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        guard let recordDetailViewController = UIStoryboard(name: "RecordDetail", bundle: nil).instantiateViewController(withIdentifier: "RecordDetailViewController") as? RecordDetailViewController else { return }
+        guard let recordDetailTableViewController = UIStoryboard(name: "RecordDetail", bundle: nil).instantiateViewController(withIdentifier: "RecordDetailTableViewController") as? RecordDetailTableViewController else { return }
 
-        recordDetailViewController.recievedCaca = [self.cacas[indexPath.row]]
-        recordDetailViewController.indexPath = indexPath
+        recordDetailTableViewController.recievedCaca = [self.cacas[indexPath.row]]
 
-        self.navigationController?.pushViewController(recordDetailViewController, animated: true)
+        self.navigationController?.pushViewController(recordDetailTableViewController, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

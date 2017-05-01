@@ -11,48 +11,46 @@ import UIKit
 class RecordDetailTableViewCell: UITableViewCell {
 
     // MARK: Property
-    
+
     let rowView = RecordDetailRowView.create()
-    
+
     // MARK: Init
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         setUp()
-        
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         setUp()
-        
+
     }
-    
+
     // MARK: Set Up
-    
+
     private func setUp() {
-        
+
         self.clipsToBounds = true
-        
+
         self.contentView.addSubview(rowView)
-        
+
         self.rowView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         self.rowView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
         self.rowView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
         self.rowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
         self.rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
-        
+
         self.rowView.backgroundColor = Palette.lightblue2
-        
-//        self.rowView.dateLabel.textColor = Palette.darkblue
-//        self.rowView.timeLabel.textColor = Palette.darkblue
-//        self.rowView.dateLabel.font = UIFont(name: "Futura-Bold", size: 20)
-//        self.rowView.timeLabel.font = UIFont(name: "Futura-Bold", size: 20)
-//        self.rowView.passOrFailLabel.font = UIFont(name: "Futura-Bold", size: 30)
-        
+
+        self.rowView.infoLabel.textAlignment = .center
+        self.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        self.rowView.infoLabel.textColor = Palette.darkblue
+
     }
-    
+
 }

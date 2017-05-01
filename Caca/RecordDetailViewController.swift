@@ -68,7 +68,6 @@ class RecordDetailViewController: UIViewController {
     }
 
     var recievedCaca = [Caca]()
-    var indexPath = IndexPath()
 
     override func viewDidLoad() {
         super.viewDidLoad()

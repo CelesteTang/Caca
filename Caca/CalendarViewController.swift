@@ -20,7 +20,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var adviceView: UIView!
 
     @IBOutlet weak var borderView: UIView!
-    
+
     @IBOutlet weak var innerBorderView: UIView!
     @IBOutlet weak var adviceLabel: UILabel!
 
@@ -85,11 +85,11 @@ class CalendarViewController: UIViewController {
         self.borderView.backgroundColor = Palette.lightblue2
         self.borderView.layer.borderWidth = 5
         self.borderView.layer.borderColor = Palette.darkblue.cgColor
-        
+
         self.innerBorderView.backgroundColor = Palette.lightblue2
         self.innerBorderView.layer.borderWidth = 2
         self.innerBorderView.layer.borderColor = Palette.darkblue.cgColor
-        
+
         self.adviceLabel.textColor = Palette.darkblue
         self.adviceLabel.text = "How's today?"
         self.adviceLabel.numberOfLines = 0
