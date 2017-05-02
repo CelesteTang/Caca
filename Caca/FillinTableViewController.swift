@@ -822,7 +822,7 @@ class FillinTableViewController: UITableViewController {
 
                 if cacas[cacas.count - 1].grading == false && ispassed == false {
 
-                    self.frequencyAdvice = "If you have the same symptom tomorrow, you should go to see a doctor."
+                    self.frequencyAdvice = NSLocalizedString("If you have the same symptom tomorrow, you should go to see a doctor.", comment: "")
 
                 }
 
@@ -830,11 +830,11 @@ class FillinTableViewController: UITableViewController {
 
                 if cacas[cacas.count - 2].grading == false && cacas[cacas.count - 1].grading == false && ispassed == false {
 
-                    self.frequencyAdvice = "You should go to see a doctor NOW!"
+                    self.frequencyAdvice = NSLocalizedString("You should go to see a doctor NOW!", comment: "")
 
                 } else if cacas[cacas.count - 1].grading == false && ispassed == false {
 
-                    self.frequencyAdvice = "If you have the same symptom tomorrow, you should go to see a doctor."
+                    self.frequencyAdvice = NSLocalizedString("If you have the same symptom tomorrow, you should go to see a doctor.", comment: "")
 
                 }
 
@@ -850,7 +850,7 @@ class FillinTableViewController: UITableViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-            let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+            let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
 
             tabBarController?.selectedIndex = TabBarItemType.record.rawValue
 
@@ -872,7 +872,7 @@ class FillinTableViewController: UITableViewController {
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
 
-        let cacaID = FIRDatabase.database().reference().child("cacas").childByAutoId().key
+        let cacaID = FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).childByAutoId().key
         let photoID = UUID().uuidString
         let overallAdvice = getAdvice()
 
@@ -884,7 +884,7 @@ class FillinTableViewController: UITableViewController {
 
                 if error != nil {
 
-                    let alertController = UIAlertController(title: "Warning",
+                    let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                             message: error?.localizedDescription,
                                                             preferredStyle: .alert)
 
@@ -896,25 +896,25 @@ class FillinTableViewController: UITableViewController {
 
                 }
 
-                FIRAnalytics.logEvent(withName: "CreateWithPhoto", parameters: nil)
+                FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.createWithPhoto, parameters: nil)
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
 
-                let value = ["host": hostUID,
-                             "cacaID": cacaID,
-                             "photo": cacaPhotoUrl,
-                             "photoID": photoID,
-                             "date": self.finalCaca.date,
-                             "time": self.finalCaca.time,
-                             "consumingTime": self.finalCaca.consumingTime,
-                             "shape": self.finalCaca.shape,
-                             "color": self.finalCaca.color,
-                             "amount": self.finalCaca.amount,
-                             "other": self.finalCaca.otherInfo ?? "",
-                             "grading": self.ispassed,
-                             "advice": overallAdvice,
-                             "period": self.finalCaca.period ?? "",
-                             "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
+                let value = [Constants.FirebaseCacaKey.host: hostUID,
+                             Constants.FirebaseCacaKey.cacaID: cacaID,
+                             Constants.FirebaseCacaKey.photo: cacaPhotoUrl,
+                             Constants.FirebaseCacaKey.photoID: photoID,
+                             Constants.FirebaseCacaKey.date: self.finalCaca.date,
+                             Constants.FirebaseCacaKey.time: self.finalCaca.time,
+                             Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
+                             Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
+                             Constants.FirebaseCacaKey.color: self.finalCaca.color,
+                             Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
+                             Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo ?? "",
+                             Constants.FirebaseCacaKey.grading: self.ispassed,
+                             Constants.FirebaseCacaKey.advice: overallAdvice,
+                             Constants.FirebaseCacaKey.period: self.finalCaca.period ?? "",
+                             Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine ?? ""] as [String : Any]
 
                 CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
@@ -926,21 +926,23 @@ class FillinTableViewController: UITableViewController {
 
             // MARK : Create caca without photo
 
-            let value = ["host": hostUID,
-                         "cacaID": cacaID,
-                         "photo": "",
-                         "photoID": "",
-                         "date": self.finalCaca.date,
-                         "time": self.finalCaca.time,
-                         "consumingTime": self.finalCaca.consumingTime,
-                         "shape": self.finalCaca.shape,
-                         "color": self.finalCaca.color,
-                         "amount": self.finalCaca.amount,
-                         "other": self.finalCaca.otherInfo ?? "",
-                         "grading": self.ispassed,
-                         "advice": overallAdvice,
-                         "period": self.finalCaca.period ?? "",
-                         "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
+            FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.createWithoutPhoto, parameters: nil)
+
+            let value = [Constants.FirebaseCacaKey.host: hostUID,
+                         Constants.FirebaseCacaKey.cacaID: cacaID,
+                         Constants.FirebaseCacaKey.photo: "",
+                         Constants.FirebaseCacaKey.photoID: "",
+                         Constants.FirebaseCacaKey.date: self.finalCaca.date,
+                         Constants.FirebaseCacaKey.time: self.finalCaca.time,
+                         Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
+                         Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
+                         Constants.FirebaseCacaKey.color: self.finalCaca.color,
+                         Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
+                         Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo ?? "",
+                         Constants.FirebaseCacaKey.grading: self.ispassed,
+                         Constants.FirebaseCacaKey.advice: overallAdvice,
+                         Constants.FirebaseCacaKey.period: self.finalCaca.period ?? "",
+                         Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine ?? ""] as [String : Any]
 
             CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
@@ -974,7 +976,7 @@ class FillinTableViewController: UITableViewController {
 
                 if storageError != nil {
 
-                    let alertController = UIAlertController(title: "Warning",
+                    let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                             message: storageError?.localizedDescription,
                                                             preferredStyle: .alert)
 
@@ -988,7 +990,7 @@ class FillinTableViewController: UITableViewController {
 
                 if deleteError != nil {
 
-                    let alertController = UIAlertController(title: "Warning",
+                    let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                             message: deleteError?.localizedDescription,
                                                             preferredStyle: .alert)
 
@@ -1000,24 +1002,24 @@ class FillinTableViewController: UITableViewController {
 
                 }
 
-                FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
+                FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.editWithPhoto, parameters: nil)
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
-                let value = ["host": hostUID,
-                             "cacaID": cacaID,
-                             "photo": cacaPhotoUrl,
-                             "photoID": photoID,
-                             "date": self.finalCaca.date,
-                             "time": self.finalCaca.time,
-                             "consumingTime": self.finalCaca.consumingTime,
-                             "shape": self.finalCaca.shape,
-                             "color": self.finalCaca.color,
-                             "amount": self.finalCaca.amount,
-                             "other": self.finalCaca.otherInfo ?? "",
-                             "grading": self.ispassed,
-                             "advice": overallAdvice,
-                             "period": self.finalCaca.period ?? "",
-                             "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
+                let value = [Constants.FirebaseCacaKey.host: hostUID,
+                             Constants.FirebaseCacaKey.cacaID: cacaID,
+                             Constants.FirebaseCacaKey.photo: cacaPhotoUrl,
+                             Constants.FirebaseCacaKey.photoID: photoID,
+                             Constants.FirebaseCacaKey.date: self.finalCaca.date,
+                             Constants.FirebaseCacaKey.time: self.finalCaca.time,
+                             Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
+                             Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
+                             Constants.FirebaseCacaKey.color: self.finalCaca.color,
+                             Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
+                             Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo ?? "",
+                             Constants.FirebaseCacaKey.grading: self.ispassed,
+                             Constants.FirebaseCacaKey.advice: overallAdvice,
+                             Constants.FirebaseCacaKey.period: self.finalCaca.period ?? "",
+                             Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine ?? ""] as [String : Any]
 
                 CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
 
@@ -1035,7 +1037,7 @@ class FillinTableViewController: UITableViewController {
 
                 if error != nil {
 
-                    let alertController = UIAlertController(title: "Warning",
+                    let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                             message: error?.localizedDescription,
                                                             preferredStyle: .alert)
 
@@ -1047,24 +1049,24 @@ class FillinTableViewController: UITableViewController {
 
                 }
 
-                FIRAnalytics.logEvent(withName: "EditWithPhoto", parameters: nil)
+                FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.editWithPhoto, parameters: nil)
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
-                let value = ["host": hostUID,
-                             "cacaID": cacaID,
-                             "photo": cacaPhotoUrl,
-                             "photoID": newPhotoID,
-                             "date": self.finalCaca.date,
-                             "time": self.finalCaca.time,
-                             "consumingTime": self.finalCaca.consumingTime,
-                             "shape": self.finalCaca.shape,
-                             "color": self.finalCaca.color,
-                             "amount": self.finalCaca.amount,
-                             "other": self.finalCaca.otherInfo ?? "",
-                             "grading": self.ispassed,
-                             "advice": overallAdvice,
-                             "period": self.finalCaca.period ?? "",
-                             "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
+                let value = [Constants.FirebaseCacaKey.host: hostUID,
+                             Constants.FirebaseCacaKey.cacaID: cacaID,
+                             Constants.FirebaseCacaKey.photo: cacaPhotoUrl,
+                             Constants.FirebaseCacaKey.photoID: newPhotoID,
+                             Constants.FirebaseCacaKey.date: self.finalCaca.date,
+                             Constants.FirebaseCacaKey.time: self.finalCaca.time,
+                             Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
+                             Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
+                             Constants.FirebaseCacaKey.color: self.finalCaca.color,
+                             Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
+                             Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo ?? "",
+                             Constants.FirebaseCacaKey.grading: self.ispassed,
+                             Constants.FirebaseCacaKey.advice: overallAdvice,
+                             Constants.FirebaseCacaKey.period: self.finalCaca.period ?? "",
+                             Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine ?? ""] as [String : Any]
 
                 CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
 
@@ -1076,21 +1078,23 @@ class FillinTableViewController: UITableViewController {
 
             // MARK : Edit caca without new photo (no old photo)
 
-            let value = ["host": hostUID,
-                         "cacaID": cacaID,
-                         "photo": "",
-                         "photoID": "",
-                         "date": self.finalCaca.date,
-                         "time": self.finalCaca.time,
-                         "consumingTime": self.finalCaca.consumingTime,
-                         "shape": self.finalCaca.shape,
-                         "color": self.finalCaca.color,
-                         "amount": self.finalCaca.amount ,
-                         "other": self.finalCaca.otherInfo ?? "",
-                         "grading": self.ispassed,
-                         "advice": overallAdvice,
-                         "period": self.finalCaca.period ?? "",
-                         "medicine": self.finalCaca.medicine ?? ""] as [String : Any]
+            FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.editWithoutPhoto, parameters: nil)
+
+            let value = [Constants.FirebaseCacaKey.host: hostUID,
+                         Constants.FirebaseCacaKey.cacaID: cacaID,
+                         Constants.FirebaseCacaKey.photo: "",
+                         Constants.FirebaseCacaKey.photoID: "",
+                         Constants.FirebaseCacaKey.date: self.finalCaca.date,
+                         Constants.FirebaseCacaKey.time: self.finalCaca.time,
+                         Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
+                         Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
+                         Constants.FirebaseCacaKey.color: self.finalCaca.color,
+                         Constants.FirebaseCacaKey.amount: self.finalCaca.amount ,
+                         Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo ?? "",
+                         Constants.FirebaseCacaKey.grading: self.ispassed,
+                         Constants.FirebaseCacaKey.advice: overallAdvice,
+                         Constants.FirebaseCacaKey.period: self.finalCaca.period ?? "",
+                         Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine ?? ""] as [String : Any]
 
             CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
 
@@ -1123,8 +1127,8 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
         dismiss(animated: true) {
 
-            let alertController = UIAlertController(title: "Note",
-                                                    message: "The color of your caca is closed to \(self.getClosedColor(of: dominantColor))",
+            let alertController = UIAlertController(title: NSLocalizedString("Note", comment: "Note to let user know the detection color"),
+                                                    message: NSLocalizedString("The color of your caca is closed to \(self.getClosedColor(of: dominantColor))", comment: ""),
                 preferredStyle: .alert)
 
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
@@ -1403,7 +1407,7 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
             }
 
-            pickerLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            pickerLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
             pickerLabel.textAlignment = NSTextAlignment.center
 

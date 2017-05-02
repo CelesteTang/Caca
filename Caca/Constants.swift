@@ -84,15 +84,19 @@ struct Constants {
         static let shape = "shape"
         static let time = "time"
     }
-    
+
     struct FirebaseAnalyticsKey {
         static let goToTiming = "GoToTiming"
         static let cancelTiming = "CancelTiming"
         static let didTiming = "DidTiming"
+        static let createWithPhoto = "CreateWithPhoto"
+        static let createWithoutPhoto = "CreateWithoutPhoto"
+        static let editWithPhoto = "EditWithPhoto"
+        static let editWithoutPhoto = "EditWithoutPhoto"
     }
-    
+
     struct NotificationIdentidier {
         static let longTimeNoCaca = "caca.longTimeNoCaca"
     }
-    
+
 }
