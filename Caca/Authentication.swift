@@ -16,9 +16,9 @@ enum Authentication: Int {
 
         switch self {
 
-        case .password: return "Password"
+        case .password: return NSLocalizedString("Password", comment: "")
 
-        case .passwordChanging: return "New password"
+        case .passwordChanging: return NSLocalizedString("New password", comment: "")
 
         case .touchID: return "TouchID"
 
