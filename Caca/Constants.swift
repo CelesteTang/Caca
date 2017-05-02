@@ -52,6 +52,10 @@ struct Constants {
         static let medicine = "Medicine"
         static let isViewedWalkThrough = "IsViewedWalkThrough"
         static let hide = "Hide"
+        static let passwordAuthentication = "PasswordAuthentication"
+        static let touchIDAuthentication = "TouchIDAuthentication"
+        static let password = "Password"
+        
     }
 
     struct UIFont {

@@ -25,10 +25,10 @@ class PrivacyTableViewController: UITableViewController {
 
         self.tableView.backgroundColor = Palette.lightblue2
 
-        self.navigationItem.title = "Privacy"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+        self.navigationItem.title = NSLocalizedString("Privacy", comment: "")
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""]
 
-        if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
+        if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.passwordAuthentication) == true {
 
             authentications = [.password, .passwordChanging, .touchID]
 
@@ -90,7 +90,7 @@ class PrivacyTableViewController: UITableViewController {
         case Authentication.password.rawValue:
 
             cell.selectionStyle = .none
-            if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
+            if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.passwordAuthentication) == true {
 
                 cell.rowView.switchButton.isOn = true
 
@@ -110,7 +110,7 @@ class PrivacyTableViewController: UITableViewController {
         case Authentication.touchID.rawValue:
 
             cell.selectionStyle = .none
-            cell.rowView.switchButton.isOn = UserDefaults.standard.bool(forKey: "TouchIDAuthentication")
+            cell.rowView.switchButton.isOn = UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.touchIDAuthentication)
             cell.rowView.switchButton.addTarget(self, action: #selector(openTouchIDAuthentication), for: .valueChanged)
 
         default: break
@@ -127,7 +127,7 @@ class PrivacyTableViewController: UITableViewController {
 
         case Authentication.passwordChanging.rawValue:
 
-            guard let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+            guard let passwordViewController = UIStoryboard(name: Constants.Storyboard.password, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.password) as? PasswordViewController else { return }
 
             passwordViewController.isFromPasswordChanging = true
 
@@ -142,10 +142,10 @@ class PrivacyTableViewController: UITableViewController {
 
         if sender.isOn == true {
 
-            UserDefaults.standard.set(true, forKey: "PasswordAuthentication")
-            UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
+            UserDefaults.standard.set(true, forKey: Constants.UserDefaultsKey.passwordAuthentication)
+            UserDefaults.standard.set(true, forKey: Constants.UserDefaultsKey.touchIDAuthentication)
 
-            guard let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController else { return }
+            guard let passwordViewController = UIStoryboard(name: Constants.Storyboard.password, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.password) as? PasswordViewController else { return }
 
             passwordViewController.isFromPassword = true
 
@@ -157,9 +157,9 @@ class PrivacyTableViewController: UITableViewController {
 
         } else {
 
-            UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
-            UserDefaults.standard.set(false, forKey: "TouchIDAuthentication")
-            UserDefaults.standard.removeObject(forKey: "Password")
+            UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.passwordAuthentication)
+            UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.touchIDAuthentication)
+            UserDefaults.standard.removeObject(forKey: Constants.UserDefaultsKey.password)
 
             authentications = [.password]
 
@@ -173,11 +173,11 @@ class PrivacyTableViewController: UITableViewController {
 
         if sender.isOn == true {
 
-            UserDefaults.standard.set(true, forKey: "TouchIDAuthentication")
+            UserDefaults.standard.set(true, forKey: Constants.UserDefaultsKey.touchIDAuthentication)
 
         } else {
 
-            UserDefaults.standard.set(false, forKey: "TouchIDAuthentication")
+            UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.touchIDAuthentication)
 
         }
 
