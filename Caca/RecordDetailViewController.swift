@@ -8,6 +8,8 @@
 
 import UIKit
 
+// Un-use
+
 class RecordDetailViewController: UIViewController {
 
     @IBOutlet weak var cacaPhoto: UIImageView!

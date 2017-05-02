@@ -25,14 +25,14 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
         var title: String {
 
             switch self {
-            case .date: return "Date"
-            case .time: return "Time"
-            case .color: return "Color"
-            case .shape: return "Shape"
-            case .amount: return "Amount"
-            case .period: return "Period"
-            case .medicine: return "Medicine"
-            case .other: return "Other"
+            case .date: return NSLocalizedString("Date", comment: "")
+            case .time: return NSLocalizedString("Time", comment: "")
+            case .color: return NSLocalizedString("Color", comment: "")
+            case .shape: return NSLocalizedString("Shape", comment: "")
+            case .amount: return NSLocalizedString("Amount", comment: "")
+            case .period: return NSLocalizedString("Period", comment: "")
+            case .medicine: return NSLocalizedString("Medicine", comment: "")
+            case .other: return NSLocalizedString("Other", comment: "")
             }
         }
     }
@@ -46,15 +46,15 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if UserDefaults.standard.value(forKey: "Gender") as? Int == Gender.female.rawValue && UserDefaults.standard.value(forKey: "Medicine") as? Int == 0 {
+        if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int == Gender.female.rawValue && UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.medicine) as? Int == 0 {
 
             components = [.date, .time, .color, .shape, .amount, .period, .medicine, .other]
 
-        } else if UserDefaults.standard.value(forKey: "Gender") as? Int == Gender.female.rawValue {
+        } else if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int == Gender.female.rawValue {
 
             components = [.date, .time, .color, .shape, .amount, .period, .other]
 
-        } else if UserDefaults.standard.value(forKey: "Medicine") as? Int == 0 {
+        } else if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.medicine) as? Int == 0 {
 
             components = [.date, .time, .color, .shape, .amount, .medicine, .other]
 
@@ -73,8 +73,8 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
         self.view.backgroundColor = Palette.lightblue2
         self.infoTableView.backgroundColor = Palette.lightblue2
 
-        self.navigationItem.title = "My caca"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+        self.navigationItem.title = NSLocalizedString("My caca", comment: "")
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""]
 
         self.cacaPhoto.image = #imageLiteral(resourceName: "caca-big")
         self.cacaPhoto.backgroundColor = Palette.lightblue2
@@ -124,18 +124,18 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
         let editButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(editCaca))
         self.navigationItem.rightBarButtonItem = editButton
 
-        self.deleteButton.setTitle("DELETE", for: .normal)
+        self.deleteButton.setTitle(NSLocalizedString("Delete", comment: ""), for: .normal)
         self.deleteButton.backgroundColor = Palette.darkblue
         self.deleteButton.tintColor = Palette.cream
         self.deleteButton.layer.cornerRadius = self.deleteButton.frame.height / 2
-        self.deleteButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.deleteButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
         self.deleteButton.addTarget(self, action: #selector(deleteRecord), for: .touchUpInside)
 
     }
 
     func editCaca() {
 
-        guard let fillinTableViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
+        guard let fillinTableViewController = UIStoryboard(name: Constants.Storyboard.fillin, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.fillin) as? FillinTableViewController else { return }
 
         fillinTableViewController.recievedCacaFromRecordDetail = self.recievedCaca
         fillinTableViewController.isFromRecordDetail = true
@@ -146,8 +146,8 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
 
     func deleteRecord() {
 
-        let alertController = UIAlertController(title: "Warning",
-                                                message: "Do you want to delete this record?",
+        let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                message: NSLocalizedString("Do you want to delete this record?", comment: ""),
                                                 preferredStyle: .alert)
 
         let cancelAction = UIAlertAction(title: "No",
@@ -156,11 +156,11 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
 
         alertController.addAction(cancelAction)
 
-        let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+        let okAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive) { _ in
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
 
                 tabBarController?.selectedIndex = TabBarItemType.record.rawValue
 
@@ -290,11 +290,11 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
 
             if self.recievedCaca[0].period == 0 {
 
-                cell.rowView.infoTextLabel.text = "Yes"
+                cell.rowView.infoTextLabel.text = NSLocalizedString("Yes", comment: "")
 
             } else if self.recievedCaca[0].period == 1 {
 
-                cell.rowView.infoTextLabel.text = "No"
+                cell.rowView.infoTextLabel.text = NSLocalizedString("No", comment: "")
 
             }
 

@@ -48,7 +48,7 @@ class RecordDetailTableViewCell: UITableViewCell {
         self.rowView.backgroundColor = Palette.lightblue2
 
         self.rowView.infoLabel.textAlignment = .center
-        self.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        self.rowView.infoLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
         self.rowView.infoLabel.textColor = Palette.darkblue
 
     }
