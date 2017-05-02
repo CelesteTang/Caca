@@ -115,25 +115,25 @@ class StartViewController: UIViewController {
 
         self.appName.text = "Caca"
         self.appName.textColor = Palette.darkblue2
-        self.appName.font = UIFont(name: "Futura-Bold", size: 60)
+        self.appName.font = UIFont(name: Constants.UIFont.futuraBold, size: 60)
 
         self.startButton.backgroundColor = Palette.darkblue2
-        self.startButton.setTitle("Start Now", for: .normal)
+        self.startButton.setTitle(NSLocalizedString("Start Now", comment: "Start without logging in or signing up"), for: .normal)
         self.startButton.layer.cornerRadius = self.startButton.frame.height / 2
         self.startButton.tintColor = Palette.cream
-        self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.startButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
         self.signInButton.backgroundColor = Palette.darkblue2
-        self.signInButton.setTitle("Log In", for: .normal)
+        self.signInButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
         self.signInButton.layer.cornerRadius = self.signInButton.frame.height / 2
         self.signInButton.tintColor = Palette.cream
-        self.signInButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.signInButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
         self.signUpButton.backgroundColor = Palette.darkblue2
-        self.signUpButton.setTitle("Sign Up", for: .normal)
+        self.signUpButton.setTitle(NSLocalizedString("Sign Up", comment: ""), for: .normal)
         self.signUpButton.layer.cornerRadius = self.signUpButton.frame.height / 2
         self.signUpButton.tintColor = Palette.cream
-        self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.signUpButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
     }
 

@@ -1030,7 +1030,7 @@ class FillinTableViewController: UITableViewController {
             // MARK : Edit caca with new photo (no old photo)
 
             let newPhotoID = UUID().uuidString
-            
+
             CacaProvider.shared.saveCacaPhoto(image: finalCaca.image, photoID: newPhotoID, completion: { (cacaPhotoUrl, error) in
 
                 if error != nil {

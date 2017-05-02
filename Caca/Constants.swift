@@ -9,7 +9,7 @@
 import Foundation
 
 struct Constants {
-    
+
     struct Storyboard {
         static let landing = "Landing"
         static let opening = "Opening"
@@ -25,7 +25,7 @@ struct Constants {
         static let password = "Password"
         static let tabBar = "TabBar"
     }
-    
+
     struct Identifier {
         static let start = "StartViewController"
         static let signIn = "SignInViewController"
@@ -44,12 +44,17 @@ struct Constants {
         static let password = "PasswordViewController"
         static let tabBar = "TabBarController"
     }
-    
+
     struct UserDefaultsKey {
         static let name = "Name"
         static let age = "Age"
         static let gender = "Gender"
         static let medicine = "Medicine"
+        static let isViewedWalkThrough = "IsViewedWalkThrough"
     }
-    
+
+    struct UIFont {
+        static let futuraBold = "Futura-Bold"
+    }
+
 }
