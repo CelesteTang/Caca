@@ -26,14 +26,14 @@ class FillinTableViewController: UITableViewController {
         var title: String {
 
             switch self {
-            case .date: return "Date"
-            case .time: return "Time"
-            case .shape: return "Shape"
-            case .color: return "Color"
-            case .amount: return "Amount"
-            case .period: return "Period"
-            case .medicine: return "Medicine"
-            case .other: return "Other"
+            case .date: return NSLocalizedString("Date", comment: "")
+            case .time: return NSLocalizedString("Time", comment: "")
+            case .shape: return NSLocalizedString("Shape", comment: "")
+            case .color: return NSLocalizedString("Color", comment: "")
+            case .amount: return NSLocalizedString("Amount", comment: "")
+            case .period: return NSLocalizedString("Period", comment: "")
+            case .medicine: return NSLocalizedString("Medicine", comment: "")
+            case .other: return NSLocalizedString("Other", comment: "")
             default: return ""
             }
         }
@@ -82,15 +82,15 @@ class FillinTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if UserDefaults.standard.value(forKey: "Gender") as? Int == Gender.female.rawValue && UserDefaults.standard.value(forKey: "Medicine") as? Int == 0 {
+        if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int == Gender.female.rawValue && UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.medicine) as? Int == 0 {
 
             components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
 
-        } else if UserDefaults.standard.value(forKey: "Gender") as? Int == Gender.female.rawValue {
+        } else if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int == Gender.female.rawValue {
 
             components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
 
-        } else if UserDefaults.standard.value(forKey: "Medicine") as? Int == 0 {
+        } else if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.medicine) as? Int == 0 {
 
             components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
 
@@ -196,19 +196,19 @@ class FillinTableViewController: UITableViewController {
             case 0.23...0.3:
 
                 let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.3)
-                amountCell?.rowView.infoTextField.text = "Large"
+                amountCell?.rowView.infoTextField.text = NSLocalizedString("Large", comment: "")
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
             case 0.16..<0.23:
 
                 let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.2)
-                amountCell?.rowView.infoTextField.text = "Normal"
+                amountCell?.rowView.infoTextField.text = NSLocalizedString("Normal", comment: "")
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
             case 0.10..<0.16:
 
                 let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.1)
-                amountCell?.rowView.infoTextField.text = "Small"
+                amountCell?.rowView.infoTextField.text = NSLocalizedString("Small", comment: "")
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
             default: break
@@ -468,14 +468,14 @@ class FillinTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
-            cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.infoLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
 
             cell.rowView.infoSegmentedControl.setTitle("Yes", forSegmentAt: 0)
             cell.rowView.infoSegmentedControl.setTitle("No", forSegmentAt: 1)
             cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
-            cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+            cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
 
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
 
@@ -550,7 +550,7 @@ class FillinTableViewController: UITableViewController {
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
 
                 appDelegate.window?.rootViewController = tabBarController
 
@@ -576,7 +576,7 @@ class FillinTableViewController: UITableViewController {
 
     func addPhoto() {
 
-        let alertController = UIAlertController(title: "Add a caca photo",
+        let alertController = UIAlertController(title: NSLocalizedString("Add a caca photo", comment: ""),
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
 
@@ -586,7 +586,7 @@ class FillinTableViewController: UITableViewController {
 
         alertController.addAction(cancelAction)
 
-        let photoAction = UIAlertAction(title: "Choose from library", style: .default) { _ in
+        let photoAction = UIAlertAction(title: NSLocalizedString("Choose from library", comment: ""), style: .default) { _ in
 
             let picker = UIImagePickerController()
             picker.delegate = self
@@ -599,7 +599,7 @@ class FillinTableViewController: UITableViewController {
 
         alertController.addAction(photoAction)
 
-        let cameraAction = UIAlertAction(title: "Take photo", style: .default) { _ in
+        let cameraAction = UIAlertAction(title: NSLocalizedString("Take photo", comment: ""), style: .default) { _ in
 
             let picker = UIImagePickerController()
             picker.delegate = self
@@ -647,8 +647,8 @@ class FillinTableViewController: UITableViewController {
 
         if dateCell?.rowView.infoTextField.text == "" {
 
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter the date",
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your date", comment: "User must enter date"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -659,8 +659,8 @@ class FillinTableViewController: UITableViewController {
 
         } else if timeCell?.rowView.infoTextField.text == "" {
 
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter the time",
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your time", comment: "User must enter time"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -671,8 +671,8 @@ class FillinTableViewController: UITableViewController {
 
         } else if shapeCell?.rowView.infoTextField.text == "" {
 
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter the shape",
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your shape", comment: "User must enter shape"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -683,8 +683,8 @@ class FillinTableViewController: UITableViewController {
 
         } else if colorCell?.rowView.infoTextField.text == "" {
 
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter the color",
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your color", comment: "User must enter color"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -695,8 +695,8 @@ class FillinTableViewController: UITableViewController {
 
         } else if amountCell?.rowView.infoTextField.text == "" {
 
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter the amount",
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your amount", comment: "User must enter amount"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -758,11 +758,11 @@ class FillinTableViewController: UITableViewController {
 
             ispassed = true
 
-            self.advice = "Good caca! Please keep it up!"
+            self.advice = NSLocalizedString("Good caca! Please keep it up!", comment: "")
 
         } else {
 
-            self.advice = "Warning! Your caca may not be healthy! "
+            self.advice = NSLocalizedString("Warning! Your caca may not be healthy! ", comment: "")
 
             // MARK: Shape
 
@@ -770,15 +770,15 @@ class FillinTableViewController: UITableViewController {
 
             case Shape.separateHard.title, Shape.lumpySausage.title:
 
-                self.shapeAdvice = "You are constipated, and "
+                self.shapeAdvice = NSLocalizedString("You are constipated, and ", comment: "")
 
             case Shape.crackSausage.title, Shape.smoothSausage.title:
 
-                self.shapeAdvice = "The shape of your caca is good, but "
+                self.shapeAdvice = NSLocalizedString("The shape of your caca is good, but ", comment: "")
 
             case Shape.softBlob.title, Shape.mushyStool.title, Shape.wateryStool.title:
 
-                self.shapeAdvice = "You have diarrhea, and "
+                self.shapeAdvice = NSLocalizedString("You have diarrhea, and ", comment: "")
 
             default: break
 
@@ -790,27 +790,27 @@ class FillinTableViewController: UITableViewController {
 
             case Color.red.title:
 
-                self.colorAdvice = "the color of your caca is red. "
+                self.colorAdvice = NSLocalizedString("the color of your caca is red. ", comment: "")
 
             case Color.yellow.title:
 
-                self.colorAdvice = "the color of your caca is yellow. "
+                self.colorAdvice = NSLocalizedString("the color of your caca is yellow. ", comment: "")
 
             case Color.green.title:
 
-                self.colorAdvice = "the color of your caca is green. "
+                self.colorAdvice = NSLocalizedString("the color of your caca is green. ", comment: "")
 
             case Color.lightBrown.title, Color.darkBrown.title:
 
-                self.colorAdvice = "the color of your caca is good! "
+                self.colorAdvice = NSLocalizedString("the color of your caca is good! ", comment: "")
 
             case Color.gray.title:
 
-                self.colorAdvice = "the color of your caca is gray. "
+                self.colorAdvice = NSLocalizedString("the color of your caca is gray. ", comment: "")
 
             case Color.black.title:
 
-                self.colorAdvice = "the color of your caca is black. "
+                self.colorAdvice = NSLocalizedString("the color of your caca is black. ", comment: "")
 
             default: break
 

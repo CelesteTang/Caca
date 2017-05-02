@@ -48,11 +48,6 @@ class InfoSegmentTableViewCell: UITableViewCell {
         self.rowView.backgroundColor = Palette.lightblue2
         self.rowView.borderView.backgroundColor = Palette.darkblue2
 
-//        self.rowView.infoTextField.textAlignment = .center
-//        self.rowView.infoLabel.textColor = Palette.darkblue
-//        self.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
-//        self.rowView.infoLabel.textAlignment = .center
-
     }
 
 }

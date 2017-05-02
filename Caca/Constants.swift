@@ -76,7 +76,7 @@ struct Constants {
         static let date = "date"
         static let grading = "grading"
         static let host = "host"
-        static let medicine = "Medicine"
+        static let medicine = "medicine"
         static let other = "other"
         static let period = "period"
         static let photo = "photo"
