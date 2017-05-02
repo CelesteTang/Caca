@@ -55,6 +55,7 @@ struct Constants {
 
     struct UIFont {
         static let futuraBold = "Futura-Bold"
+        static let courierNew = "Courier New"
     }
 
     struct FirebaseUserKey {
@@ -86,6 +87,8 @@ struct Constants {
     
     struct FirebaseAnalyticsKey {
         static let goToTiming = "GoToTiming"
+        static let cancelTiming = "CancelTiming"
+        static let didTiming = "DidTiming"
     }
     
     struct NotificationIdentidier {

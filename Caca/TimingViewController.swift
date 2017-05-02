@@ -37,9 +37,9 @@ class TimingViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-            let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+            let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
 
-            FIRAnalytics.logEvent(withName: "CancelTiming", parameters: nil)
+            FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.cancelTiming, parameters: nil)
 
             appDelegate.window?.rootViewController = tabBarController
 
@@ -68,7 +68,7 @@ class TimingViewController: UIViewController {
 
             self.resumeTapped = true
 
-            self.pauseButton.setTitle("Resume", for: UIControlState.normal)
+            self.pauseButton.setTitle(NSLocalizedString("Resume", comment: ""), for: UIControlState.normal)
 
         } else {
 
@@ -76,7 +76,7 @@ class TimingViewController: UIViewController {
 
             self.resumeTapped = false
 
-            self.pauseButton.setTitle("Pause", for: UIControlState.normal)
+            self.pauseButton.setTitle(NSLocalizedString("Pause", comment: ""), for: UIControlState.normal)
 
         }
     }
@@ -97,7 +97,7 @@ class TimingViewController: UIViewController {
 
         self.startButton.isEnabled = true
 
-        self.pauseButton.setTitle("Pause", for: UIControlState.normal)
+        self.pauseButton.setTitle(NSLocalizedString("Pause", comment: ""), for: UIControlState.normal)
 
     }
 
@@ -109,11 +109,11 @@ class TimingViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-            let fillinTableViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController
+            let fillinTableViewController = UIStoryboard(name: Constants.Storyboard.fillin, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.fillin) as? FillinTableViewController
 
             fillinTableViewController?.isFromCaca = true
 
-            FIRAnalytics.logEvent(withName: "DidTiming", parameters: nil)
+            FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.didTiming, parameters: nil)
 
             appDelegate.window?.rootViewController = fillinTableViewController
 
@@ -136,32 +136,32 @@ class TimingViewController: UIViewController {
 
         self.backgroundImageView.image = #imageLiteral(resourceName: "POO-24")
 
-        self.timerLabel.font = UIFont(name: "Courier New", size: 35)
+        self.timerLabel.font = UIFont(name: Constants.UIFont.courierNew, size: 35)
         self.timerLabel.textColor = Palette.darkblue
         self.timerLabel.text = "00:00:00"
 
-        self.startButton.setTitle(" Start ", for: UIControlState.normal)
-        self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.startButton.setTitle(NSLocalizedString(" Start ", comment: ""), for: .normal)
+        self.startButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
         self.startButton.tintColor = Palette.orange
         self.startButton.backgroundColor = Palette.lightWhite
         self.startButton.layer.cornerRadius = 10
 
-        self.pauseButton.setTitle(" Pause ", for: UIControlState.normal)
-        self.pauseButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.pauseButton.setTitle(NSLocalizedString(" Pause ", comment: ""), for: .normal)
+        self.pauseButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
         self.pauseButton.tintColor = Palette.orange
         self.pauseButton.backgroundColor = Palette.lightWhite
         self.pauseButton.layer.cornerRadius = 10
         self.pauseButton.isEnabled = false
 
-        self.resetButton.setTitle(" Reset ", for: UIControlState.normal)
-        self.resetButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.resetButton.setTitle(NSLocalizedString(" Reset ", comment: ""), for: .normal)
+        self.resetButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
         self.resetButton.tintColor = Palette.orange
         self.resetButton.backgroundColor = Palette.lightWhite
         self.resetButton.layer.cornerRadius = 10
         self.resetButton.isEnabled = false
 
         self.finishButton.setTitle(" Finish ", for: UIControlState.normal)
-        self.finishButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.finishButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
         self.finishButton.tintColor = Palette.orange
         self.finishButton.backgroundColor = Palette.lightWhite
         self.finishButton.layer.cornerRadius = 10
