@@ -25,19 +25,19 @@ class ProfileTableViewController: UITableViewController {
 
             case .name:
 
-                return "Name"
+                return NSLocalizedString("Name", comment: "")
 
             case .gender:
 
-                return "Gender"
+                return NSLocalizedString("Gender", comment: "")
 
             case .age:
 
-                return "Age"
+                return NSLocalizedString("Age", comment: "")
 
             case .medicine:
 
-                return "Medicine"
+                return NSLocalizedString("Medicine", comment: "")
 
             default:
 
@@ -71,8 +71,8 @@ class ProfileTableViewController: UITableViewController {
         self.tableView.allowsSelection = false
         self.tableView.separatorStyle = .none
 
-        self.navigationItem.title = "Profile"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+        self.navigationItem.title = NSLocalizedString("Profile", comment: "")
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""]
 
         self.agePicker.dataSource = self
         self.agePicker.delegate = self
@@ -112,24 +112,24 @@ class ProfileTableViewController: UITableViewController {
             let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? ProfileSegmentTableViewCell,
             let uid = FIRAuth.auth()?.currentUser?.uid else { return }
 
-        let name = nameCell.rowView.infoTextField.text ?? "Hello"
+        let name = nameCell.rowView.infoTextField.text ?? NSLocalizedString("Hello", comment: "Greet user")
         let gender = genderCell.rowView.infoSegmentedControl.selectedSegmentIndex
         let age = ageCell.rowView.infoTextField.text ?? "??"
         let medicine = medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex
 
         let user = User(name: name, gender: gender, age: age, medicine: medicine)
 
-        let value = ["name": user.name,
-                     "gender": user.gender,
-                     "age": user.age,
-                     "medicine": user.medicine] as [String: Any]
+        let value = [Constants.FirebaseUserKey.name: user.name,
+                     Constants.FirebaseUserKey.gender: user.gender,
+                     Constants.FirebaseUserKey.age: user.age,
+                     Constants.FirebaseUserKey.medicine: user.medicine] as [String: Any]
 
         UserManager.shared.editUser(with: uid, value: value)
 
-        UserDefaults.standard.set(name, forKey: "Name")
-        UserDefaults.standard.set(gender, forKey: "Gender")
-        UserDefaults.standard.set(age, forKey: "Age")
-        UserDefaults.standard.set(medicine, forKey: "Medicine")
+        UserDefaults.standard.set(name, forKey: Constants.UserDefaultsKey.name)
+        UserDefaults.standard.set(gender, forKey: Constants.UserDefaultsKey.gender)
+        UserDefaults.standard.set(age, forKey: Constants.UserDefaultsKey.age)
+        UserDefaults.standard.set(medicine, forKey: Constants.UserDefaultsKey.medicine)
 
     }
 
@@ -167,7 +167,7 @@ class ProfileTableViewController: UITableViewController {
 
             cell.rowView.photoImageView.image = #imageLiteral(resourceName: "boy")
 
-            if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
+            if let gender = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int {
 
                 if gender == Gender.male.rawValue {
 
@@ -190,7 +190,7 @@ class ProfileTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
-            cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.infoLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
 
@@ -198,7 +198,7 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoTextField.returnKeyType = .done
             cell.rowView.infoTextField.textAlignment = .center
 
-            if let name = UserDefaults.standard.value(forKey: "Name") as? String {
+            if let name = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.name) as? String {
 
                 cell.rowView.infoTextField.text = name
 
@@ -213,19 +213,19 @@ class ProfileTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
-            cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.infoLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
 
             cell.rowView.infoSegmentedControl.setImage(#imageLiteral(resourceName: "male"), forSegmentAt: Gender.male.rawValue)
             cell.rowView.infoSegmentedControl.setImage(#imageLiteral(resourceName: "female"), forSegmentAt: Gender.female.rawValue)
             cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
-            cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+            cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
 
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 0
 
-            if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
+            if let gender = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int {
 
                 cell.rowView.infoSegmentedControl.selectedSegmentIndex = gender
 
@@ -240,7 +240,7 @@ class ProfileTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
-            cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.infoLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
 
@@ -249,7 +249,7 @@ class ProfileTableViewController: UITableViewController {
 
             cell.rowView.infoTextField.inputView = agePicker
 
-            if let age = UserDefaults.standard.value(forKey: "Age") as? String {
+            if let age = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.age) as? String {
 
                 cell.rowView.infoTextField.text = age
                 cell.rowView.infoTextField.textAlignment = .center
@@ -265,19 +265,19 @@ class ProfileTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
-            cell.rowView.infoLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.infoLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
 
-            cell.rowView.infoSegmentedControl.setTitle("Yes", forSegmentAt: 0)
-            cell.rowView.infoSegmentedControl.setTitle("No", forSegmentAt: 1)
+            cell.rowView.infoSegmentedControl.setTitle(NSLocalizedString("Yes", comment: ""), forSegmentAt: 0)
+            cell.rowView.infoSegmentedControl.setTitle(NSLocalizedString("No", comment: ""), forSegmentAt: 1)
             cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
-            cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+            cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
 
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
 
-            if let medicine = UserDefaults.standard.value(forKey: "Medicine") as? Int {
+            if let medicine = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.medicine) as? Int {
 
                 cell.rowView.infoSegmentedControl.selectedSegmentIndex = medicine
 
@@ -294,17 +294,17 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.profileButton.backgroundColor = Palette.darkblue
             cell.rowView.profileButton.layer.cornerRadius = cell.rowView.profileButton.frame.height / 2
             cell.rowView.profileButton.tintColor = Palette.cream
-            cell.rowView.profileButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+            cell.rowView.profileButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
             let user = FIRAuth.auth()?.currentUser
             if user?.isAnonymous == true {
 
-                cell.rowView.profileButton.setTitle("Sign Up", for: .normal)
+                cell.rowView.profileButton.setTitle(NSLocalizedString("Sign Up", comment: ""), for: .normal)
                 cell.rowView.profileButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
 
             } else {
 
-                cell.rowView.profileButton.setTitle("Log out", for: .normal)
+                cell.rowView.profileButton.setTitle(NSLocalizedString("Log out", comment: ""), for: .normal)
                 cell.rowView.profileButton.addTarget(self, action: #selector(logOut), for: .touchUpInside)
 
             }
@@ -336,7 +336,7 @@ class ProfileTableViewController: UITableViewController {
 
     func signUp() {
 
-        guard let signUpViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
+        guard let signUpViewController = UIStoryboard(name: Constants.Storyboard.landing, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.signUp) as? SignUpViewController else { return }
 
         signUpViewController.isFromProfile = true
 
@@ -346,26 +346,26 @@ class ProfileTableViewController: UITableViewController {
 
     func logOut() {
 
-        let alertController = UIAlertController(title: "Warning",
-                                                message: "Do you want to log out?",
+        let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                message: NSLocalizedString("Do you want to log out?", comment: ""),
                                                 preferredStyle: .alert)
 
-        let cancelAction = UIAlertAction(title: "No",
+        let cancelAction = UIAlertAction(title: NSLocalizedString("No", comment: ""),
                                          style: .cancel,
                                          handler: nil)
 
         alertController.addAction(cancelAction)
 
-        let okAction = UIAlertAction(title: "Yes", style: .default) { _ in
+        let okAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
 
             do {
                 try FIRAuth.auth()?.signOut()
 
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                    UserDefaults.standard.set(false, forKey: "IsviewedWalkThrough")
+                    UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.isViewedWalkThrough)
 
-                    let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+                    let startViewController = UIStoryboard(name: Constants.Storyboard.landing, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.start) as? StartViewController
 
                     appDelegate.window?.rootViewController = startViewController
 
@@ -373,7 +373,7 @@ class ProfileTableViewController: UITableViewController {
 
             } catch (let error) {
 
-                let alertController = UIAlertController(title: "Warning",
+                let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                         message: error.localizedDescription,
                                                         preferredStyle: .alert)
 
@@ -473,7 +473,7 @@ extension ProfileTableViewController: UIPickerViewDataSource, UIPickerViewDelega
 
             pickerLabel.text = String(age[row])
 
-            pickerLabel.font = UIFont(name: "Futura-Bold", size: 20)
+            pickerLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
             pickerLabel.textAlignment = NSTextAlignment.center
 
