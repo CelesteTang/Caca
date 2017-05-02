@@ -18,13 +18,13 @@ class SettingTableViewController: UITableViewController {
 
             switch self {
 
-            case .profile: return "Profile"
+            case .profile: return NSLocalizedString("Profile", comment: "")
 
-            case .privacy: return "Privacy"
+            case .privacy: return NSLocalizedString("Privacy", comment: "")
 
-            case .notification: return "Notification"
+            case .notification: return NSLocalizedString("Notification", comment: "")
 
-            case .language: return "Language"
+            case .language: return NSLocalizedString("Language", comment: "")
 
             }
         }
@@ -38,12 +38,12 @@ class SettingTableViewController: UITableViewController {
 
         self.view.backgroundColor = Palette.lightblue2
 
-        self.navigationItem.title = "Setting"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+        self.navigationItem.title = NSLocalizedString("Setting", comment: "")
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""]
 
         let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        backItem.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+        backItem.title = NSLocalizedString("Back", comment: "")
+        backItem.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
         self.navigationItem.backBarButtonItem = backItem
 
         self.tableView.separatorStyle = .none
@@ -72,7 +72,7 @@ class SettingTableViewController: UITableViewController {
 
         cell.rowView.iconImageView.image = #imageLiteral(resourceName: "caca-big")
         cell.rowView.titleLabel.text = settings[indexPath.row].title
-        cell.rowView.titleLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        cell.rowView.titleLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
         cell.rowView.separateLineView.backgroundColor = Palette.darkblue
 
         let backgroundView = UIView()
@@ -89,13 +89,13 @@ class SettingTableViewController: UITableViewController {
 
         case Setting.profile.rawValue:
 
-            guard let profileViewController = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "ProfileTableViewController") as? ProfileTableViewController else { return }
+            guard let profileViewController = UIStoryboard(name: Constants.Storyboard.profile, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.profile) as? ProfileTableViewController else { return }
 
             self.navigationController?.pushViewController(profileViewController, animated: true)
 
         case Setting.privacy.rawValue:
 
-            guard let privacyTableViewController = UIStoryboard(name: "Privacy", bundle: nil).instantiateViewController(withIdentifier: "PrivacyTableViewController") as? PrivacyTableViewController else { return }
+            guard let privacyTableViewController = UIStoryboard(name: Constants.Storyboard.privacy, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.privacy) as? PrivacyTableViewController else { return }
 
             self.navigationController?.pushViewController(privacyTableViewController, animated: true)
 

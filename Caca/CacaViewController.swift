@@ -9,6 +9,7 @@
 import UIKit
 import Crashlytics
 import Firebase
+import UserNotifications
 
 class CacaViewController: UIViewController {
 
@@ -30,9 +31,9 @@ class CacaViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-            let timingViewController = UIStoryboard(name: "Timing", bundle: nil).instantiateViewController(withIdentifier: "TimingViewController") as? TimingViewController
+            let timingViewController = UIStoryboard(name: Constants.Storyboard.timing, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.timing) as? TimingViewController
 
-            FIRAnalytics.logEvent(withName: "GoToTiming", parameters: nil)
+            FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.goToTiming, parameters: nil)
 
             appDelegate.window?.rootViewController = timingViewController
 
@@ -46,6 +47,8 @@ class CacaViewController: UIViewController {
         setUp()
 
         detectFrequency()
+
+        prepareNotification()
     }
 
     override func viewDidLayoutSubviews() {
@@ -61,13 +64,13 @@ class CacaViewController: UIViewController {
     private func setUp() {
 
         self.navigationItem.title = Time.dateString()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""]
 
         self.view.backgroundColor = Palette.lightblue2
 
         self.mainImageView.backgroundColor = Palette.lightblue2
         self.mainImageView.image = #imageLiteral(resourceName: "boy")
-        if let gender = UserDefaults.standard.value(forKey: "Gender") as? Int {
+        if let gender = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int {
 
             if gender == Gender.male.rawValue {
 
@@ -92,14 +95,14 @@ class CacaViewController: UIViewController {
 
         self.notificationLabel.textColor = Palette.darkblue
         self.notificationLabel.numberOfLines = 0
-        self.notificationLabel.text = "How's today?"
-        self.notificationLabel.font = UIFont(name: "Futura-Bold", size: 25)
+        self.notificationLabel.text = NSLocalizedString("How's today?", comment: "Greeting user")
+        self.notificationLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 25)
 
         self.startButton.backgroundColor = Palette.darkblue2
         self.startButton.tintColor = Palette.cream
         self.startButton.layer.cornerRadius = self.startButton.frame.height / 2
-        self.startButton.setTitle("Start", for: UIControlState.normal)
-        self.startButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.startButton.setTitle(NSLocalizedString("Start", comment: ""), for: UIControlState.normal)
+        self.startButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
     }
 
@@ -107,7 +110,7 @@ class CacaViewController: UIViewController {
 
     private func detectFrequency() {
 
-        guard let userName = UserDefaults.standard.value(forKey: "Name") as? String else { return }
+        guard let userName = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.name) as? String else { return }
 
         CacaProvider.shared.getCaca { (cacas, _) in
 
@@ -125,7 +128,7 @@ class CacaViewController: UIViewController {
 
                 if cacas.last?.date == nil {
 
-                    self.notificationLabel.text = "\(userName), start caca now!"
+                    self.notificationLabel.text = NSLocalizedString("\(userName), start caca now!", comment: "")
 
                     self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
@@ -135,19 +138,19 @@ class CacaViewController: UIViewController {
 
                     case 1:
 
-                        self.notificationLabel.text = "\(userName), you don't caca today."
+                        self.notificationLabel.text = NSLocalizedString("\(userName), you don't caca today.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
                     case 2...3:
 
-                        self.notificationLabel.text = "\(userName), you don't caca for \(dayToNow) days. Remember to caca at least every 3 days."
+                        self.notificationLabel.text = NSLocalizedString("\(userName), you don't caca for \(dayToNow) days. Remember to caca at least every 3 days.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "crackSausage")
 
                     default:
 
-                        self.notificationLabel.text = "\(userName), you don't caca for a long time. Remember to caca at least every 3 days."
+                        self.notificationLabel.text = NSLocalizedString("\(userName), you don't caca for a long time. Remember to caca at least every 3 days.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "lumpySausage")
 
@@ -174,13 +177,13 @@ class CacaViewController: UIViewController {
 
                     if todayCacaTimes > 3 {
 
-                        self.notificationLabel.text = "\(userName), you caca too much today. You should not caca over 3 times per day."
+                        self.notificationLabel.text = NSLocalizedString("\(userName), you caca too much today. You should not caca over 3 times per day.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "wateryStool")
 
                     } else {
 
-                        self.notificationLabel.text = "\(userName), you caca today."
+                        self.notificationLabel.text = NSLocalizedString("\(userName), you caca today.", comment: "")
 
                     }
                 }
@@ -219,6 +222,18 @@ class CacaViewController: UIViewController {
 
         }
     }
+
+    // MARK : Notification
+
+    func prepareNotification() {
+
+        let content = UNMutableNotificationContent()
+        content.title = NSLocalizedString("Notification", comment: "")
+        content.body = NSLocalizedString("You don't caca for 3 days. Remember to caca at least every 3 days.", comment: "Remind user to caca")
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3 * 24 * 60 * 60, repeats: false)
+        let request = UNNotificationRequest(identifier: Constants.NotificationIdentidier.longTimeNoCaca, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
 }
 
 extension CacaViewController {
@@ -226,7 +241,7 @@ extension CacaViewController {
     // swiftlint:disable force_cast
     class func create() -> CacaViewController {
 
-        return UIStoryboard(name: "Caca", bundle: nil).instantiateViewController(withIdentifier: "CacaViewController") as! CacaViewController
+        return UIStoryboard(name: Constants.Storyboard.caca, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.caca) as! CacaViewController
 
     }
     // swiftlint:enable force_cast

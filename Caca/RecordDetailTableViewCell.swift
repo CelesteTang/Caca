@@ -1,18 +1,18 @@
 //
-//  InfoSegmentTableViewCell.swift
+//  RecordDetailTableViewCell.swift
 //  Caca
 //
-//  Created by 湯芯瑜 on 2017/4/29.
+//  Created by 湯芯瑜 on 2017/5/1.
 //  Copyright © 2017年 Hsin-Yu Tang. All rights reserved.
 //
 
 import UIKit
 
-class InfoSegmentTableViewCell: UITableViewCell {
+class RecordDetailTableViewCell: UITableViewCell {
 
     // MARK: Property
 
-    let rowView = InfoSegmentRowView.create()
+    let rowView = RecordDetailRowView.create()
 
     // MARK: Init
 
@@ -46,7 +46,10 @@ class InfoSegmentTableViewCell: UITableViewCell {
         self.rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
 
         self.rowView.backgroundColor = Palette.lightblue2
-        self.rowView.borderView.backgroundColor = Palette.darkblue2
+
+        self.rowView.infoLabel.textAlignment = .center
+        self.rowView.infoLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
+        self.rowView.infoLabel.textColor = Palette.darkblue
 
     }
 

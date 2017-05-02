@@ -17,7 +17,7 @@ class PasswordViewController: UIViewController {
 
     var isFromBeginning = false
 
-    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Clean", "0", "Delete"]
+    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", NSLocalizedString("Clean", comment: "Delete all"), "0", NSLocalizedString("Delete", comment: "Delete one")]
 
     var userPassword = [String]()
 
@@ -39,7 +39,7 @@ class PasswordViewController: UIViewController {
 
         if isFromPassword == true {
 
-            UserDefaults.standard.set(false, forKey: "PasswordAuthentication")
+            UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.passwordAuthentication)
 
             userPassword.removeAll()
 
@@ -49,7 +49,7 @@ class PasswordViewController: UIViewController {
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
 
                 tabBarController?.selectedIndex = TabBarItemType.setting.rawValue
 
@@ -99,11 +99,11 @@ class PasswordViewController: UIViewController {
     private func setUp() {
 
         self.view.backgroundColor = Palette.lightblue2
-        self.numberCollectionView.backgroundColor = Palette.lightblue2
+        self.numberCollectionView.backgroundColor = Palette.lightblue
 
-        self.passwordLabel.text = "Please enter your password"
+        self.passwordLabel.text = NSLocalizedString("Please enter your password", comment: "")
         self.passwordLabel.textColor = Palette.darkblue
-        self.passwordLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        self.passwordLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
         self.cancelButton.setTitle("", for: .normal)
         let buttonImage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
@@ -131,13 +131,13 @@ class PasswordViewController: UIViewController {
 
     func touchIDAuthentication() {
 
-        if UserDefaults.standard.bool(forKey: "TouchIDAuthentication") == true && UserDefaults.standard.value(forKey: "Password") as? [String] != nil {
+        if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.touchIDAuthentication) == true && UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.password) as? [String] != nil {
 
             let context = LAContext()
 
             if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
 
-                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use TouchID to enter Caca", reply: { (success, _) in
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: NSLocalizedString("Use TouchID to enter Caca", comment: ""), reply: { (success, _) in
 
                     if success {
 
@@ -145,7 +145,7 @@ class PasswordViewController: UIViewController {
 
                             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                                let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                                let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
 
                                 appDelegate.window?.rootViewController = tabBarController
 
@@ -173,7 +173,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
         cell.itemView.numberLabel.text = numbers[indexPath.item]
         cell.itemView.numberLabel.textColor = Palette.darkblue
-        cell.itemView.numberLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        cell.itemView.numberLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
         return cell
     }
@@ -242,19 +242,19 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
             numberCollectionView.allowsSelection = false
 
-            if UserDefaults.standard.value(forKey: "Password") == nil {
+            if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.password) == nil {
 
-                UserDefaults.standard.set(userPassword, forKey: "Password")
+                UserDefaults.standard.set(userPassword, forKey: Constants.UserDefaultsKey.password)
 
                 dismiss(animated: true, completion: nil)
 
-            } else if let storedPassword = UserDefaults.standard.value(forKey: "Password") as? [String], userPassword == storedPassword {
+            } else if let storedPassword = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.password) as? [String], userPassword == storedPassword {
 
                 if isFromBeginning == true {
 
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                        let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                        let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
 
                         appDelegate.window?.rootViewController = tabBarController
 
@@ -264,7 +264,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
                 } else if isFromPasswordChanging == true {
 
-                    UserDefaults.standard.set(userPassword, forKey: "Password")
+                    UserDefaults.standard.set(userPassword, forKey: Constants.UserDefaultsKey.password)
 
                     isFromPasswordChanging = false
 
@@ -276,8 +276,8 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
                 if isFromBeginning == true {
 
-                    let alertController = UIAlertController(title: "Warning",
-                                                            message: "The password is incorrect. Try again.",
+                    let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                            message: NSLocalizedString("The password is incorrect. Try again.", comment: ""),
                                                             preferredStyle: UIAlertControllerStyle.alert)
 
                     let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
@@ -299,7 +299,7 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
                 } else if isFromPasswordChanging == true {
 
-                    UserDefaults.standard.set(userPassword, forKey: "Password")
+                    UserDefaults.standard.set(userPassword, forKey: Constants.UserDefaultsKey.password)
 
                     isFromPasswordChanging = false
 

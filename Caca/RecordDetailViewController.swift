@@ -8,6 +8,8 @@
 
 import UIKit
 
+// Un-use
+
 class RecordDetailViewController: UIViewController {
 
     @IBOutlet weak var cacaPhoto: UIImageView!
@@ -68,7 +70,6 @@ class RecordDetailViewController: UIViewController {
     }
 
     var recievedCaca = [Caca]()
-    var indexPath = IndexPath()
 
     override func viewDidLoad() {
         super.viewDidLoad()

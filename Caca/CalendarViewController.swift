@@ -19,6 +19,9 @@ class CalendarViewController: UIViewController {
 
     @IBOutlet weak var adviceView: UIView!
 
+    @IBOutlet weak var borderView: UIView!
+
+    @IBOutlet weak var innerBorderView: UIView!
     @IBOutlet weak var adviceLabel: UILabel!
 
     let dateFormatter = DateFormatter()
@@ -70,19 +73,27 @@ class CalendarViewController: UIViewController {
 
         self.view.backgroundColor = Palette.lightblue2
 
-        self.navigationItem.title = "Calendar"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+        self.navigationItem.title = NSLocalizedString("Calendar", comment: "")
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""]
 
         self.headerView.backgroundColor = Palette.darkblue
         self.headerTitleLabel.textColor = Palette.lightblue2
-        self.headerTitleLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        self.headerTitleLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
         self.adviceView.backgroundColor = Palette.lightblue2
 
+        self.borderView.backgroundColor = Palette.lightblue2
+        self.borderView.layer.borderWidth = 5
+        self.borderView.layer.borderColor = Palette.darkblue.cgColor
+
+        self.innerBorderView.backgroundColor = Palette.lightblue2
+        self.innerBorderView.layer.borderWidth = 2
+        self.innerBorderView.layer.borderColor = Palette.darkblue.cgColor
+
         self.adviceLabel.textColor = Palette.darkblue
-        self.adviceLabel.text = "How's today?"
+        self.adviceLabel.text = NSLocalizedString("How's today?", comment: "Greet user")
         self.adviceLabel.numberOfLines = 0
-        self.adviceLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        self.adviceLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
     }
 
@@ -123,7 +134,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
         calendarCell.backgroundColor = Palette.lightblue2
         calendarCell.dayLabel.text = cellState.text
-        calendarCell.dayLabel.font = UIFont(name: "Futura-Bold", size: 20)
+        calendarCell.dayLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
         calendarCell.bottomLine.backgroundColor = Palette.darkblue
         calendarCell.didCacaView.isHidden = true
         calendarCell.selectedView.isHidden = true
@@ -214,7 +225,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
             } else {
 
-                self.adviceLabel.text = "You don't have any caca record."
+                self.adviceLabel.text = NSLocalizedString("You don't have any caca record.", comment: "")
 
             }
 
@@ -237,7 +248,7 @@ extension CalendarViewController {
     // swiftlint:disable force_cast
     class func create() -> CalendarViewController {
 
-        return UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(withIdentifier: "CalendarViewController") as! CalendarViewController
+        return UIStoryboard(name: Constants.Storyboard.calendar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.calendar) as! CalendarViewController
 
     }
     // swiftlint:enable force_cast

@@ -11,6 +11,7 @@ import CoreData
 import Firebase
 import Fabric
 import Crashlytics
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
 
         Fabric.with([Crashlytics.self])
+
+        UNUserNotificationCenter.current().requestAuthorization(options: .alert) { (granted, _) in
+
+            if granted {
+
+                print("allowed")
+
+            } else {
+
+                print("not allowed")
+
+            }
+
+        }
 
         if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
 

@@ -218,5 +218,66 @@
             </objects>
             <point key="canvasLocation" x="68" y="189.3553223388306"/>
         </scene>
+        <!--Record Detail Table View Controller-->
+        <scene sceneID="vfu-6h-6Bp">
+            <objects>
+                <viewController storyboardIdentifier="RecordDetailTableViewController" id="g6E-dg-gNn" customClass="RecordDetailTableViewController" customModule="Caca" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YYY-5h-JsL"/>
+                        <viewControllerLayoutGuide type="bottom" id="pcJ-ai-fNE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uk6-lR-rAF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbp-g1-abk">
+                                <rect key="frame" x="93" y="23" width="134" height="134.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3AO-E9-kvw">
+                                <rect key="frame" x="98" y="28" width="124" height="124.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3AO-E9-kvw" secondAttribute="height" multiplier="1:1" id="QhD-sW-2Th"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cl4-7c-aUG">
+                                <rect key="frame" x="0.0" y="160.5" width="320" height="345.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-pZ-uKU">
+                                <rect key="frame" x="96" y="522" width="128" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vbp-g1-abk" firstAttribute="leading" secondItem="3AO-E9-kvw" secondAttribute="leading" constant="-5" id="3Fs-nE-AnH"/>
+                            <constraint firstItem="Th9-pZ-uKU" firstAttribute="leading" secondItem="Uk6-lR-rAF" secondAttribute="leadingMargin" constant="80" id="DSX-4E-dyy"/>
+                            <constraint firstItem="Vbp-g1-abk" firstAttribute="top" secondItem="3AO-E9-kvw" secondAttribute="top" constant="-5" id="FfK-M7-yyI"/>
+                            <constraint firstAttribute="trailing" secondItem="Cl4-7c-aUG" secondAttribute="trailing" id="GnU-B7-I2Z"/>
+                            <constraint firstItem="Th9-pZ-uKU" firstAttribute="top" secondItem="Cl4-7c-aUG" secondAttribute="bottom" constant="16" id="IXg-Os-UjZ"/>
+                            <constraint firstItem="Cl4-7c-aUG" firstAttribute="leading" secondItem="Uk6-lR-rAF" secondAttribute="leading" id="Sb6-8v-dLy"/>
+                            <constraint firstItem="Vbp-g1-abk" firstAttribute="centerX" secondItem="3AO-E9-kvw" secondAttribute="centerX" id="ZS6-ZE-ji2"/>
+                            <constraint firstItem="Cl4-7c-aUG" firstAttribute="top" secondItem="3AO-E9-kvw" secondAttribute="bottom" constant="8" id="cWM-hp-GOu"/>
+                            <constraint firstItem="3AO-E9-kvw" firstAttribute="centerX" secondItem="Uk6-lR-rAF" secondAttribute="centerX" id="hKn-e6-lVd"/>
+                            <constraint firstItem="pcJ-ai-fNE" firstAttribute="top" secondItem="Th9-pZ-uKU" secondAttribute="bottom" constant="16" id="qFA-vR-9BT"/>
+                            <constraint firstItem="3AO-E9-kvw" firstAttribute="width" secondItem="Uk6-lR-rAF" secondAttribute="height" multiplier="146:667" id="rTJ-bj-Bj5"/>
+                            <constraint firstItem="Vbp-g1-abk" firstAttribute="centerY" secondItem="3AO-E9-kvw" secondAttribute="centerY" id="slT-5L-kNN"/>
+                            <constraint firstItem="3AO-E9-kvw" firstAttribute="top" secondItem="YYY-5h-JsL" secondAttribute="bottom" constant="8" id="uA4-7L-3nO"/>
+                            <constraint firstItem="Th9-pZ-uKU" firstAttribute="centerX" secondItem="Uk6-lR-rAF" secondAttribute="centerX" id="uje-qw-LTb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cacaPhoto" destination="3AO-E9-kvw" id="6f3-oQ-1Aj"/>
+                        <outlet property="deleteButton" destination="Th9-pZ-uKU" id="nFX-Fn-LLh"/>
+                        <outlet property="infoTableView" destination="Cl4-7c-aUG" id="gkQ-EG-29m"/>
+                        <outlet property="passOrFailView" destination="Vbp-g1-abk" id="ZFI-R9-xSd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b3l-cs-pYm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="721.875" y="188.02816901408451"/>
+        </scene>
     </scenes>
 </document>

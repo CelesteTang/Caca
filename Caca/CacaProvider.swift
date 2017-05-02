@@ -19,7 +19,7 @@ class CacaProvider {
 
     func saveCaca(cacaID: String, value: [String : Any]) {
 
-        FIRDatabase.database().reference().child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
+        FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
 
             if error != nil {
 
@@ -63,27 +63,27 @@ class CacaProvider {
 
         var cacas = [Caca]()
 
-        FIRDatabase.database().reference().child("cacas").queryOrdered(byChild: "host").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).queryOrdered(byChild: Constants.FirebaseCacaKey.host).queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
 
             if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
 
                 for snap in snaps {
 
                     if let cacaInfo = snap.value as? NSDictionary,
-                        let cacaID = cacaInfo["cacaID"] as? String,
-                        let cacaPhoto = cacaInfo["photo"] as? String,
-                        let cacaPhotoID = cacaInfo["photoID"] as? String,
-                        let cacaDate = cacaInfo["date"] as? String,
-                        let cacaTime = cacaInfo["time"] as? String,
-                        let cacaConsumingTime = cacaInfo["consumingTime"] as? String,
-                        let cacaShape = cacaInfo["shape"] as? String,
-                        let cacaColor = cacaInfo["color"] as? String,
-                        let cacaAmount = cacaInfo["amount"] as? String,
-                        let cacaOther = cacaInfo["other"] as? String,
-                        let cacaGrading = cacaInfo["grading"] as? Bool,
-                        let cacaAdvice = cacaInfo["advice"] as? String,
-                        let period = cacaInfo["period"] as? Int,
-                        let medicine = cacaInfo["medicine"] as? String {
+                        let cacaID = cacaInfo[Constants.FirebaseCacaKey.cacaID] as? String,
+                        let cacaPhoto = cacaInfo[Constants.FirebaseCacaKey.photo] as? String,
+                        let cacaPhotoID = cacaInfo[Constants.FirebaseCacaKey.photoID] as? String,
+                        let cacaDate = cacaInfo[Constants.FirebaseCacaKey.date] as? String,
+                        let cacaTime = cacaInfo[Constants.FirebaseCacaKey.time] as? String,
+                        let cacaConsumingTime = cacaInfo[Constants.FirebaseCacaKey.consumingTime] as? String,
+                        let cacaShape = cacaInfo[Constants.FirebaseCacaKey.shape] as? String,
+                        let cacaColor = cacaInfo[Constants.FirebaseCacaKey.color] as? String,
+                        let cacaAmount = cacaInfo[Constants.FirebaseCacaKey.amount] as? String,
+                        let cacaOther = cacaInfo[Constants.FirebaseCacaKey.other] as? String,
+                        let cacaGrading = cacaInfo[Constants.FirebaseCacaKey.grading] as? Bool,
+                        let cacaAdvice = cacaInfo[Constants.FirebaseCacaKey.advice] as? String,
+                        let period = cacaInfo[Constants.FirebaseCacaKey.period] as? Int,
+                        let medicine = cacaInfo[Constants.FirebaseCacaKey.medicine] as? String {
 
                         let caca = Caca(cacaID: cacaID, photo: cacaPhoto, photoID: cacaPhotoID, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: cacaShape, color: cacaColor, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, advice: cacaAdvice, period: period, medicine: medicine)
 
@@ -105,7 +105,7 @@ class CacaProvider {
 
     func editCaca(cacaID: String, value: [String : Any]) {
 
-        FIRDatabase.database().reference().child("cacas").child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
+        FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
 
             if error != nil {
 
@@ -159,7 +159,7 @@ class CacaProvider {
 
     func deleteCaca(cacaID: String) {
 
-        FIRDatabase.database().reference().child("cacas").child(cacaID).removeValue { (error, _) in
+        FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).child(cacaID).removeValue { (error, _) in
 
             if error != nil {
 

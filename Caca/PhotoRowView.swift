@@ -16,8 +16,6 @@ class PhotoRowView: UIView {
 
     @IBOutlet weak var cacaPhotoImageView: UIImageView!
 
-    @IBOutlet weak var detectionColorImageView: UIImageView!
-
     @IBOutlet weak var borderView: UIView!
 
 }

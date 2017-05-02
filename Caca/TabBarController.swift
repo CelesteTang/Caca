@@ -26,19 +26,19 @@ enum TabBarItemType: Int {
 
         case .caca:
 
-            return "Caca"
+            return NSLocalizedString("Caca", comment: "")
 
         case .record:
 
-            return "Record"
+            return NSLocalizedString("Record", comment: "")
 
         case .calendar:
 
-            return "Calendar"
+            return NSLocalizedString("Calendar", comment: "")
 
         case .setting:
 
-            return "Setting"
+            return NSLocalizedString("Setting", comment: "")
         }
 
     }
@@ -77,8 +77,8 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         UITabBar.appearance().tintColor = Palette.darkblue
-        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Futura-Bold", size: 15) ?? ""], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 15) ?? ""], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 15) ?? ""], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 15) ?? ""], for: .selected)
 
     }
 

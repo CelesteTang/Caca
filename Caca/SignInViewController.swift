@@ -27,7 +27,7 @@ class SignInViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-            let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+            let startViewController = UIStoryboard(name: Constants.Storyboard.landing, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.start) as? StartViewController
 
             appDelegate.window?.rootViewController = startViewController
 
@@ -38,8 +38,8 @@ class SignInViewController: UIViewController {
 
         if self.emailField.text == "" {
 
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter your email",
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your email", comment: "User must enter email"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -50,8 +50,8 @@ class SignInViewController: UIViewController {
 
         } else if self.passwordField.text == "" {
 
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter your password",
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your password", comment: "User must enter password"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -68,7 +68,7 @@ class SignInViewController: UIViewController {
 
                 if let error = error {
 
-                    let alertController = UIAlertController(title: "Warning",
+                    let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                             message: error.localizedDescription,
                                                             preferredStyle: .alert)
 
@@ -82,9 +82,9 @@ class SignInViewController: UIViewController {
 
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                        let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                        let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
 
-                        UserDefaults.standard.set(true, forKey: "IsviewedWalkThrough")
+                        UserDefaults.standard.set(true, forKey: Constants.UserDefaultsKey.isViewedWalkThrough)
 
                         appDelegate.window?.rootViewController = tabBarController
 
@@ -117,27 +117,27 @@ class SignInViewController: UIViewController {
 
         self.appName.text = "Caca"
         self.appName.textColor = Palette.darkblue2
-        self.appName.font = UIFont(name: "Futura-Bold", size: 60)
+        self.appName.font = UIFont(name: Constants.UIFont.futuraBold, size: 60)
 
         self.emailField.delegate = self
         self.emailField.clearButtonMode = .never
-        self.emailField.placeholder = "Email"
+        self.emailField.placeholder = NSLocalizedString("Email", comment: "")
         self.emailField.clearsOnBeginEditing = true
         self.emailField.keyboardType = .emailAddress
         self.emailField.returnKeyType = .done
 
         self.passwordField.delegate = self
         self.passwordField.clearButtonMode = .never
-        self.passwordField.placeholder = "Password"
+        self.passwordField.placeholder = NSLocalizedString("Password", comment: "")
         self.passwordField.clearsOnBeginEditing = true
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
 
         self.signInButton.backgroundColor = Palette.darkblue2
-        self.signInButton.setTitle("Log In", for: .normal)
+        self.signInButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
         self.signInButton.layer.cornerRadius = self.signInButton.frame.height / 2
         self.signInButton.tintColor = Palette.cream
-        self.signInButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.signInButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false

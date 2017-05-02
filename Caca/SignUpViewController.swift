@@ -44,7 +44,7 @@ class SignUpViewController: UIViewController {
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController
+                let startViewController = UIStoryboard(name: Constants.Storyboard.landing, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.start) as? StartViewController
 
                 appDelegate.window?.rootViewController = startViewController
 
@@ -66,8 +66,8 @@ class SignUpViewController: UIViewController {
 
         if self.emailField.text == "" {
 
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter your email",
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your email", comment: "User must enter email"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -78,8 +78,8 @@ class SignUpViewController: UIViewController {
 
         } else if self.passwordField.text == "" {
 
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter your password",
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your password", comment: "User must enter password"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -90,8 +90,8 @@ class SignUpViewController: UIViewController {
 
         } else if self.nameField.text == "" {
 
-            let alertController = UIAlertController(title: "Warning",
-                                                    message: "Please enter your name",
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your name", comment: "User must enter name"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -114,7 +114,7 @@ class SignUpViewController: UIViewController {
 
                     if let error = createError {
 
-                        let alertController = UIAlertController(title: "Warning",
+                        let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                                 message: error.localizedDescription,
                                                                 preferredStyle: .alert)
 
@@ -126,7 +126,7 @@ class SignUpViewController: UIViewController {
 
                     } else if let error = storageError {
 
-                        let alertController = UIAlertController(title: "Warning",
+                        let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                                 message: error.localizedDescription,
                                                                 preferredStyle: .alert)
 
@@ -140,18 +140,18 @@ class SignUpViewController: UIViewController {
 
                         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                            let openingPageViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+                            let openingPageViewController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.openingPage) as? OpeningPageViewController
 
-                            let openingViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningViewController") as? OpeningViewController
+                            let openingViewController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.opening) as? OpeningViewController
 
                             openingViewController?.isFromStart = true
 
                             appDelegate.window?.rootViewController = openingPageViewController
 
-                            UserDefaults.standard.set(name, forKey: "Name")
-                            UserDefaults.standard.set(gender, forKey: "Gender")
-                            UserDefaults.standard.set("", forKey: "Age")
-                            UserDefaults.standard.set(false, forKey: "Medicine")
+                            UserDefaults.standard.set(name, forKey: Constants.UserDefaultsKey.name)
+                            UserDefaults.standard.set(gender, forKey: Constants.UserDefaultsKey.gender)
+                            UserDefaults.standard.set("", forKey: Constants.UserDefaultsKey.age)
+                            UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.medicine)
 
                             self.isFromStart = false
 
@@ -168,7 +168,7 @@ class SignUpViewController: UIViewController {
 
                     if let error = createError {
 
-                        let alertController = UIAlertController(title: "Warning",
+                        let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                                 message: error.localizedDescription,
                                                                 preferredStyle: .alert)
 
@@ -180,7 +180,7 @@ class SignUpViewController: UIViewController {
 
                     } else if let error = storageError {
 
-                        let alertController = UIAlertController(title: "Warning",
+                        let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                                 message: error.localizedDescription,
                                                                 preferredStyle: .alert)
 
@@ -194,12 +194,12 @@ class SignUpViewController: UIViewController {
 
                         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                            let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController
+                            let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
 
                             appDelegate.window?.rootViewController = tabBarController
 
-                            UserDefaults.standard.set(name, forKey: "Name")
-                            UserDefaults.standard.set(gender, forKey: "Gender")
+                            UserDefaults.standard.set(name, forKey: Constants.UserDefaultsKey.name)
+                            UserDefaults.standard.set(gender, forKey: Constants.UserDefaultsKey.gender)
 
                             self.isFromProfile = false
 
@@ -244,25 +244,25 @@ class SignUpViewController: UIViewController {
 
         self.appName.text = "Caca"
         self.appName.textColor = Palette.darkblue2
-        self.appName.font = UIFont(name: "Futura-Bold", size: 60)
+        self.appName.font = UIFont(name: Constants.UIFont.futuraBold, size: 60)
 
         self.emailField.delegate = self
         self.emailField.clearButtonMode = .never
-        self.emailField.placeholder = "Email"
+        self.emailField.placeholder = NSLocalizedString("Email", comment: "")
         self.emailField.clearsOnBeginEditing = true
         self.emailField.keyboardType = .emailAddress
         self.emailField.returnKeyType = .done
 
         self.passwordField.delegate = self
         self.passwordField.clearButtonMode = .never
-        self.passwordField.placeholder = "Password (at least 6 characters)"
+        self.passwordField.placeholder = NSLocalizedString("Password (at least 6 characters)", comment: "User must enter password containing at least 6 characters")
         self.passwordField.clearsOnBeginEditing = true
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
 
         self.nameField.delegate = self
         self.nameField.clearButtonMode = .whileEditing
-        self.nameField.placeholder = "Name"
+        self.nameField.placeholder = NSLocalizedString("Name", comment: "")
         self.nameField.clearsOnBeginEditing = true
         self.nameField.returnKeyType = .done
 
@@ -271,10 +271,10 @@ class SignUpViewController: UIViewController {
         self.genderSegmentedControl.tintColor = Palette.darkblue2
 
         self.signUpButton.backgroundColor = Palette.darkblue2
-        self.signUpButton.setTitle("Sign Up", for: .normal)
+        self.signUpButton.setTitle(NSLocalizedString("Sign Up", comment: ""), for: .normal)
         self.signUpButton.layer.cornerRadius = self.signUpButton.frame.height / 2
         self.signUpButton.tintColor = Palette.cream
-        self.signUpButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 20)
+        self.signUpButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
