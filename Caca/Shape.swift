@@ -17,31 +17,31 @@ enum Shape: Int {
         switch self {
         case .separateHard:
 
-            return "Separate Hard"
+            return Constants.Shape.separateHard
 
         case .lumpySausage:
 
-            return "Lumpy Sausage"
+            return Constants.Shape.lumpySausage
 
         case .crackSausage:
 
-            return "Crack Sausage"
+            return Constants.Shape.crackSausage
 
         case .smoothSausage:
 
-            return "Smooth Sausage"
+            return Constants.Shape.smoothSausage
 
         case .softBlob:
 
-            return "Soft Blob"
+            return Constants.Shape.softBlob
 
         case .mushyStool:
 
-            return "Mushy Stool"
+            return Constants.Shape.mushyStool
 
         case .wateryStool:
 
-            return "Watery Stool"
+            return Constants.Shape.wateryStool
         }
 
     }

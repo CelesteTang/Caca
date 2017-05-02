@@ -18,31 +18,31 @@ enum Color: Int {
 
         case .red:
 
-            return "Red"
+            return Constants.Color.red
 
         case .yellow:
 
-            return "Yellow"
+            return Constants.Color.yellow
 
         case .green:
 
-            return "Green"
+            return Constants.Color.green
 
         case .lightBrown:
 
-            return "Light Brown"
+            return Constants.Color.lightBrown
 
         case .darkBrown:
 
-            return "Dark Brown"
+            return Constants.Color.darkBrown
 
         case .gray:
 
-            return "Gray"
+            return Constants.Color.gray
 
         case .black:
 
-            return "Black"
+            return Constants.Color.black
         }
 
     }

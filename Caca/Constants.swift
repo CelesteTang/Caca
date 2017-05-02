@@ -99,4 +99,24 @@ struct Constants {
         static let longTimeNoCaca = "caca.longTimeNoCaca"
     }
 
+    struct Shape {
+        static let separateHard = "Separate Hard"
+        static let lumpySausage = "Lumpy Sausage"
+        static let crackSausage = "Crack Sausage"
+        static let smoothSausage = "Smooth Sausage"
+        static let softBlob = "Soft Blob"
+        static let mushyStool = "Mushy Stool"
+        static let wateryStool = "Watery Stool"
+    }
+
+    struct Color {
+        static let red = "Red"
+        static let yellow = "Yellow"
+        static let green = "Green"
+        static let lightBrown = "Light Brown"
+        static let darkBrown = "Dark Brown"
+        static let gray = "Gray"
+        static let black = "Black"
+    }
+
 }
