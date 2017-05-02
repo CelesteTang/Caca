@@ -17,31 +17,31 @@ enum Shape: Int {
         switch self {
         case .separateHard:
 
-            return Constants.Shape.separateHard
+            return NSLocalizedString("Separate Hard", comment: "")
 
         case .lumpySausage:
 
-            return Constants.Shape.lumpySausage
+            return NSLocalizedString("Lumpy Sausage", comment: "")
 
         case .crackSausage:
 
-            return Constants.Shape.crackSausage
+            return NSLocalizedString("Crack Sausage", comment: "")
 
         case .smoothSausage:
 
-            return Constants.Shape.smoothSausage
+            return NSLocalizedString("Smooth Sausage", comment: "")
 
         case .softBlob:
 
-            return Constants.Shape.softBlob
+            return NSLocalizedString("Soft Blob", comment: "")
 
         case .mushyStool:
 
-            return Constants.Shape.mushyStool
+            return NSLocalizedString("Mushy Stool", comment: "")
 
         case .wateryStool:
 
-            return Constants.Shape.wateryStool
+            return NSLocalizedString("Watery Stool", comment: "")
         }
 
     }

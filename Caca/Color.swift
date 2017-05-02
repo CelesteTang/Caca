@@ -18,31 +18,31 @@ enum Color: Int {
 
         case .red:
 
-            return Constants.Color.red
+            return NSLocalizedString("Red", comment: "")
 
         case .yellow:
 
-            return Constants.Color.yellow
+            return NSLocalizedString("Yellow", comment: "")
 
         case .green:
 
-            return Constants.Color.green
+            return NSLocalizedString("Green", comment: "")
 
         case .lightBrown:
 
-            return Constants.Color.lightBrown
+            return NSLocalizedString("Light Brown", comment: "")
 
         case .darkBrown:
 
-            return Constants.Color.darkBrown
+            return NSLocalizedString("Dark Brown", comment: "")
 
         case .gray:
 
-            return Constants.Color.gray
+            return NSLocalizedString("Gray", comment: "")
 
         case .black:
 
-            return Constants.Color.black
+            return NSLocalizedString("Black", comment: "")
         }
 
     }
