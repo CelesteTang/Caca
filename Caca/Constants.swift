@@ -51,6 +51,7 @@ struct Constants {
         static let gender = "Gender"
         static let medicine = "Medicine"
         static let isViewedWalkThrough = "IsViewedWalkThrough"
+        static let hide = "Hide"
     }
 
     struct UIFont {

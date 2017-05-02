@@ -42,29 +42,29 @@ class RecordTableViewController: UITableViewController {
 
         self.view.backgroundColor = Palette.lightblue2
 
-        self.navigationItem.title = "Record"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""]
+        self.navigationItem.title = NSLocalizedString("Record", comment: "")
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""]
 
         let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        backItem.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+        backItem.title = NSLocalizedString("Back", comment: "")
+        backItem.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
         self.navigationItem.backBarButtonItem = backItem
 
         self.tableView.separatorStyle = .none
 
-        self.coverButtonTitle = "Hide"
+        self.coverButtonTitle = NSLocalizedString("Hide", comment: "Hide caca photo")
 
-        if UserDefaults.standard.bool(forKey: "Hide") == true {
+        if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.hide) == true {
 
-            coverButtonTitle = "Show"
+            coverButtonTitle = NSLocalizedString("Show", comment: "Show caca photo")
 
-        } else if UserDefaults.standard.bool(forKey: "Hide") == false {
+        } else if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.hide) == false {
 
-            coverButtonTitle = "Hide"
+            coverButtonTitle = NSLocalizedString("Hide", comment: "Hide caca photo")
 
         }
 
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: "Futura-Bold", size: 20) ?? ""], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
 
         let coverButton = UIBarButtonItem(title: coverButtonTitle, style: .plain, target: self, action: #selector(coverCaca))
         self.navigationItem.leftBarButtonItem = coverButton
@@ -79,15 +79,15 @@ class RecordTableViewController: UITableViewController {
         if isCovered == false {
 
             isCovered = true
-            UserDefaults.standard.set(true, forKey: "Hide")
-            self.navigationItem.leftBarButtonItem?.title = "Show"
+            UserDefaults.standard.set(true, forKey: Constants.UserDefaultsKey.hide)
+            self.navigationItem.leftBarButtonItem?.title = NSLocalizedString("Show", comment: "Show caca photo")
             self.tableView.reloadData()
 
         } else {
 
             isCovered = false
-            UserDefaults.standard.set(false, forKey: "Hide")
-            self.navigationItem.leftBarButtonItem?.title = "Hide"
+            UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.hide)
+            self.navigationItem.leftBarButtonItem?.title = NSLocalizedString("Hide", comment: "Hide caca photo")
             self.tableView.reloadData()
 
         }
@@ -96,7 +96,7 @@ class RecordTableViewController: UITableViewController {
 
     func addCaca() {
 
-        guard let fillinViewController = UIStoryboard(name: "Fillin", bundle: nil).instantiateViewController(withIdentifier: "FillinTableViewController") as? FillinTableViewController else { return }
+        guard let fillinViewController = UIStoryboard(name: Constants.Storyboard.fillin, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.fillin) as? FillinTableViewController else { return }
 
         fillinViewController.isFromRecord = true
 
@@ -172,14 +172,15 @@ class RecordTableViewController: UITableViewController {
 
         if self.cacas[indexPath.row].grading == true {
 
-            cell.rowView.passOrFailLabel.text = "Pass"
+            cell.rowView.passOrFailLabel.text = NSLocalizedString("Pass", comment: "The caca is healthy")
             cell.rowView.passOrFailLabel.textColor = Palette.passColor
             backgroundView.backgroundColor = Palette.selectedPassColor
             cell.selectionStyle = .default
 
         } else {
 
-            cell.rowView.passOrFailLabel.text = "Fail"
+            cell.rowView.passOrFailLabel.text = NSLocalizedString("Fail", comment: "The caca is not healthy")
+
             cell.rowView.passOrFailLabel.textColor = Palette.failColor
             backgroundView.backgroundColor = Palette.selectedFailColor
             cell.selectionStyle = .default
@@ -193,7 +194,7 @@ class RecordTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        guard let recordDetailTableViewController = UIStoryboard(name: "RecordDetail", bundle: nil).instantiateViewController(withIdentifier: "RecordDetailTableViewController") as? RecordDetailTableViewController else { return }
+        guard let recordDetailTableViewController = UIStoryboard(name: Constants.Storyboard.recordDetail, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.recordDetail) as? RecordDetailTableViewController else { return }
 
         recordDetailTableViewController.recievedCaca = [self.cacas[indexPath.row]]
 
