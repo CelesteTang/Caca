@@ -10,9 +10,9 @@ import UIKit
 
 class OpeningPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
-    var pageHeadings = ["Do you remember the last caca time ?",
-                        "Do you know caca could reveal your healthy state?",
-                        "Let's build up the good habit of caca with Caca!"]
+    var pageHeadings = [NSLocalizedString("Do you remember the last caca time ?", comment: ""),
+                        NSLocalizedString("Do you know caca could reveal your healthy state?", comment: ""),
+                        NSLocalizedString("Let's build up the good habit of caca with Caca!", comment: "")]
 
     var pageImages = ["A", "B", "C"]
 

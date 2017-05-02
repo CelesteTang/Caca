@@ -64,7 +64,7 @@ struct Constants {
         static let gender = "gender"
         static let medicine = "medicine"
     }
-    
+
     struct FirebaseCacaKey {
         static let cacas = "cacas"
         static let advice = "advice"
