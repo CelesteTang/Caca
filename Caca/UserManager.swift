@@ -39,14 +39,14 @@ class UserManager {
 
             } else {
 
-                let value = ["name": name,
-                             "gender": gender] as [String: Any]
+                let value = [Constants.FirebaseUserKey.name: name,
+                             Constants.FirebaseUserKey.gender: gender] as [String: Any]
 
                 if let user = user {
 
                     let uid = user.uid
 
-                    FIRDatabase.database().reference().child("users").child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
+                    FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users).child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
 
                         if let error = error {
 
@@ -80,14 +80,14 @@ class UserManager {
 
             } else {
 
-                let value = ["name": "Hello",
-                             "gender": 0] as [String: Any]
+                let value = [Constants.FirebaseUserKey.name: NSLocalizedString("Hello", comment: "Greet user"),
+                             Constants.FirebaseUserKey.gender: 0] as [String: Any]
 
                 if let user = user {
 
                     let uid = user.uid
 
-                    FIRDatabase.database().reference().child("users").child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
+                    FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users).child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
 
                         if let error = error {
 
@@ -119,14 +119,14 @@ class UserManager {
 
             } else {
 
-                let value = ["name": name,
-                             "gender": gender] as [String: Any]
+                let value = [Constants.FirebaseUserKey.name: name,
+                             Constants.FirebaseUserKey.gender: gender] as [String: Any]
 
                 if let user = user {
 
                     let uid = user.uid
 
-                    FIRDatabase.database().reference().child("users").child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
+                    FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users).child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
 
                         if let error = error {
 
@@ -148,7 +148,7 @@ class UserManager {
 
     func editUser(with uid: String, value: [String: Any]) {
 
-        FIRDatabase.database().reference().child("users").child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
+        FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users).child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
 
             if error != nil {
 

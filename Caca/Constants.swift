@@ -57,4 +57,30 @@ struct Constants {
         static let futuraBold = "Futura-Bold"
     }
 
+    struct FirebaseUserKey {
+        static let users = "users"
+        static let name = "name"
+        static let age = "age"
+        static let gender = "gender"
+        static let medicine = "medicine"
+    }
+    
+    struct FirebaseCacaKey {
+        static let cacas = "cacas"
+        static let advice = "advice"
+        static let amount = "amount"
+        static let cacaID = "cacaID"
+        static let color = "color"
+        static let consumingTime = "consumingTime"
+        static let date = "date"
+        static let grading = "grading"
+        static let host = "host"
+        static let medicine = "Medicine"
+        static let other = "other"
+        static let period = "period"
+        static let photo = "photo"
+        static let photoID = "photoID"
+        static let shape = "shape"
+        static let time = "time"
+    }
 }
