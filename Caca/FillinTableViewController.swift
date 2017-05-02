@@ -580,7 +580,7 @@ class FillinTableViewController: UITableViewController {
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
 
-        let cancelAction = UIAlertAction(title: "Cancel",
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""),
                                          style: .cancel,
                                          handler: nil)
 

@@ -95,7 +95,7 @@ class CacaViewController: UIViewController {
 
         self.notificationLabel.textColor = Palette.darkblue
         self.notificationLabel.numberOfLines = 0
-        self.notificationLabel.text = NSLocalizedString("How's today?", comment: "Greeting user")
+        self.notificationLabel.text = NSLocalizedString("How's today?", comment: "Greet user")
         self.notificationLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 25)
 
         self.startButton.backgroundColor = Palette.darkblue2

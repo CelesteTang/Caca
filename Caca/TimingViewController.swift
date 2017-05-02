@@ -160,7 +160,7 @@ class TimingViewController: UIViewController {
         self.resetButton.layer.cornerRadius = 10
         self.resetButton.isEnabled = false
 
-        self.finishButton.setTitle(" Finish ", for: UIControlState.normal)
+        self.finishButton.setTitle(NSLocalizedString(" Finish ", comment: ""), for: UIControlState.normal)
         self.finishButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
         self.finishButton.tintColor = Palette.orange
         self.finishButton.backgroundColor = Palette.lightWhite
