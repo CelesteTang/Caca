@@ -101,13 +101,13 @@
                                 <rect key="frame" x="0.0" y="423.66666666666674" width="414" height="312.33333333333326"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qxy-lG-CJr">
-                                        <rect key="frame" x="8" y="7.3333333333333144" width="398" height="297"/>
+                                        <rect key="frame" x="8" y="7.6666666666666288" width="398" height="296.66666666666669"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q0Y-eJ-Phx">
-                                                <rect key="frame" x="6" y="6" width="386" height="285"/>
+                                                <rect key="frame" x="6" y="6" width="386" height="284.66666666666669"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XLw-0b-q8d">
-                                                        <rect key="frame" x="10" y="10" width="366" height="265"/>
+                                                        <rect key="frame" x="10" y="10" width="366" height="264.66666666666669"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -159,9 +159,16 @@
                         <outlet property="adviceView" destination="N9w-zH-Cx0" id="m8u-NG-ajT"/>
                         <outlet property="borderView" destination="Qxy-lG-CJr" id="fx7-bQ-yOU"/>
                         <outlet property="calendarView" destination="qlo-UZ-yfl" id="w55-Ls-Z29"/>
+                        <outlet property="fridayLabel" destination="q46-Oc-6iO" id="E9T-sA-qmo"/>
                         <outlet property="headerTitleLabel" destination="ZGe-yw-Z5Z" id="N91-JY-uzs"/>
                         <outlet property="headerView" destination="iOz-9b-c3S" id="cgo-9w-zDx"/>
                         <outlet property="innerBorderView" destination="Q0Y-eJ-Phx" id="uKw-Sa-Hrf"/>
+                        <outlet property="mondayLabel" destination="ulp-FV-ecf" id="hOH-wz-PDa"/>
+                        <outlet property="saturdayLabel" destination="x7K-Os-BQY" id="SZ2-R2-i0f"/>
+                        <outlet property="sundayLabel" destination="ggU-rg-7qo" id="Njc-Zh-MRZ"/>
+                        <outlet property="thursdayLabel" destination="GEn-In-Of5" id="v6l-RO-JND"/>
+                        <outlet property="tuesdayLabel" destination="lBv-RF-rNR" id="SwF-4H-8F4"/>
+                        <outlet property="wednesdayLabel" destination="n85-2n-pNc" id="dF2-uD-s1v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RoC-BE-9zi" userLabel="First Responder" sceneMemberID="firstResponder"/>
