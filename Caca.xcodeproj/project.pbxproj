@@ -96,6 +96,7 @@
 		43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA61E8006E80052125B /* OpeningViewController.swift */; };
 		43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3FA81E80D64F0052125B /* Caca.storyboard */; };
 		43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */; };
+		43CF3C6C1EB84AD20016F8CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF3C6B1EB84AD20016F8CB /* Constants.swift */; };
 		43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA111E84BE2800E92290 /* SignInViewController.swift */; };
 		43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA131E84BE4300E92290 /* SignUpViewController.swift */; };
 		F95845CD50A464FB4F580BFD /* Pods_Caca.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98224253DC57BEF9622E41A3 /* Pods_Caca.framework */; };
@@ -194,6 +195,7 @@
 		43BA3FA61E8006E80052125B /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
 		43BA3FA81E80D64F0052125B /* Caca.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Caca.storyboard; sourceTree = "<group>"; };
 		43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		43CF3C6B1EB84AD20016F8CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		43F2FA111E84BE2800E92290 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		43F2FA131E84BE4300E92290 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.debug.xcconfig"; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				43372D311E7FC8C1002E2AE3 /* Storyboard */,
 				43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */,
 				4322EB511E8398FA006B0D5D /* Palette.swift */,
+				43CF3C6B1EB84AD20016F8CB /* Constants.swift */,
 				43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */,
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
 				4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */,
@@ -647,6 +650,7 @@
 				4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */,
 				438EFDA31EB1C31A00D9B18A /* ProfileTextFieldRowView.swift in Sources */,
 				4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */,
+				43CF3C6C1EB84AD20016F8CB /* Constants.swift in Sources */,
 				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
 				435B71F41EA60B9100FBABBF /* FillinTableViewController.swift in Sources */,
 				435B71EC1EA6080E00FBABBF /* FinishRowView.swift in Sources */,

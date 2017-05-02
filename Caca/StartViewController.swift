@@ -29,7 +29,7 @@ class StartViewController: UIViewController {
 
             if let error = createError {
 
-                let alertController = UIAlertController(title: "Warning",
+                let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                         message: error.localizedDescription,
                                                         preferredStyle: .alert)
 
@@ -41,7 +41,7 @@ class StartViewController: UIViewController {
 
             } else if let error = storageError {
 
-                let alertController = UIAlertController(title: "Warning",
+                let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                         message: error.localizedDescription,
                                                         preferredStyle: .alert)
 
@@ -57,18 +57,18 @@ class StartViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-            let openingPageViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController
+            let openingPageViewController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.openingPage) as? OpeningPageViewController
 
-            let openingViewController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningViewController") as? OpeningViewController
+            let openingViewController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.opening) as? OpeningViewController
 
             openingViewController?.isFromStart = true
 
             appDelegate.window?.rootViewController = openingPageViewController
 
-            UserDefaults.standard.set("Hello", forKey: "Name")
-            UserDefaults.standard.set(0, forKey: "Gender")
-            UserDefaults.standard.set("", forKey: "Age")
-            UserDefaults.standard.set(false, forKey: "Medicine")
+            UserDefaults.standard.set(NSLocalizedString("Hello", comment: "Greet user"), forKey: Constants.UserDefaultsKey.name)
+            UserDefaults.standard.set(0, forKey: Constants.UserDefaultsKey.gender)
+            UserDefaults.standard.set("", forKey: Constants.UserDefaultsKey.age)
+            UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.medicine)
 
         }
 
@@ -78,7 +78,7 @@ class StartViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-            let signInViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
+            let signInViewController = UIStoryboard(name: Constants.Storyboard.landing, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.signIn) as? SignInViewController
 
             appDelegate.window?.rootViewController = signInViewController
 
@@ -89,7 +89,7 @@ class StartViewController: UIViewController {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-            let signUpViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
+            let signUpViewController = UIStoryboard(name: Constants.Storyboard.landing, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.signUp) as? SignUpViewController
 
             signUpViewController?.isFromStart = true
 
