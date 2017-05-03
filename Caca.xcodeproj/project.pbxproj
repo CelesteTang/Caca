@@ -844,6 +844,7 @@
 				CODE_SIGN_ENTITLEMENTS = Caca/Caca.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = V35V7R5VNP;
 				INFOPLIST_FILE = Caca/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
