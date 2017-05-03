@@ -128,7 +128,7 @@ class CacaViewController: UIViewController {
 
                 if cacas.last?.date == nil {
 
-                    self.notificationLabel.text = NSLocalizedString("\(userName), start caca now!", comment: "")
+                    self.notificationLabel.text = "\(userName)" + NSLocalizedString(", start caca now!", comment: "")
 
                     self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
@@ -138,19 +138,19 @@ class CacaViewController: UIViewController {
 
                     case 1:
 
-                        self.notificationLabel.text = NSLocalizedString("\(userName), you don't caca today.", comment: "")
+                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you don't caca today.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
                     case 2...3:
 
-                        self.notificationLabel.text = NSLocalizedString("\(userName), you don't caca for \(dayToNow) days. Remember to caca at least every 3 days.", comment: "")
+                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you don't caca for \(dayToNow) days. Remember to caca at least every 3 days.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "crackSausage")
 
                     default:
 
-                        self.notificationLabel.text = NSLocalizedString("\(userName), you don't caca for a long time. Remember to caca at least every 3 days.", comment: "")
+                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you don't caca for a long time. Remember to caca at least every 3 days.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "lumpySausage")
 
@@ -177,13 +177,13 @@ class CacaViewController: UIViewController {
 
                     if todayCacaTimes > 3 {
 
-                        self.notificationLabel.text = NSLocalizedString("\(userName), you caca too much today. You should not caca over 3 times per day.", comment: "")
+                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you caca too much today. You should not caca over 3 times per day.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "wateryStool")
 
                     } else {
 
-                        self.notificationLabel.text = NSLocalizedString("\(userName), you caca today.", comment: "")
+                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you caca today.", comment: "")
 
                     }
                 }
