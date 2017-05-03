@@ -143,10 +143,9 @@ class CacaViewController: UIViewController {
                         self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
                     case 2...3:
-                        
+                       
                         let notificationString = "\(userName)" + NSLocalizedString(", you don't caca for %d days. Remember to caca at least every 3 days.", comment: "")
-                        let notificationAttributedString = NSMutableAttributedString(string: String(format: notificationString, dayToNow))
-                        self.notificationLabel.attributedText = notificationAttributedString
+                        self.notificationLabel.text = String(format: notificationString, dayToNow)
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "crackSausage")
 
