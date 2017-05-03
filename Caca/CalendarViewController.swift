@@ -12,19 +12,19 @@ import JTAppleCalendar
 class CalendarViewController: UIViewController {
 
     @IBOutlet weak var sundayLabel: UILabel!
-    
+
     @IBOutlet weak var mondayLabel: UILabel!
-    
+
     @IBOutlet weak var tuesdayLabel: UILabel!
-    
+
     @IBOutlet weak var wednesdayLabel: UILabel!
-    
+
     @IBOutlet weak var thursdayLabel: UILabel!
-    
+
     @IBOutlet weak var fridayLabel: UILabel!
-    
+
     @IBOutlet weak var saturdayLabel: UILabel!
-    
+
     @IBOutlet weak var headerView: UIView!
 
     @IBOutlet weak var headerTitleLabel: UILabel!

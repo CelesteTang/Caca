@@ -49,20 +49,9 @@ class CacaViewController: UIViewController {
         detectFrequency()
 
         prepareNotification()
-        
-        let button = UIButton(type: .roundedRect)
-        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
-        button.setTitle("Crash", for: [])
-        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
-        view.addSubview(button)
 
     }
 
-    @IBAction func crashButtonTapped(_ sender: AnyObject) {
-        Crashlytics.sharedInstance().crash()
-    }
-
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -155,7 +144,7 @@ class CacaViewController: UIViewController {
                         self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
                     case 2...3:
-                       
+
                         let notificationString = "\(userName)" + NSLocalizedString(", you don't caca for %d days. Remember to caca at least every 3 days.", comment: "")
                         self.notificationLabel.text = String(format: notificationString, dayToNow)
 
