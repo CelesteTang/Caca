@@ -79,30 +79,25 @@ class FillinTableViewController: UITableViewController {
 
     var recievedCacaFromRecordDetail = [Caca]()
 
+    var activityIndicator = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UserManager.shared.getUser { (user, _) in
-
-            if let user = user {
-
-                if user.gender == Gender.female.rawValue && user.medicine == Medicine.yes.rawValue {
-
-                    self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
-
-                } else if user.gender == Gender.female.rawValue {
-
-                    self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
-
-                } else if user.medicine == Medicine.yes.rawValue {
-
-                    self.components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
-
-                }
-
-            }
-
+        if User.host.gender == Gender.female.rawValue && User.host.medicine == Medicine.yes.rawValue {
+            
+            self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
+            
+        } else if User.host.gender == Gender.female.rawValue {
+            
+            self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
+            
+        } else if User.host.medicine == Medicine.yes.rawValue {
+            
+            self.components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
+            
         }
+        
 
         self.tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoTableViewCell")
         self.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "InfoTableViewCell")
@@ -141,7 +136,6 @@ class FillinTableViewController: UITableViewController {
         self.datePicker.minimumDate = fromDateTime
         let endDateTime = dateFormatter.date(from: "2067-12-31 10:45")
         self.datePicker.maximumDate = endDateTime
-        self.datePicker.locale = Locale(identifier: "zh_TW")
         self.datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
 
         self.timePicker.dataSource = self
@@ -168,6 +162,15 @@ class FillinTableViewController: UITableViewController {
         self.amountSlider.value = 0.2
         self.amountSlider.addTarget(self, action: #selector(changeThumbImageSize), for: .valueChanged)
 
+        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        self.activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        self.activityIndicator.layer.cornerRadius = 20
+        self.activityIndicator.color = Palette.darkblue
+        self.activityIndicator.backgroundColor = Palette.lightWhite
+        let fullScreenSize = UIScreen.main.bounds.size
+        self.activityIndicator.center = CGPoint(x: fullScreenSize.width * 0.5, y: fullScreenSize.height * 0.8)
+        self.view.addSubview(activityIndicator)
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
@@ -347,6 +350,7 @@ class FillinTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
+            cell.rowView.infoTextField.text = "\(Time.dateString()) \(Time.timeString())"
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
@@ -714,6 +718,8 @@ class FillinTableViewController: UITableViewController {
 
     func didFillin() {
 
+        activityIndicator.startAnimating()
+        
         if isFromRecordDetail == true {
 
             editCaca()
@@ -920,6 +926,8 @@ class FillinTableViewController: UITableViewController {
 
                 self.switchToRecord()
 
+                self.activityIndicator.stopAnimating()
+
             })
 
         } else {
@@ -931,6 +939,8 @@ class FillinTableViewController: UITableViewController {
             CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
             self.switchToRecord()
+
+            self.activityIndicator.stopAnimating()
 
         }
 
@@ -1009,6 +1019,8 @@ class FillinTableViewController: UITableViewController {
                 CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
                 self.switchToRecord()
+                
+                self.activityIndicator.stopAnimating()
             })
 
         } else if finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") && recievedCacaFromRecordDetail[0].photoID == nil {
@@ -1044,6 +1056,8 @@ class FillinTableViewController: UITableViewController {
 
                 self.switchToRecord()
 
+                self.activityIndicator.stopAnimating()
+
             })
 
         } else if finalCaca.image == #imageLiteral(resourceName: "cacaWithCamera") {
@@ -1055,6 +1069,8 @@ class FillinTableViewController: UITableViewController {
             CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
             self.switchToRecord()
+
+            self.activityIndicator.stopAnimating()
 
         }
     }
@@ -1159,17 +1175,12 @@ extension FillinTableViewController: UITextFieldDelegate {
 
             let dateIndexPath = IndexPath(row: 0, section: dateSection)
 
-            if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell {
+            if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
+                let date = dateCell.rowView.infoTextField.text {
 
-                if textField == dateCell.rowView.infoTextField {
-
-                    if let date = dateCell.rowView.infoTextField.text {
-
-                        finalCaca.date = date.substring(to: 10)
-                        finalCaca.time = date.substring(from: 11)
-
-                    }
-                }
+                finalCaca.date = date.substring(to: 10)
+                finalCaca.time = date.substring(from: 11)
+                
             }
         }
 

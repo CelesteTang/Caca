@@ -70,17 +70,7 @@ class CacaViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.mainImageView.backgroundColor = Palette.lightblue2
-        self.mainImageView.image = #imageLiteral(resourceName: "boy")
-
-        UserManager.shared.getUser { (user, _) in
-
-            if let user = user {
-
-                self.mainImageView.image = (user.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
-
-            }
-
-        }
+        self.mainImageView.image = (User.host.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
         self.magnifierView.backgroundColor = Palette.lightWhite
         self.magnifierView.layer.borderWidth = 5

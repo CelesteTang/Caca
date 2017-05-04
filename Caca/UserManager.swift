@@ -158,18 +158,15 @@ class UserManager {
             .child(uid)
             .observeSingleEvent(of: .value, with: { (snapshot) in
 
-                if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                if let userInfo = snapshot.value as? NSDictionary,
+                    let userGender = userInfo[Constants.FirebaseUserKey.gender] as? Int,
+                    let userMedicine = userInfo[Constants.FirebaseUserKey.medicine] as? Int {
 
-                    if let userInfo = snaps[0].value as? NSDictionary,
-                        let userGender = userInfo[Constants.FirebaseUserKey.gender] as? Int,
-                        let userMedicine = userInfo[Constants.FirebaseUserKey.medicine] as? Int {
+                    user.gender = userGender
+                    user.medicine = userMedicine
 
-                        user.gender = userGender
-                        user.medicine = userMedicine
+                    completion(user, nil)
 
-                        completion(user, nil)
-
-                    }
                 }
 
             }) { (error) in
@@ -179,21 +176,20 @@ class UserManager {
         }
     }
 
-    // MARK: Edit user
+    func editUser(value: [String: Any]) {
 
-    func editUser(with uid: String, value: [String: Any]) {
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
 
-        FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users).child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
+            FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users).child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
 
-            if error != nil {
+                if error != nil {
 
-                print(error?.localizedDescription ?? "")
+                    print(error?.localizedDescription ?? "")
 
-                return
-            }
+                    return
+                }
 
-        })
-
+            })
+        }
     }
-
 }
