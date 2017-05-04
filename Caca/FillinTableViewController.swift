@@ -298,13 +298,6 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoTableViewCell", for: indexPath) as! PhotoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.cancelButton.setTitle("", for: .normal)
-            let buttonImage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
-            cell.rowView.cancelButton.setImage(buttonImage, for: .normal)
-            cell.rowView.cancelButton.tintColor = Palette.darkblue
-
-            cell.rowView.addPhotoButton.setTitle("", for: .normal)
-
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
@@ -1216,78 +1209,108 @@ extension FillinTableViewController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
 
-        guard let dateSection = components.index(of: Component.date),
-            let consumingTimeSection = components.index(of: Component.time),
-            let shapeSection = components.index(of: Component.shape),
-            let colorSection = components.index(of: Component.color),
-            let amountSection = components.index(of: Component.amount),
-            let medicineSection = components.index(of: Component.medicine),
-            let otherSection = components.index(of: Component.other) else { return }
+        if let dateSection = components.index(of: Component.date) {
 
-        let dateIndexPath = IndexPath(row: 0, section: dateSection)
-        let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)
-        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
-        let colorIndexPath = IndexPath(row: 0, section: colorSection)
-        let amountIndexPath = IndexPath(row: 0, section: amountSection)
-        let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
-        let otherIndexPath = IndexPath(row: 0, section: otherSection)
+            let dateIndexPath = IndexPath(row: 0, section: dateSection)
 
-        if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
-           let date = dateCell.rowView.infoTextField.text?.substring(to: 10) {
+            if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
+                let date = dateCell.rowView.infoTextField.text?.substring(to: 10) {
 
-            finalCaca.date = date
+                finalCaca.date = date
 
+            }
+
+            if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
+                let time = dateCell.rowView.infoTextField.text?.substring(from: 11) {
+
+                finalCaca.time = time
+
+            }
         }
 
-        if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
-           let time = dateCell.rowView.infoTextField.text?.substring(from: 11) {
+        if let consumingTimeSection = components.index(of: Component.time) {
 
-            finalCaca.time = time
+            let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)
 
+            if let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
+                let consumingTime = consumingTimeCell.rowView.infoTextField.text {
+
+                finalCaca.consumingTime = consumingTime
+
+            }
         }
 
-        if let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
-           let consumingTime = consumingTimeCell.rowView.infoTextField.text {
+        if let colorSection = components.index(of: Component.color) {
 
-            finalCaca.consumingTime = consumingTime
+            let colorIndexPath = IndexPath(row: 0, section: colorSection)
 
+            if let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
+                let color = colorCell.rowView.infoTextField.text {
+
+                finalCaca.color = color
+
+            }
         }
 
-        if let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
-           let shape = shapeCell.rowView.infoTextField.text {
+        if let shapeSection = components.index(of: Component.shape) {
 
-            finalCaca.shape = shape
+            let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
 
+            if let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
+                let shape = shapeCell.rowView.infoTextField.text {
+
+                finalCaca.shape = shape
+
+            }
         }
 
-        if let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
-           let color = colorCell.rowView.infoTextField.text {
+        if let amountSection = components.index(of: Component.amount) {
 
-            finalCaca.color = color
+            let amountIndexPath = IndexPath(row: 0, section: amountSection)
 
+            if let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
+                let amount = amountCell.rowView.infoTextField.text {
+
+                finalCaca.amount = amount
+
+            }
         }
 
-        if let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
-           let amount = amountCell.rowView.infoTextField.text {
+//        if let periodSection = components.index(of: Component.period) {
+//            
+//            let periodIndexPath = IndexPath(row: 0, section: periodSection)
+//            
+//            if let periodCell = tableView.cellForRow(at: periodIndexPath) as? InfoTableViewCell,
+//                let amount = periodCell.rowView.infoTextField.text {
+//                
+//                finalCaca.period = period
+//                
+//            }
+//        }
 
-            finalCaca.amount = amount
+        if let medicineSection = components.index(of: Component.medicine) {
 
+            let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
+
+            if let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? InfoTableViewCell,
+                let medicine = medicineCell.rowView.infoTextField.text {
+
+                finalCaca.medicine = medicine
+
+            }
         }
 
-        if let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? InfoTableViewCell,
-           let medicine = medicineCell.rowView.infoTextField.text {
+        if let otherSection = components.index(of: Component.other) {
 
-            finalCaca.medicine = medicine
+            let otherIndexPath = IndexPath(row: 0, section: otherSection)
 
+            if let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell,
+                let otherInfo = otherCell.rowView.infoTextField.text {
+
+                finalCaca.otherInfo = otherInfo
+
+            }
         }
-
-        if let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell,
-           let otherInfo = otherCell.rowView.infoTextField.text {
-
-            finalCaca.otherInfo = otherInfo
-
-        }
-
     }
 }
 
