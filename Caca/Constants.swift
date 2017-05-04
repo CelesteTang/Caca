@@ -55,7 +55,7 @@ struct Constants {
         static let passwordAuthentication = "PasswordAuthentication"
         static let touchIDAuthentication = "TouchIDAuthentication"
         static let password = "Password"
-        
+
     }
 
     struct UIFont {
@@ -84,7 +84,7 @@ struct Constants {
         static let medicine = "medicine"
         static let other = "other"
         static let period = "period"
-        static let photo = "photo"
+        static let photoURL = "photoURL"
         static let photoID = "photoID"
         static let shape = "shape"
         static let time = "time"

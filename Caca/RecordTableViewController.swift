@@ -137,11 +137,11 @@ class RecordTableViewController: UITableViewController {
 
         if isCovered == false {
 
-            if cacas[indexPath.row].photo != "" {
+            if let photoURL = cacas[indexPath.row].photoURL {
 
                 DispatchQueue.global().async {
 
-                    if let url = URL(string: self.cacas[indexPath.row].photo) {
+                    if let url = URL(string: photoURL) {
 
                         do {
                             let data = try Data(contentsOf: url)
@@ -205,14 +205,15 @@ class RecordTableViewController: UITableViewController {
 
         if editingStyle == .delete {
 
-            CacaProvider.shared.deleteCaca(cacaID: self.cacas[indexPath.row].cacaID)
-            CacaProvider.shared.deleteCacaPhoto(photoID: self.cacas[indexPath.row].photoID)
-            self.cacas.remove(at: indexPath.row)
+            if let photoID = self.cacas[indexPath.row].photoID {
 
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
+                CacaProvider.shared.deleteCaca(cacaID: self.cacas[indexPath.row].cacaID)
+                CacaProvider.shared.deleteCacaPhoto(photoID: photoID)
+                self.cacas.remove(at: indexPath.row)
 
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+
+            }
         }
-
     }
-
 }

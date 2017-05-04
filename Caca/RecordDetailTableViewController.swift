@@ -84,10 +84,10 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
 
         self.passOrFailView.isHidden = true
 
-        if self.recievedCaca[0].photo != "" {
+        if let photoURL = self.recievedCaca[0].photoURL {
 
             DispatchQueue.global().async {
-                if let url = URL(string: self.recievedCaca[0].photo) {
+                if let url = URL(string: photoURL) {
 
                     do {
                         let data = try Data(contentsOf: url)

@@ -97,6 +97,7 @@
 		43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3FA81E80D64F0052125B /* Caca.storyboard */; };
 		43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */; };
 		43CF3C6C1EB84AD20016F8CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF3C6B1EB84AD20016F8CB /* Constants.swift */; };
+		43CF3CB01EB8B3B30016F8CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43CF3CB21EB8B3B30016F8CB /* Localizable.strings */; };
 		43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA111E84BE2800E92290 /* SignInViewController.swift */; };
 		43F2FA141E84BE4300E92290 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA131E84BE4300E92290 /* SignUpViewController.swift */; };
 		F95845CD50A464FB4F580BFD /* Pods_Caca.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98224253DC57BEF9622E41A3 /* Pods_Caca.framework */; };
@@ -196,6 +197,9 @@
 		43BA3FA81E80D64F0052125B /* Caca.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Caca.storyboard; sourceTree = "<group>"; };
 		43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		43CF3C6B1EB84AD20016F8CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		43CF3CAD1EB8B2F90016F8CB /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		43CF3CB11EB8B3B30016F8CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		43CF3CB31EB8B3BD0016F8CB /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		43F2FA111E84BE2800E92290 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		43F2FA131E84BE4300E92290 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7DADD57322E5B4218C94F560 /* Pods-Caca.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caca.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caca/Pods-Caca.debug.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 				43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */,
 				4322EB511E8398FA006B0D5D /* Palette.swift */,
 				43CF3C6B1EB84AD20016F8CB /* Constants.swift */,
+				43CF3CB21EB8B3B30016F8CB /* Localizable.strings */,
 				43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */,
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
 				4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */,
@@ -509,6 +514,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 43372CF71E7FB4BD002E2AE3;
 			productRefGroup = 43372D011E7FB4BD002E2AE3 /* Products */;
@@ -541,6 +547,7 @@
 				4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */,
 				43BA3F9C1E7FCFDF0052125B /* Setting.storyboard in Resources */,
 				43372D0E1E7FB4BD002E2AE3 /* Assets.xcassets in Resources */,
+				43CF3CB01EB8B3B30016F8CB /* Localizable.strings in Resources */,
 				4328DCA41E9C8202006D3FB8 /* Privacy.storyboard in Resources */,
 				434913041EB465D9006A680C /* InfoSegmentRowView.xib in Resources */,
 				4336811B1E8A427F00D51B5C /* CalendarCellView.xib in Resources */,
@@ -713,8 +720,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				43372D101E7FB4BD002E2AE3 /* Base */,
+				43CF3CAD1EB8B2F90016F8CB /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		43CF3CB21EB8B3B30016F8CB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43CF3CB11EB8B3B30016F8CB /* Base */,
+				43CF3CB31EB8B3BD0016F8CB /* zh-Hant */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -724,6 +741,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -776,6 +794,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -825,6 +844,7 @@
 				CODE_SIGN_ENTITLEMENTS = Caca/Caca.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = V35V7R5VNP;
 				INFOPLIST_FILE = Caca/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;

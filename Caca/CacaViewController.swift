@@ -49,6 +49,7 @@ class CacaViewController: UIViewController {
         detectFrequency()
 
         prepareNotification()
+
     }
 
     override func viewDidLayoutSubviews() {
@@ -95,7 +96,7 @@ class CacaViewController: UIViewController {
 
         self.notificationLabel.textColor = Palette.darkblue
         self.notificationLabel.numberOfLines = 0
-        self.notificationLabel.text = NSLocalizedString("How's today?", comment: "Greeting user")
+        self.notificationLabel.text = NSLocalizedString("How's today?", comment: "Greet user")
         self.notificationLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 25)
 
         self.startButton.backgroundColor = Palette.darkblue2
@@ -128,7 +129,7 @@ class CacaViewController: UIViewController {
 
                 if cacas.last?.date == nil {
 
-                    self.notificationLabel.text = NSLocalizedString("\(userName), start caca now!", comment: "")
+                    self.notificationLabel.text = "\(userName)" + NSLocalizedString(", start caca now!", comment: "")
 
                     self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
@@ -138,19 +139,20 @@ class CacaViewController: UIViewController {
 
                     case 1:
 
-                        self.notificationLabel.text = NSLocalizedString("\(userName), you don't caca today.", comment: "")
+                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you don't caca today.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
                     case 2...3:
 
-                        self.notificationLabel.text = NSLocalizedString("\(userName), you don't caca for \(dayToNow) days. Remember to caca at least every 3 days.", comment: "")
+                        let notificationString = "\(userName)" + NSLocalizedString(", you don't caca for %d days. Remember to caca at least every 3 days.", comment: "")
+                        self.notificationLabel.text = String(format: notificationString, dayToNow)
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "crackSausage")
 
                     default:
 
-                        self.notificationLabel.text = NSLocalizedString("\(userName), you don't caca for a long time. Remember to caca at least every 3 days.", comment: "")
+                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you don't caca for a long time. Remember to caca at least every 3 days.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "lumpySausage")
 
@@ -177,13 +179,13 @@ class CacaViewController: UIViewController {
 
                     if todayCacaTimes > 3 {
 
-                        self.notificationLabel.text = NSLocalizedString("\(userName), you caca too much today. You should not caca over 3 times per day.", comment: "")
+                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you caca too much today. You should not caca over 3 times per day.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "wateryStool")
 
                     } else {
 
-                        self.notificationLabel.text = NSLocalizedString("\(userName), you caca today.", comment: "")
+                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you caca today.", comment: "")
 
                     }
                 }

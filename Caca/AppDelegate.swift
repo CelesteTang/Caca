@@ -38,9 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
 
-        if UserDefaults.standard.bool(forKey: "PasswordAuthentication") == true {
+        if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.passwordAuthentication) == true {
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let passwordViewController = UIStoryboard(name: "Password", bundle: nil).instantiateViewController(withIdentifier: "PasswordViewController") as? PasswordViewController {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let passwordViewController = UIStoryboard(name: Constants.Storyboard.password, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.password) as? PasswordViewController {
 
                 passwordViewController.isFromBeginning = true
 
@@ -53,13 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             FIRAuth.auth()?.addStateDidChangeListener({ (_, user) in
 
-                guard let startViewController = UIStoryboard(name: "Landing", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as? StartViewController,
-                    let tabBarController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as? TabBarController,
-                    let openingController = UIStoryboard(name: "Opening", bundle: nil).instantiateViewController(withIdentifier: "OpeningPageViewController") as? OpeningPageViewController else {
+                guard let startViewController = UIStoryboard(name: Constants.Storyboard.landing, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.start) as? StartViewController,
+                    let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController,
+                    let openingController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.openingPage) as? OpeningPageViewController else {
                         return
                 }
 
-                let isviewedWalkThrough = UserDefaults.standard.bool(forKey: "IsviewedWalkThrough")
+                let isviewedWalkThrough = UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.isViewedWalkThrough)
 
                 if user != nil && user?.isAnonymous == false && isviewedWalkThrough == false {
 

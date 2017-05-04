@@ -46,8 +46,16 @@ class PhotoTableViewCell: UITableViewCell {
         self.rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
 
         self.rowView.backgroundColor = Palette.lightblue2
-        self.rowView.cacaPhotoImageView.backgroundColor = UIColor.clear
         self.rowView.borderView.backgroundColor = Palette.darkblue2
+
+        self.rowView.addPhotoButton.setTitle("", for: .normal)
+
+        self.rowView.cancelButton.setTitle("", for: .normal)
+        let buttonImage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
+        self.rowView.cancelButton.setImage(buttonImage, for: .normal)
+        self.rowView.cancelButton.tintColor = Palette.darkblue
+
+        self.rowView.cacaPhotoImageView.backgroundColor = UIColor.clear
 
     }
 

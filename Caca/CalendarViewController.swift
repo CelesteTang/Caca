@@ -11,6 +11,20 @@ import JTAppleCalendar
 
 class CalendarViewController: UIViewController {
 
+    @IBOutlet weak var sundayLabel: UILabel!
+
+    @IBOutlet weak var mondayLabel: UILabel!
+
+    @IBOutlet weak var tuesdayLabel: UILabel!
+
+    @IBOutlet weak var wednesdayLabel: UILabel!
+
+    @IBOutlet weak var thursdayLabel: UILabel!
+
+    @IBOutlet weak var fridayLabel: UILabel!
+
+    @IBOutlet weak var saturdayLabel: UILabel!
+
     @IBOutlet weak var headerView: UIView!
 
     @IBOutlet weak var headerTitleLabel: UILabel!
@@ -79,6 +93,14 @@ class CalendarViewController: UIViewController {
         self.headerView.backgroundColor = Palette.darkblue
         self.headerTitleLabel.textColor = Palette.lightblue2
         self.headerTitleLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
+
+        self.sundayLabel.text = NSLocalizedString("SUN", comment: "")
+        self.mondayLabel.text = NSLocalizedString("MON", comment: "")
+        self.tuesdayLabel.text = NSLocalizedString("TUE", comment: "")
+        self.wednesdayLabel.text = NSLocalizedString("WED", comment: "")
+        self.thursdayLabel.text = NSLocalizedString("THU", comment: "")
+        self.fridayLabel.text = NSLocalizedString("FRI", comment: "")
+        self.saturdayLabel.text = NSLocalizedString("SAT", comment: "")
 
         self.adviceView.backgroundColor = Palette.lightblue2
 

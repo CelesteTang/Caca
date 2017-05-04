@@ -65,7 +65,7 @@ class FillinTableViewController: UITableViewController {
 
     var isCorrect = false
 
-    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "cacaWithCamera"), period: 1, medicine: "")
+    var finalCaca = Caca(cacaID: "", date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", grading: false, advice: "")
 
     var cacas = [Caca]()
 
@@ -171,13 +171,13 @@ class FillinTableViewController: UITableViewController {
 
             let indexPath = IndexPath(row: 0, section: dateSection)
 
-            let dateCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell
-
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm"
-
-            dateCell?.rowView.infoTextField.text = formatter.string(from: datePicker.date)
-
+            if let dateCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell {
+            
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                
+                dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
+            }
         }
     }
 
@@ -277,8 +277,6 @@ class FillinTableViewController: UITableViewController {
         if let photoCell = tableView.cellForRow(at: indexPath) as? PhotoTableViewCell,
            photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "cacaWithCamera") {
 
-            photoCell.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue
-
             photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
             photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
 
@@ -298,13 +296,6 @@ class FillinTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoTableViewCell", for: indexPath) as! PhotoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.cancelButton.setTitle("", for: .normal)
-            let buttonImage = #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate)
-            cell.rowView.cancelButton.setImage(buttonImage, for: .normal)
-            cell.rowView.cancelButton.tintColor = Palette.darkblue
-
-            cell.rowView.addPhotoButton.setTitle("", for: .normal)
-
             cell.rowView.cancelButton.addTarget(self, action: #selector(cancelFillin), for: .touchUpInside)
             cell.rowView.addPhotoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
 
@@ -312,10 +303,10 @@ class FillinTableViewController: UITableViewController {
 
             if isFromRecordDetail == true {
 
-                if self.recievedCacaFromRecordDetail[0].photo != "" {
+                if let photoURL = self.recievedCacaFromRecordDetail[0].photoURL {
 
                     DispatchQueue.global().async {
-                        if let url = URL(string: self.recievedCacaFromRecordDetail[0].photo) {
+                        if let url = URL(string: photoURL) {
 
                             do {
                                 let data = try Data(contentsOf: url)
@@ -580,7 +571,7 @@ class FillinTableViewController: UITableViewController {
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
 
-        let cancelAction = UIAlertAction(title: "Cancel",
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""),
                                          style: .cancel,
                                          handler: nil)
 
@@ -876,6 +867,20 @@ class FillinTableViewController: UITableViewController {
         let photoID = UUID().uuidString
         let overallAdvice = getAdvice()
 
+        var value = [Constants.FirebaseCacaKey.host: hostUID,
+                     Constants.FirebaseCacaKey.cacaID: cacaID,
+                     Constants.FirebaseCacaKey.date: self.finalCaca.date,
+                     Constants.FirebaseCacaKey.time: self.finalCaca.time,
+                     Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
+                     Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
+                     Constants.FirebaseCacaKey.color: self.finalCaca.color,
+                     Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
+                     Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo,
+                     Constants.FirebaseCacaKey.grading: self.ispassed,
+                     Constants.FirebaseCacaKey.advice: overallAdvice,
+                     Constants.FirebaseCacaKey.period: self.finalCaca.period,
+                     Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine] as [String : Any]
+
         // MARK : Create caca with photo
 
         if finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") {
@@ -900,21 +905,8 @@ class FillinTableViewController: UITableViewController {
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
 
-                let value = [Constants.FirebaseCacaKey.host: hostUID,
-                             Constants.FirebaseCacaKey.cacaID: cacaID,
-                             Constants.FirebaseCacaKey.photo: cacaPhotoUrl,
-                             Constants.FirebaseCacaKey.photoID: photoID,
-                             Constants.FirebaseCacaKey.date: self.finalCaca.date,
-                             Constants.FirebaseCacaKey.time: self.finalCaca.time,
-                             Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
-                             Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
-                             Constants.FirebaseCacaKey.color: self.finalCaca.color,
-                             Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
-                             Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo ?? "",
-                             Constants.FirebaseCacaKey.grading: self.ispassed,
-                             Constants.FirebaseCacaKey.advice: overallAdvice,
-                             Constants.FirebaseCacaKey.period: self.finalCaca.period ?? "",
-                             Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine ?? ""] as [String : Any]
+                value.updateValue(cacaPhotoUrl, forKey: Constants.FirebaseCacaKey.photoURL)
+                value.updateValue(photoID, forKey: Constants.FirebaseCacaKey.photoID)
 
                 CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
@@ -927,22 +919,6 @@ class FillinTableViewController: UITableViewController {
             // MARK : Create caca without photo
 
             FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.createWithoutPhoto, parameters: nil)
-
-            let value = [Constants.FirebaseCacaKey.host: hostUID,
-                         Constants.FirebaseCacaKey.cacaID: cacaID,
-                         Constants.FirebaseCacaKey.photo: "",
-                         Constants.FirebaseCacaKey.photoID: "",
-                         Constants.FirebaseCacaKey.date: self.finalCaca.date,
-                         Constants.FirebaseCacaKey.time: self.finalCaca.time,
-                         Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
-                         Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
-                         Constants.FirebaseCacaKey.color: self.finalCaca.color,
-                         Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
-                         Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo ?? "",
-                         Constants.FirebaseCacaKey.grading: self.ispassed,
-                         Constants.FirebaseCacaKey.advice: overallAdvice,
-                         Constants.FirebaseCacaKey.period: self.finalCaca.period ?? "",
-                         Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine ?? ""] as [String : Any]
 
             CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
@@ -965,12 +941,25 @@ class FillinTableViewController: UITableViewController {
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
 
         let cacaID = recievedCacaFromRecordDetail[0].cacaID
-        let photoID = recievedCacaFromRecordDetail[0].photoID
         let overallAdvice = getAdvice()
+
+        var value = [Constants.FirebaseCacaKey.host: hostUID,
+                     Constants.FirebaseCacaKey.cacaID: cacaID,
+                     Constants.FirebaseCacaKey.date: self.finalCaca.date,
+                     Constants.FirebaseCacaKey.time: self.finalCaca.time,
+                     Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
+                     Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
+                     Constants.FirebaseCacaKey.color: self.finalCaca.color,
+                     Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
+                     Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo,
+                     Constants.FirebaseCacaKey.grading: self.ispassed,
+                     Constants.FirebaseCacaKey.advice: overallAdvice,
+                     Constants.FirebaseCacaKey.period: self.finalCaca.period,
+                     Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine] as [String : Any]
 
         // MARK : Edit caca with new photo (had old photo)
 
-        if finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") && recievedCacaFromRecordDetail[0].photoID != "" {
+        if let photoID = recievedCacaFromRecordDetail[0].photoID, finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") {
 
             CacaProvider.shared.editCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
 
@@ -1005,29 +994,16 @@ class FillinTableViewController: UITableViewController {
                 FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.editWithPhoto, parameters: nil)
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
-                let value = [Constants.FirebaseCacaKey.host: hostUID,
-                             Constants.FirebaseCacaKey.cacaID: cacaID,
-                             Constants.FirebaseCacaKey.photo: cacaPhotoUrl,
-                             Constants.FirebaseCacaKey.photoID: photoID,
-                             Constants.FirebaseCacaKey.date: self.finalCaca.date,
-                             Constants.FirebaseCacaKey.time: self.finalCaca.time,
-                             Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
-                             Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
-                             Constants.FirebaseCacaKey.color: self.finalCaca.color,
-                             Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
-                             Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo ?? "",
-                             Constants.FirebaseCacaKey.grading: self.ispassed,
-                             Constants.FirebaseCacaKey.advice: overallAdvice,
-                             Constants.FirebaseCacaKey.period: self.finalCaca.period ?? "",
-                             Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine ?? ""] as [String : Any]
 
-                CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
+                value.updateValue(cacaPhotoUrl, forKey: Constants.FirebaseCacaKey.photoURL)
+                value.updateValue(photoID, forKey: Constants.FirebaseCacaKey.photoID)
+
+                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
                 self.switchToRecord()
-
             })
 
-        } else if finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") && recievedCacaFromRecordDetail[0].photoID == "" {
+        } else if finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") && recievedCacaFromRecordDetail[0].photoID == nil {
 
             // MARK : Edit caca with new photo (no old photo)
 
@@ -1052,23 +1028,11 @@ class FillinTableViewController: UITableViewController {
                 FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.editWithPhoto, parameters: nil)
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
-                let value = [Constants.FirebaseCacaKey.host: hostUID,
-                             Constants.FirebaseCacaKey.cacaID: cacaID,
-                             Constants.FirebaseCacaKey.photo: cacaPhotoUrl,
-                             Constants.FirebaseCacaKey.photoID: newPhotoID,
-                             Constants.FirebaseCacaKey.date: self.finalCaca.date,
-                             Constants.FirebaseCacaKey.time: self.finalCaca.time,
-                             Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
-                             Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
-                             Constants.FirebaseCacaKey.color: self.finalCaca.color,
-                             Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
-                             Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo ?? "",
-                             Constants.FirebaseCacaKey.grading: self.ispassed,
-                             Constants.FirebaseCacaKey.advice: overallAdvice,
-                             Constants.FirebaseCacaKey.period: self.finalCaca.period ?? "",
-                             Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine ?? ""] as [String : Any]
 
-                CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
+                value.updateValue(cacaPhotoUrl, forKey: Constants.FirebaseCacaKey.photoURL)
+                value.updateValue(newPhotoID, forKey: Constants.FirebaseCacaKey.photoID)
+
+                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
                 self.switchToRecord()
 
@@ -1080,23 +1044,7 @@ class FillinTableViewController: UITableViewController {
 
             FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.editWithoutPhoto, parameters: nil)
 
-            let value = [Constants.FirebaseCacaKey.host: hostUID,
-                         Constants.FirebaseCacaKey.cacaID: cacaID,
-                         Constants.FirebaseCacaKey.photo: "",
-                         Constants.FirebaseCacaKey.photoID: "",
-                         Constants.FirebaseCacaKey.date: self.finalCaca.date,
-                         Constants.FirebaseCacaKey.time: self.finalCaca.time,
-                         Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
-                         Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
-                         Constants.FirebaseCacaKey.color: self.finalCaca.color,
-                         Constants.FirebaseCacaKey.amount: self.finalCaca.amount ,
-                         Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo ?? "",
-                         Constants.FirebaseCacaKey.grading: self.ispassed,
-                         Constants.FirebaseCacaKey.advice: overallAdvice,
-                         Constants.FirebaseCacaKey.period: self.finalCaca.period ?? "",
-                         Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine ?? ""] as [String : Any]
-
-            CacaProvider.shared.editCaca(cacaID: cacaID, value: value)
+            CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
 
             self.switchToRecord()
 
@@ -1128,7 +1076,7 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true) {
 
             let alertController = UIAlertController(title: NSLocalizedString("Note", comment: "Note to let user know the detection color"),
-                                                    message: NSLocalizedString("The color of your caca is closed to \(self.getClosedColor(of: dominantColor))", comment: ""),
+                                                    message: NSLocalizedString("The color of your caca is closed to ", comment: "") + "\(self.getClosedColor(of: dominantColor))",
                 preferredStyle: .alert)
 
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
@@ -1159,44 +1107,26 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         let toGray = ((192 - r) * (192 - r)) + ((192 - g) * (192 - g)) + ((192 - b) * (192 - b))
         let toBlack = ((0 - r) * (0 - r)) + ((0 - g) * (0 - g)) + ((0 - b) * (0 - b))
 
-        let UInt8Array = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ]
-        let closedUInt8 = UInt8Array.sorted { $0 < $1 }.first
+        let UIntArray = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ]
+        if let closedUInt = (UIntArray.sorted { $0 < $1 }.first) {
 
-        if closedUInt8 == toRed {
-
-            return Color.red.title
-
-        } else if closedUInt8 == toYellow {
-
-            return Color.yellow.title
-
-        } else if closedUInt8 == toGreen {
-
-            return Color.green.title
-
-        } else if closedUInt8 == toLightBrown {
-
-            return Color.lightBrown.title
-
-        } else if closedUInt8 == toDarkBrown {
-
-            return Color.darkBrown.title
-
-        } else if closedUInt8 == toGray {
-
-            return Color.gray.title
-
-        } else if closedUInt8 == toBlack {
-
-            return Color.black.title
+            switch closedUInt {
+            case toRed: return Color.red.title
+            case toYellow: return Color.yellow.title
+            case toGreen: return Color.green.title
+            case toLightBrown: return Color.lightBrown.title
+            case toDarkBrown: return Color.darkBrown.title
+            case toGray: return Color.gray.title
+            case toBlack: return Color.black.title
+            default: return ""
+            }
 
         } else {
 
             return ""
+
         }
-
     }
-
 }
 
 extension FillinTableViewController: UITextFieldDelegate {
@@ -1217,80 +1147,95 @@ extension FillinTableViewController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
 
-        guard let dateSection = components.index(of: Component.date),
-            let consumingTimeSection = components.index(of: Component.time),
-            let shapeSection = components.index(of: Component.shape),
-            let colorSection = components.index(of: Component.color),
-            let amountSection = components.index(of: Component.amount),
-            let medicineSection = components.index(of: Component.medicine),
-            let otherSection = components.index(of: Component.other) else {
-                return
+        if let dateSection = components.index(of: Component.date) {
+
+            let dateIndexPath = IndexPath(row: 0, section: dateSection)
+
+            if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell {
+
+                if textField == dateCell.rowView.infoTextField {
+
+                    if let date = dateCell.rowView.infoTextField.text {
+                        
+                        finalCaca.date = date.substring(to: 10)
+                        finalCaca.time = date.substring(from: 11)
+                        
+                    }
+                }
+            }
         }
 
-        let dateIndexPath = IndexPath(row: 0, section: dateSection)
-        let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)
-        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
-        let colorIndexPath = IndexPath(row: 0, section: colorSection)
-        let amountIndexPath = IndexPath(row: 0, section: amountSection)
-        let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
-        let otherIndexPath = IndexPath(row: 0, section: otherSection)
+        if let consumingTimeSection = components.index(of: Component.time) {
 
-        if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
-           let date = dateCell.rowView.infoTextField.text?.substring(to: 10) {
+            let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)
 
-            finalCaca.date = date
+            if let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
+                let consumingTime = consumingTimeCell.rowView.infoTextField.text {
 
+                finalCaca.consumingTime = consumingTime
+
+            }
         }
 
-        if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
-           let time = dateCell.rowView.infoTextField.text?.substring(from: 11) {
+        if let colorSection = components.index(of: Component.color) {
 
-            finalCaca.time = time
+            let colorIndexPath = IndexPath(row: 0, section: colorSection)
 
+            if let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
+                let color = colorCell.rowView.infoTextField.text {
+
+                finalCaca.color = color
+
+            }
         }
 
-        if let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
-           let consumingTime = consumingTimeCell.rowView.infoTextField.text {
+        if let shapeSection = components.index(of: Component.shape) {
 
-            finalCaca.consumingTime = consumingTime
+            let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
 
+            if let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
+                let shape = shapeCell.rowView.infoTextField.text {
+
+                finalCaca.shape = shape
+
+            }
         }
 
-        if let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
-           let shape = shapeCell.rowView.infoTextField.text {
+        if let amountSection = components.index(of: Component.amount) {
 
-            finalCaca.shape = shape
+            let amountIndexPath = IndexPath(row: 0, section: amountSection)
 
+            if let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
+                let amount = amountCell.rowView.infoTextField.text {
+
+                finalCaca.amount = amount
+
+            }
         }
 
-        if let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
-           let color = colorCell.rowView.infoTextField.text {
+        if let medicineSection = components.index(of: Component.medicine) {
 
-            finalCaca.color = color
+            let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
 
+            if let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? InfoTableViewCell,
+                let medicine = medicineCell.rowView.infoTextField.text {
+
+                finalCaca.medicine = medicine
+
+            }
         }
 
-        if let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
-           let amount = amountCell.rowView.infoTextField.text {
+        if let otherSection = components.index(of: Component.other) {
 
-            finalCaca.amount = amount
+            let otherIndexPath = IndexPath(row: 0, section: otherSection)
 
+            if let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell,
+                let otherInfo = otherCell.rowView.infoTextField.text {
+
+                finalCaca.otherInfo = otherInfo
+
+            }
         }
-
-        if let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? InfoTableViewCell,
-           let medicine = medicineCell.rowView.infoTextField.text {
-
-            finalCaca.medicine = medicine
-
-        }
-
-        if let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell,
-           let otherInfo = otherCell.rowView.infoTextField.text {
-
-            finalCaca.otherInfo = otherInfo
-
-        }
-
     }
 }
 
@@ -1394,14 +1339,11 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
             switch component {
 
-            case 0:
-                pickerLabel.text = String(format: "%02i", hour[row])
+            case 0: pickerLabel.text = String(format: "%02i", hour[row])
 
-            case 1:
-                pickerLabel.text = String(format: "%02i", min[row])
+            case 1: pickerLabel.text = String(format: "%02i", min[row])
 
-            case 2:
-                pickerLabel.text = String(format: "%02i", sec[row])
+            case 2: pickerLabel.text = String(format: "%02i", sec[row])
 
             default: break
 

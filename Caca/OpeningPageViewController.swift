@@ -10,7 +10,7 @@ import UIKit
 
 class OpeningPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
-    var pageHeadings = [NSLocalizedString("Do you remember the last caca time ?", comment: ""),
+    var pageHeadings = [NSLocalizedString("Do you remember the last caca time?", comment: ""),
                         NSLocalizedString("Do you know caca could reveal your healthy state?", comment: ""),
                         NSLocalizedString("Let's build up the good habit of caca with Caca!", comment: "")]
 
