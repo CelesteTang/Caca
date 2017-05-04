@@ -171,13 +171,13 @@ class FillinTableViewController: UITableViewController {
 
             let indexPath = IndexPath(row: 0, section: dateSection)
 
-            let dateCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell
-
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm"
-
-            dateCell?.rowView.infoTextField.text = formatter.string(from: datePicker.date)
-
+            if let dateCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell {
+            
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                
+                dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
+            }
         }
     }
 
@@ -1151,18 +1151,17 @@ extension FillinTableViewController: UITextFieldDelegate {
 
             let dateIndexPath = IndexPath(row: 0, section: dateSection)
 
-            if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
-                let date = dateCell.rowView.infoTextField.text?.substring(to: 10) {
+            if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell {
 
-                finalCaca.date = date
+                if textField == dateCell.rowView.infoTextField {
 
-            }
-
-            if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
-                let time = dateCell.rowView.infoTextField.text?.substring(from: 11) {
-
-                finalCaca.time = time
-
+                    if let date = dateCell.rowView.infoTextField.text {
+                        
+                        finalCaca.date = date.substring(to: 10)
+                        finalCaca.time = date.substring(from: 11)
+                        
+                    }
+                }
             }
         }
 
