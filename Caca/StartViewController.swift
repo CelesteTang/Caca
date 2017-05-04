@@ -23,8 +23,6 @@ class StartViewController: UIViewController {
 
     @IBAction func startDirectly(_ sender: UIButton) {
 
-        // MARK : Create user anonymously
-
         UserManager.shared.createAnonymousUser { (error) in
 
             if let error = error {
@@ -45,10 +43,6 @@ class StartViewController: UIViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
             let openingPageViewController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.openingPage) as? OpeningPageViewController
-
-            let openingViewController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.opening) as? OpeningViewController
-
-            openingViewController?.isFromStart = true
 
             appDelegate.window?.rootViewController = openingPageViewController
 

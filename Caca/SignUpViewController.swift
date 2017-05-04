@@ -91,8 +91,6 @@ class SignUpViewController: UIViewController {
 
             if isFromStart == true {
 
-                // MARK : Create user
-
                 UserManager.shared.createUser(with: email, password: password, gender: gender, medicine: medicine, completion: { (createError, storageError) in
 
                     if let error = createError {
@@ -124,10 +122,6 @@ class SignUpViewController: UIViewController {
                         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
                             let openingPageViewController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.openingPage) as? OpeningPageViewController
-
-                            let openingViewController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.opening) as? OpeningViewController
-
-                            openingViewController?.isFromStart = true
 
                             appDelegate.window?.rootViewController = openingPageViewController
 
