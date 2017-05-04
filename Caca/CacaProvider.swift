@@ -85,7 +85,7 @@ class CacaProvider {
                         let period = cacaInfo[Constants.FirebaseCacaKey.period] as? Int,
                         let medicine = cacaInfo[Constants.FirebaseCacaKey.medicine] as? String {
 
-                        let caca = Caca(cacaID: cacaID, photo: cacaPhoto, photoID: cacaPhotoID, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: cacaShape, color: cacaColor, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, advice: cacaAdvice, period: period, medicine: medicine)
+                        let caca = Caca(cacaID: cacaID, photoURL: cacaPhoto, photoID: cacaPhotoID, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: cacaShape, color: cacaColor, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, advice: cacaAdvice, period: period, medicine: medicine)
 
                         cacas.append(caca)
                     }

@@ -65,7 +65,7 @@ class FillinTableViewController: UITableViewController {
 
     var isCorrect = false
 
-    var finalCaca = FinalCaca(date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", otherInfo: "", image: #imageLiteral(resourceName: "cacaWithCamera"), period: 1, medicine: "")
+    var finalCaca = Caca(cacaID: "", date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", grading: false, advice: "")
 
     var cacas = [Caca]()
 
@@ -312,10 +312,10 @@ class FillinTableViewController: UITableViewController {
 
             if isFromRecordDetail == true {
 
-                if self.recievedCacaFromRecordDetail[0].photo != "" {
+                if let photoURL = self.recievedCacaFromRecordDetail[0].photoURL {
 
                     DispatchQueue.global().async {
-                        if let url = URL(string: self.recievedCacaFromRecordDetail[0].photo) {
+                        if let url = URL(string: photoURL) {
 
                             do {
                                 let data = try Data(contentsOf: url)
@@ -965,12 +965,11 @@ class FillinTableViewController: UITableViewController {
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
 
         let cacaID = recievedCacaFromRecordDetail[0].cacaID
-        let photoID = recievedCacaFromRecordDetail[0].photoID
         let overallAdvice = getAdvice()
 
         // MARK : Edit caca with new photo (had old photo)
 
-        if finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") && recievedCacaFromRecordDetail[0].photoID != "" {
+        if let photoID = recievedCacaFromRecordDetail[0].photoID, finalCaca.image != #imageLiteral(resourceName: "cacaWithCamera") {
 
             CacaProvider.shared.editCacaPhoto(image: finalCaca.image, photoID: photoID, completion: { (cacaPhotoUrl, storageError, deleteError) in
 
@@ -1223,9 +1222,7 @@ extension FillinTableViewController: UITextFieldDelegate {
             let colorSection = components.index(of: Component.color),
             let amountSection = components.index(of: Component.amount),
             let medicineSection = components.index(of: Component.medicine),
-            let otherSection = components.index(of: Component.other) else {
-                return
-        }
+            let otherSection = components.index(of: Component.other) else { return }
 
         let dateIndexPath = IndexPath(row: 0, section: dateSection)
         let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)

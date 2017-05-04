@@ -15,56 +15,9 @@ class Caca {
 
     let cacaID: String
 
-    let photo: String
+    var photoURL: String?
 
-    let photoID: String
-
-    let date: String
-
-    let time: String
-
-    let consumingTime: String
-
-    let shape: String
-
-    let color: String
-
-    let amount: String
-
-    let otherInfo: String?
-
-    let grading: Bool
-
-    let advice: String
-
-    let period: Int?
-
-    let medicine: String?
-
-    init(cacaID: String, photo: String, photoID: String, date: String, time: String, consumingTime: String, shape: String, color: String, amount: String, otherInfo: String?, grading: Bool, advice: String, period: Int?, medicine: String?) {
-
-        self.cacaID = cacaID
-        self.photo = photo
-        self.photoID = photoID
-        self.date = date
-        self.time = time
-        self.consumingTime = consumingTime
-        self.shape = shape
-        self.color = color
-        self.amount = amount
-        self.otherInfo = otherInfo
-        self.grading = grading
-        self.advice = advice
-        self.period = period
-        self.medicine = medicine
-
-    }
-
-}
-
-class FinalCaca {
-
-    // MARK: Property
+    var photoID: String?
 
     var date: String
 
@@ -80,14 +33,21 @@ class FinalCaca {
 
     var otherInfo: String?
 
-    var image: UIImage
+    var grading: Bool
+
+    var advice: String
 
     var period: Int?
 
     var medicine: String?
 
-    init(date: String, time: String, consumingTime: String, shape: String, color: String, amount: String, otherInfo: String?, image: UIImage, period: Int?, medicine: String?) {
+    var image: UIImage
 
+    init(cacaID: String, photoURL: String? = nil, photoID: String? = nil, date: String, time: String, consumingTime: String, shape: String, color: String, amount: String, otherInfo: String? = nil, grading: Bool, advice: String, period: Int? = nil, medicine: String? = nil) {
+
+        self.cacaID = cacaID
+        self.photoURL = photoURL
+        self.photoID = photoID
         self.date = date
         self.time = time
         self.consumingTime = consumingTime
@@ -95,9 +55,11 @@ class FinalCaca {
         self.color = color
         self.amount = amount
         self.otherInfo = otherInfo
-        self.image = image
+        self.grading = grading
+        self.advice = advice
         self.period = period
         self.medicine = medicine
+        self.image = #imageLiteral(resourceName: "cacaWithCamera")
 
     }
 
