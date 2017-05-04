@@ -46,16 +46,11 @@ struct Constants {
     }
 
     struct UserDefaultsKey {
-        static let name = "Name"
-        static let age = "Age"
-        static let gender = "Gender"
-        static let medicine = "Medicine"
         static let isViewedWalkThrough = "IsViewedWalkThrough"
         static let hide = "Hide"
         static let passwordAuthentication = "PasswordAuthentication"
         static let touchIDAuthentication = "TouchIDAuthentication"
         static let password = "Password"
-
     }
 
     struct UIFont {
@@ -65,8 +60,6 @@ struct Constants {
 
     struct FirebaseUserKey {
         static let users = "users"
-        static let name = "name"
-        static let age = "age"
         static let gender = "gender"
         static let medicine = "medicine"
     }

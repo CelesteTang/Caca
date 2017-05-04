@@ -39,26 +39,12 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
 
     // MARK: Property
 
-    var components: [Component] = [.date, .time, .color, .shape, .amount, .other]
+    var components: [Component] = [.date, .time, .color, .shape, .amount, .period, .medicine, .other]
 
     var recievedCaca = [Caca]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int == Gender.female.rawValue && UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.medicine) as? Int == 0 {
-
-            components = [.date, .time, .color, .shape, .amount, .period, .medicine, .other]
-
-        } else if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int == Gender.female.rawValue {
-
-            components = [.date, .time, .color, .shape, .amount, .period, .other]
-
-        } else if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.medicine) as? Int == 0 {
-
-            components = [.date, .time, .color, .shape, .amount, .medicine, .other]
-
-        }
 
         self.infoTableView.dataSource = self
         self.infoTableView.delegate = self

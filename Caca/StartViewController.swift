@@ -25,21 +25,9 @@ class StartViewController: UIViewController {
 
         // MARK : Create user anonymously
 
-        UserManager.shared.createAnonymousUser { (createError, storageError) in
+        UserManager.shared.createAnonymousUser { (error) in
 
-            if let error = createError {
-
-                let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
-                                                        message: error.localizedDescription,
-                                                        preferredStyle: .alert)
-
-                alertController.addAction(UIAlertAction(title: "OK",
-                                                        style: .default,
-                                                        handler: nil))
-
-                self.present(alertController, animated: true, completion: nil)
-
-            } else if let error = storageError {
+            if let error = error {
 
                 let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                         message: error.localizedDescription,
@@ -52,7 +40,6 @@ class StartViewController: UIViewController {
                 self.present(alertController, animated: true, completion: nil)
 
             }
-
         }
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
@@ -65,13 +52,7 @@ class StartViewController: UIViewController {
 
             appDelegate.window?.rootViewController = openingPageViewController
 
-            UserDefaults.standard.set(NSLocalizedString("Hello", comment: "Greet user"), forKey: Constants.UserDefaultsKey.name)
-            UserDefaults.standard.set(0, forKey: Constants.UserDefaultsKey.gender)
-            UserDefaults.standard.set("", forKey: Constants.UserDefaultsKey.age)
-            UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.medicine)
-
         }
-
     }
 
     @IBAction func goToSignIn(_ sender: UIButton) {

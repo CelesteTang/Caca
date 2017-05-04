@@ -10,12 +10,6 @@ import UIKit
 import Firebase
 import Crashlytics
 
-enum Gender: Int {
-
-    case male, female
-
-}
-
 class SignUpViewController: UIViewController {
 
     var isFromProfile = false
@@ -30,10 +24,10 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var passwordField: UITextField!
 
-    @IBOutlet weak var nameField: UITextField!
-
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
 
+    @IBOutlet weak var medicineSegmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var signUpButton: UIButton!
 
     @IBOutlet weak var cancelButton: UIButton!
@@ -88,29 +82,18 @@ class SignUpViewController: UIViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if self.nameField.text == "" {
-
-            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
-                                                    message: NSLocalizedString("Please enter your name", comment: "User must enter name"),
-                                                    preferredStyle: UIAlertControllerStyle.alert)
-
-            alertController.addAction(UIAlertAction(title: "OK",
-                                                    style: UIAlertActionStyle.default,
-                                                    handler: nil))
-
-            self.present(alertController, animated: true, completion: nil)
-
         } else {
 
-            guard let email = emailField.text, let password = passwordField.text, let name = self.nameField.text else { return }
+            guard let email = emailField.text, let password = passwordField.text else { return }
 
             let gender = self.genderSegmentedControl.selectedSegmentIndex
+            let medicine = self.medicineSegmentedControl.selectedSegmentIndex
 
             if isFromStart == true {
 
                 // MARK : Create user
 
-                UserManager.shared.createUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
+                UserManager.shared.createUser(with: email, password: password, gender: gender, medicine: medicine, completion: { (createError, storageError) in
 
                     if let error = createError {
 
@@ -148,11 +131,6 @@ class SignUpViewController: UIViewController {
 
                             appDelegate.window?.rootViewController = openingPageViewController
 
-                            UserDefaults.standard.set(name, forKey: Constants.UserDefaultsKey.name)
-                            UserDefaults.standard.set(gender, forKey: Constants.UserDefaultsKey.gender)
-                            UserDefaults.standard.set("", forKey: Constants.UserDefaultsKey.age)
-                            UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.medicine)
-
                             self.isFromStart = false
 
                         }
@@ -164,7 +142,7 @@ class SignUpViewController: UIViewController {
 
                 // MARK : Link anonymous user to permanent account
 
-                UserManager.shared.linkUser(with: email, password: password, name: name, gender: gender, completion: { (createError, storageError) in
+                UserManager.shared.linkUser(with: email, password: password, gender: gender, medicine: medicine, completion: { (createError, storageError) in
 
                     if let error = createError {
 
@@ -197,9 +175,6 @@ class SignUpViewController: UIViewController {
                             let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
 
                             appDelegate.window?.rootViewController = tabBarController
-
-                            UserDefaults.standard.set(name, forKey: Constants.UserDefaultsKey.name)
-                            UserDefaults.standard.set(gender, forKey: Constants.UserDefaultsKey.gender)
 
                             self.isFromProfile = false
 
@@ -260,16 +235,16 @@ class SignUpViewController: UIViewController {
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
 
-        self.nameField.delegate = self
-        self.nameField.clearButtonMode = .whileEditing
-        self.nameField.placeholder = NSLocalizedString("Name", comment: "")
-        self.nameField.clearsOnBeginEditing = true
-        self.nameField.returnKeyType = .done
-
         self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "male"), forSegmentAt: Gender.male.rawValue)
         self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "female"), forSegmentAt: Gender.female.rawValue)
         self.genderSegmentedControl.tintColor = Palette.darkblue2
 
+        self.medicineSegmentedControl.setTitle("Yes", forSegmentAt: 0)
+        self.medicineSegmentedControl.setTitle("No", forSegmentAt: 1)
+//        self.medicineSegmentedControl.setImage(#imageLiteral(resourceName: "male"), forSegmentAt: Gender.male.rawValue)
+//        self.medicineSegmentedControl.setImage(#imageLiteral(resourceName: "female"), forSegmentAt: Gender.female.rawValue)
+        self.medicineSegmentedControl.tintColor = Palette.darkblue2
+        
         self.signUpButton.backgroundColor = Palette.darkblue2
         self.signUpButton.setTitle(NSLocalizedString("Sign Up", comment: ""), for: .normal)
         self.signUpButton.layer.cornerRadius = self.signUpButton.frame.height / 2

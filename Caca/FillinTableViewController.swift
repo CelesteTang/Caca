@@ -82,18 +82,26 @@ class FillinTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int == Gender.female.rawValue && UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.medicine) as? Int == 0 {
+        UserManager.shared.getUser { (user, error) in
+            
+            if let user = user {
+                
+                if user.gender == Gender.female.rawValue && user.medicine == Medicine.yes.rawValue {
+                
+                    self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
+                
+                } else if user.gender == Gender.female.rawValue {
+                
+                    self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
 
-            components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
+                } else if user.medicine == Medicine.yes.rawValue {
+                
+                    self.components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
 
-        } else if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int == Gender.female.rawValue {
-
-            components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
-
-        } else if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.medicine) as? Int == 0 {
-
-            components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
-
+                }
+                
+            }
+            
         }
 
         self.tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoTableViewCell")
