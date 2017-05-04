@@ -1076,7 +1076,7 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true) {
 
             let alertController = UIAlertController(title: NSLocalizedString("Note", comment: "Note to let user know the detection color"),
-                                                    message: NSLocalizedString("The color of your caca is closed to \(self.getClosedColor(of: dominantColor))", comment: ""),
+                                                    message: NSLocalizedString("The color of your caca is closed to ", comment: "") + "\(self.getClosedColor(of: dominantColor))",
                 preferredStyle: .alert)
 
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
@@ -1339,14 +1339,11 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
             switch component {
 
-            case 0:
-                pickerLabel.text = String(format: "%02i", hour[row])
+            case 0: pickerLabel.text = String(format: "%02i", hour[row])
 
-            case 1:
-                pickerLabel.text = String(format: "%02i", min[row])
+            case 1: pickerLabel.text = String(format: "%02i", min[row])
 
-            case 2:
-                pickerLabel.text = String(format: "%02i", sec[row])
+            case 2: pickerLabel.text = String(format: "%02i", sec[row])
 
             default: break
 
