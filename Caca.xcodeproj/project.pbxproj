@@ -15,10 +15,8 @@
 		4322EB521E8398FA006B0D5D /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB511E8398FA006B0D5D /* Palette.swift */; };
 		4322EB541E83A8C6006B0D5D /* Caca.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB531E83A8C6006B0D5D /* Caca.swift */; };
 		4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */; };
-		4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */; };
 		4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */; };
 		4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4326E9801E8BD9610057363B /* CacaProvider.swift */; };
-		4328DCA11E9C7233006D3FB8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */; };
 		4328DCA41E9C8202006D3FB8 /* Privacy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4328DCA31E9C8202006D3FB8 /* Privacy.storyboard */; };
 		4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */; };
 		4328DCA81E9C8E6D006D3FB8 /* PrivacyRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4328DCA71E9C8E6D006D3FB8 /* PrivacyRowView.xib */; };
@@ -110,10 +108,8 @@
 		4322EB511E8398FA006B0D5D /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		4322EB531E83A8C6006B0D5D /* Caca.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caca.swift; sourceTree = "<group>"; };
 		4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RecordDetail.storyboard; sourceTree = "<group>"; };
-		4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDetailViewController.swift; sourceTree = "<group>"; };
 		4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4326E9801E8BD9610057363B /* CacaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacaProvider.swift; sourceTree = "<group>"; };
-		4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4328DCA31E9C8202006D3FB8 /* Privacy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Privacy.storyboard; sourceTree = "<group>"; };
 		4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewController.swift; sourceTree = "<group>"; };
 		4328DCA71E9C8E6D006D3FB8 /* PrivacyRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyRowView.xib; sourceTree = "<group>"; };
@@ -277,7 +273,6 @@
 				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
 				4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */,
 				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
-				4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */,
 				438EFDAE1EB1C36900D9B18A /* Profile */,
 				4396B58B1EA2241E00A69C4E /* Privacy */,
 			);
@@ -291,7 +286,6 @@
 				43372D251E7FC780002E2AE3 /* RecordRowView.swift */,
 				43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */,
 				43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */,
-				4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */,
 				433033001EB7075C00E308DE /* RecordDetail */,
 			);
 			name = Record;
@@ -669,8 +663,6 @@
 				4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */,
 				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
 				4330959B1E8CE68200E65E08 /* SettingTableViewCell.swift in Sources */,
-				4328DCA11E9C7233006D3FB8 /* ProfileViewController.swift in Sources */,
-				4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */,
 				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
 				434913081EB46608006A680C /* InfoSegmentTableViewCell.swift in Sources */,
 				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,
