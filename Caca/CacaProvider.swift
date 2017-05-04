@@ -11,11 +11,7 @@ import Firebase
 
 class CacaProvider {
 
-    // MARK: Property
-
     static let shared = CacaProvider()
-
-    // MARK: Save caca
 
     func saveCaca(cacaID: String, value: [String : Any]) {
 
@@ -30,8 +26,6 @@ class CacaProvider {
 
         })
     }
-
-    // MARK: Save caca photo
 
     typealias CacaPhotoHadler = (String?, Error?) -> Void
 
@@ -54,8 +48,6 @@ class CacaProvider {
         }
 
     }
-
-    // MARK: Get caca
 
     typealias CacaHadler = ([Caca]?, Error?) -> Void
 
@@ -104,25 +96,6 @@ class CacaProvider {
         }
     }
 
-    // MARK: Edit caca
-
-    func editCaca(cacaID: String, value: [String : Any]) {
-
-        FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
-
-            if error != nil {
-
-                print(error?.localizedDescription ?? "")
-
-                return
-            }
-
-        })
-
-    }
-
-    // MARK: Edit caca photo
-
     typealias EditCacaPhotoHadler = (String?, Error?, Error?) -> Void
 
     func editCacaPhoto(image: UIImage, photoID: String, completion: @escaping EditCacaPhotoHadler) {
@@ -149,7 +122,7 @@ class CacaProvider {
 
             } else {
 
-                print(error?.localizedDescription ?? "--Edit caca photo error--")
+                print(error?.localizedDescription ?? "")
 
                 completion(nil, nil, error)
             }
@@ -157,8 +130,6 @@ class CacaProvider {
         }
 
     }
-
-    // MARK: Delete caca
 
     func deleteCaca(cacaID: String) {
 
@@ -172,8 +143,6 @@ class CacaProvider {
         }
 
     }
-
-    // MARK: Delete caca photo
 
     func deleteCacaPhoto(photoID: String) {
 
