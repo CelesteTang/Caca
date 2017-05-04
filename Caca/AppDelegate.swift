@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application( _ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         FIRApp.configure()
 
@@ -38,6 +38,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
 
+        UserManager.shared.getUser { (user, _) in
+            
+            if let user = user {
+                
+                User.host = user
+                
+            }
+            
+        }
+
+        
         if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.passwordAuthentication) == true {
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let passwordViewController = UIStoryboard(name: Constants.Storyboard.password, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.password) as? PasswordViewController {
@@ -61,24 +72,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 let isviewedWalkThrough = UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.isViewedWalkThrough)
 
-                if user != nil && user?.isAnonymous == false && isviewedWalkThrough == false {
+                if isviewedWalkThrough == true {
+
+                    self.window?.rootViewController = tabBarController
+                    self.window?.makeKeyAndVisible()
+
+                } else if user != nil {
 
                     self.window?.rootViewController = openingController
-                    self.window?.makeKeyAndVisible()
-
-                } else if user != nil && user?.isAnonymous == false && isviewedWalkThrough == true {
-
-                    self.window?.rootViewController = tabBarController
-                    self.window?.makeKeyAndVisible()
-
-                } else if user != nil && user?.isAnonymous == true && isviewedWalkThrough == true {
-
-                    self.window?.rootViewController = tabBarController
-                    self.window?.makeKeyAndVisible()
-
-                } else if user != nil && user?.isAnonymous == true && isviewedWalkThrough == false {
-
-                    self.window?.rootViewController = startViewController
                     self.window?.makeKeyAndVisible()
 
                 } else if user == nil {
@@ -87,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.window?.makeKeyAndVisible()
 
                 }
+
             })
 
         }

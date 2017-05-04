@@ -11,37 +11,21 @@ import Firebase
 
 class ProfileTableViewController: UITableViewController {
 
-    let agePicker = UIPickerView()
-
-    var age = [Int]()
+//    var user = User()
 
     enum Component: Int {
 
-        case photo, name, gender, age, medicine, finish
+        case photo, gender, medicine, finish
 
         var title: String {
 
             switch self {
 
-            case .name:
+            case .gender: return NSLocalizedString("Gender", comment: "")
 
-                return NSLocalizedString("Name", comment: "")
+            case .medicine: return NSLocalizedString("Medicine", comment: "")
 
-            case .gender:
-
-                return NSLocalizedString("Gender", comment: "")
-
-            case .age:
-
-                return NSLocalizedString("Age", comment: "")
-
-            case .medicine:
-
-                return NSLocalizedString("Medicine", comment: "")
-
-            default:
-
-                return ""
+            default: return ""
 
             }
         }
@@ -49,7 +33,7 @@ class ProfileTableViewController: UITableViewController {
 
     // MARK: Property
 
-    let components: [Component] = [.photo, .name, .gender, .age, .medicine, .finish]
+    let components: [Component] = [.photo, .gender, .medicine, .finish]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +41,6 @@ class ProfileTableViewController: UITableViewController {
         setUp()
 
         self.tableView.register(ProfilePhotoTableViewCell.self, forCellReuseIdentifier: "ProfilePhotoTableViewCell")
-        self.tableView.register(ProfileTextFieldTableViewCell.self, forCellReuseIdentifier: "ProfileTextFieldTableViewCell")
         self.tableView.register(ProfileSegmentTableViewCell.self, forCellReuseIdentifier: "ProfileSegmentTableViewCell")
         self.tableView.register(ProfileButtonTableViewCell.self, forCellReuseIdentifier: "ProfileButtonTableViewCell")
 
@@ -74,14 +57,6 @@ class ProfileTableViewController: UITableViewController {
         self.navigationItem.title = NSLocalizedString("Profile", comment: "")
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""]
 
-        self.agePicker.dataSource = self
-        self.agePicker.delegate = self
-        for i in 0...123 { age.append(i) }
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
-        tap.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(tap)
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,41 +70,6 @@ class ProfileTableViewController: UITableViewController {
         super.viewWillDisappear(animated)
 
         tabBarController?.tabBar.isHidden = false
-
-        guard let nameSection = components.index(of: Component.name),
-            let genderSection = components.index(of: Component.gender),
-            let ageSection = components.index(of: Component.age),
-            let medicineSection = components.index(of: Component.medicine) else { return }
-
-        let nameIndexPath = IndexPath(row: 0, section: nameSection)
-        let genderIndexPath = IndexPath(row: 0, section: genderSection)
-        let ageIndexPath = IndexPath(row: 0, section: ageSection)
-        let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
-
-        guard let nameCell = tableView.cellForRow(at: nameIndexPath) as? ProfileTextFieldTableViewCell,
-            let genderCell = tableView.cellForRow(at: genderIndexPath) as? ProfileSegmentTableViewCell,
-            let ageCell = tableView.cellForRow(at: ageIndexPath) as? ProfileTextFieldTableViewCell,
-            let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? ProfileSegmentTableViewCell,
-            let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-
-        let name = nameCell.rowView.infoTextField.text ?? NSLocalizedString("Hello", comment: "Greet user")
-        let gender = genderCell.rowView.infoSegmentedControl.selectedSegmentIndex
-        let age = ageCell.rowView.infoTextField.text ?? "??"
-        let medicine = medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex
-
-        let user = User(name: name, gender: gender, age: age, medicine: medicine)
-
-        let value = [Constants.FirebaseUserKey.name: user.name,
-                     Constants.FirebaseUserKey.gender: user.gender,
-                     Constants.FirebaseUserKey.age: user.age,
-                     Constants.FirebaseUserKey.medicine: user.medicine] as [String: Any]
-
-        UserManager.shared.editUser(with: uid, value: value)
-
-        UserDefaults.standard.set(name, forKey: Constants.UserDefaultsKey.name)
-        UserDefaults.standard.set(gender, forKey: Constants.UserDefaultsKey.gender)
-        UserDefaults.standard.set(age, forKey: Constants.UserDefaultsKey.age)
-        UserDefaults.standard.set(medicine, forKey: Constants.UserDefaultsKey.medicine)
 
     }
 
@@ -147,7 +87,7 @@ class ProfileTableViewController: UITableViewController {
 
         switch component {
 
-        case .photo, .name, .gender, .age, .medicine, .finish: return 1
+        case .photo, .gender, .medicine, .finish: return 1
 
         }
 
@@ -165,44 +105,7 @@ class ProfileTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfilePhotoTableViewCell", for: indexPath) as! ProfilePhotoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.photoImageView.image = #imageLiteral(resourceName: "boy")
-
-            if let gender = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int {
-
-                if gender == Gender.male.rawValue {
-
-                    cell.rowView.photoImageView.image = #imageLiteral(resourceName: "boy")
-
-                } else if gender == Gender.female.rawValue {
-
-                    cell.rowView.photoImageView.image = #imageLiteral(resourceName: "girl")
-
-                }
-
-            }
-
-            return cell
-
-        case .name:
-
-            // swiftlint:disable force_cast
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTextFieldTableViewCell", for: indexPath) as! ProfileTextFieldTableViewCell
-            // swiftlint:enable force_cast
-
-            cell.rowView.infoLabel.text = component.title
-            cell.rowView.infoLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
-            cell.rowView.infoLabel.textColor = Palette.darkblue
-            cell.rowView.infoLabel.textAlignment = .center
-
-            cell.rowView.infoTextField.delegate = self
-            cell.rowView.infoTextField.returnKeyType = .done
-            cell.rowView.infoTextField.textAlignment = .center
-
-            if let name = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.name) as? String {
-
-                cell.rowView.infoTextField.text = name
-
-            }
+            cell.rowView.photoImageView.image = (User.host.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
             return cell
 
@@ -223,38 +126,7 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
 
-            cell.rowView.infoSegmentedControl.selectedSegmentIndex = 0
-
-            if let gender = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int {
-
-                cell.rowView.infoSegmentedControl.selectedSegmentIndex = gender
-
-            }
-
-            return cell
-
-        case .age:
-
-            // swiftlint:disable force_cast
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTextFieldTableViewCell", for: indexPath) as! ProfileTextFieldTableViewCell
-            // swiftlint:enable force_cast
-
-            cell.rowView.infoLabel.text = component.title
-            cell.rowView.infoLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
-            cell.rowView.infoLabel.textColor = Palette.darkblue
-            cell.rowView.infoLabel.textAlignment = .center
-
-            cell.rowView.infoTextField.delegate = self
-            cell.rowView.infoTextField.returnKeyType = .done
-
-            cell.rowView.infoTextField.inputView = agePicker
-
-            if let age = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.age) as? String {
-
-                cell.rowView.infoTextField.text = age
-                cell.rowView.infoTextField.textAlignment = .center
-
-            }
+            cell.rowView.infoSegmentedControl.selectedSegmentIndex = (User.host.gender == Gender.male.rawValue) ? Gender.male.rawValue : Gender.female.rawValue
 
             return cell
 
@@ -273,15 +145,9 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoSegmentedControl.setTitle(NSLocalizedString("No", comment: ""), forSegmentAt: 1)
             cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
-            cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
+            cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeMedicine), for: .valueChanged)
 
-            cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
-
-            if let medicine = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.medicine) as? Int {
-
-                cell.rowView.infoSegmentedControl.selectedSegmentIndex = medicine
-
-            }
+            cell.rowView.infoSegmentedControl.selectedSegmentIndex = (User.host.medicine == Medicine.yes.rawValue) ? Medicine.yes.rawValue : Medicine.no.rawValue
 
             return cell
 
@@ -323,15 +189,9 @@ class ProfileTableViewController: UITableViewController {
 
         case .photo: return 300.0
 
-        case .name, .gender, .age, .medicine, .finish: return 80.0
+        case .gender, .medicine, .finish: return 80.0
 
         }
-    }
-
-    func hideKeyBoard() {
-
-        self.view.endEditing(true)
-
     }
 
     func signUp() {
@@ -403,115 +263,30 @@ class ProfileTableViewController: UITableViewController {
         guard let photoCell = tableView.cellForRow(at: photoIndexPath) as? ProfilePhotoTableViewCell,
             let genderCell = tableView.cellForRow(at: genderIndexPath) as? ProfileSegmentTableViewCell else { return }
 
-        if genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.male.rawValue {
+        let isMale: Bool = (genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.male.rawValue)
+        photoCell.rowView.photoImageView.image = isMale ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
-            photoCell.rowView.photoImageView.image = #imageLiteral(resourceName: "boy")
+        User.host.gender = genderCell.rowView.infoSegmentedControl.selectedSegmentIndex
 
-        } else if genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.female.rawValue {
+        let value = [Constants.FirebaseUserKey.gender: User.host.gender,
+                     Constants.FirebaseUserKey.medicine: User.host.medicine] as [String: Any]
 
-            photoCell.rowView.photoImageView.image = #imageLiteral(resourceName: "girl")
-
-        }
-    }
-}
-
-extension ProfileTableViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-
-        switch pickerView {
-
-        case agePicker: return 1
-
-        default: return 1
-
-        }
-
+        UserManager.shared.editUser(value: value)
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func changeMedicine() {
 
-        switch pickerView {
+        guard let medicineSection = components.index(of: Component.medicine) else { return }
 
-        case agePicker:
+        let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
 
-            return age.count
+        guard let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? ProfileSegmentTableViewCell else { return }
 
-        default: return 0
+        User.host.medicine = medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex
 
-        }
+        let value = [Constants.FirebaseUserKey.gender: User.host.gender,
+                     Constants.FirebaseUserKey.medicine: User.host.medicine] as [String: Any]
 
+        UserManager.shared.editUser(value: value)
     }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
-        guard let ageSection = components.index(of: Component.age) else { return }
-
-        let ageIndexPath = IndexPath(row: 0, section: ageSection)
-
-        guard let ageCell = tableView.cellForRow(at: ageIndexPath) as? ProfileTextFieldTableViewCell else { return }
-
-        switch pickerView {
-
-        case agePicker:
-
-            ageCell.rowView.infoTextField.text = String(age[row])
-            ageCell.rowView.infoTextField.textAlignment = .center
-
-        default: break
-
-        }
-    }
-
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-
-        switch pickerView {
-
-        case agePicker:
-
-            let pickerLabel = UILabel()
-
-            pickerLabel.text = String(age[row])
-
-            pickerLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
-
-            pickerLabel.textAlignment = NSTextAlignment.center
-
-            return pickerLabel
-
-        default:
-
-            let view = UIView()
-
-            view.isHidden = true
-
-            return view
-
-        }
-
-    }
-
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-
-        return 50.0
-    }
-
-}
-
-extension ProfileTableViewController: UITextFieldDelegate {
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
-        self.view.endEditing(true)
-
-        return true
-    }
-
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-
-        self.view.endEditing(true)
-
-        return true
-    }
-
 }

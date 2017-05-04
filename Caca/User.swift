@@ -8,25 +8,26 @@
 
 import Foundation
 
-class User {
+enum Gender: Int {
+
+    case male, female
+
+}
+
+enum Medicine: Int {
+
+    case yes, no
+
+}
+
+struct User {
 
     // MARK: Property
 
-    let name: String
+    var gender: Int = Gender.male.rawValue
 
-    let gender: Int
+    var medicine: Int = Medicine.no.rawValue
 
-    let age: String
-
-    let medicine: Int
-
-    init(name: String, gender: Int, age: String, medicine: Int) {
-
-        self.name = name
-        self.gender = gender
-        self.age = age
-        self.medicine = medicine
-
-    }
-
+    static var host = User()
+    
 }

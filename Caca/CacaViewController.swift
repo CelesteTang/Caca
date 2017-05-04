@@ -70,19 +70,7 @@ class CacaViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.mainImageView.backgroundColor = Palette.lightblue2
-        self.mainImageView.image = #imageLiteral(resourceName: "boy")
-        if let gender = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.gender) as? Int {
-
-            if gender == Gender.male.rawValue {
-
-                mainImageView.image = #imageLiteral(resourceName: "boy")
-
-            } else if gender == Gender.female.rawValue {
-
-                mainImageView.image = #imageLiteral(resourceName: "girl")
-
-            }
-        }
+        self.mainImageView.image = (User.host.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
         self.magnifierView.backgroundColor = Palette.lightWhite
         self.magnifierView.layer.borderWidth = 5
@@ -111,8 +99,6 @@ class CacaViewController: UIViewController {
 
     private func detectFrequency() {
 
-        guard let userName = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.name) as? String else { return }
-
         CacaProvider.shared.getCaca { (cacas, _) in
 
             if let cacas = cacas {
@@ -129,7 +115,7 @@ class CacaViewController: UIViewController {
 
                 if cacas.last?.date == nil {
 
-                    self.notificationLabel.text = "\(userName)" + NSLocalizedString(", start caca now!", comment: "")
+                    self.notificationLabel.text = NSLocalizedString("Start caca now!", comment: "")
 
                     self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
@@ -139,20 +125,20 @@ class CacaViewController: UIViewController {
 
                     case 1:
 
-                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you don't caca today.", comment: "")
+                        self.notificationLabel.text = NSLocalizedString("You don't caca today.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "smoothSausage")
 
                     case 2...3:
 
-                        let notificationString = "\(userName)" + NSLocalizedString(", you don't caca for %d days. Remember to caca at least every 3 days.", comment: "")
+                        let notificationString = NSLocalizedString("You don't caca for %d days. Remember to caca at least every 3 days.", comment: "")
                         self.notificationLabel.text = String(format: notificationString, dayToNow)
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "crackSausage")
 
                     default:
 
-                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you don't caca for a long time. Remember to caca at least every 3 days.", comment: "")
+                        self.notificationLabel.text = NSLocalizedString("You don't caca for a long time. Remember to caca at least every 3 days.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "lumpySausage")
 
@@ -179,21 +165,19 @@ class CacaViewController: UIViewController {
 
                     if todayCacaTimes > 3 {
 
-                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you caca too much today. You should not caca over 3 times per day.", comment: "")
+                        self.notificationLabel.text = NSLocalizedString("You caca too much today. You should not caca over 3 times per day.", comment: "")
 
                         self.cacaImageView.image = #imageLiteral(resourceName: "wateryStool")
 
                     } else {
 
-                        self.notificationLabel.text = "\(userName)" + NSLocalizedString(", you caca today.", comment: "")
+                        self.notificationLabel.text = NSLocalizedString("You caca today.", comment: "")
 
                     }
                 }
             }
         }
     }
-
-    // MARK : Hide Or Show Gut (Animation)
 
     func hideOrShowGut() {
 

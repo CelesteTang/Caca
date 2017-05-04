@@ -17,6 +17,8 @@ class RecordTableViewController: UITableViewController {
 
     var coverButtonTitle = String()
 
+    var activityIndicator = UIActivityIndicatorView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +33,7 @@ class RecordTableViewController: UITableViewController {
             }
 
             self.tableView.reloadData()
-
+            self.activityIndicator.stopAnimating()
         }
 
     }
@@ -72,6 +74,12 @@ class RecordTableViewController: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCaca))
         self.navigationItem.rightBarButtonItem = addButton
 
+        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        self.activityIndicator.color = Palette.darkblue
+        let fullScreenSize = UIScreen.main.bounds.size
+        self.activityIndicator.center = CGPoint(x: fullScreenSize.width * 0.5, y: fullScreenSize.height * 0.4)
+        self.view.addSubview(activityIndicator)
+        self.activityIndicator.startAnimating()
     }
 
     func coverCaca() {
@@ -204,15 +212,22 @@ class RecordTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-
-            if let photoID = self.cacas[indexPath.row].photoID {
-
+            
+            if self.cacas[indexPath.row].photoID == nil {
+            
+                CacaProvider.shared.deleteCaca(cacaID: self.cacas[indexPath.row].cacaID)
+                self.cacas.remove(at: indexPath.row)
+                
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                
+            } else if let photoID = self.cacas[indexPath.row].photoID {
+                
                 CacaProvider.shared.deleteCaca(cacaID: self.cacas[indexPath.row].cacaID)
                 CacaProvider.shared.deleteCacaPhoto(photoID: photoID)
                 self.cacas.remove(at: indexPath.row)
-
+                
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
-
+                
             }
         }
     }

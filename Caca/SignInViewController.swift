@@ -128,7 +128,7 @@ class SignInViewController: UIViewController {
 
         self.passwordField.delegate = self
         self.passwordField.clearButtonMode = .never
-        self.passwordField.placeholder = NSLocalizedString("Password", comment: "")
+        self.passwordField.placeholder = NSLocalizedString("Password (at least 6 characters)", comment: "User must enter password containing at least 6 characters")
         self.passwordField.clearsOnBeginEditing = true
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done

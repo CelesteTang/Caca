@@ -10,10 +10,6 @@ import UIKit
 
 class OpeningViewController: UIViewController {
 
-    var isFromStart = false
-
-    var isFromSignUp = false
-
     @IBOutlet weak var boy: UIImageView!
 
     @IBOutlet weak var girl: UIImageView!
@@ -21,8 +17,6 @@ class OpeningViewController: UIViewController {
     @IBOutlet weak var toilet: UIImageView!
 
     @IBOutlet weak var cacaLogo: UIImageView!
-
-    @IBOutlet weak var goBackButton: UIButton!
 
     @IBOutlet weak var openingLabel: UILabel!
 
@@ -42,9 +36,6 @@ class OpeningViewController: UIViewController {
 
             appDelegate.window?.rootViewController = startViewController
 
-            isFromStart = false
-            isFromSignUp = false
-
         }
 
     }
@@ -52,9 +43,6 @@ class OpeningViewController: UIViewController {
     @IBAction func start(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-
-            isFromStart = false
-            isFromSignUp = false
 
             UserDefaults.standard.set(true, forKey: Constants.UserDefaultsKey.isViewedWalkThrough)
 
@@ -105,11 +93,6 @@ class OpeningViewController: UIViewController {
 
         self.openingImage.image = UIImage(named: imageFile)
 
-        self.goBackButton.setTitle("", for: .normal)
-        let buttonimage = #imageLiteral(resourceName: "goBack").withRenderingMode(.alwaysTemplate)
-        self.goBackButton.setImage(buttonimage, for: .normal)
-        self.goBackButton.tintColor = Palette.darkblue
-
         self.startButton.setTitle(NSLocalizedString("Start", comment: ""), for: .normal)
         self.startButton.tintColor = Palette.cream
         self.startButton.backgroundColor = Palette.darkblue2
@@ -130,21 +113,11 @@ class OpeningViewController: UIViewController {
             self.cacaLogo.isHidden = true
             self.startButton.isHidden = true
             self.startButton.isEnabled = false
-            if isFromStart == true {
-
-                self.goBackButton.isHidden = false
-
-            } else if isFromSignUp == true {
-
-                self.goBackButton.isHidden = true
-
-            }
 
         case 1:
 
             self.forwardButton.setTitle(NSLocalizedString("Next", comment: ""), for: .normal)
             self.forwardButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
-            self.goBackButton.isHidden = true
             self.boy.isHidden = true
             self.girl.isHidden = true
             self.toilet.isHidden = false
@@ -156,7 +129,6 @@ class OpeningViewController: UIViewController {
 
             self.forwardButton.setTitle(NSLocalizedString("Done", comment: ""), for: .normal)
             self.forwardButton.titleLabel?.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
-            self.goBackButton.isHidden = true
             self.boy.isHidden = true
             self.girl.isHidden = true
             self.toilet.isHidden = true

@@ -23,23 +23,9 @@ class StartViewController: UIViewController {
 
     @IBAction func startDirectly(_ sender: UIButton) {
 
-        // MARK : Create user anonymously
+        UserManager.shared.createAnonymousUser { (error) in
 
-        UserManager.shared.createAnonymousUser { (createError, storageError) in
-
-            if let error = createError {
-
-                let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
-                                                        message: error.localizedDescription,
-                                                        preferredStyle: .alert)
-
-                alertController.addAction(UIAlertAction(title: "OK",
-                                                        style: .default,
-                                                        handler: nil))
-
-                self.present(alertController, animated: true, completion: nil)
-
-            } else if let error = storageError {
+            if let error = error {
 
                 let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                         message: error.localizedDescription,
@@ -52,26 +38,15 @@ class StartViewController: UIViewController {
                 self.present(alertController, animated: true, completion: nil)
 
             }
-
         }
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
             let openingPageViewController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.openingPage) as? OpeningPageViewController
 
-            let openingViewController = UIStoryboard(name: Constants.Storyboard.opening, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.opening) as? OpeningViewController
-
-            openingViewController?.isFromStart = true
-
             appDelegate.window?.rootViewController = openingPageViewController
 
-            UserDefaults.standard.set(NSLocalizedString("Hello", comment: "Greet user"), forKey: Constants.UserDefaultsKey.name)
-            UserDefaults.standard.set(0, forKey: Constants.UserDefaultsKey.gender)
-            UserDefaults.standard.set("", forKey: Constants.UserDefaultsKey.age)
-            UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.medicine)
-
         }
-
     }
 
     @IBAction func goToSignIn(_ sender: UIButton) {

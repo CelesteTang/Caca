@@ -148,19 +148,20 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0i-cS-cKl">
-                                        <rect key="frame" x="0.0" y="104" width="220" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="NII-MT-kzB"/>
-                                        </constraints>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-CQ-WXH">
-                                        <rect key="frame" x="0.0" y="156" width="220" height="45"/>
+                                        <rect key="frame" x="0.0" y="104" width="220" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="SWL-rM-noT"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Second"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="H4C-3m-wsW">
+                                        <rect key="frame" x="0.0" y="156" width="220" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="gbn-Ee-G5h"/>
                                         </constraints>
                                         <segments>
                                             <segment title="First"/>
@@ -219,7 +220,7 @@
                         <outlet property="emailField" destination="BwG-Ip-RRq" id="nc4-tt-vs9"/>
                         <outlet property="genderSegmentedControl" destination="t7m-CQ-WXH" id="s4l-tv-UY5"/>
                         <outlet property="logoImageView" destination="Sek-ws-gfk" id="ke3-EV-IGg"/>
-                        <outlet property="nameField" destination="L0i-cS-cKl" id="0fv-Hc-8UU"/>
+                        <outlet property="medicineSegmentedControl" destination="H4C-3m-wsW" id="z7Z-rD-Pnd"/>
                         <outlet property="passwordField" destination="keq-Me-jsQ" id="fSa-W3-jGz"/>
                         <outlet property="signUpButton" destination="2cf-Ud-ekb" id="dBK-xR-e54"/>
                     </connections>

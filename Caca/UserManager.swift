@@ -18,18 +18,17 @@ class UserManager {
 
     // MARK: Crashlytics
 
-    func logUser(email: String, uid: String, name: String) {
+    func logUser(email: String? = nil, uid: String) {
 
         Crashlytics.sharedInstance().setUserEmail(email)
         Crashlytics.sharedInstance().setUserIdentifier(uid)
-        Crashlytics.sharedInstance().setUserName(name)
     }
 
     // MARK: Create user
 
     typealias CreateHadler = (Error?, Error?) -> Void
 
-    func createUser(with email: String, password: String, name: String, gender: Int, completion: @escaping CreateHadler) {
+    func createUser(with email: String, password: String, gender: Int, medicine: Int, completion: @escaping CreateHadler) {
 
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
 
@@ -39,8 +38,8 @@ class UserManager {
 
             } else {
 
-                let value = [Constants.FirebaseUserKey.name: name,
-                             Constants.FirebaseUserKey.gender: gender] as [String: Any]
+                let value = [Constants.FirebaseUserKey.gender: gender,
+                             Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
 
                 if let user = user {
 
@@ -54,7 +53,7 @@ class UserManager {
 
                         } else {
 
-                            self.logUser(email: email, uid: uid, name: name)
+                            self.logUser(email: email, uid: uid)
 
                             completion(nil, nil)
 
@@ -68,7 +67,7 @@ class UserManager {
 
     // MARK: Create user anonymously
 
-    typealias AnonymouslyCreateHadler = (Error?, Error?) -> Void
+    typealias AnonymouslyCreateHadler = (Error?) -> Void
 
     func createAnonymousUser(completion: @escaping AnonymouslyCreateHadler) {
 
@@ -76,12 +75,12 @@ class UserManager {
 
             if let error = error {
 
-                completion(error, nil)
+                completion(error)
 
             } else {
 
-                let value = [Constants.FirebaseUserKey.name: NSLocalizedString("Hello", comment: "Greet user"),
-                             Constants.FirebaseUserKey.gender: 0] as [String: Any]
+                let value = [Constants.FirebaseUserKey.gender: User().gender,
+                             Constants.FirebaseUserKey.medicine: User().medicine] as [String: Any]
 
                 if let user = user {
 
@@ -91,11 +90,14 @@ class UserManager {
 
                         if let error = error {
 
-                            completion(nil, error)
+                            print(error)
 
                         } else {
 
-                            completion(nil, nil)
+                            self.logUser(uid: uid)
+
+                            completion(nil)
+
                         }
                     })
                 }
@@ -107,7 +109,7 @@ class UserManager {
 
     typealias LinkHadler = (Error?, Error?) -> Void
 
-    func linkUser(with email: String, password: String, name: String, gender: Int, completion: @escaping LinkHadler) {
+    func linkUser(with email: String, password: String, gender: Int, medicine: Int, completion: @escaping LinkHadler) {
 
         let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: password)
 
@@ -119,8 +121,8 @@ class UserManager {
 
             } else {
 
-                let value = [Constants.FirebaseUserKey.name: name,
-                             Constants.FirebaseUserKey.gender: gender] as [String: Any]
+                let value = [Constants.FirebaseUserKey.gender: gender,
+                             Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
 
                 if let user = user {
 
@@ -134,7 +136,7 @@ class UserManager {
 
                         } else {
 
-                            self.logUser(email: email, uid: uid, name: name)
+                            self.logUser(email: email, uid: uid)
 
                             completion(nil, nil)
                         }
@@ -144,21 +146,50 @@ class UserManager {
         })
     }
 
-    // MARK: Edit user
+    typealias UserHadler = (User?, Error?) -> Void
 
-    func editUser(with uid: String, value: [String: Any]) {
+    func getUser(completion: @escaping UserHadler) {
 
-        FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users).child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
+        var user = User()
 
-            if error != nil {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
 
-                print(error?.localizedDescription ?? "")
+        FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users)
+            .child(uid)
+            .observeSingleEvent(of: .value, with: { (snapshot) in
 
-                return
-            }
+                if let userInfo = snapshot.value as? NSDictionary,
+                    let userGender = userInfo[Constants.FirebaseUserKey.gender] as? Int,
+                    let userMedicine = userInfo[Constants.FirebaseUserKey.medicine] as? Int {
 
-        })
+                    user.gender = userGender
+                    user.medicine = userMedicine
 
+                    completion(user, nil)
+
+                }
+
+            }) { (error) in
+
+                completion(nil, error)
+
+        }
     }
 
+    func editUser(value: [String: Any]) {
+
+        if let uid = FIRAuth.auth()?.currentUser?.uid {
+
+            FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users).child(uid).updateChildValues(value, withCompletionBlock: { (error, _) in
+
+                if error != nil {
+
+                    print(error?.localizedDescription ?? "")
+
+                    return
+                }
+
+            })
+        }
+    }
 }

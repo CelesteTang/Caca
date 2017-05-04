@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		430C2DD91EBB259C000F2CC3 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430C2DD81EBB259C000F2CC3 /* KeychainUtility.swift */; };
 		4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB3F1E8221E4006B0D5D /* Timing.storyboard */; };
 		4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB411E822232006B0D5D /* Fillin.storyboard */; };
 		4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB431E82240F006B0D5D /* TimingViewController.swift */; };
@@ -14,10 +15,8 @@
 		4322EB521E8398FA006B0D5D /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB511E8398FA006B0D5D /* Palette.swift */; };
 		4322EB541E83A8C6006B0D5D /* Caca.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB531E83A8C6006B0D5D /* Caca.swift */; };
 		4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */; };
-		4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */; };
 		4322EB5A1E83E4A6006B0D5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */; };
 		4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4326E9801E8BD9610057363B /* CacaProvider.swift */; };
-		4328DCA11E9C7233006D3FB8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */; };
 		4328DCA41E9C8202006D3FB8 /* Privacy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4328DCA31E9C8202006D3FB8 /* Privacy.storyboard */; };
 		4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */; };
 		4328DCA81E9C8E6D006D3FB8 /* PrivacyRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4328DCA71E9C8E6D006D3FB8 /* PrivacyRowView.xib */; };
@@ -75,14 +74,11 @@
 		438B90AF1EA73617001E0A5E /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B90AE1EA73617001E0A5E /* Shape.swift */; };
 		438EFD9F1EB1C2F300D9B18A /* ProfilePhotoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFD9E1EB1C2F300D9B18A /* ProfilePhotoRowView.swift */; };
 		438EFDA11EB1C30600D9B18A /* ProfilePhotoRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 438EFDA01EB1C30600D9B18A /* ProfilePhotoRowView.xib */; };
-		438EFDA31EB1C31A00D9B18A /* ProfileTextFieldRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDA21EB1C31A00D9B18A /* ProfileTextFieldRowView.swift */; };
-		438EFDA51EB1C32200D9B18A /* ProfileTextFieldRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 438EFDA41EB1C32200D9B18A /* ProfileTextFieldRowView.xib */; };
 		438EFDA71EB1C33700D9B18A /* ProfileSegmentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDA61EB1C33700D9B18A /* ProfileSegmentRowView.swift */; };
 		438EFDA91EB1C34300D9B18A /* ProfileSegmentRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 438EFDA81EB1C34300D9B18A /* ProfileSegmentRowView.xib */; };
 		438EFDAB1EB1C35A00D9B18A /* ProfileButtonRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDAA1EB1C35A00D9B18A /* ProfileButtonRowView.swift */; };
 		438EFDAD1EB1C36300D9B18A /* ProfileButtonRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 438EFDAC1EB1C36300D9B18A /* ProfileButtonRowView.xib */; };
 		438EFDB01EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDAF1EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift */; };
-		438EFDB21EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB11EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift */; };
 		438EFDB41EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB31EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift */; };
 		438EFDB61EB1C58600D9B18A /* ProfileButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB51EB1C58600D9B18A /* ProfileButtonTableViewCell.swift */; };
 		438EFDB81EB1CB7700D9B18A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438EFDB71EB1CB7700D9B18A /* ProfileTableViewController.swift */; };
@@ -104,6 +100,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		430C2DD81EBB259C000F2CC3 /* KeychainUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
 		4322EB3F1E8221E4006B0D5D /* Timing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timing.storyboard; sourceTree = "<group>"; };
 		4322EB411E822232006B0D5D /* Fillin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Fillin.storyboard; sourceTree = "<group>"; };
 		4322EB431E82240F006B0D5D /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
@@ -111,10 +108,8 @@
 		4322EB511E8398FA006B0D5D /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		4322EB531E83A8C6006B0D5D /* Caca.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caca.swift; sourceTree = "<group>"; };
 		4322EB551E83B6F6006B0D5D /* RecordDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RecordDetail.storyboard; sourceTree = "<group>"; };
-		4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDetailViewController.swift; sourceTree = "<group>"; };
 		4322EB591E83E4A6006B0D5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4326E9801E8BD9610057363B /* CacaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacaProvider.swift; sourceTree = "<group>"; };
-		4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4328DCA31E9C8202006D3FB8 /* Privacy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Privacy.storyboard; sourceTree = "<group>"; };
 		4328DCA51E9C823A006D3FB8 /* PrivacyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewController.swift; sourceTree = "<group>"; };
 		4328DCA71E9C8E6D006D3FB8 /* PrivacyRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyRowView.xib; sourceTree = "<group>"; };
@@ -175,14 +170,11 @@
 		438B90AE1EA73617001E0A5E /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 		438EFD9E1EB1C2F300D9B18A /* ProfilePhotoRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoRowView.swift; sourceTree = "<group>"; };
 		438EFDA01EB1C30600D9B18A /* ProfilePhotoRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfilePhotoRowView.xib; sourceTree = "<group>"; };
-		438EFDA21EB1C31A00D9B18A /* ProfileTextFieldRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTextFieldRowView.swift; sourceTree = "<group>"; };
-		438EFDA41EB1C32200D9B18A /* ProfileTextFieldRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTextFieldRowView.xib; sourceTree = "<group>"; };
 		438EFDA61EB1C33700D9B18A /* ProfileSegmentRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSegmentRowView.swift; sourceTree = "<group>"; };
 		438EFDA81EB1C34300D9B18A /* ProfileSegmentRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSegmentRowView.xib; sourceTree = "<group>"; };
 		438EFDAA1EB1C35A00D9B18A /* ProfileButtonRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileButtonRowView.swift; sourceTree = "<group>"; };
 		438EFDAC1EB1C36300D9B18A /* ProfileButtonRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileButtonRowView.xib; sourceTree = "<group>"; };
 		438EFDAF1EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhotoTableViewCell.swift; sourceTree = "<group>"; };
-		438EFDB11EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		438EFDB31EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSegmentTableViewCell.swift; sourceTree = "<group>"; };
 		438EFDB51EB1C58600D9B18A /* ProfileButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileButtonTableViewCell.swift; sourceTree = "<group>"; };
 		438EFDB71EB1CB7700D9B18A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +255,7 @@
 				43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */,
 				4322EB511E8398FA006B0D5D /* Palette.swift */,
 				43CF3C6B1EB84AD20016F8CB /* Constants.swift */,
+				430C2DD81EBB259C000F2CC3 /* KeychainUtility.swift */,
 				43CF3CB21EB8B3B30016F8CB /* Localizable.strings */,
 				43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */,
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
@@ -280,7 +273,6 @@
 				43372D291E7FC7AC002E2AE3 /* SettingRowView.swift */,
 				4330959A1E8CE68200E65E08 /* SettingTableViewCell.swift */,
 				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
-				4328DCA01E9C7233006D3FB8 /* ProfileViewController.swift */,
 				438EFDAE1EB1C36900D9B18A /* Profile */,
 				4396B58B1EA2241E00A69C4E /* Privacy */,
 			);
@@ -294,7 +286,6 @@
 				43372D251E7FC780002E2AE3 /* RecordRowView.swift */,
 				43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */,
 				43372D1D1E7FC635002E2AE3 /* RecordTableViewController.swift */,
-				4322EB571E83B73B006B0D5D /* RecordDetailViewController.swift */,
 				433033001EB7075C00E308DE /* RecordDetail */,
 			);
 			name = Record;
@@ -367,9 +358,6 @@
 				438EFDA01EB1C30600D9B18A /* ProfilePhotoRowView.xib */,
 				438EFD9E1EB1C2F300D9B18A /* ProfilePhotoRowView.swift */,
 				438EFDAF1EB1C54100D9B18A /* ProfilePhotoTableViewCell.swift */,
-				438EFDA41EB1C32200D9B18A /* ProfileTextFieldRowView.xib */,
-				438EFDA21EB1C31A00D9B18A /* ProfileTextFieldRowView.swift */,
-				438EFDB11EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift */,
 				438EFDA81EB1C34300D9B18A /* ProfileSegmentRowView.xib */,
 				438EFDA61EB1C33700D9B18A /* ProfileSegmentRowView.swift */,
 				438EFDB31EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift */,
@@ -500,6 +488,9 @@
 						DevelopmentTeam = V35V7R5VNP;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -537,7 +528,6 @@
 				43308EB31E9B4D4D00BB4F0D /* Profile.storyboard in Resources */,
 				43BA3F991E7FCF9B0052125B /* Opening.storyboard in Resources */,
 				43372D2C1E7FC7B6002E2AE3 /* SettingRowView.xib in Resources */,
-				438EFDA51EB1C32200D9B18A /* ProfileTextFieldRowView.xib in Resources */,
 				43811DC21EA8D53D0035B672 /* NumberItemView.xib in Resources */,
 				43372D111E7FB4BD002E2AE3 /* LaunchScreen.storyboard in Resources */,
 				433681191E8A424900D51B5C /* Calendar.storyboard in Resources */,
@@ -655,7 +645,6 @@
 				438EFDA71EB1C33700D9B18A /* ProfileSegmentRowView.swift in Sources */,
 				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,
 				4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */,
-				438EFDA31EB1C31A00D9B18A /* ProfileTextFieldRowView.swift in Sources */,
 				4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */,
 				43CF3C6C1EB84AD20016F8CB /* Constants.swift in Sources */,
 				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
@@ -674,8 +663,6 @@
 				4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */,
 				43372D3D1E7FCCB5002E2AE3 /* CalendarNavigationController.swift in Sources */,
 				4330959B1E8CE68200E65E08 /* SettingTableViewCell.swift in Sources */,
-				4328DCA11E9C7233006D3FB8 /* ProfileViewController.swift in Sources */,
-				4322EB581E83B73B006B0D5D /* RecordDetailViewController.swift in Sources */,
 				43372D331E7FCA30002E2AE3 /* TabBarController.swift in Sources */,
 				434913081EB46608006A680C /* InfoSegmentTableViewCell.swift in Sources */,
 				43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */,
@@ -693,8 +680,8 @@
 				4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */,
 				43811DC61EA8D7E20035B672 /* Authentication.swift in Sources */,
 				4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */,
+				430C2DD91EBB259C000F2CC3 /* KeychainUtility.swift in Sources */,
 				435B71EE1EA60AB500FBABBF /* PhotoTableViewCell.swift in Sources */,
-				438EFDB21EB1C55F00D9B18A /* ProfileTextFieldTableViewCell.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,
 				433032F91EB6FCA600E308DE /* RecordDetailTableViewController.swift in Sources */,
 				43BA3FA41E7FF48E0052125B /* OpeningPageViewController.swift in Sources */,
