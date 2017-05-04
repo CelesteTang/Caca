@@ -895,7 +895,7 @@ class FillinTableViewController: UITableViewController {
 
                 let value = [Constants.FirebaseCacaKey.host: hostUID,
                              Constants.FirebaseCacaKey.cacaID: cacaID,
-                             Constants.FirebaseCacaKey.photo: cacaPhotoUrl,
+                             Constants.FirebaseCacaKey.photoURL: cacaPhotoUrl,
                              Constants.FirebaseCacaKey.photoID: photoID,
                              Constants.FirebaseCacaKey.date: self.finalCaca.date,
                              Constants.FirebaseCacaKey.time: self.finalCaca.time,
@@ -923,7 +923,7 @@ class FillinTableViewController: UITableViewController {
 
             let value = [Constants.FirebaseCacaKey.host: hostUID,
                          Constants.FirebaseCacaKey.cacaID: cacaID,
-                         Constants.FirebaseCacaKey.photo: "",
+                         Constants.FirebaseCacaKey.photoURL: "",
                          Constants.FirebaseCacaKey.photoID: "",
                          Constants.FirebaseCacaKey.date: self.finalCaca.date,
                          Constants.FirebaseCacaKey.time: self.finalCaca.time,
@@ -999,7 +999,7 @@ class FillinTableViewController: UITableViewController {
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = [Constants.FirebaseCacaKey.host: hostUID,
                              Constants.FirebaseCacaKey.cacaID: cacaID,
-                             Constants.FirebaseCacaKey.photo: cacaPhotoUrl,
+                             Constants.FirebaseCacaKey.photoURL: cacaPhotoUrl,
                              Constants.FirebaseCacaKey.photoID: photoID,
                              Constants.FirebaseCacaKey.date: self.finalCaca.date,
                              Constants.FirebaseCacaKey.time: self.finalCaca.time,
@@ -1046,7 +1046,7 @@ class FillinTableViewController: UITableViewController {
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
                 let value = [Constants.FirebaseCacaKey.host: hostUID,
                              Constants.FirebaseCacaKey.cacaID: cacaID,
-                             Constants.FirebaseCacaKey.photo: cacaPhotoUrl,
+                             Constants.FirebaseCacaKey.photoURL: cacaPhotoUrl,
                              Constants.FirebaseCacaKey.photoID: newPhotoID,
                              Constants.FirebaseCacaKey.date: self.finalCaca.date,
                              Constants.FirebaseCacaKey.time: self.finalCaca.time,
@@ -1074,7 +1074,7 @@ class FillinTableViewController: UITableViewController {
 
             let value = [Constants.FirebaseCacaKey.host: hostUID,
                          Constants.FirebaseCacaKey.cacaID: cacaID,
-                         Constants.FirebaseCacaKey.photo: "",
+                         Constants.FirebaseCacaKey.photoURL: "",
                          Constants.FirebaseCacaKey.photoID: "",
                          Constants.FirebaseCacaKey.date: self.finalCaca.date,
                          Constants.FirebaseCacaKey.time: self.finalCaca.time,
@@ -1151,44 +1151,26 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         let toGray = ((192 - r) * (192 - r)) + ((192 - g) * (192 - g)) + ((192 - b) * (192 - b))
         let toBlack = ((0 - r) * (0 - r)) + ((0 - g) * (0 - g)) + ((0 - b) * (0 - b))
 
-        let UInt8Array = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ]
-        let closedUInt8 = UInt8Array.sorted { $0 < $1 }.first
-
-        if closedUInt8 == toRed {
-
-            return Color.red.title
-
-        } else if closedUInt8 == toYellow {
-
-            return Color.yellow.title
-
-        } else if closedUInt8 == toGreen {
-
-            return Color.green.title
-
-        } else if closedUInt8 == toLightBrown {
-
-            return Color.lightBrown.title
-
-        } else if closedUInt8 == toDarkBrown {
-
-            return Color.darkBrown.title
-
-        } else if closedUInt8 == toGray {
-
-            return Color.gray.title
-
-        } else if closedUInt8 == toBlack {
-
-            return Color.black.title
-
+        let UIntArray = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ]
+        if let closedUInt = (UIntArray.sorted { $0 < $1 }.first) {
+        
+            switch closedUInt {
+            case toRed: return Color.red.title
+            case toYellow: return Color.yellow.title
+            case toGreen: return Color.green.title
+            case toLightBrown: return Color.lightBrown.title
+            case toDarkBrown: return Color.darkBrown.title
+            case toGray: return Color.gray.title
+            case toBlack: return Color.black.title
+            default: return ""
+            }
+        
         } else {
-
+        
             return ""
+        
         }
-
     }
-
 }
 
 extension FillinTableViewController: UITextFieldDelegate {

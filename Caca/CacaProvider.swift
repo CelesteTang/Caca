@@ -63,7 +63,10 @@ class CacaProvider {
 
         var cacas = [Caca]()
 
-        FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).queryOrdered(byChild: Constants.FirebaseCacaKey.host).queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas)
+                                          .queryOrdered(byChild: Constants.FirebaseCacaKey.host)
+                                          .queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid)
+                                          .observeSingleEvent(of: .value, with: { (snapshot) in
 
             if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
 
@@ -71,7 +74,7 @@ class CacaProvider {
 
                     if let cacaInfo = snap.value as? NSDictionary,
                         let cacaID = cacaInfo[Constants.FirebaseCacaKey.cacaID] as? String,
-                        let cacaPhoto = cacaInfo[Constants.FirebaseCacaKey.photo] as? String?,
+                        let cacaPhotoURL = cacaInfo[Constants.FirebaseCacaKey.photoURL] as? String?,
                         let cacaPhotoID = cacaInfo[Constants.FirebaseCacaKey.photoID] as? String?,
                         let cacaDate = cacaInfo[Constants.FirebaseCacaKey.date] as? String,
                         let cacaTime = cacaInfo[Constants.FirebaseCacaKey.time] as? String,
@@ -85,7 +88,7 @@ class CacaProvider {
                         let period = cacaInfo[Constants.FirebaseCacaKey.period] as? Int?,
                         let medicine = cacaInfo[Constants.FirebaseCacaKey.medicine] as? String? {
 
-                        let caca = Caca(cacaID: cacaID, photoURL: cacaPhoto, photoID: cacaPhotoID, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: cacaShape, color: cacaColor, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, advice: cacaAdvice, period: period, medicine: medicine)
+                        let caca = Caca(cacaID: cacaID, photoURL: cacaPhotoURL, photoID: cacaPhotoID, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: cacaShape, color: cacaColor, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, advice: cacaAdvice, period: period, medicine: medicine)
 
                         cacas.append(caca)
                     }

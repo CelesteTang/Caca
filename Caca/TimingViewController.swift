@@ -68,7 +68,7 @@ class TimingViewController: UIViewController {
 
             self.resumeTapped = true
 
-            self.pauseButton.setTitle(NSLocalizedString("Resume", comment: ""), for: UIControlState.normal)
+            self.pauseButton.setTitle(NSLocalizedString(" Resume ", comment: ""), for: UIControlState.normal)
 
         } else {
 
@@ -76,7 +76,7 @@ class TimingViewController: UIViewController {
 
             self.resumeTapped = false
 
-            self.pauseButton.setTitle(NSLocalizedString("Pause", comment: ""), for: UIControlState.normal)
+            self.pauseButton.setTitle(NSLocalizedString(" Pause ", comment: ""), for: UIControlState.normal)
 
         }
     }
@@ -97,7 +97,7 @@ class TimingViewController: UIViewController {
 
         self.startButton.isEnabled = true
 
-        self.pauseButton.setTitle(NSLocalizedString("Pause", comment: ""), for: UIControlState.normal)
+        self.pauseButton.setTitle(NSLocalizedString(" Pause ", comment: ""), for: UIControlState.normal)
 
     }
 
