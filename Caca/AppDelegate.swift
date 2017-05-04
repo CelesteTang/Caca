@@ -61,24 +61,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 let isviewedWalkThrough = UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.isViewedWalkThrough)
 
-                if user != nil && user?.isAnonymous == false && isviewedWalkThrough == false {
+                if isviewedWalkThrough == true {
+
+                    self.window?.rootViewController = tabBarController
+                    self.window?.makeKeyAndVisible()
+
+                } else if user != nil {
 
                     self.window?.rootViewController = openingController
-                    self.window?.makeKeyAndVisible()
-
-                } else if user != nil && user?.isAnonymous == false && isviewedWalkThrough == true {
-
-                    self.window?.rootViewController = tabBarController
-                    self.window?.makeKeyAndVisible()
-
-                } else if user != nil && user?.isAnonymous == true && isviewedWalkThrough == true {
-
-                    self.window?.rootViewController = tabBarController
-                    self.window?.makeKeyAndVisible()
-
-                } else if user != nil && user?.isAnonymous == true && isviewedWalkThrough == false {
-
-                    self.window?.rootViewController = startViewController
                     self.window?.makeKeyAndVisible()
 
                 } else if user == nil {
@@ -87,6 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.window?.makeKeyAndVisible()
 
                 }
+
             })
 
         }
