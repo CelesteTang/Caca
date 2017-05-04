@@ -131,14 +131,14 @@ class ProfileTableViewController: UITableViewController {
 
             cell.rowView.photoImageView.image = #imageLiteral(resourceName: "boy")
 
-            UserManager.shared.getUser { (user, error) in
-                
+            UserManager.shared.getUser { (user, _) in
+
                 if let user = user {
-                    
+
                     cell.rowView.photoImageView.image = (user.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
-                    
+
                 }
-                
+
             }
 
             return cell
@@ -162,14 +162,14 @@ class ProfileTableViewController: UITableViewController {
 
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 0
 
-            UserManager.shared.getUser { (user, error) in
-                
+            UserManager.shared.getUser { (user, _) in
+
                 if let user = user {
-                    
+
                     cell.rowView.infoSegmentedControl.selectedSegmentIndex = (user.gender == Gender.male.rawValue) ? Gender.male.rawValue : Gender.female.rawValue
-                    
+
                 }
-                
+
             }
 
             return cell
@@ -193,14 +193,14 @@ class ProfileTableViewController: UITableViewController {
 
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
 
-            UserManager.shared.getUser { (user, error) in
-                
+            UserManager.shared.getUser { (user, _) in
+
                 if let user = user {
-                    
+
                     cell.rowView.infoSegmentedControl.selectedSegmentIndex = (user.medicine == Medicine.yes.rawValue) ? Medicine.yes.rawValue : Medicine.no.rawValue
-                    
+
                 }
-                
+
             }
 
             return cell

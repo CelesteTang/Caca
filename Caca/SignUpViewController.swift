@@ -27,7 +27,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
 
     @IBOutlet weak var medicineSegmentedControl: UISegmentedControl!
-    
+
     @IBOutlet weak var signUpButton: UIButton!
 
     @IBOutlet weak var cancelButton: UIButton!
@@ -244,7 +244,7 @@ class SignUpViewController: UIViewController {
 //        self.medicineSegmentedControl.setImage(#imageLiteral(resourceName: "male"), forSegmentAt: Gender.male.rawValue)
 //        self.medicineSegmentedControl.setImage(#imageLiteral(resourceName: "female"), forSegmentAt: Gender.female.rawValue)
         self.medicineSegmentedControl.tintColor = Palette.darkblue2
-        
+
         self.signUpButton.backgroundColor = Palette.darkblue2
         self.signUpButton.setTitle(NSLocalizedString("Sign Up", comment: ""), for: .normal)
         self.signUpButton.layer.cornerRadius = self.signUpButton.frame.height / 2

@@ -9,16 +9,16 @@
 import Foundation
 
 class KeychainUtility: NSObject {
-    
+
     private var service = ""
     private var group = ""
-    
+
     init(service: String, group: String) {
         super.init()
         self.service = service
         self.group = group
     }
-    
+
     private func prepareDic(key: String) -> [String: Any] {
         var dic = [String: Any]()
         dic[kSecClass as String] = kSecClassGenericPassword
@@ -27,7 +27,7 @@ class KeychainUtility: NSObject {
         dic[kSecAttrAccount as String] = key
         return dic
     }
-    
+
     func insert(data: NSData, key: String) -> Bool {
         var dic = prepareDic(key: key)
         dic[kSecValueData as String] = data
@@ -38,7 +38,7 @@ class KeychainUtility: NSObject {
             return false
         }
     }
-    
+
     func query(key: String) -> NSData? {
         var dic  = prepareDic(key: key)
         dic[kSecReturnData as String] = kCFBooleanTrue
@@ -52,7 +52,7 @@ class KeychainUtility: NSObject {
             return nil
         }
     }
-    
+
     func update(data: NSData, key: String) -> Bool {
         let query = prepareDic(key: key)
         var dic  = [String: AnyObject]()
@@ -64,7 +64,7 @@ class KeychainUtility: NSObject {
             return false
         }
     }
-    
+
     func deleteData(key: String) -> Bool {
         let dic = prepareDic(key: key)
         let status = SecItemDelete(dic as CFDictionary)

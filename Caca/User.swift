@@ -9,15 +9,15 @@
 import Foundation
 
 enum Gender: Int {
-    
+
     case male, female
-    
+
 }
 
 enum Medicine: Int {
-    
+
     case yes, no
-    
+
 }
 
 struct User {
@@ -27,5 +27,5 @@ struct User {
     var gender: Int = Gender.male.rawValue
 
     var medicine: Int = Medicine.no.rawValue
-    
+
 }

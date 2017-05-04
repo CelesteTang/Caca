@@ -82,26 +82,26 @@ class FillinTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UserManager.shared.getUser { (user, error) in
-            
+        UserManager.shared.getUser { (user, _) in
+
             if let user = user {
-                
+
                 if user.gender == Gender.female.rawValue && user.medicine == Medicine.yes.rawValue {
-                
+
                     self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
-                
+
                 } else if user.gender == Gender.female.rawValue {
-                
+
                     self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
 
                 } else if user.medicine == Medicine.yes.rawValue {
-                
+
                     self.components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
 
                 }
-                
+
             }
-            
+
         }
 
         self.tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoTableViewCell")
@@ -180,10 +180,10 @@ class FillinTableViewController: UITableViewController {
             let indexPath = IndexPath(row: 0, section: dateSection)
 
             if let dateCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell {
-            
+
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm"
-                
+
                 dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
             }
         }
@@ -1164,10 +1164,10 @@ extension FillinTableViewController: UITextFieldDelegate {
                 if textField == dateCell.rowView.infoTextField {
 
                     if let date = dateCell.rowView.infoTextField.text {
-                        
+
                         finalCaca.date = date.substring(to: 10)
                         finalCaca.time = date.substring(from: 11)
-                        
+
                     }
                 }
             }

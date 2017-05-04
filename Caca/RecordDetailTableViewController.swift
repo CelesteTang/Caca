@@ -201,7 +201,13 @@ class RecordDetailTableViewController: UIViewController, UITableViewDataSource, 
 
         switch component {
 
-        case .date, .time, .color, .shape, .amount, .period, .medicine, .other: return 50.0
+        case .date, .time, .color, .shape, .amount: return 50.0
+
+        case .period: return (self.recievedCaca[0].period == nil) ? 0 : 50
+
+        case .medicine: return (self.recievedCaca[0].medicine == nil) ? 0 : 50
+
+        case .other: return (self.recievedCaca[0].otherInfo == nil) ? 0 : 50
 
         }
     }
