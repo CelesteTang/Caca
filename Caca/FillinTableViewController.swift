@@ -61,7 +61,7 @@ class FillinTableViewController: UITableViewController {
     var finalMin = "00"
     var finalSec = "00"
 
-    var finalCaca = Caca(cacaID: "", date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", grading: false, advice: "")
+    var finalCaca = Caca(cacaID: "", date: Time.dateString(), time: Time.timeString(), consumingTime: "", shape: "", color: "", amount: "", grading: false, advice: "")
 
     var cacas = [Caca]()
 
@@ -304,7 +304,6 @@ class FillinTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
-            cell.rowView.infoTextField.text = "\(Time.dateString()) \(Time.timeString())"
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
@@ -936,8 +935,12 @@ extension FillinTableViewController: UITextFieldDelegate {
         if let dateCell = cellForComponent(.date) as? InfoTableViewCell,
             let date = dateCell.rowView.infoTextField.text {
 
-            finalCaca.date = date.substring(to: 10)
-            finalCaca.time = date.substring(from: 11)
+            if date != "" {
+            
+                finalCaca.date = date.substring(to: 10)
+                finalCaca.time = date.substring(from: 11)
+                
+            }
 
         }
 
@@ -1147,9 +1150,11 @@ extension String {
     }
 
     func substring(with range: Range<Int>) -> String {
+        
         let startIndex = index(from: range.lowerBound)
         let endIndex = index(from: range.upperBound)
         return substring(with: startIndex..<endIndex)
+        
     }
 
 }

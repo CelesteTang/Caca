@@ -235,6 +235,7 @@ class SignUpViewController: UIViewController {
 
         self.medicineSegmentedControl.setTitle("Yes", forSegmentAt: 0)
         self.medicineSegmentedControl.setTitle("No", forSegmentAt: 1)
+        self.medicineSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
 //        self.medicineSegmentedControl.setImage(#imageLiteral(resourceName: "male"), forSegmentAt: Gender.male.rawValue)
 //        self.medicineSegmentedControl.setImage(#imageLiteral(resourceName: "female"), forSegmentAt: Gender.female.rawValue)
         self.medicineSegmentedControl.tintColor = Palette.darkblue2
