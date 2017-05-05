@@ -936,10 +936,10 @@ extension FillinTableViewController: UITextFieldDelegate {
             let date = dateCell.rowView.infoTextField.text {
 
             if date != "" {
-            
+
                 finalCaca.date = date.substring(to: 10)
                 finalCaca.time = date.substring(from: 11)
-                
+
             }
 
         }
@@ -1150,11 +1150,11 @@ extension String {
     }
 
     func substring(with range: Range<Int>) -> String {
-        
+
         let startIndex = index(from: range.lowerBound)
         let endIndex = index(from: range.upperBound)
         return substring(with: startIndex..<endIndex)
-        
+
     }
 
 }
