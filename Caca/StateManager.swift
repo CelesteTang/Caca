@@ -1,5 +1,5 @@
 //
-//  AdviceProvider.swift
+//  StateManager.swift
 //  Caca
 //
 //  Created by 湯芯瑜 on 2017/5/5.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-class AdviceProvider {
+class StateManager {
 
-    static let shared = AdviceProvider()
+    static let shared = StateManager()
 
     var cacas = [Caca]()
 
@@ -24,7 +24,7 @@ class AdviceProvider {
 
     var ispassed = false
 
-    func getAdvice(caca: Caca, comparedWith cacas: [Caca]) -> String {
+    func getState(caca: Caca, comparedWith cacas: [Caca]) -> (grading: Bool, advice: String) {
 
         // MARK: Pass or Fail
 
@@ -117,7 +117,7 @@ class AdviceProvider {
 
         let overallAdvice = self.advice + self.shapeAdvice + self.colorAdvice + self.frequencyAdvice
 
-        return overallAdvice
+        return (ispassed, overallAdvice)
     }
 
 }

@@ -732,33 +732,17 @@ class FillinTableViewController: UITableViewController {
 
     func createCaca() {
 
-        guard let finishSection = components.index(of: Component.finish) else { return }
-
-        let finishIndexPath = IndexPath(row: 0, section: finishSection)
-
-        guard let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else { return }
+        guard let finishCell = cellForComponent(.finish) as? FinishTableViewCell else { return }
 
         finishCell.rowView.finishButton.isEnabled = false
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
-
-        let cacaID = FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).childByAutoId().key
+        finalCaca.cacaID = FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).childByAutoId().key
         let photoID = UUID().uuidString
-        let overallAdvice = AdviceProvider.shared.getAdvice(caca: finalCaca, comparedWith: self.cacas)
+        let cacaState = StateManager.shared.getState(caca: finalCaca, comparedWith: self.cacas)
 
-        var value = [Constants.FirebaseCacaKey.host: hostUID,
-                     Constants.FirebaseCacaKey.cacaID: cacaID,
-                     Constants.FirebaseCacaKey.date: self.finalCaca.date,
-                     Constants.FirebaseCacaKey.time: self.finalCaca.time,
-                     Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
-                     Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
-                     Constants.FirebaseCacaKey.color: self.finalCaca.color,
-                     Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
-                     Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo,
-                     Constants.FirebaseCacaKey.grading: self.ispassed,
-                     Constants.FirebaseCacaKey.advice: overallAdvice,
-                     Constants.FirebaseCacaKey.period: self.finalCaca.period,
-                     Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine] as [String : Any]
+        finalCaca.advice = cacaState.advice
+        finalCaca.grading = cacaState.grading
 
         // MARK : Create caca with photo
 
@@ -784,10 +768,10 @@ class FillinTableViewController: UITableViewController {
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
 
-                value.updateValue(cacaPhotoUrl, forKey: Constants.FirebaseCacaKey.photoURL)
-                value.updateValue(photoID, forKey: Constants.FirebaseCacaKey.photoID)
+                self.finalCaca.photoURL = cacaPhotoUrl
+                self.finalCaca.photoID = photoID
 
-                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+                CacaProvider.shared.saveCaca(caca: self.finalCaca, uid: hostUID)
 
                 self.switchToRecord()
 
@@ -801,7 +785,7 @@ class FillinTableViewController: UITableViewController {
 
             FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.createWithoutPhoto, parameters: nil)
 
-            CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+            CacaProvider.shared.saveCaca(caca: self.finalCaca, uid: hostUID)
 
             self.switchToRecord()
 
@@ -823,22 +807,11 @@ class FillinTableViewController: UITableViewController {
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
 
-        let cacaID = recievedCacaFromRecordDetail[0].cacaID
-        let overallAdvice = AdviceProvider.shared.getAdvice(caca: finalCaca, comparedWith: self.cacas)
+        finalCaca.cacaID = recievedCacaFromRecordDetail[0].cacaID
+        let cacaState = StateManager.shared.getState(caca: finalCaca, comparedWith: self.cacas)
 
-        var value = [Constants.FirebaseCacaKey.host: hostUID,
-                     Constants.FirebaseCacaKey.cacaID: cacaID,
-                     Constants.FirebaseCacaKey.date: self.finalCaca.date,
-                     Constants.FirebaseCacaKey.time: self.finalCaca.time,
-                     Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
-                     Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
-                     Constants.FirebaseCacaKey.color: self.finalCaca.color,
-                     Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
-                     Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo,
-                     Constants.FirebaseCacaKey.grading: self.ispassed,
-                     Constants.FirebaseCacaKey.advice: overallAdvice,
-                     Constants.FirebaseCacaKey.period: self.finalCaca.period,
-                     Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine] as [String : Any]
+        finalCaca.advice = cacaState.advice
+        finalCaca.grading = cacaState.grading
 
         // MARK : Edit caca with new photo (had old photo)
 
@@ -878,10 +851,10 @@ class FillinTableViewController: UITableViewController {
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
 
-                value.updateValue(cacaPhotoUrl, forKey: Constants.FirebaseCacaKey.photoURL)
-                value.updateValue(photoID, forKey: Constants.FirebaseCacaKey.photoID)
+                self.finalCaca.photoURL = cacaPhotoUrl
+                self.finalCaca.photoID = photoID
 
-                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+                CacaProvider.shared.saveCaca(caca: self.finalCaca, uid: hostUID)
 
                 self.switchToRecord()
 
@@ -914,10 +887,10 @@ class FillinTableViewController: UITableViewController {
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
 
-                value.updateValue(cacaPhotoUrl, forKey: Constants.FirebaseCacaKey.photoURL)
-                value.updateValue(newPhotoID, forKey: Constants.FirebaseCacaKey.photoID)
+                self.finalCaca.photoURL = cacaPhotoUrl
+                self.finalCaca.photoID = newPhotoID
 
-                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+                CacaProvider.shared.saveCaca(caca: self.finalCaca, uid: hostUID)
 
                 self.switchToRecord()
 
@@ -931,7 +904,7 @@ class FillinTableViewController: UITableViewController {
 
             FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.editWithoutPhoto, parameters: nil)
 
-            CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+            CacaProvider.shared.saveCaca(caca: self.finalCaca, uid: hostUID)
 
             self.switchToRecord()
 
