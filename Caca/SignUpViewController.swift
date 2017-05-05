@@ -256,25 +256,6 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true)
 
     }
-
-    func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
-
-        let size = image.size
-
-        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
-
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-
-        image.draw(in: rect)
-
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-
-        UIGraphicsEndImageContext()
-
-        return newImage!
-    }
 }
 
 extension SignUpViewController: UITextFieldDelegate {

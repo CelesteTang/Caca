@@ -143,7 +143,7 @@ class FillinTableViewController: UITableViewController {
 
         self.amountSlider.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
         self.amountSlider.isContinuous = true
-        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "caca-big"), targetRatio: 0.2)
+        let thumbIamge = #imageLiteral(resourceName: "caca-big").resized(targetRatio: 0.2)
         self.amountSlider.setThumbImage(thumbIamge, for: .normal)
         self.amountSlider.maximumValueImage = #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysTemplate)
         self.amountSlider.minimumValueImage = #imageLiteral(resourceName: "minus").withRenderingMode(.alwaysTemplate)
@@ -197,19 +197,19 @@ class FillinTableViewController: UITableViewController {
 
             case 0.23...0.3:
 
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.3)
+                let newImage = thumbImage.resized(targetRatio: 0.3)
                 amountCell?.rowView.infoTextField.text = NSLocalizedString("Large", comment: "")
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
             case 0.16..<0.23:
 
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.2)
+                let newImage = thumbImage.resized(targetRatio: 0.2)
                 amountCell?.rowView.infoTextField.text = NSLocalizedString("Normal", comment: "")
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
             case 0.10..<0.16:
 
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.1)
+                let newImage = thumbImage.resized(targetRatio: 0.1)
                 amountCell?.rowView.infoTextField.text = NSLocalizedString("Small", comment: "")
                 self.amountSlider.setThumbImage(newImage, for: .normal)
 
@@ -217,25 +217,6 @@ class FillinTableViewController: UITableViewController {
 
             }
         }
-    }
-
-    func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
-
-        let size = image.size
-
-        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
-
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-
-        image.draw(in: rect)
-
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-
-        UIGraphicsEndImageContext()
-
-        return newImage!
     }
 
     // MARK: - Table view data source
@@ -1285,4 +1266,26 @@ extension String {
 
     }
 
+}
+
+extension UIImage {
+
+    func resized(targetRatio: CGFloat) -> UIImage {
+
+        let size = self.size
+
+        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
+
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+
+        self.draw(in: rect)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        UIGraphicsEndImageContext()
+
+        return newImage!
+    }
 }
