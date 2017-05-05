@@ -50,7 +50,13 @@ struct Constants {
         static let hide = "Hide"
         static let passwordAuthentication = "PasswordAuthentication"
         static let touchIDAuthentication = "TouchIDAuthentication"
-        static let password = "Password"
+//        static let password = "Password"
+    }
+
+    struct KeychainKey {
+        static let gender = "User.gender"
+        static let medicine = "User.medicine"
+        static let password = "User.password"
     }
 
     struct UIFont {

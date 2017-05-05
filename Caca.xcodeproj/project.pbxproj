@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		430C2DD91EBB259C000F2CC3 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430C2DD81EBB259C000F2CC3 /* KeychainUtility.swift */; };
 		4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB3F1E8221E4006B0D5D /* Timing.storyboard */; };
 		4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB411E822232006B0D5D /* Fillin.storyboard */; };
 		4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB431E82240F006B0D5D /* TimingViewController.swift */; };
@@ -101,7 +100,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		430C2DD81EBB259C000F2CC3 /* KeychainUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
 		4322EB3F1E8221E4006B0D5D /* Timing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timing.storyboard; sourceTree = "<group>"; };
 		4322EB411E822232006B0D5D /* Fillin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Fillin.storyboard; sourceTree = "<group>"; };
 		4322EB431E82240F006B0D5D /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 				43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */,
 				4322EB511E8398FA006B0D5D /* Palette.swift */,
 				43CF3C6B1EB84AD20016F8CB /* Constants.swift */,
-				430C2DD81EBB259C000F2CC3 /* KeychainUtility.swift */,
 				43CF3CB21EB8B3B30016F8CB /* Localizable.strings */,
 				43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */,
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
@@ -684,7 +681,6 @@
 				4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */,
 				43811DC61EA8D7E20035B672 /* Authentication.swift in Sources */,
 				4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */,
-				430C2DD91EBB259C000F2CC3 /* KeychainUtility.swift in Sources */,
 				435B71EE1EA60AB500FBABBF /* PhotoTableViewCell.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,
 				433032F91EB6FCA600E308DE /* RecordDetailTableViewController.swift in Sources */,

@@ -15,38 +15,38 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "156"
             endingLineNumber = "156"
-            landmarkName = "editCacaPhoto(image:photoID:completion:)"
+            landmarkName = "deleteCaca(cacaID:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Caca.CacaProvider.(editCacaPhoto (image : __ObjC.UIImage, photoID : Swift.String, completion : (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "Caca.CacaProvider.(deleteCaca (cacaID : Swift.String) -&gt; ()).(closure #1)"
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/CacaProvider.swift"
-                  timestampString = "515655341.628357"
+                  timestampString = "515666679.754473"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "156"
                   endingLineNumber = "156"
-                  offsetFromSymbolStart = "280">
+                  offsetFromSymbolStart = "148">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Caca.CacaProvider.(editCacaPhoto (image : __ObjC.UIImage, photoID : Swift.String, completion : (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
+                  symbolName = "Caca.CacaProvider.(deleteCaca (cacaID : Swift.String) -&gt; ()).(closure #1).(implicit closure #1)"
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/CacaProvider.swift"
-                  timestampString = "515655341.629703"
+                  timestampString = "515666679.756241"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "158"
-                  endingLineNumber = "158"
-                  offsetFromSymbolStart = "32">
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>

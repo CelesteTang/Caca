@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class PrivacyTableViewController: UITableViewController {
 
@@ -159,7 +160,9 @@ class PrivacyTableViewController: UITableViewController {
 
             UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.passwordAuthentication)
             UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.touchIDAuthentication)
-            UserDefaults.standard.removeObject(forKey: Constants.UserDefaultsKey.password)
+
+            let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
+            keychain[Constants.KeychainKey.password] = nil
 
             authentications = [.password]
 

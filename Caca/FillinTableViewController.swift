@@ -1146,6 +1146,12 @@ extension String {
 
     }
 
+    func substring(with range: Range<Int>) -> String {
+        let startIndex = index(from: range.lowerBound)
+        let endIndex = index(from: range.upperBound)
+        return substring(with: startIndex..<endIndex)
+    }
+
 }
 
 extension UIImage {

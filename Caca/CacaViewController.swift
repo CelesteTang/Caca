@@ -60,6 +60,13 @@ class CacaViewController: UIViewController {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.mainImageView.image = (User.host.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
+
+    }
+
     // MARK: Set Up
 
     private func setUp() {
