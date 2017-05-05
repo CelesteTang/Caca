@@ -164,12 +164,12 @@ class FillinTableViewController: UITableViewController {
     func datePickerChanged() {
 
         guard let dateCell = cellForComponent(.date) as? InfoTableViewCell else { return }
-        
+
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        
+
         dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
-        
+
     }
 
     func changeThumbImageSize() {
@@ -179,27 +179,27 @@ class FillinTableViewController: UITableViewController {
         guard let amountCell = cellForComponent(.amount) as? InfoTableViewCell else { return }
 
         switch amountSlider.value {
-            
+
         case 0.23...0.3:
-            
+
             let newImage = thumbImage.resized(targetRatio: 0.3)
             amountCell.rowView.infoTextField.text = NSLocalizedString("Large", comment: "")
             self.amountSlider.setThumbImage(newImage, for: .normal)
-            
+
         case 0.16..<0.23:
-            
+
             let newImage = thumbImage.resized(targetRatio: 0.2)
             amountCell.rowView.infoTextField.text = NSLocalizedString("Normal", comment: "")
             self.amountSlider.setThumbImage(newImage, for: .normal)
-            
+
         case 0.10..<0.16:
-            
+
             let newImage = thumbImage.resized(targetRatio: 0.1)
             amountCell.rowView.infoTextField.text = NSLocalizedString("Small", comment: "")
             self.amountSlider.setThumbImage(newImage, for: .normal)
-            
+
         default: break
-            
+
         }
 
     }
@@ -239,12 +239,12 @@ class FillinTableViewController: UITableViewController {
         super.viewDidLayoutSubviews()
 
         guard let photoCell = cellForComponent(.photo) as? PhotoTableViewCell else { return }
-        
+
         if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "cacaWithCamera") {
-            
+
             photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
             photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
-            
+
         }
 
     }
@@ -583,7 +583,7 @@ class FillinTableViewController: UITableViewController {
     }
 
     typealias NilHandler = (Bool?) -> Void
-    
+
     func checkNil(completion: @escaping NilHandler) {
 
         guard let dateCell = cellForComponent(.date) as? InfoTableViewCell else { return }
@@ -672,13 +672,13 @@ class FillinTableViewController: UITableViewController {
         } else {
 
             checkNil(completion: { (success) in
-                
+
                 if success == true {
-                
+
                     self.createCaca()
-                    
+
                     self.isFromCaca = false
-                    
+
                     self.isFromRecord = false
                 }
             })
@@ -767,7 +767,7 @@ class FillinTableViewController: UITableViewController {
     func editCaca() {
 
         guard let finishCell = cellForComponent(.finish) as? FinishTableViewCell else { return }
-        
+
         finishCell.rowView.finishButton.isEnabled = false
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
@@ -1173,11 +1173,11 @@ extension UIImage {
 extension MMCQ.Color {
 
     func closedColor() -> String {
-        
+
         let r = Int(self.r)
         let g = Int(self.g)
         let b = Int(self.b)
-        
+
         let toRed = ((146 - r) * (146 - r)) + ((18 - g) * (18 - g)) + ((36 - b) * (36 - b))
         let toYellow = ((255 - r) * (255 - r)) + ((205 - g) * (205 - g)) + ((56 - b) * (56 - b))
         let toGreen = ((83 - r) * (83 - r)) + ((90 - g) * (90 - g)) + ((59 - b) * (59 - b))
@@ -1185,10 +1185,10 @@ extension MMCQ.Color {
         let toDarkBrown = ((71 - r) * (71 - r)) + ((40 - g) * (40 - g)) + ((12 - b) * (12 - b))
         let toGray = ((192 - r) * (192 - r)) + ((192 - g) * (192 - g)) + ((192 - b) * (192 - b))
         let toBlack = ((0 - r) * (0 - r)) + ((0 - g) * (0 - g)) + ((0 - b) * (0 - b))
-        
+
         let UIntArray = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ]
         if let closedUInt = (UIntArray.sorted { $0 < $1 }.first) {
-            
+
             switch closedUInt {
             case toRed: return Color.red.title
             case toYellow: return Color.yellow.title
@@ -1199,11 +1199,11 @@ extension MMCQ.Color {
             case toBlack: return Color.black.title
             default: return ""
             }
-            
+
         } else {
-            
+
             return ""
-            
+
         }
     }
 }
