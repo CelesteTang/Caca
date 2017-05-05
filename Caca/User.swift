@@ -29,5 +29,5 @@ struct User {
     var medicine: Int = Medicine.no.rawValue
 
     static var host = User()
-    
+
 }

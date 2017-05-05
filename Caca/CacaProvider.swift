@@ -13,9 +13,25 @@ class CacaProvider {
 
     static let shared = CacaProvider()
 
-    func saveCaca(cacaID: String, value: [String : Any]) {
+    func saveCaca(caca: Caca, uid: String) {
 
-        FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).child(cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
+        let value: [String : Any] = [Constants.FirebaseCacaKey.host: uid,
+                     Constants.FirebaseCacaKey.cacaID: caca.cacaID,
+                     Constants.FirebaseCacaKey.photoID: caca.photoID,
+                     Constants.FirebaseCacaKey.photoURL: caca.photoURL,
+                     Constants.FirebaseCacaKey.date: caca.date,
+                     Constants.FirebaseCacaKey.time: caca.time,
+                     Constants.FirebaseCacaKey.consumingTime: caca.consumingTime,
+                     Constants.FirebaseCacaKey.shape: caca.shape,
+                     Constants.FirebaseCacaKey.color: caca.color,
+                     Constants.FirebaseCacaKey.amount: caca.amount,
+                     Constants.FirebaseCacaKey.other: caca.otherInfo,
+                     Constants.FirebaseCacaKey.grading: caca.grading,
+                     Constants.FirebaseCacaKey.advice: caca.advice,
+                     Constants.FirebaseCacaKey.period: caca.period,
+                     Constants.FirebaseCacaKey.medicine: caca.medicine]
+
+        FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).child(caca.cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
 
             if error != nil {
 

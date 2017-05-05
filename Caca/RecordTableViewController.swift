@@ -212,22 +212,22 @@ class RecordTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-            
+
             if self.cacas[indexPath.row].photoID == nil {
-            
+
                 CacaProvider.shared.deleteCaca(cacaID: self.cacas[indexPath.row].cacaID)
                 self.cacas.remove(at: indexPath.row)
-                
+
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
-                
+
             } else if let photoID = self.cacas[indexPath.row].photoID {
-                
+
                 CacaProvider.shared.deleteCaca(cacaID: self.cacas[indexPath.row].cacaID)
                 CacaProvider.shared.deleteCacaPhoto(photoID: photoID)
                 self.cacas.remove(at: indexPath.row)
-                
+
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
-                
+
             }
         }
     }

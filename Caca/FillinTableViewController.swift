@@ -61,43 +61,30 @@ class FillinTableViewController: UITableViewController {
     var finalMin = "00"
     var finalSec = "00"
 
-    var ispassed = false
-
-    var isCorrect = false
-
     var finalCaca = Caca(cacaID: "", date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", grading: false, advice: "")
 
     var cacas = [Caca]()
 
-    var advice = String()
-
-    var shapeAdvice = String()
-
-    var colorAdvice = String()
-
-    var frequencyAdvice = String()
-
     var recievedCacaFromRecordDetail = [Caca]()
 
     var activityIndicator = UIActivityIndicatorView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if User.host.gender == Gender.female.rawValue && User.host.medicine == Medicine.yes.rawValue {
-            
+
             self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
-            
+
         } else if User.host.gender == Gender.female.rawValue {
-            
+
             self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
-            
+
         } else if User.host.medicine == Medicine.yes.rawValue {
-            
+
             self.components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
-            
+
         }
-        
 
         self.tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoTableViewCell")
         self.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "InfoTableViewCell")
@@ -121,8 +108,6 @@ class FillinTableViewController: UITableViewController {
     }
 
     private func setUp() {
-
-        ispassed = false
 
         self.tableView.allowsSelection = false
         self.tableView.separatorStyle = .none
@@ -152,7 +137,7 @@ class FillinTableViewController: UITableViewController {
 
         self.amountSlider.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
         self.amountSlider.isContinuous = true
-        let thumbIamge = self.resizeImage(image: #imageLiteral(resourceName: "caca-big"), targetRatio: 0.2)
+        let thumbIamge = #imageLiteral(resourceName: "caca-big").resized(targetRatio: 0.2)
         self.amountSlider.setThumbImage(thumbIamge, for: .normal)
         self.amountSlider.maximumValueImage = #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysTemplate)
         self.amountSlider.minimumValueImage = #imageLiteral(resourceName: "minus").withRenderingMode(.alwaysTemplate)
@@ -170,7 +155,7 @@ class FillinTableViewController: UITableViewController {
         let fullScreenSize = UIScreen.main.bounds.size
         self.activityIndicator.center = CGPoint(x: fullScreenSize.width * 0.5, y: fullScreenSize.height * 0.8)
         self.view.addSubview(activityIndicator)
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
@@ -178,73 +163,45 @@ class FillinTableViewController: UITableViewController {
 
     func datePickerChanged() {
 
-        if let dateSection = components.index(of: Component.date) {
-
-            let indexPath = IndexPath(row: 0, section: dateSection)
-
-            if let dateCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell {
-
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd HH:mm"
-
-                dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
-            }
-        }
+        guard let dateCell = cellForComponent(.date) as? InfoTableViewCell else { return }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
+        
     }
 
     func changeThumbImageSize() {
 
         let thumbImage: UIImage = #imageLiteral(resourceName: "caca-big")
 
-        if let amountSection = components.index(of: Component.amount) {
+        guard let amountCell = cellForComponent(.amount) as? InfoTableViewCell else { return }
 
-            let indexPath = IndexPath(row: 0, section: amountSection)
-
-            let amountCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell
-
-            switch amountSlider.value {
-
-            case 0.23...0.3:
-
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.3)
-                amountCell?.rowView.infoTextField.text = NSLocalizedString("Large", comment: "")
-                self.amountSlider.setThumbImage(newImage, for: .normal)
-
-            case 0.16..<0.23:
-
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.2)
-                amountCell?.rowView.infoTextField.text = NSLocalizedString("Normal", comment: "")
-                self.amountSlider.setThumbImage(newImage, for: .normal)
-
-            case 0.10..<0.16:
-
-                let newImage = self.resizeImage(image: thumbImage, targetRatio: 0.1)
-                amountCell?.rowView.infoTextField.text = NSLocalizedString("Small", comment: "")
-                self.amountSlider.setThumbImage(newImage, for: .normal)
-
-            default: break
-
-            }
+        switch amountSlider.value {
+            
+        case 0.23...0.3:
+            
+            let newImage = thumbImage.resized(targetRatio: 0.3)
+            amountCell.rowView.infoTextField.text = NSLocalizedString("Large", comment: "")
+            self.amountSlider.setThumbImage(newImage, for: .normal)
+            
+        case 0.16..<0.23:
+            
+            let newImage = thumbImage.resized(targetRatio: 0.2)
+            amountCell.rowView.infoTextField.text = NSLocalizedString("Normal", comment: "")
+            self.amountSlider.setThumbImage(newImage, for: .normal)
+            
+        case 0.10..<0.16:
+            
+            let newImage = thumbImage.resized(targetRatio: 0.1)
+            amountCell.rowView.infoTextField.text = NSLocalizedString("Small", comment: "")
+            self.amountSlider.setThumbImage(newImage, for: .normal)
+            
+        default: break
+            
         }
-    }
 
-    func resizeImage(image: UIImage, targetRatio: CGFloat) -> UIImage {
-
-        let size = image.size
-
-        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
-
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-
-        image.draw(in: rect)
-
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-
-        UIGraphicsEndImageContext()
-
-        return newImage!
     }
 
     // MARK: - Table view data source
@@ -281,16 +238,13 @@ class FillinTableViewController: UITableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        guard let photoSection = components.index(of: Component.photo) else { return }
-
-        let indexPath = IndexPath(row: 0, section: photoSection)
-
-        if let photoCell = tableView.cellForRow(at: indexPath) as? PhotoTableViewCell,
-           photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "cacaWithCamera") {
-
+        guard let photoCell = cellForComponent(.photo) as? PhotoTableViewCell else { return }
+        
+        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "cacaWithCamera") {
+            
             photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
             photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
-
+            
         }
 
     }
@@ -628,27 +582,17 @@ class FillinTableViewController: UITableViewController {
 
     }
 
-    func checkNil() {
+    typealias NilHandler = (Bool?) -> Void
+    
+    func checkNil(completion: @escaping NilHandler) {
 
-        guard let dateSection = components.index(of: Component.date),
-              let timeSection = components.index(of: Component.time),
-              let shapeSection = components.index(of: Component.shape),
-              let colorSection = components.index(of: Component.color),
-              let amountSection = components.index(of: Component.amount) else { return }
+        guard let dateCell = cellForComponent(.date) as? InfoTableViewCell else { return }
+        guard let consumingTimeCell = cellForComponent(.time) as? InfoTableViewCell else { return }
+        guard let colorCell = cellForComponent(.color) as? InfoTableViewCell else { return }
+        guard let shapeCell = cellForComponent(.shape) as? InfoTableViewCell else { return }
+        guard let amountCell = cellForComponent(.amount) as? InfoTableViewCell else { return }
 
-        let dateIndexPath = IndexPath(row: 0, section: dateSection)
-        let timeIndexPath = IndexPath(row: 0, section: timeSection)
-        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
-        let colorIndexPath = IndexPath(row: 0, section: colorSection)
-        let amountIndexPath = IndexPath(row: 0, section: amountSection)
-
-        let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell
-        let timeCell = tableView.cellForRow(at: timeIndexPath) as? InfoTableViewCell
-        let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell
-        let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell
-        let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell
-
-        if dateCell?.rowView.infoTextField.text == "" {
+        if dateCell.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                     message: NSLocalizedString("Please enter your date", comment: "User must enter date"),
@@ -660,7 +604,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if timeCell?.rowView.infoTextField.text == "" {
+        } else if consumingTimeCell.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                     message: NSLocalizedString("Please enter your time", comment: "User must enter time"),
@@ -672,7 +616,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if shapeCell?.rowView.infoTextField.text == "" {
+        } else if shapeCell.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                     message: NSLocalizedString("Please enter your shape", comment: "User must enter shape"),
@@ -684,7 +628,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if colorCell?.rowView.infoTextField.text == "" {
+        } else if colorCell.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                     message: NSLocalizedString("Please enter your color", comment: "User must enter color"),
@@ -696,7 +640,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if amountCell?.rowView.infoTextField.text == "" {
+        } else if amountCell.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                     message: NSLocalizedString("Please enter your amount", comment: "User must enter amount"),
@@ -710,8 +654,7 @@ class FillinTableViewController: UITableViewController {
 
         } else {
 
-            isCorrect = true
-
+            completion(true)
         }
 
     }
@@ -719,7 +662,7 @@ class FillinTableViewController: UITableViewController {
     func didFillin() {
 
         activityIndicator.startAnimating()
-        
+
         if isFromRecordDetail == true {
 
             editCaca()
@@ -728,127 +671,18 @@ class FillinTableViewController: UITableViewController {
 
         } else {
 
-            checkNil()
-
-            if isCorrect == true {
-
-                createCaca()
-
-                isFromCaca = false
-
-                isFromRecord = false
-
-            }
-
-        }
-
-    }
-
-    func getAdvice() -> String {
-
-        guard let shapeSection = components.index(of: Component.shape),
-              let colorSection = components.index(of: Component.color) else { return "" }
-
-        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
-        let colorIndexPath = IndexPath(row: 0, section: colorSection)
-
-        guard let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
-              let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
-              let shape = shapeCell.rowView.infoTextField.text,
-              let color = colorCell.rowView.infoTextField.text else { return "" }
-
-        // MARK: Pass or Fail
-
-        if (color == Color.lightBrown.title || color == Color.darkBrown.title) && (shape == Shape.crackSausage.title || shape == Shape.smoothSausage.title) {
-
-            ispassed = true
-
-            self.advice = NSLocalizedString("Good caca! Please keep it up!", comment: "")
-
-        } else {
-
-            self.advice = NSLocalizedString("Warning! Your caca may not be healthy! ", comment: "")
-
-            // MARK: Shape
-
-            switch shape {
-
-            case Shape.separateHard.title, Shape.lumpySausage.title:
-
-                self.shapeAdvice = NSLocalizedString("You are constipated, and ", comment: "")
-
-            case Shape.crackSausage.title, Shape.smoothSausage.title:
-
-                self.shapeAdvice = NSLocalizedString("The shape of your caca is good, but ", comment: "")
-
-            case Shape.softBlob.title, Shape.mushyStool.title, Shape.wateryStool.title:
-
-                self.shapeAdvice = NSLocalizedString("You have diarrhea, and ", comment: "")
-
-            default: break
-
-            }
-
-            // MARK: Color
-
-            switch color {
-
-            case Color.red.title:
-
-                self.colorAdvice = NSLocalizedString("the color of your caca is red. ", comment: "")
-
-            case Color.yellow.title:
-
-                self.colorAdvice = NSLocalizedString("the color of your caca is yellow. ", comment: "")
-
-            case Color.green.title:
-
-                self.colorAdvice = NSLocalizedString("the color of your caca is green. ", comment: "")
-
-            case Color.lightBrown.title, Color.darkBrown.title:
-
-                self.colorAdvice = NSLocalizedString("the color of your caca is good! ", comment: "")
-
-            case Color.gray.title:
-
-                self.colorAdvice = NSLocalizedString("the color of your caca is gray. ", comment: "")
-
-            case Color.black.title:
-
-                self.colorAdvice = NSLocalizedString("the color of your caca is black. ", comment: "")
-
-            default: break
-
-            }
-
-            // MARK: Continuous Fail
-
-            if cacas.count == 1 {
-
-                if cacas[cacas.count - 1].grading == false && ispassed == false {
-
-                    self.frequencyAdvice = NSLocalizedString("If you have the same symptom tomorrow, you should go to see a doctor.", comment: "")
-
+            checkNil(completion: { (success) in
+                
+                if success == true {
+                
+                    self.createCaca()
+                    
+                    self.isFromCaca = false
+                    
+                    self.isFromRecord = false
                 }
-
-            } else if cacas.count > 1 {
-
-                if cacas[cacas.count - 2].grading == false && cacas[cacas.count - 1].grading == false && ispassed == false {
-
-                    self.frequencyAdvice = NSLocalizedString("You should go to see a doctor NOW!", comment: "")
-
-                } else if cacas[cacas.count - 1].grading == false && ispassed == false {
-
-                    self.frequencyAdvice = NSLocalizedString("If you have the same symptom tomorrow, you should go to see a doctor.", comment: "")
-
-                }
-
-            }
+            })
         }
-
-        let overallAdvice = self.advice + self.shapeAdvice + self.colorAdvice + self.frequencyAdvice
-
-        return overallAdvice
     }
 
     func switchToRecord() {
@@ -867,33 +701,17 @@ class FillinTableViewController: UITableViewController {
 
     func createCaca() {
 
-        guard let finishSection = components.index(of: Component.finish) else { return }
-
-        let finishIndexPath = IndexPath(row: 0, section: finishSection)
-
-        guard let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else { return }
+        guard let finishCell = cellForComponent(.finish) as? FinishTableViewCell else { return }
 
         finishCell.rowView.finishButton.isEnabled = false
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
-
-        let cacaID = FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).childByAutoId().key
+        finalCaca.cacaID = FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).childByAutoId().key
         let photoID = UUID().uuidString
-        let overallAdvice = getAdvice()
+        let cacaState = StateManager.shared.getState(caca: finalCaca, comparedWith: self.cacas)
 
-        var value = [Constants.FirebaseCacaKey.host: hostUID,
-                     Constants.FirebaseCacaKey.cacaID: cacaID,
-                     Constants.FirebaseCacaKey.date: self.finalCaca.date,
-                     Constants.FirebaseCacaKey.time: self.finalCaca.time,
-                     Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
-                     Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
-                     Constants.FirebaseCacaKey.color: self.finalCaca.color,
-                     Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
-                     Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo,
-                     Constants.FirebaseCacaKey.grading: self.ispassed,
-                     Constants.FirebaseCacaKey.advice: overallAdvice,
-                     Constants.FirebaseCacaKey.period: self.finalCaca.period,
-                     Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine] as [String : Any]
+        finalCaca.advice = cacaState.advice
+        finalCaca.grading = cacaState.grading
 
         // MARK : Create caca with photo
 
@@ -919,10 +737,10 @@ class FillinTableViewController: UITableViewController {
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
 
-                value.updateValue(cacaPhotoUrl, forKey: Constants.FirebaseCacaKey.photoURL)
-                value.updateValue(photoID, forKey: Constants.FirebaseCacaKey.photoID)
+                self.finalCaca.photoURL = cacaPhotoUrl
+                self.finalCaca.photoID = photoID
 
-                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+                CacaProvider.shared.saveCaca(caca: self.finalCaca, uid: hostUID)
 
                 self.switchToRecord()
 
@@ -936,7 +754,7 @@ class FillinTableViewController: UITableViewController {
 
             FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.createWithoutPhoto, parameters: nil)
 
-            CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+            CacaProvider.shared.saveCaca(caca: self.finalCaca, uid: hostUID)
 
             self.switchToRecord()
 
@@ -948,32 +766,17 @@ class FillinTableViewController: UITableViewController {
 
     func editCaca() {
 
-        guard let finishSection = components.index(of: Component.finish) else { return }
-
-        let finishIndexPath = IndexPath(row: 0, section: finishSection)
-
-        guard let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else { return }
-
+        guard let finishCell = cellForComponent(.finish) as? FinishTableViewCell else { return }
+        
         finishCell.rowView.finishButton.isEnabled = false
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
 
-        let cacaID = recievedCacaFromRecordDetail[0].cacaID
-        let overallAdvice = getAdvice()
+        finalCaca.cacaID = recievedCacaFromRecordDetail[0].cacaID
+        let cacaState = StateManager.shared.getState(caca: finalCaca, comparedWith: self.cacas)
 
-        var value = [Constants.FirebaseCacaKey.host: hostUID,
-                     Constants.FirebaseCacaKey.cacaID: cacaID,
-                     Constants.FirebaseCacaKey.date: self.finalCaca.date,
-                     Constants.FirebaseCacaKey.time: self.finalCaca.time,
-                     Constants.FirebaseCacaKey.consumingTime: self.finalCaca.consumingTime,
-                     Constants.FirebaseCacaKey.shape: self.finalCaca.shape,
-                     Constants.FirebaseCacaKey.color: self.finalCaca.color,
-                     Constants.FirebaseCacaKey.amount: self.finalCaca.amount,
-                     Constants.FirebaseCacaKey.other: self.finalCaca.otherInfo,
-                     Constants.FirebaseCacaKey.grading: self.ispassed,
-                     Constants.FirebaseCacaKey.advice: overallAdvice,
-                     Constants.FirebaseCacaKey.period: self.finalCaca.period,
-                     Constants.FirebaseCacaKey.medicine: self.finalCaca.medicine] as [String : Any]
+        finalCaca.advice = cacaState.advice
+        finalCaca.grading = cacaState.grading
 
         // MARK : Edit caca with new photo (had old photo)
 
@@ -1013,13 +816,13 @@ class FillinTableViewController: UITableViewController {
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
 
-                value.updateValue(cacaPhotoUrl, forKey: Constants.FirebaseCacaKey.photoURL)
-                value.updateValue(photoID, forKey: Constants.FirebaseCacaKey.photoID)
+                self.finalCaca.photoURL = cacaPhotoUrl
+                self.finalCaca.photoID = photoID
 
-                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+                CacaProvider.shared.saveCaca(caca: self.finalCaca, uid: hostUID)
 
                 self.switchToRecord()
-                
+
                 self.activityIndicator.stopAnimating()
             })
 
@@ -1049,10 +852,10 @@ class FillinTableViewController: UITableViewController {
 
                 guard let cacaPhotoUrl = cacaPhotoUrl else { return }
 
-                value.updateValue(cacaPhotoUrl, forKey: Constants.FirebaseCacaKey.photoURL)
-                value.updateValue(newPhotoID, forKey: Constants.FirebaseCacaKey.photoID)
+                self.finalCaca.photoURL = cacaPhotoUrl
+                self.finalCaca.photoID = newPhotoID
 
-                CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+                CacaProvider.shared.saveCaca(caca: self.finalCaca, uid: hostUID)
 
                 self.switchToRecord()
 
@@ -1066,7 +869,7 @@ class FillinTableViewController: UITableViewController {
 
             FIRAnalytics.logEvent(withName: Constants.FirebaseAnalyticsKey.editWithoutPhoto, parameters: nil)
 
-            CacaProvider.shared.saveCaca(cacaID: cacaID, value: value)
+            CacaProvider.shared.saveCaca(caca: self.finalCaca, uid: hostUID)
 
             self.switchToRecord()
 
@@ -1080,14 +883,8 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
-        guard let photoSection = components.index(of: Component.photo),
-              let colorSection = components.index(of: Component.color) else { return }
-
-        let photoIndexPath = IndexPath(row: 0, section: photoSection)
-        let colorIndexPath = IndexPath(row: 0, section: colorSection)
-
-        guard let photoCell = tableView.cellForRow(at: photoIndexPath) as? PhotoTableViewCell,
-              let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell else { return }
+        guard let photoCell = cellForComponent(.photo) as? PhotoTableViewCell else { return }
+        guard let colorCell = cellForComponent(.color) as? InfoTableViewCell else { return }
 
         guard let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
 
@@ -1100,54 +897,19 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true) {
 
             let alertController = UIAlertController(title: NSLocalizedString("Note", comment: "Note to let user know the detection color"),
-                                                    message: NSLocalizedString("The color of your caca is closed to ", comment: "") + "\(self.getClosedColor(of: dominantColor))",
+                                                    message: NSLocalizedString("The color of your caca is closed to ", comment: "") + "\(dominantColor.closedColor())",
                 preferredStyle: .alert)
 
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
 
-                colorCell.rowView.infoTextField.text = self.getClosedColor(of: dominantColor)
-                self.finalCaca.color = self.getClosedColor(of: dominantColor)
+                colorCell.rowView.infoTextField.text = dominantColor.closedColor()
+                self.finalCaca.color = dominantColor.closedColor()
 
             })
 
             alertController.addAction(okAction)
 
             self.present(alertController, animated: true, completion: nil)
-
-        }
-    }
-
-    func getClosedColor(of dominantColor: MMCQ.Color) -> String {
-
-        let r = Int(dominantColor.r)
-        let g = Int(dominantColor.g)
-        let b = Int(dominantColor.b)
-
-        let toRed = ((146 - r) * (146 - r)) + ((18 - g) * (18 - g)) + ((36 - b) * (36 - b))
-        let toYellow = ((255 - r) * (255 - r)) + ((205 - g) * (205 - g)) + ((56 - b) * (56 - b))
-        let toGreen = ((83 - r) * (83 - r)) + ((90 - g) * (90 - g)) + ((59 - b) * (59 - b))
-        let toLightBrown = ((168 - r) * (168 - r)) + ((116 - g) * (116 - g)) + ((66 - b) * (66 - b))
-        let toDarkBrown = ((71 - r) * (71 - r)) + ((40 - g) * (40 - g)) + ((12 - b) * (12 - b))
-        let toGray = ((192 - r) * (192 - r)) + ((192 - g) * (192 - g)) + ((192 - b) * (192 - b))
-        let toBlack = ((0 - r) * (0 - r)) + ((0 - g) * (0 - g)) + ((0 - b) * (0 - b))
-
-        let UIntArray = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ]
-        if let closedUInt = (UIntArray.sorted { $0 < $1 }.first) {
-
-            switch closedUInt {
-            case toRed: return Color.red.title
-            case toYellow: return Color.yellow.title
-            case toGreen: return Color.green.title
-            case toLightBrown: return Color.lightBrown.title
-            case toDarkBrown: return Color.darkBrown.title
-            case toGray: return Color.gray.title
-            case toBlack: return Color.black.title
-            default: return ""
-            }
-
-        } else {
-
-            return ""
 
         }
     }
@@ -1171,91 +933,66 @@ extension FillinTableViewController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
 
-        if let dateSection = components.index(of: Component.date) {
+        if let dateCell = cellForComponent(.date) as? InfoTableViewCell,
+            let date = dateCell.rowView.infoTextField.text {
 
-            let dateIndexPath = IndexPath(row: 0, section: dateSection)
+            finalCaca.date = date.substring(to: 10)
+            finalCaca.time = date.substring(from: 11)
 
-            if let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell,
-                let date = dateCell.rowView.infoTextField.text {
-
-                finalCaca.date = date.substring(to: 10)
-                finalCaca.time = date.substring(from: 11)
-                
-            }
         }
 
-        if let consumingTimeSection = components.index(of: Component.time) {
+        if let consumingTimeCell = cellForComponent(.time) as? InfoTableViewCell,
+            let consumingTime = consumingTimeCell.rowView.infoTextField.text {
 
-            let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)
+            finalCaca.consumingTime = consumingTime
 
-            if let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
-                let consumingTime = consumingTimeCell.rowView.infoTextField.text {
-
-                finalCaca.consumingTime = consumingTime
-
-            }
         }
 
-        if let colorSection = components.index(of: Component.color) {
+        if let colorCell = cellForComponent(.color) as? InfoTableViewCell,
+            let color = colorCell.rowView.infoTextField.text {
 
-            let colorIndexPath = IndexPath(row: 0, section: colorSection)
+            finalCaca.color = color
 
-            if let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell,
-                let color = colorCell.rowView.infoTextField.text {
-
-                finalCaca.color = color
-
-            }
         }
 
-        if let shapeSection = components.index(of: Component.shape) {
+        if let shapeCell = cellForComponent(.shape) as? InfoTableViewCell,
+           let shape = shapeCell.rowView.infoTextField.text {
 
-            let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
+            finalCaca.shape = shape
 
-            if let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
-                let shape = shapeCell.rowView.infoTextField.text {
-
-                finalCaca.shape = shape
-
-            }
         }
 
-        if let amountSection = components.index(of: Component.amount) {
+        if let amountCell = cellForComponent(.amount) as? InfoTableViewCell,
+           let amount = amountCell.rowView.infoTextField.text {
 
-            let amountIndexPath = IndexPath(row: 0, section: amountSection)
+            finalCaca.amount = amount
 
-            if let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell,
-                let amount = amountCell.rowView.infoTextField.text {
-
-                finalCaca.amount = amount
-
-            }
         }
 
-        if let medicineSection = components.index(of: Component.medicine) {
+        if let medicineCell = cellForComponent(.medicine) as? InfoTableViewCell {
 
-            let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
+            finalCaca.medicine = medicineCell.rowView.infoTextField.text
 
-            if let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? InfoTableViewCell,
-                let medicine = medicineCell.rowView.infoTextField.text {
-
-                finalCaca.medicine = medicine
-
-            }
         }
 
-        if let otherSection = components.index(of: Component.other) {
+        if let otherCell = cellForComponent(.other) as? InfoTableViewCell {
 
-            let otherIndexPath = IndexPath(row: 0, section: otherSection)
+            finalCaca.otherInfo = otherCell.rowView.infoTextField.text
 
-            if let otherCell = tableView.cellForRow(at: otherIndexPath) as? InfoTableViewCell,
-                let otherInfo = otherCell.rowView.infoTextField.text {
-
-                finalCaca.otherInfo = otherInfo
-
-            }
         }
+
     }
+
+    func cellForComponent(_ component: Component) -> UITableViewCell? {
+
+        guard let section = components.index(of: component) else { return nil }
+
+        let indexPath = IndexPath(row: 0, section: section)
+
+        return tableView.cellForRow(at: indexPath)
+
+    }
+
 }
 
 extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -1302,46 +1039,30 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
-        guard let consumingTimeSection = components.index(of: Component.time),
-            let shapeSection = components.index(of: Component.shape),
-            let colorSection = components.index(of: Component.color) else { return }
-
-        let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)
-        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
-        let colorIndexPath = IndexPath(row: 0, section: colorSection)
-
-        guard let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
-            let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
-            let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell else { return }
+        guard let consumingTimeCell = cellForComponent(.time) as? InfoTableViewCell else { return }
+        guard let shapeCell = cellForComponent(.shape) as? InfoTableViewCell else { return }
+        guard let colorCell = cellForComponent(.color) as? InfoTableViewCell else { return }
 
         switch pickerView {
 
         case timePicker:
 
             switch component {
-
             case 0: finalHour = String(format: "%02i", hour[row])
-
             case 1: finalMin = String(format: "%02i", min[row])
-
             case 2: finalSec = String(format: "%02i", sec[row])
-
             default: break
-
             }
 
             consumingTimeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
-            finalCaca.consumingTime = "\(finalHour):\(finalMin):\(finalSec)"
 
         case shapePicker:
 
             shapeCell.rowView.infoTextField.text = shapes[row].title
-            finalCaca.shape = shapes[row].title
 
         case colorPicker:
 
             colorCell.rowView.infoTextField.text = colors[row].title
-            finalCaca.color = colors[row].title
 
         default: break
 
@@ -1409,7 +1130,6 @@ extension String {
     func index(from: Int) -> Index {
 
         return self.index(startIndex, offsetBy: from)
-
     }
 
     func substring(from: Int) -> String {
@@ -1426,4 +1146,64 @@ extension String {
 
     }
 
+}
+
+extension UIImage {
+
+    func resized(targetRatio: CGFloat) -> UIImage {
+
+        let size = self.size
+
+        let newSize = CGSize(width: size.width * targetRatio, height: size.height * targetRatio)
+
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+
+        self.draw(in: rect)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        UIGraphicsEndImageContext()
+
+        return newImage!
+    }
+}
+
+extension MMCQ.Color {
+
+    func closedColor() -> String {
+        
+        let r = Int(self.r)
+        let g = Int(self.g)
+        let b = Int(self.b)
+        
+        let toRed = ((146 - r) * (146 - r)) + ((18 - g) * (18 - g)) + ((36 - b) * (36 - b))
+        let toYellow = ((255 - r) * (255 - r)) + ((205 - g) * (205 - g)) + ((56 - b) * (56 - b))
+        let toGreen = ((83 - r) * (83 - r)) + ((90 - g) * (90 - g)) + ((59 - b) * (59 - b))
+        let toLightBrown = ((168 - r) * (168 - r)) + ((116 - g) * (116 - g)) + ((66 - b) * (66 - b))
+        let toDarkBrown = ((71 - r) * (71 - r)) + ((40 - g) * (40 - g)) + ((12 - b) * (12 - b))
+        let toGray = ((192 - r) * (192 - r)) + ((192 - g) * (192 - g)) + ((192 - b) * (192 - b))
+        let toBlack = ((0 - r) * (0 - r)) + ((0 - g) * (0 - g)) + ((0 - b) * (0 - b))
+        
+        let UIntArray = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ]
+        if let closedUInt = (UIntArray.sorted { $0 < $1 }.first) {
+            
+            switch closedUInt {
+            case toRed: return Color.red.title
+            case toYellow: return Color.yellow.title
+            case toGreen: return Color.green.title
+            case toLightBrown: return Color.lightBrown.title
+            case toDarkBrown: return Color.darkBrown.title
+            case toGray: return Color.gray.title
+            case toBlack: return Color.black.title
+            default: return ""
+            }
+            
+        } else {
+            
+            return ""
+            
+        }
+    }
 }

@@ -92,6 +92,7 @@
 		43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FA61E8006E80052125B /* OpeningViewController.swift */; };
 		43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3FA81E80D64F0052125B /* Caca.storyboard */; };
 		43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */; };
+		43BF21BD1EBC29B6007F772B /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BF21BC1EBC29B6007F772B /* StateManager.swift */; };
 		43CF3C6C1EB84AD20016F8CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF3C6B1EB84AD20016F8CB /* Constants.swift */; };
 		43CF3CB01EB8B3B30016F8CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43CF3CB21EB8B3B30016F8CB /* Localizable.strings */; };
 		43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA111E84BE2800E92290 /* SignInViewController.swift */; };
@@ -188,6 +189,7 @@
 		43BA3FA61E8006E80052125B /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
 		43BA3FA81E80D64F0052125B /* Caca.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Caca.storyboard; sourceTree = "<group>"; };
 		43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		43BF21BC1EBC29B6007F772B /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
 		43CF3C6B1EB84AD20016F8CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		43CF3CAD1EB8B2F90016F8CB /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		43CF3CB11EB8B3B30016F8CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				438B90AE1EA73617001E0A5E /* Shape.swift */,
 				438B90AC1EA7360A001E0A5E /* Color.swift */,
 				4326E9801E8BD9610057363B /* CacaProvider.swift */,
+				43BF21BC1EBC29B6007F772B /* StateManager.swift */,
 			);
 			name = Caca;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				438EFDB41EB1C57300D9B18A /* ProfileSegmentTableViewCell.swift in Sources */,
 				4372BF191E969646005F5422 /* PasswordViewController.swift in Sources */,
 				438B90AD1EA7360A001E0A5E /* Color.swift in Sources */,
+				43BF21BD1EBC29B6007F772B /* StateManager.swift in Sources */,
 				43372D3F1E7FCCC7002E2AE3 /* SettingNavigationController.swift in Sources */,
 				4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */,
 				43811DC61EA8D7E20035B672 /* Authentication.swift in Sources */,

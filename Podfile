@@ -16,5 +16,6 @@ pod 'JTAppleCalendar', '~> 6.1'
 pod 'ColorThiefSwift', '>= 0.2.0'
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'KeychainAccess'
 
 end
