@@ -22,8 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FIRApp.configure()
 
-        Fabric.with([Crashlytics.self])
-
         UNUserNotificationCenter.current().requestAuthorization(options: .alert) { (granted, _) in
 
             if granted {
@@ -93,6 +91,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
 
+        Fabric.with([Crashlytics.self])
+        
         return true
     }
 
