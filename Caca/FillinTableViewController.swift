@@ -61,8 +61,6 @@ class FillinTableViewController: UITableViewController {
     var finalMin = "00"
     var finalSec = "00"
 
-    var ispassed = false
-
     var isCorrect = false
 
     var finalCaca = Caca(cacaID: "", date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", grading: false, advice: "")
@@ -112,8 +110,6 @@ class FillinTableViewController: UITableViewController {
     }
 
     private func setUp() {
-
-        ispassed = false
 
         self.tableView.allowsSelection = false
         self.tableView.separatorStyle = .none
@@ -169,54 +165,45 @@ class FillinTableViewController: UITableViewController {
 
     func datePickerChanged() {
 
-        if let dateSection = components.index(of: Component.date) {
-
-            let indexPath = IndexPath(row: 0, section: dateSection)
-
-            if let dateCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell {
-
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd HH:mm"
-
-                dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
-            }
-        }
+        guard let dateCell = cellForComponent(.date) as? InfoTableViewCell else { return }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        dateCell.rowView.infoTextField.text = formatter.string(from: datePicker.date)
+        
     }
 
     func changeThumbImageSize() {
 
         let thumbImage: UIImage = #imageLiteral(resourceName: "caca-big")
 
-        if let amountSection = components.index(of: Component.amount) {
+        guard let amountCell = cellForComponent(.amount) as? InfoTableViewCell else { return }
 
-            let indexPath = IndexPath(row: 0, section: amountSection)
-
-            let amountCell = tableView.cellForRow(at: indexPath) as? InfoTableViewCell
-
-            switch amountSlider.value {
-
-            case 0.23...0.3:
-
-                let newImage = thumbImage.resized(targetRatio: 0.3)
-                amountCell?.rowView.infoTextField.text = NSLocalizedString("Large", comment: "")
-                self.amountSlider.setThumbImage(newImage, for: .normal)
-
-            case 0.16..<0.23:
-
-                let newImage = thumbImage.resized(targetRatio: 0.2)
-                amountCell?.rowView.infoTextField.text = NSLocalizedString("Normal", comment: "")
-                self.amountSlider.setThumbImage(newImage, for: .normal)
-
-            case 0.10..<0.16:
-
-                let newImage = thumbImage.resized(targetRatio: 0.1)
-                amountCell?.rowView.infoTextField.text = NSLocalizedString("Small", comment: "")
-                self.amountSlider.setThumbImage(newImage, for: .normal)
-
-            default: break
-
-            }
+        switch amountSlider.value {
+            
+        case 0.23...0.3:
+            
+            let newImage = thumbImage.resized(targetRatio: 0.3)
+            amountCell.rowView.infoTextField.text = NSLocalizedString("Large", comment: "")
+            self.amountSlider.setThumbImage(newImage, for: .normal)
+            
+        case 0.16..<0.23:
+            
+            let newImage = thumbImage.resized(targetRatio: 0.2)
+            amountCell.rowView.infoTextField.text = NSLocalizedString("Normal", comment: "")
+            self.amountSlider.setThumbImage(newImage, for: .normal)
+            
+        case 0.10..<0.16:
+            
+            let newImage = thumbImage.resized(targetRatio: 0.1)
+            amountCell.rowView.infoTextField.text = NSLocalizedString("Small", comment: "")
+            self.amountSlider.setThumbImage(newImage, for: .normal)
+            
+        default: break
+            
         }
+
     }
 
     // MARK: - Table view data source
@@ -253,16 +240,13 @@ class FillinTableViewController: UITableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        guard let photoSection = components.index(of: Component.photo) else { return }
-
-        let indexPath = IndexPath(row: 0, section: photoSection)
-
-        if let photoCell = tableView.cellForRow(at: indexPath) as? PhotoTableViewCell,
-           photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "cacaWithCamera") {
-
+        guard let photoCell = cellForComponent(.photo) as? PhotoTableViewCell else { return }
+        
+        if photoCell.rowView.cacaPhotoImageView.image != #imageLiteral(resourceName: "cacaWithCamera") {
+            
             photoCell.rowView.cacaPhotoImageView.layer.cornerRadius = photoCell.rowView.cacaPhotoImageView.frame.width / 2
             photoCell.rowView.cacaPhotoImageView.layer.masksToBounds = true
-
+            
         }
 
     }
@@ -602,25 +586,13 @@ class FillinTableViewController: UITableViewController {
 
     func checkNil() {
 
-        guard let dateSection = components.index(of: Component.date),
-              let timeSection = components.index(of: Component.time),
-              let shapeSection = components.index(of: Component.shape),
-              let colorSection = components.index(of: Component.color),
-              let amountSection = components.index(of: Component.amount) else { return }
+        guard let dateCell = cellForComponent(.date) as? InfoTableViewCell else { return }
+        guard let consumingTimeCell = cellForComponent(.time) as? InfoTableViewCell else { return }
+        guard let colorCell = cellForComponent(.color) as? InfoTableViewCell else { return }
+        guard let shapeCell = cellForComponent(.shape) as? InfoTableViewCell else { return }
+        guard let amountCell = cellForComponent(.amount) as? InfoTableViewCell else { return }
 
-        let dateIndexPath = IndexPath(row: 0, section: dateSection)
-        let timeIndexPath = IndexPath(row: 0, section: timeSection)
-        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
-        let colorIndexPath = IndexPath(row: 0, section: colorSection)
-        let amountIndexPath = IndexPath(row: 0, section: amountSection)
-
-        let dateCell = tableView.cellForRow(at: dateIndexPath) as? InfoTableViewCell
-        let timeCell = tableView.cellForRow(at: timeIndexPath) as? InfoTableViewCell
-        let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell
-        let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell
-        let amountCell = tableView.cellForRow(at: amountIndexPath) as? InfoTableViewCell
-
-        if dateCell?.rowView.infoTextField.text == "" {
+        if dateCell.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                     message: NSLocalizedString("Please enter your date", comment: "User must enter date"),
@@ -632,7 +604,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if timeCell?.rowView.infoTextField.text == "" {
+        } else if consumingTimeCell.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                     message: NSLocalizedString("Please enter your time", comment: "User must enter time"),
@@ -644,7 +616,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if shapeCell?.rowView.infoTextField.text == "" {
+        } else if shapeCell.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                     message: NSLocalizedString("Please enter your shape", comment: "User must enter shape"),
@@ -656,7 +628,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if colorCell?.rowView.infoTextField.text == "" {
+        } else if colorCell.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                     message: NSLocalizedString("Please enter your color", comment: "User must enter color"),
@@ -668,7 +640,7 @@ class FillinTableViewController: UITableViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
-        } else if amountCell?.rowView.infoTextField.text == "" {
+        } else if amountCell.rowView.infoTextField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
                                                     message: NSLocalizedString("Please enter your amount", comment: "User must enter amount"),
@@ -797,12 +769,8 @@ class FillinTableViewController: UITableViewController {
 
     func editCaca() {
 
-        guard let finishSection = components.index(of: Component.finish) else { return }
-
-        let finishIndexPath = IndexPath(row: 0, section: finishSection)
-
-        guard let finishCell = tableView.cellForRow(at: finishIndexPath) as? FinishTableViewCell else { return }
-
+        guard let finishCell = cellForComponent(.finish) as? FinishTableViewCell else { return }
+        
         finishCell.rowView.finishButton.isEnabled = false
 
         guard let hostUID = FIRAuth.auth()?.currentUser?.uid else { return }
@@ -918,14 +886,8 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
-        guard let photoSection = components.index(of: Component.photo),
-              let colorSection = components.index(of: Component.color) else { return }
-
-        let photoIndexPath = IndexPath(row: 0, section: photoSection)
-        let colorIndexPath = IndexPath(row: 0, section: colorSection)
-
-        guard let photoCell = tableView.cellForRow(at: photoIndexPath) as? PhotoTableViewCell,
-              let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell else { return }
+        guard let photoCell = cellForComponent(.photo) as? PhotoTableViewCell else { return }
+        guard let colorCell = cellForComponent(.color) as? InfoTableViewCell else { return }
 
         guard let editedCacaImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
 
@@ -1115,32 +1077,19 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
-        guard let consumingTimeSection = components.index(of: Component.time),
-            let shapeSection = components.index(of: Component.shape),
-            let colorSection = components.index(of: Component.color) else { return }
-
-        let consumingTimeIndexPath = IndexPath(row: 0, section: consumingTimeSection)
-        let shapeIndexPath = IndexPath(row: 0, section: shapeSection)
-        let colorIndexPath = IndexPath(row: 0, section: colorSection)
-
-        guard let consumingTimeCell = tableView.cellForRow(at: consumingTimeIndexPath) as? InfoTableViewCell,
-            let shapeCell = tableView.cellForRow(at: shapeIndexPath) as? InfoTableViewCell,
-            let colorCell = tableView.cellForRow(at: colorIndexPath) as? InfoTableViewCell else { return }
+        guard let consumingTimeCell = cellForComponent(.time) as? InfoTableViewCell else { return }
+        guard let shapeCell = cellForComponent(.shape) as? InfoTableViewCell else { return }
+        guard let colorCell = cellForComponent(.color) as? InfoTableViewCell else { return }
 
         switch pickerView {
 
         case timePicker:
 
             switch component {
-
             case 0: finalHour = String(format: "%02i", hour[row])
-
             case 1: finalMin = String(format: "%02i", min[row])
-
             case 2: finalSec = String(format: "%02i", sec[row])
-
             default: break
-
             }
 
             consumingTimeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
