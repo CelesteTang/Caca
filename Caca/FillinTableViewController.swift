@@ -61,8 +61,6 @@ class FillinTableViewController: UITableViewController {
     var finalMin = "00"
     var finalSec = "00"
 
-    var isCorrect = false
-
     var finalCaca = Caca(cacaID: "", date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", grading: false, advice: "")
 
     var cacas = [Caca]()
@@ -584,7 +582,9 @@ class FillinTableViewController: UITableViewController {
 
     }
 
-    func checkNil() {
+    typealias NilHandler = (Bool?) -> Void
+    
+    func checkNil(completion: @escaping NilHandler) {
 
         guard let dateCell = cellForComponent(.date) as? InfoTableViewCell else { return }
         guard let consumingTimeCell = cellForComponent(.time) as? InfoTableViewCell else { return }
@@ -654,8 +654,7 @@ class FillinTableViewController: UITableViewController {
 
         } else {
 
-            isCorrect = true
-
+            completion(true)
         }
 
     }
@@ -672,20 +671,18 @@ class FillinTableViewController: UITableViewController {
 
         } else {
 
-            checkNil()
-
-            if isCorrect == true {
-
-                createCaca()
-
-                isFromCaca = false
-
-                isFromRecord = false
-
-            }
-
+            checkNil(completion: { (success) in
+                
+                if success == true {
+                
+                    self.createCaca()
+                    
+                    self.isFromCaca = false
+                    
+                    self.isFromRecord = false
+                }
+            })
         }
-
     }
 
     func switchToRecord() {
@@ -900,54 +897,19 @@ extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true) {
 
             let alertController = UIAlertController(title: NSLocalizedString("Note", comment: "Note to let user know the detection color"),
-                                                    message: NSLocalizedString("The color of your caca is closed to ", comment: "") + "\(self.getClosedColor(of: dominantColor))",
+                                                    message: NSLocalizedString("The color of your caca is closed to ", comment: "") + "\(dominantColor.closedColor())",
                 preferredStyle: .alert)
 
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
 
-                colorCell.rowView.infoTextField.text = self.getClosedColor(of: dominantColor)
-                self.finalCaca.color = self.getClosedColor(of: dominantColor)
+                colorCell.rowView.infoTextField.text = dominantColor.closedColor()
+                self.finalCaca.color = dominantColor.closedColor()
 
             })
 
             alertController.addAction(okAction)
 
             self.present(alertController, animated: true, completion: nil)
-
-        }
-    }
-
-    func getClosedColor(of dominantColor: MMCQ.Color) -> String {
-
-        let r = Int(dominantColor.r)
-        let g = Int(dominantColor.g)
-        let b = Int(dominantColor.b)
-
-        let toRed = ((146 - r) * (146 - r)) + ((18 - g) * (18 - g)) + ((36 - b) * (36 - b))
-        let toYellow = ((255 - r) * (255 - r)) + ((205 - g) * (205 - g)) + ((56 - b) * (56 - b))
-        let toGreen = ((83 - r) * (83 - r)) + ((90 - g) * (90 - g)) + ((59 - b) * (59 - b))
-        let toLightBrown = ((168 - r) * (168 - r)) + ((116 - g) * (116 - g)) + ((66 - b) * (66 - b))
-        let toDarkBrown = ((71 - r) * (71 - r)) + ((40 - g) * (40 - g)) + ((12 - b) * (12 - b))
-        let toGray = ((192 - r) * (192 - r)) + ((192 - g) * (192 - g)) + ((192 - b) * (192 - b))
-        let toBlack = ((0 - r) * (0 - r)) + ((0 - g) * (0 - g)) + ((0 - b) * (0 - b))
-
-        let UIntArray = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ]
-        if let closedUInt = (UIntArray.sorted { $0 < $1 }.first) {
-
-            switch closedUInt {
-            case toRed: return Color.red.title
-            case toYellow: return Color.yellow.title
-            case toGreen: return Color.green.title
-            case toLightBrown: return Color.lightBrown.title
-            case toDarkBrown: return Color.darkBrown.title
-            case toGray: return Color.gray.title
-            case toBlack: return Color.black.title
-            default: return ""
-            }
-
-        } else {
-
-            return ""
 
         }
     }
@@ -1093,17 +1055,14 @@ extension FillinTableViewController: UIPickerViewDataSource, UIPickerViewDelegat
             }
 
             consumingTimeCell.rowView.infoTextField.text = "\(finalHour):\(finalMin):\(finalSec)"
-            finalCaca.consumingTime = "\(finalHour):\(finalMin):\(finalSec)"
 
         case shapePicker:
 
             shapeCell.rowView.infoTextField.text = shapes[row].title
-            finalCaca.shape = shapes[row].title
 
         case colorPicker:
 
             colorCell.rowView.infoTextField.text = colors[row].title
-            finalCaca.color = colors[row].title
 
         default: break
 
@@ -1171,7 +1130,6 @@ extension String {
     func index(from: Int) -> Index {
 
         return self.index(startIndex, offsetBy: from)
-
     }
 
     func substring(from: Int) -> String {
@@ -1209,5 +1167,43 @@ extension UIImage {
         UIGraphicsEndImageContext()
 
         return newImage!
+    }
+}
+
+extension MMCQ.Color {
+
+    func closedColor() -> String {
+        
+        let r = Int(self.r)
+        let g = Int(self.g)
+        let b = Int(self.b)
+        
+        let toRed = ((146 - r) * (146 - r)) + ((18 - g) * (18 - g)) + ((36 - b) * (36 - b))
+        let toYellow = ((255 - r) * (255 - r)) + ((205 - g) * (205 - g)) + ((56 - b) * (56 - b))
+        let toGreen = ((83 - r) * (83 - r)) + ((90 - g) * (90 - g)) + ((59 - b) * (59 - b))
+        let toLightBrown = ((168 - r) * (168 - r)) + ((116 - g) * (116 - g)) + ((66 - b) * (66 - b))
+        let toDarkBrown = ((71 - r) * (71 - r)) + ((40 - g) * (40 - g)) + ((12 - b) * (12 - b))
+        let toGray = ((192 - r) * (192 - r)) + ((192 - g) * (192 - g)) + ((192 - b) * (192 - b))
+        let toBlack = ((0 - r) * (0 - r)) + ((0 - g) * (0 - g)) + ((0 - b) * (0 - b))
+        
+        let UIntArray = [ toRed, toYellow, toGreen, toLightBrown, toDarkBrown, toGray, toBlack ]
+        if let closedUInt = (UIntArray.sorted { $0 < $1 }.first) {
+            
+            switch closedUInt {
+            case toRed: return Color.red.title
+            case toYellow: return Color.yellow.title
+            case toGreen: return Color.green.title
+            case toLightBrown: return Color.lightBrown.title
+            case toDarkBrown: return Color.darkBrown.title
+            case toGray: return Color.gray.title
+            case toBlack: return Color.black.title
+            default: return ""
+            }
+            
+        } else {
+            
+            return ""
+            
+        }
     }
 }
