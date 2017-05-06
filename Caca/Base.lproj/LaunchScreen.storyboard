@@ -41,10 +41,26 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright (c) 2017 Hsin Yu Tang" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVF-at-eiI">
+                                <rect key="frame" x="60" y="598" width="255" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
+                                <color key="textColor" red="0.21176470589999999" green="0.31372549020000001" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All rights reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gb0-uA-WT2">
+                                <rect key="frame" x="111" y="627.5" width="153.5" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
+                                <color key="textColor" red="0.21176470589999999" green="0.31372549020000001" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.89411764709999997" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="gb0-uA-WT2" secondAttribute="bottom" constant="20" id="0yP-Bz-qoc"/>
+                            <constraint firstItem="hVF-at-eiI" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Apb-LF-LkQ"/>
                             <constraint firstItem="lSR-Rs-sfD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MsK-MG-o62"/>
+                            <constraint firstItem="gb0-uA-WT2" firstAttribute="top" secondItem="hVF-at-eiI" secondAttribute="bottom" constant="10" id="Ujn-Yh-qyf"/>
+                            <constraint firstItem="gb0-uA-WT2" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Ytz-VM-AvA"/>
                             <constraint firstItem="lSR-Rs-sfD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="nNh-hS-FhK"/>
                         </constraints>
                     </view>

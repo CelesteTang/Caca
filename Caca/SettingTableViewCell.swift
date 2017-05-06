@@ -46,8 +46,10 @@ class SettingTableViewCell: UITableViewCell {
         rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
 
         rowView.backgroundColor = Palette.lightblue2
-
         rowView.titleLabel.textColor = Palette.darkblue
+        rowView.separateLineView.backgroundColor = Palette.darkblue
+        rowView.titleLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
+        rowView.iconImageView.image = #imageLiteral(resourceName: "caca-big")
 
     }
 

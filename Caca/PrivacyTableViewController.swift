@@ -78,17 +78,17 @@ class PrivacyTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        let authentication = authentications[indexPath.row]
+
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: "PrivacyTableViewCell", for: indexPath) as! PrivacyTableViewCell
         // swiftlint:enable force_cast
 
         cell.rowView.privacyLabel.text = authentications[indexPath.row].title
 
-        cell.rowView.switchButton.onTintColor = Palette.darkblue
+        switch authentication {
 
-        switch indexPath.row {
-
-        case Authentication.password.rawValue:
+        case .password:
 
             cell.selectionStyle = .none
             if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.passwordAuthentication) == true {
@@ -103,12 +103,12 @@ class PrivacyTableViewController: UITableViewController {
 
             cell.rowView.switchButton.addTarget(self, action: #selector(openPasswordAuthentication), for: .valueChanged)
 
-        case Authentication.passwordChanging.rawValue:
+        case .passwordChanging:
 
             cell.rowView.switchButton.isHidden = true
             cell.rowView.switchButton.isEnabled = false
 
-        case Authentication.touchID.rawValue:
+        case .touchID:
 
             cell.selectionStyle = .none
             cell.rowView.switchButton.isOn = UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.touchIDAuthentication)
@@ -124,9 +124,11 @@ class PrivacyTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        switch indexPath.row {
+        let authentication = authentications[indexPath.row]
 
-        case Authentication.passwordChanging.rawValue:
+        switch authentication {
+
+        case .passwordChanging:
 
             guard let passwordViewController = UIStoryboard(name: Constants.Storyboard.password, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.password) as? PasswordViewController else { return }
 

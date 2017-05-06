@@ -92,6 +92,8 @@
 		43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3FA81E80D64F0052125B /* Caca.storyboard */; };
 		43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */; };
 		43BF21BD1EBC29B6007F772B /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BF21BC1EBC29B6007F772B /* StateManager.swift */; };
+		43CEC1381EBDC389005657B8 /* LanguageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEC1371EBDC389005657B8 /* LanguageTableViewController.swift */; };
+		43CEC13B1EBDCAA5005657B8 /* Language.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43CEC13A1EBDCAA5005657B8 /* Language.storyboard */; };
 		43CF3C6C1EB84AD20016F8CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF3C6B1EB84AD20016F8CB /* Constants.swift */; };
 		43CF3CB01EB8B3B30016F8CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43CF3CB21EB8B3B30016F8CB /* Localizable.strings */; };
 		43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA111E84BE2800E92290 /* SignInViewController.swift */; };
@@ -188,6 +190,8 @@
 		43BA3FA81E80D64F0052125B /* Caca.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Caca.storyboard; sourceTree = "<group>"; };
 		43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		43BF21BC1EBC29B6007F772B /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
+		43CEC1371EBDC389005657B8 /* LanguageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTableViewController.swift; sourceTree = "<group>"; };
+		43CEC13A1EBDCAA5005657B8 /* Language.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Language.storyboard; sourceTree = "<group>"; };
 		43CF3C6B1EB84AD20016F8CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		43CF3CAD1EB8B2F90016F8CB /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		43CF3CB11EB8B3B30016F8CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
 				438EFDAE1EB1C36900D9B18A /* Profile */,
 				4396B58B1EA2241E00A69C4E /* Privacy */,
+				43CEC1391EBDC4DF005657B8 /* Language */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */,
 				43308EB21E9B4D4D00BB4F0D /* Profile.storyboard */,
 				4328DCA31E9C8202006D3FB8 /* Privacy.storyboard */,
+				43CEC13A1EBDCAA5005657B8 /* Language.storyboard */,
 				4372BF1A1E969F1E005F5422 /* Password.storyboard */,
 				43372D351E7FCA89002E2AE3 /* TabBar.storyboard */,
 			);
@@ -431,6 +437,14 @@
 			name = Opening;
 			sourceTree = "<group>";
 		};
+		43CEC1391EBDC4DF005657B8 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				43CEC1371EBDC389005657B8 /* LanguageTableViewController.swift */,
+			);
+			name = Language;
+			sourceTree = "<group>";
+		};
 		4D40147E3D80F0A118207D3C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,6 +565,7 @@
 				43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */,
 				435B71E21EA603F300FBABBF /* PhotoRowView.xib in Resources */,
 				4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */,
+				43CEC13B1EBDCAA5005657B8 /* Language.storyboard in Resources */,
 				43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,6 +662,7 @@
 				4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */,
 				4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */,
 				43CF3C6C1EB84AD20016F8CB /* Constants.swift in Sources */,
+				43CEC1381EBDC389005657B8 /* LanguageTableViewController.swift in Sources */,
 				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
 				435B71F41EA60B9100FBABBF /* FillinTableViewController.swift in Sources */,
 				435B71EC1EA6080E00FBABBF /* FinishRowView.swift in Sources */,
