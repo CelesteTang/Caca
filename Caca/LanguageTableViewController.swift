@@ -91,6 +91,11 @@ class LanguageTableViewController: UITableViewController {
         cell.rowView.switchButton.isHidden = true
         cell.rowView.switchButton.isEnabled = false
 
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Palette.lightblue
+        cell.selectedBackgroundView = backgroundView
+        cell.selectionStyle = .default
+
         return cell
 
     }
@@ -103,10 +108,12 @@ class LanguageTableViewController: UITableViewController {
 
         case .繁體中文:
 
+            showAlert()
             setLanguage(to: .繁體中文)
 
         case .English:
 
+            showAlert()
             setLanguage(to: .English)
 
         }
@@ -119,9 +126,13 @@ class LanguageTableViewController: UITableViewController {
         case .繁體中文: UserDefaults.standard.set(["zh-Hant"], forKey: "AppleLanguages")
         }
     }
-    
+
     func showAlert() {
-    
-        let alertController = UIAlertController(title: "Note", message: "Please restart", preferredStyle: .actionSheet)
+
+        let alertController = UIAlertController(title: NSLocalizedString("Note", comment: "Note to let user know app should be restarted"), message: NSLocalizedString("Please restart Caca to set up new language. Thank you.", comment: ""), preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
     }
 }
