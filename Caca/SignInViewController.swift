@@ -120,17 +120,15 @@ class SignInViewController: UIViewController {
         self.appName.font = UIFont(name: Constants.UIFont.futuraBold, size: 60)
 
         self.emailField.delegate = self
-        self.emailField.clearButtonMode = .never
+        self.emailField.clearButtonMode = .whileEditing
         self.emailField.placeholder = NSLocalizedString("Email", comment: "")
-        self.emailField.clearsOnBeginEditing = true
         self.emailField.keyboardType = .emailAddress
         self.emailField.returnKeyType = .done
         self.emailField.textColor = .black
 
         self.passwordField.delegate = self
-        self.passwordField.clearButtonMode = .never
+        self.passwordField.clearButtonMode = .whileEditing
         self.passwordField.placeholder = NSLocalizedString("Password (at least 6 characters)", comment: "User must enter password containing at least 6 characters")
-        self.passwordField.clearsOnBeginEditing = true
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
         self.passwordField.textColor = .black

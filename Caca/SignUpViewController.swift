@@ -103,7 +103,7 @@ class SignUpViewController: UIViewController {
         } else if self.medicineField.text == "" {
 
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
-                                                    message: NSLocalizedString("Please enter your medication", comment: "User must enter password"),
+                                                    message: NSLocalizedString("Please enter your medication", comment: "User must enter medication"),
                                                     preferredStyle: UIAlertControllerStyle.alert)
 
             alertController.addAction(UIAlertAction(title: "OK",
@@ -246,17 +246,15 @@ class SignUpViewController: UIViewController {
         self.appName.font = UIFont(name: Constants.UIFont.futuraBold, size: 60)
 
         self.emailField.delegate = self
-        self.emailField.clearButtonMode = .never
+        self.emailField.clearButtonMode = .whileEditing
         self.emailField.placeholder = NSLocalizedString("Email", comment: "")
-        self.emailField.clearsOnBeginEditing = true
         self.emailField.keyboardType = .emailAddress
         self.emailField.returnKeyType = .done
         self.emailField.textColor = .black
 
         self.passwordField.delegate = self
-        self.passwordField.clearButtonMode = .never
+        self.passwordField.clearButtonMode = .whileEditing
         self.passwordField.placeholder = NSLocalizedString("Password (at least 6 characters)", comment: "User must enter password containing at least 6 characters")
-        self.passwordField.clearsOnBeginEditing = true
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
         self.passwordField.textColor = .black
@@ -275,8 +273,6 @@ class SignUpViewController: UIViewController {
         self.medicineField.clearButtonMode = .never
         self.medicineField.placeholder = NSLocalizedString("On medication", comment: "")
         self.medicineField.clearsOnBeginEditing = true
-        self.medicineField.keyboardType = .emailAddress
-        self.medicineField.returnKeyType = .done
         self.medicineField.inputView = self.medicinePicker
         self.medicineField.textColor = .black
 

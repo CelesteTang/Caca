@@ -428,13 +428,14 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
 
-            cell.rowView.infoSegmentedControl.setTitle("Yes", forSegmentAt: 0)
-            cell.rowView.infoSegmentedControl.setTitle("No", forSegmentAt: 1)
+            cell.rowView.infoSegmentedControl.setTitle(NSLocalizedString("Yes", comment: ""), forSegmentAt: 0)
+            cell.rowView.infoSegmentedControl.setTitle(NSLocalizedString("No", comment: ""), forSegmentAt: 1)
             cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
-
+            cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changePeriod), for: .valueChanged)
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
-
+            self.finalCaca.period = 1
+            
             if isFromRecordDetail == true {
 
                 if let period = self.recievedCacaFromRecordDetail[0].period {
@@ -664,7 +665,7 @@ class FillinTableViewController: UITableViewController {
 
         if isFromRecordDetail == true {
 
-            editCaca()
+            self.editCaca()
 
             isFromRecordDetail = false
 
@@ -875,6 +876,12 @@ class FillinTableViewController: UITableViewController {
             self.activityIndicator.stopAnimating()
 
         }
+    }
+    
+    func changePeriod(_ sender: UISegmentedControl) {
+    
+        self.finalCaca.period = sender.selectedSegmentIndex
+        
     }
 }
 

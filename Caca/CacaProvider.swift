@@ -15,6 +15,16 @@ class CacaProvider {
 
     func saveCaca(caca: Caca, uid: String) {
 
+        if caca.otherInfo == "" {
+        
+            caca.otherInfo = nil
+        }
+        
+        if caca.medicine == "" {
+        
+            caca.medicine = nil
+        }
+        
         let value: [String : Any] = [Constants.FirebaseCacaKey.host: uid,
                      Constants.FirebaseCacaKey.cacaID: caca.cacaID,
                      Constants.FirebaseCacaKey.photoID: caca.photoID,
