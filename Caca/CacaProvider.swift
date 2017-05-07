@@ -108,7 +108,8 @@ class CacaProvider {
 
                         let caca = Caca(cacaID: cacaID, photoURL: cacaPhotoURL, photoID: cacaPhotoID, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: cacaShape, color: cacaColor, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, advice: cacaAdvice, period: period, medicine: medicine)
 
-                        cacas.append(caca)
+                        cacas.insert(caca, at: 0)
+
                     }
                 }
             }

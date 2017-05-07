@@ -122,12 +122,12 @@ class CacaViewController: UIViewController {
                 dateFormatter.timeZone = TimeZone(secondsFromGMT: 8)
                 var dayToNow = Int()
 
-                guard let lastCacaDate = cacas.last?.date,
+                guard let lastCacaDate = cacas.first?.date,
                     let date = dateFormatter.date(from: lastCacaDate) else { return }
 
                 dayToNow = date.daysBetweenDate(to: Date())
 
-                if cacas.last?.date == nil {
+                if cacas.first?.date == nil {
 
                     self.notificationLabel.text = NSLocalizedString("Start caca now!", comment: "")
 
@@ -234,15 +234,15 @@ class CacaViewController: UIViewController {
         let request = UNNotificationRequest(identifier: Constants.NotificationIdentidier.longTimeNoCaca, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
-    
+
     func noNetworkConnection() {
-    
+
         if Reachability.isConnectedToNetwork() != true {
-            
+
             let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"), message: NSLocalizedString("There is no network connection right now. Please try again later", comment: ""), preferredStyle: .alert)
-            
+
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            
+
             self.present(alertController, animated: true, completion: nil)
         }
     }
