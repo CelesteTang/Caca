@@ -105,7 +105,7 @@ class ProfileTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfilePhotoTableViewCell", for: indexPath) as! ProfilePhotoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.photoImageView.image = (User.host.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
+            cell.rowView.photoImageView.image = (User.host.gender == Gender.male.title) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
             return cell
 
@@ -126,7 +126,7 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
 
-            cell.rowView.infoSegmentedControl.selectedSegmentIndex = (User.host.gender == Gender.male.rawValue) ? Gender.male.rawValue : Gender.female.rawValue
+            cell.rowView.infoSegmentedControl.selectedSegmentIndex = (User.host.gender == Gender.male.title) ? Gender.male.rawValue : Gender.female.rawValue
 
             return cell
 
@@ -147,7 +147,7 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeMedicine), for: .valueChanged)
 
-            cell.rowView.infoSegmentedControl.selectedSegmentIndex = (User.host.medicine == Medicine.yes.rawValue) ? Medicine.yes.rawValue : Medicine.no.rawValue
+            cell.rowView.infoSegmentedControl.selectedSegmentIndex = (User.host.medicine == Medicine.yes.title) ? Medicine.yes.rawValue : Medicine.no.rawValue
 
             return cell
 
@@ -266,7 +266,9 @@ class ProfileTableViewController: UITableViewController {
         let isMale: Bool = (genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.male.rawValue)
         photoCell.rowView.photoImageView.image = isMale ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
-        User.host.gender = genderCell.rowView.infoSegmentedControl.selectedSegmentIndex
+        guard let gender = Gender(rawValue: genderCell.rowView.infoSegmentedControl.selectedSegmentIndex)?.title else { return }
+
+        User.host.gender = gender
 
         let value = [Constants.FirebaseUserKey.gender: User.host.gender,
                      Constants.FirebaseUserKey.medicine: User.host.medicine] as [String: Any]
@@ -282,7 +284,9 @@ class ProfileTableViewController: UITableViewController {
 
         guard let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? ProfileSegmentTableViewCell else { return }
 
-        User.host.medicine = medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex
+        guard let medicine = Medicine(rawValue: medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex)?.title else { return }
+
+        User.host.medicine = medicine
 
         let value = [Constants.FirebaseUserKey.gender: User.host.gender,
                      Constants.FirebaseUserKey.medicine: User.host.medicine] as [String: Any]

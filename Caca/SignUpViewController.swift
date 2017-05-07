@@ -24,13 +24,19 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var passwordField: UITextField!
 
-    @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var genderField: UITextField!
 
-    @IBOutlet weak var medicineSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var medicineField: UITextField!
 
     @IBOutlet weak var signUpButton: UIButton!
 
     @IBOutlet weak var cancelButton: UIButton!
+
+    let genderPicker = UIPickerView()
+    let medicinePicker = UIPickerView()
+
+    let genders: [Gender] = [.male, .female, .personalReasons]
+    let medicines: [Medicine] = [.yes, .no, .personalReasons]
 
     @IBAction func cancelSignUp(_ sender: UIButton) {
 
@@ -82,12 +88,36 @@ class SignUpViewController: UIViewController {
 
             self.present(alertController, animated: true, completion: nil)
 
+        } else if self.genderField.text == "" {
+
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your gender", comment: "User must enter gender"),
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if self.medicineField.text == "" {
+
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                    message: NSLocalizedString("Please enter your medication", comment: "User must enter password"),
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+
+            alertController.addAction(UIAlertAction(title: "OK",
+                                                    style: UIAlertActionStyle.default,
+                                                    handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
         } else {
 
-            guard let email = emailField.text, let password = passwordField.text else { return }
-
-            let gender = self.genderSegmentedControl.selectedSegmentIndex
-            let medicine = self.medicineSegmentedControl.selectedSegmentIndex
+            guard let email = self.emailField.text,
+                  let password = self.passwordField.text,
+                  let gender = self.genderField.text,
+                  let medicine = self.medicineField.text else { return }
 
             if isFromStart == true {
 
@@ -221,6 +251,7 @@ class SignUpViewController: UIViewController {
         self.emailField.clearsOnBeginEditing = true
         self.emailField.keyboardType = .emailAddress
         self.emailField.returnKeyType = .done
+        self.emailField.textColor = .black
 
         self.passwordField.delegate = self
         self.passwordField.clearButtonMode = .never
@@ -228,18 +259,30 @@ class SignUpViewController: UIViewController {
         self.passwordField.clearsOnBeginEditing = true
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
+        self.passwordField.textColor = .black
 
-        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "male"), forSegmentAt: Gender.male.rawValue)
-        self.genderSegmentedControl.setImage(#imageLiteral(resourceName: "female"), forSegmentAt: Gender.female.rawValue)
-        self.genderSegmentedControl.tintColor = Palette.darkblue2
+        self.genderField.delegate = self
+        self.genderField.clearButtonMode = .never
+        self.genderField.placeholder = NSLocalizedString("Gender", comment: "")
+        self.genderField.clearsOnBeginEditing = true
+        self.genderField.inputView = self.genderPicker
+        self.genderField.textColor = .black
 
-        self.medicineSegmentedControl.setTitle("Yes", forSegmentAt: 0)
-        self.medicineSegmentedControl.setTitle("No", forSegmentAt: 1)
-        self.medicineSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
-//        self.medicineSegmentedControl.setImage(#imageLiteral(resourceName: "male"), forSegmentAt: Gender.male.rawValue)
-//        self.medicineSegmentedControl.setImage(#imageLiteral(resourceName: "female"), forSegmentAt: Gender.female.rawValue)
-        self.medicineSegmentedControl.tintColor = Palette.darkblue2
+        self.genderPicker.dataSource = self
+        self.genderPicker.delegate = self
 
+        self.medicineField.delegate = self
+        self.medicineField.clearButtonMode = .never
+        self.medicineField.placeholder = NSLocalizedString("On medication", comment: "")
+        self.medicineField.clearsOnBeginEditing = true
+        self.medicineField.keyboardType = .emailAddress
+        self.medicineField.returnKeyType = .done
+        self.medicineField.inputView = self.medicinePicker
+        self.medicineField.textColor = .black
+
+        self.medicinePicker.dataSource = self
+        self.medicinePicker.delegate = self
+        
         self.signUpButton.backgroundColor = Palette.darkblue2
         self.signUpButton.setTitle(NSLocalizedString("Sign Up", comment: ""), for: .normal)
         self.signUpButton.layer.cornerRadius = self.signUpButton.frame.height / 2
@@ -302,5 +345,82 @@ extension SignUpViewController: UITextFieldDelegate {
             self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
 
         }
+    }
+}
+
+extension SignUpViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+
+        return 1
+
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+
+        switch pickerView {
+
+        case genderPicker: return genders.count
+
+        case medicinePicker: return medicines.count
+
+        default: return 0
+
+        }
+
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+
+        switch pickerView {
+
+        case genderPicker:
+
+            self.genderField.text = genders[row].title
+
+        case medicinePicker:
+
+            self.medicineField.text = medicines[row].title
+
+        default: break
+
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+
+        let pickerLabel = UILabel()
+        pickerLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
+        pickerLabel.textAlignment = NSTextAlignment.center
+
+        switch pickerView {
+
+        case genderPicker:
+
+            pickerLabel.text = genders[row].title
+
+            return pickerLabel
+
+        case medicinePicker:
+
+            pickerLabel.text = medicines[row].title
+
+            return pickerLabel
+
+        default:
+
+            let view = UIView()
+
+            view.isHidden = true
+
+            return view
+
+        }
+
+    }
+
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+
+        return 50.0
     }
 }

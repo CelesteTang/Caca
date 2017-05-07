@@ -63,7 +63,7 @@ class CacaViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.mainImageView.image = (User.host.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
+        self.mainImageView.image = (User.host.gender == Gender.male.title) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
     }
 
@@ -77,7 +77,7 @@ class CacaViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.mainImageView.backgroundColor = Palette.lightblue2
-        self.mainImageView.image = (User.host.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
+        self.mainImageView.image = (User.host.gender == Gender.male.title) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
         self.magnifierView.backgroundColor = Palette.lightWhite
         self.magnifierView.layer.borderWidth = 5

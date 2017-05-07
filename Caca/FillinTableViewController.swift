@@ -72,15 +72,15 @@ class FillinTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if User.host.gender == Gender.female.rawValue && User.host.medicine == Medicine.yes.rawValue {
+        if User.host.gender == Gender.female.title && User.host.medicine == Medicine.yes.title {
 
             self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
 
-        } else if User.host.gender == Gender.female.rawValue {
+        } else if User.host.gender == Gender.female.title {
 
             self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
 
-        } else if User.host.medicine == Medicine.yes.rawValue {
+        } else if User.host.medicine == Medicine.yes.title {
 
             self.components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
 

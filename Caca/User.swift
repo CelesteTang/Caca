@@ -10,23 +10,42 @@ import Foundation
 
 enum Gender: Int {
 
-    case male, female
+    case male, female, personalReasons
+
+    var title: String {
+
+        switch self {
+        case .male: return NSLocalizedString("Male", comment: "")
+        case .female: return NSLocalizedString("Female", comment: "")
+        case .personalReasons: return NSLocalizedString("Personal Reasons", comment: "")
+        }
+
+    }
 
 }
 
 enum Medicine: Int {
 
-    case yes, no
+    case yes, no, personalReasons
 
+    var title: String {
+
+        switch self {
+        case .yes: return NSLocalizedString("Yes", comment: "")
+        case .no: return NSLocalizedString("No", comment: "")
+        case .personalReasons: return NSLocalizedString("Personal Reasons", comment: "")
+        }
+
+    }
 }
 
 struct User {
 
     // MARK: Property
 
-    var gender: Int = Gender.male.rawValue
+    var gender: String = Gender.male.title
 
-    var medicine: Int = Medicine.no.rawValue
+    var medicine: String = Medicine.no.title
 
     static var host = User()
 

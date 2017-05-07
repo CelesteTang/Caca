@@ -28,7 +28,7 @@ class UserManager {
 
     typealias CreateHadler = (Error?, Error?) -> Void
 
-    func createUser(with email: String, password: String, gender: Int, medicine: Int, completion: @escaping CreateHadler) {
+    func createUser(with email: String, password: String, gender: String, medicine: String, completion: @escaping CreateHadler) {
 
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
 
@@ -109,7 +109,7 @@ class UserManager {
 
     typealias LinkHadler = (Error?, Error?) -> Void
 
-    func linkUser(with email: String, password: String, gender: Int, medicine: Int, completion: @escaping LinkHadler) {
+    func linkUser(with email: String, password: String, gender: String, medicine: String, completion: @escaping LinkHadler) {
 
         let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: password)
 
@@ -159,8 +159,8 @@ class UserManager {
             .observeSingleEvent(of: .value, with: { (snapshot) in
 
                 if let userInfo = snapshot.value as? NSDictionary,
-                    let userGender = userInfo[Constants.FirebaseUserKey.gender] as? Int,
-                    let userMedicine = userInfo[Constants.FirebaseUserKey.medicine] as? Int {
+                    let userGender = userInfo[Constants.FirebaseUserKey.gender] as? String,
+                    let userMedicine = userInfo[Constants.FirebaseUserKey.medicine] as? String {
 
                     user.gender = userGender
                     user.medicine = userMedicine
