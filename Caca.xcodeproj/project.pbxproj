@@ -94,6 +94,7 @@
 		43BF21BD1EBC29B6007F772B /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BF21BC1EBC29B6007F772B /* StateManager.swift */; };
 		43CEC1381EBDC389005657B8 /* LanguageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEC1371EBDC389005657B8 /* LanguageTableViewController.swift */; };
 		43CEC13B1EBDCAA5005657B8 /* Language.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43CEC13A1EBDCAA5005657B8 /* Language.storyboard */; };
+		43CEC13D1EBF2438005657B8 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEC13C1EBF2438005657B8 /* Reachability.swift */; };
 		43CF3C6C1EB84AD20016F8CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF3C6B1EB84AD20016F8CB /* Constants.swift */; };
 		43CF3CB01EB8B3B30016F8CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43CF3CB21EB8B3B30016F8CB /* Localizable.strings */; };
 		43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA111E84BE2800E92290 /* SignInViewController.swift */; };
@@ -192,6 +193,7 @@
 		43BF21BC1EBC29B6007F772B /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
 		43CEC1371EBDC389005657B8 /* LanguageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTableViewController.swift; sourceTree = "<group>"; };
 		43CEC13A1EBDCAA5005657B8 /* Language.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Language.storyboard; sourceTree = "<group>"; };
+		43CEC13C1EBF2438005657B8 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		43CF3C6B1EB84AD20016F8CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		43CF3CAD1EB8B2F90016F8CB /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		43CF3CB11EB8B3B30016F8CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */,
 				4322EB511E8398FA006B0D5D /* Palette.swift */,
 				43CF3C6B1EB84AD20016F8CB /* Constants.swift */,
+				43CEC13C1EBF2438005657B8 /* Reachability.swift */,
 				43CF3CB21EB8B3B30016F8CB /* Localizable.strings */,
 				43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */,
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
@@ -656,6 +659,7 @@
 				435B71F21EA60ACE00FBABBF /* FinishTableViewCell.swift in Sources */,
 				433032FD1EB7055200E308DE /* RecordDetailRowView.swift in Sources */,
 				435B71F01EA60AC100FBABBF /* InfoTableViewCell.swift in Sources */,
+				43CEC13D1EBF2438005657B8 /* Reachability.swift in Sources */,
 				434398171EAA66F900A8F220 /* UserManager.swift in Sources */,
 				438EFDA71EB1C33700D9B18A /* ProfileSegmentRowView.swift in Sources */,
 				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,

@@ -234,6 +234,9 @@ class ProfileTableViewController: UITableViewController {
                     UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.isViewedWalkThrough)
                     UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.passwordAuthentication)
                     UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.touchIDAuthentication)
+                    self.keychain[Constants.KeychainKey.gender] = nil
+                    self.keychain[Constants.KeychainKey.medicine] = nil
+                    self.keychain[Constants.KeychainKey.password] = nil
 
                     let startViewController = UIStoryboard(name: Constants.Storyboard.landing, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.start) as? StartViewController
 
@@ -274,8 +277,8 @@ class ProfileTableViewController: UITableViewController {
         guard let gender = Gender(rawValue: genderCell.rowView.infoSegmentedControl.selectedSegmentIndex)?.title else { return }
         guard let medicine = Medicine(rawValue: medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex)?.title else { return }
 
-        let value = [Constants.FirebaseUserKey.gender: gender,
-                     Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
+        let value: [String: Any] = [Constants.FirebaseUserKey.gender: gender,
+                                    Constants.FirebaseUserKey.medicine: medicine]
 
         UserManager.shared.editUser(value: value)
 
@@ -291,8 +294,8 @@ class ProfileTableViewController: UITableViewController {
         guard let gender = Gender(rawValue: genderCell.rowView.infoSegmentedControl.selectedSegmentIndex)?.title else { return }
         guard let medicine = Medicine(rawValue: medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex)?.title else { return }
 
-        let value = [Constants.FirebaseUserKey.gender: gender,
-                     Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
+        let value: [String: Any] = [Constants.FirebaseUserKey.gender: gender,
+                                    Constants.FirebaseUserKey.medicine: medicine]
 
         UserManager.shared.editUser(value: value)
 

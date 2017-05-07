@@ -44,8 +44,8 @@ class UserManager {
                 self.keychain[Constants.KeychainKey.gender] = gender
                 self.keychain[Constants.KeychainKey.medicine] = medicine
 
-                let value = [Constants.FirebaseUserKey.gender: gender,
-                             Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
+                let value: [String: Any] = [Constants.FirebaseUserKey.gender: gender,
+                                            Constants.FirebaseUserKey.medicine: medicine]
 
                 if let user = user {
 
@@ -88,8 +88,8 @@ class UserManager {
                 self.keychain[Constants.KeychainKey.gender] = Gender.male.title
                 self.keychain[Constants.KeychainKey.medicine] = Medicine.no.title
 
-                let value = [Constants.FirebaseUserKey.gender: Gender.male.title,
-                             Constants.FirebaseUserKey.medicine: Medicine.no.title] as [String: Any]
+                let value: [String: Any] = [Constants.FirebaseUserKey.gender: Gender.male.title,
+                                            Constants.FirebaseUserKey.medicine: Medicine.no.title]
 
                 if let user = user {
 
@@ -133,8 +133,8 @@ class UserManager {
                 self.keychain[Constants.KeychainKey.gender] = gender
                 self.keychain[Constants.KeychainKey.medicine] = medicine
 
-                let value = [Constants.FirebaseUserKey.gender: gender,
-                             Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
+                let value: [String: Any] = [Constants.FirebaseUserKey.gender: gender,
+                                            Constants.FirebaseUserKey.medicine: medicine]
 
                 if let user = user {
 

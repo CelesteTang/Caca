@@ -53,6 +53,7 @@ class CacaViewController: UIViewController {
 
         prepareNotification()
 
+        noNetworkConnection()
     }
 
     override func viewDidLayoutSubviews() {
@@ -232,6 +233,18 @@ class CacaViewController: UIViewController {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3 * 24 * 60 * 60, repeats: false)
         let request = UNNotificationRequest(identifier: Constants.NotificationIdentidier.longTimeNoCaca, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    func noNetworkConnection() {
+    
+        if Reachability.isConnectedToNetwork() != true {
+            
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"), message: NSLocalizedString("There is no network connection right now. Please try again later", comment: ""), preferredStyle: .alert)
+            
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 }
 
