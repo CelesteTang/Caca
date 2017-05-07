@@ -26,12 +26,12 @@
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/CacaProvider.swift"
-                  timestampString = "515845424.686435"
+                  timestampString = "515876777.373888"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "167"
                   endingLineNumber = "167"
-                  offsetFromSymbolStart = "148">
+                  offsetFromSymbolStart = "139">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,12 @@
                   moduleName = "Caca"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/HsinYuTang/Projects/iOS10/Caca/Caca/CacaProvider.swift"
-                  timestampString = "515845424.687693"
+                  timestampString = "515876777.375887"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "167"
                   endingLineNumber = "167"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
