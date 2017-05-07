@@ -10,6 +10,7 @@ import UIKit
 import Crashlytics
 import Firebase
 import UserNotifications
+import KeychainAccess
 
 class CacaViewController: UIViewController {
 
@@ -27,6 +28,8 @@ class CacaViewController: UIViewController {
 
     @IBOutlet weak var startButton: UIButton!
 
+    let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
+    
     @IBAction func switchToTiming(_ sender: UIButton) {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
@@ -63,7 +66,8 @@ class CacaViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.mainImageView.image = (User.host.gender == Gender.male.title) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
+        let gender = keychain[Constants.KeychainKey.gender]
+        self.mainImageView.image = (gender == Gender.male.title) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
     }
 
@@ -77,7 +81,9 @@ class CacaViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.mainImageView.backgroundColor = Palette.lightblue2
-        self.mainImageView.image = (User.host.gender == Gender.male.title) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
+        
+        let gender = keychain[Constants.KeychainKey.gender]
+        self.mainImageView.image = (gender == Gender.male.title) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
         self.magnifierView.backgroundColor = Palette.lightWhite
         self.magnifierView.layer.borderWidth = 5

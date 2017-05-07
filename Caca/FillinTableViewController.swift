@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import ColorThiefSwift
+import KeychainAccess
 
 class FillinTableViewController: UITableViewController {
 
@@ -41,6 +42,8 @@ class FillinTableViewController: UITableViewController {
 
     // MARK: Property
 
+    let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
+    
     var components: [Component] = [.photo, .date, .time, .color, .shape, .amount, .other, .finish]
 
     let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
@@ -72,15 +75,19 @@ class FillinTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if User.host.gender == Gender.female.title && User.host.medicine == Medicine.yes.title {
+        let gender = keychain[Constants.KeychainKey.gender]
+        
+        let medicine = keychain[Constants.KeychainKey.medicine]
+        
+        if gender == Gender.female.title && medicine == Medicine.yes.title {
 
             self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
 
-        } else if User.host.gender == Gender.female.title {
+        } else if gender == Gender.female.title {
 
             self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
 
-        } else if User.host.medicine == Medicine.yes.title {
+        } else if medicine == Medicine.yes.title {
 
             self.components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
 

@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import Crashlytics
+import KeychainAccess
 
 class UserManager {
 
@@ -16,6 +17,8 @@ class UserManager {
 
     static let shared = UserManager()
 
+    let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
+    
     // MARK: Crashlytics
 
     func logUser(email: String? = nil, uid: String) {
@@ -38,6 +41,9 @@ class UserManager {
 
             } else {
 
+                self.keychain[Constants.KeychainKey.gender] = gender
+                self.keychain[Constants.KeychainKey.medicine] = medicine
+                
                 let value = [Constants.FirebaseUserKey.gender: gender,
                              Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
 
@@ -79,8 +85,11 @@ class UserManager {
 
             } else {
 
-                let value = [Constants.FirebaseUserKey.gender: User().gender,
-                             Constants.FirebaseUserKey.medicine: User().medicine] as [String: Any]
+                self.keychain[Constants.KeychainKey.gender] = Gender.male.title
+                self.keychain[Constants.KeychainKey.medicine] = Medicine.no.title
+                
+                let value = [Constants.FirebaseUserKey.gender: Gender.male.title,
+                             Constants.FirebaseUserKey.medicine: Medicine.no.title] as [String: Any]
 
                 if let user = user {
 
@@ -121,6 +130,9 @@ class UserManager {
 
             } else {
 
+                self.keychain[Constants.KeychainKey.gender] = gender
+                self.keychain[Constants.KeychainKey.medicine] = medicine
+                
                 let value = [Constants.FirebaseUserKey.gender: gender,
                              Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
 

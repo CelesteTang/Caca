@@ -37,7 +37,7 @@ class SignUpViewController: UIViewController {
 
     let genders: [Gender] = [.male, .female, .personalReasons]
     let medicines: [Medicine] = [.yes, .no, .personalReasons]
-
+    
     @IBAction func cancelSignUp(_ sender: UIButton) {
 
         if isFromStart == true {
@@ -118,7 +118,7 @@ class SignUpViewController: UIViewController {
                   let password = self.passwordField.text,
                   let gender = self.genderField.text,
                   let medicine = self.medicineField.text else { return }
-
+            
             if isFromStart == true {
 
                 UserManager.shared.createUser(with: email, password: password, gender: gender, medicine: medicine, completion: { (createError, storageError) in
@@ -321,6 +321,14 @@ extension SignUpViewController: UITextFieldDelegate {
 
             self.view.bounds = CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: self.view.frame.size.height)
 
+        } else if textField == genderField {
+            
+            self.view.bounds = CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            
+        } else if textField == medicineField {
+            
+            self.view.bounds = CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            
         }
 
         return true

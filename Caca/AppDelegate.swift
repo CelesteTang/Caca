@@ -36,15 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
 
-        UserManager.shared.getUser { (user, _) in
-
-            if let user = user {
-
-                User.host = user
-
-            }
-
-        }
+//        UserManager.shared.getUser { (user, _) in
+//
+//            if let user = user {
+//
+//                User.host = user
+//
+//            }
+//
+//        }
 
         if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.passwordAuthentication) == true {
 

@@ -47,6 +47,6 @@ struct User {
 
     var medicine: String = Medicine.no.title
 
-    static var host = User()
+//    static var host = User()
 
 }
