@@ -125,6 +125,7 @@ class SignInViewController: UIViewController {
         self.emailField.clearsOnBeginEditing = true
         self.emailField.keyboardType = .emailAddress
         self.emailField.returnKeyType = .done
+        self.emailField.textColor = .black
 
         self.passwordField.delegate = self
         self.passwordField.clearButtonMode = .never
@@ -132,6 +133,7 @@ class SignInViewController: UIViewController {
         self.passwordField.clearsOnBeginEditing = true
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
+        self.passwordField.textColor = .black
 
         self.signInButton.backgroundColor = Palette.darkblue2
         self.signInButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
