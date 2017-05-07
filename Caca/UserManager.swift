@@ -163,31 +163,31 @@ class UserManager {
     func signIn(with email: String, password: String, completion: @escaping SignInHadler) {
 
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
-            
+
             if let error = error {
-                
+
                 completion(error)
-                
+
             } else {
-                
+
                 if let uid = user?.uid {
-                
+
                     FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
+
                         if let userInfo = snapshot.value as? NSDictionary,
                             let userGender = userInfo[Constants.FirebaseUserKey.gender] as? String,
                             let userMedicine = userInfo[Constants.FirebaseUserKey.medicine] as? String {
-                            
+
                             self.keychain[Constants.KeychainKey.gender] = userGender
                             self.keychain[Constants.KeychainKey.medicine] = userMedicine
-                            
+
                         }
-                        
+
                     })
                 }
-                
+
                 completion(nil)
-                
+
             }
         })
     }
