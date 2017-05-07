@@ -43,7 +43,7 @@ class FillinTableViewController: UITableViewController {
     // MARK: Property
 
     let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
-    
+
     var components: [Component] = [.photo, .date, .time, .color, .shape, .amount, .other, .finish]
 
     let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
@@ -76,9 +76,9 @@ class FillinTableViewController: UITableViewController {
         super.viewDidLoad()
 
         let gender = keychain[Constants.KeychainKey.gender]
-        
+
         let medicine = keychain[Constants.KeychainKey.medicine]
-        
+
         if gender == Gender.female.title && medicine == Medicine.yes.title {
 
             self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
@@ -442,7 +442,7 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changePeriod), for: .valueChanged)
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
             self.finalCaca.period = 1
-            
+
             if isFromRecordDetail == true {
 
                 if let period = self.recievedCacaFromRecordDetail[0].period {
@@ -884,11 +884,11 @@ class FillinTableViewController: UITableViewController {
 
         }
     }
-    
+
     func changePeriod(_ sender: UISegmentedControl) {
-    
+
         self.finalCaca.period = sender.selectedSegmentIndex
-        
+
     }
 }
 

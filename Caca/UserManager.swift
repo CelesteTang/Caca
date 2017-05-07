@@ -18,7 +18,7 @@ class UserManager {
     static let shared = UserManager()
 
     let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
-    
+
     // MARK: Crashlytics
 
     func logUser(email: String? = nil, uid: String) {
@@ -43,7 +43,7 @@ class UserManager {
 
                 self.keychain[Constants.KeychainKey.gender] = gender
                 self.keychain[Constants.KeychainKey.medicine] = medicine
-                
+
                 let value = [Constants.FirebaseUserKey.gender: gender,
                              Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
 
@@ -87,7 +87,7 @@ class UserManager {
 
                 self.keychain[Constants.KeychainKey.gender] = Gender.male.title
                 self.keychain[Constants.KeychainKey.medicine] = Medicine.no.title
-                
+
                 let value = [Constants.FirebaseUserKey.gender: Gender.male.title,
                              Constants.FirebaseUserKey.medicine: Medicine.no.title] as [String: Any]
 
@@ -132,7 +132,7 @@ class UserManager {
 
                 self.keychain[Constants.KeychainKey.gender] = gender
                 self.keychain[Constants.KeychainKey.medicine] = medicine
-                
+
                 let value = [Constants.FirebaseUserKey.gender: gender,
                              Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
 
@@ -156,6 +156,25 @@ class UserManager {
                 }
             }
         })
+    }
+
+    typealias SignInHadler = (Error?) -> Void
+
+    func signIn(with email: String, password: String, completion: @escaping SignInHadler) {
+
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (_, error) in
+
+            if let error = error {
+
+                completion(error)
+
+            } else {
+
+                completion(nil)
+
+            }
+        })
+
     }
 
     typealias UserHadler = (User?, Error?) -> Void

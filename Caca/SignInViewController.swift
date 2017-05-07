@@ -64,7 +64,7 @@ class SignInViewController: UIViewController {
 
             // MARK : User log in
 
-            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (_, error) in
+            UserManager.shared.signIn(with: email, password: password, completion: { (error) in
 
                 if let error = error {
 

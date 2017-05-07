@@ -35,7 +35,7 @@ class ProfileTableViewController: UITableViewController {
     // MARK: Property
 
     let components: [Component] = [.photo, .gender, .medicine, .finish]
-    
+
     let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
 
     override func viewDidLoad() {
@@ -131,7 +131,7 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
 
             let gender = keychain[Constants.KeychainKey.gender]
-            
+
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = (gender == Gender.male.title) ? Gender.male.rawValue : Gender.female.rawValue
 
             return cell
@@ -154,7 +154,7 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeMedicine), for: .valueChanged)
 
             let medicine = keychain[Constants.KeychainKey.medicine]
-            
+
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = (medicine == Medicine.yes.title) ? Medicine.yes.rawValue : Medicine.no.rawValue
 
             return cell
@@ -278,7 +278,7 @@ class ProfileTableViewController: UITableViewController {
                      Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
 
         UserManager.shared.editUser(value: value)
-        
+
         keychain[Constants.KeychainKey.gender] = gender
     }
 
@@ -295,17 +295,17 @@ class ProfileTableViewController: UITableViewController {
                      Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
 
         UserManager.shared.editUser(value: value)
-        
+
         keychain[Constants.KeychainKey.medicine] = medicine
     }
-    
+
     func cellForComponent(_ component: Component) -> UITableViewCell? {
-        
+
         guard let section = components.index(of: component) else { return nil }
-        
+
         let indexPath = IndexPath(row: 0, section: section)
-        
+
         return tableView.cellForRow(at: indexPath)
-        
+
     }
 }
