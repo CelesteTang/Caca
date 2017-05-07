@@ -64,7 +64,7 @@ class SignInViewController: UIViewController {
 
             // MARK : User log in
 
-            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (_, error) in
+            UserManager.shared.signIn(with: email, password: password, completion: { (error) in
 
                 if let error = error {
 
@@ -120,18 +120,18 @@ class SignInViewController: UIViewController {
         self.appName.font = UIFont(name: Constants.UIFont.futuraBold, size: 60)
 
         self.emailField.delegate = self
-        self.emailField.clearButtonMode = .never
+        self.emailField.clearButtonMode = .whileEditing
         self.emailField.placeholder = NSLocalizedString("Email", comment: "")
-        self.emailField.clearsOnBeginEditing = true
         self.emailField.keyboardType = .emailAddress
         self.emailField.returnKeyType = .done
+        self.emailField.textColor = .black
 
         self.passwordField.delegate = self
-        self.passwordField.clearButtonMode = .never
+        self.passwordField.clearButtonMode = .whileEditing
         self.passwordField.placeholder = NSLocalizedString("Password (at least 6 characters)", comment: "User must enter password containing at least 6 characters")
-        self.passwordField.clearsOnBeginEditing = true
         self.passwordField.isSecureTextEntry = true
         self.passwordField.returnKeyType = .done
+        self.passwordField.textColor = .black
 
         self.signInButton.backgroundColor = Palette.darkblue2
         self.signInButton.setTitle(NSLocalizedString("Log In", comment: ""), for: .normal)
@@ -149,27 +149,52 @@ class SignInViewController: UIViewController {
 
         self.view.endEditing(true)
 
+        self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
     }
 }
 
 extension SignInViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
         self.view.endEditing(true)
+
+        self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
 
         return true
     }
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 
-        self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        if textField == emailField {
+
+            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
+        } else if textField == passwordField {
+
+            self.view.bounds = CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
+        }
 
         return true
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
 
-        self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        if textField == emailField && passwordField.isTouchInside {
+
+            self.view.bounds = CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
+        } else if textField == passwordField && emailField.isTouchInside {
+
+            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
+        } else if textField == emailField || textField == passwordField {
+
+            self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
+        }
 
     }
 

@@ -22,6 +22,7 @@ struct Constants {
         static let setting = "Setting"
         static let profile = "Profile"
         static let privacy = "Privacy"
+        static let language = "Language"
         static let password = "Password"
         static let tabBar = "TabBar"
     }
@@ -41,6 +42,7 @@ struct Constants {
         static let setting = "SettingTableViewController"
         static let profile = "ProfileTableViewController"
         static let privacy = "PrivacyTableViewController"
+        static let language = "LanguageTableViewController"
         static let password = "PasswordViewController"
         static let tabBar = "TabBarController"
     }
@@ -50,7 +52,12 @@ struct Constants {
         static let hide = "Hide"
         static let passwordAuthentication = "PasswordAuthentication"
         static let touchIDAuthentication = "TouchIDAuthentication"
-        static let password = "Password"
+    }
+
+    struct KeychainKey {
+        static let gender = "User.gender"
+        static let medicine = "User.medicine"
+        static let password = "User.password"
     }
 
     struct UIFont {

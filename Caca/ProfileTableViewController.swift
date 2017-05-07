@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import KeychainAccess
 
 class ProfileTableViewController: UITableViewController {
 
@@ -34,6 +35,8 @@ class ProfileTableViewController: UITableViewController {
     // MARK: Property
 
     let components: [Component] = [.photo, .gender, .medicine, .finish]
+
+    let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +108,8 @@ class ProfileTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfilePhotoTableViewCell", for: indexPath) as! ProfilePhotoTableViewCell
             // swiftlint:enable force_cast
 
-            cell.rowView.photoImageView.image = (User.host.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
+            let gender = keychain[Constants.KeychainKey.gender]
+            cell.rowView.photoImageView.image = (gender == Gender.male.title) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
             return cell
 
@@ -126,7 +130,9 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeGender), for: .valueChanged)
 
-            cell.rowView.infoSegmentedControl.selectedSegmentIndex = (User.host.gender == Gender.male.rawValue) ? Gender.male.rawValue : Gender.female.rawValue
+            let gender = keychain[Constants.KeychainKey.gender]
+
+            cell.rowView.infoSegmentedControl.selectedSegmentIndex = (gender == Gender.male.title) ? Gender.male.rawValue : Gender.female.rawValue
 
             return cell
 
@@ -147,7 +153,9 @@ class ProfileTableViewController: UITableViewController {
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
             cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changeMedicine), for: .valueChanged)
 
-            cell.rowView.infoSegmentedControl.selectedSegmentIndex = (User.host.medicine == Medicine.yes.rawValue) ? Medicine.yes.rawValue : Medicine.no.rawValue
+            let medicine = keychain[Constants.KeychainKey.medicine]
+
+            cell.rowView.infoSegmentedControl.selectedSegmentIndex = (medicine == Medicine.yes.title) ? Medicine.yes.rawValue : Medicine.no.rawValue
 
             return cell
 
@@ -224,6 +232,11 @@ class ProfileTableViewController: UITableViewController {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
                     UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.isViewedWalkThrough)
+                    UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.passwordAuthentication)
+                    UserDefaults.standard.set(false, forKey: Constants.UserDefaultsKey.touchIDAuthentication)
+                    self.keychain[Constants.KeychainKey.gender] = nil
+                    self.keychain[Constants.KeychainKey.medicine] = nil
+                    self.keychain[Constants.KeychainKey.password] = nil
 
                     let startViewController = UIStoryboard(name: Constants.Storyboard.landing, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.start) as? StartViewController
 
@@ -254,39 +267,48 @@ class ProfileTableViewController: UITableViewController {
 
     func changeGender() {
 
-        guard let photoSection = components.index(of: Component.photo),
-            let genderSection = components.index(of: Component.gender) else { return }
-
-        let photoIndexPath = IndexPath(row: 0, section: photoSection)
-        let genderIndexPath = IndexPath(row: 0, section: genderSection)
-
-        guard let photoCell = tableView.cellForRow(at: photoIndexPath) as? ProfilePhotoTableViewCell,
-            let genderCell = tableView.cellForRow(at: genderIndexPath) as? ProfileSegmentTableViewCell else { return }
+        guard let photoCell = cellForComponent(.photo) as? ProfilePhotoTableViewCell else { return }
+        guard let genderCell = cellForComponent(.gender) as? ProfileSegmentTableViewCell else { return }
+        guard let medicineCell = cellForComponent(.medicine) as? ProfileSegmentTableViewCell else { return }
 
         let isMale: Bool = (genderCell.rowView.infoSegmentedControl.selectedSegmentIndex == Gender.male.rawValue)
         photoCell.rowView.photoImageView.image = isMale ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
-        User.host.gender = genderCell.rowView.infoSegmentedControl.selectedSegmentIndex
+        guard let gender = Gender(rawValue: genderCell.rowView.infoSegmentedControl.selectedSegmentIndex)?.title else { return }
+        guard let medicine = Medicine(rawValue: medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex)?.title else { return }
 
-        let value = [Constants.FirebaseUserKey.gender: User.host.gender,
-                     Constants.FirebaseUserKey.medicine: User.host.medicine] as [String: Any]
+        let value: [String: Any] = [Constants.FirebaseUserKey.gender: gender,
+                                    Constants.FirebaseUserKey.medicine: medicine]
 
         UserManager.shared.editUser(value: value)
+
+        keychain[Constants.KeychainKey.gender] = gender
     }
 
     func changeMedicine() {
 
-        guard let medicineSection = components.index(of: Component.medicine) else { return }
+//        guard let photoCell = cellForComponent(.photo) as? ProfilePhotoTableViewCell else { return }
+        guard let genderCell = cellForComponent(.gender) as? ProfileSegmentTableViewCell else { return }
+        guard let medicineCell = cellForComponent(.medicine) as? ProfileSegmentTableViewCell else { return }
 
-        let medicineIndexPath = IndexPath(row: 0, section: medicineSection)
+        guard let gender = Gender(rawValue: genderCell.rowView.infoSegmentedControl.selectedSegmentIndex)?.title else { return }
+        guard let medicine = Medicine(rawValue: medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex)?.title else { return }
 
-        guard let medicineCell = tableView.cellForRow(at: medicineIndexPath) as? ProfileSegmentTableViewCell else { return }
-
-        User.host.medicine = medicineCell.rowView.infoSegmentedControl.selectedSegmentIndex
-
-        let value = [Constants.FirebaseUserKey.gender: User.host.gender,
-                     Constants.FirebaseUserKey.medicine: User.host.medicine] as [String: Any]
+        let value: [String: Any] = [Constants.FirebaseUserKey.gender: gender,
+                                    Constants.FirebaseUserKey.medicine: medicine]
 
         UserManager.shared.editUser(value: value)
+
+        keychain[Constants.KeychainKey.medicine] = medicine
+    }
+
+    func cellForComponent(_ component: Component) -> UITableViewCell? {
+
+        guard let section = components.index(of: component) else { return nil }
+
+        let indexPath = IndexPath(row: 0, section: section)
+
+        return tableView.cellForRow(at: indexPath)
+
     }
 }

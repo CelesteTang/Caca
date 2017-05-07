@@ -140,7 +140,6 @@ class RecordTableViewController: UITableViewController {
 
         cell.rowView.cacaPhotoImageView.image = #imageLiteral(resourceName: "caca-small")
         cell.rowView.cacaPhotoImageView.backgroundColor = Palette.lightblue2
-
         cell.rowView.separateLineView.backgroundColor = Palette.darkblue
 
         if isCovered == false {

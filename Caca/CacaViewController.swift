@@ -10,6 +10,7 @@ import UIKit
 import Crashlytics
 import Firebase
 import UserNotifications
+import KeychainAccess
 
 class CacaViewController: UIViewController {
 
@@ -26,6 +27,8 @@ class CacaViewController: UIViewController {
     @IBOutlet weak var notificationLabel: UILabel!
 
     @IBOutlet weak var startButton: UIButton!
+
+    let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
 
     @IBAction func switchToTiming(_ sender: UIButton) {
 
@@ -50,6 +53,7 @@ class CacaViewController: UIViewController {
 
         prepareNotification()
 
+        noNetworkConnection()
     }
 
     override func viewDidLayoutSubviews() {
@@ -57,6 +61,14 @@ class CacaViewController: UIViewController {
 
         self.magnifierView.layer.cornerRadius = self.magnifierView.frame.width / 2
         self.magnifierView.layer.masksToBounds = true
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let gender = keychain[Constants.KeychainKey.gender]
+        self.mainImageView.image = (gender == Gender.male.title) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
     }
 
@@ -70,7 +82,9 @@ class CacaViewController: UIViewController {
         self.view.backgroundColor = Palette.lightblue2
 
         self.mainImageView.backgroundColor = Palette.lightblue2
-        self.mainImageView.image = (User.host.gender == Gender.male.rawValue) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
+
+        let gender = keychain[Constants.KeychainKey.gender]
+        self.mainImageView.image = (gender == Gender.male.title) ? #imageLiteral(resourceName: "boy") : #imageLiteral(resourceName: "girl")
 
         self.magnifierView.backgroundColor = Palette.lightWhite
         self.magnifierView.layer.borderWidth = 5
@@ -108,12 +122,12 @@ class CacaViewController: UIViewController {
                 dateFormatter.timeZone = TimeZone(secondsFromGMT: 8)
                 var dayToNow = Int()
 
-                guard let lastCacaDate = cacas.last?.date,
+                guard let lastCacaDate = cacas.first?.date,
                     let date = dateFormatter.date(from: lastCacaDate) else { return }
 
                 dayToNow = date.daysBetweenDate(to: Date())
 
-                if cacas.last?.date == nil {
+                if cacas.first?.date == nil {
 
                     self.notificationLabel.text = NSLocalizedString("Start caca now!", comment: "")
 
@@ -219,6 +233,18 @@ class CacaViewController: UIViewController {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3 * 24 * 60 * 60, repeats: false)
         let request = UNNotificationRequest(identifier: Constants.NotificationIdentidier.longTimeNoCaca, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+
+    func noNetworkConnection() {
+
+        if Reachability.isConnectedToNetwork() != true {
+
+            let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"), message: NSLocalizedString("There is no network connection right now. Please try again later", comment: ""), preferredStyle: .alert)
+
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 }
 

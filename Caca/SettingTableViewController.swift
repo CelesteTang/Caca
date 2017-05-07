@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingTableViewController: UITableViewController {
+class SettingTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
-    enum Setting: Int {
+    enum Component: Int {
 
-        case profile, privacy, notification, language
+        case profile, privacy, notification, language, email
 
         var title: String {
 
@@ -26,12 +27,14 @@ class SettingTableViewController: UITableViewController {
 
             case .language: return NSLocalizedString("Language", comment: "")
 
+            case .email: return NSLocalizedString("Problem Report", comment: "")
+
             }
         }
 
     }
 
-    private let settings: [Setting] = [.profile, .privacy]
+    let components: [Component] = [.profile, .privacy, .language, .email]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +56,13 @@ class SettingTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settings.count
+
+        return components.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -70,10 +75,7 @@ class SettingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
         // swiftlint:enable force_cast
 
-        cell.rowView.iconImageView.image = #imageLiteral(resourceName: "caca-big")
-        cell.rowView.titleLabel.text = settings[indexPath.row].title
-        cell.rowView.titleLabel.font = UIFont(name: Constants.UIFont.futuraBold, size: 20)
-        cell.rowView.separateLineView.backgroundColor = Palette.darkblue
+        cell.rowView.titleLabel.text = components[indexPath.row].title
 
         let backgroundView = UIView()
         backgroundView.backgroundColor = Palette.lightblue
@@ -85,22 +87,63 @@ class SettingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        switch indexPath.row {
+        let component = components[indexPath.row]
 
-        case Setting.profile.rawValue:
+        switch component {
+
+        case .profile:
 
             guard let profileViewController = UIStoryboard(name: Constants.Storyboard.profile, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.profile) as? ProfileTableViewController else { return }
 
             self.navigationController?.pushViewController(profileViewController, animated: true)
 
-        case Setting.privacy.rawValue:
+        case .privacy:
 
             guard let privacyTableViewController = UIStoryboard(name: Constants.Storyboard.privacy, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.privacy) as? PrivacyTableViewController else { return }
 
             self.navigationController?.pushViewController(privacyTableViewController, animated: true)
 
+        case .language:
+
+            guard let languageTableViewController = UIStoryboard(name: Constants.Storyboard.language, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.language) as? LanguageTableViewController else { return }
+
+            self.navigationController?.pushViewController(languageTableViewController, animated: true)
+
+        case .email:
+
+            sendEmail()
+
         default: break
 
         }
     }
+
+    func sendEmail() {
+
+        if MFMailComposeViewController.canSendMail() {
+
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["caca.team.tw@gmail.com"])
+            mail.setSubject(NSLocalizedString("Problem Report", comment: ""))
+
+            self.present(mail, animated: true)
+
+        } else {
+
+            let alertController = UIAlertController(title: NSLocalizedString("Sorry", comment: ""), message: NSLocalizedString("Your iPhone could not send mail.", comment: ""), preferredStyle: .alert)
+
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+
+        }
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+
+        controller.dismiss(animated: true)
+
+    }
+
 }

@@ -22,9 +22,9 @@ class StateManager {
 
     var frequencyAdvice = String()
 
-    var ispassed = false
-
     func getState(caca: Caca, comparedWith cacas: [Caca]) -> (grading: Bool, advice: String) {
+
+        var ispassed = false
 
         // MARK: Pass or Fail
 

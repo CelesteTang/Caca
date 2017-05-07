@@ -148,26 +148,24 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-CQ-WXH">
-                                        <rect key="frame" x="0.0" y="104" width="220" height="45"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wx7-hE-dAd">
+                                        <rect key="frame" x="0.0" y="104" width="220" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="SWL-rM-noT"/>
+                                            <constraint firstAttribute="height" constant="44" id="Cbp-XR-1Zd"/>
                                         </constraints>
-                                        <segments>
-                                            <segment title="First"/>
-                                            <segment title="Second"/>
-                                        </segments>
-                                    </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="H4C-3m-wsW">
-                                        <rect key="frame" x="0.0" y="156" width="220" height="45"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="peK-2g-37Y">
+                                        <rect key="frame" x="0.0" y="156" width="220" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="gbn-Ee-G5h"/>
+                                            <constraint firstAttribute="height" constant="44" id="yYo-mz-F9r"/>
                                         </constraints>
-                                        <segments>
-                                            <segment title="First"/>
-                                            <segment title="Second"/>
-                                        </segments>
-                                    </segmentedControl>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cf-Ud-ekb">
                                         <rect key="frame" x="0.0" y="208" width="220" height="44"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -218,9 +216,9 @@
                         <outlet property="appName" destination="tJ4-EE-sRL" id="1sx-6y-047"/>
                         <outlet property="cancelButton" destination="XgO-EC-Y7V" id="hva-dW-hub"/>
                         <outlet property="emailField" destination="BwG-Ip-RRq" id="nc4-tt-vs9"/>
-                        <outlet property="genderSegmentedControl" destination="t7m-CQ-WXH" id="s4l-tv-UY5"/>
+                        <outlet property="genderField" destination="wx7-hE-dAd" id="FZ7-MN-r8h"/>
                         <outlet property="logoImageView" destination="Sek-ws-gfk" id="ke3-EV-IGg"/>
-                        <outlet property="medicineSegmentedControl" destination="H4C-3m-wsW" id="z7Z-rD-Pnd"/>
+                        <outlet property="medicineField" destination="peK-2g-37Y" id="zw6-9V-Caf"/>
                         <outlet property="passwordField" destination="keq-Me-jsQ" id="fSa-W3-jGz"/>
                         <outlet property="signUpButton" destination="2cf-Ud-ekb" id="dBK-xR-e54"/>
                     </connections>

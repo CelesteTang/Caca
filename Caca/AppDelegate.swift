@@ -36,16 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
 
-        UserManager.shared.getUser { (user, _) in
-
-            if let user = user {
-
-                User.host = user
-
-            }
-
-        }
-
         if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.passwordAuthentication) == true {
 
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let passwordViewController = UIStoryboard(name: Constants.Storyboard.password, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.password) as? PasswordViewController {

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		430C2DD91EBB259C000F2CC3 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430C2DD81EBB259C000F2CC3 /* KeychainUtility.swift */; };
 		4322EB401E8221E4006B0D5D /* Timing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB3F1E8221E4006B0D5D /* Timing.storyboard */; };
 		4322EB421E822232006B0D5D /* Fillin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4322EB411E822232006B0D5D /* Fillin.storyboard */; };
 		4322EB441E82240F006B0D5D /* TimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4322EB431E82240F006B0D5D /* TimingViewController.swift */; };
@@ -93,6 +92,9 @@
 		43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BA3FA81E80D64F0052125B /* Caca.storyboard */; };
 		43BA3FB31E815DC30052125B /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */; };
 		43BF21BD1EBC29B6007F772B /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BF21BC1EBC29B6007F772B /* StateManager.swift */; };
+		43CEC1381EBDC389005657B8 /* LanguageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEC1371EBDC389005657B8 /* LanguageTableViewController.swift */; };
+		43CEC13B1EBDCAA5005657B8 /* Language.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43CEC13A1EBDCAA5005657B8 /* Language.storyboard */; };
+		43CEC13D1EBF2438005657B8 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEC13C1EBF2438005657B8 /* Reachability.swift */; };
 		43CF3C6C1EB84AD20016F8CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF3C6B1EB84AD20016F8CB /* Constants.swift */; };
 		43CF3CB01EB8B3B30016F8CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43CF3CB21EB8B3B30016F8CB /* Localizable.strings */; };
 		43F2FA121E84BE2800E92290 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2FA111E84BE2800E92290 /* SignInViewController.swift */; };
@@ -101,7 +103,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		430C2DD81EBB259C000F2CC3 /* KeychainUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
 		4322EB3F1E8221E4006B0D5D /* Timing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timing.storyboard; sourceTree = "<group>"; };
 		4322EB411E822232006B0D5D /* Fillin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Fillin.storyboard; sourceTree = "<group>"; };
 		4322EB431E82240F006B0D5D /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +191,9 @@
 		43BA3FA81E80D64F0052125B /* Caca.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Caca.storyboard; sourceTree = "<group>"; };
 		43BA3FB21E815DC30052125B /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		43BF21BC1EBC29B6007F772B /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
+		43CEC1371EBDC389005657B8 /* LanguageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTableViewController.swift; sourceTree = "<group>"; };
+		43CEC13A1EBDCAA5005657B8 /* Language.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Language.storyboard; sourceTree = "<group>"; };
+		43CEC13C1EBF2438005657B8 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		43CF3C6B1EB84AD20016F8CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		43CF3CAD1EB8B2F90016F8CB /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		43CF3CB11EB8B3B30016F8CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -257,7 +261,7 @@
 				43372D031E7FB4BD002E2AE3 /* AppDelegate.swift */,
 				4322EB511E8398FA006B0D5D /* Palette.swift */,
 				43CF3C6B1EB84AD20016F8CB /* Constants.swift */,
-				430C2DD81EBB259C000F2CC3 /* KeychainUtility.swift */,
+				43CEC13C1EBF2438005657B8 /* Reachability.swift */,
 				43CF3CB21EB8B3B30016F8CB /* Localizable.strings */,
 				43372D0D1E7FB4BD002E2AE3 /* Assets.xcassets */,
 				43372D121E7FB4BD002E2AE3 /* Info.plist */,
@@ -277,6 +281,7 @@
 				43372D231E7FC6B5002E2AE3 /* SettingTableViewController.swift */,
 				438EFDAE1EB1C36900D9B18A /* Profile */,
 				4396B58B1EA2241E00A69C4E /* Privacy */,
+				43CEC1391EBDC4DF005657B8 /* Language */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 				43BA3F9B1E7FCFDF0052125B /* Setting.storyboard */,
 				43308EB21E9B4D4D00BB4F0D /* Profile.storyboard */,
 				4328DCA31E9C8202006D3FB8 /* Privacy.storyboard */,
+				43CEC13A1EBDCAA5005657B8 /* Language.storyboard */,
 				4372BF1A1E969F1E005F5422 /* Password.storyboard */,
 				43372D351E7FCA89002E2AE3 /* TabBar.storyboard */,
 			);
@@ -434,6 +440,14 @@
 			name = Opening;
 			sourceTree = "<group>";
 		};
+		43CEC1391EBDC4DF005657B8 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				43CEC1371EBDC389005657B8 /* LanguageTableViewController.swift */,
+			);
+			name = Language;
+			sourceTree = "<group>";
+		};
 		4D40147E3D80F0A118207D3C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +568,7 @@
 				43BA3FA91E80D64F0052125B /* Caca.storyboard in Resources */,
 				435B71E21EA603F300FBABBF /* PhotoRowView.xib in Resources */,
 				4322EB561E83B6F6006B0D5D /* RecordDetail.storyboard in Resources */,
+				43CEC13B1EBDCAA5005657B8 /* Language.storyboard in Resources */,
 				43BA3F9E1E7FCFF30052125B /* Record.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -644,12 +659,14 @@
 				435B71F21EA60ACE00FBABBF /* FinishTableViewCell.swift in Sources */,
 				433032FD1EB7055200E308DE /* RecordDetailRowView.swift in Sources */,
 				435B71F01EA60AC100FBABBF /* InfoTableViewCell.swift in Sources */,
+				43CEC13D1EBF2438005657B8 /* Reachability.swift in Sources */,
 				434398171EAA66F900A8F220 /* UserManager.swift in Sources */,
 				438EFDA71EB1C33700D9B18A /* ProfileSegmentRowView.swift in Sources */,
 				43372D2A1E7FC7AC002E2AE3 /* SettingRowView.swift in Sources */,
 				4322EB4E1E838EAF006B0D5D /* Time.swift in Sources */,
 				4326E9811E8BD9610057363B /* CacaProvider.swift in Sources */,
 				43CF3C6C1EB84AD20016F8CB /* Constants.swift in Sources */,
+				43CEC1381EBDC389005657B8 /* LanguageTableViewController.swift in Sources */,
 				43BA3FA71E8006E80052125B /* OpeningViewController.swift in Sources */,
 				435B71F41EA60B9100FBABBF /* FillinTableViewController.swift in Sources */,
 				435B71EC1EA6080E00FBABBF /* FinishRowView.swift in Sources */,
@@ -684,7 +701,6 @@
 				4328DCA61E9C823A006D3FB8 /* PrivacyTableViewController.swift in Sources */,
 				43811DC61EA8D7E20035B672 /* Authentication.swift in Sources */,
 				4328DCAC1E9C8ED5006D3FB8 /* PrivacyTableViewCell.swift in Sources */,
-				430C2DD91EBB259C000F2CC3 /* KeychainUtility.swift in Sources */,
 				435B71EE1EA60AB500FBABBF /* PhotoTableViewCell.swift in Sources */,
 				43372D221E7FC69D002E2AE3 /* CalendarViewController.swift in Sources */,
 				433032F91EB6FCA600E308DE /* RecordDetailTableViewController.swift in Sources */,

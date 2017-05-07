@@ -15,21 +15,31 @@ class CacaProvider {
 
     func saveCaca(caca: Caca, uid: String) {
 
+        if caca.otherInfo == "" {
+
+            caca.otherInfo = nil
+        }
+
+        if caca.medicine == "" {
+
+            caca.medicine = nil
+        }
+
         let value: [String : Any] = [Constants.FirebaseCacaKey.host: uid,
-                     Constants.FirebaseCacaKey.cacaID: caca.cacaID,
-                     Constants.FirebaseCacaKey.photoID: caca.photoID,
-                     Constants.FirebaseCacaKey.photoURL: caca.photoURL,
-                     Constants.FirebaseCacaKey.date: caca.date,
-                     Constants.FirebaseCacaKey.time: caca.time,
-                     Constants.FirebaseCacaKey.consumingTime: caca.consumingTime,
-                     Constants.FirebaseCacaKey.shape: caca.shape,
-                     Constants.FirebaseCacaKey.color: caca.color,
-                     Constants.FirebaseCacaKey.amount: caca.amount,
-                     Constants.FirebaseCacaKey.other: caca.otherInfo,
-                     Constants.FirebaseCacaKey.grading: caca.grading,
-                     Constants.FirebaseCacaKey.advice: caca.advice,
-                     Constants.FirebaseCacaKey.period: caca.period,
-                     Constants.FirebaseCacaKey.medicine: caca.medicine]
+                                     Constants.FirebaseCacaKey.cacaID: caca.cacaID,
+                                     Constants.FirebaseCacaKey.photoID: caca.photoID,
+                                     Constants.FirebaseCacaKey.photoURL: caca.photoURL,
+                                     Constants.FirebaseCacaKey.date: caca.date,
+                                     Constants.FirebaseCacaKey.time: caca.time,
+                                     Constants.FirebaseCacaKey.consumingTime: caca.consumingTime,
+                                     Constants.FirebaseCacaKey.shape: caca.shape,
+                                     Constants.FirebaseCacaKey.color: caca.color,
+                                     Constants.FirebaseCacaKey.amount: caca.amount,
+                                     Constants.FirebaseCacaKey.other: caca.otherInfo,
+                                     Constants.FirebaseCacaKey.grading: caca.grading,
+                                     Constants.FirebaseCacaKey.advice: caca.advice,
+                                     Constants.FirebaseCacaKey.period: caca.period,
+                                     Constants.FirebaseCacaKey.medicine: caca.medicine]
 
         FIRDatabase.database().reference().child(Constants.FirebaseCacaKey.cacas).child(caca.cacaID).updateChildValues(value, withCompletionBlock: { (error, _) in
 
@@ -98,7 +108,8 @@ class CacaProvider {
 
                         let caca = Caca(cacaID: cacaID, photoURL: cacaPhotoURL, photoID: cacaPhotoID, date: cacaDate, time: cacaTime, consumingTime: cacaConsumingTime, shape: cacaShape, color: cacaColor, amount: cacaAmount, otherInfo: cacaOther, grading: cacaGrading, advice: cacaAdvice, period: period, medicine: medicine)
 
-                        cacas.append(caca)
+                        cacas.insert(caca, at: 0)
+
                     }
                 }
             }

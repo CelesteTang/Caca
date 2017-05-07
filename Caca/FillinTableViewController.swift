@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import ColorThiefSwift
+import KeychainAccess
 
 class FillinTableViewController: UITableViewController {
 
@@ -41,6 +42,8 @@ class FillinTableViewController: UITableViewController {
 
     // MARK: Property
 
+    let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
+
     var components: [Component] = [.photo, .date, .time, .color, .shape, .amount, .other, .finish]
 
     let shapes: [Shape] = [.separateHard, .lumpySausage, .crackSausage, .smoothSausage, .softBlob, .mushyStool, .wateryStool]
@@ -61,7 +64,7 @@ class FillinTableViewController: UITableViewController {
     var finalMin = "00"
     var finalSec = "00"
 
-    var finalCaca = Caca(cacaID: "", date: "", time: "", consumingTime: "", shape: "", color: "", amount: "", grading: false, advice: "")
+    var finalCaca = Caca(cacaID: "", date: Time.dateString(), time: Time.timeString(), consumingTime: "", shape: "", color: "", amount: "", grading: false, advice: "")
 
     var cacas = [Caca]()
 
@@ -72,15 +75,19 @@ class FillinTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if User.host.gender == Gender.female.rawValue && User.host.medicine == Medicine.yes.rawValue {
+        let gender = keychain[Constants.KeychainKey.gender]
+
+        let medicine = keychain[Constants.KeychainKey.medicine]
+
+        if gender == Gender.female.title && medicine == Medicine.yes.title {
 
             self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .medicine, .other, .finish]
 
-        } else if User.host.gender == Gender.female.rawValue {
+        } else if gender == Gender.female.title {
 
             self.components = [.photo, .date, .time, .color, .shape, .amount, .period, .other, .finish]
 
-        } else if User.host.medicine == Medicine.yes.rawValue {
+        } else if medicine == Medicine.yes.title {
 
             self.components = [.photo, .date, .time, .color, .shape, .amount, .medicine, .other, .finish]
 
@@ -304,7 +311,6 @@ class FillinTableViewController: UITableViewController {
             // swiftlint:enable force_cast
 
             cell.rowView.infoLabel.text = component.title
-            cell.rowView.infoTextField.text = "\(Time.dateString()) \(Time.timeString())"
             cell.rowView.infoTextField.delegate = self
             cell.rowView.infoTextField.returnKeyType = .done
 
@@ -429,12 +435,13 @@ class FillinTableViewController: UITableViewController {
             cell.rowView.infoLabel.textColor = Palette.darkblue
             cell.rowView.infoLabel.textAlignment = .center
 
-            cell.rowView.infoSegmentedControl.setTitle("Yes", forSegmentAt: 0)
-            cell.rowView.infoSegmentedControl.setTitle("No", forSegmentAt: 1)
+            cell.rowView.infoSegmentedControl.setTitle(NSLocalizedString("Yes", comment: ""), forSegmentAt: 0)
+            cell.rowView.infoSegmentedControl.setTitle(NSLocalizedString("No", comment: ""), forSegmentAt: 1)
             cell.rowView.infoSegmentedControl.tintColor = Palette.darkblue
             cell.rowView.infoSegmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: Palette.darkblue, NSFontAttributeName: UIFont(name: Constants.UIFont.futuraBold, size: 20) ?? ""], for: .normal)
-
+            cell.rowView.infoSegmentedControl.addTarget(self, action: #selector(changePeriod), for: .valueChanged)
             cell.rowView.infoSegmentedControl.selectedSegmentIndex = 1
+            self.finalCaca.period = 1
 
             if isFromRecordDetail == true {
 
@@ -665,7 +672,7 @@ class FillinTableViewController: UITableViewController {
 
         if isFromRecordDetail == true {
 
-            editCaca()
+            self.editCaca()
 
             isFromRecordDetail = false
 
@@ -877,6 +884,12 @@ class FillinTableViewController: UITableViewController {
 
         }
     }
+
+    func changePeriod(_ sender: UISegmentedControl) {
+
+        self.finalCaca.period = sender.selectedSegmentIndex
+
+    }
 }
 
 extension FillinTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -936,8 +949,12 @@ extension FillinTableViewController: UITextFieldDelegate {
         if let dateCell = cellForComponent(.date) as? InfoTableViewCell,
             let date = dateCell.rowView.infoTextField.text {
 
-            finalCaca.date = date.substring(to: 10)
-            finalCaca.time = date.substring(from: 11)
+            if date != "" {
+
+                finalCaca.date = date.substring(to: 10)
+                finalCaca.time = date.substring(from: 11)
+
+            }
 
         }
 
@@ -1143,6 +1160,14 @@ extension String {
 
         let toIndex = index(from: to)
         return substring(to: toIndex)
+
+    }
+
+    func substring(with range: Range<Int>) -> String {
+
+        let startIndex = index(from: range.lowerBound)
+        let endIndex = index(from: range.upperBound)
+        return substring(with: startIndex..<endIndex)
 
     }
 

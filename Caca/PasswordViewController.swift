@@ -8,6 +8,7 @@
 
 import UIKit
 import LocalAuthentication
+import KeychainAccess
 
 class PasswordViewController: UIViewController {
 
@@ -20,6 +21,8 @@ class PasswordViewController: UIViewController {
     var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", NSLocalizedString("Clean", comment: "Delete all"), "0", NSLocalizedString("Delete", comment: "Delete one")]
 
     var userPassword = [String]()
+
+    let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
 
     @IBOutlet weak var cancelButton: UIButton!
 
@@ -131,7 +134,7 @@ class PasswordViewController: UIViewController {
 
     func touchIDAuthentication() {
 
-        if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.touchIDAuthentication) == true && UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.password) as? [String] != nil {
+        if UserDefaults.standard.bool(forKey: Constants.UserDefaultsKey.touchIDAuthentication) == true && keychain[Constants.KeychainKey.password] != nil {
 
             let context = LAContext()
 
@@ -155,6 +158,22 @@ class PasswordViewController: UIViewController {
                 })
             }
         }
+    }
+
+    func passwordString(userPassword: [String]) -> String {
+
+        let userPasswordString = userPassword[0]+userPassword[1]+userPassword[2]+userPassword[3]
+
+        return userPasswordString
+
+    }
+
+    func passwordArray(userPassword: String) -> [String] {
+
+        let userPasswordString = [userPassword.substring(with: 0..<1), userPassword.substring(with: 1..<2), userPassword.substring(with: 2..<3), userPassword.substring(with: 3..<4)]
+
+        return userPasswordString
+
     }
 }
 
@@ -242,69 +261,77 @@ extension PasswordViewController: UICollectionViewDataSource, UICollectionViewDe
 
             numberCollectionView.allowsSelection = false
 
-            if UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.password) == nil {
+            if keychain[Constants.KeychainKey.password] == nil {
 
-                UserDefaults.standard.set(userPassword, forKey: Constants.UserDefaultsKey.password)
+                let password = passwordString(userPassword: userPassword)
+                keychain[Constants.KeychainKey.password] = password
 
                 dismiss(animated: true, completion: nil)
 
-            } else if let storedPassword = UserDefaults.standard.value(forKey: Constants.UserDefaultsKey.password) as? [String], userPassword == storedPassword {
+            } else if let storedPasswordString = keychain[Constants.KeychainKey.password] {
 
-                if isFromBeginning == true {
+                let storedPasswordArray = passwordArray(userPassword: storedPasswordString)
 
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                if userPassword == storedPasswordArray {
 
-                        let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
+                    if isFromBeginning == true {
 
-                        appDelegate.window?.rootViewController = tabBarController
+                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-                        isFromBeginning = false
+                            let tabBarController = UIStoryboard(name: Constants.Storyboard.tabBar, bundle: nil).instantiateViewController(withIdentifier: Constants.Identifier.tabBar) as? TabBarController
+
+                            appDelegate.window?.rootViewController = tabBarController
+
+                            isFromBeginning = false
+
+                        }
+
+                    } else if isFromPasswordChanging == true {
+
+                        let password = passwordString(userPassword: userPassword)
+                        keychain[Constants.KeychainKey.password] = password
+
+                        isFromPasswordChanging = false
+
+                        dismiss(animated: true, completion: nil)
 
                     }
 
-                } else if isFromPasswordChanging == true {
+                } else {
 
-                    UserDefaults.standard.set(userPassword, forKey: Constants.UserDefaultsKey.password)
+                    if isFromBeginning == true {
 
-                    isFromPasswordChanging = false
+                        let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
+                                                                message: NSLocalizedString("The password is incorrect. Try again.", comment: ""),
+                                                                preferredStyle: UIAlertControllerStyle.alert)
 
-                    dismiss(animated: true, completion: nil)
+                        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
 
-                }
+                            self.userPassword.removeAll()
 
-            } else {
+                            self.password1.image = #imageLiteral(resourceName: "shadow")
+                            self.password2.image = #imageLiteral(resourceName: "shadow")
+                            self.password3.image = #imageLiteral(resourceName: "shadow")
+                            self.password4.image = #imageLiteral(resourceName: "shadow")
 
-                if isFromBeginning == true {
+                            self.numberCollectionView.allowsSelection = true
 
-                    let alertController = UIAlertController(title: NSLocalizedString("Warning", comment: "Alert to make user know something wrong happened"),
-                                                            message: NSLocalizedString("The password is incorrect. Try again.", comment: ""),
-                                                            preferredStyle: UIAlertControllerStyle.alert)
+                        })
 
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                        alertController.addAction(okAction)
 
-                        self.userPassword.removeAll()
+                        self.present(alertController, animated: true, completion: nil)
 
-                        self.password1.image = #imageLiteral(resourceName: "shadow")
-                        self.password2.image = #imageLiteral(resourceName: "shadow")
-                        self.password3.image = #imageLiteral(resourceName: "shadow")
-                        self.password4.image = #imageLiteral(resourceName: "shadow")
+                    } else if isFromPasswordChanging == true {
 
-                        self.numberCollectionView.allowsSelection = true
+                        let password = passwordString(userPassword: userPassword)
+                        keychain[Constants.KeychainKey.password] = password
 
-                    })
+                        isFromPasswordChanging = false
 
-                    alertController.addAction(okAction)
+                        dismiss(animated: true, completion: nil)
 
-                    self.present(alertController, animated: true, completion: nil)
-
-                } else if isFromPasswordChanging == true {
-
-                    UserDefaults.standard.set(userPassword, forKey: Constants.UserDefaultsKey.password)
-
-                    isFromPasswordChanging = false
-
-                    dismiss(animated: true, completion: nil)
-
+                    }
                 }
             }
         }

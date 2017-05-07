@@ -9,12 +9,15 @@
 import Foundation
 import Firebase
 import Crashlytics
+import KeychainAccess
 
 class UserManager {
 
     // MARK: Property
 
     static let shared = UserManager()
+
+    let keychain = Keychain(service: "tw.hsinyutang.Caca-user")
 
     // MARK: Crashlytics
 
@@ -28,7 +31,7 @@ class UserManager {
 
     typealias CreateHadler = (Error?, Error?) -> Void
 
-    func createUser(with email: String, password: String, gender: Int, medicine: Int, completion: @escaping CreateHadler) {
+    func createUser(with email: String, password: String, gender: String, medicine: String, completion: @escaping CreateHadler) {
 
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
 
@@ -38,8 +41,11 @@ class UserManager {
 
             } else {
 
-                let value = [Constants.FirebaseUserKey.gender: gender,
-                             Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
+                self.keychain[Constants.KeychainKey.gender] = gender
+                self.keychain[Constants.KeychainKey.medicine] = medicine
+
+                let value: [String: Any] = [Constants.FirebaseUserKey.gender: gender,
+                                            Constants.FirebaseUserKey.medicine: medicine]
 
                 if let user = user {
 
@@ -79,8 +85,11 @@ class UserManager {
 
             } else {
 
-                let value = [Constants.FirebaseUserKey.gender: User().gender,
-                             Constants.FirebaseUserKey.medicine: User().medicine] as [String: Any]
+                self.keychain[Constants.KeychainKey.gender] = Gender.male.title
+                self.keychain[Constants.KeychainKey.medicine] = Medicine.no.title
+
+                let value: [String: Any] = [Constants.FirebaseUserKey.gender: Gender.male.title,
+                                            Constants.FirebaseUserKey.medicine: Medicine.no.title]
 
                 if let user = user {
 
@@ -109,7 +118,7 @@ class UserManager {
 
     typealias LinkHadler = (Error?, Error?) -> Void
 
-    func linkUser(with email: String, password: String, gender: Int, medicine: Int, completion: @escaping LinkHadler) {
+    func linkUser(with email: String, password: String, gender: String, medicine: String, completion: @escaping LinkHadler) {
 
         let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: password)
 
@@ -121,8 +130,11 @@ class UserManager {
 
             } else {
 
-                let value = [Constants.FirebaseUserKey.gender: gender,
-                             Constants.FirebaseUserKey.medicine: medicine] as [String: Any]
+                self.keychain[Constants.KeychainKey.gender] = gender
+                self.keychain[Constants.KeychainKey.medicine] = medicine
+
+                let value: [String: Any] = [Constants.FirebaseUserKey.gender: gender,
+                                            Constants.FirebaseUserKey.medicine: medicine]
 
                 if let user = user {
 
@@ -146,34 +158,38 @@ class UserManager {
         })
     }
 
-    typealias UserHadler = (User?, Error?) -> Void
+    typealias SignInHadler = (Error?) -> Void
 
-    func getUser(completion: @escaping UserHadler) {
+    func signIn(with email: String, password: String, completion: @escaping SignInHadler) {
 
-        var user = User()
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
 
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+            if let error = error {
 
-        FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users)
-            .child(uid)
-            .observeSingleEvent(of: .value, with: { (snapshot) in
+                completion(error)
 
-                if let userInfo = snapshot.value as? NSDictionary,
-                    let userGender = userInfo[Constants.FirebaseUserKey.gender] as? Int,
-                    let userMedicine = userInfo[Constants.FirebaseUserKey.medicine] as? Int {
+            } else {
 
-                    user.gender = userGender
-                    user.medicine = userMedicine
+                if let uid = user?.uid {
 
-                    completion(user, nil)
+                    FIRDatabase.database().reference().child(Constants.FirebaseUserKey.users).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
 
+                        if let userInfo = snapshot.value as? NSDictionary,
+                            let userGender = userInfo[Constants.FirebaseUserKey.gender] as? String,
+                            let userMedicine = userInfo[Constants.FirebaseUserKey.medicine] as? String {
+
+                            self.keychain[Constants.KeychainKey.gender] = userGender
+                            self.keychain[Constants.KeychainKey.medicine] = userMedicine
+
+                        }
+
+                    })
                 }
 
-            }) { (error) in
+                completion(nil)
 
-                completion(nil, error)
-
-        }
+            }
+        })
     }
 
     func editUser(value: [String: Any]) {
@@ -192,4 +208,5 @@ class UserManager {
             })
         }
     }
+
 }

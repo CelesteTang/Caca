@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,18 +24,30 @@
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="anA-no-3Gy">
                     <rect key="frame" x="296" y="39" width="51" height="31"/>
                 </switch>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4i-WU-1TB">
+                    <rect key="frame" x="5" y="107" width="365" height="2"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="n9q-lb-fBQ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="J4i-WU-1TB" secondAttribute="trailing" constant="5" id="Cpx-Zd-AJG"/>
                 <constraint firstAttribute="trailing" secondItem="anA-no-3Gy" secondAttribute="trailing" constant="30" id="Sp5-AY-5d7"/>
                 <constraint firstItem="frs-tw-Qac" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="W7V-Ug-TtF"/>
                 <constraint firstItem="anA-no-3Gy" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZsV-Nl-uzM"/>
+                <constraint firstAttribute="bottom" secondItem="J4i-WU-1TB" secondAttribute="bottom" id="avg-Ka-iUQ"/>
+                <constraint firstItem="J4i-WU-1TB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="b6g-Jc-1xm"/>
+                <constraint firstItem="J4i-WU-1TB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="m48-6B-R8j"/>
                 <constraint firstItem="frs-tw-Qac" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="pcw-vJ-EgB"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="privacyLabel" destination="frs-tw-Qac" id="f46-J7-SgW"/>
+                <outlet property="separateLineView" destination="J4i-WU-1TB" id="s68-D8-UvP"/>
                 <outlet property="switchButton" destination="anA-no-3Gy" id="8f2-Oy-0i0"/>
             </connections>
             <point key="canvasLocation" x="-196" y="163"/>
