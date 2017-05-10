@@ -1,7 +1,10 @@
 # Caca
 ![GITHUB](https://github.com/CelesteTang/Caca/blob/master/Caca/Assets.xcassets/AppIcon.appiconset/iPhone%20App%20Icon%2060pt@3x.png?raw=true "icon圖示")
 
-**Caca** 是西班牙文中「便便」的意思，這是一款記錄使用者便便頻率、分析便便顏色，並依便便健康程度判斷使用者是否應就醫檢查的 app。有鑒於大腸癌的發生率和致死率都逐年增加，希望 **Caca** 能讓更多人關心自己便便的健康，降低大腸癌來敲門的機會！
+**Caca** 是西班牙文中「便便」的意思，這是一款記錄使用者便便頻率、分析便便顏色，並依便便健康程度判斷使用者是否應就醫檢查的 App。有鑒於大腸癌的發生率和致死率都逐年增加，希望 **Caca** 能讓更多人關心自己便便的健康，降低大腸癌來敲門的機會！
+
+App Store: <https://appsto.re/tw/Nc9sjb.i>
+
 ## Feature
 ### 使用者
 * 註冊、登入
